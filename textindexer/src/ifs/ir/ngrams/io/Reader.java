@@ -17,22 +17,15 @@ public class Reader {
 
         ArrayList<CountedNGram> list = new ArrayList<CountedNGram>();
         for (String file : f.list()) {
-            System.out.println(file);
-            list = readFromFile(f.getAbsolutePath() + "/" + file, n);
-            System.out.println("List: " + list.size());
+            list = readFromFile(f.getAbsolutePath() + "/" + file, n, null);
         }
 
         return list;
     }
 
-    public ArrayList<CountedNGram> readFromFile(String file, int n) throws IOException {
+    public ArrayList<CountedNGram> readFromFile(String file, int n, NGram ng) throws IOException {
         InputStream stream = new BufferedInputStream(new FileInputStream(file));
-        return read(stream, n);
-    }
-
-    public ArrayList<CountedNGram> read(InputStream stream, int n)
-            throws IOException {
-        return read(stream, false, n);
+        return read(stream, n, ng);
     }
 
     /**
@@ -41,56 +34,38 @@ public class Reader {
      * @param cache determines, weather created ngrams are cached. false is faster
      * @param n
      */
-    public ArrayList<CountedNGram> read(InputStream stream, boolean cache, int n)
+    private ArrayList<CountedNGram> read(InputStream stream, int n, NGram ng)
             throws IOException {
-        // XXX to get the last performance kick a high performance
-        // HashMap replacement could be dropped in here (e.g. gnu.trove stuff)
+
         HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>(1000);
         BufferedInputStream bi = new BufferedInputStream(stream);
+
         int b;
-        byte ba[] = new byte[5];
-        ba[4] = 42;
+        byte ba[] = new byte[n];
+        ba[n - 1] = 42;
         int i = 0;
         while ((b = bi.read()) != -1) {
-            // XXX ???
             if (b == 13 || b == 10 || b == 9)
                 b = 32;
             i++;
-            if (b != 32 || ba[3] != 32) {
 
-                ba[0] = ba[1];
-                ba[1] = ba[2];
-                ba[2] = ba[3];
-                ba[3] = ba[4];
-                ba[4] = (byte) b;
-
-
-                newNGram(count, ba, 0, n, cache);
-
-//                newNGram(count, ba, 4, 1, cache);
-
-//                for (int z = 0; z < n; z++) {
-//                    if (i > z + 1)
-//                        newNGram(count, ba, 3, 2, cache);
-//                }
-//                if (i > 1)
-//                    newNGram(count, ba, 3, 2, cache);
-//                if (i > 2)
-//                    newNGram(count, ba, 2, 3, cache);
-//                if (i > 3)
-//                    newNGram(count, ba, 1, 4, cache);
-//                if (i > 4)
-//                    newNGram(count, ba, 0, 5, cache);
+            if (i > n && b != 32) {
+                System.arraycopy(ba, 1, ba, 0, n - 1);
+                ba[n - 1] = (byte) b;
+                newNGram(count, ba);
             }
         }
+
         ArrayList<CountedNGram> order = new ArrayList<CountedNGram>(count.values());
         Collections.sort(order);
         return order;
     }
 
-    protected void newNGram(HashMap<NGram, CountedNGram> count, byte[] ba, int start, int len, boolean cache) {
-        NGram ng = NGramImpl.newNGram(ba, start, len, cache);
+    protected void newNGram(HashMap<NGram, CountedNGram> count, byte[] ba) {
+        NGramImpl ng = new NGramImpl(ba);
+
         CountedNGram cng = count.get(ng);
+
         if (cng != null)
             cng.inc();
         else

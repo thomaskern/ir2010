@@ -19,13 +19,4 @@ public interface NGram {
     public int getByte(int pos);
 
 
-    /**
-     * Compare a ngram to a bunch of bytes
-     */
-    public boolean equals(byte[] bytes, int start, int length);
-
-    /**
-     * Hand out a special representation of yourself
-     */
-    public NGramImpl getNGramImpl();
 }

@@ -2,7 +2,7 @@ package ifs.ir.ngrams;
 
 public class CountedNGram
         // extends NGramImpl
-        implements Comparable, NGram {
+        implements Comparable<CountedNGram>, NGram {
     protected int count = 1;
     protected NGram gram;
 
@@ -10,8 +10,8 @@ public class CountedNGram
         gram = ng;
     }
 
-    public CountedNGram(byte[] ba, int start, int len) {
-        gram = NGramImpl.newNGram(ba, start, len);
+    public CountedNGram(byte[] ba) {
+        gram = new NGramImpl(ba);
     }
 
     public int hashCode() {
@@ -30,11 +30,12 @@ public class CountedNGram
         return gram;
     }
 
-    public int compareTo(Object e1) {
-        return ((CountedNGram) e1).getCount() - getCount();
+    public int compareTo(CountedNGram el) {
+        return el.getCount() - getCount();
     }
 
     public boolean equals(Object e1) {
+        System.out.println("F");
         if (e1 instanceof CountedNGram)
             return getNGram().equals(((CountedNGram) e1).getNGram());
         else if (e1 instanceof NGram)
@@ -59,17 +60,4 @@ public class CountedNGram
         return getNGram().getByte(pos);
     }
 
-    /**
-     * Compare a ngram to a bunch of bytes
-     */
-    public boolean equals(byte[] bytes, int start, int length) {
-        return getNGram().equals(bytes, start, length);
-    }
-
-    /**
-     * Hand out a special representation of yourself
-     */
-    public NGramImpl getNGramImpl() {
-        return getNGram().getNGramImpl();
-    }
 }
