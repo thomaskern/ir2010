@@ -26,7 +26,6 @@ public class ArffWriter {
 
         atts = new FastVector();
 
-
         atts.addElement(new Attribute("ngram", (FastVector) null));
         atts.addElement(new Attribute("count"));
 
