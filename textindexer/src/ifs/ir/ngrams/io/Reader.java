@@ -12,18 +12,17 @@ import java.util.HashMap;
 public class Reader {
 
     public ArrayList<CountedNGram> readFromDirectory(String dir, int n) throws IOException {
-
         File f = new File(dir);
 
-        ArrayList<CountedNGram> list = new ArrayList<CountedNGram>();
+        ArrayList<CountedNGram> al = new ArrayList<CountedNGram>();
         for (String file : f.list()) {
-            list = readFromFile(f.getAbsolutePath() + "/" + file, n, null);
+            al = readFromFile(f.getAbsolutePath() + "/" + file, n, al);
         }
 
-        return list;
+        return al;
     }
 
-    public ArrayList<CountedNGram> readFromFile(String file, int n, NGram ng) throws IOException {
+    public ArrayList<CountedNGram> readFromFile(String file, int n, ArrayList<CountedNGram> ng) throws IOException {
         InputStream stream = new BufferedInputStream(new FileInputStream(file));
         return read(stream, n, ng);
     }
@@ -31,12 +30,16 @@ public class Reader {
     /**
      * Parses InputStream into a weighted list of (byte-)NGrams.
      *
-     * @param cache determines, weather created ngrams are cached. false is faster
      * @param n
      */
-    private ArrayList<CountedNGram> read(InputStream stream, int n, NGram ng)
+    private ArrayList<CountedNGram> read(InputStream stream, int n, ArrayList<CountedNGram> ng)
             throws IOException {
-        HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>(1000);
+
+        HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>();
+        if (ng != null) {
+            for (CountedNGram cng : ng)
+                count.put(cng.getNGram(), cng);
+        }
         BufferedInputStream bi = new BufferedInputStream(stream);
 
         int b;
