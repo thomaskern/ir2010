@@ -1,10 +1,13 @@
 package ifs.ir.ngrams;
 
+import weka.core.Attribute;
+
 public class CountedNGram
         // extends NGramImpl
         implements Comparable<CountedNGram>, NGram {
     protected int count = 1;
     protected NGram gram;
+    private String bytes;
 
     public CountedNGram(NGram ng) {
         gram = ng;
@@ -35,7 +38,6 @@ public class CountedNGram
     }
 
     public boolean equals(Object e1) {
-        System.out.println("F");
         if (e1 instanceof CountedNGram)
             return getNGram().equals(((CountedNGram) e1).getNGram());
         else if (e1 instanceof NGram)
@@ -60,4 +62,13 @@ public class CountedNGram
         return getNGram().getByte(pos);
     }
 
+    public String getString() {
+
+        StringBuffer sb = new StringBuffer("");
+        for (int i = 0; i < ((NGramImpl) getNGram()).getBytes().length; i++) {
+            sb.append((char) ((NGramImpl) getNGram()).getBytes()[i]);
+        }
+
+        return sb.toString();
+    }
 }

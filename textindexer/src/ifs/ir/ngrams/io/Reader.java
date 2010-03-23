@@ -36,7 +36,6 @@ public class Reader {
      */
     private ArrayList<CountedNGram> read(InputStream stream, int n, NGram ng)
             throws IOException {
-
         HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>(1000);
         BufferedInputStream bi = new BufferedInputStream(stream);
 

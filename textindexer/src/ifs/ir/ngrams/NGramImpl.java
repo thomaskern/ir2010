@@ -1,5 +1,7 @@
 package ifs.ir.ngrams;
 
+import com.sun.tools.javac.util.List;
+
 /**
  * Class to model a concrete and simple NGram.
  * <p/>
@@ -86,6 +88,10 @@ public class NGramImpl
         }
         sb.append("}");
         return sb.toString();
+    }
+
+    public byte[] getBytes() {
+        return bytes;
     }
 }
 

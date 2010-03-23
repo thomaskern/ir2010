@@ -1,5 +1,7 @@
 package ifs.ir.ngrams;
 
+import com.sun.tools.javac.util.List;
+
 /**
  * User: thomaskern
  * Date: Mar 22, 2010
