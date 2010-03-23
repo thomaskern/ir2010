@@ -11,6 +11,9 @@ public class Main {
         Reader r = new Reader();
         try {
             File f = new File("");
+
+            
+
 //            ArrayList<CountedNGram> cng = r.readFromDirectory(f.getAbsolutePath() + "/angabe/20news-18828/alt.atheism/", 5);
             ArrayList<CountedNGram> cng = r.readFromFile(f.getAbsolutePath() + "/angabe/20news-18828/alt.atheism/51119", 5, null);
 
