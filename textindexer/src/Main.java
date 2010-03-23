@@ -5,7 +5,6 @@ import ifs.ir.ngrams.io.Reader;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
 
 public class Main {
 

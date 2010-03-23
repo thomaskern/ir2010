@@ -1,13 +1,9 @@
 package ifs.ir.ngrams;
 
-import weka.core.Attribute;
-
 public class CountedNGram
-        // extends NGramImpl
         implements Comparable<CountedNGram>, NGram {
     protected int count = 1;
     protected NGram gram;
-    private String bytes;
 
     public CountedNGram(NGram ng) {
         gram = ng;

@@ -1,7 +1,5 @@
 package ifs.ir.ngrams;
 
-import com.sun.tools.javac.util.List;
-
 /**
  * Class to model a concrete and simple NGram.
  * <p/>
