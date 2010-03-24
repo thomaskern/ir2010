@@ -4,3 +4,6 @@ out/
 .idea/*
 *.xml
 data/
+build/
+jar/
+*.arff

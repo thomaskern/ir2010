@@ -29,6 +29,8 @@ public class Reader {
     public ArrayList<CountedNGram> readFromDirectory(String dir, int n) throws IOException {
         File f = new File(dir);
 
+        System.out.println("DIR: " + dir);
+
         ArrayList<CountedNGram> al = new ArrayList<CountedNGram>();
         for (String file : f.list()) {
             al = readFromFile(f.getAbsolutePath() + "/" + file, n, al);
@@ -37,12 +39,10 @@ public class Reader {
     }
 
     private ArrayList<CountedNGram> filter(ArrayList<CountedNGram> al) {
-        if (upper_bound > 0) {
-            for (Iterator<CountedNGram> it = al.iterator(); it.hasNext();) {
-                CountedNGram ng = it.next();
-                if (ng.getCount() < lower_bound || ng.getCount() > upper_bound)
-                    it.remove();
-            }
+        for (Iterator<CountedNGram> it = al.iterator(); it.hasNext();) {
+            CountedNGram ng = it.next();
+            if (ng.getCount() < lower_bound || (upper_bound > 0 && ng.getCount() > upper_bound))
+                it.remove();
         }
         return al;
     }
@@ -53,11 +53,6 @@ public class Reader {
         return filter(list);
     }
 
-    /**
-     * Parses InputStream into a weighted list of (byte-)NGrams.
-     *
-     * @param n
-     */
     private ArrayList<CountedNGram> read(InputStream stream, int n, ArrayList<CountedNGram> ng)
             throws IOException {
 
@@ -85,7 +80,7 @@ public class Reader {
                 i = process(n, count, b, ba, i);
             }
         }
-        
+
         ArrayList<CountedNGram> order = new ArrayList<CountedNGram>(count.values());
         Collections.sort(order);
         return order;
@@ -135,7 +130,6 @@ public class Reader {
 
     protected void newNGram(HashMap<NGram, CountedNGram> count, byte[] ba) {
         NGramImpl ng = new NGramImpl(ba);
-
         CountedNGram cng = count.get(ng);
 
         if (cng != null)

@@ -1,55 +1,38 @@
-import ifs.ir.ngrams.CountedNGram;
-import ifs.ir.ngrams.io.ArffWriter;
-import ifs.ir.ngrams.io.Reader;
-
-import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.io.InputStreamReader;
 
+/**
+ * User: thomaskern
+ * Date: Mar 24, 2010
+ * Time: 12:23:39 PM
+ */
 public class Main {
 
-    public static void main(String[] files) {
+    public static void main(String[] files) throws IOException {
 
-        File f = new File("");
-//        Reader r = new Reader(10, 100);
-//        r.setStemming(true);
-//
-//        try {
-//            ArrayList<CountedNGram> cng = r.readFromFile(f.getAbsolutePath() + "/angabe/20news-18828/alt.atheism/51119", 3, null);
-//            ArffWriter arff = new ArffWriter();
-//            arff.write(cng, f.getAbsolutePath() + "/data/stem_test.arff");
-//
-//            r.setStemming(false);
-//            cng = r.readFromFile(f.getAbsolutePath() + "/angabe/20news-18828/alt.atheism/51119", 3, null);
-//            arff = new ArffWriter();
-//            arff.write(cng, f.getAbsolutePath() + "/data/stem_test2.arff");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        InputStreamReader converter = new InputStreamReader(System.in);
+        BufferedReader in = new BufferedReader(converter);
 
+        System.out.println("Enter input directory (absolute path): ");
+        String input_directory = in.readLine();
 
-        for (int i = 1; i < 6; i++) {
-            int[][] arr = new int[][]{{0, 0}, {10, 20}, {10, 150}};
+        System.out.println("Enter arff file location: ");
+        String arff = in.readLine();
 
-            for (int[] a : arr) {
-                Reader r = new Reader(a[0], a[1]);
-                try {
-// ohne stemming
-                    read(f, i, a, r, false);
-// mit stemming
-                    read(f, i, a, r, true);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+        System.out.println("Should stemming be activated (true|false)?: ");
+        boolean stemming = Boolean.parseBoolean(in.readLine());
 
-    private static void read(File f, int i, int[] a, Reader r, boolean stemming) throws IOException {
-        r.setStemming(stemming);
-        ArrayList<CountedNGram> cng = r.readFromDirectory(f.getAbsolutePath() + "/angabe/20news-18828/alt.atheism/", i);
+        System.out.println("Enter n: ");
+        int n = Integer.parseInt(in.readLine());
 
-        ArffWriter arff = new ArffWriter();
-        arff.write(cng, f.getAbsolutePath() + "/data/" + i + "/lb_" + a[0] + "_up_" + a[1] + "_" + (stemming ? "with" : "without") + "_stemming.arff");
+        System.out.println("Enter upper threshold bound (0 means deactivated): ");
+        int upper = Integer.parseInt(in.readLine());
+
+        System.out.println("Enter lower threshold bound (-1 means deactivated): ");
+        int lower = Integer.parseInt(in.readLine());
+
+        Runner r = new Runner();
+        r.run_from_dir(input_directory, arff, n, stemming, lower, upper);
     }
 }

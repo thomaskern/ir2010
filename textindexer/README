@@ -1,0 +1,7 @@
+There are 2 ways to use NGrams.jar.
+1) Standalone app.
+Execute the jar file (in the directory containing the jar file do: "java -jar ngrams.jar")
+Follow the instructions
+
+2) use it in Java code
+Instantiate Runner and execute the only method available in Runner (run_from_dir).
