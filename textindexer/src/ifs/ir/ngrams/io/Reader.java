@@ -12,6 +12,7 @@ public class Reader {
     private int upper_bound;
     private int lower_bound;
     private boolean stemming;
+    private ArrayList<String> files;
 
     public Reader() {
         create(0, -1);
@@ -27,15 +28,25 @@ public class Reader {
     }
 
     public ArrayList<CountedNGram> readFromDirectory(String dir, int n) throws IOException {
-        File f = new File(dir);
-
-        System.out.println("DIR: " + dir);
-
         ArrayList<CountedNGram> al = new ArrayList<CountedNGram>();
-        for (String file : f.list()) {
-            al = readFromFile(f.getAbsolutePath() + "/" + file, n, al);
+        files = new ArrayList<String>();
+        search_for_files(dir);
+
+        for (String file : files) {
+            al = readFromFile(file, n, al);
         }
         return filter(al);
+    }
+
+    private void search_for_files(String path) {
+        File f = new File(path);
+
+        for (File file : f.listFiles()) {
+            if (file.isDirectory())
+                search_for_files(file.getPath());
+            else
+                files.add(file.getPath());
+        }
     }
 
     private ArrayList<CountedNGram> filter(ArrayList<CountedNGram> al) {

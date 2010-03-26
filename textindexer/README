@@ -5,3 +5,4 @@ Follow the instructions.
 
 2) Use it in Java code as a Java library
 Instantiate Runner and execute the only method available in Runner (run_from_dir).
+It will search for files in the directory, recursively (it will resolve directories in the directory).
