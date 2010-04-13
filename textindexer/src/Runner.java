@@ -17,7 +17,9 @@ public class Runner {
         Reader r = new Reader(lower, upper);
         r.setStemming(stemming);
 
+        long time = System.currentTimeMillis();
         ArrayList<CountedNGram> cng = r.readFromDirectory(input_dir, n);
+        System.out.println("Time: "+(System.currentTimeMillis() - time));
 
         ArffWriter arff = new ArffWriter();
         arff.write(cng, output);

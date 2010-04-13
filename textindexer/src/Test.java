@@ -13,8 +13,10 @@ public class Test {
 
 
         Runner r = new Runner();
-//        r.run_from_dir("/Users/thomaskern/Documents/uni/current/ifs/ir/ir2010/textindexer/angabe/20news-18828", "test.arff", 3, false, 0.1, 40);
-        r.run_from_dir("/Users/thomaskern/Documents/uni/current/ifs/ir/ir2010/textindexer/angabe/banksearch-5classes-3000","test2.arff",3,false,0.1,0.40);
+
+        
+        r.run_from_dir("/Users/thomaskern/Documents/uni/current/ifs/ir/ir2010/textindexer/angabe/20news-18828", "test.arff", 4, false, 0, 0);
+//        r.run_from_dir("/Users/thomaskern/Documents/uni/current/ifs/ir/ir2010/textindexer/angabe/banksearch-5classes-3000","test2.arff",3,false,0.1,0.40);
     }
 
 }

@@ -38,9 +38,10 @@ public class Reader {
         for (String file : files) {
             i++;
             al = readFromFile(file, n, al);
-            if(i > 300)
-                break;
+//            if(i > 300)
+//                break;
         }
+        Collections.sort(al);
         return filter(al);
     }
 
@@ -60,7 +61,6 @@ public class Reader {
         for (Iterator<CountedNGram> it = al.iterator(); it.hasNext();) {
             CountedNGram ng = it.next();
 
-            System.out.println("upper: "+(ng.getCount()*100.0/total ));
             if (ng.getCount()*100.0/total < lower_bound || (upper_bound > 0 && ng.getCount()*100.0/total >= upper_bound))
                 it.remove();
         }
@@ -111,7 +111,6 @@ public class Reader {
         }
 
         ArrayList<CountedNGram> order = new ArrayList<CountedNGram>(count.values());
-        Collections.sort(order);
         return order;
     }
 
