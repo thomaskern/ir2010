@@ -1,0 +1,653 @@
+
+JADCentral : CodeCentral : JavaBeans
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+	
+	
+	
+	 
+	 
+	
+ Applets 
+ 
+ 
+ Utilities 
+ 
+ 
+ Multimedia 
+ 
+ 
+ Security 
+ 
+ 
+ Database 
+ 
+ 
+ Servlets/JSP 
+ 
+ 
+ XML 
+ 
+ 
+ Wireless Java 
+ 
+ 
+ JUG Utilities 
+ 
+ 
+ JavaBeans 
+ 
+ 
+ Reference and Tutorials 
+ 
+ 
+ Games and Entertainment 
+ 
+ 
+ Techshowcase Downloads 
+ 
+ 
+ Business Code 
+ 
+ 
+ Unsorted Code 
+ 
+ 
+	 
+	 
+ 
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 	
+	 	
+	 	 JavaBeans 
+	 	 
+	 	 
+	 	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	
+	 
+	
+	 	
+	 
+	 Date 
+	 	
+	 Description 
+	 
+	 Downloads 
+	 
+	 	
+	
+	
+	
+	
+	 	
+	 
+	 6-12-2002 
+	 	
+	 EConnect@Whiz - IBM Enterprise Connectivity Certif
+	 EConnect@Whiz comprises of 3 Mock Tests (174 Questions) on the latest pattern of IBM's Enterprise Connectivity (with J2EE) Certification Exam. The salient features include High Level of Customization, Detailed Explanation, Quick Revision Tips, scorer of the month and much more.
+	 
+	 
+	 8 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 6-04-2002 
+	 	
+	 JBC Gui BEANS SUITE
+	 JBC Gui BEANS SUITE is a collection of JavaBeans(tm) compatible with Java(tm) 2 platforms, from Java 1.2 versions, written entirely in the Java(tm) programming language. Based on Swing(tm) components, this collection supports all Java(tm) Look and Feel such as Windows(tm), Motif(tm), Macintosh(tm) etc... These beans allow to increase user friendliness of user interface, as well as productivity of developers by using tested, operational, re-usable beans. They may be included to Java(tm) applications or applets. They may be added as add-on to the VisualMust interface builder by JBCSolutions or to other interface builders available on the market, such as Forte(tm), JBuilder(tm), VisualAge(tm)... 
+So far, this collection contains : 
+JbcBevelText : creates texts in 3D 
+JbcCircularSlider : a three-dimensional rotating slider 
+JbcMetallicPushButton : a three-dimensional push button. It may be elliptic 
+JbcMetallicToggleButton : a three-dimensional toggle button. It may be elliptic 
+JbcProgressBar : a three-dimensional progress bar 
+JbcSpinButton : a spin button that handles suite of integers
+ 
+JbcLongSpinButton : a spin button that handles suite of long integers 
+JbcStringSpinButton : a spin button that handles strings 
+JbcNeedleIndicator : a component that lets the user graphically show a value within a bounded interval 
+JbcNeedleGauge : a component that lets the user graphically show a value within a bounded interval 
+JbcDateTimeChooser : a date and time chooser 
+JbcClock : a graphic clock object 
+JbcMenuLookAndFeelChooser : a Look and Feel chooser
+	 
+	 
+	 203 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 6-03-2002 
+	 	
+	 Self-customizing Java Beans
+	 Customize default values for Java Beans properties without loading into a RAD IDE environment and without serializing to another bean.
+	 
+	 
+	 1168 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-30-2002 
+	 	
+	 Globalleafs -Java Beans
+	 Hi,
+If you are trying to develop application using Java Beans, then please check this website, there are a lot of samples and projects included.
+	 
+	 
+	 9 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-11-2002 
+	 	
+	 Humen
+	 Reusable Humen class
+	 
+	 
+	 3 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 EzClock
+	 EzClock Query a time server to get the exact time. EzClock retrieves the time from an atomic clock server and can automatically set your system time.
+	 
+	 
+	 12 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 EzWhois
+	 EzWhois Query a Whois Server for information about a domain name or IP address.
+Find out all you need to know about a domain with just a few lines of code!
+	 
+	 
+	 10 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 EzMulticast
+	 EzMulticast is used to transmit a single message to a select group of recipients.
+EzMulticast acts as a server and a client to send and receive UDP datagrams.
+	 
+	 
+	 9 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 EzPOP
+	 EzPOP javabean implements a POP3 client to retrieve e-mail from a Post Office Protocol (POP3) Server. Retrieving electronic mail has never been so easy!
+	 
+	 
+	 23 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 EzSMTP
+	 EzSMTP is used to send electronic mail (E-Mail) using the SMTP protocol.
+EzSMTP javabean supports simple and HTML messages, priority, user authentication,
+multiple file attachments and more!
+	 
+	 
+	 31 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 MySQL-JSP Connectivity
+	 Connect your jsp-based application to MySQL database with only 2 lines code
+	 
+	 
+	 94 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 3-13-2002 
+	 	
+	 WebLogic@Whiz- BEA WebLogic Certification ( WLS 6.
+	 WebLogic@Whiz comprises of 3 Mock Tests (180 Questions) on the latest pattern of WebLogic (WLS 6.0) Certification Exam. The salient features include High Level of Customization, Detailed Explanation, Quick Revision Tips, scorer of the month and much more.
+	 
+	 
+	 18 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-09-2002 
+	 	
+	 WebSphere@Whiz- IBM WebSphere (J2EE-EJB) Certifica
+	 WebSphere@Whiz comprises of 3 Mock Tests (159 Questions) on the latest pattern of WebSphere (Test 488) Certification Exam. The salient features include High Level of Customization, Detailed Explanation, Quick Revision Tips, scorer of the month and much more.
+	 
+	 
+	 29 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-07-2002 
+	 	
+	 Cool Beans System Info, Version 1.0.1.8
+	 Cool Beans System Info is a small but powerful program that monitors your computer's CPU, physical memory, and swap memory usage. The main window displays these three properties in small graphs, each which can be turned on or off. The window is also resizable, taking as little desktop space as you desire. For users with Windows 2000 or Windows XP, Cool Beans System Info also supports the alpha blending "transparent look."
+	 
+	 
+	 81 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-14-2001 
+	 	
+	 EJB Benchmark
+	 Over the last few years, we've seen a number of J2EE projects fall prey to performance problems. Our own experiences developing J2EE applications have indicated that the use of session beans instead of entity beans can overcome such performance difficulties. While we've found that other experienced J2EE developers share this view, the practice of using session beans for database access remains undocumented and has not been advanced as a best practice. Hoping that some quantitative figures will help convince developers of the performance improvement that session beans offer, we developed this EJB Performance Benchmark. 
+The benchmark data demonstrates that there is between a 3 and 90 fold performance improvement available just by switching from entity beans to stateless session beans. 
+The benchmark is an interactive web based application that you can use to gather your own data.
+http://www.urbancode.com
+cindy@urbancode.com
+	 
+	 
+	 60 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-08-2001 
+	 	
+	 iNet Factory
+	 iNet Factory is a robust suite of TCP/IP networking components for the Java platform. The components included in iNet Factory provide all the tools necessary to quickly develop network capable Java applications with minimum coding effort. Included are components for Ftp, Http, Smtp, Pop3, Mime, Telnet and other frequently used protocols
+	 
+	 
+	 112 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 10-22-2001 
+	 	
+	 JavaBeans, Applets and Servlets for Barcoding
+	 Add barcodes to web and Java apps. The Barcode Linear Java Package contains JavaBeans, Applets, Class Libraries and easy to use Servlets for Barcoding. Includes Code 39, UPC, EAN, UCC-128, Code 128, POSTNET, PLANET, Codabar, Bookland, Interleaved 2 of 5, non-interleaved 2 of 5 and more. This evaluation version is fully functional.
+	 
+	 
+	 115 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 10-10-2001 
+	 	
+	 Beans Development Kit
+	 build better beans
+	 
+	 
+	 280 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+ 
+ 
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

@@ -1,0 +1,476 @@
+
+ 
+C >> enum And typedef ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Scope and Storage Specifiers 
+ Main Menu 
+ Structs 1 
+ 
+ 
+ 
+ 
+enum And typedef
+ 
+ 
+ 
+ 
+ 
+ 
+The enum Keyword
+ 
+ 
+ 
+ 
+ 
+enum is the abbreviation for ENUMERATE, and we can use this keyword to declare and initialize a sequence 
+ of integer constants. Here's an example: 
+ 
+enum colors {RED, YELLOW, GREEN, BLUE}; 
+ 
+I've made the constant names uppercase, but you can name them which ever way you want. 
+ 
+Here, colors is the name given to the set of constants - the name is optional. Now, if you don't assign a value to a constant, 
+ the default value for the first one in the list - RED in our case, has the value of 0. The rest of the undefined constants 
+ have a value 1 more than the one before, so in our case, YELLOW is 1, GREEN is 2 and BLUE 
+ is 3. 
+ 
+ 
+ 
+But you can assign values if you wanted to: 
+ 
+enum colors { 
+ RED=1, YELLOW, GREEN=6, BLUE }; 
+ 
+Now RED=1, YELLOW=2, GREEN=6 and BLUE=7. 
+ 
+The main advantage of enum is that if you don't initialize your constants, each one would have a unique value. The first would 
+ be zero and the rest would then count upwards. 
+ 
+ 
+ 
+You can name your constants in a weird order if you really wanted... 
+ #include 
+int main() {
+ enum {RED=5, YELLOW, GREEN=4, BLUE};
+ printf("RED = %d\n", RED);
+ printf("YELLOW = %d\n", YELLOW);
+ printf("GREEN = %d\n", GREEN);
+ printf("BLUE = %d\n", BLUE);
+ return 0;
+}
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+RED = 5 
+ YELLOW = 6 
+ GREEN = 4 
+ BLUE = 5
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+... And enum would still work, though it could get a little confusing! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+enum 
+ Variables 
+ 
+ 
+ 
+ 
+ 
+Enumerated constants are integers, so programs with statements like x = RED; would still compile. 
+ 
+But you can also create your own enumerated data types, for example, colors (see above) is now considered an enumerated data 
+ type. So you can say: 
+ 
+enum colors background; 
+ 
+This declares a variable called background, which is of the enumerated data type, colors. 
+ 
+ 
+ 
+Declaring enumerated data types can also be done after the list of constants, like this: 
+ 
+enum colors {BLACK, WHITE}, bg, fg; 
+ 
+This makes bg and fg variables of the enumerated data type, colors. Statements like bg = BLACK; 
+ can now be used. 
+ 
+However, there are drawbacks to using enumerated data typed variables, as opposed to say, integers. This example looks ok, but has 
+ an error: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ enum colors {RED=1, YELLOW, GREEN, BROWN, BLUE, PINK, BLACK};
+ enum colors c;
+ c = RED;
+ printf("I potted a RED ball, which is %d point.\n", c);
+ c = RED + GREEN;
+ printf("Then I potted the GREEN, which is %d points.\n", GREEN);
+ printf("So in total, I scored %d points.\n", c);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+This program supposedly describes a game of snooker - a popular sport in the UK, where players take turns to pot balls of various points. 
+ 
+ 
+The red ball is worth 1 point, which is why I assigned RED a value of 1. Yellow through to black are worth 2 to 7 
+ respectively, so I don't need to specify them, because their values are one more than the previous. 
+ 
+Then I declare an enum colors variable, c, which I then assign the RED constant. 
+ 
+Now for the printf: you can use %d with enumerated data types - they're simply integers in disguise. 
+ 
+Here's where MSVC++ complains: c = RED + GREEN; 
+ 
+It might looks correct, but on the right hand side we're doing RED + GREEN, i.e. 1+3 which returns 4 - which 
+ is of the type int. The left hand side of the assignment operator is of the type enum colors, so we have two choices: 
+ either declare c to be an int, or we can cast the right hand side: 
+ 
+c = enum colors(RED + GREEN); 
+ 
+- In either case, the program will compile, with output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I potted a RED ball, which is 1 point. 
+ Then I potted the GREEN, which is 3 points. 
+ So in total, I scored 4 points. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I'd personally declare c to be an int, so that you could use statements like: c += GREEN; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Using 
+ Type Definitions
+ 
+ 
+ 
+ 
+ 
+Writing enum colors before an enumerated variable can be a little tedious. We can simplify things a little by using the typedef 
+ keyword. 
+ 
+As its name implies, we can define our own types. 
+ 
+So for our colors example, we can define a new type called COLOR like this: 
+ 
+typedef enum colors COLOR; 
+ 
+typedef statements could be placed anywhere in your program - I tend to group them all before main. Now, every time 
+ the compiler sees COLOR, it'll know that you mean enum colors. Let's declare c again: 
+ 
+COLOR c = RED; 
+ 
+- Much simpler! 
+ 
+And we're not restricted to just enum data types. We can simplify the various int types: 
+ 
+typedef unsigned short int USHORT; 
+ typedef unsigned long int ULONG; 
+ 
+ 
+ 
+ 
+You can call your new "types" anything you want. Just remember the basic form of a type definition: the typedef 
+ keyword, followed by the type you want to abbreviate, then the new type at the end. It can be of any case - I use uppercase to make 
+ it stand out. 
+ #include 
+typedef unsigned short int USHORT;
+typedef char* STRING;
+int main() {
+ USHORT i = 2001;
+ STRING c = "Year";
+ printf("%s %d\n", c, i);
+ return 0;
+}
+ 
+This prints out: Year 2001 
+ 
+Notice how you can use pointers in typedef statements. Always remember to use typedef before you use your new type 
+ in the program! 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Scope and Storage Specifiers 
+ Main Menu 
+ Structs 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,131 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq14_2.html 
+ 
+search 
+ 
+Node:Older is faster,
+Next:Pentium,
+Previous:How fast,
+Up:Performance
+14.2 Comparing newer versions with old ones
+Q: I switched to v2 and my programs now run slower than when
+compiled with v1.x....
+Q: I timed a test program and it seems that GCC 2.8.1 produces
+slower executables than GCC 2.7.2.1 was, which in turn was slower than
+DJGPP v1.x. Why are we giving up so much speed as we get newer
+versions?
+Q: I installed Binutils 2.8.1, and my programs are now much slower
+than when they are linked with Binutils 2.7!
+A: In general, newer versions of GCC generate tighter, faster code,
+than older versions. Comparison between different versions of GCC shows
+that they all optimize reasonably well, but it takes a different
+combination of the optimization-related options to achieve the greatest
+speed in each compiler version. The default optimization options can
+also change; for example, --force-mem is switched on by
+-O2 in 2.7.2.1; it wasn't before. GCC offers a plethora of
+optimization options which might make your code faster or slower (see
+the GCC docs for a complete list); the best way to find the correct
+combination for a given program is to profile and experiment. Here are
+some tips:
+- Compile your code using the GCC switches -O2 -mpentium
+-fomit-frame-pointer -ffast-math. (For PGCC and GCC version 2.95 and
+later, use -O6 instead of -O2.)
+- Profile your code and check which functions are "hot spots". 
+Disassemble them, or compile with -S (see getting assembly listing),
+and examine the machine code.
+- If the disassembly shows there aren't too many memory accesses inside
+the inner loops, try adding -fforce-addr option. This option
+helps a lot if a couple of pointers are used heavily within a single
+loop. If there are a lot of memory references, try adding
+-fno-force-mem, to prevent GCC from repeatedly copying variables
+from memory into registers.
+- Sometimes, -fomit-frame-pointer might make things worse, since it
+uses stack-relative addresses which have longer encoding and could
+therefore overflow the CPU cache. So try with and without this switch.
+- With newer versions of GCC, programs whose inner loops include many
+function calls, or which are deeply recursive, could benefit from using
+the -mpreferred-stack-boundary=2 compiler option. This causes
+the compiler to relax its stack-alignment requirements that need a lot
+of sub esp,xx instructions. The default stack alignment is 16
+bytes, unless overridden by -mpreferred-stack-boundary. The
+argument to this option is the power of 2 used for alignment, so 2 means
+4-byte alignment; if your code uses double and long double
+variables, an argument of 3 might be a better choice.
+- Depending on the structure of your code, try different combinations of
+alignment for loops (-malign-loops), jumps
+(-malign-jumps), and function entry points
+(-malign-functions). Alignment changes can have especially
+profound effects when programs are run on AMD's K6 CPU, since these CPUs
+suffer significant slowdown for code aligned on 4-byte boundaries.
+- Try adding -funroll-loops and -funroll-all-loops and
+profile the effect.
+- Try compiling with -fno-strength-reduce. In some cases where GCC
+is in dire need of registers, this could be a substantial win, since
+strength reduction typically results in using additional registers to
+replace multiplication with addition.
+- If different time-critical functions exhibit different behavior under
+some of the optimization options, try compiling them with the best
+combination for each one of them. 
+I'm told that the PGCC version of GCC has bugs in its optimizer which
+show when you use level 7 or higher. Until that is solved in some
+future version, you are advised to stick to -O6. Some
+programs actually run faster when compiled with -O2 or
+-O3, even when compiled with PGCC, so you might try that as
+well. Several users reported that PGCC v2.95.1 tends to crash a lot
+during compilation, especially with -O5, -O6 and
+-mpentium options. (In general, PGCC version 2.95 is deemed
+buggy; you are advised not to use it.)
+Programs which manipulate multi-dimensional arrays inside their
+innermost loops can sometimes gain speed by switching from dynamically
+allocated arrays to static ones. This can speed up code because the
+size of a static array is known to GCC at compile time, which allows it
+to avoid dedicating a CPU register to computing offsets. This register
+is then available for general-purpose use.
+Another problem that is related to C++ programs which manipulate
+arrays happens when you fail to qualify the methods used for array
+manipulation as inline. Each method or function that wasn't
+declared inline will not be inlined by GCC, and will incur
+an overhead of a function call at run time.
+However, inlining only helps with small functions/methods; large inlined
+functions will overflow the CPU cache and typically slow down the code
+instead of speeding it up.
+If your CPU is AMD's K6, try upgrading to GCC 2.96 or later and use the
+-mcpu=k6 switch. I'm told that K6-specific optimizations are
+much better in these versions of GCC.
+A bug in the startup code distributed with DJGPP versions before v2.02
+can also be a reason for slow-down. The problem is that the runtime
+stack of DJGPP programs was not guaranteed to be properly aligned. This
+usually only shows up on Windows (since CWSDPMI aligns the stack on its
+own), and even then only sometimes. But it has been reported that
+switching to Binutils 2.8.1 sometimes causes such slow-down, and
+switching to PGCC can reveal this problem as well. In some cases,
+restarting Windows would cause programs run at normal speed again. If
+you experience such problems too much, upgrade to v2.02.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

@@ -1,0 +1,191 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/ug/compiling/runtime.html 
+ 
+search 
+ 
+Guide: Runtime Basics 
+This chapter of the user guide discusses what important things to
+note about the Runtime Environment in DJGPP. Most problems
+occur because people fail to realize that DJGPP is running in 32-bit
+mode under DPMI - you do not have as much control over the computer as
+you would in 16-bit mode.
+ If you have any comments, suggestions, or questions, feel free to
+contact the author of this section, Tom St Denis, via email: tomstdenis@goplay.com
+Default Operand Size
+The default operand size is the size of the standard unit for
+arithmetic. The size changes depending on what compiler you use. The
+only reason that this effects anyone of us, is that the standard unit
+is also the same size as an int, which is 4-bytes (32-bit).
+This causes problems when you write programs for 16-bit DOS (where an
+int is 16-bit) and expect an int to take 2 bytes.
+For example, using the sizeof operator. Although if you
+write ANSI-C compatible code this should not affect you. Yet, if you
+use inline asm or you access hardware ports, you may want to
+read this. In a 16-bit C Compiler, int's are 16 bits
+(2 bytes) in size, because it's faster. Same thing for
+DJGPP, 32-bit ints are faster to use than 16-bit
+ints. It's not hard to use 16-bit integers in
+DJGPP. You just use the short keyword. Just make sure that
+if you are trying to use a 16-bit number use short as this is
+16 bits in DJGPP and most popular 16-bit C compilers. 
+Default Pointer Size
+This is about the same as the first topic. Just like int
+you must note that pointers are 32-bits in size, in DJGPP.
+In most 16-bit C compilers there are 32-bit pointers, but these
+consist of a segment and an offset. In DJGPP addresses are
+linear, meaning that the 32-bit pointer (like char
+*) is just an offset. Unlike the int scenario,
+there is no standard way of making a 16-bit pointer. So when using
+inline assembler, make sure you accept a 32-bit pointer. 
+Data Types, summary.
+This section sums up the previous two, in a condensed format.
+Unlike 16-bit C compilers, int's are
+32-bit, so make sure that you realize this. The safest way
+to avoid any problems with int's between 32-bit and 16-bit
+systems, is to use the sizeof operator,
+instead of assuming the size of the data type. Also do not rely on
+inline assembly if you are trying to write portable code
+(between 16 and 32-bit systems). Also just like the int's,
+pointers are 32-bit too. For example: 
+void
+test(int *a, int *b, int amnt)
+{
+ memcpy(a, b, amnt * 2);
+}
+This function copies all the ints in a to b. Can
+you see the problem in this function? Here look at this: 
+void
+test(int *a, int *b, int amnt)
+{
+ memcpy(a, b, amnt * sizeof(int));
+}
+Notice the difference? Well the first example will not work
+correctly in DJGPP. That is just one example of how making
+assumptions can hurt you. 
+Bye Bye, Borland :)
+ This section covers the favourite functions in borland that do not
+work in DJGPP. The first function I wish to talk about is
+coreleft(). In Borland C++, the coreleft() returns
+the amount of available heap. This functions is useful because it
+allows you to see how much ram is available without just running out.
+However in a DPMI situation where you have dynamic virtual RAM, the
+heap is not static as you may use virtual ram upon request. You can
+check how much RAM is available though. Take a look at this example:
+#include 
+#include 
+void
+main(void)
+{
+ printf("Heap size: %lu \n", (unsigned long) coreleft());
+}
+This displays how much available heap you have. Now you can do
+something similar in DJGPP too. You use DPMI function 0x0500
+to retrieve DPMI memory information, for example: 
+#include 
+#include 
+int
+main(void)
+{
+ __dpmi_free_mem_info dpmi_free_mem;
+ __dpmi_get_free_memory_information(&dpmi_free_mem);
+ printf("Heap: %i\n", dpmi_free_mem.largest_available_free_block_in_bytes);
+ return 0;
+}
+In this example, it displays all the available RAM, including
+virtual RAM. Next is interrupt support. I will not provide an
+example here but just to let you know that the
+getvect()/setvect() functions (dos.h) in Borland C++ do not
+work the same way in DJGPP. If you use interrupts in your program
+check out the chapter on interrupts for more information.
+ There are other Borland specific things that do not work in DJGPP
+(such as the far keyword, farcalloc,
+farmalloc, etc...) but this is more a subject for porting
+16-bit applications to DJGPP.
+The 32-bit Wonder Years
+Not to long ago, 16-bit compilers ruled the earth. They
+were considered gods, but soon programmers were feeling tormented, so
+the gods, grew and became what we call 32-bit compilers. Now they
+told us stories of great wonders, and pleasures. And that there was.
+However there were some sacrifices to be made to the gods. One day
+one of the gods killed his brothers RAW, XMS and VCPI leaving him
+(DPMI :) ) to rule the 32-bit world.
+ OK, interesting way to put that. This section covers little
+things you should know about writing 32-bit programs with DPMI.
+First, the most import thing that people like to note: DJGPP is
+32-bit. Meaning you get more RAM, more space, just plain more. This
+does however cause confusion. In DJGPP, addresses are always 32 bits,
+but there are no segments (Actually there are still segments,
+but they normally are not directly referred to in DJGPP, and not
+portable to all compilers). This means that the addresses only have
+an offset to them, this is what we call Linear
+Addressing. You should note this when porting FAR Data
+Model programs to DJGPP, because they use segment/offset pair
+addressing. Now you don't get all the RAM for free though. If you
+run out of RAM, you can still use more memory (huh?), this is called
+virtual memory. There is one sacrifice you must make though
+(drum roll...), performance! Swapping is what they call it
+when disk space is substituted for RAM. This allows you to load
+bigger programs, but slower. 
+ Now when you load a program into 32-bit mode, you must have a way
+to control the program to make sure it doesn't crash on you. So a
+special program was created to load the programs, it is called a
+DPMI Server. DPMI stands for Dos Protected Mode
+Interface, and is covered in the DPMI chapter of the User's
+Guide. I would just like to let you know that DPMI controls how the
+program works, accesses ram, and other specialties. Here is a list of
+some things DPMI provides: 
+ 
+- Access to DOS RAM
+ 
+- selector, descriptor functions
+ 
+- FPU Emulation control
+ 
+- Debugging Support
+ 
+- Calling real mode interrupts 
+ 
+- Setting/Getting Real/Protected Mode Interrupts
+ 
+- Setting/Getting Exception Handlers 
+ 
+- Virtual Ram 
+ 
+- Get/Free 32-bit ram (above 1MB) 
+ 
+- Crash Protection 
+Included in the standard DJGPP C library are all theses functions.
+DJGPP's runtime environment is based upon DPMI functions. You should
+only worry about DPMI limitations and functions if your code is not
+100% Ansi-C compliant.
+This section was provided by Tom St Denis
+Email questions or comments to: 
+tomstdenis@goplay.com 
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 1998 
+by DJ Delorie 
+ 
+ 
+Updated Sep 1998 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

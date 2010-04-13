@@ -1,0 +1,432 @@
+
+ 
+C >> Standard Input and Output ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Arithmetic Operators Quiz 
+ Main Menu 
+ printf and scanf 
+ 
+ 
+ 
+ 
+Standard Input and Output
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+Displaying output is a common process, and there are a variety of functions that do exactly that. 
+ 
+So far, I've used the printf function in every example as a way of displaying program output. 
+ 
+Similarly, getting input from the user (or from external files) is another common process. 
+ 
+ 
+ 
+To use the input and output functions, you'll need to include the Standard Input and Output header file (stdio.h) in your program, 
+ which explains why I've written #include in previous examples. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The Standard Input File Stream, stdin
+ 
+ 
+ 
+ 
+ 
+To input a value, the easiest way is to use a library function called scanf. There are other functions like getc 
+ and getchar (both used for inputting characters), but I find that scanf is by far the easiest to use. gets 
+ is another one that is covered in the future. scanf is actually a simplified version of a function called fscanf which 
+ requires you to specify an INPUT FILE STREAM. 
+ 
+ 
+ 
+This is basically a series of bytes that is transferred from the input source to the program (recall from the data types section that 
+ each character is one byte large, so a stream can be thought of as a series of characters). In C, stdin is the standard input 
+ file stream and links to the keyboard. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ Standard Output File Stream, stdout
+ 
+ 
+ 
+ 
+ 
+putc, putchar, puts and printf are all used to output values. The latter is the simplest to use.
+ 
+Some of these require an OUTPUT FILE STREAM which is a series of bytes that is transferred from the output 
+ source to the program. 
+ 
+ 
+ 
+stdout is the standard output file stream and refers to the monitor. 
+ 
+stderr is also an output file stream but makes sure that the output, usually an error message, is seen. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+getc() 
+ and getchar()
+ 
+ 
+ 
+ 
+ 
+These functions allow you to input a character and assign it to a variable. 
+ 
+getc requires you to specify an input file stream like stdin, or as we'll see later, a file pointer (you don't need 
+ to know what a pointer is just yet!). 
+ 
+ 
+ 
+getchar is EXACTLY the same as getc with the input file stream set to stdin. 
+ 
+Both functions return integer values, which you could assign to variables for later use. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+putc() 
+ and putchar()
+ 
+ 
+ 
+ 
+ 
+To output a character, you can use one of these two functions. 
+ 
+putc requires you to specify two things - the variable whose character value should be printed out, and the file output stream. 
+ 
+ 
+putchar is exactly the same as putc, but with the output file stream set to stdout. You only need to specify 
+ the character value to print out. 
+ 
+The following example demonstrates the previous four functions... 
+ 
+ 
+ #include 
+int main() {
+ char a,b;
+ printf("Enter a 2 letter word ");
+ printf("and press return: ");
+ a = getc(stdin);
+ b = getchar();
+ printf("The first letter was: ");
+ putc(a, stdout);
+ printf("\nFollowed by: ");
+ putchar(b);
+ putchar(10);
+ printf("Goodbye!\n");
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Suppose I entered YO and pressed return. The output generated would be: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Enter a 2 letter word and press return: YO The first letter was: Y 
+ Followed by: O 
+ Goodbye! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+After declaring two character variables, I used two printf statements to display the first line of text (printf 
+ is discussed in the next section!), simply because I was running out of space! 
+ 
+ 
+ 
+AS SOON AS the user enters a character, it gets assigned to the variable a because the 
+ getc function was INVOKED - a term meaning the calling of a function. Noticed how the standard input stream, stdin 
+ had to be PASSED into getc. Values passed into a function are called ARGUMENTS - a function sometimes needs extra information 
+ for it to work. 
+ 
+As soon as the user enters a second character, it gets assigned to b - notice how getchar 
+ requires no arguments. 
+ 
+The program continues when you press return - any additional characters after the second aren't 
+ stored. 
+ 
+The putc function takes a char or int variable as its first argument, 
+ followed by the standard output stream, stdout and prints out the specified character. 
+ 
+putchar only requires one argument, and also prints out the specified character. 
+ 
+As a reminder, \n is the NEWLINE character and is the equivalent to a carriage return. 
+ Is has an ASCII code of 10, so putchar(10) inserts a newline before printing "Goodbye!". 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Arithmetic Operators Quiz 
+ Main Menu 
+ printf and scanf 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

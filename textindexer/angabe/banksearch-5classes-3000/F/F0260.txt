@@ -1,0 +1,425 @@
+
+	
+	
+	Coderoom
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+Home | Software Store | Newcode | Tutorials | Books | Forum | Links
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	Visual Basic: 
+	
+	
+	 
+	
+	
+	Controls 
+	
+	
+	 
+	
+	
+	Email 
+	
+	
+	 
+	
+	
+	Games 
+	
+	
+	 
+	
+	
+	Menus 
+	
+	
+	 
+	
+	
+	System 
+	
+	
+	 
+	
+	
+	DataBase 
+	
+	
+	 
+	
+	
+	Encrypt / Compress 
+	
+	
+	 
+	
+	
+	Graphics 
+	
+	
+	 
+	
+	
+	Misc 
+	
+	
+	 
+	
+	
+	Data Processing 
+	
+	
+	 
+	
+	
+	File Utilities 
+	
+	
+	 
+	
+	
+	Internet 
+	
+	
+	 
+	
+	
+	Networking 
+	
+	
+	 
+	
+	
+	Date / Time 
+	
+	
+	 
+	
+	
+	Forms 
+	
+	
+	 
+	
+	
+	Media 
+	
+	
+	 
+	
+	
+	ScreenSaver 
+	
+	
+	
+	
+	
+	
+	Chat with users 
+	
+	
+	
+	
+ 
+If 
+ you have comments, questions etc, please email: code@coderoom.com
+ Any questions regarding 
+ the free code please use the forum
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Search for: 
+	 
+	
+	Any Terms
+	Exact Phrase
+	 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Form 
+ Utilities
+ 
+ 
+ Name: 
+ StatusBar 
+ Panel 
+ 
+ 
+ Description: 
+ How 
+ to use any background color, foreground color, or font in a StatusBar 
+ Panel. Uses the SendMessage API function with the SB_GETRECT message. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 3KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Sticky 
+ Window 
+ 
+ 
+ Description: 
+ How 
+ to make a form "stick" to another window. GetCursorPos, GetParent, 
+ GetWindowPlacement, GetWindowText, SetWindowPos, and WindowFromPoint 
+ APIs. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 4KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Taskbar 
+ Icon 
+ 
+ 
+ Description: 
+ 
+ How to show an Icon on the Taskbar button for a Borderless form. 
+ GetWindowLong & SetWindowLong API functions with the GWL_STYLE setting. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 3KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Extended 
+ TextBox Limitations 
+ 
+ 
+ Description: 
+ Shows 
+ how to limit a TextBox control to a specific number of characters 
+ per line and number of lines. SendMessage API function with the 
+ EM_GETLINECOUNT, EM_GETLINE, and EM_LINEFROMCHAR messages. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 3KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Windows 
+ Search 
+ 
+ 
+ Description: 
+ How 
+ to search for a specific window. Uses the GetWindow() & SendMessage 
+ / WM_GETTEXT API functions. This program also has a VB4/32 & VB5 
+ function that emulates the VB6 Split() (parsing) function. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 3KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Center 
+ Dialog 
+ 
+ 
+ Description: 
+ 
+ How to respond to the WM_INITDIALOG message - repositions the Common 
+ Dialog Control to always center on the form. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 4KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Clipboard 
+ Notification Program 
+ 
+ 
+ Description: 
+ Shows 
+ how to write a clipboard notification program. The TextBox and PictureBox 
+ on the form automatically change anytime new text or bitmaps are 
+ copied to the clipboard. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 3KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ Close 
+ Forms 
+ 
+ 
+ Description: 
+ Shows 
+ how to search for a window to close by enumerating window handles 
+ and checking their titles and parents. Demonstrates the following 
+ APIs and messages: EnumWindows, GetClassName, GetParent, GetWindowText, 
+ MessageBeep, SendMessage, WM_SYSCOMMAND. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 4KB) 
+ 
+ 
+ 
+ 
+ 
+ Name: 
+ GetWindowsHandles 
+ 
+ 
+ Description: 
+ Fills 
+ a Listbox with top level parent Window handles and titles. Click 
+ on an item to display all its child window handles. Demonstrates 
+ EnumWindows and EnumChildWindows CALLBACK functions and AddressOf 
+ usage. 
+ 
+ 
+ Download: 
+ Click 
+ here (- 
+ 4KB) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Result 
+ Page 7 of 11 : [>]
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	

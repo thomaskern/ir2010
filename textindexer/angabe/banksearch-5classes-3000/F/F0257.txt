@@ -1,0 +1,735 @@
+
+Developing with a new standard in UI
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies 
+ - Miscellaneous - Developing with a new standard in UI 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ Developing with a new standard in UI
+ 
+ by John T. Yung, MCSD
+ 
+ 
+In this new century we enter, everything relating to software should 
+ have a standard of quality. For small time programmers, that doesn't 
+ necessarily mean having quick turnaround or technical support response. 
+ No, for quality, I mean having features that can make your user 
+ interface smart and easier to use; thus giving a feel of quality and a 
+ polish reputation for your programming "PROWESS" among your peers.
+ 
+Have you ever seen programs that have small neat 
+ user interface features that make you think, "Ummm, that’s pretty cool 
+ (and useful)." Well, have you ever made the leap of faith and said in a 
+ stuttering manner to yourself, "I should do that! Yeah.... uh yeah I 
+ should do that.... " But yet, you just don't know how? Well, here in 
+ the "Pseudo l Conceptual Institute of Johnny's VB Support”, we have the 
+ code and expertise to solve your dilemma. We are confident in our 
+ skills to rehabilitate your programming knowledge because "I'm not just 
+ the programmer, I'm also a client." 
+ J
+ 
+Now seriously....
+ 
+In this article, I'll introduce some neat coding techniques that can 
+ make your program users think you or your company are/is bigger than 
+ actuality.
+ 
+Here’s a list of what you will read in this first of a series of 
+ articles: 
+ 
+ 
+- Screen Edge Snapping for the your Form 
+ 
+- Program Taskbar alert 
+ 
+- Always stay on Top 
+ 
+ 
+When I get through the topics with you, you probably jump right in to 
+ implementing this yourself. Before you do so, consider using it wisely 
+ "grasshopper”. Use it selectively and elegantly, certain features only 
+ make a good user experience when used at opportune and justified times.
+ 
+Screen Edge Snapping
+ 
+ 
+The purposes of this feature is to help users automatically snap the 
+ position your program’s form inline "exactly" with the edge of the 
+ screen. This helps them from spending time slowing reading and moving 
+ their mouse and form so they can concentrate on working on their tasks.
+ 
+ 
+ 
+ 
+ 
+(illustration 1) this is an example of screen edge snapping.
+ 
+This behavior is pretty neat. It doesn't require the user to learn 
+ anything new in particular, it is more of an enhance usability. To do 
+ this in code, you have to open a regular project with a dialog form. Set 
+ the form's caption to nothing and set the ControlBox Setting to "false" 
+ (see illustration 2). 
+ 
+ 
+ 
+(illustration 2) this shows the properties of the form set with 
+ caption of "” and ControBox selection to false.
+ 
+Now go inside the code for the form. There are two private form 
+ functions you need to address. They are MouseMove and MouseDown. These 
+ two function will detect the click and drag of the form. The code will 
+ simply detect the position of the form if its near the edge of the 
+ screen and if so, reposition or "snap" it inline to the nearest edge of 
+ the screen. (see illustration 3)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+(illustration 3) this is the form code selection box; Notice the 
+ Form function MouseDown and MouseMove.
+ 
+Now that you know the territory of where the action will happen, we 
+ have to build a foundation for it. A class needs to be made that handles 
+ the user enhancements. Let me point out that developing this class 
+ provides reusability to your future projects. In the project, you add in 
+ a class, name it "clsDockingHandler” and add the following to the class:
+ 
+ 
+ 
+ 
+'Code For class 
+ 'The variable declaration are self explanatory 
+Private mParentForm As Form 
+Private mAlwaysOnTop As Boolean 
+Private mSnapDistance As Long 
+ 
+' Internally set variables 
+Private mStartDragX As Single 
+Private mStartDragY As Single 
+ 
+Private mWorkAreaRect As RECT 
+ 
+' Are we attached to some edge of the screen? 
+Private mAttachedToRight As Boolean 
+Private mAttachedToLeft As Boolean 
+Private mAttachedToTop As Boolean 
+Private mAttachedToBottom As Boolean 
+ 
+Private mWindowStyle As Long 
+ 
+Public Sub StartDockDrag(ByVal x As Single, ByVal y As Single) 
+ 
+ ' Get the WorkArea - the area of the desktop not taken 
+ ' by the taskbar, using a little known but interesting 
+ ' API call 
+ SystemParametersInfo SPI_GETWORKAREA, 0&, mWorkAreaRect, 0& 
+ 
+ ' Convert from pixels to twips 
+ mWorkAreaRect.Top = mWorkAreaRect.Top * Screen.TwipsPerPixelY 
+ mWorkAreaRect.Left = mWorkAreaRect.Left * Screen.TwipsPerPixelX 
+ mWorkAreaRect.Bottom = mWorkAreaRect.Bottom * Screen.TwipsPerPixelY 
+ mWorkAreaRect.Right = mWorkAreaRect.Right * Screen.TwipsPerPixelX 
+ 
+ mStartDragX = x 
+ mStartDragY = y 
+ 
+End Sub 
+ 
+Public Sub UpdateDockDrag(ByVal x As Single, ByVal y As Single) 
+Dim DiffX As Long, DiffY As Long 
+Dim NewX As Long, NewY As Long 
+Dim ToLeftDistance As Long 
+Dim ToRightDistance As Long 
+Dim ToTopDistance As Long 
+Dim ToBottomDistance As Long 
+ 
+ If ParentForm Is Nothing Then Exit Sub 
+ 
+ DiffX = x - mStartDragX 
+ DiffY = y - mStartDragY 
+ 
+ If DiffX = 0 And DiffY = 0 Then Exit Sub 
+ 
+ NewX = mParentForm.Left + DiffX 
+ NewY = mParentForm.Top + DiffY 
+ 
+ ' Find the distance to the screen edges 
+ ToRightDistance = mWorkAreaRect.Right - (NewX + mParentForm.Width) 
+ ToLeftDistance = NewX - mWorkAreaRect.Left 
+ ToBottomDistance = mWorkAreaRect.Bottom - (NewY + mParentForm.Height) 
+ ToTopDistance = NewY - mWorkAreaRect.Top 
+ 
+ ' The idea in all the following code is the same: 
+ ' If we’re not already attached some specific edge, 
+ ' find out if we should. 
+ ' If we’re already attached, find out whether we should 
+ ' "break" the attachment, or stay put. 
+ If Not mAttachedToBottom Then 
+ If Abs(ToBottomDistance) Then 
+ ' Attach to edge 
+ NewY = mParentForm.Top + ToBottomDistance 
+ mAttachedToBottom = True 
+ End If 
+ Else 
+ If Abs(ToBottomDistance) > mSnapDistance Then 
+ ' Break the attachment 
+ mAttachedToBottom = False 
+ Else 
+ ' Stay at current position 
+ NewY = mParentForm.Top 
+ End If 
+ End If 
+ 
+ If Not mAttachedToTop Then 
+ If Abs(ToTopDistance) Then 
+ NewY = mWorkAreaRect.Top 
+ mAttachedToTop = True 
+ End If 
+ Else 
+ If Abs(ToTopDistance) > mSnapDistance Then 
+ mAttachedToTop = False 
+ Else 
+ NewY = mParentForm.Top 
+ End If 
+ End If 
+ 
+ If Not mAttachedToRight Then 
+ If Abs(ToRightDistance) Then 
+ NewX = mWorkAreaRect.Right - mParentForm.Width 
+ mAttachedToRight = True 
+ End If 
+ Else 
+ If Abs(ToRightDistance) > mSnapDistance Then 
+ mAttachedToRight = False 
+ Else 
+ NewX = mParentForm.Left 
+ End If 
+ End If 
+ 
+ If Not mAttachedToLeft Then 
+ If Abs(ToLeftDistance) Then 
+ NewX = mWorkAreaRect.Left 
+ mAttachedToLeft = True 
+ End If 
+ Else 
+ If Abs(ToLeftDistance) > mSnapDistance Then 
+ mAttachedToLeft = False 
+ Else 
+ NewX = mParentForm.Left 
+ End If 
+ End If 
+ 
+ ' Position the window, converting to pixels again 
+ SetWindowPos mParentForm.hwnd, mWindowStyle, _ 
+ NewX / Screen.TwipsPerPixelX, _ 
+ NewY / Screen.TwipsPerPixelY, _ 
+ mParentForm.Width / Screen.TwipsPerPixelX, _ 
+ mParentForm.Height / Screen.TwipsPerPixelY, 0 
+ 
+End Sub 
+ 
+Public Property Set ParentForm(vData As Form) 
+ Set mParentForm = vData 
+End Property 
+ 
+Public Property Get ParentForm() As Form 
+ Set ParentForm = mParentForm 
+End Property 
+ 
+' This is just a small bonus, since you may 
+' want your form to be a sticky one. 
+Public Property Let AlwaysOnTop(vData As Boolean) 
+ 
+ mAlwaysOnTop = vData 
+ 
+ ' Change the window style and update the window 
+ If mAlwaysOnTop Then 
+ mWindowStyle = HWND_TOPMOST 
+ Else 
+ mWindowStyle = HWND_NOTOPMOST 
+ End If 
+ 
+ If Not ParentForm Is Nothing Then 
+ SetWindowPos mParentForm.hwnd, mWindowStyle, _ 
+ mParentForm.Left / Screen.TwipsPerPixelX, _ 
+ mParentForm.Top / Screen.TwipsPerPixelY, _ 
+ mParentForm.Width / Screen.TwipsPerPixelX, _ 
+ mParentForm.Height / Screen.TwipsPerPixelY, 0 
+ End If 
+ 
+End Property 
+ 
+Public Property Get AlwaysOnTop() As Boolean 
+ AlwaysOnTop = mAlwaysOnTop 
+End Property 
+ 
+Public Property Let SnapDistance(vData As Long) 
+ mSnapDistance = vData 
+End Property 
+ 
+Public Property Get SnapDistance() As Long 
+ SnapDistance = mSnapDistance 
+End Property 
+ 
+Private Sub Class_Initialize() 
+ 
+ ' Default window style is normal window (not always on top) 
+ mWindowStyle = HWND_NOTOPMOST 
+ 
+ ' Default snap distance is 10 pixels 
+ mSnapDistance = 10 * Screen.TwipsPerPixelX 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+ 
+OK on the MouseMove private function of the Form, add the following 
+ code
+ 
+ 
+ 
+ 
+If Button = vbLeftButton Then 
+ 
+DockHandler.UpdateDockDrag x, y 
+End If 
+ 
+ 
+ 
+ 
+ 
+What the code here simply is to check if the left button is clicked. 
+ If so, it will update the position to the class member function "UpdateDockDrag". 
+ The position is used to measure the proximity to the edge of the screen 
+ and if snapping action is necessary. Simple enough.
+ 
+In the MouseDown, the code is straight forward. Check if the left 
+ mouse is click. If so, pass the position to the member function "StartDockDrag".
+ 
+ 
+ 
+ 
+If Button = vbLeftButton Then 
+ ' OK - Here we go. We pass the cursor coordinates 
+ ' at the start of the drag 
+ DockHandler.StartDockDrag x, y 
+ 
+End If 
+ 
+ 
+ 
+ 
+ 
+In another module add the following code:
+ 
+ 
+ 
+ 
+Option Explicit 
+ 
+Public Type RECT 
+ Left As Long 
+ Top As Long 
+ Right As Long 
+ Bottom As Long 
+End Type 
+ 
+Public Const HWND_TOPMOST = -1 
+Public Const HWND_NOTOPMOST = -2 
+Public Const SPI_GETWORKAREA = 48 
+ 
+Public Declare Function SetWindowPos Lib "user32" (ByVal hwnd As Long, _
+ ByVal hWndInsertAfter As Long, ByVal x As Long, ByVal y As Long, _
+ ByVal cx As Long, ByVal cy As Long, ByVal wFlags As Long) As Long 
+Public Declare Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA" _
+ (ByVal uAction As Long, ByVal uParam As Long, _
+ ByRef lpvParam As Any, ByVal fuWinIni As Long) As Long 
+ 
+ 
+ 
+ 
+ 
+The need for another module is to declare API functions and to define 
+ a structure.
+ 
+Now make sure to create an instance of the class in your program like 
+ Form Load and use the class functions:
+ 
+ 
+ 
+ 
+Dim DockHandler As New clsDockingHandler 
+ 
+ 
+ 
+ 
+When your form loads, initialize the following:
+ 
+ 
+ 
+ 
+Set DockHandler.ParentForm = Me 
+ DockHandler.SnapDistance = 250 
+ 
+ 
+ 
+ 
+In essence that’s the gist of developing this feature.
+ 
+ 
+Program Taskbar alert
+ 
+ 
+OK, I hope you are still good to go for the next one. I put the code 
+ intense ones in the front so you have energy for the next one.
+ 
+This taskbar alert is pretty easy. This behavior is best exemplified 
+ by the Office suite software. Its use to notify the user of an event, 
+ such as a task is over or some notification is needed without 
+ interrupting what the user is doing.
+ 
+You will need in use an API function:
+ 
+ 
+ 
+ 
+Public Declare Function FlashWindow Lib "user32" (ByVal hwnd As Long, _
+ ByVal bInvert As Long) As Long 
+ 
+ 
+ 
+ 
+Now when ever you feel you need to notify the user in a non 
+ interruptive way, just do this:
+ 
+ 
+ 
+ 
+i = FlashWindow(Form1.hwnd, True) 
+ 
+ 
+ 
+ 
+And you will see your program flash in the taskbar, getting attention 
+ and making it self known to the user that its better than all the other 
+ programs crowding that’s crowding its space.
+ J "The wheel that squeaks the 
+ loudest gets the oil.”
+ 
+ 
+ 
+ 
+ 
+Always stay on Top
+ 
+ 
+Stay on Top, whatever happens "stay on top".
+ 
+Uh Ummm, anyway, its useful to use this code when you want your 
+ program to be on the top when its out of focus. If you are displaying 
+ some information that needs to be seen or needs to be displayed. This is 
+ very useful. Luckily for you, we are inputting the code in the class so 
+ this will save you time and reusability .(see illustration)
+ 
+When you want to use it, type the code:
+ 
+ 
+ 
+ 
+DockHandler.AlwaysOnTop = True 
+ 
+ 
+ 
+ 
+You see the sample program stays on top while the focus is on the 
+ Visual Basic program.
+ 
+ 
+ 
+I guess you are surprise by brief codes for the last two features. 
+ Well, I understand the first one is long and probably the most 
+ difficult, that’s why I pushed up front so you would have the energy to 
+ understand the hard part and save the easier section last. From my 
+ experience, that’s the most effective consumption of energy and 
+ enthusiasm in learning the material. Hey by the way, if you need someone 
+ to help out in programming a some features of your project or your 
+ company’s project, I am available. Just let me know, the MCSD is here to 
+ help.
+ 
+I hope reading this will help you develop smarter and better 
+ programs. If you want to read the later articles, tell your website 
+ administrator to demand and syndicate it.
+ 
+Happy Programming.... and Happy Safe Holidays
+ 
+ 
+About the Author
+ 
+ 
+John Yung is a MCSD Visual Basic programmer base in New York. 
+ He works for Webadviso Inc and also does consulting work for companies 
+ to develop programs in various areas such as ADO, MSXML, Voice 
+ Recognition, User interface design and etc. He develops his own search 
+ engine website at 
+ http://www.debuting.com. In his free time, he enjoys taking bike 
+ trips, site seeing and watching movies. He can be contacted by email
+ johntyung@yahoo.com for help 
+ and contracting.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Comments...
+	GreyArea Friday, January 11, 2002	
+	
+	
+	
+Even better window flashing
+	Devon Strawn Friday, January 11, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies 
+ - Miscellaneous - Developing with a new standard in UI 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

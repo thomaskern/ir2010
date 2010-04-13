@@ -1,0 +1,562 @@
+
+VB Helper What's New
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+	 
+	
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	New Home 
+	Old Home 
+	What's New 
+	Site Map 
+	 
+	Books 
+	How To 
+	Tips & Tricks 
+	Tutorials 
+	Stories 
+	Performance 
+	Essays 
+	Links 
+	Q & A 
+	New in VB6 
+	Free Stuff 
+	Pictures 
+	 
+	Awards Received 
+	Banners 
+	 
+	News Letter 
+	
+	Feedback
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	What's New
+	This page lists new things added to the site in the last
+	week or so.
+	 
+	
+	 
+	
+	
+ 
+ 
+	 
+ 
+ 
+	
+	Date
+	Title
+	Description
+	
+	
+	October 11 
+	
+	
+	New HowTo: Fit an image into a PictureBox preserving its aspect ratio (proportions) (3K) Advanced
+	
+	 
+	
+	Set the target area for the picture to be the destination PictureBox. Adjust the height and width of the area so it has teh same aspect ratio as the image.
+	 
+	
+	
+	October 9 
+	
+	
+	New HowTo: Add form and application (task manager) icons to a program from a resource file (4K) Advanced
+	
+	 
+	
+	See the Readme.txt file for details.
+	 
+	
+	
+	October 9 
+	
+	
+	New HowTo: Draw text filled with horizontal lines (4K) Intermediate
+	
+	 
+	
+	Use the BeginPath API function to start a path, draw the text, and then use EndPath to finish the path. Use PathToRegion to convert the path into a region and then use SetWindowRgn to restrict a control (e.g. PictureBox) to that region. Now you can draw whatever you want in the PictureBox and it will be clipped to the region.
+	 
+	
+	
+	October 9 
+	
+	
+	New HowTo: Draw text filled with a horizontal color gradient (4K) Intermediate
+	
+	 
+	
+	Use the BeginPath API function to start a path, draw the text, and then use EndPath to finish the path. Use PathToRegion to convert the path into a region and then use SetWindowRgn to restrict a control (e.g. PictureBox) to that region. Now you can draw whatever you want in the PictureBox and it will be clipped to the region.
+	 
+	
+	
+	October 4 
+	
+	
+	New HowTo: Play an MP3 audio file (3K) Beginner
+	
+	 
+	
+	Use the MMC Video control.
+	 
+	
+	
+	September 30 
+	
+	
+	New HowTo: Make an ActiveX control that allows the user to enter only valid integer within a certain range (8K) Advanced
+	
+	 
+	
+	Use a TextBox. In the KeyPress and KeyDown event handlers, figure out what the field's new value will be if the key is allowed. Validate the value and reject it if it is not an integer or it is out of bounds.
+	 
+	
+	
+	September 29 
+	
+	
+	New HowTo: Automatically build Web pages (28K) Advanced
+	
+	 
+	
+	This program uses MSXML routines to load XML files containing the information that should be in the Web pages. It look at the type of data in the XML file and loads a corresponding template. The template contains the basic HTML code needed for the page and tokens of the form @@@Title@@@. The program uses Replace to replace the tokens with values pulled from the XML file.
+	 
+	
+	
+	September 26 
+	
+	
+	New HowTo: Search for files of a specific type in a directory that contain a string and replace the string (5K) Advanced
+	
+	 
+	
+	Use Dir$ to list the files matching the selected patterns. Read the files into a string, use Replace to make the substitution, and rewrite the file.
+	 
+	
+	
+	September 26 
+	
+	
+	Modified HowTo: Quickly view graphic files (3K) Beginner
+	
+	 
+	
+	Use Disk, Directory, and File controls to select a file for viewing.
+	When the user clicks on part of the image, display the point's Hex color value.
+	 
+	
+	
+	September 20 
+	
+	
+	New HowTo: Get a sorted list of files in a directory (5K) Intermediate
+	
+	 
+	
+	Use Dir$ to get the list of files. Then use Quicksort to sort the list.
+	 
+	
+	
+	September 20 
+	
+	
+	New HowTo: See where two lines intersect (4K) Intermediate
+	
+	 
+	
+	See the Readme.txt file for details.
+	 
+	
+	
+	September 18 
+	
+	
+	New HowTo: Triangulate a polygon (9K) Advanced
+	
+	 
+	
+	Remove "ears" from the polygon until it has only three vertices left. See the Readme.txt file for details.
+	 
+	
+	
+	September 18 
+	
+	
+	New HowTo: Determine whether a polygon is oriented clockwise or counterclockwise (7K) Advanced
+	
+	 
+	
+	Calculate the polygon's signed area. The result is negative if the polygon is oriented clockwise.
+	 
+	
+	
+	September 18 
+	
+	
+	New HowTo: Find the centroid (center of mass) of a polygon (8K) Advanced
+	
+	 
+	
+	If you were to cut the polygon out of cardboard, the centroid would be the point where you could balance the polygon on a pin. Note, however, that the centroid does not necessarily lie in the polygon. See the Readme.txt file and the code for details.
+	 
+	
+	
+	September 15 
+	
+	
+	New HowTo: Find the convex hull of a set of points (8K) Advanced
+	
+	 
+	
+	A "convex hull" is a smallest convex polygon that surrounds a set of points. This program shows one method for finding a convex hull and a culling technique to make finding convex hulls faster.
+	 
+	
+	
+	September 9 
+	
+	
+	New HowTo: Make an ActiveX control that asynchronously downloads images directly into a picture (5K) Intermediate
+	
+	 
+	
+	Use the AsyncRead method. When the AsyncReadComplete event indicates the download is complete, load the downloaded picture into the control's Picture property and raise an event so the main program knows the picture is ready.
+	 
+	
+	
+	September 8 
+	
+	
+	New HowTo: Calculate the area of a polygon (7K) Intermediate
+	
+	 
+	
+	Add the areas of the trapezoids defined by the polygon's edges dropped to the X-axis.
+	 
+	
+	
+	September 7 
+	
+	
+	New HowTo: Find the angle between two line segments (4K) Advanced
+	
+	 
+	
+	Use dot and vector products to find the tangent of the angle. Then use Atn.
+	 
+	
+	
+	September 7 
+	
+	
+	New HowTo: Determine if a polygon is convex and tell if a point is inside it (8K) Advanced
+	
+	 
+	
+	See the Readme.txt file for details.
+	 
+	
+	
+	September 7 
+	
+	
+	New HowTo: Subclass to see when a control is about to become visible or invisible (3K) Advanced
+	
+	 
+	
+	Subclass the control. In the new WindowProc function, look for the WM_SHOWWINDOW message.
+	 
+	
+	
+	September 5 
+	
+	
+	New HowTo: Draw a rotated ellipse (3K) Advanced
+	
+	 
+	
+	Iterate an angle theta from 0 to 2 * PI radians. For each value of theta, X = wid * Cos(theta) and Y = hgt * Sin(theta) represents a point on the ellipse centered at the origin. Then rotate the ellipse's points.
+	 
+	
+	
+	September 1 
+	
+	
+	New HowTo: This editor lets you build, save, and restore a collection of points (5K) Intermediate
+	
+	 
+	
+	This program lets you draw, save, and restore a collection of points. It keeps track of modifications and warns you if you are about to exit without saving changes.
+	 
+	
+	
+	September 1 
+	
+	
+	New HowTo: Make a simple polygon editor (5K) Intermediate
+	
+	 
+	
+	This program lets you draw, save, and restore a single polygon. It keeps track of modifications and warns you if you are about to exit without saving changes.
+	 
+	
+	
+	September 1 
+	
+	
+	New HowTo: Get the path to special folders like the Recent Document list (4K) Intermediate
+	
+	 
+	
+	Use the SHGetSpecialFolderPath API function.
+	 
+	
+	
+	September 1 
+	
+	
+	New HowTo: Encipher text, part 2 (6K) Advanced
+	
+	 
+	
+	This program contains enhancements to the previous cipher program.
+	 
+	
+	
+	August 31 
+	
+	
+	New HowTo: List the ODBC system DSNs (3K) Advanced
+	
+	 
+	
+	Use registry functions to enumerate the values in:
+	 HKEY_LOCAL_MACHINE\Software\ODBC\ODBC.INI
+	 
+	
+	
+	August 25 
+	
+	
+	New HowTo: Copy a control's image (5K) Advanced
+	
+	 
+	
+	Simulate Alt-PrntScrn to copy an image of the form to the clipboard. Paste the image into a PictureBox.
+	
+	Use ClientToScreen to get the offset from the form's edge to the client area. Use the control's position plus this offset to copy the control's image from the form's picture using PaintPicture.
+	 
+	
+	
+	August 25 
+	
+	
+	New HowTo: Hide a message inside a picture (steganography) (38K) Advanced
+	
+	 
+	
+	For each bit in the message, pick a random pixel in the image and randomly pick the pixel's red, green, or blue component. Set the least significant bit in that component to 0 or 1 to encode the message bit.
+	 
+	
+	
+	August 24 
+	
+	
+	New HowTo: Display an appropriate popup menu when the user right clicks on a TreeView node (6K) Advanced
+	
+	 
+	
+	In the TreeView's MouseDown event handler, see what node was clicked. If the right mouse button is down, display the popup menu.
+	
+	Hide or disable popup menu items that are inappropriate for the clicked node. (Alternatively you could use different popup menus for different kinds of nodes.)
+	 
+	
+	
+	August 22 
+	
+	
+	New HowTo: Let the user scroll a picture using arrow keys (14K) Intermediate
+	
+	 
+	
+	Place the picture in a PictureBox inside another PictureBox. In the form's KeyDown event handler, change the inner PictureBox's Left and Top properties to move the picture.
+	 
+	
+	
+	August 18 
+	
+	
+	New HowTo: Make a windowless clock control with a transparent background (7K) Advanced
+	
+	 
+	
+	Use Shape and Line controls to draw the clock's face, tic marks, and hands.
+	 
+	
+	
+	August 18 
+	
+	
+	New Story: Your Tax Dollars At Work
+	
+	 
+	
+	See how a repair covered under warranty can cost a small fortune.
+	 
+	
+	
+	August 18 
+	
+	
+	New HowTo: Display a database's tables and records in a TreeView control (13K) Advanced
+	
+	 
+	
+	When the form loads, add the table names to the TreeView. When the user clicks on a TreeView's Table node, load the table's records into the TreeView.
+	 
+	
+	
+	August 14 
+	
+	
+	New HowTo: Find an ActiveX control's bounds in the parent that contains it (3K) Advanced
+	
+	 
+	
+	Use the UserControl.Extender object's Left and Top properties, plus the UserControl's Width and Height properties.
+	 
+	
+	
+	August 11 
+	
+	
+	New HowTo: Parse tags that look sort of like XML (5K) Advanced
+	
+	 
+	
+	Use a TagParser class that raises events when it reads a tag.
+	 
+	
+	
+	August 11 
+	
+	
+	HowTo: Make the Haunted Maze game (55K) Advanced
+	
+	 
+	
+	This program uses DirectX 7. See the code for details. This may not be directly useful for your work, but it is fun, interesting, and shows how to use DirectX 7.
+	 
+	
+	
+	August 11 
+	
+	
+	New HowTo: Enable or disable all controls on a form (3K) Intermediate
+	
+	 
+	
+	Loop through the form's Controls collection setting each control's Enabled property to True or False.
+	 
+	
+	
+	August 11 
+	
+	
+	New HowTo: Make a complete directory path (3K) Intermediate
+	
+	 
+	
+	Break the path into directories and then creates each one to build up the complete path.
+	 
+	
+	
+	August 11 
+	
+	
+	New HowTo: See why a form is about to close and take appropriate action (3K) Beginner
+	
+	 
+	
+	In the Form_QueryUnload event handler, check the UnloadMode parameter to see why the form is closing.
+	 
+	
+	
+	August 5 
+	
+	
+	New HowTo: Let the user select an irregular area (3K) Advanced
+	
+	 
+	
+	Use MouseDown, MouseMove, and MouseUp to let the user select the area. Draw the selection using the Polyline API function. Set DrawStyle = vbDot to draw in dashed lines.
+	
+	After the area is selected, enable a timer that redraws the selected area with DrawStyle = vbSolid and DrawMode = vbInvert every 1/4 second. That inverts the dotted lines and makes them flash.
+	 
+	
+	 
+	 
+	 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+ Subscribe to the VB Helper newsletter 
+	
+	
+	
+	Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc.
+	 All rights reserved.
+	 
+	www.vb-helper.com/whatsnew.htm 
+	Updated 
+	
+	 
+	
+	
+	 
+ 

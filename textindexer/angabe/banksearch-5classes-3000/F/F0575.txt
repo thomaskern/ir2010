@@ -1,0 +1,49 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Win Registry
+The Windows System Registry is a database where programs save information. You can view the registry by running 'Regedit' in 'Run.' There are several VB functions that enable us to use the registry for our programs.
+SaveSetting Function
+The SaveSetting function is used to save something to the registry, such as passwords, application values and such...
+SaveSetting (AppName, Section, Key, SaveSetting)
+ AppName - Is your app's name
+ Section - Is the section where the key will be stored
+ Key - Used to describe what is being saved
+ SaveSetting - The thing you want to save
+Example:
+ SaveSetting "MyProject", "Main", "Width", frmMain.Width
+GetSetting Function
+The GetSetting function is used to retrieve saved info from the registry.
+GetSetting (AppName, Section, Key)
+ AppName - Is your app's name
+ Section - Is the section where the key is located
+ Key - Used to describe what is being retrieved
+Example:
+ Private Sub Form_Load()
+ Dim X
+ X = GetSetting ("MyProject", "Main", "Width")
+ frmMain.Width = X 'Refresh width
+ End Sub
+GetAllSettings Function
+The GetAllSettings function is used to find out what's been saved to the reg by a certain program.
+GetAllSettings (AppName, Section)
+ AppName - Is your app's name
+ Section - Is the section where the keys are located
+Example:
+Dim AllMySettings, i%, Vals
+ AllMySettings = GetAllSettings ("MyProject", "Main")
+ For i = LBound(AllMySettings) To UBound(AllMySettings)
+ Vals = AllMySettings(i, 0) & " " & AllMySettings(i, 1)
+ List1.AddItem Vals
+ Next i
+DeleteSetting Function
+The DeleteSetting function is used to delete registry entries.
+DeleteSetting (AppName, Section, Key)
+ AppName - Is your app's name
+ Section - Is the section where the key is located
+ Key - Used to describe what is being deleted
+Example:
+ DeleteSetting "MyProject", "Main", "Width"
+Save/Get Reg example
+Now you know all the built-in Registry functions that VB has, allowing you to save, retrieve, and even delete values form the registry. Knowing this is a big ass plus when it comes to making good apps.
+Back
+Next

@@ -1,0 +1,117 @@
+
+cplusplus.com forums
+ 
+ 
+ [Back to FORUM section]
+ 
+ 
+ 
+ 
+ 
+ cplusplus forums:
+ General
+ 
+ 
+ 
+ Parsing 
+ Thanks shamfas, below is an example...
+;"HiPic 6.1 Profile"
+;"[Application],Date="03-02-2002",Time="23000ms",Software="HPD-TA",Application=2,ApplicationTitle="High Performance Digital Temporal Analyzer",SoftwareVersion="6.1.0 pf3",SoftwareDate="07.06.2001",[Camera],AMD=E,NMD=F,EMD=E,SMD=S,ADS=12,SHT=1,FBL=2,EST=1000,SHA=K,SFD=F,SPX=2,ATP=P,CEG=0,CEO=0,ESC=B,TimingMode="External timing",TriggerMode="Edge trigger",TriggerSource="BNC",TriggerPolarity="pos.",CCDArea="1024 x 1024",Binning="2 x 2",ScanMode="Superpixel",CameraName="C4742-95-12NRB",Type=7,SubType=7,[Acquisition],NrExposure=1,NrTrigger=0,ExposureTime=107ms,AcqMode=1,DataType=3,DataTypeOfSingleImage=3,ShadingCorr=0,CurveCorr=0,areSource="0,0,512,512",areGRBScan="0,0,512,512",pntOrigCh="128,0",pntOrigFB="0,0",pntBinning="2,2",BytesPerPixel=2,BacksubCorr=-1,[Grabber],ConfigFile="C:\Programme\HPDTA\HPDTA610\digital.cnf",Type=2,SubType=1,ICPMemSize=1,ComPort=1,[DisplayLUT],EntrySize=3,LowerValue=0,UpperValue=156,BitRange="12 bit",Color=2,LUTType=0,Gamma=1,First812OvlCol=1,Lut16xShift=0,Lut16xOvlVal=32767,[ExternalDevices],TriggerDelay=1500,PostTriggerTime=300,TDStatusCableConnected=0,TDTriggerCableConnected=-1,A6538Connected=0,DT2819Installed=0,GPIBInstalled=-1,DT2819IOBase=0,GPIBIOBase=0,[Streak camera],UseDevice=-1,DeviceName="C6138",PluginName="C6138",GPIBCableConnected=-1,GPIBBase=8,Time Range="50 ps",Mode="Operate",Gate Mode="Normal",MCP Gain="10",Shutter="Open",Trig. mode="Cont",Trigger status="Unknown",Trig. slope="Rising",[Spectrograph],UseDevice=0,[Delay box],UseDevice=-1,DeviceName="DG535",PluginName="",GPIBCableConnected=-1,GPIBBase=15,Trig. Mode="Ext.",Repetition Rate="1",Setting="M2",Delay A="0,0000007971",Delay B="0,00001",Delay C="0",Delay D="0",Man.Ctrl="Off",Ss Trigger="Stop",[Scaling],ScalingXType=1,ScalingXScale=2,ScalingXUnit="No unit",ScalingXScalingFile="Other",ScalingYType=2,ScalingYScale=2,ScalingYUnit="ps",ScalingYScalingFile="#0526330,0512"[Comment],UserComment=""""""""""""""""""""""""""""""""""""""""""" """""""" "" ""
+;227,1,313,509
+;509,0,3
+;2,1,"ps","01000024"
+9.704049E-02,2.218391
+// I want to be able to cut everything before this point
+.1940657,1.781609
+.2910755,1.666667
+.3880701,2.666667
+//There will be more numbers after this point that I want to be able to work with.
+ 
+ Kevin 
+ Name: 
+ Place: 
+ E-mail: 
+ URL: 
+ Date: 8/7/2002 [6:38] 
+ 
+ 
+This message was written as a reply for: 
+hmm 6/7/2002 shamfas
+ 
+This message has the following replies: 
+ file format 8/7/2002 Lugh
+ 
+Insert your reply:
+ 
+ 
+ Icon:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Note
+ 
+ 
+ 
+ 
+ Question
+ 
+ 
+ 
+ 
+ Answer
+ 
+ 
+ 
+ 
+ Comment
+ 
+ 
+ 
+ 
+ Warning
+ 
+ 
+ 
+ 
+ 
+ 
+ Topic:
+ 
+ 
+ 
+ Content:
+ 
+ 
+ 
+ 
+ Identification:
+ 
+ 
+ 
+ 
+ 
+ 
+ Nick*: 
+ Name: 
+ Place: 
+ e-mail: 
+ Web: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+cplusplus.com , 2001

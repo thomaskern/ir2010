@@ -1,0 +1,502 @@
+
+ 
+Project V2143: The Price of Justice
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Project V2143: 
+ The Price of Justice 
+ 
+Credits
+ 
+Jason Winnebeck 
+ (contact)
+ Lead Designer/Programming/Maps/Doodad 
+ Art
+ 
+Jason Asato 
+ (webpage)
+ Full Screen Art/Terrain
+ 
+Stephen Iglesias
+ Unit Art
+ 
+Lonnie Taylor 
+ (webpage) (email)
+ Titlescreen Music Theme
+ 
+Todd Wolfe
+ Lead Plot
+ 
+Alpha Testers
+ Dror "I_D_F" 
+ from Israel
+ 
+So 
+ what's to see 'round these parts?
+ Click on a section or scroll down 
+ to browse!
+ 
+Back to Main 
+ Page
+ 
+Review PV2143 on madmonkey.net!
+ 
+About/Features
+ Story
+ Latest News
+ What's Next
+ Known Bugs
+ Screen Shots
+ Download
+ Source Code and Fun Facts
+ 
+About/Features
+ 
+Features:
+ 2D scrolling game, with layered maps (tanks 
+ can hide under trees, etc.)
+ 640x480x256 game resolution
+ Mouse control for turret, keyboard for tank
+ Upgrades(multiplayer only) and powerups for tank in game
+ Terrain considerations--tanks move slower in mud/beach/grass, faster on 
+ roads
+ Map Editor--GUI interface in 1024x760 res
+ Wonderful sound effects
+ Lots and lots and lots of tanks parts when tanks explode
+ Digital Music tracks
+ Lots of transparent smoke, explosions, and more!
+ 
+Return to Table of Contents
+ 
+Story
+ 
+Just after the turn of the 21st century, with prison overpopulation 
+ at an all time high, and the United States already having an unprecedented 
+ reputation crisis as the only Global Power left who still employed capital 
+ punishment, the President was faced with an odd problem. He was an odd 
+ man, and he found a way to use the United State's greatest advantage as 
+ a solution. Space, the former frontier, man had long since tamed this 
+ desolate wasteland, established many sister colonies on nearby worlds. 
+ One such world, was to serve as the prison planet, a planet used to house 
+ the nation's exiles, the planet chosen was the nearby planet of Venus, 
+ ironically once thought of as the most beautiful of the Gods, and now 
+ merely a wasteland for living trash.
+ 
+Thankfully, Venus had already begun advanced stages of 
+ terraforming, and thus could easily be made into the prison planet. The 
+ United States sent special electronic dampeners, which made long range 
+ communication for those on the planet impossible, and created automated 
+ guns around the planet so any attempts to flee would certainly fail. As 
+ an extra safety precaution, the Marines were stationed on an orbital space 
+ platform nearby so they could go in and bomb any problem areas.
+ 
+As you have probably already guessed, this is more than 
+ a history lesson, recently a Doctor Lurmi was sent to the planet, and 
+ he has apparently used his knowledge of electronic dampening and mechanics 
+ to somehow capture the satellites. The Marine station was blown away by 
+ the autocannons and the criminals now have complete control of Venus. 
+ You have been selected to take it back, for this threat to National Security 
+ cannot stand, using our cloaking technology, we will send in squad after 
+ squad of tanks commanders, such as yourself, to decimate the enemy. Be 
+ warned, they somehow hid whatever they used to capture our defenses, they 
+ might be hiding more, be prepared for anything! Good luck, Venus awaits, 
+ now you enter, Project V2143: The price of justice.
+ 
+Return to Table of Contents
+ 
+Latest News
+ 
+The readme always has the latest info.
+ 
+1/12 -- Version 16 is now out for Windows and DOS. Check 
+ the bugs, because they are the most significant info for this new update.
+ 
+10/6 -- Version 15 is now out! Read the readme for changes
+ 9/30 -- Updated the readme and stats on the newly arriving 
+ build 15!
+ 9/24 -- Added a mirror download, which is all one part 
+ now.
+ 8/3 -- Changed distribution format. Notes about this 
+ are in the download section.
+ 7/29 -- Moved the screenshots off this page for a faster 
+ loading time, and I added three shots and fixed up the titlescreen shot.
+ 7/25 -- Sorta forgot to add in the old save with this 
+ version so you can play both maps!
+ 7/24 -- FINALLY! The fourteenth build 
+ of PV2143 is out! I spent a huge amount of time the last few days rushing 
+ to get everything reasonable in because I did not want to release a game 
+ with any significant bugs (excluding gameplay/AI weaknesses)! This version 
+ is very much changed, with mission objective windows, redesigned and graphical 
+ GUI, suspenseful title music track, complements of Lonnie Taylor, a completely 
+ new map and more features and bugfixes listed in the readme file!
+ 7/3 -- Build 13(sorta) is out. 
+ This consists of a patch to the data file only. There actually is a build 
+ 13 EXE file, but the changes are only very minor asethetic changes and 
+ a bugfix in the screenshot taker, certainly not worth an additional 300k 
+ download, so I didn't release it.
+ 
+Look at old project 
+ news
+ 
+Return to Table of Contents
+ 
+What's Next
+ 
+Redimentary multiplayer via TCP/IP comming 
+ soon!
+ 
+PEOPLE! When I get the graphics.
+ 
+A cool tank engine sound when I can find 
+ it!
+ 
+Known Bugs
+ 
+WINDOWS
+ 
+The music doesn't work, because of unfinished 
+ functions in Allegro (the library I use for input/output). I took it out 
+ because it just sounds like a screeching mess if I had left it in
+ 
+The GUI icons are miscolored in Windows. 
+ I don't know why, and I suspect Allegro again. These should be fixed when 
+ the people working on Allegro finish porting it to Windows.
+ 
+DOS
+ 
+If you are having problems with sound in 
+ the DOS version, specifcally when using the SB Live! card, check out Getting the Sound to Work (can also help you 
+ in troubleshooting other cards but is geared for the Live!)
+ 
+GENERAL
+ 
+Of course, being an alpha version, the 
+ game is certainly not gameplay balanced, so don't expect it to be fair. 
+ The focus right now is on getting the elements to work. Later on the stats 
+ and specific workings of the tanks/weapons/etc will change.
+ 
+I'm having problems using keys from the 
+ keypad to control while the numlock is on. So please make sure your numlock 
+ is OFF if you switch to any of those keys (for some reason, recently this 
+ hasn't been a problem on some systems.)
+ 
+Return to Table of Contents
+ 
+Screenshots
+ 
+The screenshots have been moved to a new 
+ page since I added many more, and wished to save some download time.
+ 
+Download
+ 
+Disclaimer
+ 
+I am not responsible for any damage the 
+ program does or might do to your system. Although nothing bad should result, 
+ but once in a blue moon it might. Keep in mind that the game is still 
+ in alpha stage and therefore has not been tested widely and could crash 
+ on your system. Check the updates in the "Known Bugs" section 
+ just to be safe.
+ 
+System Requirements
+ 
+DOS
+ 
+Pentium or VERY fast 486(133+ most likely 
+ needed)
+ VESA compatable video (VESA 3 or AF recommended)
+ TWO button mouse
+ Sound Blaster & compatables, Esoniq Soundscape, ESS Audiodrive
+ Wavetable MIDI highly recommended
+ 
+WINDOWS
+ 
+Pentium or VERY fast 486
+ DirectX compatable video and sound, uses DirectX7 or 6.1 (6.1 is untested)
+ TWO button mouse
+ 
+Files
+ 
+BASE INSTALL
+ 
+readme.txt -- Info on the game
+ Tank.dat -- datafile
+ Tank32.dat -- Titlescreen graphics
+ Maps.dat -- levels
+ Music directory -- digital music
+ Tank.cfg -- config file (created by tank.exe)
+ 
+DOS INSTALL
+ Tank.exe -- executable
+ CWSDPMI.EXE -- if you don't have Windows
+ 
+WINDOWS INSTALL
+ WinTank.exe -- executable
+ alleg3930.dll -- Allegro DLL library
+ 
+ 
+Project V2143 Download
+ 
+If you are having problems with 
+ sound in DOS, specifcally when using the SB Live! card, check out Getting the Sound to Work (can also help you in troubleshooting other cards but is geared 
+ for the Live!)
+ 
+Readme -- Latest Version Notes and Installation Instructions
+ 
+ 
+ Version .016a download
+ Last updated 1/12/00. 
+ 
+ 
+ 
+ 
+Base Data Files(Download 
+ First!) -- Used Under DOS or Windows
+ (you may install both Windows and 
+ DOS EXEs if preferred)
+ 
+ 
+ 
+ Rochester, NY Mirror 
+ 
+ 
+ Full Download
+ Download Base Files 
+ (768k) 
+ 
+Upgrade to .016a from .015a
+ Download Upgrade 
+ (489k)
+ 
+ 
+ 
+ 
+ 
+ Then Pick:
+ Windows DirectX Install
+ 
+ 
+ 
+ Rochester, NY Mirror 
+ 
+ 
+ Full Download
+ Download Windows EXEs 
+ (341k) 
+ 
+ 
+ 
+ And/Or:
+ DOS Install 
+ 
+ 
+ Rochester, NY Mirror 
+ 
+ 
+ Full Download
+ Download DOS EXEs (402k) 
+ 
+ 
+ 
+Return to Table of Contents
+ 
+Source Code and Fun Facts
+ 
+The full source to build 16 is available 
+ here (86k) or at the mirror.
+ 
+To successfully compile the source code, 
+ you will need DJGPP with Allegro library 3.x, with the Allegro addons 
+ JGMOD, BGUI, and libjpeg. You will also need my LinkList library 
+ and random numbers library.
+ 
+Note that the lines of code only includes 
+ the game's core code and not of the libraries listed above.
+ 
+Fun Facts about the Project V2143 
+ source code build 15:
+ 
+Number of lines in all files including 
+ whitespace: 8953.
+ That's 359 screens or 180 pages of code!
+ Number of bytes in all source code files: 267676.
+ Number of source and header files: 59.
+ Number of classes (objects) in the code: 67.
+ 
+Fun Facts about the Project V2143 
+ source code build 14:
+ 
+Number of lines in all files including 
+ whitespace: 8271.
+ Number of bytes in all source code files: 248319.
+ Number of classes (objects) in the code: 65.
+ Number of items in tank.dat file (not including title screen and music!): 
+ 326.
+ 
+Fun Facts about the Project V2143 
+ source code build 13:
+ 
+Number of lines in all files including 
+ whitespace: 7898.
+ Number of bytes in all source code files: 232315.
+ Number of classes (objects) in the code: 65.
+ 
+Return to Table of Contents
+ 
+ 
+ 
+ 

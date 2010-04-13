@@ -1,0 +1,488 @@
+
+ 
+Itana 1: Old Enemies Reunite
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Itana 1: Old Enemies Reunite
+ 
+Designed and Programmed by
+ Jason Winnebeck
+ 
+Ship and Base Art
+ Vivienne Allen
+ 
+Planet Art by
+ Justin Jackson
+ 
+Thanks also to NASA for providing free images to use for 
+ space art and main menu background
+ 
+Contents
+ 
+About Itana
+ Storyline
+ The Races
+ Gameplay
+ Screenshots
+ System Requirements
+ Current Progress
+ Future Releases
+ Download
+ Source Code
+ 
+About Itana
+ 
+Itana is a multiplayer only 2D space shooter. In some ways 
+ the game is like Star Control 2 Melee, in the way that you control a single 
+ ship, and ships have special abilities. Some people have said the game 
+ reminds them of Subspace, a game that is free now -- but I've never played 
+ it.
+ 
+Features
+ 
+800x600 16bit graphics
+ Internet/LAN multiplayer
+ Windows and Linux support
+ Open-join client/server network (like Quake/Half-Life)
+ And as usual, sound effects and graphics eye candy.
+ 
+Storyline
+ 
+Four alien races fight for domination 
+ over a newly discovered planet in a distant solar system, which has the 
+ highest quantities of bollium ever discovered. Bollium is the main material 
+ used to fuel the space fold engines for their ships.
+ 
+The zylex discovered the planet first, 
+ but the humans just a few days later discovered the planet before a zylex 
+ mining colony could be set up. A week later a human colonization ship 
+ folded into the system to find out that a zylex colony ship was in orbit 
+ already surveying possible landing locations!!!
+ 
+For the last 20 years the four known 
+ races: humans, zylex, ornons, and alsetti have been at a cautious peace, 
+ in the aftermath of a huge war, in which the races were all so evenly 
+ matched that no one gained a real foothold on any of the others. The human 
+ central government, the United Planets, did not want to start another 
+ war. A galactic meeting was called on the UP headquarters starbase orbiting 
+ the human homeworld, Earth.
+ 
+The four races decided that they did 
+ not want to start another war, after coercing the warlike ornons, who 
+ as usual wanted to stupidly blast away any thing, ship or asteroid or 
+ whatnot in their path and wanted to start a new war. The wise alsetti 
+ proposed that all races could share the planet and an interspecies colony 
+ would be set up there. The arrogant humans and the warlike ornons refused 
+ to share the planet. Instead, the zylex proposed that all races send a 
+ transforming ship to the new, still unnamed solar system. Upon defolding, 
+ the ship would transform into a fully automated base of operations, and 
+ launch a single piloted fighter, which would engage the other races. The 
+ winner would have undisputed control of the planet. The ornons were eager 
+ to fight and so agreed. The humans were convinced that they could win 
+ this fight and so agreed. The zylex thought their superior technology 
+ would come out on top of this battle and so agreed. The alsetti, who did 
+ not wish to fight almost declined to the idea and thought about letting 
+ the other races have the planet but decided that they badly needed the 
+ fuel and so reluctantly agreed.
+ 
+At the end of the galactic conference 
+ the races brought up the point that the planet had not been named yet. 
+ They discussed this topic and it was a matter of irony that the planet 
+ was named after the Alsetti's delegate's daughter, being as modest as 
+ they are. The races then agreed on a month to prepare for the battle that 
+ was ahead of them.
+ 
+After a month the four races defolded 
+ in the new star system and chose their orbits around the planet. As was 
+ decided a single piloted ship came out of the new base. Each race chose 
+ its best fighter design and its best pilot. The zylex and humans decided 
+ to risk the battle with new designs that were quickly put together. The 
+ designs were untested but used state of the art technology. The alsetti 
+ used their traditional, proven design. The ornons used the only ship design 
+ that was intelligently built enough to face the other fighters one-for-one 
+ (although some doubt the design is actually the ornons' but instead designed 
+ by a human firm, which was heavily paid in secret by the ornons. This 
+ is only a rumor, however).
+ 
+Each race was very wary of this battle. 
+ The wise alsetti commander was especially wary of the battle. She thought, 
+ given the events in the past, would each race REALLY stick to their pact? 
+ Would the other races simply let this simple battle decide everything 
+ and then allow the one race sole control over the largest known deposit 
+ of bollium in the galaxy?! She decided to prepare their fleets and increase 
+ military production just in case. Can the others be trusted? Only time 
+ will tell.
+ 
+The Races
+ 
+Humans
+ 
+ 
+The humans always think they can survive and win the fight. 
+ To some extent their arrogant belief has some truth to it. The well-balanced 
+ and adaptable humans, although somewhat weak in comparison to the other 
+ races have found ways to survive situations that the other races thought 
+ were impossible to survive in.
+ 
+The human ship uses an ultra-high speed machinegun array 
+ as its primary weapon. The human ship can cloak, appearing translucent 
+ while it is firing and completely dissapears when doing nothing. Other 
+ players can see the thrust comming out of the cloaked ship.
+ 
+Zylex
+ 
+ 
+The zylex are the most ingenious and technological known 
+ race in the galaxy. They were the first ones to discover that by folding 
+ space-time they could travel huge distances in just a matter of days. 
+ Their ships have the best propulsion systems but their military prowess 
+ is much less glamorous.
+ 
+The zylex make the fastest ships in the galaxy. A laser 
+ serves as the primary weapon of this ship, and as a special ability they 
+ can travel through asteroids without injury, a system that was developed 
+ when it was discovered that Zylex pilots flew so fast they could not avoid 
+ many obstacles.
+ 
+Alsetti
+ 
+ 
+The alsetti are considered by the other races to be the 
+ wisest and the most conservative, and although they stick strongly to 
+ tradition, their tradition is much more open, flexible, and less discriminatory 
+ than the other races'. For example they do not discriminate based on gender 
+ (women roughly equal men in the armed forces). They are usually withdrawn 
+ and shy, and would rather have peace than fight. But even they know that 
+ sometimes fighting is inevitable and have developed a strong military 
+ capable of keeping intruders out although not as capable of invading.
+ 
+The alsetti ship has the infamous alsetti blaster as its 
+ main weapon. Its secondary weapon is the parabolt that paralizes an enemy 
+ ship for a short time.
+ 
+Ornons
+ 
+ 
+The ornons are the most belligerent of the races, and also 
+ the stupidest. Their solution to everything is to destroy it, and the 
+ other races have a hard time of convincing the ornons of anything else. 
+ They have the strongest firepower in the universe, but being as stupid 
+ as they are their only tactic of a frontal assault makes them extremely 
+ predictable and even easier to destroy.
+ 
+Because their ship is so slow they mounted four guns in 
+ four different directions on this ship. At the front of the ship the ornons 
+ have mounted a plasma bolt cannon, the most devastating weapon in the 
+ known universe.
+ 
+Gameplay
+ 
+The game starts with 2 or more stations in orbit around 
+ the planet at random distances. The stations will orbit around the planet 
+ at different speeds according to their distance. This will encourage the 
+ players to change who they fight against when two stations come close.
+ 
+The fighters that launch have the capability to fight and 
+ survive totally on their own, however when they fight they take a large 
+ amount of energy, faster than their small bollium reactor can usually 
+ supply. Each fighter starts will a large pool of energy, which will slowly 
+ regenerate after time, about as fast as the engines can burn it, so a 
+ ship will not gain much extra energy while moving (and therefore would 
+ have to stop to regenerate at any significant rate). When a fighter gets 
+ low on energy it can dock with the automated station which will "refuel/reenergize" 
+ the ship.
+ 
+The shields, engines, energy weapons, and afterburners all 
+ use energy. Engines, weapons, and afterburners draw from the main battery, 
+ but the shields use a separate battery, to which the pilot can move energy 
+ freely between the batteries. All ships also have armor which does not 
+ regenerate (although the humans have the special ability to mend their 
+ ship outside of base using nanotechnology).
+ 
+The goal of the game is to destroy the other fighters, gaining 
+ points when players kill other players. The fighter will always resurrect 
+ at the base.
+ 
+Orbiting asteroids and the planet will be obstacles for 
+ the ships. Gravity in the asteroid fields are insignificant, but if a 
+ fighter gets close to the planet it will need to be careful as not to 
+ enter the atmosphere and burn up. Asteroids are unfortunately too big 
+ and strong to be destroyed by the fighters (otherwise a multiplayer game 
+ would run out of asteroids really fast).
+ 
+Screenshots
+ 
+Please visit the screenshot page.
+ 
+System 
+ Requirements
+ 
+Itana will not require much computing power compared to 
+ today's standards. It does try to use hardware acceleration where possible, 
+ although most systems are capable of reaching 100fps without use of acceleration.
+ 
+Reccomended CPU 200mhz or higher.
+ Video card capable of 16 bit (hicolor) mode in 800x600 resolution.
+ 
+Windows 95/98/ME/NT/2k or Linux is required --
+ The Windows version requires DirectX to run, which comes with Win 98/ME/2k 
+ already installed.
+ 
+The Linux version can use fbcon, X windows, DGA1/2, svgalib.
+ 
+Network play will require a 28k modem or higher. Note 
+ that Itana is multiplayer only. Bots may be added in the future but will 
+ not be immediately supported.
+ 
+Current Progress
+ 
+All 4 of the race's ships and special abilities are in 
+ the game. The races have not been gameplay balanced yet and still need 
+ some major stat tweaking. If you can help test, or have comments, please 
+ let me know.
+ 
+The game works over the internet, but only well for those 
+ with a ISDN connection or better at the moment.
+ 
+All of the core features of the game besides this are 
+ in the game and working well (radar, scoring system, physics/damage engine 
+ etc)!
+ 
+I need testers to make sure the network code is working 
+ well since I haven't been able to test this widely yet.
+ 
+Future Releases
+ 
+Next up is optimizing the network code. This will probably 
+ require a rewrite -- not surprising since this was my first try. Now with 
+ the knowledge I have learned I will design the network system properly. 
+ I will be working on the rewrite as a stand-alone library for others to 
+ use.
+ 
+But let me make this clear -- I am not creating another 
+ vaporware like PV2143 or JetFight. This project WILL be finished and it 
+ WILL be worked on more or less exclusively until completion.
+ 
+Download
+ 
+This new version includes a lot more features... Some 
+ include: Customizable key controls, options menu, improved particle effects 
+ and explosions, all four races, ships, and special abilities playable, 
+ lessened graphics requirement to 800x600x16, and all new graphics for 
+ ships, bases and weapons (thanks Vivienne!).
+ 
+Installation Instructions / Manual
+ 
+Pick your Operating System to download binaries:
+ 
+Windows (1021k)
+ 
+Linux (1051k)
+ 
+Other UNIX, DOS -- (untested)
+ Since my dependancies are cross-compatable the game should run under 
+ these OS's. Download the source code.
+ 
+Source Code
+ 
+What is interesting here? Some highlights of the source 
+ code:
+ 
+The snowball algorithm for blending dirty rectanges together 
+ to reduce flicker when clearing the screen. You can read about it here.
+ A Video class to abstract the game from Allegro drawing (mostly) and to 
+ handle the dirty rectangles outside of game logic.
+ A Sound class doing basically the same thing as the Video class, but obviously 
+ for sounds ;).
+ A network engine using classes as packets -- might be removable.
+ Some easily removable classes encapsulating libnet's drivers
+ Easily removable porting code when you don't need everything Allegro offers 
+ (ItanaPort.cpp)
+ Might be able to copy some code from the GUIs to make your own.
+ 
+Check this document for a simple 
+ cursory glance over the class hierarchy in Itana (does not include the 
+ networking component).
+ 
+Download source code in Windows format, with MSVC projects:
+ Download (115k)
+ 
+Download source code in UNIX format for client, makefile 
+ + configure script:
+ Download (222k)
+ 
+Download source code in UNIX format for server, makefile 
+ + configure script:
+ Download (218k)
+ 
+Dependancies
+ 
+All dependances are portable to DOS, Windows, and UNIX, 
+ therefore my game will run in these environments. Allegro works also under 
+ BeOS and Mac (in developement) and only libnet should give you problems 
+ in those environments -- but I've not tried it out, though ;).
+ 
+jrnd2 library
+ libjpeg
+ libnet
+ allegro WIP 3.9.36+
+ bgui2
+ LinkQueue.h (2k, DOS format)
+ 
+ 
+ 
+ 

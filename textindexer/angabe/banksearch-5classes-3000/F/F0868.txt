@@ -1,0 +1,79 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Knowing this, we can check the argument types using VarType. In the code above, we’re checking to see if we’re being passed a string expression. If the answer is yes, we’re then checking to see that the string represents a valid date (even an ambiguous one). If again the answer is yes, we convert the input string into a date and then use InStr to see if the year in the converted date appears in the original input string. If it doesn’t, we must have been passed an ambiguous date.
+Here’s that last paragraph rephrased and broken down a bit. Remember that a Date always holds an exact year because it actually holds an offset from December 30, 1899. Therefore, Year(a_Date_variable) will always give us back a full four-digit year (assuming that a_Date_variable represents a date after the year 999). On the other hand, the string that "seeds" the Date variable can hold only an offset—98 in the example. Obviously then, if we convert 98 to a Date (see Chapter 8 for more on this topic), we’ll get something like 1998 or 2098 in the resulting Date variable. When converted to a string, those years are either "1998" or "2098"—neither of which appears in "01 01 98." We can say with some conviction, therefore, that the input string contains an ambiguous date expression, or even that its data type ("ambiguous date") is in error and will throw a type mismatch error. 
+All this date validation can be put inside a Validate routine, of course:
+Private Sub Fu(ByVal v As Variant)
+ Dim d As Date
+ Call Validate(v, d)
+ ' Use d here - we don't get here if there's a problem with 'v'...
+End Sub
+In this Validate routine d is set to cast(v) if v is not ambiguous. If it is ambiguous, an exception is thrown. An exciting addition to this rule is that the same technique can also be applied to Visual Basic’s built-in routines via Interface Subclassing.
+How often have you wanted an Option NoImplicitTypes? I have, constantly. Here’s how you can almost get to this situation:
+Private Sub SomeSub()
+ MsgBox DateAdd("yyyy", 100, "01 01 98")
+End Sub
+Public Function DateAdd( _
+ ByVal Interval As String _
+ , ByVal Number As Integer _
+ , ByVal v As Variant _
+ )
+ Call Vali_Date(v)
+ 
+ DateAdd = VBA.DateTime.DateAdd(Interval, Number, CDate(v))
+End Function
+Private Sub Vali_Date(ByVal v As Variant)
+ ' If 'v' is a string containing a valid date expression ...
+ If vbString = VarType(v) And IsDate(CStr(v)) Then
+ 
+ ' If we've got a four digit year then we're OK, 
+ ' else we throw an err.
+ If 0 = InStr(1, CStr(v), _
+ Format$(Year(CDate(v)), "0000"), 1) Then
+ Err.Raise Number:=13
+ End If
+ 
+ End If
+End Sub
+In this code, the line MsgBox DateAdd(...) in SomeSub will result in a runtime exception being thrown because the date expression being passed is ambiguous ("01 01 98"). If the string were made "Y2K Safe"—that is, 01 01 1998—the call will complete correctly. We have altered the implementation of DateAdd; you could almost say we inherited it and beefed up its type checking.
+Obviously this same technique can be applied liberally so that all the VBA type checking (and your own type checking) is tightened up across procedure calls like this. The really nice thing about doing this with Visual Basic’s routines is that instead of finding, say, each call to DateAdd to check that its last argument is type safe, you can build the test into the replacement DateAdd procedure. One single replacement tests all calls. In fact, you can do this using a kind of Option NoImplicitTypes.
+Use this somewhere, perhaps in your main module:
+#Const NoImplicitTypes = True
+Then wrap your validation routines appropriately:
+Private Sub Vali_Date(ByVal v As Variant)
+ #If NoImplicitTypes = True Then
+ ' If 'v' is…
+ If … 
+ End If
+ #End If
+End Sub
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

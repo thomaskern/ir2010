@@ -1,0 +1,98 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Files, Folders and Drives
+Quickly Determine the Amount of Free Disk Space on a Drive
+ID: 945
+Author: Abstractvb
+Date: 10/20/2001 12:29:43 PM
+VB6
+You will need to add a reference to the Microsoft Scriping Runtime Library, then call this function and pass in the drive letter you wish to check for space on such as this: x = GetFreeSpace("C") 
+Private Function GetFreeSpace(ByVal strDriveLetter As String) As Long
+ Dim fso As Scripting.FileSystemObject
+ Dim dr As Scripting.Drive
+ 
+ Set fso = New Scripting.FileSystemObject
+ 
+ GetFreeSpace = fso.GetDrive(strDriveLetter).FreeSpace
+ 
+ Set fso = Nothing
+ 
+End Function
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

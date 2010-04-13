@@ -1,0 +1,86 @@
+
+ fgetpos()
+ 
+ 
+fgetpos-Get the current file position
+Synopsis
+ #include &#060;stdio.h&#062;
+ x = fgetpos(f, pos);
+ int x;
+ FILE *f;
+ fpos_t *pos;
+Description
+ The fgetpos function determines the current file position for the
+ stream associated with the FILE object addressed by the f
+ argument, and it stores the file position in the object pointed to
+ by the pos argument. This object is of type fpos_t, which is
+ defined in the stdio.h file. The stored value can be passed to the
+ fsetpos function to reposition the file to its position at the
+ time of the call to the fgetpos function.
+ The fgetpos function can be used with most types of files, using
+ either text or binary access.
+Returns
+ If successful, the fgetpos function returns 0. If it fails,
+the
+ fgetpos function returns a nonzero value and stores an appropriate
+ error code in the external integer errno .
+Example
+ In the following example, the function bldtable reads a file and
+ builds a table of keys and record addresses. The function findrec
+ positions the file to the record with the required key using the
+ fsetpos function, and then it reads the record.
+ #include &#060;stdio.h&#062;
+ #include &#060;string.h&#062;
+ #define KEYLEN 17
+ #define DATALEN 500
+ #define TABSIZE 1000
+ struct table
+ {
+ char keyval[KEYLEN];
+ fpos_t location;
+ } keytable[TABSIZE];
+ struct record
+ {
+ char keyval[KEYLEN];
+ char data[DATALEN];
+ };
+ int filesize;
+ /* Initialize keytable, which is a */
+ /* table of keys and locations */
+ void bldtable(FILE *fileptr)
+ {
+ struct record input;
+ int index =0;
+ while (!feof(fileptr))
+ {
+ /* Store file pointer location */
+ fgetpos(fileptr, &keytable[index].location);
+ /* Read 1 record */
+ fread(&input, sizeof(struct record), 1, fileptr);
+ if (feof(fileptr) || ferror(fileptr))
+ break;
+ /* Save the keyval */
+ memcpy(keytable[index].keyval, input.keyval, KEYLEN);
+ index++;
+ }
+ filesize = index;
+ return;
+ }
+ /* Find a match in the file to the key, */
+ /* and return complete record. */
+ int findrec(FILE *fileptr, char keyval[KEYLEN], struct record *input)
+ {
+ int index;
+ /* Search keytable for specified value */
+ for (index = 0; index &#060; filesize; ++index)
+ if (memcmp(keyval, keytable[index].keyval, KEYLEN) == 0)
+ break;
+ if (index &#062;= filesize)
+ return (-1); /* Keyval not found */
+ /* If found, read complete record from file */
+ fsetpos (fileptr, &keytable[index].location);
+ fread (input, sizeof(struct record), 1, fileptr);
+ return (0);
+ }
+See Also
+ fseek , fsetpos , ftell 

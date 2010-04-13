@@ -1,0 +1,262 @@
+
+ 
+ japhar.org
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A portable interpreter
+ for Java bytecodes
+ 
+ 
+ 
+ 
+	
+	 
+	 Japhar 
+	 Getting it 
+	 Mailing Lists 
+	 Supported Platforms 
+	 Mauve Results 
+	 
+	 Documentation 
+	 JavaSoft Docs 
+	 Japhar Docs 
+	 Japhar/OJI 
+	 Release News 
+	 
+	 Related Projects 
+	 
+	 
+	 
+	 
+Mauve Test Results for JDK1.2 classes
+some of java.lang was excluded since it seems to cause problems with japhar -- the gmake check hangs... strange.
+ also, note these tests are still the 1.1 Mauve tests, as I can't get the 1.2 tests to compile with my current setup
+Tests failed: 13 
+Total tests run: 640
+ java.io.BufferedByteOutputStream 
+ Test 2 tests 
+all passed 
+ 
+ java.io.BufferedCharWriter 
+ Test 2 tests 
+all passed 
+ 
+ java.io.BufferedInputStream 
+ MarkReset 1 tests 
+all passed ProtectedVars 5 tests 
+all passed SimpleRead 1 tests 
+all passed 
+ 
+ java.io.BufferedReader 
+ MarkReset 1 tests 
+all passed SimpleRead 1 tests 
+all passed 
+ 
+ java.io.ByteArrayInputStream 
+ MarkReset 1 tests 
+all passed ProtectedVars 4 tests 
+all passed SimpleRead 1 tests 
+all passed 
+ 
+ java.io.CharArrayReader 
+ ProtectedVars 4 tests 
+all passed SimpleRead 1 tests 
+all passed 
+ 
+ java.io.DataInputOutput 
+ ReadReference 1 tests 
+all passed WriteRead 1 tests 
+all passed 
+ 
+ java.io.LineNumberInputStream 
+ Test 2 tests 
+all passed 
+ 
+ java.io.LineNumberReader 
+ Test 2 tests 
+all passed 
+ 
+ java.io.PipedReaderWriter 
+ Test 1 tests 
+all passed 
+ 
+ java.io.PipedStream 
+ Test 1 tests 
+all passed 
+ 
+ java.io.PushbackInputStream 
+ BufferOverflow 1 tests 
+all passed ProtectedVars 2 tests 
+all passed 
+ 
+ java.io.PushbackReader 
+ BufferOverflow 1 tests 
+all passed 
+ 
+ java.io.SequenceInputStream 
+ Test 1 tests 
+all passed 
+ 
+ java.io.StringBufferInputStream 
+ MarkReset 4 tests 
+all passed ProtectedVars 3 tests 
+all passed SimpleRead 2 tests 
+all passed 
+ 
+ java.io.StringWriter 
+ Test 1 tests 
+all passed 
+ 
+ java.io.Utf8Encoding 
+ ReadReference 1 tests 
+all passed WriteRead 1 tests 
+all passed 
+ 
+ java.lang.Boolean 
+ equals_Boolean 6 tests 
+all passed get 3 tests 
+all passed hashcode_Boolean 2 tests 
+all passed new_Boolean 8 tests 
+all passed value 4 tests 
+all passed 
+ 
+ java.lang.Byte 
+ new_Byte 5 tests 
+all passed 
+ 
+ java.lang.Math 
+ cos 3 tests 
+all passed max 32 tests 
+all passed min 32 tests 
+all passed rint 2 tests 
+all passed 
+ 
+ java.lang.Short 
+ hash 5 tests 
+all passed 
+ 
+ java.lang.String 
+ charAt 2 tests 
+all passed compareTo 12 tests 
+all passed decode 8 tests 
+all passed indexOf 16 tests 
+all passed new_String 5 tests 
+all passed startsWith 8 tests 
+all passed substring 6 tests 
+all passed to 2 tests 
+all passed 
+ 
+ java.lang.StringBuffer 
+ plus 6 tests 
+all passed 
+ 
+ java.lang.System 
+ arraycopy 23 tests 
+all passed 
+ 
+ java.lang.reflect.Modifier 
+ toString 13 tests 
+all passed 
+ 
+ java.sql.Connection 
+ TestJdbc10 5 tests 
+all passed 
+ 
+ java.sql.DatabaseMetaData 
+ TestJdbc10 43 tests 
+all passed 
+ 
+ java.sql.Types 
+ TestJdbc10 21 tests 
+all passed 
+ 
+ java.text.CharacterIterator 
+ implement 1 tests 
+all passed 
+ 
+ java.text.ChoiceFormat 
+ format 19 tests 
+all passed next 2 tests 
+all passed parse 9 tests 
+all passed 
+ 
+ java.text.DateFormat 
+ Test 30 tests 
+all passed 
+ 
+ java.text.DateFormatSymbols 
+ Test 9 tests 
+1 tests failed 2FAIL patterns 
+ 
+ 
+ java.text.DecimalFormat 
+ format 28 tests 
+1 tests failed 2FAIL pattern #.# 
+ parse 16 tests 
+2 tests failed 1FAIL pattern 0.0000E# 
+ 2FAIL pattern 0.0000E# 
+ position 6 tests 
+all passed topattern 5 tests 
+4 tests failed 1FAIL 
+ 2FAIL 
+ 3FAIL 
+ 5FAIL 
+ 
+ 
+ java.text.MessageFormat 
+ format 14 tests 
+all passed parse 8 tests 
+3 tests failed 1FAIL one variable 
+ 1FAIL number format 
+ 2FAIL no variables 
+ 
+ 
+ java.text.ParseException 
+ Test 1 tests 
+all passed 
+ 
+ java.text.SimpleDateFormat 
+ Test 1 tests 
+all passed 
+ 
+ java.text.StringCharacterIterator 
+ constructor 25 tests 
+all passed 
+ 
+ java.util.BitSet 
+ jdk10 35 tests 
+all passed 
+ 
+ java.util.Hashtable 
+ basic 12 tests 
+all passed 
+ 
+ java.util.Random 
+ basic 20 tests 
+all passed 
+ 
+ java.util.ResourceBundle 
+ getBundle 23 tests 
+1 tests failed 5FAIL book sample 
+ 
+ 
+(generated Mon Mar 15 06:14:32 PST 1999
+)
+	 
+ 
+ 
+ 
+ 	 
+ 
+	 
+ Last modified: Sun Mar 5 17:16:55 PST 2000
+ 
+ 
+ 
+ 

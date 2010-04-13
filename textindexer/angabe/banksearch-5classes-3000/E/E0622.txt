@@ -1,0 +1,182 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Prevent multiple instances of the program from running
+Answer
+There are a couple of different ways to create a program that prevents multiple instances from running. One simple
+technique is to use the FindWindow API function. A more robust technique is to use mutexes or semaphores.
+This FAQ demonstrates several ways to ensure that only once instance of the program runs at a time. All of the methods
+share a common premise: detect another instances of the program from the WinMain function, and if you find one,
+return from WinMain without calling the Run method of TApplication.
+Using FindWindow: The API FindWindow function searches for a window handle based on a caption string
+or a registered WndClass. To prevent multiple instances from running, call FindWindow from the
+WinMain function to search for another program with the same window caption. If you find one, abort the
+program.
+ 
+Note:
+This example assumes that you have set the application's title to "single" from the project options dialog.
+ 
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+ // Search for a previous instances using the caption of the
+ // the hidden application window. In order to do this, we
+ // must temporarily change our caption so that FindWindow
+ // doesn't find us (the hidden application window has
+ // already been created before WinMain runs)
+ Application->Title = "";
+ HWND hPrevApp = ::FindWindow(NULL, "single");
+ // FindWindow returns a non-zero HWND if it finds the window
+ // If the window was found, restore it and return without running
+ if(hPrevApp)
+ {
+ PostMessage(hPrevApp, WM_SYSCOMMAND, SC_RESTORE, 0);
+ return 0;
+ }
+ // else: other instance not found, restore the title and continue
+ else
+ Application->Title = "single";
+ try
+ {
+ Application->Initialize();
+ Application->Title = "single";
+ Application->CreateForm(__classid(TForm1), &Form1);
+ Application->Run();
+ }
+ catch (Exception &exception)
+ {
+ Application->ShowException(&exception);
+ }
+ return 0;
+}
+Using CreateMutex: The FindWindow approach is nice because it is simple and easy to understand.
+Unfortunately, it has some drawbacks. For starters, it assumes that the caption of the application never changes.
+Secondly, if the user clicks an icon several times to start your app, the first app could be pre-empted by the second
+app just after the FindWindow call executes, and both programs might sneak through the if test.
+CreateMutex provides a more robust way of testing to see if a previous instance of a program has been
+created. Mutexes are system wide objects that multiple processes can see. If program A creates a mutex, program B can
+see that mutex. Mutex'es have names, and only one mutex of a given name can exist on a machine at a time. If I create a
+mutex called "Bob's Special Mutex", no other program can create a mutex with that name.
+To use CreateMutex to prevent mutliple instances, you attempt to create a mutex when WinMain starts. If the
+mutex cannot be created, then you know another instance of the program must already be running because somebody had
+to create the mutex. Here is sample code that demonstrates how to use CreateMutex to prevent multiple
+instances.
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+ // Attempt to create a mutex. If the mutex already existed,
+ // GetLastError will return ERROR_ALREADY_EXISTS
+ HANDLE hInstanceMutex = ::CreateMutex(NULL,TRUE, "PROJECT1");
+ if(GetLastError() == ERROR_ALREADY_EXISTS)
+ {
+ if(hInstanceMutex)
+ CloseHandle(hInstanceMutex);
+ return 0;
+ }
+ try
+ {
+ Application->Initialize();
+ Application->CreateForm(__classid(TForm1), &Form1);
+ Application->Run();
+ }
+ catch (Exception &exception)
+ {
+ Application->ShowException(&exception);
+ }
+ ReleaseMutex(hInstanceMutex);
+ CloseHandle(hInstanceMutex);
+ return 0;
+}
+The OS serializes calls made to CreateMutex, so two instances of a program can't sneak through the 
+CreateMutex function the same way they sneak past the FindWindow code. The OS also takes care of
+releasing the mutex if your application crashes.
+There are times when you may want to restore the original instance of a program when the user launches a second
+instance. The following code demonstrates how you can do that using CreateMutex and FindWindow.
+CreateMutex handles the task of blocking mutliple instances of a program from running, while
+FindWindow gives us a window handle that we can send the restore message to.
+ 
+Note:
+This example assumes that you have set the application's title to "single" from the project options dialog.
+ 
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+ HANDLE hInstanceMutex = ::CreateMutex(NULL,TRUE, "SINGLE.MUTEX");
+ if(GetLastError() == ERROR_ALREADY_EXISTS)
+ {
+ if(hInstanceMutex)
+ CloseHandle(hInstanceMutex);
+ // Find the HWND of the hidden application window of the previous
+ // instance. Note that we are not looking for the HWND of the main
+ // form. This code fails miserably if you pass it the main form
+ // HWND instead of the Application's HWND
+ Application->Title = "";
+ HWND hPrevApp = ::FindWindow(NULL, "single");
+ if(hPrevApp)
+ PostMessage(hPrevApp, WM_SYSCOMMAND, SC_RESTORE, 0);
+ return 0;
+ }
+ try
+ {
+ Application->Initialize();
+ Application->Title = "single";
+ Application->CreateForm(__classid(TForm1), &Form1);
+ Application->Run();
+ }
+ catch (Exception &exception)
+ {
+ Application->ShowException(&exception);
+ }
+ ReleaseMutex(hInstanceMutex);
+ CloseHandle(hInstanceMutex);
+ return 0;
+}
+Using CreateSemaphore: The code example below demonstrates how you can use semaphores to limit the number of
+instances of a program that can run at any one time. This code puts the limit at 5. You can run 5 instances of the
+program, but you will not be allowed to execute a sixth instance.
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+ // Try to create a semaphore object. If the object already existed, the
+ // OS will return the previous semaphore without creating a new one
+ // Note: The semaphore count will decrease each time WaitForSingeObject
+ // is called. The third argument to CreateSemaphore determines
+ // the max number of instances. The second argument is the
+ // initial semaphore count.
+ HANDLE hSemaphore = ::CreateSemaphore(NULL,5,5, "SINGLE.SEMAPHORE");
+ // When WaitForSingleObject returns WAIT_OBJECT_O, the semaphore
+ // count has ran out.
+ if(hSemaphore && WaitForSingleObject(hSemaphore, 0) != WAIT_OBJECT_0)
+ {
+ CloseHandle(hSemaphore);
+ ShowMessage("Boss says we can only run 5 instances at a time");
+ return 0;
+ }
+ try
+ {
+ Application->Initialize();
+ Application->CreateForm(__classid(TForm1), &Form1);
+ Application->Run();
+ }
+ catch (Exception &exception)
+ {
+ Application->ShowException(&exception);
+ }
+ ReleaseSemaphore(hSemaphore,1,NULL);
+ CloseHandle(hSemaphore);
+ return 0;
+}
+ Downloads for this FAQ 
+ single1src.zip Preventing multiple instances with CreateMutex. Source code only. 
+ single1exe.zip Preventing multiple instances with CreateMutex. Includes EXE. 
+ single2src.zip Preventing multiple instances with CreateSemaphore. Source code only. 
+ single2exe.zip Preventing multiple instances with CreateSemaphore. Includes EXE. 
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

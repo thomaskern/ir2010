@@ -1,0 +1,226 @@
+
+Free Java Help --- Tutorials --- Components --- Checkboxes 
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Checkbox 
+ 
+ Checkboxes are actually quite simple. If
+you don't know what one is, check out the applet below, and you will isntantly
+recognize it. What you may not know is the difference between the square
+checkboxes and the round ones. The round ones are part of a CheckboxGroup,
+which means that not more than one of them can be selected at a time.
+ The square checkboxes could all be clicked,
+if you wished it so. They are just normal Checkboxes, and are not part of a
+CheckboxGroup. Here are the constructors:
+Checkbox objectnamehere=new Checkbox();
+Checkbox objectnamehere=new Checkbox("Hello");
+Checkbox objectnamehere=new Checkbox("Hello",false);
+Checkbox objectnamehere=new Checkbox("Hello",groupname,false);
+CheckboxGroup objectnamehere=new CheckboxGroup();
+ The first constructor simply
+creates a Checkbox. No text. No nothin. Just a Checkbox. If you want it to have
+text, you have to use the setLabel() method.
+ The second constructor is more useful. It
+creates a checkbox with text! You are much more likely to use this one than the
+first. The text that you want to appear next to the Checkbox is put in between
+the quotes.
+ The third constructor is the same as the
+second, except the false tells the Checkbox that you don't want it to start off
+clicked. This is normally the case, but is a different constructor because you
+can put true instead of false, and have the button be automatically
+clicked.
+ The fourth constructor is a constructor for
+a circular checkbox (radio button). In the parentheses, there are three
+different things you have to enter. First is the text of the radio button,
+which is put in between quotes. After the next comma, you put 
+the name of the
+CheckboxGroup you want it to be in. The CheckboxGroup already has to be
+declared, however. (To declare a CheckboxGroup, use the fifth constructor. It
+is very simple.) The third part of the fourth constructor simply sets the state
+of the Checkbox. If it is true, the Checkbox is automatically clicked. If it is
+false, it is not. Here is the applet to look at!
+//-------------------------------//
+//Copyright 2000 FreeJavaHelp.com//
+//-------------------------------//
+//this line imports the Applet class so this program can be an applet
+import java.applet.Applet;
+//this line imports the Graphical User Interface components, including
+// checkbox
+import java.awt.*;
+//this next line begins the program, which is an applet named checkbox
+public class checkbox extends Applet{
+	//this next line creates a simple checkbox which has the text hello
+	Checkbox check1=new Checkbox("Hello");
+	//this creates a checkbox named check2 that will have its label set
+	//using the setLabel() method
+	Checkbox check2=new Checkbox();
+	//the next line creates a checkbox named check3 which says checked.
+	//The checkbox will automatically be clicked due to the word true
+	Checkbox check3=new Checkbox("checked",true);
+	//this line will create a Checkbox check4 that will have its state
+	// set
+	//later on
+	Checkbox check4=new Checkbox("setState() Method");
+	//the following line of code makes a checkbox group, which will be
+	//explained
+	CheckboxGroup main=new CheckboxGroup();
+	//the next line creates a radio button which will be added to the
+	//CheckboxGroup named main
+	//in the parentheses, the first part sets the text, the second tells
+	//which
+	//CheckboxGroup it is going to be a part of, and the third sets the
+	//state
+	Checkbox check5=new Checkbox("radio button",main,false);
+	//same thing as above, just another variable
+	Checkbox check6=new Checkbox("radio button2",main,false);
+	//the init method is executed when the applet is initialized
+	public void init(){
+	//this line adds the Checkbox named check1
+	add(check1);
+	//NOTE---VERY IMPORTANT
+	//If you try to use the setLabel() method after you add the
+	// checkbox
+	//to the applet, it WILL NOT always come out perfectly, as
+	// I just
+	//saw while typing this code
+	//this line sets the label of check2 to setlabel method
+	check2.setLabel("setlabel method");
+	//this line adds the Checkbox named check2
+	add(check2);
+	//the next line adds the Checkbox named check3
+	add(check3);
+	//the next line will set the state of check4 so it is clicked
+	check4.setState(true);
+	//this next line adds check4 to the applet
+	add(check4);
+	//the next two lines add check5 and check6, which are radio
+	// buttons
+	//because they are part of a CheckboxGroup
+	add(check5);	
+	add(check6);
+	}
+}
+Tutorials Contents
+ 
+ 
+Lessons in the Components Section 
+ 
+ 
+Beginning
+Buttons
+Labels
+Checkboxes
+Choice
+Text
+List
+Scrollbar
+ 
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

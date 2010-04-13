@@ -1,0 +1,30 @@
+
+	VBUG News Group
+	
+Post Reply 
+Back to Messages 
+Submitted By: jimmy6 
+Sender's Email: whatcani2@yahoo.com 
+Submitted On: 7/3/2002 11:11:17 AM 
+Subject:exe make exe 
+hello
+ i am jimmy6 . how can i write the vb code to create a exe file in a exe file.i know that is very confuse so example is i create a exe file call AA.exe .this AA.exe file content of a button ,when i click this button it will create a BB.exe (which is not copy the AA.exe to BB.exe). so...... how????? 
+Post Reply 
+Back to Messages 
+Submitted By: Jim B 
+Sender's Email: bednarjm@agedwards.com 
+Submitted On: 7/3/2002 2:37:06 PM 
+Subject:RE: exe make exe 
+I don't understand your question.
+From what I understand of your question the AA.EXE has a command button that when clicked writes out a program BB.EXE.
+ 
+What would the BB.EXE be an executable of? Are you going to be passing some type of source code (VB, C++, etc.) and calling a compilier for the language in question? Most languages have the ability to be compiled from the command prompt instead of from within an IDE. If that is the case I would call a shell command to run the compilier for the language in question. If you're thinking something else I don't know.
+jim 
+Post Reply 
+Back to Messages 
+Submitted By: jimmy6 
+Sender's Email: whatcani2@yahoo.com 
+Submitted On: 7/4/2002 12:04:47 PM 
+Subject:RE: RE: exe make exe 
+i am jimmy6
+ those i mean is like installation when i click it ,many file will come out . 

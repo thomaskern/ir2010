@@ -1,0 +1,945 @@
+
+Visual Basic Internet Programming - MS Winsock Control - How to use MS Winsock Control
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ MS Winsock Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ How to use Winsock Control in order to build Internet applications
+ 
+ The Winsock control shipped with Visual Basic is the very powerful tool. It allows implementing any Internet network protocol inside of your application. In comparance with any other ActiveX controls the Winsock control takes great deal of job. However the situation will be fully under your control and you won't depend on the mistakes of other control's developers. As soon as you have gotten basic knowledge of network protocols and principles of communications you can make virtually any kind of Internet applications. Just stay with me and I guarantee an attractive journey trying to explain how to program Winsock control and how to use it in order to implement any of the most widely used Internet protocols such as HTTP (WWW), FTP, NNTP (News), SMTP and POP3 (Mail).
+ 
+ Let's show the model of two computer's communication. One of them is the client and another one is the server.
+ 
+ The all required Internet software has installed at the client. The client has abilities to send and receive e-mail messages, browse WWW pages, take participation in news groups and load files from remote servers via FTP protocol. All installed software coexists at the same computer and does affect each other.
+ 
+ The other kind of software set up at the server. This software provides services required by the remote clients. The server can manage several clients and tasks simultaneously. In other words the server is running several server applications (FTP server, WWW server and MAIL server) at the same time.
+ 
+ Due to the Sockets technology such a stable simultaneous work of several Internet applications is available. The socket implementation for MS Windows called Windows Socket or just Winsock. Socket is a program device, which supplies sending and receiving data via the defined TCP/IP port for some specific network application. The application can produce as many sockets as it needs for effective job. But one socket works with one TCP/IP port only.
+ 
+ The client's applications creates socket and assigns to him the random number of TCP/IP port it will work with. But it does not happen at the server machine. The server applications, as a rule, work with the early-defined TCP/IP ports. For example, the number of TCP/IP port for FTP server is 21, and another one for Web server is 80. There is a "global arrangement" for widely used services. It defines the number of ports the clients could send their requests by default.
+ 
+ 
+ 
+ 
+ 
+ Protocol 
+ Port 
+ Description 
+ 
+ 
+ SMTP 
+ 25 
+ Simple Mail Transfer Protocol 
+ 
+ 
+ 
+ POP3 
+ 110 
+ Post Office Protocol 
+ 
+ 
+ 
+ NNTP 
+ 119 
+ Network News Transfer Protocol 
+ 
+ 
+ 
+ FTP 
+ 21 
+ File Transfer Protocol 
+ 
+ 
+ 
+ HTTP 
+ 80 
+ Hyper Text Transfer Protocol 
+ 
+ 
+ 
+The client starts the network sessions with server via one of the network protocols. The client creates socket and forces it to connect to the remote server. The socket gets the address of server and the number of port to which it has to connect to. As for Winsock control then you should invoke the Connect method. Look at the example below. It shows how to connect to FTP server.
+Winsock1.Connect "ftp.microsoft.com", 21
+As you see the method requires 2 parameters. The first one is the name of remote server you are going to connect to. It can be in form of plane name or IP address. The second one is the number of port, which defines the kind of service you wish to get from remote server. The port number 21 is intended to be listening by FTP server. "Listening" means that server application waits for client's requests at port number 21. In case of success connection Winsock control will let you know about it by means of Connect event. Now the connection is established.
+The further events depends on network protocol you are going to use
+- Server expects your commands (HTTP)
+- In accordance with used protocol the server sends required data and breaks connection
+- Server sends back to the client welcome message and the code of response (FTP, SMTP, POP3, NNTP). It's waiting for your commands now
+- Server sends back to the client message about impossibility to maintain further connection as well as the response's code (FTP, SMTP, POP3, NNTP)
+In connection time server sends answer messages and we have to be ready to detect and process these messages. In case of Winsock control it raises DataArrival event. Some code which deals with received data we can place into body of that event.
+Dim strData As String
+Winsock1.GetData strData
+The last string of the code above takes received data out of the buffer and stores it in strData variable. Further you can process those data in the way you wish.
+ 
+ Well. The connection has installed. Even you've gotten your first message from server. Now you are ready to start communication with the server in form of commands and his responses. The sample below shows how to start the communication with Microsoft FTP server.
+ 
+Client: Tries to make connection with ftp.microsoft.com (port 21)
+ Server: Accepts connection and sends first response to client
+ Server: 220 ftp Microsoft FTP Service (Version 3.0).
+ Client: USER anonymous
+ Server: 331 Anonymous access allowed, send identity (e-mail name) as password.
+ Client: PASS gdal@comset.net
+ Server: 230 Anonymous user logged in.
+ Client: CWD developr
+ Server: 250 CWD command successful.
+ 
+In order to send the data to the server you should use SendData method. Here is the example of sending first command you have read above:
+ 
+ 
+ Winsock1.SendData "USER anonymous" & vbCrLf
+ 
+All the required commands, rules and order of entering commands you can find in RFC (request for commants) documents.
+ 
+ 
+ 
+ Protocol 
+ RFC 
+ Link 
+ 
+ 
+ SMTP 
+ 821 
+ http://www.faqs.org/rfcs/rfc821.html 
+ 
+ 
+ POP3 
+ 1725 
+ http://www.faqs.org/rfcs/rfc1725.html 
+ 
+ 
+ NNTP 
+ 977 
+ http://www.faqs.org/rfcs/rfc977.html 
+ 
+ 
+ FTP 
+ 959 
+ http://www.faqs.org/rfcs/rfc959.html 
+ 
+ 
+ HTTP 
+ 2068 
+ http://www.faqs.org/rfcs/rfc2068.html 
+ 
+ 
+ 
+The set of commands and responses is unique for every protocol. However, there are a few basic rules you should follow in time of development of your applications.
+ 
+ 
+- Commands are case-insensitive
+ 
+- Some commands can expects parameters. You should type the parameter after command follow by the space
+ 
+- The command string must be finished with vbCrLf symbol
+ 
+- The server response is the string and numeric value. Additional text depends on the server software but the numeric code of response is the constant. You should deal with that code exactly. The code of response is the 3-digit number from which the response string begins. You can easily extract it by means of the "Left" function. For example:
+ strResponseCode = Left$(strServerResponse, 3).
+ 
+ 
+A few word about disconnecting. As a rule the client forces the end of the session. It's implemented via special command (QUIT is the most used command). The server sends last answer and closes the connection. The Winsock control will let you know about it by means of Close event. It's not common for all protocols. For example HTTP server will close connection immediately after it has sent required by the client resource.
+ 
+ Last notice about errors. There are two types of errors you can expect while working with Winsock control. The first one is the application protocol's errors. They will happen due to the illegal commands or your mistypes. You can figure it out by means of the number of server's response. The second one is the Windows Socket's errors. The Winsock control will raise the Error event in case of any error of that type. Besides of the error's code you'll get short not always useful description. 
+ 
+ I suggest learning about two practical tasks. We'll make simple applications, which works via Daytime and WhoIs protocols. If you have enough knowledge of Winsock control then I recommend having a look at the Winsock Terminal application. After that you'll learn about more sophisticated protocols.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+winsock
+	jes.b Monday, February 21, 2000	
+	
+	
+	
+Using Winsock control with out a from
+	Patrick J Dennis Sunday, April 09, 2000	
+	
+	
+	
+How to make a web server using winsock control ?
+	Cristi Monday, April 17, 2000	
+	
+	
+	
+To use winsock.ocx without a form, you...
+	Brian MacAskill Thursday, April 27, 2000	
+	
+	
+	
+Winsock & Telnet
+	Mark Walton Friday, April 28, 2000	
+	
+	
+	
+Winsock & telnet
+	Bill Wednesday, May 10, 2000	
+	
+	
+	
+Using Winsock without form: Error
+	CHris Moses Thursday, May 11, 2000	
+	
+	
+	
+Winsock and Telnet
+	Chris Moses Thursday, May 11, 2000	
+	
+	
+	
+Winsock without form - resolution
+	Chris Moses Thursday, May 11, 2000	
+	
+	
+	
+Connecting to Telnet Session
+	Suhail Salman Wednesday, May 17, 2000	
+	
+	
+	
+Winsock
+	Rachel Monday, May 22, 2000	
+	
+	
+	
+WINSOCK SUCKS
+	Kris De Greve Thursday, May 25, 2000	
+	
+	
+	
+Windows winsck.dll api
+	Bryan Sunday, May 28, 2000	
+	
+	
+	
+Windows winsck.dll api
+	Bryan Sunday, May 28, 2000	
+	
+	
+	
+where can i get winsock? 
+	sam jones Thursday, June 01, 2000	
+	
+	
+	
+Getting a 1000 in returned data
+	Fred Friday, June 30, 2000	
+	
+	
+	
+"license" stuff
+	Brian Friday, July 21, 2000	
+	
+	
+	
+RE: To use winsock.ocx without a form, you...
+	Stephan Strittmatter Wednesday, August 02, 2000	
+	
+	
+	
+Why?
+	NM Thursday, August 17, 2000	
+	
+	
+	
+Re:"why?"
+	Brian Sunday, August 20, 2000	
+	
+	
+	
+Winsock Without Form Question
+	Steve Monday, August 21, 2000	
+	
+	
+	
+Using MSWINSOCK in multithread server
+	Darin Tuesday, August 22, 2000	
+	
+	
+	
+Re: Why?
+	Paul Patynowski Friday, August 25, 2000	
+	
+	
+	
+Winsock Proxy Server
+	M.A.C. Sunday, September 03, 2000	
+	
+	
+	
+Spliting TCP Packets down to the right size
+	Richy2000 Sunday, September 03, 2000	
+	
+	
+	
+Accepting Multiple Connections with TCP
+	Richy2000 Sunday, September 03, 2000	
+	
+	
+	
+Re: Re: Why?
+	Brian Chance Saturday, September 09, 2000	
+	
+	
+	
+RE: Proxy server using winsock
+	Cyberwizzard Wednesday, September 13, 2000	
+	
+	
+	
+RE: To use winsock.ocx without a form, you...
+	Patrik Forsberg Wednesday, September 13, 2000	
+	
+	
+	
+Winsock & Data Bases
+	Victor Delgado Tuesday, October 03, 2000	
+	
+	
+	
+Proxy Programming - Please help!!!
+	Matt Dean Wednesday, October 11, 2000	
+	
+	
+	
+I need it !
+	Unix Friday, October 20, 2000	
+	
+	
+	
+i need a well equipped book on Winsock
+	puneet gupta Monday, October 23, 2000	
+	
+	
+	
+How to Send clipboard contents 
+	Szymon Machajewski Wednesday, November 08, 2000	
+	
+	
+	
+Using mswinsock without forms...
+	Ravinder Singh Thursday, November 09, 2000	
+	
+	
+	
+ftp server
+	scum Friday, November 17, 2000	
+	
+	
+	
+WinSock commands
+	josip broz Saturday, November 25, 2000	
+	
+	
+	
+Using winsock without a form 
+	Alfredo Wednesday, November 29, 2000	
+	
+	
+	
+Winsock-Wingate
+	mizio Friday, December 01, 2000	
+	
+	
+	
+Accessing dll utilizing winsock through interdev
+	Adam Tuesday, December 05, 2000	
+	
+	
+	
+my winsock COM component in MTS hangs
+	Marios Wednesday, December 06, 2000	
+	
+	
+	
+Winsock error 40006 SckBadState
+	Keith Hamilton Wednesday, December 06, 2000	
+	
+	
+	
+Unable to Create Object out of form
+	Brett Wass Friday, December 08, 2000	
+	
+	
+	
+Solution?: Usage In a DLL On Non-Dev Machine
+	Joe Lowrance Wednesday, December 13, 2000	
+	
+	
+	
+Winsock and ASP scripting?
+	Magnus Oddsson Wednesday, December 20, 2000	
+	
+	
+	
+Please Help ! Multiple connections
+	Amer Wednesday, December 27, 2000	
+	
+	
+	
+Question on getting message from a local port
+	Pauline Monday, January 15, 2001	
+	
+	
+	
+Send Text Over a Lan Using Winsock 
+	Phillip (Geting Stress) De Suze Friday, January 19, 2001	
+	
+	
+	
+Look at the RFC ! ! !
+	Guinet Thursday, February 01, 2001	
+	
+	
+	
+multihomed systems
+	Mike Ullerup Sunday, February 04, 2001	
+	
+	
+	
+Usage In a DLL On Non-Dev Machine
+	Jutanusil Taraboue Monday, February 26, 2001	
+	
+	
+	
+Maybe a solution : Winsock can't create object
+	Jutanusil Taraboue Tuesday, February 27, 2001	
+	
+	
+	
+DataArrival event problem!!!!!!!!!!
+	Troy Kinsella Wednesday, February 28, 2001	
+	
+	
+	
+A SOLUTION !! Try this to replace mswinsck.ocx
+	WebASP Wednesday, October 31, 2001	
+	
+	
+	
+winsock to connect Java Servlets on Web Logic
+	packiyanath Wednesday, March 14, 2001	
+	
+	
+	
+Runtime error 424
+	Consti Tuesday, March 27, 2001	
+	
+	
+	
+How do i make winsock communicate with telnet?
+	Timothy Woo Tuesday, March 27, 2001	
+	
+	
+	
+about winsock
+	kavitha Friday, March 30, 2001	
+	
+	
+	
+PING
+	calenkl Monday, April 09, 2001	
+	
+	
+	
+How do I get the Subnet address?
+	Paul Paczkowski Wednesday, April 11, 2001	
+	
+	
+	
+Winsock & Telnet
+	Pankaj Gupta Saturday, April 14, 2001	
+	
+	
+	
+Winsock and Proxy question.
+	Steve Wednesday, May 16, 2001	
+	
+	
+	
+Multiple connections on my server
+	Aaron Monday, May 21, 2001	
+	
+	
+	
+how can i send data to client in a for loop
+	puran singh kumayan Monday, May 28, 2001	
+	
+	
+	
+Multiple Connections on Winsock
+	Fred Tuesday, May 29, 2001	
+	
+	
+	
+RE: Multiple connections on my server
+	T Vreeland Wednesday, May 30, 2001	
+	
+	
+	
+server with asincron comunication (multithread)?
+	Crirus Thursday, May 31, 2001	
+	
+	
+	
+how to send a pic file using winsock ??
+	bk Tuesday, June 05, 2001	
+	
+	
+	
+Can't get winsock component to work
+	Martin Ramallo Tuesday, June 05, 2001	
+	
+	
+	
+MSwinsock
+	Sreyas Tuesday, June 19, 2001	
+	
+	
+	
+using winsock in ActiveX dll
+	HA THANH LONG Sunday, June 24, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Winsock and Telnet
+	Mohamed Thursday, August 02, 2001	
+	
+	
+	
+Port Closing, are ports lock some wont close
+	Marty Sunday, August 12, 2001	
+	
+	
+	
+How can I use WinSock for and IRC server?
+	TJ Sunday, August 26, 2001	
+	
+	
+	
+how can i connect to aol with winsock
+	royal Monday, September 03, 2001	
+	
+	
+	
+RE: Solution?: Usage In a DLL On Non-Dev Machine
+	Sam Lau Thursday, September 13, 2001	
+	
+	
+	
+Sending text to someone else
+	Ziv Friday, September 28, 2001	
+	
+	
+	
+licensing the winsock in vb6
+	sfmax Thursday, October 04, 2001	
+	
+	
+	
+How to recognize remote party disconnected dirty?
+	Miroslav PRAGL Monday, October 15, 2001	
+	
+	
+	
+How winsock can be used to move mouses
+	Ben Tuesday, October 30, 2001	
+	
+	
+	
+Open Email e.g Hotmail?
+	Adeel Anwar Thursday, October 25, 2001	
+	
+	
+	
+LIST problems.. PORT question
+	eldee Tuesday, October 30, 2001	
+	
+	
+	
+Client 32 server 'n ftp sending... NEED HELP
+	Daniel Bisson Thursday, November 01, 2001	
+	
+	
+	
+MS Winsock Control Sending Data Error
+	Melvin Monday, November 05, 2001	
+	
+	
+	
+Winsock using UDP file transfer
+	Dave Saturday, November 17, 2001	
+	
+	
+	
+Read You Bunch Of Idiots, READ!!!!
+	Eddie Tuesday, November 27, 2001	
+	
+	
+	
+Re: Winsock and Proxy question.
+	BoiSS Wednesday, November 28, 2001	
+	
+	
+	
+Get winsock to stop listening..
+	Jeff Friday, January 04, 2002	
+	
+	
+	
+Trying to use winsock without Browser Control
+	Ted Saturday, January 05, 2002	
+	
+	
+	
+Winsock for Voice chat
+	Melvin Wednesday, January 09, 2002	
+	
+	
+	
+Re: Get winsock to stop listening..
+	Red HamsterX Wednesday, January 16, 2002	
+	
+	
+	
+Transfer Rate
+	Vlad Saturday, February 23, 2002	
+	
+	
+	
+doubt
+	raji Wednesday, February 27, 2002	
+	
+	
+	
+Comm Port Monitoring
+	Dinu Tuesday, March 19, 2002	
+	
+	
+	
+thanks
+	Neo Wednesday, March 20, 2002	
+	
+	
+	
+Winsock with ASP
+	Sowmiya Friday, March 29, 2002	
+	
+	
+	
+How can I read COM1 or COM2 using Winsock
+	AjinkyA Monday, May 13, 2002	
+	
+	
+	
+Telnet and Winsocket
+	Manjith Friday, April 12, 2002	
+	
+	
+	
+Winsock in an ActiveX DLL
+	Geoff Thursday, April 18, 2002	
+	
+	
+	
+WINSOCK with NO FORM
+	JohnnyQUest Wednesday, May 15, 2002	
+	
+	
+	
+sample winsock program
+	ram Thursday, June 06, 2002	
+	
+	
+	
+Re: web server in winsock
+	Rowan The Leet Saturday, June 08, 2002	
+	
+	
+	
+Telnet UserControl Winsock. Open Source
+	Darren Friday, June 28, 2002	
+	
+	
+	
+web server
+	The_Wired Tuesday, July 02, 2002	
+	
+	
+	
+web server
+	The_Wired Tuesday, July 02, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ MS Winsock Control
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

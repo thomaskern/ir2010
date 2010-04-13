@@ -1,0 +1,18 @@
+
+Computer Centre: Introduction to C Programming
+ 
+ C Keywords - extern
+extern
+On this introductory course all programs are contained within one file but
+as your programming experience grows you will build your own libraries of
+C programs which will be stored in lots of separate files. These smaller program units can be called upon when needed by other (new) programs.
+As your programs grow in size you will also become frustrated at the time it takes to compile your program. Why are you re-compiliing codes that is working perfectly well only to test a small part of the program which is under development. The answer is to split-up your program into smaller units and save the object files. These files can then be 
+linked at compilation to the piece of code that is under development.
+If a variable has been defined within one program as being a global variable then it is available to all functions with that program. If that variable is also needed by another program stored in another file then that program must declare the variable as being externally referenced.
+For example:
+Program/file1:
+ 
+ Computer Centre 
+Information Suppliers: Richard Mobbs, Head of Information Services, Leicester University Computer
+ Centre and Marina Carter, Postgraduate Student, Leicester University Computer Centre.
+Last Updated: June 1996

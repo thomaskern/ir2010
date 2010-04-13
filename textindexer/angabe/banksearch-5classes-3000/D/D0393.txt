@@ -1,0 +1,310 @@
+
+The BeanInfo Interface
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: JavaBeans(TM)
+Lesson: The BeanInfo Interface
+The following documentation will help you
+learn about reflection, introspection, and the
+BeanInfo class:
+ 
+- 
+ Chapter 8 of the
+JavaBeans API Specification
+ 
+- Core Reflection Documentation:
+ 
+ 
+- 
+The Reflection API trail
+ 
+- 
+JDK Reflection documentation
+ 
+ 
+- Beans API Documentation:
+ 
+ 
+- 
+BeanInfo interface
+ 
+- 
+SimpleBeanInfo class
+ 
+- 
+Introspector class
+ 
+- 
+FeatureDescriptor class
+ 
+- 
+BeanDescriptor class
+ 
+- 
+EventSetDescriptor class
+ 
+- 
+PropertyDescriptor class
+ 
+- 
+IndexedPropertyDescriptor class
+ 
+- 
+MethodDescriptor class
+ 
+- 
+ParameterDescriptor class
+ 
+How does a builder tool examine a Bean and
+expose its features (properties, events, and methods) in a
+property sheet? By using the java.beans.Introspector
+class. The Introspector class uses
+the JDK core reflection API to discover a Bean's methods, and
+then applies the JavaBeans design patterns to discover the
+Beans features. 
+This discovery process is named introspection.
+Alternatively, you can explicitly expose a Bean's features 
+in a separate, associated class that implements the BeanInfo interface.
+By associating a BeanInfo class with your Bean,
+you can:
+ 
+- Expose only those features you want to expose.
+ 
+- Rely on BeanInfo to expose
+ some Bean features while relying on
+ low-level reflection to expose others.
+ 
+- Associate an icon with the target Bean.
+ 
+- Specify a
+ customizer class.
+ 
+- Segregate features into normal and expert categories.
+ 
+- Provide a more descriptive display name, or
+ additional information about a Bean feature.
+BeanInfo defines methods that return
+descriptors for each property, method, or event
+that you want exposed. Here's the prototypes for these methods:
+PropertyDescriptor[] getPropertyDescriptors();
+MethodDescriptor[] getMethodDescriptors();
+EventSetDescriptor[] getEventSetDescriptors();
+Each of these methods returns an array of
+descriptors for each feature.
+Feature Descriptors
+BeanInfo classes contain descriptors
+that precisely describe the target Bean's features. The BDK implements
+the following descriptor classes:
+ 
+- FeatureDescriptor is the base class for
+ the other descriptor classes. It declares the
+ aspects common to all descriptor types.
+ 
+- BeanDescriptor describes the target
+ Bean's class type and name, and describes the
+ target Bean's customizer class if it exists.
+ 
+- PropertyDescriptor describes the
+ target Bean's properties.
+ 
+- IndexedPropertyDescriptor is a
+ subclass of PropertyDescriptor, and
+ describes the target Bean's indexed properties.
+ 
+- EventSetDescriptor describes the events
+ the target Bean fires.
+ 
+- MethodDescriptor describes the
+ target Bean's methods.
+ 
+- ParameterDescriptor describes
+ method parameters.
+The BeanInfo interface declares
+methods that return arrays of the above
+descriptors.
+Creating a BeanInfo Class
+This section uses the ExplicitButtonBeanInfo demo class to
+illustrate creating a BeanInfo class.
+Here are the general steps to make a BeanInfo
+class:
+ 
+- Name your BeanInfo class. You must
+ append the string "BeanInfo" to the target class
+ name. If the target class name is
+ ExplicitButton, then its associated
+ Bean information class must be named
+ ExplicitButtonBeanInfo
+ 
+ 
+- Subclass SimpleBeanInfo.
+ This is a convenience class that implements
+ BeanInfo methods to return null,
+ or an equivalent no-op value.
+public class ExplicitButtonBeanInfo extends SimpleBeanInfo {
+ Using SimpleBeanInfo
+ saves you from implementing all the
+ BeanInfo methods; you only have
+ to override those methods you need.
+ 
+ 
+- Override the appropriate methods 
+ to return the properties, methods, or events
+ that you want exposed. ExplicitButtonBeanInfo
+ overrides the getPropertyDescriptors()
+ method to return four properties:
+public PropertyDescriptor[] getPropertyDescriptors() {
+ try { 
+ PropertyDescriptor background =
+ new PropertyDescriptor("background", beanClass);
+ PropertyDescriptor foreground =
+ new PropertyDescriptor("foreground", beanClass);
+ PropertyDescriptor font =
+ new PropertyDescriptor("font", beanClass);
+ PropertyDescriptor label =
+ new PropertyDescriptor("label", beanClass);
+ 
+ background.setBound(true);
+ foreground.setBound(true);
+ font.setBound(true);
+ label.setBound(true);
+ 
+ PropertyDescriptor rv[] =
+ {background, foreground, font, label};
+ return rv;
+ } catch (IntrospectionException e) {
+ throw new Error(e.toString());
+ }
+} 
+ There are two important things to note here:
+ 
+ 
+- If you leave a descriptor out, that property, event
+ or method will not be exposed. In other
+ words, you can selectively expose properties, events,
+ or methods by leaving out those you don't want exposed.
+ 
+- If a feature's getter (for example, getMethodDescriptor())
+ method returns null, low-level reflection
+ is then used for that feature. This means, for example, that you
+ can explicitly specify properties, and let low-level reflection
+ discover the methods.
+ If you don't override the SimpleBeanInfo
+ default method, which returns null, low-level reflection
+ will be used for that feature.
+ 
+ 
+ 
+- Optionally associate an icon with the target Bean.
+public java.awt.Image getIcon(int iconKind) {
+ if (iconKind == BeanInfo.ICON_MONO_16x16 ||
+ iconKind == BeanInfo.ICON_COLOR_16x16 )
+ {
+ java.awt.Image img = loadImage("ExplicitButtonIcon16.gif");
+ return img;
+ }
+ if (iconKind == BeanInfo.ICON_MONO_32x32 ||
+ iconKind == BeanInfo.ICON_COLOR_32x32 )
+ {
+ java.awt.Image img = loadImage("ExplicitButtonIcon32.gif");
+ return img;
+ }
+ return null;
+}
+ The BeanBox displays
+ this icon next to the Bean name in the ToolBox.
+ You can expect builder tools to do the same.
+ 
+ 
+- Specify the target Bean class, and, if the
+ Bean has a customizer, specify it also.
+public BeanDescriptor getBeanDescriptor() {
+ return new BeanDescriptor(beanClass, customizerClass);
+}
+...
+private final static Class beanClass = ExplicitButton.class;
+private final static Class customizerClass = OurButtonCustomizer.class;
+Keep the BeanInfo class in the same directory
+as its target class.
+The BeanBox first searches for a target Bean's BeanInfo
+class in the target Bean's package path. If no BeanInfo
+is found, then the Bean information package search path (maintained
+by the Introspector) is searched. The
+default Bean information search path is
+sun.beans.infos. If no BeanInfo
+class is found, then low-level reflection is used
+to discover a Bean's features.
+Using BeanInfo to Control What Features are Exposed
+If you rely on low-level reflection to discover your
+Bean's features, all those properties, methods, and
+events that conform to the appropriate design patterns
+will be exposed in a builder tool. This includes
+any features in all base classes. If the BeanBox
+finds an associated BeanInfo
+class, then that information is used instead, and
+no more base classes are examined using reflection.
+In other words, BeanInfo information
+overrides low-level reflection information, and
+prevents base class examination.
+By using a BeanInfo
+class, you can expose subsets of a
+particular Bean feature. For example,
+by not returning a method descriptor
+for a particular method, that method
+will not be exposed in a builder tool.
+When you use a BeanInfo class:
+ 
+- Base class features will not be exposed.
+ You can retrieve base class features by
+ using the BeanInfo.getAdditionalBeanInfo
+ method.
+ 
+ 
+- Properties, events, or methods that have
+ no descriptor will not be exposed.
+ For a particular feature, only those
+ items returned in the descriptor array
+ will be exposed. For example, if you
+ return descriptors for all your Bean
+ methods except foo, then
+ foo will not be exposed.
+ 
+ 
+- Low-level reflection will be used for
+ features with getter methods returning null.
+ For example if your BeanInfo class
+ contains this method implementation:
+public MethodDescriptor[] getMethodDescriptors() {
+ return null;
+}
+ Then low-level reflection will be used to discover
+ your Bean's public methods. 
+Locating BeanInfo Classes
+Before examining a Bean, the Introspector will
+attempt to find a BeanInfo class associated with the
+Bean. By default, the Introspector takes the target Bean's
+fully qualified package name, and appends "BeanInfo" to form a new
+class name. For example, if the target Bean is
+sunw.demo.buttons.ExplicitButton, then the
+Introspector will attempt to locate
+sunw.demo.buttons.ExplicitButtonBeanInfo.
+If that fails, then each package in the BeanInfo
+search path is searched. The BeanInfo search path
+is maintained by Introspector.setBeanInfoSearchPath()
+and Introspector.getBeanInfoSearchPath().
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

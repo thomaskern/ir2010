@@ -1,0 +1,355 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Visual Basic SQL Server 7.0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ 
+ Visual Basic Books 
+ 
+DSN Connections
+As we mentioned at the beginning
+ 
+of this chapter, there are several ways to establish
+a connection from your Visual Basic program to SQL Server. This section
+explores the DSN connection. That is, we use a DSN to connect to SQL Server.
+Using a DSN in Visual Basic server components is probably the most
+ common use
+of DSNs. A server component is an ActiveX DLL that implements business rules
+and performs specific business tasks. We are going to be using a DSN in a
+front-end program within this chapter for demonstration purposes. Chapter 14
+will explore server components in more depth and we will also be using a DSN
+with our components in that chapter.
+<![if !supportEmptyParas]> <![endif]>
+We are going to use the Open
+method syntax of the Connection object that was
+described earlier in this chapter, so your connection statement will look
+similar to the code fragment below. You, of course, will have to substitute the
+user ID and password for one of the test
+users you set up, or any user ID that uses SQL Server authentication. We'll
+explain why you need to use a SQL Server authentication login ID in a few
+moments.
+<![if !supportEmptyParas]> <![endif]>
+objConn.Open
+"DSN=Wrox Auto Works;UserID=margie;PWD=margie"
+<![if !supportEmptyParas]> <![endif]>
+Of course, the ConnectString
+does not have to be hard coded and really shouldn't be. There are many reasons
+for not hard coding your ConnectString and the main
+reason is security of your user ID and password.
+This ConnectString could be passed in as a string
+variable that has been read from the registry or supplied as information when a
+user logs on.
+<![if !supportEmptyParas]> <![endif]>
+After you have opened a
+connection, 
+you should verify the state of the connection using
+the State property of the Connection object. This
+property will tell you if the Connection object is open,
+closed, connecting, executing or fetching. More on this in a moment.
+<![if !supportEmptyParas]> <![endif]>
+Try It Out - Using a DSN Connection
+Since we have entered 
+at least one record in the State_T
+table, let's create a simple front-end program that will connect to the
+database using a DSN connection, open a recordset returning data from the State_T
+table, and display the first state on the form.
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>1. 
+<![endif]>Open a new Standard EXE
+project in Visual Basic and set a reference to the Microsoft ActiveX Data Objects Library. This should be
+the latest release you have installed, preferably release 2.5. This is done from the Project menu, by clicking References to invoke the References dialog. Find the Microsoft ActiveX Data Objects Library, check the
+checkbox, and then click OK to
+dismiss the dialog:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>2. 
+<![endif]>Change the name of the form to frmTryItOut2 and change the form caption to Try It Out #2 - DSN Connection, if you wish.
+<![if !supportLists]>3. 
+<![endif]>On the form, place a label control and use the
+default name of Label1. Enter the following code,
+which is available as frmTryItOut2.frm,
+changing the UID and PWD if necessary. Then run your project.
+<![if !supportEmptyParas]> <![endif]>
+Private Sub
+Form_Load()
+   'Use the standard Windows icon
+   Me.Icon = Nothing
+<![if !supportEmptyParas]> <![endif]>
+   'Declare database objects
+   Dim objConn As New ADODB.Connection
+   Dim objRS As New ADODB.Recordset
+   Dim objErr As ADODB.Error
+   
+   'Establish a database connection using SQL
+Server Authentication
+   objConn.Open "DSN=Wrox Auto
+Works;UID=margie;PWD=margie"
+   
+   'Check the state of the connection to
+ensure we are connected
+   If objConn.State = adStateOpen Then
+   
+      'Open a recordset
+      objRS.Open "State_T", objConn,
+adOpenForwardOnly, adLockReadOnly, adCmdTable
+      If Not objRS.EOF And Not objRS.BOF Then
+         Label1.Caption = objRS!State_Name_VC
+      End If
+      objRS.Close
+      
+   Else
+      
+      'Display all errors
+      For Each objErr In objConn.Errors
+         Debug.Print objErr.Description
+      Next
+     
+   End If
+   
+   'De-reference the database objects
+   Set objRS = Nothing
+   objConn.Close
+   Set objConn = Nothing
+End Sub
+<![if !supportEmptyParas]> <![endif]>
+You will see the following:
+<![if !vml]><![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+How It Works - Using A DSN
+Connection
+This example is pretty
+straightforward, but we will step through the code just to make sure everyone
+is comfortable with what we are doing. All of this code was placed in the Form_Load
+event to keep this example simple.
+<![if !supportEmptyParas]> <![endif]>
+If you take a look at the form
+in design view, you will notice that the icon on the form is the default form
+icon provided by VB. Instead of replacing it with some other icon, we enter the
+first line of code to set the current form icon to Nothing,
+which then gets replaced with the Windows default icon when the program is run.
+We can use 
+the Me keyword to represent the
+current object, in this case frmTryItOut2. This provides an
+easier means to reference the properties and methods of the form without trying
+to type a long form name:
+<![if !supportEmptyParas]> <![endif]>
+Private Sub
+Form_Load()
+   'Use the standard Windows icon
+   Me.Icon = Nothing
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Then we declare the
+database objects that we need, in this case a Connection object to
+establish a connection to the database, a Recordset object to hold
+the returned records, and an Error object - just in case we
+encounter any errors:
+<![if !supportEmptyParas]> <![endif]>
+   'Declare database objects
+   Dim objConn As New ADODB.Connection
+   Dim objRS As New ADODB.Recordset
+   Dim objErr As ADODB.Error
+<![if !supportEmptyParas]> <![endif]>
+Next, we establish a
+connection with the database, specifying our DSN in the ConnectString.
+But wait, the user ID and password are part of the ConnectString
+and are not specified separately. According to the syntax of the Open
+method that we explored above, we need to specify the user ID
+and password separately from the ConnectString.
+Well, this is not quite true. All parameters of the Open
+method are optional, and since our DSN requires a user ID
+and password, we can pass them as parameters of the ConnectString
+as we have done in the code fragment below:
+<![if !supportEmptyParas]> <![endif]>
+'Establish a database
+connection using SQL Server Authentication
+   objConn.Open "DSN=Wrox Auto
+Works;UID=margie;PWD=margie"
+<![if !supportEmptyParas]> <![endif]>
+The UID
+and PWD
+ parameters
+in the Connect String can be passed as parameters of the
+connection string, or can be passed separately as parameters of the Connection
+object's Open method. Just to prove our point, substitute the
+following line of code, using your user ID and password,
+and run your project. Notice that this also works. The user ID
+and password, although specified separately, are passed
+to the DSN so a connection can be established:
+<![if !supportEmptyParas]> <![endif]>
+'Establish a database
+connection using SQL Server Authentication
+   objConn.Open "DSN=Wrox Auto
+Works", "margie", "margie"
+<![if !supportEmptyParas]> <![endif]>
+This section of code
+applies to those readers who have set up their login ID in SQL Server using NT
+authentication. Since you are running on Windows NT, you don't have to specify
+a user ID and password at all, as is
+demonstrated in the next code fragment:
+<![if !supportEmptyParas]> <![endif]>
+'Establish a database
+connection using NT Authentication
+   objConn.Open "DSN=Wrox Auto
+Works"
+<![if !supportEmptyParas]> <![endif]>
+In fact, if you try to pass
+a user ID and password that use NT
+authentication in SQL Server, you will get the error shown below. This is
+because SQL Server will think that the user ID and password
+you are passing are using SQL Server authentication.
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Moving on, we next check
+the state of the connection using the Connection object's State
+property. Remember earlier we said that the State property indicates
+the current state of the Connection object. We are using
+ the adStateOpen
+constant from the ObjectStateEnum enumeration to
+compare to the current state of the Connection object:
+<![if !supportEmptyParas]> <![endif]>
+   'Check the state of the connection to
+ensure we are connected
+   If objConn.State = adStateOpen Then
+<![if !supportEmptyParas]> <![endif]>
+If the State
+of the Connection object is open then we execute the next
+few lines of code. But before we examine them, let's take a quick look at the
+parameters of 
+the Open method of the Recordset
+object:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>q 
+<![endif]>The first parameter is the Source parameter 
+and specifies a table name to be opened, in-line SQL
+statements, or the stored procedure to be executed.
+<![if !supportLists]>q 
+<![endif]>The ActiveConnection
+parameter lets 
+the Open
+method know how it should access the database. This parameter can be in the
+form of a Connection object or a connection string.
+<![if !supportLists]>q 
+<![endif]>The CursorType
+parameter 
+specifies what type of cursor the database should
+use when opening the recordset. A cursor controls how the recordset is
+navigated and how the data is updated in the recordset.
+<![if !supportLists]>q 
+<![endif]>LockType specifies what type 
+of locking the database should use on the recordset
+when editing of records occurs.
+<![if !supportLists]>q 
+<![endif]>The last parameter of the Open method is
+ the Options parameter. It tells the database how
+it should interpret the Source
+parameter. This is an optional parameter, but by specifying it, we can improve the
+performance of our code, because the processor doesn't need to work out for
+itself what type of Source
+parameter we are supplying. 
+<![if !supportEmptyParas]> <![endif]>
+The Recordset.Open
+parameters must be specified in order. If you leave out a parameter to use the
+default that is provided by ADO, then you must insert a comma in its place
+before specifying the next parameter, as shown below:
+<![if !supportEmptyParas]> <![endif]>
+objRS.Open
+"State_T", objConn, , , adCmdTable
+<![if !supportEmptyParas]> <![endif]>
+Getting back to our code,
+first we open the Recordset object, passing it the
+following parameters. The Source parameter is set to the State_T
+table and the ActiveConnection parameter is set to the Connection
+object. We have 
+specified adOpenForwardOnly as the CursorType
+parameter because we only want to read the recordset in one direction. This
+constant is listed in the CursorTypeEnum enumeration. The LockType
+parameter uses the adLockReadOnly constant
+ from the LockTypeEnum
+enumeration. Since we are only reading this data, there is less overhead
+associated with this lock type. And finally, the adCmdTable constant from
+the CommandTypeEnum enumeration has been specified for
+the Options parameter. All of these enumerations are
+viewable in the Object Browser in VB. 
+<![if !supportEmptyParas]> <![endif]>
+After opening the Recordset
+object, we check for an end of file (EOF) and a beginning of file (BOF)
+condition. If both the BOF and EOF properties are True,
+it would indicate that our recordset is empty. If it is not empty, then we
+execute the next line of code. This sets the caption of the label control to
+the state name contained in the State_Name_VC field of the first
+record of our recordset:
+<![if !supportEmptyParas]> <![endif]>
+      'Open a recordset
+      objRS.Open "State_T", objConn,
+adOpenForwardOnly, adLockReadOnly, adCmdTable
+      If Not objRS.EOF And Not objRS.BOF Then
+         Label1.Caption = objRS!State_Name_VC
+      End If
+      objRS.Close
+<![if !supportEmptyParas]> <![endif]>
+If the State
+of the Connection object is not equal to open, then we
+display each error in the debug window. We do this by using a For Each
+loop, enumerating through each of the errors in the Errors
+collection of the Connection object. We are only
+displaying the error description, but you could display more error information
+if you wanted to. See the Error object in Appendix B, the
+ADO help file, or MSDN Library for all the available properties
+that can be displayed.
+<![if !supportEmptyParas]> <![endif]>
+   Else
+      
+      'Display all errors
+      For Each objErr In objConn.Errors
+         Debug.Print objErr.Description
+      Next
+      
+   End If
+<![if !supportEmptyParas]> <![endif]>
+Last, we close and
+de-reference all of our database objects:
+<![if !supportEmptyParas]> <![endif]>
+   'De-reference the database objects
+   Set objRS = Nothing
+   objConn.Close
+   Set objConn = Nothing
+End Sub
+<![if !supportEmptyParas]> <![endif]>
+This section has covered
+the DSN connection and has shown you various ways to connect using a DSN and
+SQL Server authentication. We have also covered using a DSN connection with NT
+authentication. We have explained why you should use SQL Server authentication
+when setting up your DSN, and explained why you set your DSN up as a System DSN
+as opposed to a User or File DSN.
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+ ©1999-2000 Visual Basic Books. All rights reserved.

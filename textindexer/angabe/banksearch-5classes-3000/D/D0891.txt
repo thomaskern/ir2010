@@ -1,0 +1,176 @@
+
+Free Java Help --- Tutorials --- Introduction --- Variables
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Variables 
+ 
+ In programming, data is
+kept using variables. For example, if I wanted to add two numbers together, I
+might have a variable called one to hold the first number, a variable called
+two to hold the second number, and a variable called sum to hold the sum of the
+first and second number. A user could input the value of two number, have them
+assigned to variables, and have the value of the sum of the variables be
+assigned to the variable sum. For example, in Java, we might type
+one+two=sum;
+ A few things that you have to remember are that
+you have to choose the right variable type. You cannot use a String to hold a
+number. You cannot use an Integer to hold a number with a decimal. Also, the
+same name cannot be used for more than one variable.
+ Those of you who have taken any type of Algebra
+course should not have any problem with this idea of variables. If you have not
+programmed before, you may not be aware that there are different kinds of
+variables. We refer to what kind of variable a variable is as its type (data
+type). For example, a type of a variable could be an integer.
+ In Java, variables are declared in the format
+type variablename; . An example of this would be int hello; The
+type would be int, and the variable name would be hello. Any time you wanted to
+refer to this variable, you would simply have to use the name, hello. You only
+need to declare the type once. The int data type refers to an integer that uses 32 bits.
+ The long data type is used for an integer
+that you know could be VERY long. It uses 64 bits. Only use long if you know
+that int would be too small.
+ If you are interested in using numbers that
+include decimals, you need to use either float or double. A float
+is a number that uses 32 bits and can be any real number. A double is a number
+that uses 64 bits and can be any real number.
+ Strings will probably be used just as much as any
+of the other data types. The String data type is used for text. For
+example, if I wanted the value of a variable to be "Java is fantastic", I would
+have to use a string. Remember that when declaring a String, the S needs to be
+capital. e.g. String test;
+ A boolean is a data type that can only
+hold two values, either true or false. Booleans are very useful. You will use
+them a lot.
+EXAMPLES OF DECLARING DIFFERENT VARIABLES:
+int x;
+long y;
+float z;
+double a;
+String s;
+boolean p;
+ Notice how after each declaration is a semicolon
+(;) . The semicolon is used to end all statements in Java. If you fail to
+remember this, you will have many errors in your code. A statement can be a
+variable declaration, performing a method, or just about anything. The
+semicolon will be at the end of most lines in your code.
+Tutorials Contents
+ 
+ 
+Lessons in the Introduction Section 
+ 
+Beginning
+Requirements
+Variables
+Conditionals
+Loops
+Operators
+Methods
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

@@ -1,0 +1,371 @@
+ 
+ 
+Yet Another Code Site - Rich Edit 3.0 Code Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ Yet Another
+	 Code Site
+ 
+ 
+Rich Edit 3.0 Code Samples
+Here are samples of Rich Edit 3.0 code that work for me,
+ comments about features that do not work as I originally
+ expected, errors identified in the MSDN online Rich Edit
+ 3.0 documentation, Rich Edit 3.0 constants that you will
+ need if you do not have new header files, SendMessage()
+ parameters, and anything else that I think that you might
+ need to know to program for Rich Edit 3.0 controls. 
+ This page is definitely a work in progress and I anticipate
+ rolling the information on this page into a TRichEdit30
+ class. However, if you do not want to wait for me to
+ post a TRichEdit30 class, here is what I have learned so
+ far. 
+ 
+Before delving into this code, see the
+ Rich Edit 3.0
+ FAQ to determine if you have the 3.0 version, learn
+ where to get it if you do not have it, and see what
+ features it has that you may need or find useful. 
+ Please be warned that I am finding that some of the
+ features that I expected, based on MSDN online documents,
+ are not fully implemented or do not function exactly as
+ advertised. I will include information about these
+ differences where appropriate below. 
+ 
+I would appreciate any information that you work out
+ that is not on this page. If possible, please send
+ code samples that are constructed as described below to
+ minimize the chances for me to introduce errors into your
+ code. As always, you will get credit for any code
+ that you send. Of course, if you find any errors
+ here, please set me straight. 
+ 
+Code Index
+ 
+ 
+	 
+Getting set up to use the Rich Edit 3.0 code on
+	this page 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Rich Edit 3.0 Code
+	Samples - Base Code
+	A basic Rich Edit 3.0 class for the VCL. Use as the
+	starting point for investigating Rich Edit 3.0. Or
+	use the TRichEdit20 Class code available elsewhere on this
+	site. (05-08-99) 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Rich Edit 3.0 Code
+	Samples - Common Code
+	Code to instantiate the class, whether you use the
+	TRichEdit20 class or the stripped down class from the prior
+	section. (05-08-99) 
+	 
+ 
+ 
+	 
+The Rich
+	Edit 3.0 Code 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Zooming in and
+	out (EM_GETZOOM & EM_SETZOOM) (05-08-99) 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Paragraph
+	numbering (beyond paragraph bullets) (05-08-99) 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Saving and restoring
+	the current scroll position (EM_GETSCROLLPOS &
+	EM_SETSCROLLPOS) (05-08-99) 
+	 
+ 
+ 
+ 
+Rich Edit 3.0 Code Samples - Base
+Code
+Ok. I have a dilemma. The most efficient way
+ to develop the Rich Edit 3.0 code is to derive a class from
+ the Rich Edit 2.0 class (TRichEdit20) already available on
+ this site. So much of the code is identical and so
+ many of the Rich Edit 3.0 features are simple extensions of
+ the v2.0 functionality. In fact, if you install the
+ Rich Edit 3.0 DLL on your system, it replaces the v2.0 DLL
+ (riched20.dll) and the TRichEdit20 class automatically
+ loads the v3.0 DLL. 
+ 
+On the other hand, I want the code on this page to work
+ without requiring you to dig through all of the TRichEdit20
+ class code, useful though it may be. So here is
+ (today's) decision: The code on this page will be
+ based upon the stripped-down TRichEdit20 class code below
+ which does nothing more than ensure that a v2.0 or v3.0 DLL
+ gets loaded. Note that neither the TRichEdit20 class
+ nor the code below actually tests to ensure that the v3.0
+ DLL is installed &#150; if v3.0 is installed, it is
+ loaded. If not, v2.0 gets loaded if it has been
+ installed. (You should get an error if neither is
+ installed, but I have not tested for that.) 
+ 
+If you wish to follow my advice to start with the
+ TRichEdit20 class, add the following declaration/definition
+ to your code and skip the rest of this section: 
+ class TRichEdit30 : public TRichEdit20
+{
+public:
+ TRichEdit30(TComponent* Owner) : TRichEdit20(Owner) {};
+};
+ Otherwise, here is the minimal TRichEdit30 class used
+ by the rest of the code on this page. Note that some
+ of the member functions are empty. That is, the
+ functions are declared/defined, but contain no or almost no
+ code. This reflects my experience &#150; although
+ empty now, I have a gut feeling that we will need to add
+ code to these methods sometime later. Maybe not, but
+ I am trying to keep things flexible.... 
+ 
+[ BCB4 users &#150; if you are not using
+ the TRichEdit20 class as described above,
+ click here
+ to download the basic Rich Edit 3.0 project code that
+ follows. You should probably read through the
+ comments below to ensure that you understand each part of
+ the code and, more importantly, what this minimal class
+ does not do for you. ] 
+ 
+Here is the minimal TRichEdit30 class used for the
+ remainder of this page: 
+ 
+Declarations (inline or in *.hpp file) 
+ //---------------------------------------------------------------------------
+#include 
+class TRichEdit30 : public TRichEdit
+{
+private:
+ int FLibHandle;
+protected:
+ virtual void __fastcall CreateParams(Controls::TCreateParams &Params);
+ virtual void __fastcall DestroyWnd(void);
+ virtual void __fastcall CreateWnd(void);
+ virtual void __fastcall WndProc(Messages::TMessage &Message);
+public:
+ __fastcall TRichEdit30(TComponent* Owner);
+ __fastcall ~TRichEdit30();
+ virtual void __fastcall RecreateWnd(void); // not virtual in base!!!
+};
+//---------------------------------------------------------------------------
+ Definitions (inline or in a *.cpp file) 
+ //---------------------------------------------------------------------------
+// may need to add code here later
+//
+__fastcall TRichEdit30::TRichEdit30(TComponent* Owner) : TRichEdit(Owner)
+{
+}
+//---------------------------------------------------------------------------
+// may need to add code here later
+//
+__fastcall TRichEdit30::~TRichEdit30()
+{
+}
+//---------------------------------------------------------------------------
+// may need to add code here later
+//
+void __fastcall TRichEdit30::CreateWnd(void)
+{
+ TRichEdit::CreateWnd();
+}
+//---------------------------------------------------------------------------
+// the following ensures that the riched20.dll (v2.0 or v3.0) is loaded;
+// TRichEdit unloads the DLL that *IT* loads in the WM_NCDESTROY handler (which,
+// disappointingly enough, is private rather than protected; damned if FLibHandle
+// isn't also, or we could simply unload it later) but we do it in DestroyWnd()...
+// (note: do not call TRichEdit::CreateParams -- it will attempt to
+// load the older version of the rich edit DLL -- not a Good Thing -- too bad
+// if anything important goes on there)
+//
+void __fastcall TRichEdit30::CreateParams(Controls::TCreateParams &Params)
+{
+ const char RichEditModuleName[] = "RICHED20.DLL";
+ long int OldError;
+ OldError = SetErrorMode(SEM_NOOPENFILEERRORBOX);
+ FLibHandle = (int) LoadLibrary(RichEditModuleName);
+ if (FLibHandle Parent = this;
+RE30->Align = alClient;
+ The following examples will operate on the RE30 global
+ variable. 
+ 
+To get started, create a new project, add a main menu,
+ and then add the necessary code to declare and define the
+ TRichEdit30 class. In the main form, add the
+ declaration for RE30 and then add the RE30 initialization
+ to the form constructor. Now we are ready to get on
+ to the good stuff. 
+ 
+Zooming in and out
+Rich Edit 3.0 adds the ability to enlarge (zoom in) or
+ shrink (zoom out) the text inside the control. For
+ example, you can enlarge all of the text in the control by
+ an arbitrary factor and the enlarged text will wrap inside
+ the window as if the fonts' sizes had been changed. 
+ One would assume, based upon the MSDN information, that the
+ printed version of the text would be unchanged from the
+ original font size(s). The text scaling definitely
+ works (see the comments in the code), but I have not
+ confirmed that printing is unaffected. 
+ // message constants
+#define EM_GETZOOM (WM_USER + 224)
+#define EM_SETZOOM (WM_USER + 225)
+// the following DWORDs (not WORDs as documented at MSDN) determine the scaling. The ratio of 
+// numerator / denominator must be between 1/64th and 64. note that a ratio of less than 1:1
+// does not actually display text at less than the unscaled size of the text (that is, you
+// cannot scale to less than 100%) in my tests with riched20.dll version 5.30.11.2410. however,
+// if you set the scaling to, say, 1:2, then EM_GETZOOM does return 1:2, although the control
+// contents are displayed 1:1. OTOH, maybe I do not understand how to use this properly....
+//
+// to reset the scaling factor to 1:1, set both values to 0.
+//
+// the following values set the scaling factor to 3 times the normal size.
+DWORD numerator = 3;
+DWORD denominator = 1;
+// EM_SETZOOM returns true on success or false on failure
+bool result = ::SendMessage(RE30->Handle, EM_SETZOOM, (WPARAM) numerator, (LPARAM) denominator);
+ To get the current zoom factor: 
+ // EM_GETZOOM should always return true. note that numerator and denominator may be zero
+result = ::SendMessage(RE30->Handle, EM_GETZOOM, (WPARAM) &numerator, (LPARAM) &denominator);
+Paragraph numbering
+Paragraph numbering is effected through the PARAFORMAT2
+ structure and the EM_GETPARAFORMAT and EM_SETPARAFORMAT
+ messages. A variety of numbering styles are documented: 
+ 
+1) Number with right parenthesis (wNumberingStyle = 0).
+ 1. Number with a period (wNumberingStyle = 1).
+ (1) Number with right and left parenthesis
+(wNumberingStyle = 2).
+ 1 Number only (wNumberingStyle = 3).
+ Supposedly, each of the above can be bitwise-or'd with
+ 0x8000 to force the number to be displayed as a Roman
+ numeral. My tests with the the 5.30.11.2410 version
+ of the riched20.dll reveal that all numbering styles
+ display as a number followed by a right parenthesis (the
+ first item in the list above). 
+ 
+As mentioned above, the PARAFORMAT2 structure is used to
+ set the numbering style. This is done through the following
+ structure members: 
+ 
+dwMask - Set the following values (bitwise-or them
+together) to identify which of the remaining structure
+members are valid: PFM_NUMBERING, PFM_NUMBERINGSTART,
+PFM_NUMBERINGSTYLE, and PFM_NUMBERINGTAB.
+ wNumbering - 0 = no numbering/bullets, PFN_BULLET =
+bullet, 2 = Arabic numbers, 3 = lowercase letters, 4 =
+uppercase letters, 5 = lowercase Roman numerals, 6 =
+uppercase Roman numerals, 7 = sequence of characters
+beginning with the Unicode character specified in the
+wNumberingStart member.
+ wNumberingStart - Starting value for numbering.
+Ignored according to MSDN documentation.
+ wNumberingStyle - Style for numbering
+ wNumberingTab - Minimum space, in twips, between the
+border and the paragraph's text.
+ Here is the code to set the currently selected
+ paragraph(s) style to numbered (note that the text must be
+ selected before invoking this code): 
+ PARAFORMAT2 pf2;
+pf2.cbSize = sizeof(pf2);
+pf2.dwMask = PFM_NUMBERING | PFM_NUMBERINGSTART | PFM_NUMBERINGSTYLE;
+pf2.wNumbering = 3;
+pf2.wNumberingStart = 1;
+pf2.wNumberingStyle = 2;
+::SendMessage(RE30->Handle, EM_SETPARAFORMAT, 0, (LPARAM) &pf2);
+ Try different combinations and see what you get. 
+ 
+Saving and restoring the current
+scroll position
+Rich Edit includes a frequently requested feature
+ notably absent in prior versions. You can now save
+ and restore the current vertical and horizontal scroll
+ positions accurately and easily. 
+ // message constants
+#define EM_GETSCROLLPOS (WM_USER + 221)
+#define EM_SETSCROLLPOS (WM_USER + 222)
+// create a POINT structure to hold the scroll position
+POINT pt = { 0, 0 };
+// fetch the scroll position into pt
+::SendMessage(RE30->Handle, EM_GETSCROLLPOS, 0, (LPARAM) &pt);
+[ do a bunch of stuff... ]
+// now restore the scroll postion
+::SendMessage(RE30->Handle, EM_SETSCROLLPOS, 0, (LPARAM) &pt);
+ This is definitely a candidate for the "new
+ feature most easy to use" award. It is also a
+ candidate for the "why was this feature not in the
+ last two versions?" award. 
+ 
+More to come as time, energy, and wife permit...
+ 
+ 
+	 
+Home |
+	Top Of Page |
+	Code |
+	Papers |
+	FAQs |
+	Links |
+	Search | 
+	Feedback 
+	 
+ 
+ 
+	 
+Page updated 
+	
+ 
+	 
+ 
+ 
+Copyright © 1999-2001 Thin Air
+ Enterprises and Robert Dunn. All rights
+ reserved. 
+ 

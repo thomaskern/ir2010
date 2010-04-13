@@ -1,0 +1,320 @@
+
+Java Developer's Page
+ 
+Persistent Threads for Friendly
+Applications (JDJ Feature) * * * * *
+Persistent Threads for Friendly
+Applets (JDJ Feature) * * * * *
+What AWT Version Do You Use? (JDJ
+Feature) * * * * *
+Persistent User Interface for
+Multiuser Applications (JDJ Feature) * * * * *
+Fast launcher for Java apps (JW
+JavaTip) * *
+Java2HTML (source code -- 300 lines)
+* * *
+Java 3D Overview (1,500 words) * * *
+Inside AWT (too technical -- 5,000 words)
+* * * *
+Browser Upgrades (JW JavaTip) *
+Browser 3D (source code -- 3,000 lines)
+* * * *
+ 
+January-February, 1999
+Persistent Threads for Friendly Applications
+(Java Developer's Journal, February issue)
+This is my fourth Java Developer's
+Journal article and it continues the ideas from my
+previous JDJ article. Find out how you can implement thread
+persistence for your applications so that their execution can be
+suspended and resumed after an unlimited period of time.
+Learn why thread persistence can't be implemented by the Java
+Virtual Machine (java.lang.Thread isn't serializable) and read
+about the benefits of thread persistence: applications became
+more friendly, they can recover after a crash and implement load
+balancing.
+Download the source code from www.javadevelopersjournal.com.
+ 
+December, 1998
+Persistent Threads for Friendly Applets
+(Java Developer's Journal, December issue)
+This is my third Java Developer's
+Journal article and it's a technical discussion about the
+use of threads in animation applets, synchronization,
+thread-safety, locks and wait sets. I compared four design
+patterns and pointed which is the best and why. If you write Java
+applets then you should read this great article.
+Your animation applets should let the users to suspend/resume
+the animation. And ALWAYS stop the threads when the applet is
+stopped. Note that the methods stop(), suspend() and resume() of
+the class Thread were deprecated by Java 2 (JDK 1.2) so you
+shouldn't use them.
+Download the source code from www.javadevelopersjournal.com.
+ 
+October-November, 1998
+What AWT Version Do You Use?
+(Java Developer's Journal, October issue)
+This is my second Java Developer's
+Journal article and it's about user interface
+optimizations. The old AWT 1.0 event model is used by all AWT 1.1
+components that don't have listeners. Read my article if you want
+to learn how to force the AWT components to use the delegation
+event model, even if they don't need listeners.
+You can also discover programmatically what are the components
+that use the old event model, by using a small utility class that
+prints the component trees of the windows created by your
+applications.
+Download JDJ October issue (from SYS-CON site), in
+PDF format and read my "What AWT
+Version Do You Use?" article at page 16.
+ 
+September, 1998
+Persistent User Interface for Multiuser
+Applications 
+(Java Developer's Journal, August issue)
+This is my first Java Developer's
+Journal article. Its content is not available online, but
+you can download the source code (from SYS-CON site) and a
+related online article (from this
+site).
+"Persistent User Interfaces for
+Multiuser Applications" shows how to implement the
+persistence for your AWT-based user interfaces and explains the
+advantages: timesaving for users and easy-to-use for developers.
+The Serialization API introduced by Java 1.1 makes the task easy,
+but you must control what is serialized for maximum efficiency. 
+My JDJ article takes the best ideas from "Serializing UI
+Components" (online article)
+and is focused on real world applications. When the users close
+the example application (source code), the state of the user
+interface components is saved on disk. Next time they launch the
+application, the window is shown on screen at the same positions
+and the state of the components (colors, fonts, labels, etc) is
+restored. 
+ 
+August, 1998
+Fast launcher for Java apps
+(JavaWorld, August issue)
+This article shows how you may use a C tool to
+ 
+- Start pure Java applications as easily as you start your
+ native apps
+ 
+- Test the apps with multiple JDK versions using menu
+ shortcuts
+ 
+- Source
+ code & exe
+Use mouse double-clicks to launch Java apps from Windows
+Explorer.
+ 
+July, 1998
+Java2HTML
+This is a free tool that
+ 
+- Converts JAVA source files into HTML files
+ 
+- Adds syntax coloring (highly configurable)
+ 
+- Replaces tabs with spaces
+ 
+- Needs JDK 1.1+
+ 
+- Source code - 300 lines
+// java2html.java
+. . .
+Vector keyw = new Vector(keywords.length);
+for (int i = 0; i > (Java 3D API Specification)
+However, Java 3D classes aren't JavaBeans. There is no support
+for games, off-screen rendering and printing. Find out how this
+can affect you.
+ 
+May, 1998
+Inside AWT
+This is a series of three
+articles:
+ 
+- Making your own UI Components
+ (1,400 words)
+ 
+- Migrating the Components to
+ AWT 1.1 (1,800 words)
+ 
+- Serializing UI Components
+ (1,500 words)
+ 
+- Download the articles and the source
+ code
+The author offers you an inside look of AWT, which helps you
+to make right design decisions, if you are creating UI
+Components. He also signals some of the AWT limitations and a bug of JDK 1.1, which isn't fixed in
+JDK 1.2 either.
+The first article answers to
+two questions: Why is it necessary to make your own components?
+and How to do that? It presents three classes of components,
+which use AWT 1.0. This is a necessary introduction for the next
+two articles. The article is followed by an applet, which has 300
+lines.
+The second article shows you
+how the components from the previous article can be converted to
+AWT 1.1 and what the advantages are. The author analyzes a few of
+the sources of AWT classes to provide details about the
+delegation event model and he demonstrates how this can improve
+both the performance and the architecture of the applications.
+Nevertheless, there are a few inconsistencies in AWT 1.1. The new
+applet has 400 lines.
+The third article gives you
+one more reason to use AWT 1.1. The new components are JavaBeans,
+so they are serializable. The applet is transformed into an
+application, whose user interface is persistent. At each run the
+window of the application will be deserialized and shown on
+screen in the same position with the same dimension, and the
+components will have same state as they have at the last close of
+the application. The source code has 250 lines. 
+The conclusion from the final of the third article rises three
+questions to the programmers from JavaSoft, whose design
+decisions limit the possibilities of the independent developers,
+who create UI components.
+ 
+April, 1998
+Upgrade your browser to run JDK 1.1 applets
+(JavaWorld, April issue)
+This article answers to a few questions:
+ 
+- Which are the browsers compatible with JDK 1.1?
+ 
+- Which of them should you choose?
+ 
+- Where you can find them?
+ 
+- How to upgrade Netscape Navigator to work with 1.1
+ applets?
+ 
+March, 1998
+Browser 3D
+Browser 3D is a pure Java, 3D engine:
+ 
+- This applet works like a
+ VRML browser
+ 
+- You can use its engine to create 3D GUI for your
+ applications
+ 
+- Binary Space Partitioning Trees
+ 
+- 3D primitives: prism, pyramid, cylinder, cone, sphere,
+ TEXT
+ 
+- Multiple views of the same model
+ 
+- Buttons with 3D animations
+ 
+- Source code (3,000 lines) -
+ Java 100%
+ 
+Java Links
+Are you looking for a JavaBean? Bookmark this link!
+Ibon's personal Java Page contains a set of applets ranging
+from a 3D solid engine viewer to simple effect java applets.
+Matt is writing a book about Swing. Would you like to become
+a contributor? He also likes Java3D and IBM's Aglets.
+Visit the homepage of an archiect that realy likes
+Java.
+WebMacro
+is an HTML template engine and back end servlet development
+framework.
+ 
+ 
+Java Browsers
+ 
+Netscape Navigator
+ Internet Explorer
+ HotJava
+ Java Plugin
+ 
+ 
+Java Development Kit 
+ 
+JDK 1.2 (Java 2)
+ JDK 1.1
+ JDK 1.0
+ 
+ 
+Java Sites
+ 
+java.sun.com
+ 
+ Java
+ Developer Conection 
+ Gamelan
+ Jars
+ 
+ 
+ 
+ 
+3D Graphics
+ 
+The Java 3D Home Page 
+ 3D Engines List (Java, C++, ...)
+ 
+Software Components
+ 
+JavaBeans
+ 
+User Interface
+ 
+AWT (Abstract Window Toolkit)
+ JFC (Java Foundation Classes)
+ 
+ 
+Java magazines
+ 
+Java Developer's Journal 
+ JavaWorld
+ 
+ Java
+ Report
+ Java
+ Pro
+ Servlet
+ Central
+ The Swing Connection 
+ 
+Books & Tutorials 
+ 
+The Java Tutorial
+ The Java Language Spec 
+ The JVM Spec
+ 
+ 
+Server-side Java
+ 
+Java Web Server
+ Java Servlets
+ 
+Software Components
+ 
+Enterprise JavaBeans
+ 
+Database
+ 
+JDBC (for SQL queries)
+ PSE Pro (Object DBMS)
+ 
+ 
+ 
+ 
+Go to java.sun.com/products/
+ to see what Java can do
+ 
+ 
+The author of this page can be reached at andcio@hotmail.com. 
+Visit Java Developer's Page every month.
+URL:
+http://www.geocities.com/SiliconValley/Horizon/6481/index.html 
+Last updated: April 20, 1999
+Java and all Java-based marks are trademarks or registered
+trademarks of Sun Microsystems, Inc. in the United States and
+other countries. Java Developer's Page is independent of Sun
+Microsystems, Inc.
+This page hosted by Get your own Free Homepage 

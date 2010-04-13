@@ -1,0 +1,431 @@
+
+ 
+C >> Conditional Branching 2 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Conditional Branching 1 
+ Main Menu 
+ Looping 
+ 
+ 
+ 
+ 
+Conditional Branching 2
+ 
+ 
+ 
+ 
+ 
+The Conditional Operator
+ 
+ 
+ 
+ 
+ 
+It's possible to say: "If this condition is true, do this.... , otherwise, do this .... " all in one line. 
+ 
+This can be achieves using the CONDITIONAL OPERATOR, which is represented by is represented by ? : 
+ 
+It may look a bit odd at first, but it takes 3 expressions as operands, like this: a ? b : c; 
+ 
+ 
+ 
+a should be a condition you want to test for. b is an expression that is evaluated if a returns a non zero 
+ value (in other words, if a is true), else expression c is evaluated. For example: 
+ 
+x
+int main() {
+ int a;
+ 
+ printf("Pick a number from 1 to 4:\n");
+ scanf("%d", &a);
+ 
+ switch (a) {
+ case 1:
+ printf("You chose number 1\n");
+ case 2:
+ printf("You chose number 2\n");
+ case 3:
+ printf("You chose number 3\n");
+ case 4:
+ printf("You chose number 4\n");
+ default:
+ printf("That's not 1,2,3 or 4!\n");
+ }
+ return 0;
+}
+ 
+ 
+ 
+(Suppose I entered 2...) 
+ 
+ 
+ 
+ 
+ 
+ Pick a number from 1 to 4:
+ 2
+ You chose number 2
+ You chose number 3
+ You chose number 4
+ That's not 1,2,3 or 4!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You'll notice that the program will select the correct case but will also run through all the cases below 
+ it (including the default) until the switch block's closing bracket is reached. 
+ 
+To prevent this from happening, we'll need to insert another statement into our cases... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ break Statement
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int a;
+ 
+ printf("Pick a number from 1 to 4:\n");
+ scanf("%d", &a);
+ 
+ switch (a) {
+ case 1:
+ printf("You chose number 1\n");
+ break;
+ case 2:
+ printf("You chose number 2\n");
+ break;
+ case 3:
+ printf("You chose number 3\n");
+ break;
+ case 4:
+ printf("You chose number 4\n");
+ break;
+ default:
+ printf("That's not 1,2,3 or 4!\n");
+ }
+ return 0;
+}
+ 
+ 
+ 
+On first inspection you'll find that it's virtually identical to the last example, except I've inserted a break statement 
+ at the end of each case to "break" out of the switch block. 
+ 
+Now it should work as expected: 
+ 
+ 
+ 
+ 
+ 
+ Pick a number from 1 to 4:
+ 2
+ You chose number 2
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Notice that you don't need to surround you statement(s) in each case with opening and closing brackets - not 
+ like the "usual" statement blocks you've seen in previous chapters. 
+ 
+Personally, I tend to use an if block with multiple else if statements, as this gives the option 
+ to add logical operators if required. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ goto Statement
+ 
+ 
+ 
+ 
+ 
+This is going back a long way... 
+ 
+Rumour has it that the goto statement should be avoided because it can cause errors.
+ 
+No harm in using it in the most simplest of programs though, but don't make a habit of using it!! 
+ 
+The goto keyword is followed by a label, which is basically some identifier placed elsewhere in the program - like a hyperlink 
+ the points to a place on the same web page. 
+ 
+You'll never see another example with goto in! 
+ 
+ 
+ #include 
+int main() {
+ int attempt, number = 46; 
+ looping: /* a label */
+ printf("Guess a number from 0-100\n");
+ scanf("%d", &attempt);
+ if(number==attempt) {
+ printf("You guessed correctly!\n\n");
+ }
+ else {
+ printf("Let me ask again...\n\n");
+ goto looping; /* Jump to the label*/
+ }
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Conditional Branching 1 
+ Main Menu 
+ Looping 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

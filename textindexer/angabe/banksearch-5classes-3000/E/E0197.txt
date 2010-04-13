@@ -1,0 +1,335 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Switch on Strings in C++ 
+This article was contributed by Stefan Ruck.
+Environment: This is standard C++. So you do not need any special environment.
+ 
+Preface
+How many times have you written code like this: 
+if (!strcmp(pszValue, "Value X"))
+ DoThis();
+else if (!strcmp(pszValue, "Value Y"))
+ DoThat();
+else if (!strcmp(pszValue, "Value Z"))
+ DoSomethingElse();
+else
+ DontKnowWhatToDo();
+Too many! And those of you who had the chance to take a look 
+at C# might think 'Why can't I code something similar in C++ like this: 
+switch(strValue)
+{
+ case "Value X":
+ DoThis();
+ break;
+ case "Value Y":
+ DoThat();
+ break;
+ case "Value Z";
+ DoSomethingElse();
+ break;
+ default:
+ DontKnowWhatToDo();
+ break;
+}
+(This code is legal C#. You can switch on strings in C#.) 
+In this article I will show you a way to implement a switch on 
+strings using pure standard C++. 
+The Bad News
+I can't give you a solution to do exactly what you can do in C#. 
+The Good News
+The Standard Template Library (STL), part of the ANSI/ISO 
+C++ Standard, offers everything needed to get really close to the C# sample. 
+The solution is very simple. You need an enumeration and a std::map, 
+and that's it. The enumeration defines the numeric values use in the 
+switch statement. The std::map contains the link between the valid 
+string values you want to compare some runtime data against, and the numeric enum 
+values you can make a switch on. The string is the key of the map, the 
+enumerator the value. 
+Here We Go
+After thinking about the problem a little bit, there is only 
+one place where to put the enum definition and the std::map 
+definition: The .cpp file. Both, the enum and the std::map, 
+should be declared as static to make them visible only to the code of this 
+particular .cpp file, which helps to avoid global namespace pollution (for more 
+on this see John Lakos, Large Scale C++ Software Design, Addison-Wesley). There 
+is no need to declare them as members of any class since normally the connection 
+between a string value and the action to be taken is very specific to the 
+respective code. 
+And here comes a sample Switch On String implementation I will use for later 
+discussion: 
+#include 
+#include 
+#include 
+// Value-Defintions of the different String values
+static enum StringValue { evNotDefined, 
+ evStringValue1, 
+ evStringValue2, 
+ evStringValue3, 
+ evEnd };
+// Map to associate the strings with the enum values
+static std::map s_mapStringValues;
+// User input
+static char szInput[_MAX_PATH];
+// Intialization
+static void Initialize();
+int main(int argc, char* argv[])
+{
+ // Init the string map
+ Initialize();
+ // Loop until the user stops the program
+ while(1)
+ {
+ // Get the user's input
+ cout 
+internet.commerce
+ 
+Be a Commerce Partner
+Computer Training
+Build Flash Online
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+For Web Graphics
+Promote Your Website
+Find Annual Reports
+Find a Consultant
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

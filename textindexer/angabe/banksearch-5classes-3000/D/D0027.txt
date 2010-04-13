@@ -1,0 +1,601 @@
+
+Migrating the Components to AWT 1.1
+ 
+Migrating the Components to AWT 1.1
+ 
+In the previous article, I
+showed how to create new components for the user interface. The
+components were based on AWT 1.0 and could be used in applets
+designed for browsers released before or after Java 1.1.
+The components must be modified if the programmers who use
+them wish to benefit by the AWT 1.1 advantages. Migration to the
+event model introduced by Java 1.1 will determine the most
+significant changes in the source code. This model will remain
+modern in Java 1.2 and probably in the next future releases.
+ 
+Lightweight Components
+In AWT 1.0, each component must owns an opaque native window.
+For the new components, the simplest way to respect this
+restriction is to extend java.awt.Canvas class.
+In AWT 1.1, the new components can derive directly from
+java.awt.Component. These components require no native
+data-structures or peer classes. For this reason, they are called
+Lightweight components.
+The first modification, which must be done in the source code,
+is the substitution of java.awt.Canvas - AltButton's
+superclass. The AltButton class became Lightweight
+component because derive directly from java.awt.Component. The AltCheckbox
+class is now Lightweight component too because inherits from
+AltButton.
+Lightweight components are transparent. This is possible
+because they don't have a native window and update() method of
+the java.awt.Component class doesn't clear their background. The
+old AltButton class was relying on the actions of update().
+Therefore, three new lines must be added in the paint()
+method. They call setColor() and fillRect() methods of the
+java.awt.Graphics class.
+ 
+Deprecated methods
+The deprecated methods are methods whose use is
+allowed, but not recommended. Before deprecation, these methods
+had a normal statute and they were used in programs. The most
+frequently invoked reason for deprecation of a method is
+maintaining the consistency of names. For example, you must call
+now getSize() instead of size(). The new names of preferredSize()
+and minimumSize(), which AltButton overrides, are
+getPreferredSize() and getMinimumSize(). A simple renaming isn't
+sufficient because the layout managers written for AWT 1.0 call
+preferredSize() and minimumSize(). It is possible that somebody
+use such a layout manager without having the possibility to
+convert it to AWT 1.1 because he doesn't have access to the
+source code. For this reason the AltButton class overrides
+preferredSize() and minimumSize() methods and it declares them
+deprecated to avoid a warning from the compiler. 
+If you analyze the source code of the java.awt.Component class
+then you will observe the new methods (e.g.
+getPreferredSize()) call deprecated methods (e.g.
+preferredSize()). I don't know if this is a good idea. If the
+situation would be inverse (e.g. preferredSize() would call
+getPreferredSize()) then AltButton would need to override only
+the getPreferredSize() and getMinimumSize() methods.
+To keep the similarity with the classes of the java.awt
+package, the get/setCurrent() methods of the AltCheckboxGroup
+class were deprecated and replaced with the new
+get/setSelectedCheckbox() methods. For keeping the consistency of
+names, the member variable currentChoice was renamed
+selectedCheckbox.
+The needed modifications in the source code are more
+complicated in the case of methods which became deprecated for
+other reasons than "renaming for consistency." The
+action(), postEvent() and mouseXXX() methods are in this
+situation, because the entire event model from AWT 1.0 is now
+deprecated.
+ 
+Delegation event model
+In AWT 1.0, all events were instances of the java.awt.Event
+class. AWT 1.1 introduces a new package called java.awt.event,
+which contains Event classes derived from
+java.awt.AWTEvent and Listener interfaces. 
+The Events are propagated from "Sources" to
+"Listeners". The Sources are Components and the
+Listeners are classes that implement Listener
+interfaces.
+The Listeners are registered / unregistered to Sources with
+the help of the add/removeListener methods. When
+they fire an event for which there are Listeners, the Sources
+call methods of the Listeners, and pass to them, as parameter,
+instances of the Event classes.
+This event model is used by the Components at which Listener
+are registered or which call enableEvents() at initialization.
+The Components can use either the new model or the old one for
+compatibility, but not both in the same time. In the new model,
+the events don't propagate anymore in the component containment
+hierarchy, and this improves the performances.
+The AltButton class can be source of low level events:
+ComponentEvent, FocusEvent, KeyEvent and MouseEvent
+because inherits from java.awt.Component class, and implements
+java.awt.event.MouseListener interface, because it wishes to
+receive mouse events. To be able to listen the mouse events the
+instances of this class are registered to themselves as Listeners
+with the help of the addMouseListener() method, inherited from
+java.awt.Component.
+To keep similarity with java.awt.Button, the AltButton class
+became source of ActionEvent events. The
+addActionListener() and removeActionListener() methods add /
+remove Listeners for the ActionEvent events, which are fired when
+the buttons are pressed and released.
+ 
+Dispatching events
+If you want to dispatch an event then instead of postEvent()
+you should call dispatchEvent() of the java.awt.Component class.
+This is a final and public method. In its body it makes a single
+call to the dispatchEventImpl() method, which isn't public
+and which executes in four stages:
+1. It preprocesses the special events. If the type of
+the event is PaintEvent, then it calls paint() or update() method
+and returns. Other special events are those fired when the focus
+is gained (FOCUS_GAINED) or when a key is pressed / released
+(KEY_PRESSED / KEY_RELEASED).
+2. In the second stage, it processes the events. If
+eventEnabled() returns true then it calls processEvent() method.
+3. In the third stage, it postprocesses some of the
+events. Those KeyEevents, which no one has consumed, are
+propagated up the containment hierarchy to ensure the properly
+work of menu shortcuts and moving between components with TAB key
+(keyboard traversal).
+4. In the final, it passes the events to the component's peer,
+if there is one.
+The processEvent() method of the java.awt.Component class
+calls processComponentEvent(), processFocusEvent(),
+processKeyEvent(), processMouseEvent() or
+processMouseMotionEvent(). Only those call the right methods of
+objects that implement Listener interfaces.
+ 
+Firing events
+The java.awt.Button class has an ActionListener member
+variable -- actionListener -- which is used by
+addActionListener() and removeActionListener() methods.
+The eventEnabled() method, inherited from
+java.awt.Component, is overridden to return true if the mask of
+events - eventMask - was set with enableEvents() or
+actionListener != null.
+The processEvent() is also overridden to call processActionEvent()
+if it's necessary. The latter one calls the actionPerformed()
+method of actionListener.
+Although the AltButton class has an
+actionListener member variable and it has
+add/removeActionListener() methods, it cannot proceed as
+java.awt.Button because it hasn't access either to eventMask or
+eventEnabled() (these are neither public nor protected). The only
+one possibility, that AltButton components fire ActionEvent
+events, is to call directly the actionPerformed() method of the
+actionListener variable. This thing is done by fireActionEvent()
+method without the help of dispatchEvent().
+The AltCheckbox class needs to intercept the
+ActionEvent events before they reach the Listeners. This can be
+done by overriding the fireActionEvent() method, in which the
+code that in previous version was found in action() method is
+moved. It isn't right to register a "privileged"
+Listener, which modify the state of the checkbox button, before
+the other Listeners receive the ActionEvent events. This solution
+isn't right because the order in which the Listeners receive the
+events must be considered arbitrary, so all Listeners must be
+"equals". The AltCheckbox class doesn't implement the
+java.awt.ItemSelectable interface (like java.awt.Checkbox),
+because it would have had to fire redundant ActionEvent and
+ItemEvent events.
+ 
+Filtering events
+In the version of the Test applet, written for AWT 1.0, all
+events were intercepted by action() method, which was containing
+an if with seven branches. The events were differentiated by the
+target member variable of the Event class. In the AWT 1.1-based version, the action()
+method is eliminated and two new classes appear: EastListener
+and SouthListener. Both implement
+java.awt.event.ActionListener interface. The instances of these
+classes will be registered as Listeners to the buttons form east
+or south. They implement the same behavior as that implemented by
+the action() method for these buttons in the previous version.
+This makes possible the separation between the logic of the
+application and the user interface. This example doesn't
+demonstrate this very well because the logic of the application
+consists exactly in the establishing of the buttons' behavior.
+Even in this particular case, attaching an object (Listener) to
+each button makes the code more easy to understand and less error
+prone. Another advantage is that the events are dispatched to
+components only if they handle them. This filtering determines an
+improvement of the performances.
+ 
+Improving UI performances
+In the old version, the Test applet was receiving almost all
+events whose targets were the twelve buttons. MOUSE_DRAG and
+MOUSE_MOVE were between these events, even if the applet and the
+buttons needn't them. In the new version, the buttons receive
+from the AWT only a few mouse events because they need only
+these. The buttons don't receive MOUSE_DRAGGED or MOUSE_MOVED
+evens because no MouseMotionListener registers to them.
+But probably the most interesting thing is that the Applet and
+the Panels receive only a few events even if they use the old
+deprecated event model. They receive no mouse events because
+their entire area is covered now by Components that use the
+delegation-based event model. They also receive none of the
+ActionEvent events fired by buttons. If the applet wants to
+receive, for example, mouse events from buttons then it must
+implement the MouseListener interface and register to buttons as
+Listener. In this case it will use the new event model and will
+receive the mouse events intercepted by buttons, without to use
+Panels as intermediaries. So an event Source may have many
+Listeners, and a Listener may receive events from more than one
+Source.
+Java 1.1 offers more advantages than those mentioned in this
+article. For example, the .class files may be included in .jar
+archives to accelerate the download. But it's much more important
+that the new components are beans, so they are serializable.
+ 
+Implementing persistency
+Besides the advantages offered by AWT 1.1, there are many
+other reasons to migrate to Java 1.1. One of them is the
+possibility to serialize objects. The components presented in
+this article are serializable because they implement
+java.io.Serializable interface. In the next article I'll show you how to
+create a persistent user interface.
+ 
+Resources
+Lightweight UI Framework
+http://java.sun.com/products/jdk/1.1/docs/guide/awt/designspec/lightweights.html
+Deprecated Methods in the 1.1 AWT
+http://java.sun.com/products/jdk/1.1/docs/guide/awt/DeprecatedMethods.html
+Delegation Event Model
+http://java.sun.com/products/jdk/1.1/docs/guide/awt/designspec/events.html
+ 
+AltButton.java
+// AltButton.java
+import java.awt.AWTEventMulticaster;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+public class AltButton extends java.awt.Component implements MouseListener
+{
+ private String label;
+ private String actionCommand;
+ protected boolean pressed;
+ private ActionListener actionListener; 
+ public AltButton()
+ {
+ this("");
+ }
+ public AltButton(String label)
+ {
+ setLabel(label);
+ setActionCommand(label);
+ pressed = false;
+ addMouseListener(this);
+ }
+ public String getLabel()
+ {
+ return label;
+ }
+ public void setLabel(String label)
+ {
+ this.label = label;
+ repaint();
+ }
+ public String getActionCommand()
+ {
+ return actionCommand;
+ }
+ public void setActionCommand(String actionCommand)
+ {
+ this.actionCommand = actionCommand;
+ }
+ public Dimension getMinimumSize() 
+ {
+ FontMetrics m = getFontMetrics(getFont());
+ int w = 6 * m.charWidth('X');
+ if (label != null)
+ w += m.stringWidth(label);
+ int h = (int) (m.getHeight() * 1.6);
+ return new Dimension(w, h);
+ }
+ /**@deprecated*/
+ public Dimension minimumSize() 
+ {
+ return getMinimumSize();
+ }
+ public Dimension getPreferredSize()
+ {
+ return getMinimumSize();
+ }
+ /**@deprecated*/
+ public Dimension preferredSize()
+ {
+ return getPreferredSize();
+ }
+ public synchronized void addActionListener(ActionListener l) 
+ {
+ actionListener = AWTEventMulticaster.add(actionListener, l);
+ }
+ public synchronized void removeActionListener(ActionListener l) 
+ {
+ actionListener = AWTEventMulticaster.remove(actionListener, l);
+ }
+ public void paint(Graphics g) 
+ {
+ Dimension sz = getSize();
+ g.setColor(getBackground());
+ g.fillRect(0, 0, sz.width, sz.height);
+ g.setColor(getForeground());
+ FontMetrics m = g.getFontMetrics();
+ int w = m.stringWidth(label);
+ int h = m.getHeight();
+ int x = (sz.width - w) / 2;
+ int y = (sz.height - h) / 2;
+ y += m.getLeading() + m.getAscent();
+ if (label != null)
+ g.drawString(label, x, y);
+ g.setColor(Color.white);
+ g.draw3DRect(1, 1, sz.width-3, sz.height-3, !pressed);
+ g.draw3DRect(0, 0, sz.width-1, sz.height-1, !pressed);
+ }
+ public void mouseEntered(MouseEvent e)
+ {
+ }
+ public void mouseExited(MouseEvent e)
+ {
+ if (pressed)
+ {
+ pressed = false;
+ repaint();
+ }
+ }
+ public void mousePressed(MouseEvent e)
+ {
+ pressed = true;
+ repaint();
+ }
+ public void mouseReleased(MouseEvent e)
+ {
+ if (!pressed)
+ return;
+ pressed = false;
+ repaint();
+ fireActionEvent();
+ }
+ public void mouseClicked(MouseEvent e)
+ {
+ }
+ public void fireActionEvent()
+ {
+ if (actionListener != null) 
+ {
+ ActionEvent e = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, actionCommand);
+ actionListener.actionPerformed(e);
+ }
+ }
+}
+Back to story
+ 
+AltCheckbox.java
+// AltCheckbox.java
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
+public class AltCheckbox extends AltButton
+{
+ static public Color selBackColor = Color.red;
+ static public Color selForeColor = Color.white;
+ private boolean state;
+ private AltCheckboxGroup group;
+ public AltCheckbox()
+ {
+ this("", false, null);
+ }
+ public AltCheckbox(String label)
+ {
+ this(label, false, null);
+ }
+ public AltCheckbox(String label, boolean state)
+ {
+ this(label, state, null);
+ }
+ public AltCheckbox(String label, boolean state, AltCheckboxGroup group)
+ {
+ super(label);
+ setState(state);
+ setCheckboxGroup(group);
+ }
+ public AltCheckbox(String label, AltCheckboxGroup group, boolean state)
+ {
+ this(label, state, group); 
+ }
+ public boolean getState() 
+ {
+ return state;
+ }
+ 
+ public void setState(boolean state) 
+ {
+ if (state == this.state)
+ return;
+ this.state = state;
+ if (state && group != null)
+ group.setSelectedCheckbox(this);
+ if (state)
+ {
+ setBackground(selBackColor);
+ setForeground(selForeColor);
+ }
+ else
+ {
+ Container p = getParent();
+ if (p != null)
+ {
+ setBackground(p.getBackground());
+ setForeground(p.getForeground());
+ }
+ else
+ {
+ setBackground(null);
+ setForeground(null);
+ }
+ }
+ repaint();
+ }
+ public AltCheckboxGroup getCheckboxGroup() 
+ {
+ return group;
+ }
+ public void setCheckboxGroup(AltCheckboxGroup group) 
+ {
+ if (this.group == group)
+ return;
+ if (this.group != null)
+ this.group.setSelectedCheckbox(null);
+ this.group = group;
+ if (state && group != null)
+ group.setSelectedCheckbox(this);
+ }
+ public void fireActionEvent()
+ {
+ if (group == null)
+ setState(!state);
+ else
+ group.setSelectedCheckbox(this);
+ super.fireActionEvent();
+ }
+}
+Back to story
+ 
+AltCheckboxGroup.java
+// AltCheckBoxGroup.java
+public class AltCheckboxGroup implements java.io.Serializable
+{
+ AltCheckbox selectedCheckbox = null;
+ public AltCheckboxGroup() 
+ {
+ }
+ public AltCheckbox getSelectedCheckbox() 
+ {
+ return selectedCheckbox;
+ }
+ /**@deprecated*/
+ public AltCheckbox getCurrent() 
+ {
+ return getSelectedCheckbox();
+ }
+ public synchronized void setSelectedCheckbox(AltCheckbox newChoice) 
+ {
+ if (newChoice != null && newChoice.getCheckboxGroup() != this) 
+ return;
+ AltCheckbox oldChoice = this.selectedCheckbox;
+ if (oldChoice == newChoice)
+ return;
+ this.selectedCheckbox = newChoice;
+ if (oldChoice != null)
+ oldChoice.setState(false);
+ if (newChoice != null)
+ newChoice.setState(true);
+ }
+ /**@deprecated*/
+ public void setCurrent(AltCheckbox newChoice)
+ {
+ setSelectedCheckbox(newChoice);
+ }
+}
+Back to story
+ 
+Test.java
+// Test.java
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+public class Test extends java.applet.Applet
+{
+ AltCheckboxGroup n, s;
+ AltCheckbox n1, n2, n3;
+ AltCheckbox s1, s2, s3;
+ AltCheckbox w1, w2, w3;
+ AltButton e1, e2, e3;
+ public void init()
+ {
+ setBackground(Color.lightGray);
+ setForeground(Color.black);
+ setFont(new Font(getFont().getName(), Font.PLAIN, 14));
+ setLayout(new GridLayout(5,1));
+ Panel p;
+ p = new Panel();
+ p.setLayout(new GridLayout(1, 3));
+ n = new AltCheckboxGroup();
+ n1 = new AltCheckbox("Radio 1", false, n);
+ p.add(n1);
+ n2 = new AltCheckbox("Radio 2", false, n);
+ p.add(n2);
+ n3 = new AltCheckbox("Radio 3", false, n);
+ p.add(n3);
+ n.setSelectedCheckbox(n2);
+ add(p);
+ p = new Panel();
+ p.setLayout(new GridLayout(1, 2));
+ w1 = new AltCheckbox("Check 1", true);
+ p.add(w1);
+ e1 = new AltButton("Button 1");
+ e1.addActionListener(new EastListener(w1));
+ p.add(e1);
+ add(p);
+ p = new Panel();
+ p.setLayout(new GridLayout(1, 2));
+ w2 = new AltCheckbox("Check 2", false);
+ p.add(w2);
+ e2 = new AltButton("Button 2");
+ e2.addActionListener(new EastListener(w2));
+ p.add(e2);
+ add(p);
+ p = new Panel();
+ p.setLayout(new GridLayout(1, 2));
+ w3 = new AltCheckbox("Check 3", true);
+ p.add(w3);
+ e3 = new AltButton("Button 3");
+ e3.addActionListener(new EastListener(w3));
+ p.add(e3);
+ add(p);
+ p = new Panel();
+ p.setLayout(new GridLayout(1, 3));
+ s = new AltCheckboxGroup();
+ s1 = new AltCheckbox("First", false, s);
+ s1.addActionListener(new SouthListener(n, n1));
+ p.add(s1);
+ s2 = new AltCheckbox("Second", false, s);
+ s2.addActionListener(new SouthListener(n, n2));
+ p.add(s2);
+ s3 = new AltCheckbox("Third", false, s);
+ s3.addActionListener(new SouthListener(n, n3));
+ p.add(s3);
+ s.setSelectedCheckbox(s2);
+ add(p);
+ }
+}
+class EastListener implements ActionListener
+{
+ AltCheckbox w;
+ EastListener(AltCheckbox w)
+ {
+ this.w = w;
+ }
+ public void actionPerformed(ActionEvent e)
+ {
+ w.setState(!w.getState());
+ }
+}
+class SouthListener implements ActionListener
+{
+ AltCheckboxGroup g;
+ AltCheckbox n;
+ SouthListener(AltCheckboxGroup g, AltCheckbox n)
+ {
+ this.g = g;
+ this.n = n;
+ }
+ public void actionPerformed(ActionEvent e)
+ {
+ g.setSelectedCheckbox(n);
+ }
+}
+Back to story
+The author of this page can be reached at andcio@hotmail.com. 
+Back to Inside AWT
+Back to Java Developer's Page (Visit
+this page every month) 
+URL:
+http://www.geocities.com/SiliconValley/Horizon/6481/AltUI11.html 
+Last updated: December 30, 1998
+This page hosted by Get your
+own Free Homepage 

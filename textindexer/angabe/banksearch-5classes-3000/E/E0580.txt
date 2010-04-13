@@ -1,0 +1,63 @@
+
+ 
+online C++ tutorial: Declaring a Class
+ 
+ 
+ 
+ Section 7: Class Declarations 
+Section 7.1: Declaring a Class
+ 
+Once you have designed your objects, writing the C++ code is
+simple. The hard part is designing objects that will interact well
+with each other, that will do everything you need them to be able to
+do, but nothing more. There is almost no new syntax you need to learn
+to write objects in C++. It involves using the syntax for variables
+and functions, so make sure you understand this syntax before
+continuing.
+Let's continue to flesh out our text-based adventure game. First,
+we'll write the code for our Player object. In Chapter
+6.1, we decided that players would have the following attributes, or
+member data: health, strength, agility, type of weapon, and type of
+armor. To simplify this example, we'll just use the first three
+attributes. We also wanted the Player to have the
+following actions, or member functions: move, attack monster, and get
+treasure.
+To write the code for our object, all we need to do is declare the
+member data and member functions, and wrap them up inside an object
+declaration. Here's how it's done:
+class Player {
+ int health;
+ int strength;
+ int agility;
+ void move();
+ void attackMonster();
+ void getTreasure();
+};
+This is a completely valid, working class declaration for the
+Player object. All we did was declared our member data
+(variables for our object) and member functions (functions that our
+object can use), and enclosed them inside a class declaration
+block. The class declaration block consists of the keyword
+class, followed by the name of the object, in this case
+Player, a pair of braces, and a semi-colon.
+Of course, this object won't be able to do anything, because we
+haven't defined its member functions. Inside the class
+declaration, we said that the Player object would be able
+to do things like move, attack monsters, and get treasures; but we did
+not say how a Player would execute these functions. We
+need to write a function body for each function, so that a
+Player instance knows how to attack a monster, for
+example.
+Here's the syntax for writing a function definition for a member function:
+void Player::move() {
+ //function body goes here
+}
+In other words, it's almost identical to writing a function definition
+for a plain-old, stand-alone function. The only difference is that we
+precede the name of the function, in this case move(),
+with the name of the object, Player, and two colons.
+This tells the compiler that this function is part of the
+Player class.
+ 
+ 
+ 

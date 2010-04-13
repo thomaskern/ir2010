@@ -1,0 +1,311 @@
+
+GNE::ConnectionListener class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::ConnectionListener Class Reference
+This is an abstract base class representing an interface to the Connection, ClientConnection, and ServerConnection classes. 
+More...
+#include 
+Inheritance diagram for GNE::ConnectionListener::
+List of all members.
+Public Methods
+ 
+virtual ~ConnectionListener () 
+virtual void onConnect (SyncConnection &conn) 
+ Event triggered after there is a successful connection. More...
+ 
+virtual void onConnectFailure (const Error &error) 
+ Event triggered when a connection failed before or during the onConnect event. More...
+ 
+virtual void onNewConn (SyncConnection &newConn) 
+ Event triggered when a new connection has been negotiated and error checked. More...
+ 
+virtual void onDisconnect () 
+ An event triggered when a socket is closing for any reason. More...
+ 
+virtual void onExit () 
+ This event is triggered when the remote end has gracefully closed the connection. More...
+ 
+virtual void onError (const Error &error) 
+ This event is triggered when a non-fatal error occurs in a connection that does not force the connection to close, for example an unknown packet encounted is an error, but the connection can still proceed. More...
+ 
+virtual void onFailure (const Error &error) 
+ This event is triggered when a fatal error occurs in a connection. More...
+ 
+virtual void onReceive () 
+ Event triggered when one or more packets have been recieved. More...
+ 
+virtual void onDoneWriting () 
+ Event triggered when the write buffer was filled and is now empty. More...
+ 
+Static Public Methods
+ 
+ConnectionListener * getNullListener () 
+ A Connection must always have a non-NULL listener if it is to be used, but if you will only be using a SyncConnection for the whole time, there is no need to create your own listener. More...
+ 
+Detailed Description
+This is an abstract base class representing an interface to the Connection, ClientConnection, and ServerConnection classes.
+All of the events that those three classes generate are in this class, and classes listening to the events on these classes will inherit from this class.
+Override the events you want to receive with this listener. The provided functions do nothing, so that event overloading is optional in all cases.
+onConnect and onConnectFailure are generated only by ClientConnection and onNewConn is generated only by ServerConnection.
+Note that there is only one event thread per Connection, so one one event will be active at a time. Take this into consideration that you may not need to provide syncronization and mutexes. onNewConn or onConnect or onConnectFailure are guaranteed to be the first events from a connection, and won't be called multiple times. onDisconnect will always be the last called (except after onConnectFailure, where there never was a connection) and will only be called once. Since only one event can be active at a time, you will want to return quickly so other events can be processed.
+See also: 
+ServerConnectionListener::onListenFailure 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ ConnectionListener * GNE::ConnectionListener::getNullListener 
+ ( 
+ 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A Connection must always have a non-NULL listener if it is to be used, but if you will only be using a SyncConnection for the whole time, there is no need to create your own listener.
+This listener will ignore all events. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onConnect 
+ ( 
+ SyncConnection & 
+ conn 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event triggered after there is a successful connection.
+The connection process will not be considered complete until this function completes.
+If an error occurs then the connection needs to be killed, so conn can throw its Error outside your function. Catch it if you need to clean up anything you were doing, but remember to rethrow it. If this is the case, onConnectFailure but not onDisconnect will be generated, so any needed cleanup needs to be done in your exception handler.
+You can also choose to refuse a connection by throwing an Error with an error code of Error::ConnectionRefused, and will it will make the connection act as if an error just occured, so onListenFailure will be called and the above section of text still applies.
+This event does not have the "non-blocking" requirement that most GNE events have. Take as long as needed to establish a connection, such as transmitting initial game parameters or game state.
+Note: Only ClientConnection generates this event. The SyncConnection is currently wrapped around a ClientConnection, and you should use SyncConnection::getConnection to get the ClientConnection.
+Exceptions: 
+Error 
+ if an error occurs and the connection was not successful. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onConnectFailure 
+ ( 
+ const Error & 
+ error 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event triggered when a connection failed before or during the onConnect event.
+After a connection failure, the connection is as if disconnect() was called, therefore you cannot reconnect this connection instance.
+Note that for this case, the event onDisconnect IS NOT CALLED, since the Connection was never in a connected state.
+You won't be able to delete the connection from this function, like you can from onDisconnect because the connection process is still proceding, and one of your other threads is joining and/or waiting for the connection to complete. The proper way to destroy the connection is to delete it from another thread, probably the same thread that created and then detached or is joining on it once it learns the connection failed.
+This function's purpose is to notify that thread if needed. If you are waiting for the connection to complete by using join in that other thread, you would probably not need to listen for this event (see the example exhello).
+Note: Only ClientConnection generates this event. 
+See also: 
+Connection::disconnect() 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onDisconnect 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+An event triggered when a socket is closing for any reason.
+This event is always called once and only once if a socket was connected. At the time this event is called, the sockets are disconnected, so you can't get stats or addresses from the connection.
+The PacketStream is still valid, and there still may be data in the queue for you to read, even if you pick up all data in the onReceive events, there can be incoming data between the last onReceive and onDisconnect which will be very possible espically in planned disconnects.
+onDisconnect will always be the last event called on this listener, so you can destroy this object after onDisconnect is called. Before onDisconnect was called either onFailure or onExit were called if you did not terminate the connection yourself using Connection::disconnect.
+onDisconnect is only called if onNewConn or onConnect totally completed. If the connection process fails before onNewConn or onConnect, the connect or listen fail events are generated. If an error occurs DURING onNewConn or onConnect, if any cleanup needs to be done, it needs to be done in the exception handler, and no other failure event will be generated. After onNewConn or onConnect completes, then and only then might a onDisconnect event be generated. 
+See also: 
+~Connection() 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onDoneWriting 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event triggered when the write buffer was filled and is now empty.
+Note that this does not mean that data is immediately ready to be sent again -- there could still be a flow control delay.
+This event must be "non-blocking" -- like most GNE events -- as there is only a single event thread per connection. Therefore, no other events will be called until this function completes for this connection. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onError 
+ ( 
+ const Error & 
+ error 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This event is triggered when a non-fatal error occurs in a connection that does not force the connection to close, for example an unknown packet encounted is an error, but the connection can still proceed.
+After this event is processed, connections resume normally. Connection::disconnect() may also be called at this point if you wish to terminate the connection anyways.
+This event must be "non-blocking" -- like most GNE events -- as there is only a single event thread per connection. Therefore, no other events will be called until this function completes for this connection.
+See also: 
+onFailure() , disconnect() 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onExit 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This event is triggered when the remote end has gracefully closed the connection.
+The connection will soon be disconnected and the next event you will receive is onDisconnect. The connection should be considered in an disconnected state.
+This event must be "non-blocking" -- like most GNE events -- as there is only a single event thread per connection. Therefore, no other events will be called until this function completes for this connection. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onFailure 
+ ( 
+ const Error & 
+ error 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This event is triggered when a fatal error occurs in a connection.
+When a fatal error occurs, communications cannot contiune and the socket will be disconnected. An onDisconnect() event will occur immediately after this event completes. Most errors in GNE are fatal.
+This event must be "non-blocking" -- like most GNE events -- as there is only a single event thread per connection. Therefore, no other events will be called until this function completes for this connection.
+See also: 
+onError() 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onNewConn 
+ ( 
+ SyncConnection & 
+ newConn 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event triggered when a new connection has been negotiated and error checked.
+This object is a newly allocated object created from your ServerConnectionCreator object, and this function will be the first time you code has "seen" this object, so you will have to register it into some internal list so you can interact with and delete it later.
+If an error occurs then the connection needs to be killed, so conn can throw its Error outside your function. Catch it if you need to clean up anything you were doing, but remember to rethrow it. If this is the case, ServerConnectionListner::onListenFailure will be generated but not onDisconnect, so any needed cleanup needs to be done in your exception handler or in onListenFailure. See ServerConnection::run() for an event generation summary. If an error occurs you need not worry about having to delete the ServerConnection or this object. onListenFailure should delete this ConnectionListener as usual if this is needed, and GNE will destroy the ServerConnection if onNewConn did not complete w/o errors.
+You can also choose to refuse a connection by throwing an Error with an error code of Error::ConnectionRefused, and will it will make the connection act as if an error just occured, so onListenFailure will be called and the above section of text still applies.
+Note: Only ServerConnection generates this function. The SyncConnection is currently wrapped around a ServerConnection, and you should use SyncConnection::getConnection to get the ServerConnection.
+If the connection failed before this event, though, the function ServerConnectionListener::onListenFailure instead of this function is called. If onNewConn succeeds, ServerConnectionListener::onListenSucess is called, and the connection process will be completed after that event completes.
+This event does not have the "non-blocking" requirement that most GNE events have. Take as long as needed to establish a connection, such as transmitting initial game parameters or game state.
+Exceptions: 
+Error 
+ if an error occurs and the connection was not successful. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ConnectionListener::onReceive 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Event triggered when one or more packets have been recieved.
+It is possible to get more packets while in this function, but if packets arrive during this event, it will be called again, so you don't have to make sure they have all been processed (there is no sure way to do that.).
+This event must be "non-blocking" -- like most GNE events -- as there is only a single event thread per connection. Therefore, no other events will be called until this function completes for this connection. 
+ 
+The documentation for this class was generated from the following files:
+- ConnectionListener.h
+- ConnectionListener.cpp
+Generated on Fri Mar 8 03:03:22 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

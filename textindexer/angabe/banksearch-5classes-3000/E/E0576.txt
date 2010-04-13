@@ -1,0 +1,47 @@
+
+ fgets()
+ 
+ 
+fgets-Get a string from a level 2 file
+Synopsis
+ #include &#060;stdio.h&#062;
+ p = fgets(buffer,length,fp);
+ char *p; /* buffer pointer or NULL */
+ char *buffer; /* buffer pointer */
+ int length; /* buffer length in bytes */
+ FILE *fp; /* file pointer */
+Description
+ The fgets function gets a string from the specified level 2 file,
+ which must have been previously opened for input. Characters are
+ copied from the file to the buffer until a new line (n) has been
+ copied, or length-1 characters have been copied, or the
+ end-of-file is hit. In any case, if the read succeeds, the buffer
+ is terminated with a trailing null byte (0). If the read fails,
+ the buffer will not be modified.
+Returns
+ If the end-of-file is hit before any bytes are read, a NULL
+ pointer is returned. If an I/O error occurs, a NULL pointer is
+ returned and additional information is placed in the external
+ integers errno . If no I/O error occurs and at least
+ one byte was read from the file, the buffer argument is returned.
+Example
+ /* Assume that stdin contains the following lines: */
+ /* */
+ /* Hello, folks! */
+ /* Goodbye, folks! */
+ #include &#060;stdio.h&#062;
+ void main(void)
+ {
+ char *p,b[80];
+ /* For the next two lines, p will point to b */
+ p = fgets(b,sizeof(b),stdin);
+ printf("b = %p, %sp = %pn", b, b, p);
+ /* b contains "Hello, folks!" */
+ p = fgets(b,sizeof(b),stdin);
+ printf("b = %p, %sp = %pn", b, b, p);
+ /* b now contains "Goodbye, folks!n" */
+ p = fgets(b,sizeof(b),stdin);
+ printf("b = %p, %sp = %pn", b, b, p);
+ }
+See Also
+ errno , feof , ferror , fopen , fread , getc , gets ,

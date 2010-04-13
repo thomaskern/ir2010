@@ -1,0 +1,261 @@
+
+5.2) Operators and assignments
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+ 5) Operators and Assignments 
+Objective 2) 
+Determine the result of 
+ applying the boolean equals(Object) method to objects of any combination of 
+ the classes java.lang.String java.lang.Boolean and java.lang.Object.
+If (like me) you are from a background with Visual Basic, the idea of any sort 
+ of comparison apart from using some variation of the = operator may seem alien. 
+ "In the real world" this is particularly important with reference 
+ to Strings as they are so commonly used,however For the purpose of the 
+ exam you may get questions that ask about the equals operator with reference 
+ to Object references and Boolean. Note that the question asks 
+ about the Boolean class not the boolean primitive (from which 
+ you cannot invoke a method)
+The difference between 
+ equals and == 
+The equals method can be considered to perform a deep comparison of 
+ the value of an object, whereas the == operator performs a shallow comparison. 
+ The equals method compares what an object points to rather than the pointer 
+ itself (if we can admit that Java has pointers). This indirection may appear 
+ clear to C++ programmers but there is no direct comparison in Visual Basic. 
+Using the equals 
+ method with String 
+The equals method returns a boolean primitive. This means it 
+ can be used to drive an if, while or other looping statement. 
+ It can be used where you would use the == operator with a primitive. The operation 
+ of the equal method and == operator has some strange side effects when 
+ used to compare Strings. This is one occasion when the immutable nature of Strings, 
+ and the way they are handled by Java, can be confusing. 
+There are two ways of creating a String in Java. The one way does not use the 
+ new operator. Thus normally a String is created
+String s = new String("Hello"); 
+but a slightly shorter method can be used 
+String s= "GoodBye"; 
+Generally there is little difference between these two ways of creating strings, 
+ but the Exam may well ask questions that require you to know the difference. 
+The creation of two strings with the same sequence of letters without the use 
+ of the new keyword will create pointers to the same String in the Java 
+ String pool. The String pool is a way Java conserves resources. To illustrate 
+ the effect of this 
+String s = "Hello"; 
+String s2 = "Hello"; 
+if (s==s2){ 
+ System.out.println("Equal without new operator"); 
+ } 
+String t = new String("Hello"); 
+string u = new String("Hello"); 
+if (t==u){ 
+ System.out.println("Equal with new operator"); 
+ }
+From the previous objective you might expect that the first output "Equal 
+ without new operator" would never be seen as s and s2 are different objects, 
+ and the == operator tests what an object points to, not its value. However because 
+ of the way Java conserves resources by re-using identical strings that are created 
+ without the new operator s and s2 have the same "address" and the 
+ code does output the string 
+"Equal without new operator" 
+However with the second set of strings t and u, the new operator forces 
+ Java to create separate strings. Because the == operator only compares the address 
+ of the object, not the value, t and u have different addresses and thus the 
+ string "Equal with new operator" is never seen. 
+ 
+ 
+ 
+ 
+ 
+The equals method applied to a String, however 
+ that String was 
+ created, performs a character by character comparison 
+ 
+ 
+The business of the use of the string pool and the difference between the use 
+ of == and the equals method is not obvious, particularly if you have a Visual 
+ Basic background. The best way to understand it is to create some examples for 
+ yourself to see how it works. Try it with various permutations of identical 
+ strings created with and without the new operator. 
+Using the equals 
+ method with Boolean 
+The requirement to understand the use of the equals operator on java.lang.Boolean 
+ is a potential gotcha. Boolean is a wrapper object for the boolean 
+ primitive. It is an object and using equals on it will test 
+According to the JDK documentation the equals method of the Boolean 
+ wrapper class 
+"Returns true if and only if the argument is not null and is a Boolean 
+ object that contains the same boolean value as this object". 
+eg 
+Boolean b1 = new Boolean(true); 
+Boolean b2 = new Boolean(true); 
+if(b1.equals(b2)){ 
+ System.out.println("We are equal"); 
+ }
+ 
+As a slight aside on the subject of boolean and Boolean, once 
+ you are familiar with the if operator in Java you will know you cannot 
+ perform the sort of implicit conversion to a boolean beloved of bearded C/C++ 
+ programmers. By this I mean 
+ 
+int x =1; 
+if(x){ 
+ //do something, but not in Java 
+ }
+ 
+This will not work in Java because the parameter for the if operator 
+ must be a boolean evaluation, and Java does not have the C/C++ concept whereby 
+ any non null value is considered to be true. However you may come across the 
+ following in Java 
+boolean b1=true; 
+if(b1){ 
+ //do something in java 
+ }
+Although this is rather bad programing practice it is syntactically correct, 
+ as the parameter for the if operation is a boolean 
+Using the equals 
+ method with Object 
+Due to the fundamental design of Java an instance of any class is also an instance 
+ of java.lang.Object. Testing with equals performs a test on the Object as a 
+ result of the return value of the toString() method. For an Object the 
+ toString method simply returns the memory address. Thus the result is the equivalent 
+ of performing a test using the == operator. As java is not designed to manipulate 
+ memory addresses or pointers this is not a particularly useful test.
+Take the following example
+public class MyParm{
+public static void main(String argv[]){
+ Object m1 = new Object();
+ Object m2 = new Object();
+ System.out.println(m1);
+ System.out.println(m2);
+ if (m1.equals(m2)){
+ System.out.println("Equals");
+ }else{
+ System.out.println("Not Equals");
+ }
+ } 
+}
+If you attempt to compile and run this code you will get an output of
+java.lang.Object@16c80b
+java.lang.Object@16c80a
+Not Equals
+Those wierd values are memory addresses, and probably not what you want at 
+ all. 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+What will happen when you attempt to compile and run the following code?
+public class MyParm{
+public static void main(String argv[]){
+ String s1= "One";
+ String s2 = "One";
+ if(s1.equals(s2)){
+ System.out.println("String equals");
+ }
+ boolean b1 = true;
+ boolean b2 = true;
+ if(b1.equals(b2)){
+ System.out.println("true");
+ }
+ }
+}
+1) Compile time error
+ 2) No output
+ 3) Only "String equals"
+ 4) "String equals" followed by "true"
+Question 2) 
+What will happen when you attempt to compile and run the following code?
+String s1= "One";
+String s2 = new String("One");
+if(s1.equals(s2)){
+ System.out.println("String equals");
+ }
+Boolean b1 = new Boolean(true);
+Boolean b2 = new Boolean(true);
+if(b1==b2){
+ System.out.println("Boolean Equals");
+ }
+1) Compile time error
+ 2) "String equals" only
+ 3) "String equals" followed by "Boolean equals"
+ 4) "Boolean equals" only
+ 
+Question 3) 
+ What will be the result of attempting to compile and run the following code?
+ Object o1 = new Object();
+ Object o2 = new Object();
+ o1=o2;
+ if(o1.equals(o2))
+ System.out.println("Equals");
+ }
+1) Compile time error
+ 2) "Equals"
+ 3) No output
+ 4) Run time error 
+Answers 
+Answer 1)
+ 1) Compile time error
+ 
+ The line b1.equals() will cause an error because b1 is a primitive and primitives 
+ do not have any methods. If it had been created as the primitive wrapper Boolean 
+ then you could call the equals method.
+ 
+ Answer 2)
+ 2) "String equals" only
+ 
+ Testing an instance of the Boolean primitive wrapper with the == operator simply 
+ tests the memory address. 
+ 
+ Answer 3)
+ 
+ 2) "Equals"
+ 
+ Because the one instance of Object has been assigned to the other with the line
+ 
+ o1=o2;
+ 
+ They now point to the same memory address and the test with the equals 
+ method will return true
+ Other sources on this topic
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec5.html#obj16
+ 
+ Michael Thomas
+ http://www.michael-thomas.com/java/JCP_Operators.htm#equals() 
+ 
+Last updated
+ 10 January 2000
+ copyright © Marcus Green 2000
+ 
+ 
+ 
+ 
+ 

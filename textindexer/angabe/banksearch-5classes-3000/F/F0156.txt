@@ -1,0 +1,64 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Forms II
+OK, so we know what forms are and what they're used for, but there's more then that to them. There are different ways to load/unload the form, and there are different ways the form can act such as a Modal...
+Showing, Hiding, Loading and Unloading Forms
+When displaying a form we use the code "FormX.Show." It simply loads the form into memory, and then shows it on screen. What if you wanted to make the form modal when showing it? Modal meaning that the user wouldn't be able to move on to another form, unless the modal form was either hidden or unloaded (Ex. in AOL, when dialing up you can't open another form until you finish connecting...) Here is how you would do that:
+ FormX.Show vbModal
+Simply add "vbmodal" to it.
+When hiding a form, you use the code "FormX.Hide." This removes the form from the screen, but not from memory...
+Now lets say that you had a big form that took a while to load when you used the code FormX.Show. Many times when this happens programmers load that form when the program starts up, using the Keyword "Load" in front.
+Load Form2
+This method loads the form into memory but doesn't display it on screen. So after loading a big form at start-up, now you can use the FormX.Show code, and the form would show quicker since the form is already in memory (RAM).
+Unload Form2
+The Unload FormX code just unloads the form from memory, and off screen.
+ Tip: You can choose which form you want to start when you run your project, by default it's Form1. To do this go to "Project" in VB's menu, then click on Project1's properties, and where it says startup object, select which form you want to load first.
+Form Events
+Forms have certain events such as Load and Unload events. These are a few of the events that tell the form to do a certain thing, Ex. the load event tells the form what to do when it loads... You can see what other events Forms' have by going into your projects Code window, and selecting Form on the left side drop down list, and to the right of that list you will see the forms events.
+Form Events Occurring when Loading
+Event
+ 
+"black">
+Description
+ 
+Intilize
+ 
+(First) Occurs when the form is loaded by either the "Show" or the "Load" method.
+ 
+Load
+ 
+(Second) Occurs when the form gets into memory.
+ 
+Resize
+ 
+(Third) Occurs when the form is resized like Minimized, Maximized etc...
+ 
+Form Events Occurring when Unloading
+Event
+ 
+"black">
+Description
+ 
+QueryUnload
+ 
+(1st) This event can show you how the form was closed, ex. Button, Menu. It occurrs when the form is closed. 
+ 
+Unload
+ 
+(2nd) This event happens after the event above. It can occurr when the user shuts down Windows, or when the user clicks the X button, or task manager, and ofcoarse the Unload statement in code. 
+ 
+Terminate
+ 
+(3rd) This event occurrs after the Unload event above. It can occurr from statements such as 'Unload'.
+ 
+SDI and MDI
+SDI or Single Document Interface are probably the most used type of forms, they're just normal forms. I'm sure you have herd or even seen MDI (Multiple Document Interface) forms. Programs such as AOL are MDI forms, and inside the main form (called the Parent) are forms called children. The 'Children' are basically stuck in the Parent form...
+Making MDI forms
+1) Start a new project.
+2) In VB's menu, go to "Project" then click on "Add MDI Form".
+3) In the Form1 that was already there, in its properties set MDI Child to true.
+4) In VB's menu, go to "Project" then click on "Project1 Properties", and switch the start-up object to the MDI Form.
+5) On the MDI form, make a menu, and in the code make it open Form1.
+6) Run it and see what MDI is for yourself...
+Back
+Next

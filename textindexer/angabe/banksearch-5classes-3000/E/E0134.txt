@@ -1,0 +1,116 @@
+
+ 
+online C++ tutorial: Casting of Variables
+ 
+ 
+ 
+ Section 3: Variables, Types, and Operators 
+Section 3.3: Casting of Variables
+How Do Computers Store Variables?
+In any programming language, and especially in C++, it's important
+to have at least a cursory understanding of what the computer
+is doing "behind the scenes". Since we're talking about
+variables in this chapter, it's important to understand
+how a computer stores the information in variables.
+More Variable Types
+For reasons not explained here, variables can only store finite
+numbers. Suppose that the size of a particular data type, that we'll
+call a gorb, is 1 byte. That
+means that gorbs can only represent 28*1 = 28 =
+256 distinct values. So, gorbs might be able to store only the
+numbers between 0 and 255 (inclusive). Any number that you tried to
+store in a gorb which was smaller than 0, or larger than 255, would
+not be stored correctly; it would be stored as one of the values
+between 0 and 255. However, maybe you want to be able to store
+positive and negative numbers in gorbs, in which case you'd only
+be able to store 128 negative numbers and 128 positive numbers.
+Since we need to be able to store 0 also, you might decide that
+the range of values for a gorb is -128 to 127.
+We've already learned about two different data types (not 
+including "gorbs"!): int and float.
+What are the sizes of these data types, and what are the limits
+on the kinds of values that they can store? We just saw that
+a data type whose size is 1 byte can store 256 distinct values.
+Data types of size 2 bytes can store 28*2 = 216
+= 65536 different values. Using the same formula, we determine that
+data types of size 4 bytes can store 28*4 = 232
+= 4,294,967,296.
+Unfortunately, the size of data types like int and
+float are not standard across all systems. The
+size of an int depends on your operating system
+and your hardware. Here are some typical values for ints
+and floats, along with some other important data types.
+type typical size description
+ 
+short 2 bytes stores a short (i.e., small) integer 
+int 4 bytes stores an integer 
+long 4 bytes stores a long (i.e., large) integer 
+float 4 bytes stores a floating-point number 
+double 8 bytes stores a "double-precision" floating-point number 
+A more complete listing of variable types can be found in
+Appendix B.
+When to Cast
+Casting a variable is a complicated
+name for a simple concept. When you cast a variable from one type to
+another, all you are doing is telling the computer to use a different
+type to store the variable. Why would you need (or want) to do this?
+Let's say you declared a variable of type short. In most
+cases, that would mean that the largest positive value you could store
+would be 32,767. But somewhere in your program, you realize that
+you're going to have to do a calculation which could increase the
+value over this maximum. Perhaps you are computing very large
+Pythagorean triplets. To calculate the value of c (the
+hypotenuse), you need to take the square root of the quantity
+a2 + b2. But what if a or b is
+very large? Then squaring that number will make it much, much larger
+-- and if the value becomes bigger than 32,767 your values will not be
+what you expected (if you had used a short to store
+a or b. Remember, a short can only store
+the values between -32,768 and +32,767, so if you try to store a
+number out of this range, your data will be incorrect!
+So, the solution is to cast. We can cast the numbers to a
+larger data type, such as an int or a long,
+for the purposes of the calculation -- and then we can cast
+them back to a short when we are done, since the final
+value for c will probably be small enough to be stored in a
+short.
+This is a somewhat trivial example, since in this case you could store
+the numbers in ints or longs from the
+beginning and not worry about it! A more useful example might be if
+you have a number which represents an average. You'll probably
+want to represent the number with a floating-point type like
+a float or a double so that it is
+accurate while you are computing it (otherwise you'd only be able
+to store a value like "26" instead of "26.3141885"). Let's say that
+you want to display the value in a table, yet the table would look
+cluttered if you displayed "26.3141885", so you decide to simply
+display the integer portion, 26. You can cast the 
+float to an int and then display the
+int in the table -- since ints can't
+store floating-point numbers, the decimal portion of "26.3141885"
+will be truncated and you will be left with "26".
+How to Cast
+Casting in C++ is easy. Let's say that you have a float
+storing a number like "26.3141885", and you want to have
+an int storing the integer portion instead. Here's
+how to do it:
+int GetAverage() {
+// assume that regularAverage and specialAverage store two floats
+ float totalAverage = regularAverage + specialAverage;
+// cast totalAverage to an int
+ int truncatedAverage = (int) totalAverage;
+// return the truncated value
+ return truncatedAverage;
+}
+There's a little bit of syntax that you haven't seen before, but
+the key part to notice is the line of code that reads
+int truncatedAverage = (int) totalAverage. What
+we're doing here is taking a float, totalAverage,
+which stores some kind of decimal number (like 82.41832), and
+getting rid of the ".41832" part by casting it to an int.
+That works because the int is only capable of storing
+integers, so it simply stores the integer portion of
+totalAverage.
+ 
+ 
+ 

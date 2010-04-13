@@ -1,0 +1,337 @@
+
+ 
+C >> File Input and Output 4 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ File Input and Output 3 
+ Main Menu 
+ C Preprocessor 
+ 
+ 
+ 
+ 
+File Input and Output 4
+ 
+ 
+ 
+ 
+ 
+fwrite()
+ 
+ 
+ 
+ 
+ 
+This function has the same four arguments to fread: 
+ 
+The first is a char * variable and is what you want to write into a file. 
+ 
+The second is the size of char, i.e. 1. 
+ 
+The third is the number of characters to write - this does come into effect when passing a char * as opposed to a char 
+ array. 
+ 
+ 
+ 
+Finally, the last argument is the FILE pointer to the file to write to. 
+ 
+This example is saved as file.c - it opens file.c for reading, and copies the content into file2.c
+ 
+Afterwards, it'll open file2.c and display the source code on the screen, including the comments! 
+ 
+Notice I used two FILE pointers - one for the reading, the other for the writing. 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ FILE *sourceFile;
+ FILE *destinationFile;
+ char *buffer;
+ int n;
+ sourceFile = fopen("file.c", "r");
+ destinationFile = fopen("file2.c", "w");
+ if(sourceFile==NULL) {
+ printf("Error: can't access file.c.\n");
+ return 1;
+ }
+ else if(destinationFile==NULL) {
+ printf("Error: can't create file for writing.\n");
+ return 1;
+ }
+ else {
+ n = fread(buffer, 1, 1000, sourceFile); /* grab all the text */
+ fwrite(buffer, 1, n, destinationFile); /* put it in file2.c */
+ fclose(sourceFile);
+ fclose(destinationFile);
+ destinationFile = fopen("file2.c", "r");
+ n = fread(buffer, 1, 1000, destinationFile); /* read file2.c */
+ printf("%s", buffer); /* display it all */
+ fclose(destinationFile);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output is the source code above. 
+ 
+One important thing when making a direct copy from one file to another is to pass in a big enough number in fread so that 
+ all the characters are read. Then assign the return value of fread into n so that we know how many characters to write 
+ when calling fwrite. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+fscanf()
+ 
+ 
+ 
+ 
+ 
+Here's a familiar sounding function. scanf is really fscanf, but with the stream set to stdin. 
+ 
+You can pass a FILE pointer as the first argument of fscanf. The second argument is like the first argument of scanf 
+ i.e. a string containing format specifiers. Then follows a list variable addresses so that you can store the inputted data. See the 
+ scanf section if you want to recap before moving on. 
+ 
+What's good about fscanf is that if you separate your numbers, say, in your text file (as opposed to using line breaks all 
+ the time), and you can extract them and store them in an array, for example. 
+ 
+ 
+ 
+I created a text file called fscanf.txt in Notepad with this content: 
+ 
+0 1 2 3 4 
+ 5 6 7 8 9 
+ 10 11 12 13 
+ 
+ 
+I've put tabs in the last line. 
+ 
+Remember how scanf stops reading input when it encounters a space, line break or tab character? fscanf is just the 
+ same. So if all goes to plan, this example should open the file, read all the numbers and print them out: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ FILE *file;
+ int numbers[30]; /* make sure it is large enough to hold all the data! */
+ int i,j;
+ file = fopen("fscanf.txt", "r");
+ if(file==NULL) {
+ printf("Error: can't open file.\n");
+ return 1;
+ }
+ else {
+ printf("File opened successfully.\n");
+ i = 0 ; 
+ while(!feof(file)) { /* loop through and store the numbers into the array */
+ fscanf(file, "%d", &numbers[i]);
+ i++;
+ }
+ printf("Number of numbers read: %d\n\n", i);
+ printf("The numbers are:\n");
+ for(j=0 ; jfprintf()
+ 
+ 
+ 
+ 
+ 
+Similarly, printf is fprintf but with the stream set to stdout. 
+ 
+ 
+ 
+Like with fscanf, you can pass a FILE pointer to fprintf and output to a text file. 
+ 
+ 
+ 
+fprintf works in exactly the same way as the familiar printf, except for the extra first argument. 
+ 
+This example is taken from the structs section, but with file I/O statements added: 
+ 
+ 
+ 
+ 
+ #include 
+typedef struct robot ROBOT;
+struct robot { 
+ char *name; 
+ int energy; 
+};
+int main() {
+ int i;
+ FILE *file; /* FILE pointer */
+ ROBOT robots[3];
+ file = fopen("robots.txt", "w"); /* create a file for writing */
+ if(file==NULL) {
+ printf("An error has occurred.\n");
+ return 1;
+ }
+ 
+ robots[0].name = "Lunar Lee";
+ robots[0].energy = 50;
+ robots[1].name = "Planetary Pete";
+ robots[1].energy = 20;
+ robots[2].name = "Martian Matt";
+ robots[2].energy = 30;
+ /* now loop through the robots array and print 
+ the data into a text file pointed to by file */
+ for(i=0 ; i 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

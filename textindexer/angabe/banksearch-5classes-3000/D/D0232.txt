@@ -1,0 +1,587 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Java One 2002: Daily Updates 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+	 
+ 
+ 
+ 	 
+ 
+ 
+ 	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+Quick Quips from JavaOne
+	
+	
+	by Angus Muir -03/27/2002
+	
+	
+Day 5
+Since the introduction of Java Enabled devices on the Nextel network I have had a lot of concerns about their policies for Network Aware applications. I understood their reasons for it, but I felt it would have a pretty significant impact on the independent developers. 
+For those of you who are not familiar with it, basically any developer who wants to deploy a Network Aware application, has to submit it to Nextel for Certification. Nextel's partner, Quality Partners will run the application through a suite of tests and if you pass, your application will be approved for use on the Nextel Network. 
+What concerns me about this policy is first of all, the cost of Certification, $1,600 (currently this fee is being waived), which is quite the sum for small development shops. If you don't pass the first time, then subsequent submissions of the application cost around $500. The other problem of course is the length of time it takes to get an application through the process. I know that applications submitted by some MJN partners have taken months to go through the process.
+In discussing my concerns, Nextel did bring up some very valid points about why they needed these policies. Imagine the impact of a rogue application that ends up running amuck on the Network. This would have a pretty significant impact on Nextel's ability to deliver services to other customers. Imagine how annoyed you would be if you could not run your network applications because somebody else had bogged down the network due to poor programming skills.
+Even worse, what about when somebody launches a virus. We have all seen the mess we can create when we unintentionally code an error, what about when you doing it on purpose. There is the potential to write an application that spread itself to the many phones out there, copy your data, send it off to a server somewhere and then delete everything on your phone on its way out. Yikes!
+That side, my feeling is that this approach creates a number of problems for the small developer. First of all, it is not like we have an abundance of cash to be paying for the certification program. More importantly however, if I am writing a network application that can't run over the network until it is certified, how do I test it before I submit it for certification. I certainly don't want to be failing and having to resubmit, but it doesn't appear that are many options. Nextel will be the first to test your communications over the actual network.
+Although I understand it, it doesn't mean I have to like it and I am not alone in feeling this way. I pointed out that I believed some other player who arrives late to the Java Party will likely try to differentiate themselves by offering an open network. In response they indicated that they didn't see this as likely and if somebody did do it, then it would probably be one of the niche players. 
+Well around the corner I go and talk to Sprint and there I got a very different story. Although they will still have a certification program for Sprint approved applications (meaning they can be purchased over the phone from Sprints on-line store), they would not close the network off to non-approved applications. Further to this, their intention at this point is to not charge any fee for certifying applications for sale in their store. 
+So what does this mean to the Independent Developer. Simply put, you can write an application that uses the Sprint Network and not have to ask their permission to run it across the network. Just put it on your handset and away you go. Now they were certainly very clear on the fact that if any unapproved application damages your phone, loses data, etc., they will not be able to provide you any support. It is definitely a use at own risk policy, but in general, most things on the internet come with that disclaimer attached.
+What remains to be seen is who's is taking the correct path. Although I prefer the idea of an open network and do see that as a differentiator that would sway me, I wouldn't accept it at the cost of not being able to access the network, constantly losing data on my phone or other such consequences that some are predicting. Questions have been raised about the depth of Sprint's experience with data networks and whether or not they know exactly what kind of problems they will face. They may find they have to reverse their policies 6 months after launch a take more of an Nextel approach.
+In past corporations have always shied away from Open Models and have used the potential complexities as their reasoning. The statement made to me was "You want the quality of service of a tightly controlled network, with the flexibility of an open model. Well you can't have both so choose one." If IT history has taught me anything, it has certainly shown me that there will always be one who will stand up against all the nay-Sayers and will prove that it can be done. In this case I think I am going to have to put my money on Sprint. 
+Day 4
+I have seen the future of J2ME on cell phones and it is a very fragmented picture indeed. A press conference was held to allow the device manufacturers and carries have an opportunity to talk about bring wireless devices to North America. VP's from the biggest players came out to discuss their vision of the future and to be quite honest I found it to be a very bleak and limited landscape.
+For the last two years, our readers have been discussing the effects of fragmentation on the developer and have been urging Sun and Java supporters to ensure this is minimized. We have literally begged that all the players adhere to one common standard. The big joke with MIDP has been write once and test everywhere. Well courtesy of the intentional efforts to fragment the specification, the device manufacturers and carriers will ensure that developers will need to write a different version of their applications for every device/network combination. 
+So what do I mean by fragmentation? Well to put it simply, it is a well known fact that each of the manufacturers are creating a number of API extensions to support functionality not included in the MIDP specification. For example pretty well all devices now include an API that will allow an application to access the vibrate function of the phone. Of course, because there is not standard for this, each phone manufacturer will use a different API. You will need a different version of your application for each of the different manufacturer devices that you want your app to run on. 
+Although from a purest point of view, I don't like these extensions, I certainly understood why they exist. There is no doubt that the addition of sound, vibration, etc. really enriches the user experience. What really concerns me now is that I can see they are planning to take this fragmentation to the next level. Not only are phone specific API extensions being implemented, but there are also plans for carrier specific API extensions.
+Not to put too fine a point on it, but this is insane! Effectively what this says is a Motorola phone running on the Nextel Network will have a different set of API extension then a Motorola phone running on say the Sprint network. So, if you want to write your application to run on five devices across five networks, you now have 25 versions to build and maintain. I must admit that I find this idea so outrages that I will be spending time today going back and making sure that I haven't totally misinterpreted what was said (but somehow I don't think so).
+I guess the most difficult thing I find to swallow in all of this, is the reasons they give on why this is happening. Nokia stood up at the beginning of the week and said that they added custom APIs because everybody else did and they had to keep up. Then at the press conference, Nokia said they had to do it because the base J2ME API (or "programming to the lowest common denominator" as the called it) didn't offer the APIs required to make the "Compelling Content" (there's that phrase again) being demanded by the consumer.
+I find both of these comments intriguing when you consider the response given to the question about the MIDP devices expanding and eventually implementing the Pjava or even complete J2SE standard. The general response was that developer feedback indicated the MIDP API really contained everything needed and a fuller API was not required. Wait a minute, how did we get from MIDP being the lowest common denominator and extensions being required to everything is fine and nothing more is required. Remember guys ... If you are going to make up a story, you need to stick with it. 
+No, what I really see here is a market that is desperately struggling not to become commodity items. The cell phone makers want to make it difficult for the consumer to change devices and carriers want to make it difficult for you to change carriers. By offering custom APIs, unique only to their specific device/network combination, they can offer killer applications that will only work for their customers. Essentially we will artificially lock you into our service by making sure nobody else can offer what we can.
+Now some of you may think this is good business. Well imagine if the DVD industry had taken this approach. If you buy a Sony DVD player, you can only play Sony DVDs. What a disaster. In those types of situations, competitors are required to differentiate themselves through product quality, price points and additional features (e.g. it can also play mp3). In the wireless market, they don't want to compete on this level. Nope, if we lock you in by ensuring you can't go elsewhere (or at least it is very painful/expensive), it removes the competitive drivers that typically result in improved quality and reduced consumer costs.
+ 
+What is difficult to predict is the long-term impact of this approach. As a minimum, I see it having a real slowing effect on advances in this space. New hardware will be slower to come to market, costs will remain high and consumer acceptance will be drawn out. As an example, why would Motorola release the i50 and i85 (bulky, small screens, no colour) as the latest and greatest Java devices in North America when far better products were already being mass-produced in other countries. Simple, because they could.
+Fortunately I also see this situation creating one of the greatest opportunities. As consumers start to demand more globalization, these disparities are not going to be accepted. With the apparent lack of interest in figuring out to compete with artificially imposing barriers, this leaves the door wide open for a new player to come in a provide standardization with the global community as their differentiator. All other industries have had to face this challenge (PCs, databases, etc.) and guess what, they didn't shrivel up and die. The wireless industry is long overdue for this type of standardization and although the North American industry may try to deny it for now, sooner or later the Global community is going to require it.
+Day 3
+After a full day of discussions with both the Carriers and Device Manufactures, it is clear to me that now is the best time for the Independent J2ME developer. 
+MIDP devices are starting to hit the market with a vengeance. All of the big players in the cell phone market are clearly committed to making Java Enabled wireless devices a reality now. There are still a number of issues to work through, but not to worry, there are plenty of organizations working to make sure that none of these issues become showstoppers.
+As I talked with each company, they all made sure to highlight their developer programs. Now, I am not going to promote one program over another, as far as I'm concerned, they were all pretty much the same and most of them were a far stretch from what is really required by the developers. That aside, the key here is why are they putting their efforts (and money) into these programs.
+The answer is simple. They need lots of applications fast. Now that the devices are available and the carriers are willing to support them, they need to show value to the consumer quickly. The easiest way to do this is to offer the consumer a large selection of applications for download. The key phrase at this conference has been "Compelling Content".
+Unfortunately, when I ask for a definition of what is "Compelling Content", most people fold at that point. Nobody is 100% sure what they want, they just know that they want it and the hope is that if there are enough options out there, some of it will qualify as "Compelling Content". In the end, it is the consumer that will really determine what applications will be successful.
+This is where the Independent Developer comes in. We have a unique opportunity here. It is not often that the big guys (carriers, etc.) are willing to directly accept input from the individual. With the state of things as they are, the industry is now counting on that direct input to ensure the content is there to support the devices.
+Now I know developers have raised concerns over the various revenue models being proposed to them. Basically it is a model of "you get paid when we get paid", effectively a percentage payment on a per download basis. From a developer point of view, I am sure many of you feel that this is not the best model in the world (and I have passed that message along). Don't let this stop you. If the model is wrong, it will change over time.
+Right now we have a unique situation. The big players need content and the Independent Developer is in a position to provide it. This will not last long. Sooner or later larger companies are going to see enough revenue in J2ME applications to draw their interest and then the Independent Developers are going to find themselves getting squeezed out. When that squeeze occurs, you want to ensure that you are already an established name and not one of the guys who sat on the fence waiting for things to get better.
+At the end of the day, for anybody to make money, something has to be sold. In the case of MIDP devices, that means the cell-phone consumer needs to buy something (software in our case). Making this happen is a long chain of events that only starts with developing the application. After that there are marketing, provisioning, payment and a strong of other steps required to make a product successful. These other steps are well beyond the means of most of us. Rather than trying to do all of this ourselves (I know I can't market all the effectively), why not take advantage of the existing channels being offered.
+You are really only left with two choices to make now. What applications do I want to build and who do I want to market it through. 
+Day 2 
+Well, one thing I can say for sure ... Borland certainly knows how to throw a good party! I'm amazed that the MJN crew were able to make it back to the conference this morning. See pictures here: http://www.borland.com/events/javaone_02/more_party.html. 
+On Monday I had the opportunity to discuss the state of the J2ME market with a good number of individuals. It is obvious that there is still a lot of disagreement in the industry about where things are going and who are going to be the key players. As a matter of fact, the only thing I could get general consensus on was the fact that cell phones were the first mass-market device to implement J2ME. After that opinions ran wild. 
+I focused a good number of my discussions yesterday around the marketing of J2ME enabled devices outside of the Japanese markets. This is an area I have been watching for quite some time now as consumer awareness is going to directly determine how successful we can all be as independent developers. If the consumer doesn't understand that they can download Java applications to their device, they are not going to be looking for them. 
+In Japan, NTT DoCoMo et al., have clearly branded Java phones. When the consumer sees the steaming coffee cup, they know that this means they are able to download lots of cool applications for their phone. The consumer clearly understands the advantage of Java-enabling a phone. In many ways this is similar to the very successful Intel Inside logo. The consumer may not know technically what it means, but they have a clear image of what they can do with an Intel based PC. 
+Outside of Japan, I have not seen the same strategy being put into motion for the MIDP devices. Sure, we have seen a very long line of new Java Phones from each of the major players, but nothing that clearly identifies as such. Actually, a number of the devices do not even mention Java in their specifications and they certainly don't highlight the ability to download additional applications. 
+As an example, take some time to look at some of Nokia's on-line specs for the 92xx series communicators (http://www.nokia.ca/english/products/9290.asp). They spend the first two paragraphs talking about all of the great features such as the display, email, Word and Excel capable etc. It is not until you get to the third paragraph that they mention Java, with no supporting information to let the consumer know what value this capability will bring. 
+As I approached different players with this issue, I certainly got some very interesting responses, but very few of which made any sense. Some of the players indicated that this branding was occurring. However, when pressed to show me marketing materials that would successfully brand Java, they all came up short-handed. One even went so far as to say that this type of marketing is Sun's issue and they shouldn't have to worry about it. To get a feel for how effective this approach is, just walk into your local phone retailer and see if they even know which devices are Java Enabled (let alone what it means). 
+Others tried to say that branding wasn't possible right now because there were no carriers that could support the devices. There may be some minor truth to this in North America, but this is clearly not the case in Europe. Over and over again, you hear the same story, "We can't promote the device because there are no networks to support them ... there are no networks because there are no devices available ... there are no devices because the applications aren't available" and on and on and on. As an industry, we need to stop hiding behind this excuse. 
+The most common response by far was that the consumer really didn't need to know it's Java. This one I can believe in. I agree the consumer doesn't need to know it's Java, they just need to know what they can do (e.g. load applications, etc.). Until the Manufacturers and Carriers are willing to invest in this message, J2ME will still have a bit of a hill to climb before the consumer will understand the value of Java and begin paying for it. 
+Based on the activity in this space, there is no doubt this year that the players are in and J2ME is going to make it in the cell phone arena. The only question is: how long will we need to wait before it hits big.
+Day 1
+Right from the Sunday night kickoff, it is clear that J2ME is becoming a big part of Java family. A walk through the exhibits revealed that to some degree everybody had a J2ME story to tell. 
+Companies such as LG Telecom, Nokia, Motorola, JBlend, Research in Motion, and on and on are putting their weight behind this technology. There is no doubt that they all see a big future. 
+The question is what does this mean to the developer. J2ME still seems to be facing the same question it was a year ago. "We all believe this has a big opportunity, but who is going to pay for it?" 
+Looking at the cell manufacturers, there is no doubt that they have clearly answered this question. They have clearly set their sites on the under 25 crowd. Get a phone in their hands and make sure there are plenty of games available. But what about the rest of the industry? 
+Initial discussions with the embedded device crew resulted in a very confusing picture of who the customer was. They were all able to show-off great capabilities, but when questioned about who was buying, the discussion became very vague. Unfortunately, it still looks like getting Java chips and hardware accelerators into small devices is at the beginning of a long sales cycle.
+One of the most interesting approaches to J2ME was presented by RIM. They have been silent about the Java strategy for a long time, but they are finally ready to tell the world about what they are doing. Not only has RIM committed the Blackberry to support J2ME, but they have re-written all of its core applications in Java. At first blush, this appears to be a Java device start to finish. This is something we will definitely take a closer look at this week.
+Before the week is out, we are going to take a much closer look at what the current state of the J2ME market and where we think it is going. Most important of all, we will have a look at what it all means to you the developer. Be sure to check back with us throughout the week to get my latest Quick Quips from JavaOne. 
+J2ME News from JavaOne 2002
+03/28/02 
+JavaOne: Developers voice cautionover wireless apps 
+ 
+03/28/02 
+Sun offers tools to build Java for gadgets 
+ 
+03/28/02 
+JavaOne Developer Conference Highlights the Exponential Growth of Wireless Java Content 
+ 
+03/28/02 
+Rim And Sun Microsystems Enable End-to-end Wireless Enterprise Solutions 
+ 
+03/28/02 
+Sprint to Give Inside Look at 3G Network to Application Developers at Second Annual Sprint PCS Developer's Conference 
+ 
+03/27/02 
+Sprint releases Java developers kit 
+ 
+03/27/02 
+Sun: Java in cell phones could thwart MS 
+ 
+03/27/02 
+CocoBase Enterprise O/R Goes Micro With J2me Midp Support From Thought Inc. 
+ 
+03/27/02 
+Siemens Announces Development Program for Java Mobile Phones 
+ 
+03/27/02 
+Sun: Speeding Java for cell phones 
+ 
+03/27/02 
+Insignia And Sun to Advance Mobile Java Market with New Java Software 
+ 
+03/27/02 
+Sun's Forte(TM) for Java(TM) 4, Mobile Edition Propagates Java Technology In Exploding Market for Java-Enabled Mobile Devices 
+ 
+03/26/02 
+Sun aims Java at phones, Web services 
+ 
+03/26/02 
+Sybase teams with Borland on Java project 
+ 
+03/26/02 
+JavaOne: Sun focuses on Java to clients 
+ 
+03/26/02 
+Motorola Unveils Color Java Phone 
+ 
+03/26/02 
+I want my J2ME 
+ 
+03/26/02 
+4thpass targets enterprise with Java system 
+ 
+03/26/02 
+Motorola announces Java delivery server 
+ 
+03/25/02 
+Sprint and Borland Deliver Application Development Resources for the Wireless Community 
+ 
+03/25/02 
+Sun to Bring Web Services to Wireless Devices 
+ 
+03/25/02 
+J2ME is the technology of choice for next-generation 3G wireless 
+ 
+03/25/02 
+Aplix Corporation Expands to Support Unique Needs of US-Based Manufacturers And Customers 
+ 
+03/25/02 
+4thpass Adds Enterprise Support to Its Mobile Application System 
+ 
+03/25/02 
+Antepo to Showcase Presence-Based Mobile Messaging on the Industry's Leading J2me(TM) Solution at JavaOne(SM) 
+ 
+03/25/02 
+Kada Systems Introduces New Frameworks to Optimize Deployment of J2me Applications 
+ 
+03/25/02 
+mobileID's mobileSTUDIO And Sun's Forte for Java IDE Deliver Integrated Wireless Tools And Design Environment for Wireless Application Development 
+ 
+03/25/02 
+Motorola to Assist Agea in Creation of Enterprise-Class Applications for Motorola Handsets 
+ 
+03/25/02 
+Nextel Offers Java Application Distribution And Management Solution to Enterprise Customers 
+ 
+03/25/02 
+Nextel Unveils Java-based Business And Entertainment Applications 
+ 
+03/25/02 
+Nokia Introduces Java Broker Service For Operators And Developers 
+ 
+03/25/02 
+Research in Motion Ltd - Introduces BlackBerry Development Environment for the Java 
+ 
+03/25/02 
+Sprint Provides Free Sprint-Specific Java Toolkit to Drive Application Development for Its Third Generation Network 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	 
+	
+	 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

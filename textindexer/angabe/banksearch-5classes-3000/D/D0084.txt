@@ -1,0 +1,90 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+	
+ 
+Tag libraries
+JSP 1.1 introduces a method of extending JSP tags, called "tag libraries". 
+These libraries allow addition of tags similar to jsp:include
+or jsp:forward, but with different prefixes other than jsp:
+and with additional features.
+To introduce you to tag libraries, in this tutorial we use the Blazix
+tag library as an example. This tag library comes bundled with the
+Blazix
+server, which you can download free for learning and evaluation. 
+(The material you learn about using tag libraries will work with any other
+tag libraries also.)
+Each tag-library will have its own tag-library specific documentation. 
+In order to use the tag library, you use the "taglib" directive to specify
+where your tag library's "description" resides. For the Blazix tag
+library, the (recommended) directive is as follows
+The "uri" specifies where to find the tag library description. 
+The "prefix" is unique for the tag library. This directive is saying
+that we will be using the tags in this library by starting them with blx:
+The Blazix tag library provides a blx:getProperty tag. This tag
+can be used to allow the user to edit form data. In our GetName.jsp
+file, we will now add a jsp:useBean and place the form inside blx:getProperty.
+The new GetName.jsp is
+What's your name? 
+What's your e-mail address? 
+What's your age? 
+Note that the blx:getProperty doesn't end with /> but is instead terminated
+by a separate line. This puts all the form
+input fields inside the blx:getProperty so they can be appropriately modified
+by the tag library.
+Try putting a link to GetName.jsp from the NextPage.jsp, and you will
+see that the bean's data shows up automatically in the input fields.
+The user can now edit the data.
+We still have a couple of problems. The user cannot clear out
+the name field. Moreover, if the user enters a bad item in the "age"
+field, something which is not a valid integer, a Java exception occurs.
+We will use another tag from the Blazix tag library to take care of
+this. Blazix offers a blx:setProperty tag that can be used to take
+care of these problems. blx:setProperty allows us to define
+an exception handler method. If an exception occurs, we can collect
+an error message for the user and continue processing.
+Following is a version of SaveName.jsp that processes any errors, and
+either shows the user GetName.jsp again to user can enter the data correctly,
+or automatically forwards to NextPage.jsp.
+" +
+ field + "\" is invalid." );
+ if ( ex instanceof java.lang.NumberFormatException )
+ errors.append( " The value must be a number." );
+ }
+%>
+ 
+Note that haveError and errors must be re-initialized
+each time, therefore they are being initialized outside of the declaration.
+[Also notice the use of pageContext.include and pageContext.forward. 
+These are like jsp:include and jsp:forward, but are more
+convenient to use from within Java blocks. pageContext
+is another pre-defined variable that makes it easy to do certain operations
+from within Java blocks.]
+Here, if an error occurs during the processing of blx:setProperty,
+we display the error and then include the GetName.jsp again so
+user can correct the error. If no errors occur, we automatically
+forward the user to NextPage.jsp.
+There is still a problem with the forms, the "age" shows up as zero
+initially rather than being empty. This can be fixed by adding "emptyInt=0"
+to both the blx:getProperty and blx:setProperty tags
+(bean fields should be initialized to 0.) It happens that "0"
+is not a valid value for age, so we can use "0" to mark empty strings. 
+If "0" were a valid value for age, we could have added "emptyInt=-1"
+(and made sure to initialize the bean fields to -1.)
+Another small problem is that the "" tag gets doubled if there
+is an error and we end up including "GetName.jsp". A more elegant
+solution is to remove the out.println, and pass back the error as shown
+We can then do a "request.getAttribute" in the GetName.jsp,
+and if the returned value is non-null, display the error. This is
+left as an exercise.
+Exercise: Read the documentation on Blazix or
+another tag library, and use some tags from this library.
+ 
+Next Tutorial: Editing forms without a tag library 
+Contents
+ 
+ 

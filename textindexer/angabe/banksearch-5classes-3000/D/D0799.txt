@@ -1,0 +1,406 @@
+
+ 
+ Start up the Velocity Template Engine
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Start up the Velocity Template Engine
+ 
+ Generate Web content with Java-based, open source Velocity 
+ 
+ 
+ 
+Summary
+The Velocity Template Engine lets you render data from within applications and servlets. Primarily used to develop dynamic, servlet-based Websites, Velocity's clean separation of template and Java code makes it ideal for Model 2-style Model-View-Controller (MVC) Web development. As a general template engine, Velocity suits many other purposes, such as code generation, XML generation and transformation, and textual stream processing. This article introduces the Velocity Template Language (VTL) and provides examples of how to use the Velocity engine, including how to generate Web content in a Java servlet environment. (3,000 words; December 28, 2001)
+ 
+ By Geir Magnusson Jr.
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ Page 1 of 3
+ 
+Advertisement 
+ 
+ 
+ 
+ 
+elocity is an open source templating tool developed by an international volunteer community and hosted by the Apache Software Foundation's Jakarta Project. At the Jakarta Velocity Project Website, where you can download the freely available source code, a thriving and growing community of users is ready to answer questions and offer solutions to common templating problems. Velocity was inspired by the pioneering WebMacro project, a work for which we in the Velocity community are grateful.
+In this article, I present a short primer on the Velocity Template Engine and its template language, Velocity Template Language (VTL). I also demonstrate how to use Velocity through several examples.
+ Hello World, of course 
+No explanation of a programming-related subject would be complete without a Hello World example. Any application using Velocity requires two parts. The first is the template, which in this example is a file called helloworld.vm: 
+ Hello $name! Welcome to Velocity!
+The second is a corresponding Java program called HelloWorld.java: 
+import java.io.StringWriter;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+public class HelloWorld
+{
+ public static void main( String[] args )
+ throws Exception
+ {
+ /* first, get and initialize an engine */
+ VelocityEngine ve = new VelocityEngine();
+ ve.init();
+ /* next, get the Template */
+ Template t = ve.getTemplate( "helloworld.vm" );
+ /* create a context and add data */
+ VelocityContext context = new VelocityContext();
+ context.put("name", "World");
+ /* now render the template into a StringWriter */
+ StringWriter writer = new StringWriter();
+ t.merge( context, writer );
+ /* show the World */
+ System.out.println( writer.toString() ); 
+ }
+}
+Now, when you compile and run this program, you will see the output: 
+ Hello World! Welcome to Velocity!
+This is a trivial example, but it contains the crucial pieces to give you an idea of what Velocity templating is all about. 
+ Why should I use it? 
+Designed as an easy-to-use general templating tool, Velocity is useful in any Java application area that requires data formatting and presentation. You should use Velocity for the following reasons: 
+- It adapts to many application areas
+- It offers a simple, clear syntax for the template designer
+- It offers a simple programming model for the developer
+- Because templates and code are separate, you can develop and maintain them independently
+- The Velocity engine easily integrates into any Java application environment, especially servlets
+- Velocity enables templates to access any public method of data objects in the context 
+The last point is important -- it means that you can reuse your existing classes. So, objects you want to use in your templates don't need to be structured in a certain way, like JavaBeans, or implement special I/O or lifecycle modes, such as JSP (JavaServer Pages) taglibs. The only requirement is that methods are public. You will see more of this when we cover the template language in detail. 
+One of Velocity's strengths is that it strongly enforces a separation of functional responsibility within the application. It does this by limiting template access to objects that the application code specifically makes available. This means that designers can focus exclusively on the data presentation (the view), and the application programmer can focus on the application control (the controller) and the business logic and data management (the model) in Model-View-Controller (MVC) development. MVC is a well-accepted development pattern that simplifies both development and ongoing maintenance of sophisticated applications. 
+ Where do I use it? 
+Velocity is successfully used in: 
+- Servlet-based Web applications
+- Java and SQL code generation
+- XML processing and transformation
+- Text processing, such as RTF file generation 
+Velocity is most commonly used as a rendering engine for Java servlet-based Web application development, in place of or in conjunction with JSPs and other rendering technologies. Besides the easy, maintainable template syntax, Velocity is used in Web development because its template language can manipulate and present the data, not create data. This discourages programming within the templates. This is a good thing; it keeps your Java code's business and application logic where they belong.
+Velocity is well suited to J2EE (Java 2 Platform, Enterprise Edition) Web development because the platform accommodates output technologies other than JSP. While JSP is included in the J2EE specification, J2EE doesn't require its use. 
+ How does it work? 
+You use the same general process to create a Velocity-based application as you would any application. Let's consider a more interesting example than the Hello World application above. Suppose you operate a pet store and wish to generate an email blast to announce a sale. First, you must design the email and then develop the template and code based on that design. 
+ Design-time considerations 
+You need to consider three elements for your design: 
+- Which data to include in the email
+- What form the data elements should take (for example, as List, Map, or String)
+- What to call those data elements 
+For this example, let's suppose you decide on three pets for sale, each with a different advertised price. You decide to use a map to associate each pet name and its price, and then store all three maps in a list. You call this list petList, the pet name name, and the price as price in the map. Now that you have identified the relevant data, its representation, and naming criteria, you can write the code and the template's design. 
+ Write the code and template design 
+Once you agree on data specifics, Velocity lets you write the code and design the template in parallel. The designer integrates the data into the nondata presentation content (like images, text, and so on) in the template. In this case, we simply write in the email body: 
+ $petList.size() Pets on Sale!
+ We are proud to offer these fine pets
+ at these amazing prices. This month only,
+ choose from:
+ #foreach( $pet in $petList )
+ $pet.name for only $pet.price
+ #end
+ Call Today!
+As the programmer, you must: 
+- Retrieve all data from the data sources -- a database via JDBC (Java Database Connectivity), a file, or just something calculated
+- Put that data into the context using the agreed-upon names
+- Render the template with the context to produce output 
+You may recall from the Hello World example that I referred to class VelocityContext as the context. Modeled after a java.util.Map, the context is an object that holds data provided by the application or servlet that the template accesses. 
+For this example, we get all the data from our data sources (in this case, we hardwire it into the code), organize it, and add it to the context: 
+ /* create our list of maps */
+ ArrayList list = new ArrayList();
+ Map map = new HashMap();
+ map.put("name", "horse");
+ map.put("price", "$100.00");
+ list.add( map );
+ map = new HashMap();
+ map.put("name", "dog");
+ map.put("price", "$59.99");
+ list.add( map );
+ map = new HashMap();
+ map.put("name", "bear");
+ map.put("price", "$3.99");
+ list.add( map );
+ /* add that list to a VelocityContext */
+ VelocityContext context = new VelocityContext();
+ context.put("petList", list);
+It appears we really want to get rid of those bears! 
+Now, with the data organized and placed in the context and the template ready, we can render the template against the context. Here is the code: 
+import java.io.StringWriter;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+public class PetStoreEmail
+{
+ public static void main( String[] args )
+ throws Exception
+ {
+ /* first, get and initialize an engine */
+ VelocityEngine ve = new VelocityEngine();
+ ve.init();
+ /* organize our data */
+ ArrayList list = new ArrayList();
+ Map map = new HashMap();
+ map.put("name", "horse");
+ map.put("price", "$100.00");
+ list.add( map );
+ map = new HashMap();
+ map.put("name", "dog");
+ map.put("price", "$59.99");
+ list.add( map );
+ map = new HashMap();
+ map.put("name", "bear");
+ map.put("price", "$3.99");
+ list.add( map );
+ /* add that list to a VelocityContext */
+ VelocityContext context = new VelocityContext();
+ context.put("petList", list);
+ /* get the Template */
+ Template t = ve.getTemplate( "petstoreemail.vm" );
+ /* now render the template into a Writer */
+ StringWriter writer = new StringWriter();
+ t.merge( context, writer );
+ /* use the output in your email body */
+ sendEmail( writer.toString() );
+ }
+}
+This complete program generates your email body. Because Velocity renders templates into a Writer, you can easily manage the output. In this case, the rendered output went into a String via the StringWriter, but it could easily have gone to a file, a browser, or a BLOB (binary large object) in a database. This is one reason why Velocity integrates so easily into Java applications. 
+The program output (your email body) looks like this: 
+ 3 Pets on Sale!
+ We are proud to offer these fine pets
+ at these amazing prices. This month only,
+ choose from:
+ horse for only $100.00
+ dog for only $59.99
+ bear for only $3.99
+ Call Today!
+ Next page >
+Page 1 Start up the Velocity Template Engine
+Page 2 Velocity Template Language 
+Page 3 Same data, different templates
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- Download all code and templates: 
+http://www.javaworld.com/javaworld/jw-12-2001/velocity/velocity.zip
+- The Jakarta Velocity Project, home of the distribution, documentation, and other Velocity resources: 
+http://jakarta.apache.org/velocity/
+- Products and projects that use Velocity: 
+http://jakarta.apache.org/velocity/powered.html 
+Velocity articles:
+- "Best Practices: The Velocity Template Engine, Release 1.0," Laura Geele Wang (Dot-Com Builder, March 2001): 
+http://dcb.sun.com/practices/profiles/velocity.jsp
+- In "Getting Up to Speed with Velocity" (Webtechniques), Jim Jagielski notes that Velocity has "a language definition with a feature set that fits comfortably on a standard business card" -- a nice article on Velocity: 
+http://www.webtechniques.com/archives/2001/09/serv/
+- In "Take the Fast Track to Text Generation" (JavaWorld, July 2001), Leon Messerschmidt looks at using Velocity for text generation: 
+http://www.javaworld.com/javaworld/jw-07-2001/jw-0727-templates.html
+- In "JSP" (Java Developer's Journal), Jon Stevens writes a detailed comparison of Velocity and JSPs: 
+http://www.sys-con.com/java/articlea.cfm?id=1080
+Velocity-supported Web application frameworks:
+- Jakarta Turbine: 
+http://jakarta.apache.org/turbine/
+- Melati: 
+http://www.melati.org/
+- Maverick: 
+http://mav.sourceforge.net/
+- WebWork: 
+http://sourceforge.net/projects/webwork/
+- JPublish: 
+http://jpublish.sourceforge.net/
+- Niggle: 
+http://www.niggle.org/
+More JavaWorld resources:
+- Browse JavaWorld's Servlet Index: 
+http://www.javaworld.com/channel_content/jw-servlets-index.shtml
+- Browse JavaWorld's JavaServer Pages Index: 
+http://www.javaworld.com/channel_content/jw-jsp-index.shtml
+- Browse JavaWorld's Java 2 Enterprise Edition (J2EE) Index: 
+http://www.javaworld.com/channel_content/jw-j2ee-index.shtml
+- Subscribe to JavaWorld's free weekly email newsletters: 
+http://www.javaworld.com/subscribe 
+- Speak out in JavaWorld's Java Forum: 
+http://forums.idg.net/webx?13@@.ee6b802
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

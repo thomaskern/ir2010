@@ -1,0 +1,162 @@
+
+Free Java Help --- Tutorials --- JavaScript --- Image Rollovers
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Image Rollovers
+ 
+ Have you ever been to a site where some
+graphics change when you move your mouse in and out of them? I know I have!
+These graphics are commonly referred to as image rollovers. All it takes to get
+this cool effect is two images, and a little bit of JavaScript code. This
+tutorial will teach you how to create rollovers that you can use for your own
+site!
+ For those of you who have never used
+JavaScript before, JavaScript code goes in between the following
+tags in an HTML document:
+ All code for a little while will go in
+between these tags. The first thing we need to do is make two image variables!
+This is relatively simple. We will make images named coffee and coffee2. You can name yours whatever you want, just as long as you realize that you will have to change the variable names in the code below to get it to work. To make the images, I would put the following two lines in between the script tags (shown above).
+var coffee=new Image();
+var coffee2=new Image();
+ There we go! Now we have two image
+variables! However, we haven't assigned their source yet! We will make the
+source of coffee be java.gif, and coffee2 be java2.gif, to keep it simple. To
+set the source for the two variables we just made, add the two following lines
+in between the script tags! (after the code you just typed to create the
+variables).
+coffee.src="java.gif";
+coffee2.src="java2.gif";
+ The src in the two lines
+above simply means the source, so the two lines above set the sources of coffee
+and coffee2! 
+ We are now DONE in between the
+script tags! The rest of the code will go in the link tags and image tags! Now
+I will show you the rest of the code, then I will explain it! :)
+ Okay, now here is the explanation. Set href
+equal to whatever page you want the image to link to, just as you would with
+any other link. The onMouseOver part tells your browser what to do when the
+mouse comes into the area of the image. In this case, it is telling the browser
+to make the source of the image named rollover equal to the source of coffee2.
+This makes a different image take the place of the old image. The onMouseOut
+part tells your browser what to do when the mouse leaves the area of the image.
+In this case, it tells the browser to make the source of the image named
+rollover equal to the source of coffee. This makes the original image reappear,
+because the original source of rollover is the same gif file as the source of
+coffee.
+ The only thing unusual in the image tag
+is that we named it rollover. This makes it possible to change its source using
+onMouseOver and onMouseOut in the link tag. The image named rollover is the one
+that will its source be changed. The line after the img tag simply
+ands the link.
+ The images along the left side of the page
+that change are rollovers. If you want to see more example code, just view the
+source of this document! :)
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

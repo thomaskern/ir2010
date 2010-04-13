@@ -1,0 +1,26 @@
+
+Visual Basic Lecture 1: The Structure of the Module
+Philosophy of Visual Basic
+While plain BASIC is a traditional sequential programming language Visual Basic is designed to build applications with Graphical User Interfaces (GUIs). A GUI has to cope with the input from a users which is NOT sequential. For example with any Windows program there are a multitude of different combinations of events (clicking buttons, moving windows etc.) that a user can use to complete different tasks within the application. It is this use of buttons & lists (called Controls) and the Events associated with them that allow the programmer to control what happens when the user uses the application.
+Custom Controls
+Custom controls are the objects that programmers place within forms that the user uses to control the application. For example, almost all Windows applications use buttons to control communication between the application and the user...Press OK to continue!
+The Philosophy of Event Programming
+Therefore users interact with windows programs by triggaring events, either by using the keyboard to type information into the program or by using the mouse to move the program window or clicking on a button. When an event is triggared the code assocated with that event is executed.
+For example...
+ 
+<!- Could use a JavaScript here to simulate the button event?! ->
+This Form has two controls a label control and a button control. A button control has many different events associated with it (search for "command button" in the VB Help file). If the following code is associated with the "click" event of this button then "Hello World" will be displayed in the label control when the user clicks on the button with the cursor.
+Sub Command1_Click ()
+ Form1.Label1.Caption = "Hello World"
+End Sub
+This simple example is expanded in the first exercise
+Design-time vs. Run-time
+Visual Basic has two modes of operation. A design environment and a Run environment. Code is entered a design time and tested during run-time. Within the Main Toolbar there are a set of buttons which allow the present loaded application to be run and debugged
+Forward: BASIC & Visual Basic
+Back: The Structure of the Module
+This Web Page forms part of a series that describe the Custom
+GIS Course at the School of Geography, Leeds University.
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 29 January 1996 11:01:52

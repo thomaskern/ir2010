@@ -1,0 +1,59 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Tip 15: Don’t test your own 
+software or write your own test plans.
+Do you have dedicated testers where you work? Possibly not—not many companies do. Many companies say they "can’t afford such a luxury." Well, in my opinion, they’re a luxury that’s really worth it (as many of the leading software development companies in the world already know).
+ Independent testers should (and often do) exhibit the following characteristics:
+- Are impartial
+- Are less informed about the usage and the type of input your code expects
+- Are usually more knowledgeable about the usage and the type of input your code doesn’t expect
+- Are more likely than you to spend time trying to break code
+- Are typically more leery of your interfaces and more critical of your coupling
+- Are into doing you damage and breaking your code
+- Are more informed than you about system limits
+- Unlike you, actually want to find bugs in your software.
+From time to time, Microsoft talks about its ratio of developers to testers: around 1:1. You do the math; for every programmer there’s a tester. In fact, rumor has it that some developers occasionally get shifted to being testers. This could happen if a developer consistently develops very buggy software. Nothing like a shift to testing to improve one’s knowledge and appreciation of what good solid code involves.
+Tip 16: Stress test your applications.
+Years ago, the Windows SDK (Software Development Kit) shipped with an applet named SHAKER.EXE. This applet simply ran around allocating and releasing memory blocks. When and what it actually allocated or released was random!
+What was it for, then? Well, before the days of protect mode and virtual memory addressing, you could access any arbitrary memory location through a simple pointer (using C as a programming language, of course). Often, and erroneously, these pointers would be stored in nonrefreshed static variables as an application yielded control to the operating system. This access—or similar access—would cause the problems for which SHAKER.EXE was used to try to uncover.
+In between handling one event and a subsequent one, Windows could move (as it can now) both your code and data around. If you’d used a static pointer to, say, point to some data, you’d quickly discover that it was no longer pointing to what you intended. (Modern virtual addressing methods make this problem go away.) So what was the point of SHAKER.EXE? It turned out that, back then, even though your application was being naughty and had stored a static pointer, you didn’t know it most of the time; the Windows memory manager hadn’t moved your data around between your handling of two events. The bottom line was that you didn’t really know you had a problem until memory moved, and on your machine, that rarely, if ever, happened. Customers, however, did see the problem because they were running both your application and others and had loaded their systems to a point that the memory manager was starting to move memory blocks around to accommodate everyone. The whole thing was like attempting to hold a party in a small closet. Initially, everyone had plenty of room. As more people arrived and the closet filled up, however, some of the guests were bound to get their feet stepped on sooner or later. SHAKER.EXE shook the operating system on the developer’s machine until something fell off!
+OK, so why the history lesson? Basically, the lesson is a good one and one we can still use. In fact, an associated application, named STRESS.EXE, still ships in Visual C++. (See Figure 1-6.)
+ 
+Figure 1-6
+Stress me (STRESS.EXE) 
+Like SHAKER.EXE, STRESS.EXE is used to make the operating system appear more loaded or busy than it actually is. For example, by using STRESS.EXE you can allocate all of your machine’s free memory, making it look really loaded—or, reading from Tip 6 on, you can find out what happens when you run out of file handles.
+Tools such as STRESS.EXE can present your code with a more realistic, perhaps even hostile, environment in which to work. Such conditions can cause many hidden problems to rise to the surface—problems you can fix at that point instead of later in response to a client’s frustrated phone call. I’d certainly recommend using them.
+Tip 17: Use automated testing tools.
+See Chapter 9, "Well, At Least It Compiled OK!" for coverage of this broad and very important subject.
+Tip 18: Consider error values.
+Let’s suppose you still want to return an indication of success from a function (instead of using exceptions). What values would you use to indicate whether or not something worked?
+Normally, 0 (or False) is returned for failure, and -1 (True) for success. What are the alternatives? Some programmers like to return 0 for success and some other value for failure—the reason for failure is encoded in the value being returned. Other programmers prefer to return a negative value for failure that again encodes the reason.
+By using the first alternative, we can quickly come up with some pretty weird-looking code:
+If CreateThing() "mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

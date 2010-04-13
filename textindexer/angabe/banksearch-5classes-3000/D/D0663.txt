@@ -1,0 +1,221 @@
+
+Khalid and Rasmussen the Marcus Green Interview
+ 
+ 
+ 
+ 
+Mughal and Rasmussen talk to Marcus Green
+ 
+Khalid Mughal and Rolf Rasmussen are the authors of "A programmers 
+ guide to Java Certification" published by Addison Wesley. This book concentrates 
+ solely on the Java programmers exam. It is 750 pages long and is packed with 
+ information, sample questions and exercises. It is also well illustrated. One 
+ of the things that pleased me when I first opened it is that the authors have 
+ published their email addresses in the book. They very kindly agreed to an email 
+ interview and here are my questions and the answers they provided.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Marcus Green talks to ....
+ 
+ 
+ 
+ 
+Khalid Mughal and
+ 
+ 
+ 
+Rolf Rasmussen
+ 
+ 
+MG: How come Scandinavia is such a hotbed of high tech?
+RWR: I'm not sure that I can accurately describe this phenomena. 
+ One factor might be that the Scandinavian countries have more or less sane laws 
+ related to technology. Laws such as the ban of software patents, and legalizing 
+ reverse-engineering help to create a good research environment and a marketplace 
+ that promotes healthy competition. I wouldn't rule out geographical placement 
+ either; Scandinavia seems sufficiently far away from the base of the industry 
+ giants, to allow small companies to take innovation in new directions without 
+ being dwarfed and subsumed by the big corporations.
+KAM: Technological development is also seen in the light of improving 
+ the quality of life at all levels. The region’s geography dictates that. The 
+ small fish is a big pond analogy is also relevant, but some big fish are also 
+ emerging. I am also under the impression that outside interests are moving in 
+ a lot sooner as new innovations come off the drawing board. It will be interesting 
+ to see if the region continues to be a hotbed for high tech as globalization 
+ continues its march.
+MG: Has the book sold well, met your expectations? 
+KAM: The book hit the market in September last year. As far as 
+ we can judge from the initial figures, the book has done well. Feed back from 
+ the readers indicates that it has been well received. We are delighted with 
+ the reader reviews. The publishers wants to move forward the next printing of 
+ the book, which was scheduled for February. We are very grateful to the readers 
+ for bringing to our attentions the errors in the book. These will be corrected 
+ in the next printing. Meanwhile the most up-to-date errata can be found at 
+http://www.ii.uib.no/~khalid/pgjc/jcbook/errata.html. 
+ 
+We encourage our readers to send us feedback. 
+RWR: We've only seen the figure for the two first months of sale, 
+ but we're pleased by what we've seen. It seems book is selling very well. Overall, 
+ we're very pleased by the reception the book has gotten.
+MG: What is the story on the web site and exam simulator ? 
+ 
+RWR: At one time we had a discussion on whether to include a CD-ROM 
+ with the book. Including a CD-ROM in the back-cover seems very popular with 
+ computing books. The contents of CD-ROMs from all Java books is nearly always 
+ the same: The Sun JDK and accompanying documentation, a couple of "demo"-versions 
+ of popular IDEs, and perhaps some source code from the book and a few trinket 
+ programs.
+RWR: Unfortunately, due to the rapid evolution of the software 
+ industry, most of the contents of the CDs are obsoleted by newer version within 
+ a few months of publication. This combined by cost estimates of including a 
+ CD-ROM made us opt for distributing the software using the Internet instead. 
+ The JDK and the usual "demo" software are already freely available on the net. 
+ So we decided to create a supporting web site for the book that would contain 
+ the stuff specifically related to the book, and provide links to software such 
+ as the Sun JDK.
+RWR: Unfortunately, the AWL web site suffered some technical difficulties 
+ that reduced the effectiveness of the supporting book web pages. Many people 
+ had a hard time find the supporting web pages, and the registration process 
+ didn't deliver the exam simulator as promised. The whole book registering process 
+ idea was probably hatched by some eager marketing person at AWL. There is no 
+ need to "register" the book in order to receive the exam simulator. Simply locate 
+ the supporting web pages and download the exam simulator. The situation was 
+ made worse by the web site staff allowing some of the archive available for 
+ download to get corrupted. Fortunately, it seems that we've managed to clear 
+ up all the problems now.
+RWR: The marketing people were very excited about giving an exam 
+ simulator along with the book. (I think the basic idea was that since some other 
+ certification books offers a simulator, so should we.) I've been a little unsure 
+ about the value of an exam simulator compared to a mock exam with detailed annotated 
+ answers such as the one we provide in the book. Even if it in the end is mostly 
+ a gimmick, the exam simulator at least serves to familiarize the user with conditions 
+ similar to the real exam. That in itself is of some value.
+RWR: There is room for improvement in the exam simulator. If time 
+ permits, I'd like to improve the exam simulator and provide newer version for 
+ download on the book website. I'd also like to clean up the code a little, and 
+ release the full source code for the exam engine as a bonus. However, I'm unsure 
+ if I'll have time to do this anytime soon.
+KAM: The decision to not include a CD with the book was deliberate. 
+ An effective web site can serve the same purpose for disseminating extra resources 
+ complimentary to the book. However due to technical difficulties at the publisher’s 
+ end, the effectiveness of the web site was reduced initially. Readers who contacted 
+ us directly were promptly dispatched the necessary material. We maintain a mirror 
+ site at http://www.ii.uib.no/~khalid/pgjc/jcbook/index.html. Check it out if 
+ you have a problem.
+MG: How would you change the certification process to improve 
+ it? 
+RWR: The poorest part of the certification process is actually 
+ the wording of the exam objectives. They do not properly reflect the scope of 
+ the actual exam, and the layout is confusing and illogical. I also have some 
+ misgivings about the usefulness of the current architect exam.
+RWR: Compared to some other certification exams, the exams from 
+ Sun Educational Services are good in that they for the most part requires a 
+ firm grasp of the language in order to pass. However, I see indications that 
+ some people are able to pass the exams without actually knowing the language 
+ all that well. The certification process should ensure that certified programmers/developers 
+ are proficient in the language. This is also reflected in the approach we took 
+ for the certification book. It concentrates on allowing the reader to actually 
+ master the language and thereby be prepared to take the exam, rather than just 
+ providing the what is believed to be "bare essentials" needed for the exam. 
+ KAM: I agree with Rolf that the poorest part of the current setup 
+ is the exam objectives. It is hard to believe that with so much riding on Java, 
+ such an amateur job is done in formulating and presenting the objectives. And 
+ this is the most essential information that is needed to prepare for the exam. 
+ I find it hard to believe that this situation has not been rectified so far. 
+ It is not surprising that many who have taken the exam have complained that 
+ the objectives do not correctly reflect what can be asked on the exam. 
+MG: How do you ensure everything is covered for technical proofreading? 
+RWR: We’ve gone through the material numerous times ourself, and 
+ we've had the fortune of being able to call upon many knowledgeable people to 
+ review the manuscript at various stages. We also built test harnesses to extract 
+ the source code from the manuscript and test compile it, so that we were able 
+ to catch most of the errors popped up during the course of editing. 
+KAM: One thing we learnt is that peer review is essential at various 
+ stages. We certainly appreciated the feedback from the reviewers, and I think 
+ this is reflected in the quality of the book. Tools that can take the drudgery 
+ of proofreading certainly help. My wife Marit, who is not a computer-literate, 
+ read the manuscript twice just to make sure that if a non-programmer could "understand” 
+ what was written, then a Java programmer would hopefully not have any problems. 
+ She now regrets not having taken the exam right after reading the manuscript! 
+http://www.blackdown.org/ 
+ 
+http://sourceware.cygnus.com/java/
+MG: What operating system and JVM do you use? 
+RWR: Personally I've I use mostly GNU/Linux and Sun Solaris. We've 
+ also made extensive use of Microsoft Windows and MacOS during the production 
+ of the book. We believe in being truly platform independent. The JVMs I mostly 
+ use is the Sun JDK Linux port by the Blackdown porting team . On Solaris, I 
+ use the standard JDK from Sun. I've also been following the developments of 
+ the libgcj project with great interest.
+ KAM: We can truthfully say that the code in the book was run 
+ under Windows, MacOS and Solaris. Under Windows and Unix, we used the JVM with 
+ the Sun JDK, but under MacOs I used the JVM from Apple. 
+MG: What do you do for work when you are not writing technical 
+ books? 
+KAM: I am on my sabbatical at Cornell at the moment. Enjoying 
+ a brief reprieve at the moment. I am interested in application of distributed 
+ object technology in different problem domains, in particular distant learning. 
+ I hope to spend my remaining time at Cornell looking into web-based tools for 
+ distant learning, before heading back to Bergen at the end of July. 
+RWR: I'm currently putting the finishing touches on my master 
+ thesis at the University of Bergen. I have an impending obligatory military 
+ service to serve, which will keep me busy for most of the year 2000. 
+MG: Do you find yourselves swamped with email? 
+KAM: I will not say we have been swamped. We receive moderate 
+ amounts of e-mail which we try to reply regularly. We certainly appreciate all 
+ the feedback. Apart from helping us in catching errors, a fair number have also 
+ helped us to clarify certain points in the book. Most corrections will be incorporated 
+ immediately in the next printing. But keep the e-mails coming! 
+RWR: The mail generated by the publication of the certification 
+ book has remained at moderate levels. I'm grateful for all the feedback that 
+ I've received on the book, and to all the people that have helped us in creating 
+ a good errata list for the book. This allows us to weed out the mistakes people 
+ have found for the next printing of the book. 
+MG: What do you think are the most important developments in 
+ Java recently?
+RWR: On a down note, I'm sad the see that Sun once again has pulled 
+ out of a standardization process of the Java language at the eleventh hour. 
+ I would have liked to seen Java becoming an ISO or ECMA standard. A positive 
+ trend I've seen lately, is the increase in quality of the JVM. Java has for 
+ a long time been held back by JVM riddled by bugs, incompatibility and sluggishness. 
+ It seems the situation this is steadily improving, even on platforms outside 
+ the mainstream. With a little more work, Java might come close to being the 
+ holy grail of cross platform development that Sun purports it to be. 
+RWR: In recent news, I am thrilled by the decision by FSF and 
+ Cygnus to merge their libgcj and Classpath projects together. This will help 
+ in the quest to produce a good open source (free software) implementation of 
+ the Java runtime. 
+KAM: Apart from the standardization process being on the rocks, 
+ I think what worries me most is lack of incorporating some essential language 
+ features in Java. I am thinking of parameterized types. On the runtime side 
+ I think the picture is more rosy. Java is gradually but surely making inroads, 
+ at least as far as front-end (GUI) clients are concerned. But I think it still 
+ has some distance to go before delivering its promise of "write once, and run 
+ everywhere”. 
+MG: Are you working on a new book? 
+KAM: We have some offers, mostly pertaining to an intro book on 
+ programming using Java with our special take on how it ought to be done. :-) 
+ We are also debating whether this venture should not just be another traditional 
+ book but also an e-book (or it an i-book?). We hope to have some clarification 
+ soon. 
+RWR: We're considering several options, but we have no definite 
+ plans yet. 
+MG: Thanks to both of you for taking the time to answer my 
+ questions and good luck with the book
+You can buy the book from Amazon at
+http://www.amazon.com/exec/obidos/ASIN/0201596148/jchqjavaprogramm
+The most recent version of this document appears at
+http://www.jchq.net/Interviews/mughalras/mughalras.htm
+Marcus Green 2000
+ 

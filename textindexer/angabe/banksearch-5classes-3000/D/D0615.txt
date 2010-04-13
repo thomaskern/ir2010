@@ -1,0 +1,511 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Reduce, Reuse and Recycle: Reusing Objects - Part II 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+ 	
+	 
+	
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+Reduce, Reuse and Recycle: Reusing Objects - Part II
+	
+	
+	by Angus Muir and Roman Bialach -02/14/2002
+	
+	
+In Part I of this article, we investigated the "cost" of object creation and were able to challenge some of the prevailing opinions. Specifically we were able to show that contrary to popular belief, object pooling is not always a faster better solution then just creating a new object as required.
+As a quick reminder, let's review what was done in Part I and our findings:
+The Test Object: We put together a very simple test object that basically initialized an int and a String when it was created. When re-initializing, the object would set the int and String based on the Parameters you passed in.
+Object Pool: We implemented a very simple object pool that allowed us to initialize a number of Objects on start-up, which could then be drawn from or returned to the pool as required.
+Test Results: In all tests we found that it took 2.4 - 2.9 times longer to retrieve an object from the pool then it did to create a new object (Result varied depending on number of iterations and KVM implementation tested). 
+So, although creating and destroying objects is generally thought to be slower, when dealing with a simple object, it can be significantly faster then managing an object pool, even a simple one.
+That said, we were still not able to draw a final conclusion. Why? Well, first of all, the object was really too simple to be considered representative. For all we know, a minor change to the object could have a significant impact on our findings. To prove this point, we will make a minor alteration to the object and see what impact it has on our previous findings.
+A Minor Change
+The change we made to the Test Object was real simple, an array of 10 integers is now defined when the TestObject is instantiated. Let's see what kind of impact this has on the performance.
+Using the J2ME Wireless Toolkit, we found that on average, creating the new object took about 720 msec for 100,000 iterations or an average of 7.2 µFracsec for Object Creation. This is substantially longer then the times experienced in Part I when the array was not included. This is still substantially shorter then the 1020 msec required by the Object Pool by a factor of approximately 1.5 times.
+Next we started adjusting the size of the array to include more elements. Specifically, tests were run with 100, 200, 300, 500 and 1000 array elements. Based on 100,000 iterations, you can see that Object Creation time quickly climbs. As a matter of fact, as the number of elements increase, you can see that the time required grows exponentially. Obviously this can get very expensive in a hurry.
+Test Hardware: Intel PIII-500MHz Desktop
+Emulator: J2ME Wireless Toolkit
+Test Results: 
+J2ME Wireless Toolkit 
+ 
+new 
+pool 
+10 
+720 
+1020 
+100 
+860 
+1020 
+200 
+1050 
+1020 
+300 
+1320 
+1020 
+500 
+1790 
+1020 
+1000 
+2960 
+1020 
+Test Hardware: PIII-500MHz Desktop
+Emulator: Zucotto WhiteBoard V2.0
+Test Results: 
+Zucotto WhiteBoard V2.0 
+ 
+new 
+pool 
+10 
+620 
+820 
+100 
+740 
+820 
+200 
+970 
+820 
+300 
+1190 
+820 
+500 
+1630 
+820 
+1000 
+2740 
+820 
+ 
+For the sake of completeness, the above test was also run with an object that had an integer, String and a Vector as a member (TestObject4). In this case, the object pool consistently took about half the time of object creation. We will let you run this one for yourself and see the results on your own system.
+Deterministic Results 
+Okay, so maybe our tests of 1000 or even 500 elements is a little over the top. I mean we are talking about small devices after all. Any application that requires an array with a thousand elements should probably be re-evaluated.
+What must be considered is the fact that speed is not always our primary concern. For anybody who has worked on real-time systems, you know that deterministic results can be just as important or even more important then raw speed. In the case of the object pool, getting an object out of the pool always takes the same amount of time independent of how many elements are in the array. This can be a critical characteristic for some systems.
+To understand this better, let's consider and example.
+Example: 
+Imagine you have a system where your Java Code will be required to take action based on some external event (e.g. an incoming message). Further to this, the results must be tested and returned in a maximum of 10 msec.
+The incoming message contains a set of numbers which you will parse out and set into an array, however you do not know how many numbers are in the message until you receive it. Once received these numbers will be processed and a response message will be generated.
+Because of the time sensitive nature of the application, you establish time budgets for each of the major sections of the application and allow .01 msec to receive the message and enter the values into the array. 
+You are faced with two choices. You either create a new object every time a message is received, with an array that is the exact size required by the message or you can implement an object pool. Knowing that although the incoming message can support up to 200 data elements, typically it is not more then 20 - 30 you perform some tests on the average message sizes find that, object creation only takes .0055 - .0068 msec where as the an Object Pool requires .0098 msec.
+What option would you select?
+In this case, you can see that although object creation is much faster, this was based on receiving a typical message size of 20 - 30 elements. What happens if you receive a message of 200 elements? Even though it is not likely, the system allows it and therefore you need to allow for it.
+Using the graph for the Zucotto Whiteboard, you see that an array of 200 elements requires more time then the Object Pool. This means you will exceed your .01 msec budget allowance and will fail to respond on time. Although the Object Pool will typically require more time, it guarantees that you will always respond in time no matter what size of message comes in. Now all you have to worry about is whether or not there are enough objects in the pool to start with.
+Conclusion
+After considering both parts of this article, we see that there is no one answer that fits all situations. Actually, I would say we can conclude that you should be very very wary of anybody who claims that they have the right answer for all implementations.
+In reality, you need to examine the details of your particular implementation and then decide what is the right solution. Some of the factors you need to consider are:
+Memory Management: Do you have a particularly dynamic application. If your application is designed to run for an extended period with a lot of object creation and deletion, then you may want to consider Object Pooling to assist with run-time memory management issues (See Part I of the article). 
+Deterministic Results: If you must guarantee response time, then you need to be careful in choosing Object Creation as your path of choice. By initializing all required objects at start-up and placing them in a pool, your processing time when running can become deterministic. 
+Raw Performance: If raw performance is all you require and your object is small enough, then you may find that dynamically creating and destroying the object as required will be far more effective.
+In all of the cases above, the answer is really quite simple. Check the specifics of your implementation to determine your best choices. Whatever you do, whenever you are unsure, don't assume. Take the extra time during the design and development phases to test and be sure. There is few things worse then finding out you made the wrong choice after you have distributed your application.
+Roman Bialach is the V.P. of Development with periMind Corporation, a consulting firm specialising in development and training in the J2EE and J2ME spaces. He has been designing and developing applications in Java technologies since 1995. Roman began his career designing and developing real-time process applications, and for the past 10 years has been concentrating on Object-Oriented design, development, and mentoring for business management applications. 
+Angus Muir is a member of the Micro Java Network Committee and has been working as both a software and hardware engineer since 1992. During this period he specialized in embedded systems design and development of Frequency Agile, Military Communication Systems. Angus currently serves as a Development Director in a Health Care System provider focusing on OLTP applications running on an IBM RS6000/ORACLE platform. 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,159 @@
+
+Writing a Simple Bean
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: JavaBeans(TM)
+Lesson: Writing a Simple Bean
+In this section you will learn more about Beans and the
+BeanBox by
+ 
+- Creating a simple Bean
+ 
+- Compiling and saving the Bean into a
+ Java Archive (JAR) file
+ 
+- Loading the Bean into the ToolBox
+ 
+- Dropping a Bean instance into the BeanBox
+ 
+- Inspecting the Bean's properties, methods, and events
+ 
+- Generating an introspection report
+Your Bean will be named SimpleBean.
+Here are the steps to create it and view it in the BeanBox:
+ 
+- Write the SimpleBean code. Put it in a file
+ named SimpleBean.java, in the directory
+ of your choice. Here's the code:
+ 
+import java.awt.*;
+import java.io.Serializable;
+ 
+public class SimpleBean extends Canvas
+ implements Serializable
+{
+ //Constructor sets inherited properties
+ public SimpleBean(){
+ setSize(60,40);
+ setBackground(Color.red);
+ }
+}
+ 
+SimpleBean extends the
+java.awt.Canvas component.
+SimpleBean also implements the
+java.io.Serializable interface,
+a requirement for all Beans. SimpleBean sets the background
+color and component size.
+ 
+ 
+- Make sure the CLASSPATH
+ environment variable is set to point to all
+ needed .class (or .jar) files. Here
+ are some URLs that will help you to set CLASSPATH correctly:
+ 
+ 
+- The
+ 
+Managing Source and Class Files lesson gives good advice on how and when to set your CLASSPATH.
+ 
+- The JDK Tool Reference Page provides complete CLASSPATH information for both
+ 
+Windows and 
+Solaris platforms.
+ 
+ 
+ 
+- Compile the Bean:
+ 
+ javac SimpleBean.java
+ 
+ This produces the class file SimpleBean.class
+ 
+ 
+- Create a manifest file. Use your favorite text editor
+ to create a file, we'll call it manifest.tmp,
+ that contains the following text:
+ 
+ Name: SimpleBean.class
+ Java-Bean: True
+ 
+ 
+- Create the JAR file. The JAR file will contain the
+ manifest and the SimpleBean class file:
+ 
+ jar cfm SimpleBean.jar manifest.tmp SimpleBean.class
+ 
+ See the 
+JAR Files trail, and the 
+JDK JAR file documentation for complete information on JAR files. 
+- Load the JAR file into the ToolBox. Select
+ the File|LoadJar... menu item. This will bring up a
+ file browser. Navigate to the SimpleBean.jar location and
+ select it. SimpleBean will appear at the bottom
+ of the ToolBox. (Note that when the BeanBox is
+ started, all Beans in JAR files in the
+ beans/jars directory are automatically
+ loaded into the ToolBox).
+ 
+- Drop a SimpleBean instance into the BeanBox.
+ Click on the word SimpleBean in the ToolBox. The cursor
+ will change to a crosshair. Move the cursor to a spot within the
+ BeanBox and click. SimpleBean will appear as a
+ painted rectangle with a hatched border. This border means
+ that SimpleBean is selected. The
+ SimpleBean properties will appear in the
+ Properties sheet.
+ 
+You can resize SimpleBean, because it inherits from
+Canvas, by dragging a corner. You will see the cursor
+change to a right angle when over a corner. You can also reposition
+SimpleBean within the BeanBox by dragging on any non-corner
+portion of the hatched border. You will see the cursor change to crossed
+arrows when in position to move the Bean.
+SimpleBean Makefiles
+Below are two makefiles (Unix and Windows) set up to
+create SimpleBean.
+# gnumake file
+CLASSFILES= SimpleBean.class
+JARFILE= SimpleBean.jar
+all: $(JARFILE)
+# Create a JAR file with a suitable manifest.
+$(JARFILE): $(CLASSFILES) $(DATAFILES)
+ echo "Name: SimpleBean.class" >> manifest.tmp
+ echo "Java-Bean: True" >> manifest.tmp
+ jar cfm $(JARFILE) manifest.tmp *.class
+ @/bin/rm manifest.tmp
+# Compile the sources
+%.class: %.java
+ export CLASSPATH; CLASSPATH=. ; \
+ javac $bean information
+ class that explicitly describes your Bean's features.
+You can generate a Bean introspection report
+by choosing the the Edit|Report menu item. The
+report lists Bean events, properties, and methods,
+and their characteristics.
+By default Bean reports are sent
+to the java interpreter's standard output, which is the window
+where you started the BeanBox. You can redirect the
+report to a file by changing the java interpreter
+command in beanbox/run.sh or
+run.bat to:
+java sun.beanbox.BeanBoxFrame > beanreport.txt
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

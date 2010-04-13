@@ -1,0 +1,565 @@
+
+ 
+C >> Pointers 1 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Passing Arrays to Functions 
+ Main Menu 
+ Pointers 2 
+ 
+ 
+ 
+ 
+Pointers 1
+ 
+ 
+ 
+ 
+ 
+& - The "Address of" Operator
+ 
+ 
+ 
+ 
+ 
+Before I tell you what a pointer is, I'd have to introduce you to this operator. 
+ 
+It looks familiar - we saw it in the bitwise operators section. However, bitwise AND takes two operands like this: a & b, 
+ but the ADDRESS OF operator only takes one on the right: &x. 
+ 
+Recall that when you declare a variable, you reserve bytes in the computer's memory for that variable. The allocated memory is referenced 
+ by the variable name and must be unique. 
+ 
+ 
+ 
+You can picture the computer's memory as a very long row of slots. Now, each slot has a unique ADDRESS, which 
+ is expressed in hexadecimal format. It's like a long road of houses - each house has a unique number in decimal format. In each occupied 
+ house, there are people. 
+ 
+In our case, the houses are memory slots, and the people are the variables. 
+ 
+ 
+ 
+Now suppose we wanted to find out where in the memory a variable lives. We can use the address-of operator. &x returns 
+ the "address of x" in hex format. 
+ #include 
+int main() { 
+ int x = 0;
+ printf("Address of x = 0x%p \n", &x);
+ return 0;
+}
+ 
+Output: Address of x = 0x0065FDF4 
+ 
+%p is the format specifier for addresses (%x would still compile OK). 0x in the printf function 
+ is there to signify that a hex number follows. 
+ 
+Recall: scanf("%d", &x); 
+ 
+- You can translate this as: "take the inputted integer and put it in the address of x". 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Left 
+ and Right Values
+ 
+ 
+ 
+ 
+ 
+Now let's look at the assignment operator: 
+ x = 1; takes the value on the right (e.g. 1) and puts it in the memory referenced by x, say. 
+ 
+Also known as L-VALUES and R-VALUES respectively L-values can be on either side of 
+ the assignment operator where as R-values only appear on the right.
+ 
+ 
+ 
+ 
+ 
+So x is an L-value because it can appear on the left as we've just seen, or on the right like this: 
+ y = x; 
+ 
+However, constants like 1 are R-values because 1 could appear on the right, but 1 = x; is invalid. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Pointers
+ 
+ 
+ 
+ 
+ 
+POINTERS are VARIABLES that store the memory address of other variables. 
+ 
+Suppose we had an integer variable, x. We know how to get the address of x using &, but how do we store 
+ the hex value returned by &x ? 
+ 
+This is where pointers come into play. A pointer is a variable, so it is declared just like a variable. The only difference is that 
+ pointer variables must have the DEREFERENCE OPERATOR, *, before its name. 
+ 
+Don't confuse this with the multiplication operator though - multiply takes two operands (e.g. x*y), dereference only takes 
+ one (e.g. *x). 
+ 
+The data type of a pointer must match the data type of the variable it points to. 
+ 
+ 
+ 
+Let's look at declaring and initializing pointers... 
+ int x;
+float y;
+int *pointer_to_x;
+pointer_to_x = &x;
+float *pointer_to_y = &y; 
+/*a simpler way*/
+ 
+Finally, *pointer_to_x = &x; causes a compilation error, so be careful with the way you declare and initialize your pointers. 
+ 
+ 
+char * is somewhat special, and will be looked at in the string section. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You compiler might complain if you try and declare variables after creating pointers, so it's best if you declare all your variables 
+ at the beginning of main, rather than "on the fly" e.g. halfway through main. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Accessing 
+ Variable Values Using Pointers
+ 
+ 
+ 
+ 
+ 
+Now that you have a pointer that points to a variable, how can we retrieve the value it's pointing to? 
+ 
+Answer: you can access the variable's value using the dereference operator. Here's an example: 
+ #include 
+int main() {
+ int x = 12;
+ int *ptr = &x;
+ printf("Address of x: 0x%p\n", ptr);
+ printf("Address of x: 0x%x\n", &x);
+ printf("Address of ptr: 0x%x\n", &ptr);
+ printf("Value of x: %d\n", *ptr);
+ return 0;
+}
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Address of x: 0x0065FDF4 
+ Address of x: 0x65fdf4 
+ Address of ptr: 0x65fdf0 
+ Value of x: 12 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The first 2 printf statements demonstrates that the address of x is stored in the pointer variable, 
+ ptr. Notice how %p returns a full 8 digit hex value in uppercase - maybe I should've used %X for the address 
+ of x for clarity. 
+ 
+The 3rd printf demonstrates that ptr itself has a place in the memory, which shows it's a variable. 
+ 
+ 
+The final printf uses the dereference operator to extract the value pointed to by ptr, like 
+ this: *ptr. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Pointers 
+ and Arrays
+ 
+ 
+ 
+ 
+ 
+When I first learnt pointers, I kept thinking: "Why should I use pointers?!!". Looking at my previous example, I could've 
+ simplify things a little by not using pointers.
+ 
+Pointers are useful when it comes to arrays. 
+ 
+One less obvious fact is that the name of an array is a pointer, simply because the name points to the first element of that array. 
+ 
+ 
+Try and picture this: when you initialize an array (of size 10, lets say), the computer picks a row of 10 CONSECUTIVE unused memory 
+ slots and stores the values in them. 
+ 
+The name of the array refers to the base of the array, that is, the very first memory slot of that array (which holds the first element). 
+ 
+ 
+ 
+ 
+So if the name is a pointer, we should be able to extract the first element using the dereference operator. In other words, *nameOfArray 
+ should return the value of nameOfArray[0]. 
+ 
+ 
+ #include 
+int main() {
+ int x[10] = {0,1,2,3,4,5,6,7,8,9};
+ printf("Address of x[0]: 0x%p\n", &x[0]);
+ printf("Address of x: 0x%p\n", x);
+	
+ printf("Value of x[0]: %d\n", x[0]);
+ printf("Value of x[0]: %d\n", *x);
+ return 0;
+}
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Address of x[0]: 0x0065FDD0 
+ Address of x: 0x0065FDD0 
+ Value of x[0]: 0 
+ Value of x[0]: 0 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+So the name of the array points to the first element, as assumed. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Pointer 
+ Arithmetic
+ 
+ 
+ 
+ 
+ 
+Once we've created a pointer that points to a certain variable, we can either reassign it another variable's address, or we can move 
+ it around by performing POINTER ARITHMETIC. 
+ 
+Suppose we had an int pointer, ptr. If we say ptr++, ++ptr or ptr+=1, we're actually moving 
+ the pointer forward by 2 bytes (i.e. the size of its data type). So it'll point somewhere else in the computer's memory. 
+ 
+ 
+ 
+Similarly, ptr--, --ptr and ptr-=1 will move the int pointer "back" 2 bytes. 
+ 
+And you're not restricted to move in steps of 1 either: ptr+=n will move it "forward" by n*2 bytes, (assuming 
+ ptr is an int pointer). 
+ 
+The larger the data type, the larger the step size. So if ptr was a double pointer, ptr-=3 will move it "back" 
+ by 3*8 = 24 bytes. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The arithmetic assignment operators you can use with pointers are += and -= 
+ 
+ptr*=2 and ptr/=2 cannot be used! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Passing Arrays to Functions 
+ Main Menu 
+ Pointers 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

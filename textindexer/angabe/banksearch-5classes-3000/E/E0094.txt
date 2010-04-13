@@ -1,0 +1,806 @@
+
+Technical FAQ
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Technical FAQ
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Is there a fix to the Common Control Year 2000 leap day problem in Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Yes, the updated Common Control DLL is available for free download. It fixes the two problems (leap day miscalculations in the Date/Time Picker and Month Calendar controls) that made Visual C++ 6.0 Year 2000 Compliant with minor issues.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How significant are the differences between the Visual C++ Technology Preview and Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The features showcased in the Technology Preview evolved significantly during the development of Visual C++ 6.0. As a result, there are appreciable code and performance differences between the libraries in the Technology Preview and what ended up in Visual C++ 6.0. Notably, the OLE DB consumer and provider templates were improved both in terms of ease-of-use and performance. Organizations that used the Technology Preview to build release code (especially with the OLE DB templates) are advised to rebuild their code with the release version of Visual C++ 6.0.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Will IntelliSense work on my custom code? How can I get the Auto List Members drop down list to work with my header files? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+All aspects of IntelliSense apply both to code supplied by Microsoft and your custom code. To enable IntelliSense on your header files, make sure you have added the header file location to the include path (Tools menu, Options dialog, Directories tab).
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Under what circumstances does the Edit and Continue debugging feature work? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+See the Edit and Continue in Visual C++ 6.0 whitepaper by David Staheli for a detailed explanation of Edit and Continue debugging. In addition, here's a partial list of operations Edit and Continue does not support:
+- Edits of C++ class definitions
+- Edits of function prototypes
+- Most edits of global/static code
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What resources are available to assist my development team in migrating from Visual C++ 5.0 (or previous) to Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Visual C++ 6.0 endeavors to make migration as straightforward and flexible as possible. Take a look at the Microsoft Visual C++ 6.0 Migration Guide for assistance in understanding the new features in Visual C++, especially as they relate to changes in code editing, debugging, compilation and linking. The Porting and Upgrading section of the Visual C++ Programmer's Guide is available online from MSDN Online. It is also available on CD-ROM with the packaged product.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Is there a way to view a drop down list of global functions, methods and variables in Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Hit "Ctrl-space." This list shows everything in the include path: Win32, MFC, ATL etc.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What types of applications does the enhanced Win32 Console AppWizard create? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The console AppWizard has been extended to generate a variety of console applications. The four project types that can be created are:
+ 
+- Empty projects&#151;no default source files
+- Simple applications&#151;a .cpp file (and empty main function) and precompiled header file
+- "Hello World!" applications&#151;code (a .cpp and .h file) that prints "Hello World!" to the console
+- Console applications that support MFC&#151;includes code for initializing MFC for access to CString etc.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Are member templates supported in Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Member templates defined inside the class body are supported in Visual C++ 6.0 and in Visual C++ 5.0. Visual C++ 5.0 users must install Visual Studio 97 Service Pack 3, first however.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Why does Visual C++ 6.0 require Internet Explorer 4.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Visual C++ 6.0 requires Internet Explorer 4.0 for several reasons, both programmatic and practical. From the practical, usage side of things, Visual C++ 6.0 (and all of Visual Studio 6.0) relies on HTML Help to display help and documentation. Indeed, HTML Help is now the standard at Microsoft for help systems (Windows 98 uses HTML Help). Internet Explorer 4.0, with its ability to parse and render HTML, Dynamic HTML and images, is the engine for HTML Help. It is possible to use a previous version of Internet Explorer to run HTML Help, but with significantly reduced functionality, particularly in the area of searching and indexing.
+On the programmatic side, Internet Explorer 4.0 and its highly componentized architecture enable developers to include Internet and web browsing features in their applications. Thus, the new CHtmlView class of MFC and the new HTML control in ATL, both of which provide a C++ wrapper around the WebBrowser control of Internet Explorer require Internet Explorer 4.0 to be installed. Other components that ship with Internet Explorer 4.0, including the Common Controls, are now accessible from Visual C++ and require particular DLLs that are installed by Internet Explorer 4.0.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How do applications built with these technologies (components of Internet Explorer 4.0) behave if Internet Explorer 4.0 is not installed? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Applications built with these technologies may execute but significant portions of the applications may not be available depending on their use of code from components installed by Internet Explorer 4.0. For example, an MFC application that relies on CHtmlView will display a &#147;Can&#146;t create view&#148; message at runtime on a machine where the WebBrowser control of Internet Explorer 4.0 is unavailable. Several solutions to this condition exist, including installing Internet Explorer 4.0 (full or minimal install).
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What about redistributing applications that use components of Internet Explorer 4.0? Do I have to make sure a full install of Internet Explorer 4.0 is present on every target machine? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Of course we expect developers to build applications with the Common Controls and CHtmlView then redistribute them. The mechanism by which to do this with minimal impact to the client machine is to use the Internet Explorer Minimal Installation Package.
+This package can be set up to install the required components without:
+- Presenting a setup user interface 
+- Impacting the default browser settings 
+- Enabling the integrated desktop
+- Placing an Internet Explorer icon on the desktop 
+- Requiring a reboot
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is the Internet Explorer Object in the ATL Object Wizard and how does it differ from the new HTML Control that is part of the wizard in Visual C++ 6.0? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Internet Explorer Object includes the interfaces needed to run in Internet Explorer with the exception of user interface support. It can be used to create components or controls that run in Internet Explorer without user interfaces. The new HTML Control is specifically designed for adding HTML and Dynamic HTML user interfaces to COM projects and ActiveX controls.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Does the CHtmlView class in MFC require a TCP/IP stack to be installed before use? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+No, because CHtmlView can be used to access local content, it does not require a TCP/IP stack to be present. However, if documents are on a network and are accessed with Internet protocols then a TCP/IP stack is required.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Can HTML files be built into an MFC application so that a CHtmlView application doesn't have to load a document from the local system or network? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Yes, Visual C++ 6.0 includes a new HTML resource type so that developers can ensure that key UI elements, start pages or other content is always installed and available. Images and other content referenced by an HTML resource can also be added to the resource script.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>I've heard that Visual C++ 6.0 has a new import library format. What is the the compatibility of this new format with previous versions of Visual C++? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The import library format in Visual C++ 6.0 has indeed been revised to reduce the size of library files by 50 to 75 percent, improving link times and linker efficiency. Older versions of the linker do not understand the new format, but the Visual C++ 6.0 linker does understand the pre-Visual C++ 6.0 format. Moreover, you can make the new linker produce Visual C++ 5.0 compatible import libraries by using the /LINK50COMPAT switch when you are building your dll and import libraries.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

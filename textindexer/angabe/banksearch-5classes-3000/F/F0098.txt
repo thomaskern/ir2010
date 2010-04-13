@@ -1,0 +1,81 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Classes
+Classes... No, not the kind ya ditch in school :)... So what's a class you say? It's just, the BEST way to code period. Why? Couple of reasons... Reusability, easy to maintain, less codes and therefore less errors. These are key when it comes to programming.
+Classes contain a couple of things...
+ Properties - Just like the ones controls & forms have. There are two ways to make 'em. Dim a public variable, or create a Property procedure.
+ Methods - Methods are procedures; Subroutines or Functions.
+ Events - Events just like ones forms have.
+A Class is a template, and with the template we will create an instance of it. Which is called an Object. OK, lets say your making a class named 'cRun.' The cRun Class will run programs for you. It will have two properties, and one method. One property will be 'FileName,' the other could be 'WindowStyle,' and the method (a Subroutine) could be called 'RunFile.' Here is how the class could look...
+Class example
+Public FileName As String
+Public WindowStyle As String
+Public Sub RunFile()
+ Shell FileName, WindowStyle
+End Sub
+Using the Class example
+Dim RunAnEXE As New cRun
+RunAnEXE.FileName = txtFilePath.Text
+RunAnEXE.WindowStyle = vbNormal
+RunAnEXE.RunFile
+Now if you've actually examined the codes above, you can see we dimensioned RunAnEXE as a new cRun class, and created an instance of it. You must create an instance of a class in every procedure you want to use it in (Or dim it in the General section). As mentioned before, there are two ways to create properties in classes, we'll check out how to make them using the Property procedure, but first you need to understand the types of Propery procedures...
+Differnt types of Property Procedures
+ Let - Lets you set the value of something
+ 
+ Get - Gets you the value of something
+Class named cPP example, using Property Procedures
+Option Explicit
+'local variable(s) to hold property value(s)
+Private mvarName As String 'local copy
+Private mvarAge As Integer 'local copy
+Private mvarSex As String 'local copy
+Public Sub ProcessUser()
+ MsgBox "User: " & Name & " Age: " & Age & " Sex: " & Sex, vbCritical
+End Sub
+Public Property Let Sex(ByVal vData As String)
+ 'used when assigning a value to the property, on the left side of an
+ 'assignment. Syntax: X.Sex = 5
+ mvarSex = vData
+End Property
+Public Property Get Sex() As String
+ 
+ 'used when retrieving value of a property, on the right side of an
+ 'assignment. Syntax: Debug.Print X.Sex
+ Sex = mvarSex
+End Property
+Public Property Let Age(ByVal vData As Integer)
+ 'used when assigning a value to the property, on the left side of an
+ 'assignment. Syntax: X.Age = 5
+ mvarAge = vData
+End Property
+Public Property Get Age() As Integer
+ 'used when retrieving value of a property, on the right side of an
+ 'assignment. Syntax: Debug.Print X.Age
+ Age = mvarAge
+End Property
+Public Property Let Name(ByVal vData As String)
+ 'used when assigning a value to the property, on the left side of an
+ 'assignment. Syntax: X.Name = 5
+ mvarName = vData
+End Property
+Public Property Get Name() As String
+ 'used when retrieving value of a property, on the right side of an
+ 'assignment. Syntax: Debug.Print X.Name
+ Name = mvarName
+End Property
+ Note: That's not as complicated as it looks... I used VB's Class builder :7
+Using the Class example
+Dim PP as New cPP
+PP.Name = "Chloe"
+PP.Age = 17
+PP.Sex = "Female"
+PP.ProcessUser
+ Tip: The best way to go about creating Properties is indeed with Property procedures.
+Just as how you must create an instance of a class before using, you must destroy a class when your done using it. If you don't kill the object, it's going to be stuck in ya RAM, till ya close your app, and that aint cool.
+Destroying the object
+Set PP = Nothing
+Classes don't replace standard modules, infact they work with standard bas files. In bas files you can declare API calls, you can't in class modules, so if you want to use API in your program, just add 'em in the module.
+ Note: You can also declare API calls in your form by setting it to Private. I don't.
+OK, read all that, still having trouble understanding when to use Classes? Now and for almost anything sounds about right. Large projects, small projects, for parts of games etc... Try writting a project with classes, and see what I'm talkin about...
+Back
+Next

@@ -1,0 +1,64 @@
+
+C++ Tutorial: 1.4, Communication through console.
+ Section 1.4 
+ Communication through console. 
+ 
+ 
+ 
+ 
+The console is the basic interface of computers, normally it is the set composed by
+the keyboard and the screen. The keyboard is generally the standard input device and
+the screen the standard output device.
+In the iostream C++ library, standard input and output operations
+for a program are supported by two data streams: cin for input and
+cout for output. Additionally, there have also been implemented
+cerr and clog - these are two output streams specially
+designed to show error messages. They can be redirected to the standard output
+or to a log file.
+Therefore cout (the standard output stream) is normally directed to the
+screen and cin (the standard input stream) is normally assigned to the
+keyboard.
+By handling these two streams you will be able to interact with the user in your programs
+since you will be able to show messages in the screen and to receive his/her input
+from the keyboard.
+Output (cout)
+The cout stream is used in conjunction with the overloaded operator
+>) on the cin stream. This must go
+followed by the variable that will store the data that is going to be read.
+For example:
+int age;
+cin >> age;
+declares the variable age as an int and then waits for an input
+from cin (keyborad) in order to store it in this integer variable.
+cin can only process the input from the keyboard once the RETURN
+key has been pressed. Thus, even if you request a single character
+cin will not process the input until the user presses RETURN
+once the character has been introduced.
+You must always consider which is the type of the variable that you are using
+as container with cin extraction. If you request an integer you will get
+an integer, if you request a character you will get
+a character and if you request a string of characters you will get a string of characters.
+// i/o example
+#include 
+int main ()
+{
+ int i;
+ cout > i;
+ cout > a >> b;
+is equivalent to:
+cin >> a;
+cin >> b;
+In both cases the user must give two data, one for variable a and
+another for variable b that may be separated by any valid blank
+separator: a space, a tab character or a newline.
+ 
+ © The C++ Resources Network, 2000-2001 - All rights reserved 
+ 
+ Previous:
+1-3. Operators. 
+ 
+ index 
+ 
+ Next:
+2-1. Control structures.
+ 

@@ -1,0 +1,200 @@
+
+VC++ to Aim at Full ANSI/ISO Compliance?
+	
+ 	
+ 
+ DevX Home 
+ 
+ Premier Club 
+ Search 
+ RFP Exchange 
+ eLearning 
+ Code Library 
+ Help 
+ Locator+ 
+Shop DevX 
+ 
+ 
+ 
+ 
+ 
+ 	
+	
+ 	
+ 	
+ 
+ 	
+	
+	 
+	
+	
+	
+	 	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+ 
+ 
+	
+ 	 
+ 
+	
+ 
+ 
+ 
+Herb Sutter
+ 
+VC++ to Aim at Full ANSI/ISO Compliance?
+What's next for Visual C++? In this interview, C++ luminary Herb Sutter tells DevX where C++ is headed in the future and what he'll be concentrating on in his new role as Microsoft's official liaison to the C++ developer community.
+Herb Sutter is a recognized expert on C++ software development. Author of more than 150 technical articles and of the widely acclaimed books Exceptional C++ and More Exceptional C++, he regularly gives invited talks to conferences and clients around the world. Herb is secretary of the ISO/ANSI C++ standards committee, contributing editor and columnist for the C/C++ Users Journal and former editor-in-chief of the C++ Report. He currently writes four columns about software development in C++. Visit his Web site at www.gotw.ca.
+Several weeks ago, Herb joined Microsoft's Developer Platform and Evangelism Division, where he acts as a liaison between Microsoft and the C++ developer community. DevX's C++ Pro, Danny Kalev, interviewed Herb Sutter about his new job, the role of C++ in the .NET framework, and the current state of C++.
+: Can you describe your new responsibilities as a liaison between Microsoft and the C++ community? Do they include, for instance, direct involvement in the development process of Visual C++? Regular attendance at Microsoft's newsgroups? Redesigning and re-implementing the core compiler and its libraries?
+A: My job definitely includes giving direct input into the feature set for future releases of Visual C++, to make sure that the product has what the C++ community needs.
+Note that by "the C++ community," I mean everyone who works for or with C++, on all compilers and platforms&#151;that includes in-the-trenches systems and application developers, developers of C++ community libraries like Boost and Loki, the C++ standards committee, C++ book and magazine authors, and anyone else plugged into C++.
+When I talk to these people in person at software conferences or committee meetings, or electronically via newsgroups or email, I learn what they need, what they're trying to accomplish, and what their frustrations and suggestions are about Visual C++ in particular and standard C++ in general. That's the data it's my job to distill&#151;to separate patterns from noise, well-thought-out requests from blue-ski wish lists&#151;and bring in a useful form to the Visual C++ team. Clearly standards conformance features are part of what the community needs, as are other features such as usability, like having more readable template error messages and checked STL iterators for debugging.
+So, that's half of my job, bringing external input inside to make Visual C++ a better and even more useful product. That doesn't just mean doing it myself, because if I'm the only route for community contact, I'd end up as a bottleneck and a checkpoint. Rather, it's also my job to work to create more openness and community access to Microsoft in general.
+The other big part of my job is to see how we can better contribute to the global C++ community. That includes doing things like taking cool and useful libraries developed internally in places like Microsoft Research and contributing them for the community to use, whether that's by contributing them to community libraries or via MSDN or some other route. That also includes rounding up some of the incredible brain power inside the company and getting those experts to write articles and books that get their great ideas out into view where the community can use them, ideas that can move the C++ world along by having much the same impact as groundbreaking work like Loki.
+Some of these things are already happening today. Others are things I'll be working on over time. You should see the results progressively as I get settled in the role and we move forward to implement all of these things.
+Q: What is the first mission on your agenda for the next 2-3 weeks?
+A: To ramp and to get settled! Actually, I'm traveling at least two weeks of my first month on the job&#151;speaking at the ACCU conference in England, and then attending the C++ standards meeting in Curacao. Both will let me touch base with important parts of the community&#151;developers, and committee experts and authors&#151;with my new hat on.
+Q: What is your response to the claim that Microsoft's decision to hire a renowned member of the C++ community is a PR stunt that is meant to attenuate the traditional antagonism towards Microsoft?
+A: I've never heard that. The short answer is that I don't take on jobs as PR stunts. Neither, I am sure, do people like Stan Lippman and Don Box. We're at Microsoft because we're excited about Microsoft's C++ direction and about .NET. 
+The need for a flexible programming language that can handle everything from high-level abstraction to bit-twiddling, all unified within the same language, isn't going away anytime soon. 
+ 
+Q: Considering Microsoft's strong emphasis on C# these days, what is the role of C++ in their .NET Framework?
+A: C++ continues to be the dominant language for most kinds of development on Windows. In the .NET world, C++ is still the best-performing language for most development work. The need for a flexible programming language that can handle everything from high-level abstraction to bit-twiddling, all unified within the same language, isn't going away anytime soon. Other useful programming languages, including C#, will continue to be useful for the kinds of things they're designed to do. I certainly hope that C# will be the destination of choice for a lot of today's Visual Basic application developers. That would be quite a step forward. For systems programming, C++ is still tough to beat despite all the naysayers' wishful thinking that C++ will just roll over and go away. Even in its first incarnation, Managed C++ is the best .NET programming language for creating efficient, performance-oriented applications, and Managed C++ will continue to be improved to increase its overlap with Standard C++.
+For about six years now, certain vendors and many so-called industry experts have constantly predicted Java use to overtake C++ use "within two years." It always seems to be "within two years," for some reason. I first heard that kind of claim around 1996. Today, six years later, about 3 million of the approximately 9.5 million software developers worldwide use C++. Java still comes in a distant second or third at about 50 percent to 70 percent of the C++ developer numbers, depending on which study you look at.
+ Next: What's in Store for C++? 
+ Copyright 2001, DevX.com, Inc.
+ 
+	
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ 
+	 
+ 
+ Resources
+ DevX C++ Zone
+ Get Help with C++
+ "The New C++: The Group of Seven&#151;Extensions under Consideration for the C++ Standard Library" by Herb Sutter
+ C/C++ Users Journal
+ "Soft Talk: Microsoft's new C++ liaison to bang drum for standards" by Cydney Gillis in eastsidejournal.com
+ ISO/ANSI C++ Standards Committee
+ "Is MS Going to Continue Their VC++ Line of Products or Will C# Just Take Over? in the DevX C/C++ Discussion Group
+ GotW.ca: Herb Sutter 
+ "Exceptional C++" by Herb Sutter
+ "More Exceptional C++" by Herb Sutter
+ 
+ 
+ 
+	 
+	 
+	 TALK BACK
+	 
+	 
+	 
+	 
+	 
+	
+	
+	Has the lack of ANSI/ISO compliance of Visual C++ had any impact on your applications? For example, have you had to find workarounds? Switch to a different compiler? How will your design and coding practices change now that Visual C++ is about to become ANSI/ISO compliant? Let us know in the c++.general forum!
+	
+	
+	 
+	
+	
+	 
+	 
+	
+ 
+ 
+	
+	 	
+Sponsored Links 
+Click here for a free FREE iSeminar and Oracle9i Application Server software!
+ 
+Learn to dramatically simplify development and deployment with .NET
+ 
+Tips from a successful wireless developer ...
+ 
+SPECIAL REPORT: Winning with Web Services
+ 
+Reduce line-by-line headaches with this "code review in a box."
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+ 
+ 
+	
+	
+	DevX Home | 
+	.NET Zone | 
+	Java Zone | 
+	Get Help |
+	CoDe Magazine
+	
+	VB Zone |
+	C++ Zone |
+	XML Zone |
+	Enterprise Zone |
+	Database Dev Zone 
+	
+	Wireless Zone| 
+	Security Zone | 
+	ASP Zone | 
+	DHTML Zone |
+	UML Zone 
+	
+	MarketPlace | 
+	RFP Exchange |
+	Discussions |
+	Newsletters |
+	Tech Tips | 
+	Sourcebank
+	
+	Advertise |
+	Help |
+	Copyright |
+	Privacy Statement
+	 
+	
+ 

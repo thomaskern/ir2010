@@ -1,0 +1,30 @@
+
+Tooltip
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 10/14/99,
+ last update: 10/14/99 
+ 
+Home 
+ 
+ 
+ Tooltip: Dynamically
+ create a real tooltip common control at runtime
+ 
+ This example contains a class that show how to dynamically create a fully functional
+ tooltip common control at runtime, while implementing some of the control's basic
+ functionality: individual tools, each with their own unique text, can be assigned to any
+ VB control window; tooltip text can be displayed on more than one line with any text color
+ or tooltip window background color; and the tooltip window can be displayed for any given
+ period of time.
+ 
+ Download tooltipcontrol.zip (7kb) 
+ 

@@ -1,0 +1,248 @@
+
+	
+	1.1) Declarations and access control
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	
+Java2 Certification 
+Tutorial 
+	
+	 
+	
+	
+ 
+	 
+	
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+ 
+ 
+ 
+Recommended book on this topic
+ 
+ 
+Just Java and Beyond by Peter van der Linden
+ If you are new to Java this is an excellent place to start. If you read all the way through this tutorial you will see I quote Peters writing in several places. He is more than quoteable though, he manages to explain the language to beginners without over simplifying topics. If you are already familiar with Java a Certification specific book might be more appropriate. 
+Buy from
+ Amazon.com
+ or from
+ Amazon.co.uk
+ 
+ 
+1)
+Declarations and Access Control 
+Objective 1) 
+Write code that declares, constructs and initializes
+arrays of any base type using any of the permitted forms, both for
+declaration and for initialization.
+Arrays 
+Arrays in Java are similar in syntax to arrays in other
+languages such as C/C++ and Visual Basic. However, Java removes the
+feature of C/C++ whereby you can bypass the [] style accessing of
+elements and get under the hood using pointers. This capability in
+C/C++ , although powerful, makes it easy to write buggy software.
+Because Java does not support this direct manipulation of pointers,
+this source of bugs is removed.
+An array is a type of object that contains values called elements.
+This gives you a convenient bag or holder for a group of values that
+can be moved around a program, and allows you to access and change
+values as you need them. Unlike variables which are accessed by a
+name, elements are accessed by numbers starting from zero. Because of
+this you can "walk" through an array, accessing each
+element in turn. 
+Every element of an array must be of the same type The type of the
+elements of an array is decided when the array is declared. If you
+need a way of storing a group of elements of different types, you can
+use the collection classes which are a new feature in the Java2 exam,
+and are discussed in section 10. 
+Declaration without allocation 
+The declaration of an array does not allocate any storage, it just
+announces the intention of creating an array. A significant
+difference to the way C/C++ declares an array is that no size is
+specified with the identifier. Thus the following will cause a
+compile time error
+int num[5];
+The size of an array is given when it is actually created with the
+new operator thus
+int num[];
+num = new int[5];
+Simultaneous declaration and creation
+This can be compressed into one line as
+int num[] = new int[5];
+Also the square brackets can be placed either after the data type or
+after the name of the array. Thus both of the following are legal
+int[] num;
+int num[];
+ You can read these as either
+ 
+- 
+ An integer array named num 
+ 
+ 
+- 
+ An integer type in an array called num. 
+ 
+You might also regard it as enough choice to cause confusion 
+Java vs C/C++ arrays 
+	
+	
+	
+	
+	
+ 
+	 
+	
+	
+Java arrays know how big they are, and
+	the language provides protection from accidentally walking off the
+	end of them.
+	 
+	
+This is particularly handy if you are from a Visual Basic
+background and are not used to constantly counting from 0. It also
+helps to avoid one of the more insidious bugs in C/C++ programs where
+you walk off the end of an array and are pointing to some arbitrary
+area of memory.
+Thus the following will cause a run time
+error,
+ArrayIndexOutOfBoundsException
+int[] num= new int[5];
+for(int i =0; i"One","Two","Three","Four"};
+The elements of an array can be addressed just as you would in
+C/C++ thus
+String s[]=new String[] {"Zero","One","Two","Three","Four"};
+System.out.println(s[0]);
+This will output the string Zero. 
+Default values of arrays
+	
+	
+	
+	
+	
+ 
+	 
+	
+	
+The elements of arrays are always set to
+	default values wherever the array is created
+	 
+	
+Unlike other variables that act differently between class level
+creation and local method level creation, Java arrays are always set
+to default values. Thus an array of integers will all be set to zero,
+an array of boolean values will always be set to false. 
+ 
+Exercise 1)
+Create a class with a method that
+simultaneously creates and initialises a String array. Initialise the
+array with four names, then print out the first name in the array. 
+Exercise 2)
+Create a class that creates a 5 element array of Strings called
+Fruit at class level but do not initialise with any values. Create a
+method called amethod. In amethod initialise the first four elements
+with the names of fruit. Create another method called modify and
+change the contents of the first element of the Fruit array to
+contain the string "bicycle". Within the modify method
+create a for loop that prints out every element of the Fruit array.
+Suggested solution to exercise 1)
+public class Bevere{
+public static void main(String argv[]){
+ Bevere b = new Bevere();
+ b.Claines();
+ }
+ public void Claines(){
+ String[] names= new String[]{"Peter","John","Balhar","Raj"};
+ System.out.println(names[0]); 
+ }
+}
+Note: The syntax for simultaneous creation and initialisation is
+not obvious and is worth practising. I asked for the first name to be
+printed out to ensure you did not request names[1]. 
+Suggested solution to exercise 2)
+public class Barbourne{
+String Fruit[]= new String[5];
+public static void main(String argv[]){
+ Barbourne b = new Barbourne();
+ b.amethod();
+ b.modify();
+ }
+ public void amethod(){
+ Fruit[0]="Apple";
+ Fruit[1]="Orange";
+ Fruit[2]="Bannana";
+ Fruit[3]="Mango";
+ }
+ public void modify(){
+ Fruit[0]="Bicycle";
+ for(int i=0; i"One","Two","Three","Four"};
+ 3)String s[]=new String[] {"Zero","One","Two","Three","Four"};
+ 4)String s[]=new String[]={"Zero","One","Two","Three","Four"}; 
+Answers
+Answer 1)
+You cannot "resize" and array. You need to create a
+new temporary array of a different size and populate it with the
+contents of the original. Java provides resizable containers with
+classes such as Vector or one of the members of the collection
+classes.
+Answer 2)
+You will get a runtime error as you attempt to walk off the end of
+the array. Because arrays are indexed from 0 the final element will
+be i[4], not i[5]
+Answer 3)
+2) myarray.length;
+Answer 4)
+ 
+ 3) int[][] i=new int[3][3];
+ 
+ 
+Answer 5)
+ 
+ 3)String s[]=new String[] {"Zero","One","Two","Three","Four"}; 
+ 
+Other sources on this
+topic
+	
+	
+	
+	
+This topic is covered in the Sun Tutorial
+	at
+http://java.sun.com/docs/books/tutorial/java/data/arrays.html
+Richard
+	Baldwin covers this topic at
+	
+http://www.Geocities.com/Athens/Acropolis/3797/Java028.htm
+Jyothi
+	Krishnan on this topic
+	at
+http://www.geocities.com/SiliconValley/Network/3693/obj_sec1.html#obj1
+	
+Bruce Eckel Thinking In
+	Java
+http://codeguru.earthweb.com/java/tij/tij0053.shtml
+http://codeguru.earthweb.com/java/tij/tij0087.shtml
+	
+	
+	 
+	
+Last updated
+10 July 2000
+copyright © Marcus Green
+2000
+most recent copy at http://www.jchq.net
+ 
+ 

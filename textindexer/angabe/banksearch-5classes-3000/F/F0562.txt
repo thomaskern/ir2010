@@ -1,0 +1,488 @@
+
+Visual Basic and IP Helper API: Retrieving network interface information
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ IP Helper API -
+ Retrieving network interface information 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Retrieving network interface information
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ Interfaces Info project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is one more example of
+ an application that resides in the system tray. The system tray icon
+ imitates behavior of the DUN animated icon. 
+ 
+To retrieve network interface information we should use the
+ GetIfTable function: 
+ 
+ 
+ Declare Function GetIfTable
+ Lib "iphlpapi" (ByRef pIfRowTable
+ As Any, _
+ 
+ ByRef pdwSize As
+ Long, _
+ 
+ ByVal bOrder As Long)
+ As Long
+ 
+ 
+ 
+This function allows us to get very useful information such as all
+ network adapters info with their type, speed, physical address and so on.
+ Moreover, it seems to me that using this function is the only simple way
+ to get the traffic numbers - the amount of received and sent bytes by
+ the local system. The numbers produced by this example are exactly the
+ same ones that you can see in the output of the netstat utility. 
+ 
+ 
+ 
+I decided to put all the API staff into class modules, so I have got
+ the following object model used in this example: 
+ 
+ 
+ 
+All the work is done by the InitInterfaces function in the CIpHelper
+ class. The technique used to call the GetIfTable function is similar to
+ the GetTcpTable function calling, look at the "How
+ to get all the IP addresses and opened TCP ports on the local
+ system" article for more info. 
+ 
+ 
+ 
+ 
+Private Function InitInterfaces(objInterfaces As CInterfaces) As Boolean 
+ ' 
+ Dim arrBuffer() As Byte 
+ Dim lngSize As Long 
+ Dim lngRetVal As Long 
+ Dim lngRows As Long 
+ Dim i As Integer 
+ Dim j As Integer 
+ Dim IfRowTable As MIB_IFROW 
+ Dim objInterface As New CInterface 
+ ' 
+ lngSize = 0& 
+ ' 
+ 'Reset the BytesReceived and BytesSent properties 
+ ' 
+ m_lngBytesReceived = 0 
+ m_lngBytesSent = 0 
+ ' 
+ 'Call the GetIfTable just to get the buffer size into the lngSize variable 
+ lngRetVal = GetIfTable(ByVal 0&, lngSize, 0) 
+ ' 
+ If lngRetVal = ERROR_NOT_SUPPORTED Then 
+ ' 
+ 'This API works only on Win 98/2000 and NT4 with SP4 
+ MsgBox "IP Helper is not supported by this system." 
+ Exit Function 
+ ' 
+ End If 
+ ' 
+ 'Prepare the buffer 
+ ReDim arrBuffer(0 To lngSize - 1) As Byte 
+ ' 
+ 'And call the function one more time 
+ lngRetVal = GetIfTable(arrBuffer(0), lngSize, 0) 
+ ' 
+ If lngRetVal = ERROR_SUCCESS Then 
+ ' 
+ 'The first 4 bytes (the Long value) contain the quantity of the table rows 
+ 'Get that value into the lngRows variable 
+ CopyMemory lngRows, arrBuffer(0), 4 
+ ' 
+ For i = 1 To lngRows 
+ ' 
+ 'Copy the table row data to the IfRowTable structure 
+ CopyMemory IfRowTable, arrBuffer(4 + (i - 1) * Len(IfRowTable)), Len(IfRowTable) 
+ ' 
+ With IfRowTable 
+ ' 
+ objInterface.InterfaceDescription = Left(StrConv(.bDescr, vbUnicode), .dwDescrLen) 
+ ' 
+ If .dwPhysAddrLen > 0 Then 
+ For j = 0 To .dwPhysAddrLen - 1 
+ objInterface.AdapterAddress = objInterface.AdapterAddress & _ 
+ CStr(IIf(.bPhysAddr(j) = 0, "00", Hex(.bPhysAddr(j)))) & "-" 
+ ' 
+ Next j 
+ objInterface.AdapterAddress = Left(objInterface.AdapterAddress, _ 
+ Len(objInterface.AdapterAddress) - 1) 
+     
+ End If 
+ ' 
+ objInterface.AdminStatus = .dwAdminStatus 
+ objInterface.InterfaceIndex = .dwIndex 
+ objInterface.DiscardedIncomingPackets = .dwInDiscards 
+ objInterface.IncomingErrors = .dwInErrors 
+ objInterface.NonunicastPacketsReceived = .dwInNUcastPkts 
+ objInterface.OctetsReceived = .dwInOctets 
+ objInterface.UnicastPacketsReceived = .dwInUcastPkts 
+ objInterface.UnknownProtocolPackets = .dwInUnknownProtos 
+ objInterface.LastChange = .dwLastChange 
+ objInterface.MaximumTransmissionUnit = .dwMtu 
+ objInterface.OperationalStatus = .dwOperStatus 
+ objInterface.DiscardedOutgoingPackets = .dwOutDiscards 
+ objInterface.OutgoingErrors = .dwOutErrors 
+ objInterface.NonunicastPacketsSent = .dwOutNUcastPkts 
+ objInterface.OctetsSent = .dwOutOctets 
+ objInterface.OutputQueueLength = .dwOutQLen 
+ objInterface.UnicastPacketsSent = .dwOutUcastPkts 
+ objInterface.Speed = .dwSpeed 
+ objInterface.InterfaceType = .dwType 
+ objInterface.InterfaceName = StrConv(.wszName, vbUnicode) 
+ ' 
+ 'Collect traffic info for all the interfaces 
+ ' 
+ m_lngBytesReceived = m_lngBytesReceived + .dwInOctets 
+ m_lngBytesSent = m_lngBytesSent + .dwOutOctets 
+ ' 
+ End With 
+ ' 
+ mvarInterfaces.Add objInterface 
+ ' 
+ Next i 
+ ' 
+ End If 
+ ' 
+End Function 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Excellennnnnt
+	Dextor Saturday, February 17, 2001	
+	
+	
+	
+PPP Dial up connection
+	Randy Knight Wednesday, April 25, 2001	
+	
+	
+	
+Sent data
+	F. Plugge Sunday, May 20, 2001	
+	
+	
+	
+Filter IP headers
+	Guðmundur Gunnþorsson Tuesday, May 22, 2001	
+	
+	
+	
+Bytes in Bytes out
+	Taki Thursday, July 05, 2001	
+	
+	
+	
+More data about TCP/IP packets?
+	Memnoch Wednesday, August 22, 2001	
+	
+	
+	
+Resetting bytes sent/received
+	Bill Stuart Tuesday, September 11, 2001	
+	
+	
+	
+Lastchange
+	E`Tan Sunday, September 30, 2001	
+	
+	
+	
+IP Packets
+	D Blake Tuesday, October 09, 2001	
+	
+	
+	
+Doesnt Work under winXP or 2000
+	Ale Hawk Wednesday, October 31, 2001	
+	
+	
+	
+A bit lame, but heck.
+	Jelmer Baas Monday, November 05, 2001	
+	
+	
+	
+Good work... can we add creating a new IP Table
+	Santosh D. Singh Friday, November 30, 2001	
+	
+	
+	
+For XP to work you must...
+	Megalos Monday, December 17, 2001	
+	
+	
+	
+Causes run-time error in win98
+	C. A. Rakesh Menon Thursday, May 30, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ IP Helper API -
+ Retrieving network interface information
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

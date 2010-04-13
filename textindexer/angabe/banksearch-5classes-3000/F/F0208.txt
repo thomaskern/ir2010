@@ -1,0 +1,277 @@
+
+VB Square - Internet Programming - WinInet Wrapper Module
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Internet Programming > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+WinInet Wrapper Module
+Tip by Sam Huggill
+ 
+Tip description 
+ 
+If you've ever wanted to perform a true POST operation from Visual Basic to a CGI script, then this module includes everything you need. 
+ 
+Tip Code 
+ 
+This module is called modWinInet.bas. Use the SplitAddr() function to get the address in the correct format for PostInfo.
+Option Explicit
+'Author: Sam Huggill
+'Email: sam@vbsquare.com
+Private Declare Function InternetOpen Lib "wininet.dll" _
+ Alias "InternetOpenA" _
+ (ByVal lpszCallerName As String, _
+ ByVal dwAccessType As Long, _
+ ByVal lpszProxyName As String, _
+ ByVal lpszProxyBypass As String, _
+ ByVal dwFlags As Long) As Long
+ Private Declare Function InternetConnect Lib "wininet.dll" _
+ Alias "InternetConnectA" _
+ (ByVal hInternetSession As Long, _
+ ByVal lpszServerName As String, _
+ ByVal nProxyPort As Integer, _
+ ByVal lpszUsername As String, _
+ ByVal lpszPassword As String, _
+ ByVal dwService As Long, _
+ ByVal dwFlags As Long, _
+ ByVal dwContext As Long) As Long
+ Private Declare Function InternetReadFile Lib "wininet.dll" _
+ (ByVal hFile As Long, _
+ ByVal sBuffer As String, _
+ ByVal lNumBytesToRead As Long, _
+ lNumberOfBytesRead As Long) As Integer
+ Private Declare Function HttpOpenRequest Lib "wininet.dll" _
+ Alias "HttpOpenRequestA" _
+ (ByVal hInternetSession As Long, _
+ ByVal lpszVerb As String, _
+ ByVal lpszObjectName As String, _
+ ByVal lpszVersion As String, _
+ ByVal lpszReferer As String, _
+ ByVal lpszAcceptTypes As Long, _
+ ByVal dwFlags As Long, _
+ ByVal dwContext As Long) As Long
+ Private Declare Function HttpSendRequest Lib "wininet.dll" _
+ Alias "HttpSendRequestA" _
+ (ByVal hHttpRequest As Long, _
+ ByVal sHeaders As String, _
+ ByVal lHeadersLength As Long, _
+ ByVal sOptional As String, _
+ ByVal lOptionalLength As Long) As Boolean
+ Private Declare Function InternetCloseHandle Lib "wininet.dll" _
+ (ByVal hInternetHandle As Long) As Boolean
+ Private Declare Function HttpAddRequestHeaders Lib "wininet.dll" _
+ Alias "HttpAddRequestHeadersA" _
+ (ByVal hHttpRequest As Long, _
+ ByVal sHeaders As String, _
+ ByVal lHeadersLength As Long, _
+ ByVal lModifiers As Long) As Integer
+Public Function PostInfo$(srv$, script$, postdat$)
+ Dim hInternetOpen As Long
+ Dim hInternetConnect As Long
+ Dim hHttpOpenRequest As Long
+ Dim bRet As Boolean
+ 
+ hInternetOpen = 0
+ hInternetConnect = 0
+ hHttpOpenRequest = 0
+ 
+ 'Use registry access settings.
+ Const INTERNET_OPEN_TYPE_PRECONFIG = 0
+ hInternetOpen = InternetOpen("http generic", _
+ INTERNET_OPEN_TYPE_PRECONFIG, _
+ vbNullString, _
+ vbNullString, _
+ 0)
+ 
+ If hInternetOpen Then
+ 'Type of service to access.
+ Const INTERNET_SERVICE_HTTP = 3
+ Const INTERNET_DEFAULT_HTTP_PORT = 80
+ 'Change the server to your server name
+ hInternetConnect = InternetConnect(hInternetOpen, _
+ srv$, _
+ INTERNET_DEFAULT_HTTP_PORT, _
+ vbNullString, _
+ "HTTP/1.0", _
+ INTERNET_SERVICE_HTTP, _
+ 0, _
+ 0)
+ 
+ If hInternetConnect Then
+ 'Brings the data across the wire even if it locally cached.
+ Const INTERNET_FLAG_RELOAD = &H80000000
+ hHttpOpenRequest = HttpOpenRequest(hInternetConnect, _
+ "POST", _
+ script$, _
+ "HTTP/1.0", _
+ vbNullString, _
+ 0, _
+ INTERNET_FLAG_RELOAD, _
+ 0)
+ 
+ If hHttpOpenRequest Then
+ Dim sHeader As String
+ Const HTTP_ADDREQ_FLAG_ADD = &H20000000
+ Const HTTP_ADDREQ_FLAG_REPLACE = &H80000000
+ sHeader = "Content-Type: application/x-www-form-urlencoded" _
+ & vbCrLf
+ bRet = HttpAddRequestHeaders(hHttpOpenRequest, _
+ sHeader, Len(sHeader), HTTP_ADDREQ_FLAG_REPLACE _
+ Or HTTP_ADDREQ_FLAG_ADD)
+ 
+ Dim lpszPostData As String
+ Dim lPostDataLen As Long
+ 
+ lpszPostData = postdat$
+ lPostDataLen = Len(lpszPostData)
+ bRet = HttpSendRequest(hHttpOpenRequest, _
+ vbNullString, _
+ 0, _
+ lpszPostData, _
+ lPostDataLen)
+ 
+ Dim bDoLoop As Boolean
+ Dim sReadBuffer As String * 2048
+ Dim lNumberOfBytesRead As Long
+ Dim sBuffer As String
+ bDoLoop = True
+ While bDoLoop
+ sReadBuffer = vbNullString
+ bDoLoop = InternetReadFile(hHttpOpenRequest, _
+ sReadBuffer, Len(sReadBuffer), lNumberOfBytesRead)
+ sBuffer = sBuffer & _
+ Left(sReadBuffer, lNumberOfBytesRead)
+ If Not CBool(lNumberOfBytesRead) Then bDoLoop = False
+ Wend
+ PostInfo = sBuffer
+ bRet = InternetCloseHandle(hHttpOpenRequest)
+ End If
+ bRet = InternetCloseHandle(hInternetConnect)
+ End If
+ bRet = InternetCloseHandle(hInternetOpen)
+ End I
+nd Function
+Public Sub SplitAddr(ByVal addr$, srv$, script$)
+'Inputs: The full url including http://
+' Two variables that will be changed
+'
+'Returns: Splits the addr$ var into the server name
+' and the script path
+ Dim i%
+ i = InStr(addr$, "/")
+ srv$ = Mid(addr$, i + 2, Len(addr$) - (i + 1))
+ i = InStr(srv$, "/")
+ script$ = Mid(srv$, i, Len(srv$) + 1 - i)
+ srv$ = Left$(srv$, i - 1)
+End Sub
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 9 comments. 
+ 
+ 
+Related
+ 
+- 
+Develop Your Own Browser 
+- 
+Develop Your Own Browser: Part II 
+- 
+Making Microsoft Outlook Useful: Part 2 
+- 
+Making Microsoft Outlook Useful 
+- 
+Anyone for WAP? 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

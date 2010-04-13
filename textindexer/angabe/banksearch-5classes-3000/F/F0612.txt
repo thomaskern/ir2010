@@ -1,0 +1,488 @@
+
+Visual Basic and Winsock API - Listening for and accepting connection requests
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Listening for and accepting connection requests 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Listening for and accepting 
+ connection requests
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ 
+ Winsock API Test Bench 10 project 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+hat 
+ the title of this article is talking about? Who is listening? Why should 
+ it accept any requests? To answer these questions just imagine that you 
+ are going to develop a server application that servers one or many 
+ client applications via a network. You'll find out that you know nothing 
+ about how to create "a server side socket" and how it works at all. 
+ Let's try to discover what is going on behind the scene when the client 
+ application is trying to establish a connection, and see the server 
+ behavior. 
+ 
+ You already know that in order to 
+ establish a TCP connection with a server you need to call the 
+ 
+ connect 
+ Winsock API function. When the connect function is called, the transport 
+ service on the client machine forms a network packet that contains a lot 
+ of information such as IP addresses of the client and server computers, 
+ port number of the client socket and the port number on the remote 
+ system the client is going to establish the connection to. 
+ 
+The packet also contains a special 
+ flag bit that informs the server that this packet is a request to 
+ establish a connection. When the server receives such a packet it looks 
+ for the socket on the server machine which is bound to the port 
+ specified in the packet received from the client. That socket must 
+ be in a special state that allows the socket to accept such requests. 
+ This state is called listening. We can 
+ turn the socket into this state using the 
+ listen Winsock API function. 
+ 
+But let's go further. The server 
+ application that holds the listening socket can find out that the socket 
+ has received a connection request using the 
+ select Winsock API function. 
+ If the 
+ select function determines the socket is readable, this 
+ means that the socket has got a connection request. If the server 
+ application decides to accept that request it calls the 
+ 
+ accept Winsock 
+ API function which sends to the client the packet that contains a 
+ special bit that informs the client that the request is accepted and the 
+ server is waiting for a confirmation from the client. The client sends 
+ one more packet that tells the server that the client is agree to go on, 
+ and then the server creates a new socket that will be responsible for 
+ communication via the recently established connection. 
+ 
+Actually, the 
+ 
+ accept function does 
+ three things: sends a packet, receives a packet, and creates a new 
+ socket. This new socket, created with the 
+ accept function, does have the 
+ same parameters as the listening one except that it is not in a 
+ listening state.
+ 
+ 
+The listen Winsock API function
+ 
+ 
+The function is defined in the Winsock 
+ documentation as follows:
+ 
+The Windows Sockets 
+ listen function places a socket a state where it 
+ is listening for an incoming connection.
+ 
+Declare Function listen Lib "ws2_32.dll" (ByVal s As Long, ByVal backlog As Long) As Long
+ 
+The s argument is a handle of the socket we are 
+ going to make listening. The second argument, backlog, is maximum length 
+ of the queue of pending connections. We can don't bother our minds about 
+ this value and let the service provider to choose the suitable number 
+ which will be a maximum reasonable value for that service. To force the 
+ service provider to do this we need just to pass a value of
+ SOMAXCONN 
+ with the backlog argument of the function. 
+ 
+'Maximum queue length specifiable by listen. 
+Public Const SOMAXCONN = &H7FFFFFFF
+ 
+The 
+ listen function returns 0, if no errors 
+ occurred. Otherwise, a returned value is SOCKET_ERROR. As a rule, 
+ you'll not get any error if the socket's handle is a valid one, and the 
+ socket was bound to some address - the 
+ listen function can't turn a 
+ socket into a listening state, if the 
+ bind function has not been called 
+ for that socket. 
+ 
+So, it's probably all we need to know about this 
+ function today. For more information have a look at the 
+ Winsock 
+ documentation. 
+ 
+ 
+The vbListen function
+ 
+ 
+The vbListen function looks as a useless one, as 
+ it actually does do nothing. It just calls the 
+ listen Winsock API 
+ function and returns the same value. So this function is just an example 
+ of how to call the 
+ listen 
+ one in the Visual Basic.
+ 
+ 
+ 
+ 
+Public Function vbListen(ByVal lngSocketHandle As Long) As Long 
+'******************************************************************************** 
+'Purpose :Turns a socket into a listening state. 
+'Return :If no error occurs, returns zero. Otherwise, it returns SOCKET_ERROR. 
+'Arguments :lngSocketHandle - the socket to turn into a listening state. 
+'******************************************************************************** 
+ ' 
+ Dim lngRetValue As Long 
+ ' 
+ lngRetValue = listen(lngSocketHandle, SOMAXCONN) 
+ ' 
+ vbListen = lngRetValue 
+ ' 
+ 'We have nothing to do as vbListen function returns the same value 
+ 'as the listen Winsock API function. 
+ ' 
+End Function
+ 
+ 
+ 
+ 
+The accept Winsock API function
+ 
+ 
+The Windows Sockets 
+ accept function permits an incoming connection 
+ attempt on a socket.
+ 
+Declare Function accept Lib "ws2_32.dll" (ByVal s As Long, ByRef addr As sockaddr_in, _
+ 
+ ByRef addrlen As Long) As Long
+ 
+Set of arguments of the accept function is similar 
+ to what you have already seen in the 
+ connect and 
+ 
+ bind Winsock API 
+ functions. So I hope you have no problems with it as we have learned 
+ these functions before. To remind yourself how to use such a set of 
+ arguments you can take a look at the article 
+ "Connecting to the remote 
+ host" or just see the source code of the
+ vbAccept function below.
+ 
+If no error occurs, 
+ 
+ accept returns a value that is a descriptor for 
+ the new socket. This returned value is a handle for the socket on which 
+ the actual connection is made. So as you see the 
+ 
+ accept function actually creates a new socket. This socket is already 
+ connected to the remote one which was requesting the connection. The
+ addr argument contains an address of the socket on the remote host.
+ 
+ 
+The vbAccept function
+ 
+ 
+The vbAccept function is a wrapper one for the 
+ 
+ accept Winsock API function. It encapsulates the work we need to do to 
+ handle content of the addr and 
+ addrlen arguments of the original 
+ function. Frankly, we don't need that content at all for this sample 
+ application.
+ 
+ 
+ 
+ 
+Public Function vbAccept(ByVal lngSocketHandle As Long) As Long 
+'******************************************************************************** 
+'Purpose :Accepts a connection request, and creates a new socket. 
+'Return :If no error occurs, returns the new socket's handle. 
+ ' 
+ Otherwise, it returns INVALID_SOCKET. 
+'Arguments :lngSocketHandle - the listening socket. 
+'******************************************************************************** 
+ ' 
+ Dim lngRetValue As Long 
+ Dim udtSocketAddress As sockaddr_in 
+ Dim lngBufferSize As Long 
+ ' 
+ 'Calculate the buffer size 
+ lngBufferSize = LenB(udtSocketAddress) 
+ ' 
+ 'Call the accept Winsock API function in order to create a new socket 
+ lngRetValue = accept(lngSocketHandle, udtSocketAddress, lngBufferSize) 
+ ' 
+ vbAccept = lngRetValue 
+ ' 
+End Function
+ 
+ 
+ 
+So, it seems that all is ready to modify the 
+ sample application. Read the next page.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Listening for and accepting connection requests 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

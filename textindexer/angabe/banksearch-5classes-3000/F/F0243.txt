@@ -1,0 +1,64 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Functions
+There are many (and i really mean many) built-in functions in VB that are time savers. From functions that show you the date and time to currency. Anyway, lets get reeaadddyyy tooooo reeaaaddddd -I mean rumble!
+ Tip: Functions are statements that return values, for example Tan(x) returns the tangent of angle x. Tangent is a mathematical function.
+These are Numerical & String functions
+Function: Meaning:
+Abs() - Returns the absolute number
+Atn() - Returns the arc tangent
+Cos() - Returns the cosine value
+Exp() - Returns the constant raised to the power
+Rnd() - Returns a random number
+Sqr() - Returns the square root
+Str() - Converts a number to a numeric string value
+Tan() - Returns the tangent of the angle
+Val() - Converts a numeric string value to a number
+LCase(Str) - Returns that string in all lower case letters
+Len(Str) - Returns the number of characters in that string
+LTrim(Str) - Returns the string w/ any leading spaces cut off
+RTrim(Str) - Returns the string w/ any ending spaces cut off
+Str() - Converts the numeric argument to a string w/ numeric digits in the string
+UCase(Str) - Returns string in all uppercase letters
+OK, so your thinking your never going to need to know all of these, trust me, there might be a few you won't ever use in your life, but your going to end up using some of these if your really serious about programming.
+Here are some examples of how to use these functions:
+ Private Sub Command1_Click()
+ Dim Text As String
+ Text = Text1.Text
+ Label1.Caption = LTrim(Text)
+ 'Returned the string with all leading spaces trimmed off
+ End Sub
+ Private Sub Command1_Click()
+ Dim Value
+ Value = Text1.Text
+ If (Len(Value) 
+ '5 letters or less
+ MsgBox "It's small enough!"
+ Else
+ '6 letters or more
+ MsgBox "It's too big!"
+ End If
+ End Sub
+More functions below on Date & Time:
+Date - Returns the date
+Now - Returns the current date & time
+Time - Returns the current time
+Timer - Returns the number of seconds its been after midnight
+If you were using a function from above your code could look something like this:
+ Private Sub Command1_Click()
+ Label1.Caption = Now
+ 'labels caption shows what time it is now
+ End Sub
+ Tip: This section doesn't cover all the time saving functions in VB but mostly the majority, the truth is there's just too many
+More time saving functions...
+IsNull() - It's true if it's null (meaning blank)
+IsNumeric() - It's true if it can be converted to a Numeric data
+Heres an example of how you would use them;
+ If IsNumeric(txtCost.Text) = True Then 'Checking to see if its a #
+(This would be good for use w/ a calculator application b/c you would get an error if the user has entered a string so therefore it should only except integers)
+Yet again More functions:
+CCur() - Converts whatever's in the () to the equivalent amount of currency
+Int() - Rounds the number to less then or equal to the ()
+And that's that... Next, Modular Programming.
+Back
+Next

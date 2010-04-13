@@ -1,0 +1,373 @@
+
+GotW #74: Uses and Abuses of Vector
+ 
+ 
+ GotW #74 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Uses and Abuses of Vector 
+ Difficulty: 4 / 10
+Almost everybody uses std::vector, and that's good. Unfortunately, many
+people misunderstand some of its semantics and end up unwittingly using it in
+surprising and dangerous ways. How many of the subtle problems illustrated in
+this issue might be lurking in your current program?
+Problem
+JG Question
+1. Given a vector v,
+what is the difference between the lines marked A and B?
+// Example 1: [] vs. at()
+//
+void f( vector& v )
+{
+ v[0]; // A
+ v.at(0); // B
+}
+Guru Question
+2. Consider the following code:
+ // Example 2: Some fun with vectors
+//
+vector v;
+v.reserve( 2 );
+assert( v.capacity() == 2 );
+v[0] = 1;
+v[1] = 2;
+for( vector::iterator i = v.begin();
+ i ::iterator i = v.begin();
+ i 
+v, what is the difference between the lines marked A and B?
+// Example 1: [] vs. at()
+//
+void f( vector& v )
+{
+ v[0]; // A
+ v.at(0); // B
+}
+In Example 1, if v is not empty then there is no difference
+between lines A and B. If v is empty, then line B is guaranteed to
+throw a std::out_of_range exception, but there's no telling what
+line A might do.
+There are two ways to access contained elements within a vector.
+The first, vector::at(), is required to perform bounds
+checking to ensure that the vector actually contains the requested
+element. It doesn't make sense to ask for, say, the 100th element in a vector
+that only contains 10 elements at the moment, and if you try to do such a thing,
+at() will protest by throwing a std::out_of_range
+hissy fit (a.k.a. "exception").
+On the other hand, vector::operator[]() is allowed, but
+not required, to perform bounds checking. There's not a breath of wording in the
+standard's specification for operator[]() that says anything about
+bounds checking, but neither is there any requirement that it have an exception
+specification, so your standard library implementer is free to add
+bounds-checking to operator[](), too. So, if you use operator[]()
+to ask for an element that's not in the vector, you're on your own,
+and the standard makes no guarantees about what will happen (although your
+standard library implementation's documentation might) -- your program may crash
+immediately, the call to operator[]() might throw an exception, or
+things may seem to work and occasionally and/or mysteriously fail.
+Given that bounds checking protects us against many common problems, why
+isn't operator[]() required to perform bounds checking? The short
+answer is: Efficiency. Always checking bounds would cause a (possibly slight)
+performance overhead on all programs, even ones that never violate bounds. The
+spirit of C++ includes the dictum that, by and large, you shouldn't have to pay
+for what you don't use, and so bounds checking isn't required for operator[]().
+In this case we have an additional reason to want the efficiency: vectors
+are intended to be used instead of built-in arrays, and so should be as
+efficient as built-in arrays, which don't do bounds-checking. If you want to be
+sure that bounds get checked, use at() instead.
+Size()ing Up Vector
+Let's turn now to Example 2, which manipulates a vector
+using a few simple operations.
+2. Consider the
+following code:
+ // Example 2: Some fun with vectors
+//
+vector v;
+v.reserve( 2 );
+assert( v.capacity() == 2 );
+This assertion has two problems, one substantive and one stylistic.
+1. The substantive problem is that this assertion might fail.
+Why might it fail? Because the call to reserve() will guarantee
+that the vector's capacity() is at least 2 -- but it might also be
+greater than 2, and indeed is likely to be greater because a vector's
+size must grow exponentially and so typical implementations may choose to always
+grow the internal buffer on exponentially increasing boundaries even when
+specific sizes are requested via reserve().
+So this comparison should instead test using >=, not strict
+equality:
+ assert( v.capacity() >= 2 );
+This leaves us with the other potential issue:
+2. The stylistic problem is that the (corrected) assertion is redundant.
+The standard already guarantees what is here being asserted. Why add needless
+clutter by testing for it explicitly? This doesn't make sense unless you suspect
+a bug in the standard library implementation you're using, in which case you
+have bigger problems.
+ 
+v[0] = 1;
+v[1] = 2;
+Both of the above lines are flat-out errors, but they might be hard-to-find
+flat-out errors because they'll likely "work" after a fashion on your
+implementation of the standard library.
+There's a big difference between size() (which goes with resize())
+and capacity() (which goes with reserve()):
+ 
+ 
+size() tells
+ you how many elements are currently actually present in the container, and resize()
+ adjusts the actual contents of the container to be the specified size by
+ adding or removing elements at the end. Both functions are available for list,
+ vector, and deque, not other containers. 
+ 
+ 
+capacity()
+ tells you how many elements have room before adding another would force the vector
+ to allocate more space, and reserve() grows (never shrinks)
+ into a larger internal buffer if necessary to ensure at least the specified
+ space is available. Both functions are available only for vector. 
+In this case, we used v.reserve(2) and therefore know that v.capacity()
+>= 2, and that's fine as far as it goes -- but we never actually added
+any elements to v, so v is still empty! At this point v
+just happens to have room for two or more elements.
+We can only safely use operator[]() (or at()) to
+modify elements that are actually present, which means that they count towards size().
+At first you might wonder why operator[]() couldn't just be smart
+enough to add the element if it's not already there, but if operator[]()
+were allowed to work this way, you could create a vector with
+"holes" in it! For example, consider:
+ 
+vector v;
+ v.reserve( 100 );
+ v[99] = 42; // if this were allowed, then...
+ // ...now what are the values of v[0..98]?
+Alas, because operator[]() isn't required to perform range
+checking, on most implementations the expression "v[0]"
+will simply return a reference to the not-yet-used space in the vector's
+internal buffer where the first element would eventually go. Therefore, the
+statement "v[0] = 1;" will probably appear to work, kind
+of, sort of, in that if the program were to cout ::iterator i = v.begin(); 
+ i ::iterator happens to be a
+random-access iterator (not necessarily an int*, of course!),
+there's no downside to using ::iterator really is just a plain old int*
+which is cheap to copy and anyway can have extra copies optimized away by the
+compiler, because the compiler is allowed to know about the semantics of int*'s.
+4. Avoid needless recalculations.
+In this case, v.end() doesn't change during the loop, so instead
+of recalculating it on every iteration it might be worthwhile to precalculate it
+before the loop begins.
+Note: If your implementation's vector::iterator is
+just an int*, and your implementation inlines end()
+and does reasonable optimization, it's probable that there's zero overhead here
+anyway because the compiler will probably be able to see that the value of end()
+doesn't change and that it can therefore safely hoist the code out of the loop.
+This is a pretty common case. However, if your implementation's vector::iterator
+is not an int* (for example, if it's a debugging implementation it
+could be of class type), the function(s) are not inlined, and/or the compiler
+doesn't perform the suggested optimizations, then hoisting the calculation code
+out of the loop yourself can make a performance difference.
+5. Prefer '\n' to endl.
+Using endl forces the stream to flush its internal output
+buffers. If the stream is buffered and you don't really need a flush each time,
+just write a flush once at the end of the loop and your program will perform
+that much faster.
+Finally, the last comment hits at a higher level:
+6. Prefer reusing the standard library's copy() and for_each()
+instead of handcrafting your own loops, where using the standard facilities is
+clean and easy. Season to taste.
+I say "season to taste" because here's one of those places where
+taste really does matter. In simple cases, copy() and for_each()
+really can and do improve readability over handcrafted loops. Beyond those
+simple cases, though, unless you have a nice expression template library
+available, code written using for_each() can get unreadable pretty
+quickly because the code in the loop body has to be split off into functors.
+Sometimes that kind of factoring is still a good thing; other times it's merely
+obscure.
+That's why your tastes may vary. Still, in this case I would be tempted to
+replace the above loop with something like:
+ 
+copy( v.begin(), v.end(),
+ ostream_iterator(cout,
+ "\n") );
+Besides, when you reuse copy() like this, you can't get the !=,
+++, end(), and endl parts wrong because
+they're done for you. (Of course, this assumes that you don't want to flush the
+output stream after each int is output; if you do, there's no way
+to do it without writing your own loop instead of reusing std::copy().)
+Reuse, when applied well, not only makes code more readable but can also make it
+better by avoiding some opportunities for pitfalls.
+You can take it a step further and write a container-based algorithm for
+copying -- that is, an algorithm that operates on an entire container, not just
+an iterator range. Doing this would also automatically get the const_iterator
+part right. For example:
+ 
+template
+ OutputIterator copy( const Container& c,
+ 
+ OutputIterator result )
+ {
+ return std::copy( c.begin(), c.end(), result );
+ }
+Here we simply wrap std::copy() for an entire container, and
+because the container is taken by const& the iterators will
+automatically be const_iterators.
+ 
+ cout =, and then becomes
+redundant anyway, as before.
+ 
+cout ::iterator i = v.begin();
+ i (cout,
+ "\n") );
+Notice again that this reuse automatically solves the !=, prefix
+++, end(), and endl comments too -- the
+opportunity to get them wrong never arises! Good reuse often makes code
+automatically faster and safer, too.
+Summary
+Know the difference between size() and capacity().
+Know also the difference between operator[]() and at(),
+and always use the latter if you want bounds-checked access. Doing so can easily
+save you long hours of sweat and tears inside a debugger.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

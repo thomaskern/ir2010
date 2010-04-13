@@ -1,0 +1,26 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Printing
+Printing is pretty easy, but yet can be complicated. VB has many properties for the Print object, you can customize your prints. You have to take many factors into consideration.
+ Note: There is no control for Printing
+Printer. Properties:
+ColorMode - Sets the color mode
+Copies - Sets the number of copies to print
+DrawMode - Determines the graphics to draw on the printer
+Page - Has the page number currently being printed
+Port - Specifies the port
+PrintQuality - Determines the print quality
+Printer. Methods
+EndDoc - Sends out the document to the print spooler
+KillDoc - Terminates the output, and deletes the print
+Print - Prints
+Your Code might look something like this;
+ Printer.Print "age"
+ Printer.EndDoc
+or maybe
+ Printer.Print Lable1.Caption
+ Printer.Print Lable2.Caption
+ Printer.EndDoc
+Those are just the basics to printing w/ VB... Hmm were almost done.
+Back
+Next

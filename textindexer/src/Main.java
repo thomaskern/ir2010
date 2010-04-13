@@ -27,10 +27,11 @@ public class Main {
         int n = Integer.parseInt(in.readLine());
 
         System.out.println("Enter upper threshold bound (0 means deactivated): ");
-        int upper = Integer.parseInt(in.readLine());
+        double upper = Double.parseDouble(in.readLine());
 
         System.out.println("Enter lower threshold bound (-1 means deactivated): ");
-        int lower = Integer.parseInt(in.readLine());
+
+        double lower = Double.parseDouble(in.readLine());
 
         Runner r = new Runner();
         r.run_from_dir(input_directory, arff, n, stemming, lower, upper);

@@ -1,0 +1,117 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Note
+If we assume that Visual Basic itself raises exceptions by calling Err.Raise and that Err.Raise simply sets other properties of Err, such as Err.Number, our own Err.Number obviously won’t be called to set VBA.Err properties (as it would if we simply had a line of code that read, say, Err.Number = 42). This is a pity because if it did call our Err.Number, we could detect (what with our Err.Number being called first before any other routines) that an error was being raised and automatically look after preserving the error context; that is, we could do an Err.Push automatically without having it appear in each error handler.
+All sound good to you? Here’s a sample implementation of a new Err object that contains Pop and Push methods:
+In a class called ErrObject
+Private e() As ErrObjectState
+Private Type ErrObjectState
+ Description As String
+ HelpContext As Long
+ HelpFile As String
+ Number As Long
+End Type
+Public Property Get Description() As String
+ Description = VBA.Err.Description
+End Property
+ Public Property Let Description(ByVal s As String)
+ VBA.Err.Description = s
+End Property
+Public Property Get HelpContext() As Long
+ HelpContext = VBA.Err.HelpContext
+End Property
+Public Property Let HelpContext(ByVal l As Long)
+ VBA.Err.HelpContext = l
+End Property
+Public Property Get HelpFile() As String
+ HelpFile = VBA.Err.HelpFile
+End Property
+Public Property Let HelpFile(ByVal s As String)
+ VBA.Err.HelpFile = s
+End Property
+Public Property Get Number() As Long
+ Number = VBA.Err.Number
+End Property
+Public Property Let Number(ByVal l As Long)
+ VBA.Err.Number = l
+End Property
+Public Property Get Source() As String
+ Source = VBA.Err.Source
+End Property
+ Public Property Let Source(ByVal s As String)
+ VBA.Err.Source = s
+End Property
+Public Sub Clear()
+ VBA.Err.Clear
+ 
+ Description = VBA.Err.Description
+ HelpContext = VBA.Err.HelpContext
+ HelpFile = VBA.Err.HelpFile
+ Number = VBA.Err.Number
+End Sub
+Public Sub Push()
+ ReDim Preserve e(UBound(e) + 1) As ErrObjectState
+ With e(UBound(e))
+ .Description = Description
+ .HelpContext = HelpContext
+ .HelpFile = HelpFile
+ .Number = Number
+ End With
+End Sub
+Public Sub Pop()
+ With e(UBound(e))
+ Description = .Description
+ HelpContext = .HelpContext
+ HelpFile = .HelpFile
+ Number = .Number
+ End With
+ If UBound(e) Then
+ ReDim e(UBound(e) - 1) As ErrObjectState
+ Else
+ VBA.Err.Raise Number:=28 ' Out of stack space - underflow
+ End If
+End Sub
+Private Sub Class_Initialize()
+ ReDim e(0) As ErrObjectState
+End Sub
+Private Sub Class_Terminate()
+ Erase e()
+End Sub
+In Sub Main
+Set Err = New ErrObject
+In Global Module
+Public Err As ErrObject
+As you can see, our new Err object maintains a stack of a user-defined type (UDT) called ErrObjectState. An instance of this type basically holds information from the last error. In Sub Main we create our only ErrObject—note that it’s called Err. This means that calls to methods like Err.Number will be directed to our object. In other words, Err refers to our instance of ErrObject and not the global instance VBA.Err. This means, of course, that we have to provide stubs for all the methods that are normally part of the global Err object: Number, Description, Source, and so on.
+Note that we’ve left LastDLLError off the list. This is because when we pop the stack we’d need to write a value back into VBA.Err.LastDLLError and, unfortunately, this is a read-only property!
+Another object we replace is the Debug object. We do this because we sometimes want to see what debug messages might be emitting from a built executable.
+As you know, "normal" Debug.Print calls are thrown away by Visual Basic when your application is running as an executable; "special" Debug.Print calls, however, can be captured even when the application is running as an executable. Replacing this object is a little trickier than replacing the Err object because the Debug object name cannot be overloaded; that is,you have to call your new object something like Debugger. This new object can be designed to write to Visual Basic’s Immediate window so that it becomes a complete replacement for the Debug object. Chapter 6 shows how you can write your own Assert method so that you can also replace the Debug object’s Assert method.
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

@@ -1,0 +1,77 @@
+
+VB Techniques: Introduction to COM Component Programming
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+Introduction to COM Component Programming
+One of the most feared topics in Visual Basic development is when more experienced developers start talking about COM component development. Any time the term Component Object Model (COM) shows up, people get scared. However, this article will show you that everything you do in VB revolves around COM, and creating your own components isn't that hard, either. 
+The first thing you have to do is to have an idea of what you want your component to do. A component can do anything you want it to do. An article at the VB Techniques web site (http://vbtechniques.com) shows you how to create a component that knows how to read the System Registry. You may want a component that handles error checking and trapping. For purposes of this exercise, we'll create a component that writes a line to a log file, similar to how you might do logging in a real application. The component will be "smart" enough to open the designated log file (we'll use C:\MyLog.txt for our example) when necessary and write its data. The file will also be closed when the component is released. 
+To build this component, you'll need to use either VB 5 or VB 6. When you start VB, you'll see "ActiveX DLL" as one of the types of projects you can build. An ActiveX DLL is the type of file that will contain your COM component(s), so pick that type of project. VB will automatically add a class module to your project, named Class1. Before we start working on the class, we need to add a code module to the project. In that module, you need to add this code:
+Sub Main()
+End Sub
+All DLL files need to have an empty Sub Main just like this one. You should also go into the Project Properties dialog to change the startup object to Sub Main. This is the appropriate setting for any ActiveX DLL you create. 
+The class module should be renamed Log, and you can name your project file Utility or some other appropriate name. The name of the project will be the same as the DLL name, by default. You'll see how that is important after we have built the class. Here's the code you should add to the class module:
+Option Explicit
+Private blnIsFileOpen As Boolean
+Private intFileNum As Integer
+Private Const LOGFILE = "C:\MyLog.txt"
+Public Sub WriteLine(strText As String)
+ If Not blnIsFileOpen Then
+ intFileNum = FreeFile()
+ Open LOGFILE For Output As intFileNum
+ blnIsFileOpen = True
+ End If
+ Print #intFileNum, strText
+ 
+End Sub
+Private Sub Class_Terminate()
+ If blnIsFileOpen Then
+ Close intFileNum
+ End If
+End Sub
+The Boolean flag lets us track whether or not the file has been opened yet. The file's number is stored in the integer value, and the constant specifies the filename. The WriteLine method is the only publicly accessible method from this class. It takes care of opening the file if it hasn't been opened yet. The Class' Terminate event closes the file if it was opened. 
+To test the class as a COM component, you'll need to add a second project to your workspace. Select Add Project from the File menu, and choose Standard EXE project. In order to use the COM component you wrote, you'll need to add a reference to it in the References window. It should be listed near the top of the list; however, it won't be selected by default. 
+In the form that was added to the Standard EXE project, add this code:
+Option Explicit
+Dim objLog As Utility.Log
+Private Sub Form_Load()
+ Set objLog = New Utility.Log
+ objLog.WriteLine "Program started at " & Date & " " & Time & "."
+ 
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+ objLog.WriteLine "Program terminated at " & Date & " " & Time & "."
+ Set objLog = Nothing
+ 
+End Sub
+This form will open a logging object when it is loading, and the logging object will be closed when the form is unloaded. Note that the object is defined as a Utility.Log, where Utility is the name of the DLL, and Log is the name of the class. 
+The last thing to do is to set the Standard EXE as the start-up project (right-click it in the Project window and select that choice from the pop-up menu) and then run your program. The form will be displayed, and you can then close the form. If you then look out in your C:\ directory, you'll see a file called MyLog.txt that has the two log lines in it. Subsequent runs of this program will cause additional lines to be appended to the file, just like a regular log. 
+At this point, you can compile your Utility class into a DLL and use it wherever you need to log data. You may want to expand it by allowing the user to specify a log file, automatically prepend the date/time, and so on. The point is that you have a reusable COM component and you survived the process of building it. Not so bad, was it?
+Written by Eric Smith on 1/31/2001
+Categories
+VB Techniques Articles, COM, DCOM, and COM+ Category
+ASP Techniques Articles, COM Components Category
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

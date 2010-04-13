@@ -1,0 +1,574 @@
+
+ 
+C >> File Input and Output 2 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ File Input and Output 1 
+ Main Menu 
+ File Input and Output 3 
+ 
+ 
+ 
+ 
+File Input and Output 2
+ 
+ 
+ 
+ 
+ 
+ 
+feof()
+ 
+ 
+ 
+ 
+ 
+Here's a function you'll be using in the future. You pass it a FILE pointer, and if you've reached the end of the file, feof 
+ returns 1, else it returns 0. 
+ 
+ 
+ 
+I'll be using this function in the next section but in the meantime, There are a few more functions I'd like to cover... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+fgets()
+ 
+ 
+ 
+ 
+ 
+Reading one character at a time can be a little inefficient, so we can use fgets to read 1 line at a time. 
+ 
+fgets takes three arguments. The first, has to be a char * - the name of a sized char array would work too. 
+ The second is an int - the maximum number of characters read per line. 
+ 
+The third and last, is a stream - a FILE * for example (try it with stdin and see what happens). 
+ 
+fgets returns NULL if the end of the file is reached, else it returns a char *. 
+ 
+ 
+ 
+You can't use an !=EOF check here, as we're not reading one character at a time (but you can use feof). 
+ 
+For this example, I made a file called numbers2.txt in Notepad: 
+ 
+111 222 333
+ 444 555 666
+ 777 888 999
+ 
+Although it's not obvious at first, I put tabs in the last line. 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char c[10]; /* declare a char array */
+ FILE *file; /* declare a FILE pointer */
+ file = fopen("numbers2.txt", "r"); /* open a text file for reading */
+ if(file==NULL) {
+ printf("Error: can't open file.\n");
+ /* fclose(file); DON'T PASS A NULL POINTER TO fclose !! */
+ return 1;
+ }
+ else {
+ printf("File opened successfully. Contents:\n\n");
+ 
+ while(fgets(c, 10, file)!=NULL) { /* keep looping until NULL pointer... */
+ printf("String: %s", c); /* print the file one line at a time */
+ }
+ printf("\n\nNow closing file...\n");
+ fclose(file);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+File opened successfully. Contents: 
+ 
+ String: 111 222 3String: 33 
+ String: 444 555 6String: 66 
+ String: 777 888 9String: 99 
+ 
+ Now closing file... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The main area of focus is the while loop - notice how I performed the check for the return of a NULL pointer. 
+ Remember that passing in char * variable, c as the first argument assigns the line read into c, which is 
+ printed off by printf. I specified a maximum number of characters to be 10 - I knew the number of characters per line 
+ in my text file is more than this, but I wanted to show that fgets reads 10 characters at a time in this case. 
+ 
+ 
+ 
+Notice how fgets returns when the newline character is reached - this would explain why 444 and 777 
+ follow the word "String". Also, the tab character, \t, is treated as one character. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+atoi 
+ Revisited
+ 
+ 
+ 
+ 
+ 
+Notice how I've slipped in an extra lesson after the string section! I thought the atoi function would be especially useful 
+ when reading numerical data from an external text file. 
+ 
+So far, all the information extracted was returned as strings. If our text file contained numbers, we could use atoi to convert 
+ them into integer format for use in our program. 
+ 
+ 
+ 
+Now, fgets treats each line in your text file as a string (it stops reading when it finds a line break). 
+ 
+ 
+ 
+You could put each number on a separate line like this: 
+ 
+6
+ 7
+ 8
+ 9
+ 10
+ 
+- I put this into a file called numbers3.txt so let's get a program to add them up... 
+ 
+ 
+ 
+ 
+ #include 
+#include /* required for atoi */
+int main() {
+ char c[10]; 
+ int sum = 0;
+ FILE *file; 
+ file = fopen("numbers3.txt", "r");
+ if(file==NULL) {
+ printf("Error: can't open file.\n"); 
+ return 1;
+ }
+ else {
+ printf("File opened successfully.\n");
+ 
+ while(fgets(c, 10, file)!=NULL) { 
+ sum += atoi(c); /* convert string to int then add it to sum */
+ }
+ printf("Now closing file...\n");
+ fclose(file);
+ printf("The sum of the numbers is: %d\n", sum);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+File opened successfully. 
+ Now closing file... 
+ The sum of the numbers is: 40 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+So it looks like atoi has worked. Sometimes you can compile without including stdlib.h but your compiler 
+ may display a warning - MSVC++ did in my case. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+fread()
+ 
+ 
+ 
+ 
+ 
+The last reading function reads the entire text file. 
+ 
+fread takes four arguments: 
+ 
+The first is a char * - this could be an actual char pointer or a char array. There are differences between 
+ the two, as we'll see later. 
+ 
+The second argument is the size of char, i.e. 1. 
+ 
+ 
+ 
+The third argument in the number of elements to read. This only has an effect if you passed a char array as opposed to a char 
+ pointer. 
+ 
+The last argument is the FILE pointer. 
+ 
+fread returns the number of characters read if you passed it a char array. 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ FILE *file;
+ char c[30]; /* make sure it is large enough to hold all the data! */
+ char *d;
+ int n;
+ file = fopen("numbers.txt", "r");
+ if(file==NULL) {
+ printf("Error: can't open file.\n");
+ return 1;
+ }
+ else {
+ printf("File opened successfully.\n");
+ 
+ n = fread(c, 1, 10, file); /* passing a char array, reading 10 characters */
+ c[n] = '\0'; /* a char array is only a string if it has the */
+ /* null character at the end */
+ printf("%s\n", c); /* print out the string */
+ printf("Characters read: %d\n\n", n);
+ fclose(file); /* to read the file from the beginning, */
+ /* we need to close and reopen the file */
+ file = fopen("numbers.txt", "r");
+ n = fread(d, 1, 10, file);
+ /* passing a char pointer this time - 10 is irrelevant */
+ printf("%s\n", d);
+ printf("Characters read: %d\n\n", n);
+ fclose(file);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+File opened successfully. 
+ 111 
+ 222 
+ 33 
+ Characters read: 10 
+ 
+ 111 
+ 222 
+ 333 
+ 
+ 444 
+ 5ive 
+ Characters read: 10 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I've explained most of the statements in the comments (that's what comments are there for!). 
+ 
+Passing a char pointer reads in the entire text file, as demonstrated. Note that the number fread returns 
+ in the char pointer case is clearly incorrect. 
+ 
+An important line is: c[n] = '\0'; Previously, I put 10 instead of n (n is the 
+ number of characters read). The problem with this was if the text file contained less than 10 characters, the program would put the 
+ null character at a point past the end of the file. 
+ 
+There are several things you could try with this program: 
+ 
+Read 25 characters instead of 10: n = fread(c, 1, 25, file); 
+ 
+Not bother adding a null character by removing: c[n] = '\0'; 
+ 
+Not bother closing and reopening the file by removing the fclose and fopen after printing the 
+ char array. 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ File Input and Output 1 
+ Main Menu 
+ File Input and Output 3 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

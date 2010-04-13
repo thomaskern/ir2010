@@ -1,0 +1,88 @@
+
+RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+	
+ RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator 
+ 
+I think you have to declare the jar-files themselves in the classpath. C:\MyClass\myjarfile.jar
+to get java to find them. This is because Jar files are storages for classes. If you had the classes in the directroy c:\MyClass would work.
+Submitted by WeeGoSh, 7/4/2001 7:16:31 AM
+Replies:
+- RE: RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValid
+, 
+Eric, 8/2/2001 10:28:05 PM
+[ Reply | Return ] 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

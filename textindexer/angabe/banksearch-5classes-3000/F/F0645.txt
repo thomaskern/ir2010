@@ -1,0 +1,22 @@
+
+.NET - Home - About - Assembly - DirectX - OpenGL - Platform SDK - Downloads - Links 
+November 10, 1998 
+privacy
+ 
+DirectPlay > DirectX Transform 
+DirectShow
+- Video streaming using DirectShow
+DirectShow is probably a good compromise between flexibility (support for multiple formats) and performance to stream media content to DirectDraw surfaces. Unfortunalety the Quartz.dll file brings to Visual Basic only a subset of the DirectShow capabilities, probably because some of these capabilites were totally useless without a DirectX support. While waiting for DirectX Media to follow the path of DirectX Fundation, with an upcoming support for Visual Basic included in DirectX 7, I tweaked the IDL files provided with the DirectX Media SDK, to be able to use DirectShow streaming capabilities against my own DirectX support...
+For more informations :
+- Multimedia Streaming Sample Code
+This code was used as a basis for the provided sample.
+- Use Multimedia Streaming in DirectShow Applications
+A more thorough explanation of the streaming code.
+- Website of Michael Braitmaier
+A DLL that allows to stream DirectShow content with a single call...
+An AVI file rendered on a DirectDraw primary surface using DirectShow... Download dshow01.zip (974 Kb, including type libraries and an AVI file, needs DirectX 6 Media runtime).
+Notice that the Visual Basic code might be seen as "simpler" than its C++ counterpart. The two main reasons are :
+- I don't use explicitely a supplemental IMultiMediaStream object (pMMStream in the C++ code). As IAMMultiMediaStream inherits of IMultiMediaStream, all the capabilities of this later interface are accessible through IAMMultiMediaStream.
+- Similarly pPrimaryVidStream (IMediaStream) is not needed when getting the DirectDrawMedia stream as "QueryInterface" is done automatically for you by Visual Basic...
+© Patrice Scribe, 1998
+Patrice Scribe

@@ -1,0 +1,69 @@
+
+ Litt's Tips : Normalization
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+Presents:
+Copyright 1995-1997 by Steve Litt
+Page Navigation: [ Normalization | Additional
+Normalization Tips ]
+Other Navigation: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]
+Normalization
+Well normalized data makes programming (relatively) easy, and works
+very well in multi-platform, enterprise wide environments. Non-normalized
+data leads to heartbreak. 
+ Normalization: The
+first three forms
+ First Normal Form:
+No repeating groups. As an example, it might be tempting to make an
+invoice table with columns for the first, second, and third line item (see
+above). This violates the first normal form, and would result in large
+rows, wasted space (where an invoice had less than the maximum number of
+line items), and *horrible* SQL statements with a separate join for each
+repetition of the column. First form normalization requires you make a
+separate line item table, with it's own key (in this case the combination
+of invoice number and line number) (See below).
+ Second Normal Form:
+Each column must depend on the *entire* primary key. As an example,
+the customer information could be put in the line item table (see above).
+The trouble with that is that the customer goes with the invoice, not with
+each line on the invoice. Putting customer information in the line item
+table will cause redundant data, with it's inherant overhead and difficult
+modifications. Second form normalization requires you place the customer
+information in the invoice table (see below).
+ Third Normal Form:
+Each column must depend on *directly* on the primary key. As an example,
+the customer address could go in the invoice table (see above), but this
+would cause data redundancy if several invoices were for the same customer.
+It would also cause an update nightmare when the customer changes his address,
+and would require extensive programming to insert the address every time
+an existing customer gets a new invoice. Third form normalization requires
+the customer address go in a separate customer table with its own key (customer),
+with only the customer identifier in the invoice table (see below).
+ 
+[ Troubleshooters.Com | Top
+of page | Home page | Email
+Steve Litt ]
+ Additional
+Normalization Tips
+ Make a table for each
+list
+Do this right away. It will save a fortune in time. Go through the
+department or enterprise, ferreting out all lists. Document them. Each
+should be a table if their information is needed, and if practical.
+ Use non-meaningful primary
+keys
+If employee numbers starting with C mean the person's stationed in
+Chicago, and the person moves to Los Angeles, what do you do with his employee
+number. Making primary keys non-meaningful means changes in environment
+or business rules can't render them ineffective. 
+Page Navigation: [ Normalization | Additional
+Normalization Tips ]
+Other Navigation: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]
+Copyright (C)1997 by Steve Litt. -- Legal

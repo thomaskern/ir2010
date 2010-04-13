@@ -1,0 +1,335 @@
+
+ 
+Requirements Document for GNE
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Requirements Document for GNE
+ Version I, May 12, 2001
+ For information on GNE and Itana, visit:
+ http://www.rit.edu/~jpw9607/
+ 
+What will GNE become?
+ 
+GNE, or the Game Networking Engine, will be a cross-platform C++ networking 
+ library with an API specifically addressing the needs of game networking.
+ 
+What platforms will GNE support?
+ 
+GNE should definitely be compatible "out-of-the-box" with the following 
+ operating systems:
+ 
+ 
+ 
+- Windows 95/98/Me/NT4/2k
+ 
+- Linux
+ 
+ 
+ 
+In addition, GNE should support any UNIX system out-of-the-box if at 
+ all possible, however because I only have access directly to the above 
+ two operating systems I can only guarantee support for those two. I have 
+ an account on a Solaris 8 machine that I can use from time to time to 
+ test GNE on.
+ 
+Makefiles
+ 
+The GNE packaging will have three components:
+ 
+ 
+- Readme files for each compiler supported
+ 
+- Conversion scripts for each compiler supported
+ 
+- Makefiles for each compiler supported
+ 
+ 
+The readme files will reside in the base directory for GNE and will be 
+ named readme., where OS is the operating system, such as "windows" 
+ or "linux." If any compiler-specific information exists, this 
+ information will be in the file for the specific operating system in a 
+ clearly marked section. So any information specific to MSVC will be in 
+ a section in readme.windows.
+ 
+The conversion files will be named fix.bat or fix.sh, 
+ depending on the operating system, where is the name 
+ of the compiler, such as "msvc," "linuxgcc," or "mingw." 
+ The user will run these files first, before using the makefiles.
+ 
+The makefiles will be named makefile..
+ 
+The conversion files will set up the makefiles properly so the user can 
+ perform the following commands to install the library:
+ 
+fixcompiler.bat or ./fixcompiler.sh
+ make
+ make install
+ 
+How will GNE achieve its portability?
+ 
+GNE should use portable ANSI C++ code whenever possible. Non-portable 
+ code will be kept as localized as possible to allow for easy porting, 
+ and will be handled by using the pre-processor. The library should not 
+ compile if these functions are not ported, by the usage of the #error 
+ directive.
+ 
+GNE will use the following libraries as a foundation:
+ 
+ 
+- HawkNL, a networking library that works under Windows, Linux, and 
+ Solaris. It also uses pthreads for multi-threading. The library can 
+ be found at: http://www.hawksoft.com/hawknl/
+ 
+- pthreads, the POSIX threads library, to provide support for threading 
+ under Windows and UNIX. The implementation of pthreads under Windows 
+ will be the same as what HawkNL uses under windows and can be found 
+ at: http://sources.redhat.com/pthreads-win32/
+ 
+ 
+What are GNE's features?
+ 
+ 
+- Provide a C++ class interface for threads, mutexes, and condition 
+ variables.
+ 
+- Provide a C++ class interface for timers and timer callbacks.
+ 
+- Provide a simple C++ implementation of console I/O functions to be 
+ used for the GNE examples, and for text-only servers using GNE. This 
+ implementation is different from ncurses or conio because it thread-aware 
+ to allow output and input to happen from multiple threads at the "same" 
+ time.
+ 
+- Provide a C++ class interface for packets, from which the user is 
+ expected to derive their game-specific packet classes from.
+ 
+- Provide a proper way of serializing packets in endian-independant 
+ format. Some of this functionality will be handled by HawkNL.
+ 
+- Provide the user with a base client/server protocol framework, handling 
+ these specific events, common to virtually any game:
+ 
+ 
+- Low-level connection to the server which is bandwidth monitored 
+ and controled.
+ 
+- Checking for server/client network protocol versions
+ 
+- Handling text messages to be sent to all players
+ 
+- Players entering, leaving, or timing out at any time (the user 
+ can restrict joining to game start only)
+ 
+ 
+ 
+- Provide the user an abstraction of "connections" to a server/client:
+ 
+ 
+- Connections where all packets arrive and arrive in order (packets 
+ over TCP)
+ 
+- Connections where all packets are not guaranteed arrival (UDP)
+ 
+ 
+ 
+- Provide an event-driven scheme for responding to sockets, which will 
+ work similarly to MFC. The user should overload the events they wish 
+ to respond to (onRead, onWrite, etc). A class will also be provided 
+ that sends a connection class and the event type to a C callback function 
+ for those who prefer that method, or for responding to the same event 
+ in the same way, regardless of the connection.
+ 
+- Provide a framework/protocol for a server list server, similar to 
+ networks like battle.net or Half-Life, supporting multiple types of 
+ games with optional game-specific information. Unlike battle.net, the 
+ server list will simply act as a database sending a list of IP addresses, 
+ their game type, and the optional game-specific data.
+ 
+ 
+What projects will GNE be used in?
+ 
+GNE will come with a stand-alone implementation of the list server, and 
+ should work for most, if not all projects, since the server will do nothing 
+ more than echo a list of IP addresses, game names, and a game-specific 
+ data packet. Any game using GNE should be able to use a single GNE server.
+ 
+GNE will also come with example/test programs needed to test all of the 
+ functionality of the library.
+ 
+GNE will be actively used in Itana, as that is the project that this 
+ library is being built for. You can find more information about Itana 
+ at the same site as GNE.
+ 
+How will GNE be documented?
+ 
+Documention for GNE will be handled by doxygen, which will be used to 
+ generate HTML online documentation from the source code. Javadoc style 
+ comments will be used in the code to generate this documentation. You 
+ can find out more about doxygen at:
+ 
+http://www.stack.nl/~dimitri/doxygen/
+ 
+In addition to this main form of documentation, this requirements document 
+ and a UML diagram generated by Rational Rose will be maintained. All documentation 
+ will be kept online at the GNE website.
+ 
+What will be the license of GNE?
+ 
+GNE will be released with the LGPL. HawkNL and pthreads-win32 both use 
+ LGPL.
+ 
+ 

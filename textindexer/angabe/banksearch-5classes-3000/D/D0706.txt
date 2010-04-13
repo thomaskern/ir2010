@@ -1,0 +1,632 @@
+
+JADCentral : CodeCentral : Wireless Java
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+	
+	
+	
+	 
+	 
+	
+ Applets 
+ 
+ 
+ Utilities 
+ 
+ 
+ Multimedia 
+ 
+ 
+ Security 
+ 
+ 
+ Database 
+ 
+ 
+ Servlets/JSP 
+ 
+ 
+ XML 
+ 
+ 
+ Wireless Java 
+ 
+ 
+ JUG Utilities 
+ 
+ 
+ JavaBeans 
+ 
+ 
+ Reference and Tutorials 
+ 
+ 
+ Games and Entertainment 
+ 
+ 
+ Techshowcase Downloads 
+ 
+ 
+ Business Code 
+ 
+ 
+ Unsorted Code 
+ 
+ 
+	 
+	 
+ 
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 	
+	 	
+	 	 Wireless Java 
+	 	 
+	 	 
+	 	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	
+	 
+	
+	 	
+	 
+	 Date 
+	 	
+	 Description 
+	 
+	 Downloads 
+	 
+	 	
+	
+	
+	
+	
+	 	
+	 
+	 6-08-2002 
+	 	
+	 ReqwirelessWeb
+	 Don't be content with hard-to-find, uninspiring WML. Use ReqwirelessWeb a development library for mobile Java (J2ME) devices. ReqwirelessWeb makes building mobile applications that fetch, POST, manipulate and display HTML content on any mobile Java device simple. Yes, that's HTML, so you can use those same Web pages you see on your desktop browser and those same CGI scripts on the backend. Simple indeed.
+ReqwirelessWeb gives developers access to the real Web, making Web-based, mobile Java application development easy.
+ReqwirelessWeb provides the viewing of HTML content, graphics, including GIF, JPEG, PNG, and BMP formats, cookies, forms, security via HTTPS (if supported by the device), basic authentication, HTTP, HTTPS, mailto, FTP, and gopher URLs, viewing of Microsoft Word documents and more in only 37k!
+ReqwirelessWeb is device-agnostic, meaning it will automatically detect the capabilities of the mobile device and contour the experience for the device. Devices that support color see their images in color and devices with bigger screens see more of the web at once. One library, any device.
+	 
+	 
+	 52 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 6-08-2002 
+	 	
+	 EmailViewer
+	 Reqwireless EmailViewer is an email client for mobile Java (J2ME) devices. In addition to being able to send and receive simple plain-text email messages, EmailViewer also supports HTML-based email, giving users the view of the message the author really wanted you to see.
+EmailViewer supports plain-text and HTML-based email messages, graphics, including GIF, JPEG, PNG, BMP formats, reading and sending from multiple email accounts, email protocols: POP3, IMAP and SMTP, click on and view links within email messages, attachments, including Microsoft Word documents, incremental rendering, easy email message composition, address and email contact lists and more in only 60k!
+Can't click on the links in your email messages? Can't see the rich HTML content that you're accustomed to viewing with your desktop email client? Don't be satisfied with limited text email from your mobile device, give EmailViewer a try.
+	 
+	 
+	 74 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-31-2002 
+	 	
+	 WebViewer
+	 Reqwireless WebViewer is an HTML Web browser for mobile Java (J2ME) devices. WebViewer gives you access to the same Web content on your Java-enabled cellphone or PDA that you get with any desktop browser. WebViewer is not a WAP browser; it's an HTML browser.
+WebViewer supports the
+viewing of HTML content, graphics, including GIF, JPEG, PNG, and BMP formats, bookmarks, history, forms, cookies, security via HTTPS (if supported by the device), basic authentication, HTTP, HTTPS, mailto, ftp, gopher URLs, viewing of Microsoft Word documents
+ and more. in only 47k!
+	 
+	 
+	 83 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-31-2002 
+	 	
+	 ReqwirelessEmail
+	 Want to build email capabilities into your mobile applications? Want to see the graphics and attachments as well as the plain old text?
+Check out ReqwirelessEmail, an email development library for mobile Java (J2ME) devices. ReqwirelessEmail builds upon the foundation of ReqwirelessWeb to give mobile developers the ability to send, receive and display all kinds of email from their mobile applications, even those messages sent as HTML. Stop being content with only text-based email for your mobile device and see email the way the author intended it to be seen.
+ReqwirelessEmail gives mobile developers a simple interface to use to add full email capabilities to their mobile applications.
+ReqwirelessEmail supports plain-text and HTML-based email messages, graphics, including GIF, JPEG, PNG, BMP formats, email protocols: POP3, IMAP and SMTP, click on and view links within email messages, attachments, including Microsoft Word documents and more in only 42k!
+ReqwirelessEmail is device-agnostic, meaning it will automatically detect the capabilities of the mobile device and contour the experience for the device. Devices that support color see their images in color and devices with bigger screens see more of their email at once. One library, any device.
+	 
+	 
+	 48 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-30-2002 
+	 	
+	 Globalleafs -Mobile Solutions
+	 Hi,
+If you are trying to develop application with J2ME, then please check this website http://www.globalleafs.com . Also a sample file is included for download.
+	 
+	 
+	 7 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-09-2002 
+	 	
+	 First Aid Guide
+	 A First Aid information MIDlet with step by step instructions to guide you through commonly occuring emergency medical situations. Topics include CPR, mouth-to-mouth, heart attack etc. Each topic has cross references to related topics at the bottom of the screen.
+	 
+	 
+	 12 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-09-2002 
+	 	
+	 World Weather
+	 This midlet displays the current weather conditions for major cities around the world. This version is for memory limited mobile phones. To the minute weather details.
+	 
+	 
+	 16 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-01-2002 
+	 	
+	 microGraphs1.1
+	 microGraphs1.1 is a next generation graphing Java API solution. You can display feature 
+rich graphs on the limited small screens of any MIDP compatible wireless device. 
+The graphs could be Line/Bargraphs or even streaming real time animated graphs. Information 
+you want to display can range from stock information to survey results. microGraphs1.1 comes with powerful features that help end user customize the graphs at run time. 
+The graph display is divided into 9 different event zones. Tap in any one of these zones to turn on/off the feature you like. Change the 
+grid style, graph style and much more. It is easy to upgrade from microGraphs1.0 to 
+microGraphs1.1 as no API method is depricated.
+	 
+	 
+	 31 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-26-2002 
+	 	
+	 mikroDaleks
+	 The original Daleks game ported over to the J2ME(CLDC && MIDP) platform for use on UR favorite mobile devices!=) It's actually serving as a special release for the prerelease of our J2SE debut title - Xkape. Xkape will B a 3D Applet version of Daleks with a few new features and the such. Check back at www.ikrisis.com regularly for more info on this and upcoming projects!=)
+	 
+	 
+	 9 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 JChat
+	 It's a chat for j2me devices. You can make private conversations and you can participate in channels.
+	 
+	 
+	 25 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-16-2002 
+	 	
+	 Java SMS SDK 2.4.0
+	 "The Java SMS SDK provides easy, high-level control of the Simplewire wireless text-messaging platform. This allows any application to easily send SMS messages, including text, ringtones, logos, and Smart Messages to cell phones and pagers on over 300 networks in 118 countries. The Java SMS SDK was designed be to be as developer-friendly as possible by hiding the intricacies of the XML format required to communicate with the Simplewire WMP (Wireless Message Protocol) servers. The Java SMS SDK makes it possible to send an SMS message off with as little as two lines of code."
+	 
+	 
+	 288 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-02-2002 
+	 	
+	 JavaMIDI 5.0
+	 JavaMIDI is a set of classes and a library that let you use a platform's MIDI capabilities from Java. JavaMIDI supports MIDI input and output and arbitrary-length system exclusive packets for Win32 platforms. It contains an all-source, active sensing filter, uses the JNI interface, and can filter out the annoying MIDI "active sensing" bytes. This update adds accurate input time-stamping.
+	 
+	 
+	 33 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 11-15-2001 
+	 	
+	 KVM Support Classes
+	 Classes that can be used to run a KVM application in a regular JVM.
+	 
+	 
+	 60 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 9-12-2001 
+	 	
+	 XMenu
+	 XMenu is a J2ME software that can let you build a simple wireless portal in 15 minutes without programming knowledge. No WML (Wireless Markup Language in WAP) or cHTML (compact HTML in i-mode) is needed.
+	 
+	 
+	 305 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-07-2001 
+	 	
+	 Dyna Works 2.0
+	 DynaWorks is a Java-based framework for rapid application and database development for the Palm running a J2ME Virtual Machine. It allows multiple pages (dialogs) and has a build-in and custom database support. The development of custom conduits is also supported.
+	 
+	 
+	 67 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-04-2001 
+	 	
+	 Java WML classes (FC10-1)
+	 This is an fully java source code for writing Wml documents through servlets or applications, that provide an easy and efficient wap content... You can insert all controls such tables, images, texts, user inputs, postfields, links, etc.
+	 
+	 
+	 140 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 5-04-2001 
+	 	
+	 PalmApp
+	 The PalmApp package makes it easy to test programs written for Sun's KVM DR4.1 using the standard JDK. The package provides replacement files for the three "native" com.sun.kjava classes: Spotlet, Graphics and Database. In addition, the PalmApp class provides the functionality for setting up a Frame/Applet combination and redirecting mouse and keyboard events to the Spotlet.
+	 
+	 
+	 57 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+ 
+ 
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

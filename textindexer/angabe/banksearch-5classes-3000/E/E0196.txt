@@ -1,0 +1,541 @@
+
+	
+	The Object Magazine Online Interview: Bjarne Stroustrup
+The Object Magazine Online Interview:
+Bjarne Stroustrup
+Object Magazine Online: What is your
+favorite software tool or environment? I'd ask what's your favorite programming language
+first, but that would be somewhat rhetorical!
+Bjarne Stroustrup: Maybe; C++ is indeed
+my favorite programming language. However, we should always remember that there are
+lots of interesting and useful programming languages. Nobody who knows one
+programming language should consider himself a professional programmer or designer.
+Learning a new programming language or a new programming technique is a delight.
+We ought to try hard not to get too busy to experiment with new tools, languages,
+and techniques.
+UNIX is still my favorite environment.
+OMO: I agree on the language front.
+As for special purpose languages; I just created a new Web version of the comp.object
+FAQ by utilizing perl's pattern matching and report writing capabilities -- it went
+much faster than if I had used C or C++. I also prefer and was bred on UNIX, although
+I see PCs as having their place.
+What is your favorite Pattern?
+BS: I don't (yet?) think in terms of named
+patterns; I think in terms of techniques and fundamental examples. However, I often
+find uses for the "factory" pattern. In particular, that is the pattern
+that allows me to create objects of an unknown derived class where a piece of code
+requires only knowledge of a common -- more general -- base. Together with extensive
+use of abstract classes, this pattern allows me to write applications that rely directly
+on abstract classes only, and thus allows me to write applications and library modules
+that have very minimal and well-defined dependencies on environments. A traditional
+name for a variant of the factory pattern in the C++ community has been "virtual
+constructors."
+OMO: I've used virtual constructors
+on many occasions, so they seem quite useful. What is your favorite component model
+and which do you think will win out in the long run? Examples are CORBA, DCOM, OpenDoc,
+Beans/RMI, etc.
+BS: I don't have a favorite. I live in
+hope that something far more elegant and/or general will come along. The models you
+mention all seem too large, too complicated, too hard to use, too hard to integrate
+with a programming language, too proprietary, or incur too much overhead to be ideal.
+And no, I don't have an alternative. It
+seems to me that there is something fundamental missing, but I have not been able
+to put my finger on it. I'm looking for something that allows synchronous and asynchronous
+calls to coexist smoothly, something that can be closely integrated into a variety
+of programming languages, and something where modules loaded into a single address
+space can communicate as efficiently as two classes compiled together. To deliver
+all we require of a component model, such a model must be complex, but does that
+complexity really need to be visible to a novice? To someone doing something fundamentally
+simple? I doubt it.
+OMO: Excellent point. What is your favorite
+software methodology? And what do you think about the UML?
+BS: I'm not personally a user of diagrams,
+and what little I have read about the UML had an unpleasent messianic tone to it
+that obscured the technical content. This may be a case where it does make sense
+to "shoot the messenger," though, because the fundamental ideas seem sound.
+When I get a bit of time, I'll try to see
+if UML can model the C++ standard library simply and accurately. If so, it should
+be able to handle much of what will become interesting in the future; if not, it
+has become stuck with a limiting view of what software is. The STL (the containers,
+algorithms, and iterators framework) is a good test of elegant composition of software
+and from independent parts.
+OMO: Good points. I think we often just
+hear the hype and best wishes, like with the component models. How important a role
+do you think methodologies play in software development today? I know you discuss
+this subject in The C++ Programming Language,
+BS: And I thought that reducing the discussion
+of design to a single chapter with two supporting chapters of examples was pretty
+extreme! I think that the focus on all software development must be on concepts and
+the understanding of the application domain. 
+	
+	
+	
+	Java comes nowhere near my ideals for a general-purpose programming
+	language.
+	 
+	
+For larger projects, the rules and processes
+we call methods are necessary, for smaller projects less-rigorous approaches are
+often preferable. Methods are too often used in attempts to compensate for lack of
+direction, for lack of a conceptual framework for the system being built, and a lack
+of concepts in the programming used. A method is not a substitute for thinking and
+understanding. Methods should be applied flexibly enough to accomodate the varying
+talents, tastes, and weaknesses of a diverse manager, designer, and programmer population.
+That said, I favor an approach to design
+roughly along the lines of Booch -- probably with a greater emphasis on general concepts
+and static structure than is fashionable. For details, see Part IV of The C++
+Programming Language (third edition).
+OMO: What is your favorite operating
+system, and what computer do you work on everyday?
+BS: I use UNIX on an antique SPARC station
+and on an SGI. I run Windows 95 and NT on my laptop.
+OMO: Are you much of a Web surfer?
+BS: I use the Web. I probably visit a dozen
+sites a day, but the Web isn't central to my life. Email is still much more important
+to me. I download the odd technical article, and buy the odd item, but much of the
+information I find on the Web is too fragmented, unreliable, and ideosyncratic for
+real learning. I guess the Web has in a short period of time become a valuable resource
+for me, but I still don't rely on it for anything essential.
+I maintain a set of homepages with a fair
+amount of information about C++: 
+OMO: Thanks for the reference -- it
+will be assimilated into the new OO FAQ
+BS: Not much. It's a fairly uninteresting
+language and a very interesting sociological phenomenon, but it's peripheral to my
+professional interests.
+People who insist on comparing Java to
+C++ should take a look at my design criteria for C++ in The Design and Evolution
+of C++.2
+OMO: I've always seen Java as having
+libraries for graphics and Web work. But do you think there's room for other programming
+languages?
+BS: In addition to C++? :-) Certainly.
+No oneprogramming language comes anywhere near serving all the diverse needs
+of current programmers. In theory, there could be a single general-purpose programming
+language. However, I think differences in emphasis, different intellectual traditions,
+and differences in taste will ensure that several will exist. In addition, there
+will always be a need for a plethora of specialized languages.
+Also, knowing several languages is simply
+interesting and also good for you.
+OMO: I've heard this before, that learning
+several languages avoids a mindset on any particular one -- a good principle in general.
+What do you think will come of the current Microsoft/Sun debate over Java?
+BS: The "debate" is pretty disgraceful,
+but inevitable given Sun's attempt to establish Java as an alternative platform to
+Windows and as a programming language to the exclusion of all other programming languages.
+It is really a food fight fought by means foul and fair. It gives little credit to
+either side and appears to hurt innocent bystanders (though the C++ community seems
+mostly unaffected and growing as usual).
+I think the result will be several almost-compatible
+Java variants and a fair number of platform-specific libraries. Sun, MS, and probably
+others want a Java that is platform independent yet runs better on their own platform
+than on platforms supplied by competitors. This will ensure that genuine platform
+independence for nontrivial applications will remain an elusive goal.
+OMO: I have the new third edition of
+The C++ Programming Language, famous successor to The C Programming Language
+otherwise known as K&R. Is this the last and final edition, and could you tell
+us a little about it?
+BS: Well, you can't write the final book
+on a living language. However, we now have an ISO C++ standard so my 3rd edition
+has a more durable subject matter than its two predecessor. The 1st edition had a
+useful life of more than five years and the 2nd was still a bestseller in its sixth
+year when the 3rd was published. Based on that, it seems reasonable to predict a
+useful life of at least seven years for the 3rd edition.
+I think the real importance of my 3rd edition
+is that the programming techniques supported by C++ have matured. Language features
+are in themselves just boring; what is interesting is the programming and design
+techniques they exist to support, the ways in which the language features can be
+used to provide elegant, efficient, and maintainable systems.
+The primary aim of the 3rd is to serve
+as an introduction for experienced programmers and for C++ programmers who want to
+catch up with all that has happened over the last few years. Experienced programmers
+deserve better than the thin fare that is typically offered to novices. I try not
+to insult the intelligence of my readers. My 3rd edition can also serve as a user-level
+reference because all major language features and standard library facilities are
+presented. I think that so much has been learned about how to use C++ effectively
+that many people's view of C++ is completely outdated. 
+	
+	
+	
+	Well, you can't write the final book on a living language.
+	 
+	
+My 3rd describes all the new language features
+that people expect from a modern C++ book: exceptions, templates, runtime type identification,
+namespaces, etc. It also describes, all the new library facilities: containers, algorithms,
+numeric support, strings, parameterized io streams, etc. However, the emphasis is
+on the programming and design techniques that these facilities support. Also, I don't
+forget the basics: C compatibility, programming in the styles commonly used for C,
+use of concrete and abstract classes, programming using class hierarchies, etc.
+I find C++ a more pleasant language to
+use and to describe these days and I take advantage of that to present it in ways
+that are easier to understand. The new standard library is a great help here.
+OMO: You mention C++ is a "living
+language," in that it may continue to grow and change. Will/could there be a
+new standard and in what respects is C++ still alive/changing?
+BS: Every ISO standard has to be revised,
+reconfirmed, or withdrawn every five years. I have no doubt that changes will be
+made starting about six years from now. During these five year cycles [we need to
+develop] a mechanism for handling defect reports and resolving the problems they
+point out exist.
+What I meant is that so much work is being
+done using C++ and so many experiments are performed that it is inconcievable that
+there won't be changes after the period of stability caused by the standard. If nothing
+else, many new techniques will be developed and many interesting libraries will see
+heavy use. Such activities can significantly affect the way to describe and teach
+a language even if no changes are made to the language definition.
+OMO: What would you say are the most
+influential forces in the computing industry today? You could just name a few favorites.
+BS: Or a few villans? Maybe the most influential
+and most destructive current is the pervasive push to dumb down computing. We don't
+seem to be able to educate enough smart people to get our systems built well. This
+is made far worse by the incessant push to deliver systems immediately.
+Given that we can either invest in better
+tools for competent systems builders with a solid understanding of their application
+domains or we can try to simplify and foolproof our tools to the point where someone
+not too bright and without much education can produce something acceptable. I fear
+that the second approach is the most popular and inevitably leads to unreliable bloatware.
+Just about anything that counters that trend is on my list of favorites.
+Better education at all levels comes high
+on my list, and by that I mean a demanding blend of theory and practice for bright
+people -- not leveling down. The patterns movement and the push for better design
+deserve praise. I think better programming languages are part of a solution, but
+it can only be a part. Someone who thinks that a better programming language can
+"solve the software crisis" is sadly deluded. Anyway, the question of what
+constitutes a better programming language is fraught with both politics and genuine
+hard problems.
+OMO: I agree on the education and advanced
+learning forefront -- when I last taught a C++/UML course I tended to talk about
+the more sophisticated topics, such as sibling communication through virtual inheritance
+or DMI and class combinatorial solution idioms, but to students just learning what
+a class is. Perhaps I was a little off...but I do put proper use in context.
+BS: We should be careful to present
+novices -- even experienced programmers who are novices with C++ -- with a coherent
+set of concepts supported by simple examples before progressing to really
+advanced stuff.
+I remember almost despairing of learning
+Ada because the Ada people I listened to were busy impressing each other with how
+advanced their understanding of Ada was and how fantastically complicated [the] cases
+they could handle [were]. I thought "if that's what it takes to understand Ada
+and use it, I'm not sure that I want to." Then, I decided that they were just
+showing off and things were simpler than they appeared.
+OMO: Do you think C++ will find its
+way into Web computing? How?
+It ought to, and it ought not be too hard
+to do. I think that as services mature, C++'s flexibility, efficiency, and facilities
+for coping with complexity will come to good use. However, it will happen only if
+someone makes it their business to make it happen. We need C++ libraries for doing
+"Webbish" things. In the absence of basic library support, it is easier
+to use special-purpose tools and languages. I don't know if such C++ Web-service
+support libraries exist or are being built, but I'd like to see some.
+OMO: Mike's article in this issue points
+us to Object Media,
+where a number of the core Java libraries have been implemented in C++.
+But do you have any ideas on what the
+future model may look like? For example in contrast to Java, where applets travel
+to browsers on demand and perhaps in contrast to CGI, which runs on a server and
+uses dynamic HTML to communicate with users. Do you have any ideas on what the future
+of Web programming should be, or perhaps where C++ should play the greatest role?
+BS: I would rather not be specific, because
+I don't know enough to be certain about anything. C++ seems well-suited for server-side
+stuff. However, it needs libraries for common things such as page presentation, simple
+animation and statistics gathering to be effective in terms of the average service
+provider's time.
+You can get C++ interpreters and other
+mechanisms that allow downloading of C++ code. However, I'm worried about automatic
+download of code -- in any language -- from a server to my machine.
+Security is harder than most people are
+willing to believe and much more important. As more money starts to flow though the
+Web, more crooks will find it worthwhile to develop the tools and the sophistication
+needed to divert some of that flow. Also, as we start placing more information on
+our computers our personal lives gets vulnerable to viruses, etc. I expect to be
+keeping many of my photographs and many of my financial records on computers soon.
+I'm worried what accidental damage I can do to my own information, and I'm rather
+concerned what a random bit of code from a random person somewhere in the world might
+do.
+I think my ideal language for downloaded
+code is far simpler and far less powerful than what is being discused and deployed
+today: "almost braindead" would be a reasonable criteria for anything that
+needs to pass through a firewall -- and we should all have firewalls. Does your company
+allow applets through their firewall? JavaScript? Dynamic HTML? Visual Basic macros?
+OMO: Good point -- we should all start
+being more careful. Now that they're all finished, how satisfied are you with the
+results of the C++ standardization efforts?
+BS: I'm very happy with C++ as it emerged
+from the standards process. No major feature that I know how to provide is missing
+and no major feature that I would seriously like to remove is present.
+In particular, I'm very pleased that we
+(that is, the C++ Standards Committee of which I have been an active member) managed
+to accept the STL framework of efficient and type-safe containers (such as vector,
+list, and map) and fundamental algorithms (such as find, sort, and accumulate). This
+closes the most glaring hole in C++ as commonly shipped. Until now, we haven't had
+a standard set of containers.
+The standard library makes it far simpler
+to teach C++. No longer do we have to start out with low-level pointer manipulation
+to accomodate C-style arrays and strings. Instead, we can use appropriate container
+types and strings and thereby postpone the discussion of lower-level concepts until
+students are ready to deal with them. Importantly, the standard containers and the
+string class manage the storage for their elements and expand as needed. This means
+that memory management becomes completely automatic for simple programs and far simpler
+than it used to be for larger systems.
+Naturally, the 3rd edition [of the C++
+Programing Language explains this in some detail. It also relies on the standard
+library to ease the introduction of concepts.
+OMO: What's next? Will there be another
+iteration to C++? Another language?
+BS: I designed C++ because I couldn't find
+a programming language that served my needs. I would design another language only
+if I again found a problem for which no existing language was a good tool/solution.
+C++ is a perfectly good solution to most of the problems I face in my daily work,
+and for the tasks where it is not, alternatives exist.
+Currently, I'm working on some internal
+AT&T projects. In part, I'm trying to broaden my experience and to learn about
+new and interesting problems. The AT&T network is one of the worlds largest,
+most complicated, and most reliable distributed systems. With the rapid evolution
+of the telecommunications industry, there is no shortage of interesting problems.
+OMO: In the new C++ standard, there
+are many additions such as templates for casting, including for checked downcasting,
+which already exist in the language. I believe these are called static and dynamic
+casts. Did you create this new notation, and why are they there?
+BS: Yes, I was the one who invented the
+dynamic_cast syntax to parallel the syntax for explicitly qualified
+template function calls. Together with Dmitry Lenkov from HP, I was the proposer
+of the runtime type identification (RTTI) mechanisms. 
+	
+	
+	
+OMO: Are you a big fan of Streams?
+	
+	BS: I was the one who invented streams, and I find the general concept most attractive.
+	
+	 
+	
+RTTI is easily overused. However, for loosly-coupled
+systems where objects are passed between separately-developed subsystems, RTTI is
+inevitable. The dynamic_cast was designed as the ideal mechanism for
+recovering enough type information to deal with objects that must be passed between
+subsystems without making misuses too easy and tempting. If you design your system
+so that major interfaces are abstract classes, dynamic_cast is the operation
+you need for intermodule communication where you need it to discover which interfaces
+(abstract classes) an object provides.
+OMO: So this means that because specialized
+interfaces should't be used in intersubsystem communication/interfaces, objects passed
+as parameters must first be upcast to some common base class (to pass through the
+subsystem interface methods), and then downcast back to their more specific supported
+(inherited) interfaces once through the wall, so that their more specialized methods
+(not in the common base interface) may be accessed through this set of common (downcastable)
+interfaces (abstract classes). This seems to call for two sets of common interfaces,
+one used for intersubsystem communication and another for common objects which travel
+between them, if I read you correctly.
+BS: Yes. Note that the upcast is implicit
+and automatic. Secondly, I imagine that the intermodule interface will often be the
+abstract classes that constitute the key interfaces within an application. Have a
+look at the Io_obj example from either D&E or my 3rd edition [of
+The C++ Programming Language]. That example shows how to "bury"
+the system interfaces and the RTTI deep in the implementation of an inter-process
+communication system. An application can be written almost exclusively in its own
+terms (interfaces) and keep all knowledge of the underlying system localized.
+This actually has a rather strong relation
+to what I said about the factory pattern. The key is to keep interfaces to things
+that might vary at run time abstract.
+OMO: Are you a big fan of Streams?
+You mean the iostreams in the C++ standard
+library? I guess I am. I was the one who invented streams and I find the general
+concept most attractive. It is inherently type-safe, extensible, terse, and efficient.
+Over the years, the stream library has gathered quite a few barnacles, though, and
+it remains to be seen if implementations of the full-blown iostreams library can
+deliver the efficiency inherent in the basic concept. I consider it obvious that
+improvements to the current implementations are possible. For example, there is no
+reason a simple "Hello, World!" program should take up more than a couple
+of dozen kilobytes.
+OMO: Thanks. I was referring to the
+general concept of streaming, which I find quite elegant and which also appears as
+a metaphor outside of I/O. Strings (string streams) would provide the simplist example.
+Do you prefer the C++ Standard Library's generic function approach to the old inheritance
+approach? I heard you talk once about the efficiency gain by using this form of parametric
+polymorphism instead of inclusion, but it does lead to an awful lot of common functions.
+Do you have any other feelings on the subject?
+BS: I was one of the main proponents of
+including the STL into the standard library. I consider the generic-container-plus-iterators
+approach an elegant resolution of the problems with older approaches. Chapter 16
+of my 3rd edition (the first of the standard library chapters) explains this in some
+detail. Basically, the STL approach allows us to use simple, optimal, type-safe containers
+while still being able to write code that can be used for a wide variety of containers.
+For example, the same traversal algorithm can be applied to both a vector and a list
+without imposing virtual function overheads on the access to elements.
+By "an awful lot of common functions"
+do you mean code-replication overhead or the need to provide a large set of functions
+for every container? Code replication can be designed away and I don't think that
+writing a standards-conforming container is more work that writing any other "industrial
+strength" container. The key savings comes when we don't have to replicate algorithms
+for each container. Also, where close-to-optimal efficiency isn't required, we can
+simply build a "traditional" container class that meet the standard's container
+requirements and then use inheritance based on that one.
+OMO: I was thinking of the difference
+between using base class methods for commonality of algorithm and general methods
+verses generic functions, where the primary difference seems to be whether the algorithm
+is in a common base class or in a function. I think the idea is the same but the
+structuring is different. The approaches seem equivalent. I believe the inheritance
+approach could be categorized as the Template Pattern, which is perhaps my favorite,
+typically for frameworks.
+Do you think tasking (or threads) belong
+in a programming language? Can I presume they were left out of C++ to provide users
+with a choice on the model to employ?
+BS: You are exactly right. I knew too many
+reasonable models for concurrrency to feel comfortable with building a single one
+into C++. Some people want non-preemptive threads for the most efficient and more
+basic concurrency, others want pre-emptable threads, others still want full-blown
+processes, and yet others want a concurrency mechanism that guarantees the integrity
+of transactions across a distributed system. I would have liked to serve them all
+by including a set of fundamental concurrency mechanisms that could serve as a basis
+for several forms of concurrency in C++. However, I never found a set that I felt
+could serve most of the C++ community well.
+The result has been that there is a number
+of competing concurrency models for C++. See for example Parallel Programming
+Using C++,3
+It describes a variety of approaches to
+concurrency in C++.
+OMO: Thanks for the reference. Again
+its technological distinctiveness will be added to the Object FAQ. Java has single
+inheritance and multiple interface inheritance, while C++ has multiple inheritance
+(and abstract classes) which is a combination of typing and representation. I've
+even heard, much to my dismay, that multiple inheritance is being taught as a bad
+idea in school today and I've talked to architects who believe multiple inheritance
+causes maintenance problems as parent classes evolve apart over time. What do you
+think about all of this?
+BS: Every useful/powerful feature can be
+misused, and every feature not present in a language tends to be deemed "dangerous"
+by proponents of that language. You can write lousy programs using multiple inheritance,
+just as you can write lousy programs with single inheritance and without inheritance.
+However, when your problem naturally maps to multiple inheritance, you get the maintenance
+problems by using only single inheritance or no inheritance. Basically, when you
+need multiple inheritance, you use it or you write a mess of forwarding functions.
+The exact same statement applies to single inheritance.
+I use multiple inheritance in about a dozen
+places in my 3rd edition. I don't make a big deal out of it, because it's really
+quite simple.
+The Java designers decided to provide only
+a crippled form of multiple inheritance. That's their choice and it may make sense
+in their world, but there are places where I prefer multiple inheritance to all alternatives
+I know of in the context of C++ and the kinds of problems I think most about -- and
+those problems tend to require a combination of long-term maintainability and high
+efficiency.
+OMO: I agree completely. Java has pointer
+semantics and C++ has objects and pointers. While the Java model is simpler, it expands
+on the error of not allocating an object to a reference. Personally, I've advocated
+recursive types as a better theoretical approach, although it makes pointers implicit.
+What do you think?
+BS: I think pointers have had a bad press
+lately. In theory, we might be able to do without pointers, but in real-world software
+we don't seem to be able to. Using a different name for "pointer" doesn't
+help much.
+When you want to point to an element, a
+pointer is a perfectly good construct. I think a lot of the problems come from messing
+around with pointers at a very low level -- such as a C-style string or a linked
+list where the programmer has to manipulate the links directly. The string and the
+containers and algorithms in the C++ standard library ought to help here. Low-level
+pointer manipulation can be eliminated from most code written by novices and casual
+programmers. Personally, I am suspicious of any piece of code that uses a pointer
+to pointer directly.
+OMO: I agree. I believe high-level structures,
+especially with the help of generic collection classes, should almost always replace
+pointers in code. Java has a small reflection package in 1.1: Have you ever considered
+adding reflection to C++?
+BS: Often. However, I have not seen an
+approach to full reflection directly supported by a language that didn't cause serious
+overheads. Also, reflection seems to encourage styles of programming that make it
+hard to determine what's going on from the source text and discourage static checking.
+I see that as a problem. Consequently, the C++ RTTI provides only the minimal information
+to determine the types of objects at run time. Where necessary, this can be used
+as a handle for more information about types (classes), but any such information
+is beyond what the standard guarantees.
+OMO: I agree completely that strong
+static typing handles many, if not most, cases. Like other advanced techniques, I
+see dynamic typing/dynamic reflection as rather advanced in principle and when called
+for provides a simpler solution than using idioms when dynamic facilities aren't
+present (it must be done regardless or a less than optimal model employed). But like
+anything else, dynamics can be over, or inappropriately, used.
+Last I heard, about 30-40% of all first
+semester CS courses had adopted C++ for a programming language. Do you have any new
+statistics? And do you know what percentage of the professional software development
+community is using C++? I'd guess it's not too far from the dominant position of
+Microsoft operating systems or Intel CPUs.
+BS: I don't know the number of C++ programmers
+and I don't know the number of programmers, but yes, C++ seems to be in a very prominent
+position among builders of significant systems -- as opposed [to its position] among
+builders of small applications. With the prominence comes an opportunity and an obligation
+to teach C++ and the techniques it supports well. C++ often is used in ways that
+are severely sub-optimal. Writing C or Smalltalk using C++ syntax is rarely a great
+improvement over alternatives.
+Thus, teaching C++ well is very important.
+Different categories of programmers need different approaches. For example, someone
+who has never programmed before needs a different approach from a C programmer trying
+to add techniques to his repertoire, and the C programmer again needs a different
+approach from someone approaching C++ from a Pascal/Ada background.
+In all cases, though, I encourage an approach
+based on an emphasis on strong static typing and abstraction techniques. I consider
+a heavy early emphasis on C or on class hierarchies problematic. There is a lot of
+mileage to be had out of strong static type checking and out of concrete and abstract
+classes before heading into the trickier parts of the common subset of C and C++
+or the trickier parts of object-oriented programming.
+OMO: Mike Spertus wrote an article appearing
+in this issue about coding Java in C++ by only using a simple subset of C++ that
+can be easily translated to Java. This code would then be portable and would also
+satisfy the boss who wants code written in C++. Further, the idea (one that Mike
+wrote about in a previous Object Currents column) is that applications should
+only use simple language constructs anyway and leave the more complex ones, such
+as operator overloading, to utilities and libraries to keep applications from becoming
+obscure. What do you think? Mike also believes garbage collection is better in C++
+because of greater development maturity and flexibility in choosing packages. Do
+you agree with him?
+BS: Hmmm. It seems to me that C++ is a
+perfectly good garbage-collected language, but I haven't gathered enough personal
+experience with garbage-collected C++ to give detailed recommendations. If you want
+a garbage collector for C++, there are good ones available -- both free and commercially
+supported.
+Garbage collection for idiomatic C++ is
+efficient because there is less garbage to collect than there would be in traditional
+garbage-collected languages that allocate everything in a heap (e.g., Lisp, Smalltalk,
+Java). C++ garbage collectors also have the advatage of handling garbage created
+by the C parts of a program.
+It should also be remembered that the standard
+library containers manage memory for their elements. This means that you can reduce
+the amount of explicit memory management radically even without a garbage collector.
+I consider it obvious that relatively inexperienced
+C++ programmers should try to avoid trickier parts of the language. However, I see
+no point in scaring the majority of programmers away from large parts of the language.
+For example, when used with caution, operator overloading is quite simple and very
+useful. That doesn't mean that writing a matrix algebra library is a good choice
+as a first C++ project. That's an area where getting one of the available matrix
+libraries and concentrating on learning it well is a good idea.
+However, restricting oneself to the C subset
+of C++ or the Java-like subset of C++ is a bad idea for most programmers. For starters,
+unless you use templates, you'll have to write code that's far less type safe. The
+presence of casts (explicit type conversion) in a program -- outside small well-delimited
+areas -- is a sign of poor design. Most application code should need only a few casts,
+and libraries that force their user to use casts are not taking advantage of modern
+C++. Where a language mechanism fits a problem, avoiding that language feature simply
+forces the complexity it would have helped manage into the user code.
+OMO: Good points: I've made the same
+argument about using sophisticated features where appropriate to simplify programming
+and to avoid the Turing Tarpit. This seems to be the same as the multiple inheritance
+issue (and also my reflection issue, too).
+BS: C++ is a language you can grow with.
+I don't think that the fact that you can't master it and its key techniques in a
+week or a month is a reason for complaints. Most of the complexity is there to make
+life simpler for you when you need them. Importantly, C++ can be learned in stages
+and at least most of what you don't know won't hurt you.
+D&E is my explanation of what C++ is
+and why. My 3rd is my current best attempt to show how C++ can be learned and used;
+it is foreward-looking in that it depends on and explains features of Standard C++
+that are only just becoming available. I think the best has yet to come.
+References
+1. Stroustrup, Bjarne, 
+The C++ Programming
+Language, Third Edition, Addison-Wesley, Reading, MA, 1997.
+2. Stroustrup, Bjarne,
+The Design and
+Evolution of C++, Addison-Wesley, Reading, MA, 1994.
+3. Parallel Programming Using C++,
+Gregory V. Wilson and Paul Lu (editors), The MIT Press, Cambridge, MA, 1996. 
+Last Modified: Sunday, 01-Feb-1998 07:18:58 EST

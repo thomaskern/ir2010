@@ -1,0 +1,108 @@
+
+Optimizing Java for Maintainability
+ 
+Optimizing Java for Maintainability
+[ index ]
+[ benchmarks
+ | compilers 
+ | resources
+ | rules
+ | size
+ | speed
+ | tools ]
+Being able to understand code is especially important in an object-oriented
+language such as Java, where code should be reused and inherited wherever
+possible. Note that some of the "optimizations" here can conflict with those
+that make your code faster or smaller.
+Use good tools:
+The less time you spend worrying about editting, compiling, storing, and
+ viewing code, the more time you can spend getting it right. There
+ are many commercial IDEs available (often with freely-available trial
+ versions), as well as a bunch of free ones, plus assorted tools such as
+ code repositories, class browsers, code decompilers, etc. There are also 
+ many reviews online (e.g. from JavaWorld,
+ or Dave
+ Dyer). 
+ 
+Coding standards:
+Use a coding standard: a set of rules for how to package, name,
+ manipulate, and document your classes. Some possibilities:
+ 
+ 
+- Draft Java
+	 Coding Standard from Doug
+	 Lea
+ 
+- Java
+	 Naming Conventions from Sun.
+ 
+- Java 
+	 Coding Style Guidelines from Kent
+	 Sandvik at SGI.
+ 
+- Comments
+	 on Java Programming Style from Numeric Quest.
+ 
+- Java
+	 Beans Coding Guidelines from IBM.
+ 
+ 
+No fancy tricks:
+Write code to be read by a human, not by a compiler. Don't use any 
+ other optimizations that make your code harder to read or understand.
+ 
+No assumptions:
+Write for the average programmer. For example, parenthesize
+ expressions rather than assuming that everyone knows the operator
+ precedence rules. Similarly, don't rely on implicit superclass
+ constructor calls or default constructors without using comments to make
+ their absence explicit.
+ 
+Documentation:
+Use javadoc
+ to produce online documentation for your classes. Note that some features
+ of javadoc are undocumented: -authors to generate
+ authors from @author tags, -version to generate a
+ version number from a @version tag, -noindex and
+ -notree to stop AllNames.html and tree.html
+ from being generated (see Dr Dobb's
+ Journal, July 1996). Put a dummy class "zzz.java" in your
+ packages, because javadoc ignores the last class (alphabetically) in each
+ package (tip from Mel Haas).
+ 
+ 
+Avoid gray areas:
+Certain areas of the Java spec (especially new 1.1 features) can be
+ unclear or buggy
+ (as currently implemented). Try to avoid code that depends on a
+ particular interpretation of the spec, or that depends on a buggy
+ implementation. See also the Java Hall of
+ Shame. 
+Avoid incompatible code:
+Java isn't (yet) truly cross-platform, as anyone can attest who has tried
+ to write threaded code that works in appletviewer, Netscape Navigator, and
+ Internet Explorer. Apart from thread policies 
+, the other main area of incompatibility is the AWT.
+ Dave Schultz has summarized the
+ differences between platforms. 
+Don't use Java:
+Instead, write in a different language that you can then compile into
+ Java. This can be especially helpful if you're trying to convert a
+ legacy application. See also Java as
+ an Intermediate Language.
+Other resources:
+Many books describe techniques for making C and C++ code more maintainable
+ that can also be applied to Java. In particular, I like
+ Writing
+ Solid Code by Steve Maguire, and
+ Code
+ Complete by Steve McConnell.
+ 
+ http://www.cs.cmu.edu/~jch/java/maintainability.html 
+ Optimizing Java for
+ Maintainability 
+ 
+ 
+ Last modified: Wed 18 Mar 1998 
+ Copyright &#169 1996, 1997 Jonathan Hardwick 
+ 

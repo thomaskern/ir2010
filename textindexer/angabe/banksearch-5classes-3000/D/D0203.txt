@@ -1,0 +1,317 @@
+
+Your First Cup of Java (for Win32)
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Trail: Getting Started
+Lesson: Your First Cup of Java
+Your First Cup of Java (for Win32)
+ 
+ 
+Detailed Instructions
+for Your First Program
+The following instructions will help you write your first program.
+These instructions are for users of Win32 platforms, which include Windows
+95/98/2000/ME/XP/NT 4.0. We start with a checklist of what you need to 
+write your first program. Next, we cover the steps to creating an 
+application, steps to creating an applet, and explanations of 
+error messages you may encounter.
+ 
+ 
+1. A
+Checklist 
+2. Creating Your First
+Application
+ a. Create a 
+Java Source File 
+ b. Compile 
+the Source File 
+ c. Run the 
+Program 
+ 
+3. Creating Your First Applet 
+4. Where to Go from
+Here 
+1.
+A
+Checklist 
+To write your first program, you need:
+- 
+The JavaTM 2 Platform, Standard Edition.
+You can 
+download the SDK now and consult the
+installation instructions. (Make sure you download the SDK, not the JRE.) 
+- 
+A text editor. In this example, we'll use NotePad, the simple editor
+included with the Windows platforms. To find NotePad, from the Start
+menu select Programs > Accessories
+> NotePad. You can easily adapt these instructions
+if you use a different text editor. 
+These two items are all you need to write your first Java program.
+Note: You may want to consider using an IDE to help you write your programs. 
+Java 2 SDK, Standard Edition v. 1.4, is available bundled with an IDE, 
+the ForteTM for 
+JavaTM, Community Edition. Select the 
+ForteTM/SDK option on the 
+1.4 download page. 
+2.
+Creating
+Your First Application
+ 
+ 
+ 
+Why
+Bytecodes are Cool
+So, you've heard that with the Java programming language,
+you can "write once, run anywhere." This means that when you compile your
+program, you don't generate instructions for one specific platform. Instead,
+you generate Java bytecodes, which are instructions for the Java Virtual
+Machine (Java VM). If your platform--whether it's Windows, UNIX, MacOS,
+or an Internet browser--has the Java VM, it can understand those bytecodes. 
+ 
+ 
+Your first program, HelloWorldApp, will simply
+display the greeting "Hello world!". To create this program, you will: 
+- 
+Create a source file. A source
+file contains text, written in the Java programming language, that you
+and other programmers can understand. You can use any text editor to create
+and edit source files.
+ 
+- 
+Compile the source file into a bytecode file.
+The compiler, javac, takes your source file and translates
+its text into instructions that the Java Virtual Machine (Java VM)
+can understand. The compiler converts these instructions into a bytecode file.
+ 
+- 
+Run the program contained in the bytecode file. The Java 
+interpreter installed on your computer implements the Java VM. 
+This interpreter takes your bytecode file and carries out the 
+instructions by translating them into instructions that your 
+computer can understand.
+ 
+top
+a.
+Create a Source File.
+To create a source file, you have two options:
+- You can save the file
+HelloWorldApp.java
+on your computer and avoid a lot of typing. Then, you can go straight
+to step b.
+- Or, you can follow these longer instructions:
+1. Start NotePad. 
+In a new document, type in the following code:
+/**
+ * The HelloWorldApp class implements an application that
+ * displays "Hello World!" to the standard output.
+ */
+public class HelloWorldApp {
+ public static void main(String[] args) {
+ // Display "Hello World!"
+ System.out.println("Hello World!");
+ }
+}
+ 
+ 
+ Be
+Careful When You Type 
+ 
+ 
+Type all code, commands, and file names exactly as shown.
+The Java compiler and interpreter are case-sensitive, so you must
+capitalize consistently.
+HelloWorldApp
+ helloworldapp
+ 
+2. Save this code to a file. From the
+menu bar, select File > Save
+As. In the Save As dialog box: 
+- 
+Using the Save in drop-down menu, specify
+the folder (directory) where you'll save your file. In this example, the
+directory is java on the C drive.
+- 
+In the File name text box, type
+"HelloWorldApp.java", including the double quotation marks.
+- 
+From the Save as type drop-down menu, choose
+Text
+Document. 
+When you're finished, the dialog box should look like this:
+Now click Save, and exit NotePad.
+top
+b.
+Compile
+the Source File.
+From the Start menu, select the
+MS-DOS
+Prompt application (Windows 95/98) or Command
+Prompt application (Windows NT). When the application launches,
+it should look like this:
+The prompt shows your current directory. When you bring up the prompt
+for Windows 95/98, your current directory is usually WINDOWS on
+your C drive (as shown above) or WINNT for Windows NT.
+To compile your source code file, change your current directory to the
+directory where your file is located. For example, if your source directory
+is java on the C drive, you would type the following
+command at the prompt and press Enter:
+ cd c:\java 
+Now the prompt should change to C:\java>.
+Note: To change to a directory on a different drive,
+you must type an extra command.
+ 
+ 
+As shown here, to change to the java directory
+on the D drive, you must reenter the drive, d: 
+If you enter dir at the prompt, you should see your file.
+Now you can compile. At the prompt, type the following command and press
+Enter:
+ javac HelloWorldApp.java 
+If your prompt reappears without error messages, congratulations. You have
+successfully compiled your program.
+ 
+Error
+Explanation
+Bad command or file name (Windows 95/98)
+The name specified is not recognized as an internal or external
+command, operable program or batch file (Windows NT)
+If you receive this error, Windows cannot find the Java compiler, javac.
+Here's one way to tell Windows where to find javac. Suppose
+you installed the Java 2 Software Development Kit in C:\jdk1.4.
+At the prompt you would type the following command and press Enter: 
+C:\jdk1.4\bin\javac HelloWorldApp.java
+Note: If you choose this option, each time you compile or run a
+program, you'll have to precede your javac and java commands
+with C:\jdk1.4\bin\. To avoid this extra typing, consult the
+section 
+Update the PATH variable in the installation instructions. 
+The compiler has generated a Java bytecode file, HelloWorldApp.class.
+At the prompt, type dir to see the new file that was generated:
+Now that you have a .class file, you can run your program.
+top
+c.
+Run the Program.
+In the same directory, enter at the prompt:
+ java HelloWorldApp 
+Now you should see:
+Congratulations! Your program works.
+ 
+Error
+Explanation
+Exception in thread "main" java.lang.NoClassDefFoundError: HelloWorldApp
+If you receive this error, java cannot find your bytecode file,
+HelloWorldApp.class.
+One of the places java tries to find your bytecode file is
+your current directory. So, if your bytecode file is in C:\java,
+you should change your current directory to that. To change your directory,
+type the following command at the prompt and press Enter:
+cd c:\java
+The prompt should change to C:\java>. If you enter dir
+at the prompt, you should see your .java and .class files.
+Now enter java HelloWorldApp again.
+If you still have problems, you might have to change your CLASSPATH
+variable. To see if this is necessary, try "clobbering" the classpath with
+the following command:
+set CLASSPATH=
+Now enter java HelloWorldApp again. If the program works now,
+you'll have to change your CLASSPATH variable. For more information, consult
+the section 
+5. Update the PATH variable in the installation instructions. 
+top
+3. Creating Your
+First Applet
+HelloWorldApp is an example of a Java
+application, a standalone program. Now you will create a Java
+applet called HelloWorld, which also displays the
+greeting "Hello world!". Unlike HelloWorldApp, however,
+the applet runs in a Java-enabled Web browser such as HotJava,
+Netscape Navigator, or Microsoft Internet Explorer.
+To create this applet, you'll perform the basic steps as before:
+create a Java source file; compile the source file; and run the
+program.
+a. 
+Create a Java Source File.
+Again, you have two options:
+- You can save the files
+HelloWorld.java and Hello.html on your
+computer and avoid a lot of typing. Then, you can go straight to step b.
+- Or, you can follow these instructions: 
+1.
+Start NotePad. Type the following code into a new document: 
+import java.applet.*;
+import java.awt.*;
+ 
+/**
+ * The HelloWorld class implements an applet that
+ * simply displays "Hello World!".
+ */
+public class HelloWorld extends Applet {
+ public void paint(Graphics g) {
+ // Display "Hello World!"
+ g.drawString("Hello world!", 50, 25);
+ }
+}
+ 
+Save this code to a file called HelloWorld.java.
+2. You also need an HTML file
+to accompany your applet. Type the following code into a new NotePad
+document:
+ 
+ 
+A Simple Program
+Here is the output of my program:
+ 
+Save this code to a file called Hello.html.
+b. Compile the Source
+File.
+ 
+At the prompt, type the following command and press Return: 
+ 
+ 
+ javac HelloWorld.java 
+The compiler should generate a Java bytecode file,
+HelloWorld.class.
+c. Run the Program.
+ 
+Although you can view your applets using a Web browser, you may find 
+it easier to test your applets using the simple appletviewer 
+application that comes with the JavaTM 
+Platform. To view the HelloWorld applet using appletviewer, enter at the prompt: 
+ 
+ appletviewer Hello.html 
+Now you should see:
+Congratulations! Your applet works.
+top
+4. Where to Go from Here
+To continue your introduction to the Java programming language, check out
+these trails:
+ 
+Getting Started 
+ 
+Learning the Java Language 
+If you have feedback on these instructions --
+whether you love them or had trouble following them --
+please tell us.
+top
+ 
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

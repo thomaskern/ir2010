@@ -1,0 +1,185 @@
+
+4.4)Language fundamentals, Initialisation
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+4) Language Fundamentals 
+Objective4) 
+State the effect of using 
+ a variable or array element of any kind when no explicit assignment has been 
+ made to it.
+Variables 
+You could learn to program in Java without really understanding the agenda 
+ behind this objective, but it does represent valuable real world knowledge. 
+ Essentially a class level variable will always be assigned a default value and 
+ a member variable (one contained within a method) will not be assigned any default 
+ value. If you attempt to access an unassigned variable an error will be generated. 
+ For example 
+class MyClass{ 
+	public static void main(String argv[]){ 
+	int p; 
+	int j = 10; 
+	j=p; 
+	} 
+}
+This code will result in an error along the lines 
+"error variable p might not have been assigned" 
+This can be viewed as a welcome change from the tendency of C/C++ to give you 
+ enough rope by leaving an arbitrary value in p. If p had been defined at class 
+ level it would have been assigned its default value and no error would be generated. 
+class MyClass{ 
+static int p; 
+	public static void main(String argv[]){ 
+	int j = 10; 
+	j=p; System.out.println(j); 
+	} 
+}
+The default value for an integer is 0, so this will print out a value of 0. 
+The default values for numeric types is zero, a boolean is false and an object 
+ reference is the only type that defaults to a null. 
+ 
+ 
+ 
+ 
+Before initialization arrays are always set to 
+ contain default values wherever they are created. 
+ 
+ 
+Arrays 
+Learning this part of the objective requires understanding a simple rule. The 
+ value of the elements of an array of any base type will always be initialised 
+ to a default value, wherever the array is defined. It does not matter if the 
+ array is defined at class or method level, the values will always be set to 
+ default values. You may get questions that ask you what value is contained 
+ in a particular element of an array. Unless it is an array of objects the answer 
+ will not be null (or if they are being particularly tricky NULL).
+ 
+ 
+ 
+ 
+Question 1)
+Given the following code what will element b[5] contain?
+public class MyVal{
+public static void main(String argv[]){
+ MyVal m = new MyVal();
+ m.amethod();
+}
+public void amethod(){
+boolean b[] = new boolean[5];
+ }
+}
+1) 0
+ 2) null
+ 3) ""
+ 4) none of these options
+ 
+Question 2)
+Given the following constructor what will element 1 of mycon contain?
+MyCon(){
+	int[] mycon= new int[5];
+}
+1) 0
+ 2) null
+ 3) ""
+ 4) None of these options
+ 
+Question 3)
+What will happen when you attempt to compile and run the following code?
+public class MyField{
+int i=99;
+public static void main(String argv[]){
+ MyField m = new MyField();
+ m.amethod();
+ }
+void amethod(){
+ int i;
+ System.out.println(i);
+ }
+}
+1) The value 99 will be output
+ 2) The value 0 will be output
+ 3) Compile time error
+ 4) Run time error
+ 
+Question 4)
+What will happen when you attempt to compile and run the following code?
+public class MyField{
+String s;
+public static void main(String argv[]){
+ MyField m = new MyField();
+ m.amethod();
+ }
+void amethod(){
+ System.out.println(s);
+ }
+}
+1) Compile time error s has not been initialised
+ 2) Runtime error s has not been initialised
+ 3) Blank output
+ 4) Output of null 
+Answers
+Answer 1)
+4) none of these options
+Sneaky one here. Array element numbering starts at 0, therefore there is no 
+ element 5 for this array. If you were to attempt to perform
+System.out.println(b[5])
+You would get an exception.
+Answer 2)
+1) 0
+A constructor acts no different to any other method for this purpose and an 
+ array of integers will be initialised to contain zeros wherever it is created.
+Answer 3)
+3) Compile time error
+You will get a compile time error indicating that variable i may not 
+ have been initialised. The classs level variable i is a red herring, 
+ as it will be shadowed by the method level version. Method level variables do 
+ not get any default initialisation.
+Answer 4)
+4) Output of null
+A variable created at class level will always be given a default value. The 
+ default value of an object reference is null and the toString 
+ method implicitly called via System.out.println will output null
+ 
+ Other sources on this topic
+ 
+ This topic is covered slightly in the Sun Tutorial at 
+ 
+ http://java.sun.com/docs/books/tutorial/java/nutsandbolts/vars.htmll
+ 
+ Richard Baldwin Covers this topic at
+ http://www.geocities.com/Athens/Acropolis/3797/Java020.htm#variables
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec4.html#obj12 
+ 
+Last updated
+28 Dec 1999
+copyright © Marcus Green 1999 
+ 
+ 
+ 
+ 
+ 

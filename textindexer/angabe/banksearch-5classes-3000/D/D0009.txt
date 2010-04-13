@@ -1,0 +1,384 @@
+
+Java Source Code for Stereoscopic Animated Hypercube
+Java Source Code for Stereoscopic Animated Hypercube
+See also: My Critique of this Code.
+// | Java Source Code for Stereoscopic Animated HyperCube applet
+// | This is a Java 1.0 applet.
+// | Copyright (c) Mark Newbold, 1996-2002
+// | Last modified March 30, 2002
+// | (Changed name of "object" parameter to "obj" due to conflict with Java 1.3 Plug-in.)
+// | Usable by permission for noncommercial purposes.
+// | http://dogfeathers.com
+// |
+// | Optional Parameters:
+// | NAME=obj VALUE=cube or VALUE=24cell or VALUE=crosspoly or VALUE=simplex
+// | NAME=projection VALUE=n where n is a number between 0 and 95, divisible by 5
+// | NAME=speed VALUE=n where n is a number between 1 and 100
+import java.awt.*;
+import java.lang.Math;
+import java.util.*;
+public class HyprCube extends java.applet.Applet
+{
+ private HyprCubeFrame myFrame;
+ private Container myParent;
+ private HyprCubePnl3 pnlDraw;
+ private Panel pnlCtl;
+ private Label lblProj;
+ private Label lblSpeed;
+ private Button btnProjMinus;
+ private TextField txProj;
+ private Button btnProjPlus;
+ private Button btnSpeedMinus;
+ private TextField txSpeed;
+ private Button btnSpeedPlus;
+ private Button btnStartStop;
+ private Button btnDetach;
+ private Button btnStereo;
+ private Dimension dimOrigSize;
+ boolean bStandalone = false;
+ // Parameters
+ private int objnum = 1; // 1=cube 2=24-cell 3=cross-polytope 4=simplex
+ private int proj = 0; // current projection factor
+ private int speed = 10; // current speed
+ private int maxspeed = 100; // max allowed speed
+ private int stereo_opt = 0; // 0=red-blue 1=red-green 2=look-crossed
+ double getProj() { return Math.sqrt(proj/100.0); }
+ double getSpeed() { return Math.sqrt(speed / 10.0); }
+ int getStereoOpt() { return stereo_opt; }
+ int getObjnum() { return objnum; }
+ private void putInFrame()
+ {
+ // hang onto the size for when we removeFromFrame
+ dimOrigSize = new Dimension(size());
+ myParent = getParent();
+ String strFrameName;
+ switch (objnum) {
+ case 2: strFrameName = "24-Cell"; break;
+ case 3: strFrameName = "Cross Polytope"; break;
+ case 4: strFrameName = "Simplex"; break;
+ default: strFrameName = "Hypercube"; break;
+ }
+ myFrame = new HyprCubeFrame(this, strFrameName);
+ Dimension siz = new Dimension(dimOrigSize);
+ myFrame.resize(siz);
+ myFrame.add("Center",this);
+ myFrame.show();
+ if (btnDetach != null) btnDetach.setLabel(" Attach ");
+ }
+ void removeFromFrame()
+ {
+ myFrame.remove(this);
+ myFrame.dispose();
+ myFrame = null;
+ myParent.add("Center",this);
+ resize(dimOrigSize);
+ myParent.show();
+ if (btnDetach != null) btnDetach.setLabel(" Detach ");
+ }
+ static public void main(String args[])
+ {
+ HyprCube hc = new HyprCube();
+ int len = args.length;
+ if (len >= 1) hc.parseObjParam(args[0]);
+ if (len >= 2) hc.parseProjParam(args[1]);
+ if (len >= 3) hc.parseSpeedParam(args[2]);
+ hc.bStandalone = true;
+ hc.resize(new Dimension(400,458));
+ hc.init();
+ hc.putInFrame();
+ hc.start();
+ }
+ private void parseObjParam(String paramString)
+ {
+ String objNames[] = { "cube", "24cell", "crosspoly", "simplex" };
+ int m;
+ for (m=0; m 95) newp = 95;
+ proj = newp - (newp % 5);
+ }
+ private void parseSpeedParam(String paramString)
+ {
+ Integer newspeed = new Integer(0); // Integer wrapper
+ int newsp;
+ newsp = newspeed.parseInt(paramString);
+ if (newsp maxspeed) newsp = maxspeed;
+ speed = newsp;
+ }
+ public void init()
+ {
+ System.out.println(getAppletInfo());
+ if (!bStandalone) {
+ // Check parameters
+ String paramString;
+ paramString = getParameter("obj");
+ if (paramString != null) parseObjParam(paramString);
+ paramString = getParameter("projection");
+ if (paramString != null) parseProjParam(paramString);
+ paramString = getParameter("speed");
+ if (paramString != null) parseSpeedParam(paramString);
+ }
+ setLayout(new BorderLayout());
+ pnlDraw = new HyprCubePnl3(this);
+ add("Center",pnlDraw);
+ pnlCtl = new Panel();
+ GridBagLayout gridbag = new GridBagLayout();
+ GridBagConstraints c = new GridBagConstraints();
+ pnlCtl.setLayout(gridbag);
+ lblProj = new Label("Projection:");
+ lblSpeed = new Label("Speed:");
+ btnProjMinus = new Button(" - ");
+ txProj = new TextField("XXXX");
+ txProj.setEditable(false);
+ btnProjPlus = new Button(" + ");
+ btnSpeedMinus = new Button(" - ");
+ txSpeed = new TextField("XXXX");
+ txSpeed.setEditable(false);
+ btnSpeedPlus = new Button(" + ");
+ btnStartStop = new Button(" Stop ");
+ btnStereo = new Button(" Stereo ");
+ c.insets = new Insets(5,0,0,0);
+ c.weightx = 0.1;
+ c.gridx = 1;
+ c.gridy = 0;
+ c.gridwidth = 1;
+ c.anchor = GridBagConstraints.WEST;
+ gridbag.setConstraints(lblProj, c);
+ pnlCtl.add(lblProj);
+ c.gridx = 4;
+ c.gridy = 0;
+ c.gridwidth = 1;
+ c.anchor = GridBagConstraints.WEST;
+ gridbag.setConstraints(lblSpeed, c);
+ pnlCtl.add(lblSpeed);
+ if (!bStandalone) {
+ btnDetach = new Button(" Detach ");
+ c.gridx = 7;
+ c.weightx = 4.0;
+ c.anchor = GridBagConstraints.EAST;
+ gridbag.setConstraints(btnDetach, c);
+ pnlCtl.add(btnDetach);
+ }
+ c.insets = new Insets(0,0,5,0);
+ c.gridy = 1;
+ c.gridx = GridBagConstraints.RELATIVE;
+ c.gridwidth = 1;
+ c.weightx = 0.4;
+ c.anchor = GridBagConstraints.EAST;
+ gridbag.setConstraints(btnProjMinus, c);
+ pnlCtl.add(btnProjMinus);
+ c.weightx = 1.0;
+ c.anchor = GridBagConstraints.CENTER;
+ c.fill = GridBagConstraints.HORIZONTAL;
+ gridbag.setConstraints(txProj, c);
+ pnlCtl.add(txProj);
+ c.weightx = 3.0;
+ c.anchor = GridBagConstraints.WEST;
+ c.fill = GridBagConstraints.NONE;
+ gridbag.setConstraints(btnProjPlus, c);
+ pnlCtl.add(btnProjPlus);
+ c.gridx = GridBagConstraints.RELATIVE;
+ c.gridwidth = 1;
+ c.weightx = 0.4;
+ c.anchor = GridBagConstraints.EAST;
+ gridbag.setConstraints(btnSpeedMinus, c);
+ pnlCtl.add(btnSpeedMinus);
+ c.weightx = 1.0;
+ c.anchor = GridBagConstraints.CENTER;
+ c.fill = GridBagConstraints.HORIZONTAL;
+ gridbag.setConstraints(txSpeed, c);
+ pnlCtl.add(txSpeed);
+ c.weightx = 3.0;
+ c.anchor = GridBagConstraints.WEST;
+ c.fill = GridBagConstraints.NONE;
+ gridbag.setConstraints(btnSpeedPlus, c);
+ pnlCtl.add(btnSpeedPlus);
+ c.gridwidth = 1;
+ c.weightx = 4.0;
+ c.gridx = 6;
+ c.anchor = GridBagConstraints.EAST;
+ gridbag.setConstraints(btnStartStop, c);
+ pnlCtl.add(btnStartStop);
+ c.gridx = 7;
+ c.anchor = GridBagConstraints.EAST;
+ gridbag.setConstraints(btnStereo, c);
+ pnlCtl.add(btnStereo);
+ add("South",pnlCtl);
+ setTxProj();
+ setTxSpeed();
+ pnlDraw.init();
+ pnlDraw.show();
+ start();
+ }
+ public void start()
+ {
+ btnStartStop.setLabel(" Stop ");
+ pnlDraw.start();
+ }
+ public void stop()
+ {
+ btnStartStop.setLabel(" Start ");
+ pnlDraw.stop();
+ }
+ public boolean action(Event evt, Object arg)
+ {
+ if (evt.id == evt.ACTION_EVENT) {
+ int newproj = proj;
+ if ((evt.target == btnProjMinus) && (newproj >= 5)) newproj -= 5;
+ if ((evt.target == btnProjPlus) && (newproj 1)) newspeed--;
+ if ((evt.target == btnSpeedPlus) && (newspeed 2) stereo_opt = 0;
+ pnlDraw.makecolors();
+ pnlDraw.repaint();
+ }
+ }
+ return false;
+ }
+ private void setTxProj()
+ {
+ Double dbl = new Double(proj/100.0); // Double wrapper
+ txProj.setText(dbl.toString());
+ }
+ private void setTxSpeed()
+ {
+ Integer spd = new Integer(speed); // Integer wrapper
+ txSpeed.setText(spd.toString());
+ }
+ public String getAppletInfo()
+ {
+ return "HyprCube applet v1.3 (c) 1996-2002 Mark Newbold\nLast updated: March 30, 2002\nAuthor: Mark Newbold\nhttp://dogfeathers.com";
+ }
+}
+class HyprCubePnl3 extends Panel implements Runnable
+{
+ private Image offscreenImg;
+ private Graphics offscreenG;
+ private Dimension offscreensize;
+ private Thread runner;
+ private Random rand = new Random();
+ private final double velmax = .03; // max velocity, radians per cycle
+ private final double velinc = .006; // velocity increment, radians
+ private final int delay = 50; // sleep milliseconds
+ private double vertices[][]; // vertex coords in 4-space
+ private int vert2xR[]; // screen coords of vertices
+ private int vert2xL[];
+ private int vert2y[];
+ private byte edges[][]; // "from" and "to" vertex indices
+ private double vel[][] = new double[4][4];
+ private double m1[][] = new double[4][4];
+ private double m2[][] = new double[4][4];
+ private double rot4[][] = new double[4][4];
+ private double ROT4[][] = new double[4][4];
+ private double ROT4A[][] = new double[4][4];
+ private double newROT[][] = new double[4][4];
+ private double ROTM[][] = new double[4][4];
+ private double holdROT[][];
+ private double rotvert[] = new double[4];
+ private double vec1[] = new double[3];
+ private double vec2[] = new double[3];
+ private double vec3[] = new double[3];
+ private double R4; // radius in 4-space
+ private int dx,dy; // screen width,height
+ private int dx_offset; // dx shift for stereo opt 2 (look-crossed)
+ private int xbase,ybase; // center of screen, in pixels
+ // projection parameters
+ // Calculated by "calcProjParms"
+ private double fac,dfac,deps,deltar,vpfR,R3,epsfac;
+ private boolean bLeftFirst;
+ private boolean bTracking = false;
+ private boolean bShiftDown;
+ private int mouseX, mouseY; // last mouse X and Y
+ private Color leftColor,rightColor,backgColor;
+ private HyprCube owner;
+ HyprCubePnl3(HyprCube own) // constructor
+ {
+ owner = own;
+ }
+ private void defineCube()
+ {
+ int i,j,k,dif,ct;
+ vertices = new double[16][4];
+ edges = new byte[32][2];
+ // create the vertices
+ for (i=0; i > (3-j)) & 1) - 0.5;
+ }
+ // Create the edges
+ // Considering each vertex to be a 4-bit bit-pattern, there
+ // is an edge between each pair of vertices that differ in only
+ // one bit.
+ k = 0;
+ for (i=0; i >= 1) if ((dif&1) != 0) ct++;
+ if (ct == 1) {
+ edges[k][0] = (byte)i;
+ edges[k][1] = (byte)j;
+ k++;
+ }
+ }
+ }
+ }
+ private void define24Cell()
+ {
+ byte bitss[] = new byte[24]; // 4-bit values labelling the
+ // hypercube squares
+ byte masks[] = new byte[24]; // masks indicating which
+ // particular 2 bits are significant
+ int mask,bits;
+ int i,j,k,m,n,d,e;
+ vertices = new double[24][4]; // vertex coords in 4-space
+ edges = new byte[96][2]; // "from" and "to" vertex indices
+ // We construct the 24-Cell by making 3-d octahedra in each of the 3-cubes
+ // that form a hypercube. The 6 vertices of the each octahedron touch
+ // in the center of each face of the 3-cube.
+ // Hypercube vertices are labeled by 4-bit values.
+ // A 3-cube within a hypercube is formed from all vertices
+ // that have the same value of a particular bit.
+ // A 2-square is formed from all vertices that have the
+ // same values of 2 particular distinct bits.
+ // We use the bitss and maskss arrays to label the vertices according to
+ // which 2-square they lie on.
+ i = 0; // vertex index
+ for (m=0; m > d) & 1) != 0
+ ? 2 * ((bits >> d) & 1) - 1
+ : 0;
+ }
+ i++;
+ }
+ }
+ }
+ }
+ // Construct the 96
+ // Loop thru the 3-cubes
+ // A 3-cube is all vertices that have a single particular bit value in common.
+ // We make an edge from the center of each 2-square of the 3-cube to
+ // the center of each adjacent 2-square.
+ e = 0;
+ for (m=0; m max) { // hang onto the indices of the biggest element
+ max = dsq;
+ abi = i;
+ abj = j;
+ }
+ }
+ }
+ if (max vmax) {
+ d = vmax / angl;
+ angl = vmax;
+ for (i=0; i infinity)
+ //
+ // Where I is the identity matrix and "^n" represents the operation
+ // of multiplying the matrix by itself n times.
+ // We expand the exponential as a power series in the matrix "vel", noting that R = exp(vel)
+ // and using the standard power series expansion of the exponential.
+ // The "vel" matrix has the property that vel . vel . vel = -angl * angl * vel
+ // (where "." is matrix multiplication)
+ // Define a matrix m1 as vel / angl.
+ // Then m1 . m1 . m1 = -m1
+ // Odd powers of m1 can be written as m1^(2n+1) = (-1)^n * m1
+ // Even powers of m1 can be written as m1^(2n+2) = (-1)^n * (m1 . m1)
+ // Define m2 as m1 . m1
+ // Odd powers of vel can be rewritten: vel^(2n+1) = angl^(2n+1) * (-1)^n * m1
+ // Even powers > 0 of vel can be rewritten: vel^(2n+2) = angl^(2n+2) * (-1)^n * m2
+ // Rewrite the power series using m1 and m2.
+ // The odd terms are a series expansion of sin(angl) * m1
+ // The even terms with n > 0 are a series expansion of (1 - cos(angl)) * m2
+ // The zero-order term is the identity matrix.
+ // Build m1 by scaling vel by an appropriate factor.
+ // m1 has the property that m1 . m1 . m1 = -m1
+ // (where the "." is matrix multiplication)
+ for (i=0; i 

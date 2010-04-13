@@ -1,0 +1,36 @@
+
+ XML for ASP .NET Developers 
+By: Dan Wahlin 
+ISBN: 0672320398 
+Publisher: Sams Publishing 
+ 
+ 
+XML for the experienced 
+Reviewed By: Gordana Lamb 
+In his book "XML for ASP.NET Developers”, Dan Wahlin 
+focuses on the different ways XML can be used by developers in ASP.NET 
+applications to make them more efficient, flexible and maintainable. This book 
+is targeted at the intermediate and advanced developers and, unlike the "Step by 
+Step XML” by Michael Young which can be considered a light reading in 
+comparison, it will require a considerable investment of your time and effort to 
+get through all of the chapters. However, the information covered is pretty 
+extensive. Dan provides an in-depth coverage of many XML topics and includes 
+numerous code samples that help illustrate his points.
+The book can be divided into four different sections. In the first section, 
+he covers the XML basics including the XML document rules, elements, attributes, 
+namespaces, DTDs and XML Schemas, and all of the other things that you need to 
+know when you are just starting to learn XML. However, he quickly dives into 
+more advanced topics such as XPath, XPointer and XLink.
+The second section focuses on different programming concepts starting with a 
+look at the different classes in the System.XML assembly. This is followed by 
+examples on how to work with Document Object Model (DOM) and how to transform 
+XML with XSLT. The next section covers concepts related to working with data 
+including ADO.NET and new XML features in SQL Server 2000. The final section is 
+a chapter that provides some brief information on SOAP and Web Services 
+including examples on how to consume web services from an ASP.NET page.
+This book provides a good reference on many XML topics, but it is important 
+to know that the author expects you to be an experienced developer with some 
+familiarity with .NET concepts. If you are just starting to learn about .NET and 
+XML, you might want to start with something that is more targeted to beginners. 
+In addition, all of the sample code is provided in C# only. 
+	

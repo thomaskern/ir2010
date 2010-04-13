@@ -1,0 +1,401 @@
+
+	
+	Mock Java Certification Exam
+	
+Java Programmer Certification Mock Exam No 1 
+ Copyright ©Marcus Green 2002
+Last Updated 20 June 2002
+Buy Java Certification books containg more mock exams
+at
+http://www.jchq.net/bookreviews/jcertbooks.htm
+This is my mock Exam No 1 based on the Objectives for the Sun Java
+Programmers Exam. It was created by Marcus Green
+(mail@marcusgreen.co.uk)
+and may be freely distributed so long as it is unmodified. Please
+email me if you have any corrections or comments, but please read
+this document first 
+http://www.jchq.net/homepage/getanswers.htm.
+If you obtained this exam from some other source please email me
+to let me know and check out the latest version at
+http://www.jchq.net 
+It really does come with answers 
+Yes, this is a long document (around 35 pages if you were to print it out), if you cannot see
+the answers then you have not got the entire document, try reloading
+it untill you can see the answer to Question 60 and the words "End
+of document";. The answers contain references to approximately
+which objective the question relates to. If you have a query about
+any of these questions, please, please include the full answer with
+the question.
+Why not discuss this exam with other people ?
+You can post a message on the discussion forum at
+http://www.jchq.net/discus
+You could also send me your question but I get heaps of
+email and my answer is likely to be slow and terse.
+How does this compare with the real thing?
+As of 5 Oct 2000 the question format has changed very slightly.
+You will now get more questions that include snippets (though the
+ratio may be similar to this mock exam). Each question will also tell
+you how many of the options you need to pick. You can read more about
+these revisions at http://www.jchq.net/faq/ExamUpdate.htm.
+You should assume that the real thing will be harder though many
+people have told me that they get similar marks in the real thing to
+my exams. Take a look at the "how jchq helped me" forum at
+http://www.jchq.net/discus
+to find how other people find the real exam and this material.
+Where can you find other Mock Exams?
+Check out my FAQ at http://www.jchq.net/faq/jcertfaq.htm
+for links to other mock exams You will find links to many good mock
+exams that add up to hundreds of questions. You can check out my
+second mock exam that contains 60 question at
+http://www.jchq.net/mockexams/exam2.htm
+If you think you have found an error:-
+Please include which exam you are referring to, ie 1 or 2 (and
+maybe soon 3) 
+Read the questions carefully
+I have tried to make the questions unambiguous (the meaning should
+be obvious), but make sure you have read what I have written not what
+you think I might have written. Thus if it says "Classes can be
+declared with the private modifier ", it means It is possible to
+declare a class with the private modifier and not that all classes in
+all situations can be declared as private. Each question may have one
+or more correct Answers. 
+Questions
+Question 1)
+Which of the following lines will compile without warning or
+error. 
+1) float f=1.3; 
+2) char c="a"; 
+3) byte b=257;
+4) boolean b=null; 
+5) int i=10; 
+ 
+Answer to Question
+1 
+Question 2)
+What will happen if you try to compile and run the following code 
+public class MyClass {
+ public static void main(String arguments[]) {
+	amethod(arguments);
+ }
+ public void amethod(String[] arguments) {
+	System.out.println(arguments);
+	System.out.println(arguments[1]);
+ }
+}
+1) error Can't make static reference to void amethod. 
+2) error
+method main not correct 
+3) error array must include parameter 
+4)
+amethod must be declared with String 
+Answer to Question
+2 
+Question 3)
+Which of the following will compile without error 
+1) 
+import java.awt.*;
+package Mypackage;
+class Myclass {}
+2) 
+package MyPackage;
+import java.awt.*;
+class MyClass{}
+3) 
+/*This is a comment */
+package MyPackage;
+import java.awt.*;
+class MyClass{}
+ 
+ 
+Answer to Question
+3 
+Question 4)
+A byte can be of what size 
+1) -128 to 127 
+2) (-2 power 8 )-1 to 2 power 8 
+3) -255 to
+256 
+4)depends on the particular implementation of the Java
+Virtual machine 
+Answer to Question
+4 
+Question 5)
+What will be printed out if this code is run with the following
+command line? 
+java myprog good morning
+public class myprog{
+public static void main(String argv[])
+{
+System.out.println(argv[2])
+}
+}
+1) myprog 
+2) good 
+3) morning 
+4) Exception raised:
+"java.lang.ArrayIndexOutOfBoundsException: 2" 
+ 
+Answer to Question
+5 
+Question 6)
+Which of the following are keywords or reserved words in Java? 
+1) if 
+2) then 
+3) goto 
+4) while 
+5) case 
+Answer to Question
+6 
+Question 7)
+Which of the following are legal identifiers 
+1) 2variable 
+2) variable2 
+3) _whatavariable 
+4) _3_ 
+5)
+$anothervar 
+6) #myvar 
+Answer to Question
+7 
+Question 8)
+What will happen when you compile and run the following code? 
+ 
+public class MyClass{
+ static int i;
+ public static void main(String argv[]){
+ System.out.println(i);
+ }
+}
+1) Error Variable i may not have been initialized 
+2) null 
+3)
+1 
+4) 0 
+Answer to Question 8 
+Question 9)
+What will happen if you try to compile and run the following code?
+public class Q {
+ public static void main(String argv[]){
+ int anar[]=new int[]{1,2,3};
+ System.out.println(anar[1]);
+ }
+}
+1) 1 
+2) Error anar is referenced before it is initialized 
+3)
+2 
+4) Error: size of array must be defined 
+ 
+Answer to Question
+9 
+Question 10)
+What will happen if you try to compile and run the following
+code? 
+public class Q {
+ public static void main(String argv[]){
+ int anar[]=new int[5];
+ System.out.println(anar[0]);
+ }
+}
+1) Error: anar is referenced before it is initialized 
+2) null 
+3)
+0 
+4) 5 
+Answer to
+Question 10 
+Question 11)
+What will be the result of attempting to compile and run the
+following code? 
+abstract class MineBase {
+ abstract void amethod();
+ static int i;
+}
+public class Mine extends MineBase {
+ public static void main(String argv[]){
+ int[] ar=new int[5];
+ for(i=0;i >> 2);will output a result
+larger than 10
+2) System.out.println( -1 >>> 2); will
+output a positive number 
+3) System.out.println( 2 >> 1);
+will output the number 1 
+4) System.out.println( 1 
+http://java.sun.com/docs/books/tutorial/java/javaOO/override.html
+ 
+Answer 17)
+ Back to Question 17) 
+Objective
+6.2)
+3) Runtime Exception 
+Without the cast to sub you would get a compile 
+ time error. The cast tells the compiler that you really mean to do this and 
+ the actual type of b does not get resolved until runtime. Casting down the object 
+ hierarchy is a problem, as the compiler cannot be sure what has been implemented in descendent 
+ classes. Casting up is not a problem because sub classes will have the features 
+ of the base classes. This can feel counter intuitive if you are aware that with 
+ primitives casting is allowed for widening operations (ie byte to int). 
+http://www.jchq.net/tutorial/06_02Tut.htm
+Answer 18)
+Back to question 18) 
+Objective
+5.1) 
+1) System.out.println( -1 >>> 2);will output a result
+larger than 10
+2) System.out.println( -1 >>> 2); will
+output a positive number 
+3) System.out.println( 2 >> 1);
+will output the number 1 
+You can test this with the following class
+public class shift{
+static int i=2;
+public static void main(String argv[]){
+ System.out.println( -1 >>> 2);
+ System.out.println( -1 >>> 2);
+ System.out.println( 2 >> 1);
+ }
+}
+Java does not have a 
+ Objective 7.1
+2) Output of One One Two Two
+Answer 3 would would be true if the code called the start method instead of 
+ the run method (well it is on my Windows machine anyway, I'm not sure it would 
+ be for ever implementation of Java Threads). If you call the run method directly 
+ it just acts as any other method and does not return to the calling code until 
+ it has finished executing. 
+ http://www.jchq.net/tutorial/07_01Tut.htm
+Answer 55)
+Objective 3.1) 
+Back to Question 55)
+1) You cannot be certain when garbage collection will run 
+Although there is a Runtime.gc(), this only suggests 
+ that the Java Virtual Machine does its garbage collection. You can never be 
+ certain when the garbage collector will run. Roberts and Heller is more specific 
+ abou this than Boone. This uncertainty can cause consternation for C++ programmers 
+ who wish to run finalize methods with the same intent as they use destructor 
+ methods. 
+http://www.jchq.net/tutorial/03_01Tut.htm
+Answer 56)
+Objective 8.1) 
+Back to Question 56)
+4) The fill field of the GridBagConstraints class 
+Unlike the GridLayout manager you can set the individual size of a
+control such as a button using the GridBagLayout manager. A little
+background knowledge would indicate that it should be controlled by a
+setSomethingOrOther method, but it isn't. 
+If you have a copy of the Roberts and Heller Java2 Guide that says
+the exam does not cover the GridBagLayout, this is an error. You can
+confirm this by looking at the online errata at 
+http://www.sybex.com/cgi-bin/rd_err_temp.pl?2463err.html.
+http://www.jchq.net/tutorial/08_01Tut.htm
+Answer 57)
+Objective 10.1) 
+Back to Question 57)
+4) A collection for storing bits as on-off information, like a
+vector of bits 
+This is the description given to a bitset in Bruce 
+ Eckels "Thinking in Java" book. The reference to unique sequence of 
+ bits was an attempt to mislead because of the use of the word Set in the name 
+ bitset. Normally something called a set implies uniqueness of the members, but 
+ not in this context. 
+http://www.jchq.net/tutorial/10_01Tut.htm
+Answer 58)
+Back to Question 58) 
+Objective
+4.1)
+4)Compile error: Superclass Class1.Base of class Class1.Class1 not
+found 
+Using the package statement has an effect similar 
+ to placing a source file into a different directory. Because the files are in 
+ different packages they cannot see each other. The stuff about File1 not having 
+ been compiled was just to mislead, java has the equivalent of an "automake", 
+ whereby if it was not for the package statements the other file would have been 
+ automatically compiled. 
+http://www.jchq.net/tutorial/04_01Tut.htm
+Answer 59)
+Back to Question 59) 
+Objective
+6.2) 
+4) Output of Over.amethod() 
+The names of parameters to an overridden method 
+ is not important. 
+http://www.jchq.net/tutorial/06_02Tut.htm
+Answer 60)
+Objective 8.1) 
+Back to Question 60)
+1) Set the gridy value of the GridBagConstraints class to a value increasing 
+ from 1 to 4 
+Answer 4 is fairly obviously bogus as it is the GridBagConstraints class that 
+ does most of the magic in laying out components under the GridBagLayout manager. 
+ The fill value of the GridBagConstraints class controls the behavior inside 
+ its virtual cell and the ipady field controls the internal padding around a 
+ component. 
+If you have a copy of the Roberts and Heller Java2 Guide that says
+the exam does not cover the GridBagLayout, this is an error. You can
+confirm this by looking at the online errata at 
+http://www.sybex.com/cgi-bin/rd_err_temp.pl?2463err.html.
+http://www.jchq.net/tutorial/08_01Tut.htm
+1) Objective 4.5
+ 2) Objective 4.1
+ 3) Objective 4.1
+ 4) Objective 4.5
+ 5) Objective 4.2
+ 6) Objective 4.3
+ 7) Objective 4.1
+ 8) Objective 4.4
+ 9) Objective 4.4
+ 10)Objective 4.4
+ 11)Objective 1.2 
+ 12)Objective 2.1
+ 13) Objective 2.1 
+ 14) Objective 5.1 
+ 15) Objective 5.11
+ 16) Objective 6.2
+ 17) Objective 6.2
+ 18) Objective 5.1 
+ 19) Objective 5.4
+ 20 ) Objective 8.1
+ 21) Objective 2.2
+ 22) Objective 7.3
+ 23) Objective 2.3
+ 24) Objective 9.1
+ 25) Objective 4.5
+ 26) Objective 4.5
+ 27) Objective 9.2
+ 28) Objective 5.3
+ 29) Objective 5.3
+ 30) Objective 4.1
+ 31) Objective 7.1
+ 32) Objective 8.1
+ 33) Objective 7.1 
+ 34) Objective 7.1
+ 35) Objective 5.1
+ 36) Objective 5.2
+ 37) Objective 8.1
+ 38) Objective 11.1
+ 39) Objective 8.1
+ 40) Objective 6.2
+ 41) Objective 5.4
+ 42) Objective 1.1 
+ 43) Objective 1.2
+ 44) Objective 4.5
+ 45) Objective 1.2
+ 46) Objective 10.1
+ 47) Objective 10.1
+ 48) Objective 8.1
+ 49) Objective 2.3
+ 50) Objective 2.3
+ 51) Objective 1.2
+ 52) Objective 8.2 
+ 53) Objective 11.1
+ 54) Objective 7.1
+ 55) Objective 3.1
+ 56) Objective 8.1
+ 57) Objective 10.1
+ 58) Objective 4.1
+ 59) Objective 6.2
+ 60) Objective 8.1
+ 
+ 
+End of Document
+ 

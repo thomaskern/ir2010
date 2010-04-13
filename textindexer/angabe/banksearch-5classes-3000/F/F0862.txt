@@ -1,0 +1,327 @@
+
+VB Helper: Stories: Days of Yore
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Stories: Days of Yore
+ 
+These are tales of long ago. Stories about obsolete equipment and the early days of computers. 
+Dusty Systems
+ 
+Submitted anonymously.
+While MS has turned into a virtually upgrade machine with new versions of
+software and operating systems coming out every few months and software
+lifecycles decreasing, it’s still the same old adage: the more things
+change, the more they stay the same!
+Witness some still active user groups in my town:
+ 
+- The DOS/CPM users group
+ 
+- The Win3x users group
+ 
+- The Atari users group
+ 
+- The OS/2 users group
+ 
+- The Amiga users group (wish I had bought one of those!)
+I’m retro in a lot of ways too (it’s cool to be retro!): I still have a 386
+PC at home with Win3x, VB3, and an old version of Office; I still have a
+486 with Win95, VB4, and Office 95. And I still use these machines! Why?
+I hate to throw something out just because it’s old (I’m a packrat!). Yes,
+these machine still work and are adequate for the tasks at hand. But
+mainly, I still enjoy using them! By adding some cheap RAM, these machines
+perform almost as well as the new ones.
+I’m not totally retro: I dumped the 286, the IBM PC Jr., and the 14K (or
+slower!) modems a long time ago. Okay, I still have an old dot-matrix
+printer (serial), and some dumb terminals lying around, but I use these
+mainly for testing. In fact, most of this old stuff is just for testing. I
+guess I could sell all this old junk, but I don’t think anybody would want
+to buy it. If so, the whole mess would net me maybe $100 - if I’m lucky!
+If you think I’m retro, you should see most of my customers: many have old
+clunky mainframes with VT100 or Wyse50 terminals or IBM3270 monitors. Most
+aren’t hooked up to the Internet, so access (if any) is through dial-up
+software with terminal emulation. Some have Internet connections but the
+end is still the same: access a secure web page to get at... a Telnet
+connection! Another government customer is still using Win3x (their
+contract hasn’t approved a 32bit OS yet). One customer still has Lotus123
+(the DOS version), and he loves and swears by it.
+Do I resist change? No, I welcome it! Change is good. I am kind of slow
+to jump on the bandwagon of new technology - either hardware of software.
+It’s not because I don’t want to - it’s because I don’t have the time or
+money to invest in this new technology. But eventually Win2K, VB.Net, or
+"XP" will cross my path - intentionally or unavoidingly. I’m not worried.
+I’m ready for it! I’ve been using computers for almost 25 years, and I’m
+sure I’ll figure it out and adapt quickly.
+So will I use the new "DotNet" technologies? Maybe. After they have
+matured and been debugged and reworked, and have gained popularity and
+acceptance, I might jump on board. But in the meantime, I have better
+things to do than learn technology that "might” be popular in the future.
+Besides, I’m too busy learning already popular technologies, like ASP and
+Perl and Java and Flash. :^)
+P.S. Update: I just got a new machine with Win2K and love it! Did I have
+any problems adapting? No way! And VB6 screams on it! I did have to
+re-write some of my animation routines to slow them down - they ran so fast
+I couldn’t even see the graphics!
+Happy Birthday UNIVAC
+ 
+50 years ago on June 15, 1951, the first commercial computer UNIVAC was born. It weighed 8 tons, was the size of a garage, and cost $1-1.5 million.
+Click here for the brief story.
+Click here for some interesting (and hilarious) UNIVAC trivia.
+ 
+ The ultimate desktop system:
+ 
+ 
+- 1.3 MHz processor
+ 
+- 0.5 MB RAM
+ 
+- 100 MB hard drive
+ 
+ Yours for only $1.6 million!
+ 
+ Accessories:
+ 
+ 
+- 100 MB hard drive $130,000 (shipping weight 4500 lbs)
+ 
+ 
+This system is roughly 1/1000th the speed of the desktop system I just bought for 2000 times as much money making my $/Hz ratio 2 million times better than UNIVAC's.
+Also note that modern processors do a LOT more than UNIVAC's vacuum tubes so each MHz now can mean more than it did then.
+Hard Wired Code
+ 
+The first computer programs were electronic experiments.
+You "programmed" the computer by rearranging wires to make current flow
+through different circuits. Outputs were glowing lights rather than my nice
+1024x768 pixel monitor that displays more than 16 million colors.
+These days computers are basically boxes full of circuit boards, cables,
+cabinets, power supplies, memory modules, disks, modems, and other peripherals whose
+sole purpose is shoveling data in and out of the tiny chip at the center of it all.
+Chips contain specialized circuits that do things like add numbers
+and store a value in a memory address. Commands stored in memory determine
+which circuits are used and how. The computer feeds the instructions to the
+chip to make it do its magic.
+Sometimes after I've written a few thousand lines of Visual Basic and produced
+some cool ray traced picture, it's humbling to think
+about everything that's going on underneath it all. Including the Visual Basic runtime
+libraries, my program takes several megabytes. Drawing a complex picture involves
+billions of calculations! Imagine what that would be like if you had to build
+the program by rewiring physical circuits. It would probably be faster than my program
+because it would be analog and it could probably calculate the color of every pixel
+at the same time, but it would be enormous and would probably take years to build.
+The Origin of the Species
+ 
+My father, Ken Stephens, was one of the pioneers of computer programming.
+As far as I know, he didn't invent any earth-shaking hardware or higher level
+programming languages. He was one of the thousands of steely-eyed missle men
+who helped drag computer programming out of its infancy. They sent rockets to the moon
+with less computing power than you probably have in your wristwatch.
+You can see these men at their best in a great scene in the movie Apollo Thirteen.
+When a slightly dizzy Tom Hanks asks Mission Control to verify one of his calculations,
+a row of engineers with thick glasses, short haircuts, and white shirts whip out their
+slide rules and spring into action. Their slide rules were more accurrate than the expensive
+and feeble calculators available the time. My father knew how to use a slide rule.
+He showed me how to do some simple multiplication and take square roots once, but of course
+I've forgotten how.
+Back in the early days, there were no programmers, software engineers, user interface designers,
+or Web designers. There were only electrical engineers. You couldn't get a degree in programming
+(actually that's a relatively new innovation--even after my time), you could only get a degree in
+electrical engineering. You not only had to understand how the hardware worked, you had to build it.
+At times the hardware and software specialists had heated debates (pun intended) over
+temperature issues. The software people claimed that the hardware started generating faults
+when it got too warm. The hardware experts insisted the problem was buggy software.
+Eventually it turned out that the programmers were right. When a semi-conductor gets hot enough,
+it becomes a full-conductor and the computer doesn't work right.
+That's why your computer has a fan.
+If you have a reasonably new computer, the chip has a huge heat sink glued to it to keep it cool.
+If your chip gets too warm, it won't work and may even suffer permanent damage.
+These arguments also remind me of some of the battles I've been through where a developer or software vendor blamed
+their bugs on the hardware, operating system, or another vendor's product.
+Early memory systems were cumbersome affairs of wire woven into a rug holding tiny metal cylinders. The components
+were so large you could easily see them with the naked eye. 
+Today's memory chips store millions of bits of information in the space of a postage
+stamp using components so small you need an electron microscope to see them.
+Long term storage was even stranger. Some systems used huge magnetic platters, kind
+of like CDs only more than a foot in diameter. Others stored data on rotating drums.
+Still others used paper tape, punched cards, and even stranger media. I remember one time, probably
+in the 70's, when my father showed me a removable disk pack. It was a big plastic disk about
+4 inches tall and 14 inches in diameter. Inside was a single magnetic platter similar to a modern
+floppy disk only holding far less information.
+All of these systems had one thing in common: they were huge.
+If you could store more than a few kilobytes, you considered yourself lucky.
+Amazingly, those early engineers managed to send rockets to the moon with these
+systems. My father worked on a missle guidance system thath used rotating drum memory.
+Space was so tight that at times they broke bytes into two pieces called nibbles
+and stored a machine instruction in one nibble and a piece of data in the other!
+I remember him telling me that at one test, a missle's gyroscope tumbled 180 degrees just before launch.
+(You may know that gyroscopes tend to tumble in 90 degree increments if they tumble at all).
+The missle executed a perfect flight, but in exactly the wrong direction. Instead of going south, it went north.
+Fortunately they were holding the test in the middle of the Pacific Ocean so no one was hurt.
+They never did find out what happened.
+ 
+If you would like to contribute a story, email me.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,43 @@
+
+ vfprintf()
+ 
+ 
+vfprintf-Formatted write of a varying-length argument list to a file
+Synopsis
+ #include &#060;stdarg.h&#062;
+ #include &#060;stdio.h&#062;
+ n = vfprintf(fp, ctl, args);
+ int n; /* number of characters written */
+ /* or -1 for error */
+ FILE *fp; /* file to be written to */
+ const char *ctl; /* control string specifying formatting */
+ va_list args; /* items to be formatted */
+Description
+ This function is identical in capabilities to the fprintf 
+ function, except that the argument list is passed as a va_list
+ instead of on the stack. The argument list args must be
+ initialized by the caller with a va_start macro (and any preceding
+ va_arg macros that it wants to call). When terminated, it is the
+ responsibility of the caller to call the va_end macro on the
+ argument list.
+Returns
+ This function returns the number of characters written or, in the
+ case of an error, a -1.
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;stdarg.h&#062;
+ /* My own error function for a given error number */
+ void myerr(FILE *fp, int ernum, char *string, ...)
+ {
+ va_list arglist;
+ va_start(arglist, string);
+ fprintf(fp,"ERR-%d: n",ernum);
+ vfprintf(fp, string, arglist);
+ va_end(arglist);
+ }
+ void main(void)
+ {
+ myerr(stderr, 205, __sys_errlist[205]);
+ }
+See Also
+ fprintf 

@@ -1,0 +1,141 @@
+
+Security in Java 2 SDK 1.2
+The JavaTM Tutorial
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Trail: Security in Java 2 SDK 1.2
+by Mary Dageforde
+In this trail you'll learn how the built-in 
+JavaTM security features protect you 
+from malevolent programs. You'll see how to use tools to control access to 
+resources, to generate and to check 
+digital signatures,
+and to create and to manage 
+keys needed for signature generation and checking. You'll also see how to 
+incorporate cryptography services, such as digital signature generation 
+and checking, into your programs.
+The security features provided by the Java Development Kit 
+(JDKTM) 1.2
+are intended for a variety of audiences:
+- Users running programs:
+Built-in security functionality protects you from malevolent
+programs (including viruses), 
+maintains the privacy of your files and information about you,
+and authenticates the identity of each code provider.
+For the first time, you can subject applications to security
+controls (just as is done for applets), when desired. 
+- Developers:
+You can use API methods to incorporate security functionality into
+your programs, including cryptography services and
+security checks.
+The API framework enables you to define and integrate your own
+permissions (controlling access to specific resources), 
+cryptography service implementations, security manager implementations,
+and policy implementations.
+In addition, classes are provided for management of your 
+public/private key pairs and
+public key certificates from people you trust.
+- Systems administrators, developers, and users:
+JDK 1.2 tools manage your keystore (database of keys and certificates);
+generate digital signatures for JAR files,
+and verify the authenticity of such signatures
+and the integrity of the signed contents; and
+create and modify the policy 
+files that define your installation's security policy.
+Note: Nearly all of the security features
+documented in this trail were added to the 
+JDK for its 1.2
+release. Thus, the code examples in the following lessons
+will work only on Java platforms that 
+are compatible with JDK 1.2. 
+Individual browsers may have some different behavior,
+unless you use the 
+Java Plug-in to download the latest Java Runtime Environment 
+(JRETM) compatible with 
+JDK 1.2.
+See
+Security in JDK 1.1
+if you want information about the limited Security API available in JDK 1.1.
+Trail Lessons
+Security Features Overview
+briefly describes the security features available in JDK 1.2.
+Quick Tour of Controlling Applets
+provides an overview of some of the new features. 
+This lesson shows how resource accesses, 
+such as reading or writing a file, 
+are not permitted for applets unless
+explicitly allowed by a permission in a policy file.
+Quick Tour of Controlling Applications
+builds on the previous lesson, showing that when applications
+are run under a security manager, resource accesses may be
+controlled in exactly the same way as for applets.
+API and Tools Use for Secure Code and File Exchanges
+describes digital signatures, certificates, and keystores and discusses
+why they are needed.
+It also provides overview information applicable to the next three lessons
+regarding the steps commonly needed for using the tools or the API to generate
+signatures, export/import certificates, and so on. 
+Signing Code and Granting It Permissions
+illustrates the use of all the security-related tools. 
+It shows the steps that a developer would take
+to sign and to distribute code for others
+to run. The lesson also shows how someone
+who will run the code (or a system administrator) 
+could add an entry in a policy file
+to grant the code permission for the resource accesses it needs.
+Exchanging Files
+shows use of the tools by one person to sign an important document, such as a 
+contract, and to export the public key certificate for the public key
+corresponding to the private key used to sign the contract.
+Then the lesson shows how another person, 
+who receives the contract, the signature, and
+the public key certificate, can import the
+certificate and verify the signature.
+Generating and Verifying Signatures
+walks you step by step through an example of writing a Java
+program using the JDK Security API to generate keys, to generate a digital 
+signature
+for data using the private key, and to export the public key and the signature to files.
+Then the example shows writing a second program, which may be expected to run
+on a different person's computer, that imports the public key and verifies
+the authenticity of the signature.
+Finally, the example discusses potential weaknesses of the
+approach used by the basic 
+programs and demonstrates possible alternative
+approaches and methods of supplying and importing keys, including
+in certificates.
+Implementing Your Own Permission
+demonstrates how to write a class that defines its
+own special permission.
+Summaries
+provides summaries of 
+- general security and JDK security-specific terminology and concepts
+- the JDK Security API
+- the security-related tools
+- the security-related files
+For More Information
+JDK 1.2 security release documentation can be found at 
+http://java.sun.com/products/jdk/1.2/docs/guide/security/index.html .Here you'll find more detailed information about the security features, 
+including architecture specifications, usage guides, API documentation, 
+and tool documentation.
+This trail does not cover 
+encryption
+and decryption. 
+These are supplied as part of the Java Cryptography Extension (JCE).
+For more information, see the documentation for that release at
+http://java.sun.com/products/jce/index.html .
+Information on use of the Java Plug-in to download the latest 
+Java Runtime Environment compatible with JDK 1.2 can be found here: 
+http://java.sun.com/products/plugin/index.html .
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

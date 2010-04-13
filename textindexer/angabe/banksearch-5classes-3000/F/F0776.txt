@@ -1,0 +1,161 @@
+
+VB Square - Mouse and Keyboard - Articles - Detect the keyboard's right click button - 
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Mouse and Keyboard > 
+Articles
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Detect the keyboard's right click button
+By Sam Huggill
+Many keyboards now support a small key in-between the Atl Gr key and the Windows Key that, when pressed, shows the default context menu for the control that is currently selected.
+For example, set the focus on a text box and press the context menu key. See the context menu popup?
+While developing my Developers Code Book application, I have context menus on both the treeview and the edit window. I use the context menu key a lot when programming, because I hate having to reach over for the mouse. So naturally, when I wanted to show a context menu on my treeview and edit window by pressing the context key, I had to stop and use the mouse; how irritating! So, I looked around for some way of getting around this problem.
+After spending sometime searching the MSDN and other useful sources, I came to the conclusion that I would have to use subclassing. And the message I was looking for? WM_CONTEXTMENU.
+I came across this message when doing a previous article, "Replacing the system menu on a form". All you have to do is set up a simple subclassing window procedure, and react to the WM_CONTEXTMENU message.
+Once you have received this message, you can call your own procedure that then can call the controls MouseUp event or whatever you want to do to show your context menu. You can apply this code to many controls that don't have a built in context menu, but in this example I have simply used it on a treeview control.
+NOTE: If you are planning on subclassing more than one control in the same project, then use a third party control to subclass the control (such as Steve McMahon's Subclassing Control)
+OK. Lets get some code down. Start a new Standard EXE Project and add a module. To the form add a treeview control. Rename the module modSubclass and copy the following code into it:
+Option Explicit
+' Holds a reference to the previous window procedure 
+' before we started subclassing 
+Public OldProc As Long
+Declare Function SetWindowLong Lib "user32" Alias "SetWindowLongA" _ 
+(ByVal hWnd As Long, ByVal nIndex As Long, _ ByVal dwNewLong As Long) As Long
+Declare Function GetWindowLong Lib "user32" Alias "GetWindowLongA" _ 
+(ByVal hWnd As Long, ByVal nIndex As Long) As Long
+Const GWL_WNDPROC = (-4)
+Declare Function CallWindowProc Lib "user32" Alias "CallWindowProcA" _ 
+(ByVal lpPrevWndFunc As Long, ByVal hWnd As Long, _
+ByVal Msg As Long, _
+ByVal wParam As Long, ByVal lParam As Long) As Long
+' The message that we are going to monitor
+Public Const WM_CONTEXTMENU = &H7B&
+Public Function WndProc(ByVal hWnd As Long, ByVal wMsg As Long, _
+ByVal wParam As Long, ByVal lParam As Long) As Long
+If wMsg = WM_CONTEXTMENU Then
+ ' Handle this message and call our popup routine
+ WndProc = 0
+ frmTest.ShowPopup 
+ Exit Function 
+End If
+' Pass on all the other unhandled messages
+WndProc = CallWindowProc(OldProc, hWnd, wMsg,wParam, lParam) 
+End Function
+Now add this code to the form:
+Option Explicit
+Private Sub Form_Load() 
+'Store a reference to the old window procedure 
+OldProc = GetWindowLong(TreeView1.hWnd,GWL_WNDPROC) 
+'Set our custom window procedure for the treeview 
+SetWindowLong TreeView1.hWnd, GWL_WNDPROC, AddressOf WndProc 
+End Sub 
+Public Sub ShowPopup()
+'Carry out your popup menu code here
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+' Restore the original window procedure
+SetWindowLong TreeView1.hWnd, GWL_WNDPROC, OldProc 
+End Sub
+Easy!
+If you get stuck with this demo then download the source code, otherwise, contact me at sam@vbsquare.com and tell me what you thought of this article. Thanks!
+ 
+ 
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 0 comments. 
+ 
+ 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Related
+ 
+- 
+Detect the keyboard's right click button 
+- 
+Ascii Keycodes 
+- 
+Detect mousepointer changes 
+- 
+Determine if a control has the focus by tab key or mouse click 
+- 
+Find the cursor position 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

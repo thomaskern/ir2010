@@ -1,0 +1,132 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class OrderPage
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class OrderPage
+java.lang.Object
+ |
+ +--javax.servlet.GenericServlet
+ |
+ +--javax.servlet.http.HttpServlet
+ |
+ +--coreservlets.OrderPage
+public class OrderPageextends HttpServlet
+Shows all items currently in ShoppingCart. Clients
+ have their own session that keeps track of which
+ ShoppingCart is theirs. If this is their first visit
+ to the order page, a new shopping cart is created.
+ Usually, people come to this page by way of a page
+ showing catalog entries, so this page adds an additional
+ item to the shopping cart. But users can also
+ bookmark this page, access it from their history list,
+ or be sent back to it by clicking on the "Update Order"
+ button after changing the number of items ordered.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Constructor Summary 
+OrderPage()
+ 
+ 
+Method Summary 
+ void 
+doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ 
+ void 
+doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ POST and GET requests handled identically. 
+ 
+Methods inherited from class javax.servlet.http.HttpServlet 
+doDelete, 
+doOptions, 
+doPut, 
+doTrace, 
+getLastModified, 
+service, 
+service 
+ 
+Methods inherited from class javax.servlet.GenericServlet 
+destroy, 
+getInitParameter, 
+getInitParameterNames, 
+getServletConfig, 
+getServletContext, 
+getServletInfo, 
+getServletName, 
+init, 
+init, 
+log, 
+log 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+OrderPage
+public OrderPage()
+Method Detail 
+doGet
+public void doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+Overrides:doGet in class HttpServlet
+doPost
+public void doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+POST and GET requests handled identically.
+Overrides:doPost in class HttpServlet
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

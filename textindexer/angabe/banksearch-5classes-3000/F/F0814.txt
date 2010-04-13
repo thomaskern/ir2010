@@ -1,0 +1,534 @@
+
+Visual Basic and Winsock API - Creating the Visual Basic template project
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - VB Project Template
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creating the Visual Basic template project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ Basic Winsock API project 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+In the first part of the tutorial we are going to learn some basic
+ Winsock API functions. These functions are to provide us with some essential
+ stuff such as initializing the Winsock service, domain name resolution,
+ error handling and so on. As you understand without that you can't move
+ further for more interesting things: creating socket, sending and
+ receiving data. Below is the list of the functions for the first part of
+ the tutorial:
+ 
+ 
+- WSAStartup
+ 
+- WSACleanup
+ 
+- gethostbyaddr
+ 
+- gethostbyname
+ 
+- gethostname
+ 
+- getservbyname
+ 
+- getprotobynumber
+ 
+- getprotobyname
+ 
+- getservbyport
+ 
+- inet_addr
+ 
+- inet_ntoa
+ 
+- htons
+ 
+- htonl
+ 
+- ntohl
+ 
+- ntohs
+ 
+ 
+In order to find out what the functions are for and how to use them
+ we'll create about 10-12 sample applications. To make our work easier
+ with that I suggest you to create the VB project template which will
+ contain all the required API functions, some custom VB functions and the
+ VB form that contains the code executed almost in every sample application
+ we are going to develop. 
+ 
+Creating project
+ 
+ 
+- All the samples will be Standard EXE projects, so the type of the
+ template should be Standard EXE too. Select the menu
+ item File | New
+ Project, in the dialog window "New Project", select the
+ Standard EXE item and click the OK button.
+ 
+ 
+- Rename the project to "BasicWinsockAPI".
+ 
+ 
+- Rename the default form to frmMain.
+ 
+ 
+- Select the menu item
+ Project | Add Module in order to add a code module to
+ our project. That module will contain the API declarations and
+ common custom functions.
+ 
+ 
+- Rename the module to modWinsock.
+ 
+ 
+Inserting API
+ declarations
+ 
+Open the code editor for the modWinsock module and insert the
+ following code. We'll do not talk about these declarations right now,
+ all the functions will be described later in other tutorials.
+ 
+ 
+ 
+ 
+Option Explicit 
+ 
+ Public Const INADDR_NONE = &HFFFF 
+ Public Const SOCKET_ERROR = -1
+ Public Const WSABASEERR =
+ 10000
+ Public Const WSAEFAULT = (WSABASEERR + 14)
+ Public Const WSAEINVAL = (WSABASEERR + 22)
+ Public Const WSAEINPROGRESS = (WSABASEERR + 
+ 50)
+ Public Const WSAENETDOWN = (WSABASEERR + 50)
+ Public Const WSASYSNOTREADY = (WSABASEERR + 
+ 91)
+ Public Const WSAVERNOTSUPPORTED = (WSABASEERR 
+ + 92)
+ Public Const WSANOTINITIALISED = (WSABASEERR
+ + 93)
+ Public Const WSAHOST_NOT_FOUND = 11001
+ Public Const WSADESCRIPTION_LEN = 257
+ Public Const WSASYS_STATUS_LEN = 129
+ Public Const WSATRY_AGAIN = 11002
+ Public Const WSANO_RECOVERY = 11003
+ Public Const WSANO_DATA = 11004
+ 
+ Public Type WSAData
+ wVersion As
+ Integer
+ wHighVersion As
+ Integer
+ szDescription As String
+ * WSADESCRIPTION_LEN
+ szSystemStatus As String *
+ WSASYS_STATUS_LEN
+ iMaxSockets As
+ Integer
+ iMaxUdpDg As
+ Integer
+ lpVendorInfo As Long
+ End Type
+ 
+ Public Type HOSTENT
+ hName As
+ Long
+ hAliases As Long
+ hAddrType As Integer
+ hLength As Integer
+ hAddrList As Long
+ End Type
+ 
+ Public Type servent
+ s_name As Long
+ s_aliases As Long
+ s_port As
+ Integer
+ s_proto As Long
+ End Type
+ 
+ Public Type protoent
+ p_name As
+ String 'Official name of the protocol
+ p_aliases As Long
+ 'Null-terminated array of alternate names
+ p_proto As Long
+ 'Protocol number, in host byte order
+ End Type
+ 
+ Public Declare Function WSAStartup _
+ Lib "ws2_32.dll"
+ (ByVal wVR As Long,
+ lpWSAD As WSAData) As
+ Long
+ 
+ Public Declare Function WSACleanup Lib
+ "ws2_32.dll" () As Long
+ 
+ Public Declare Function gethostbyaddr _
+ Lib "ws2_32.dll"
+ (addr As Long, ByVal
+ addr_len As Long, _
+ 
+ ByVal addr_type As Long)
+ As Long
+ 
+ Public Declare Function gethostbyname _
+ Lib "ws2_32.dll"
+ (ByVal host_name As
+ String) As Long
+ 
+ Public Declare Function gethostname _
+ Lib "ws2_32.dll"
+ (ByVal host_name As
+ String, _
+ 
+ ByVal namelen As Long)
+ As Long
+ 
+ Public Declare Function getservbyname _
+ Lib "ws2_32.dll"
+ (ByVal serv_name As
+ String, _
+ 
+ ByVal proto As String)
+ As Long
+ 
+ Public Declare Function getprotobynumber _
+ Lib "ws2_32.dll"
+ (ByVal proto As Long)
+ As Long
+ 
+ Public Declare Function getprotobyname _
+ Lib "ws2_32.dll"
+ (ByVal proto_name As
+ String) As Long
+ 
+ Public Declare Function getservbyport _
+ Lib "ws2_32.dll"
+ (ByVal port As Integer,
+ ByVal proto As Long)
+ As Long
+ 
+ Public Declare Function inet_addr _
+ Lib "ws2_32.dll"
+ (ByVal cp As String)
+ As Long
+ 
+ Public Declare Function inet_ntoa _
+ Lib "ws2_32.dll"
+ (ByVal inn As Long)
+ As Long
+ 
+ Public Declare Function htons _
+ Lib "ws2_32.dll"
+ (ByVal hostshort As
+ Integer) As Integer
+ 
+ Public Declare Function htonl _
+ Lib "ws2_32.dll"
+ (ByVal hostlong As Long)
+ As Long
+ 
+ Public Declare Function ntohl _
+ Lib "ws2_32.dll"
+ (ByVal netlong As Long)
+ As Long
+ 
+ Public Declare Function ntohs _
+ Lib "ws2_32.dll"
+ (ByVal netshort As
+ Integer) As Integer
+ 
+ Public Declare Sub RtlMoveMemory _
+ Lib "kernel32" (hpvDest
+ As Any, _
+ 
+ ByVal hpvSource As Long,
+ _
+ 
+ ByVal cbCopy As Long)
+ 
+ Public Declare Function lstrcpy _
+ Lib "kernel32" Alias
+ "lstrcpyA" (ByVal lpString1 As
+ String, _
+ 
+ ByVal lpString2 As Long)
+ As Long
+ 
+ Public Declare Function lstrlen _
+ Lib "kernel32" Alias
+ "lstrlenA" (ByVal lpString As
+ Any) As Long
+ 
+ 
+ 
+ Now let's add into the module some helper functions. Read the 
+ next page.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - VB Project Template
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

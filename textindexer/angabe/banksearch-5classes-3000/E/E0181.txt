@@ -1,0 +1,476 @@
+
+ 
+C/C++ Tutorial Page 3
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+String output and input works much the same in 
+ C as for other variables. In C++, cout and cin are made to work with char 
+ * parameters the way a programmer would expect them to work. Displaying 
+ a string in C and C++ works exactly the same way it did in the Output 
+ I lession.
+ #include 
+#include 
+ void main() {
+ char MyName[] = "Jason";
+ printf("%s\n", MyName());
+ cout > str1; //C++ "streams" method
+ scanf("%s", str1); //C "stdio" method
+ 
+However, the problem with this method is that only one 
+ word of the string will be picked up. Remember how using a space denotes 
+ multiple variable entries? The computer will think entering the string 
+ "My name is Jason" is actually entring 4 string variables. If 
+ all the data is not picked up by the cin/scanf statement, the remaning 
+ data will remain in the input buffer until it is read. To read an entire 
+ line until the user presses enter, use the following commands:
+ char str1[500] = "";
+char str2[500] = "";
+cin.getline(str1, 499, '\n');
+cin.getline(str2, 499, '\n');
+ scanf("%499[^\n]", str1);
+scanf("\n%499[^\n]", str2);
+ 
+Notice that cin remains the same statement, but scanf 
+ changes to place an end-of-line character before other strings. This is 
+ because when the string is read into the buffer, the end-of-line is not 
+ inserted into the string, and this character stays in the buffer waiting 
+ to be read. Whenever a new string needs to be read, the end-of-line needs 
+ to be read. It cannot be read after the first string is read, because 
+ some non-whitespace character needs to be in the buffer to read anything 
+ at all.
+ 
+Also notice the parameters to getline function in the 
+ cin class (don't worry about the dot until C++ classes are explained in 
+ another tutorial) are the string, the max characters (remeber one is needed 
+ for the NULL), and the character to end the line. After a getline the 
+ end-of-line is read, and not left in the buffer.
+ 
+The brackets in scanf are the included characters, or 
+ in this case, excluded characters because the list begins with a carat, 
+ ^. The end-of-line character is not desired to be in the string, so this 
+ character is excluded from input.
+ 
+Back To 
+ Top
+ 
+ 
+This section 
+ is C++ specific, the C equalvalent will be discussed in the pointers section.
+ 
+Sometimes functions need to change the variables passed 
+ to them, or return more than one variable. Normally, when parameters are 
+ passed to a function, they are copied, and when the function returns the 
+ varaibles are unchanged. In order to change the variables, they need to 
+ be passed by reference, using the & in front of the variable name 
+ in the function header:
+ void Square(float &x) {
+ x *= x;
+}
+ 
+Keep in mind that of course, this function will not work 
+ for constants, for example Square(5) will not work since 5, the constant, 
+ cannot be changed. Calling a function with reference parameters requires 
+ no changes.
+ 
+Back To 
+ Top
+ 
+ 
+Structures, called records 
+ in other langages, are simply just a large user-created variable type. 
+ As with other languages, fields need to be defined and they are accesed 
+ through the dot operator. Below is a simple program that uses structures:
+ #include 
+ struct Person {
+ char Name[500];
+ int age;
+};
+ void main() {
+ Person Bob;
+ cout > Bob.age;
+ cout Back To 
+ Top
+ 
+ 
+Constants can be used in place 
+ of variables when their value will never change. This will allow for faster 
+ execution and less memory space, and maintains flexabity for the programmer 
+ in case the program needs to be changed. To declare a constant, simply 
+ place the word const in front of a variable.
+ const int MaxPlayers = 5; //Game constant
+const float PI = 3.14159; //Math constant
+ struct Coorinate {
+ int x, y;
+}
+ const Coorinate Start = {50, 60};
+ 
+Good canidates for constants are shown above, and include 
+ math constants, maximums and minimums, screen size and color depth -- 
+ anything that the user can't change or the program modify.
+ 
+Back To 
+ Top
+ 
+ 
+Before moving onto the pointers 
+ section, an understanding of the numbering systems used in computers will 
+ be needed, and a quick review is in order. If you already understand binary, 
+ decimal, and hexadecimal as well, then you may skip this section.
+ 
+Humans are used to counting with base 10 numbers, digits 
+ 0-9. To find the number of decimal numbers and any other base numbering 
+ system, use this formula (the ^ means exponent):
+ 
+digit * (base ^ (place-1)) + . . . for each digit
+ 
+For example to find the value of 54321, the formula would 
+ be like this:
+ 
+5*(10^4) + 4*(10^3) + 3*(10^2) + 2*(10^1) 
+ + 1*(10^0) = 54321
+ 
+The binary system uses 2 digits 0-1. The formula works 
+ the same way, for example the number 100 in decimal is:
+ 
+1*(2^2) + 0*(2^1) + 0*(2^0) = 4
+ 
+The quickest way to count binary numbers is to add that 
+ places value to the total if the place is "on" or a 1. A lot 
+ of times programmers seperate every 4 digits with a colon for readability. 
+ The place values start at 1 and go in powers of 2: 1,2,4,8,16,32,64,128,256, 
+ like this:
+ Value: 128 64 32 16 8 4 2 1
+Number: 1 0 0 1: 1 1 0 0
+Tally: 128 +0 +0 +16 +8 +4 +0 +0 = 156
+ 
+The total number of 
+ combonations (capacity) of a binary number or variable is 2^numbits-1. 
+ For example a byte can hold 255 combonations, or 2^8-1. Below is a common 
+ variable chart:
+ 
+ 
+ 
+ 
+ Variable Names 
+ Number of 
+ bits 
+ Unsigned Capacity 
+ Signed Capacity 
+ 
+ 
+ byte, char, 
+ character 
+ 8 
+ 255 
+ -128..127 
+ 
+ 
+ short, word 
+ 16 
+ 65535 
+ -32768..32767 
+ 
+ 
+ int, dword 
+ 32 
+ 4294967295 
+ -2147483648..2147483647 
+ 
+ 
+ long long, 
+ qword 
+ 64 
+ 2^64-1 
+ -2^63..2^63-1 
+ 
+ 
+ 
+ 
+The hexadecimal system was chosen to be used in the computer 
+ field because of its relation to binary. Each 2 digits in the hexadecimal 
+ system corresponds with one byte, and each letter to a set of 4 bits. 
+ Digits go from 0..F, where A=10. The formula shown above with the powers 
+ holds true to convert to the decimal system. Converting to binary is more 
+ of a memorization. The 0x in front of the numbers simply designates that 
+ it is in the hexadecimal system.
+ 
+0xFF = 255 = 1111:1111
+ 0xF = 15 = 1111
+ 0x80 = 128 = 1000:0000
+ 0x8 = 8 = 1000
+ 0x0 = 0 = 0000
+ 
+As you can see you can memorize (or easily figure out) 
+ the 15 combonations and place the parts together. A quicker way in Windows 
+ is to use the calculator, which in scientific mode, can perform these 
+ conversions.
+ 
+Back To 
+ Top
+ 
+ 
+Each variable in memory is stored 
+ in a location in memory, and usually the variables are contingous when 
+ declared together in a function. Mainpulating very large objects, arrays, 
+ or dynamically allocated variables (section below), arrays, and linklists require 
+ more detailed understanding and use of how variables actually work in 
+ the compiler. In C, this is the only way to change variables which need 
+ to be changed in the function.
+ 
+A pointer varaible is denoted by an asterisk following 
+ a variable type and contains a memory location pointing to a variable 
+ of the type. This can be written two different ways, with the * right 
+ after the type, or the * before the name. To return a pointer to a variable, 
+ place an & in front of its name. To reverse this operation, place 
+ an * in front of the pointer.
+ #include 
+ void main() {
+ int x = 53;
+ int *intptr = &x;
+ int* ptr2 = intptr; //This syntax works too
+ cout Back To 
+ Top
+ 
+ 
+This section applies 
+ only to C++ right now because of my lack of experience in malloc() and 
+ other related commands in C. If you are reading this tutorial for C, you 
+ can read this section to pick up on the concept, and use your compiler's 
+ help file to look at how to use the C malloc() and free() commands which 
+ have different format but essentially the same function, and usually the 
+ help file also has examples.
+ 
+Whenever you declare a variable in a C/C++ program, the 
+ compiler will reserve this memory for you, usually before program execution 
+ in the .EXE file, in the case of a global, or may allocate memory at run-time 
+ on the stack if the variable is in a small function. You can see this 
+ directly -- Place a huge, several megabyte array in your source as a global 
+ array. Your .EXE will increase by the array's size. Place it in a function 
+ and it will not.
+ 
+However, there is a very serious problem placing that 
+ array in a function. When data isn't already allocated in the .EXE file 
+ (globally), it must go onto the stack. Now this varies greatly depending 
+ on compiler an OS but can vary from 16k to 640k. No reasonably sized stack 
+ could hold a variable the size of a megabyte or even half that (consider 
+ that all previous function calls and variables declared within also are 
+ on the stack). You can tell you have run out of stack space when your 
+ program crashes miserably on you -- this is what happens if you don't 
+ allow an "exit" for recursion (When a function calls itself, 
+ much like a loop works) and you keep on calling functions until you run 
+ out of stack space.
+ 
+The answer to this problem is called dynamic 
+ memory allocation. Whenever you specifcally "ask" 
+ the compiler for data, it will find data not in the stack, or the .EXE, 
+ but instead an area called the data segment. When a program needs more 
+ memory, it must "get permission" from the operating system or 
+ the DPMI. A pointer to the start of the new memory 
+ will be returned.
+ 
+In C++ the commands to manage memory are called new 
+ and delete. C programmers should note that there 
+ is no C++ equalvalent command for the C realloc() memory reallocation 
+ command. Below is an example of delcaring a new variable in the data segment:
+ void main() {
+ int* x = new int;//Grabs a new space
+ *x = 500; //Sets the newly allocated data to 500
+ delete x; //Destroys x variable permanently
+}
+ 
+Note that if we never deleted x, the memory would remain 
+ allocated in the program until we exited back to the operating system, 
+ so ALWAYS make sure you delete variables after use. Also initalizing a 
+ variable grabbed by new becomes much more important as the variable will 
+ nearly always contain trash and very rarely zero, whereas reserved global 
+ variables, residing in the .EXE, as usually cleared out. Also another 
+ interesting fact is that if we allocated a new integer right after deleting 
+ x, the value of that integer could be 500, depending 
+ on how the compiler handles dynamic memory. I say this because the data 
+ from the 500 was never really "destroyed" upon deletion, but 
+ rather simply "dropped" and ignored by the program, marked as 
+ ready to be allocated again. This is exactly where your trash comes from 
+ in new variables.
+ 
+Using the new command for a single variable is noteably 
+ fairly useless, as a single variable will fit on the stack. However for 
+ a large array, use the new command. The syntax is slightly different for 
+ both commands:
+ void main() {
+ int* x = new int[5000]; //Declares a large new int array - new returns a pointer
+ x[50] = 10; x[10] = 50; //Do stuff with new array -- acts no different
+ delete[] x; //[] denotes x points to an array rather than single var
+}
+ 
+Since an array is really a pointer, you can use an array 
+ declared with new exactly like any other array.
+ 
+You can only grab a one-dimentional array with new, not 
+ a two dimentional. This is a drawback, but there is a way of getting around 
+ this. My guess to the reason of one-dimentional arrays only is because 
+ 2D arrays is not directly representable in memory, instead it is a way 
+ of working with memory, and the programmer is meant to program the way 
+ something works, not the compiler. But if you remember a 2D array is really 
+ an "array of arrays":
+ void main() {
+ int** x = NULL; //Declare pointer to a pointer, or in this case
+ // a pointer to an array of pointers
+ int** x = new int*[100]; //Pointers to 100 arrays
+ for (int c=0; cBack To 
+ Top
+ 
+ 

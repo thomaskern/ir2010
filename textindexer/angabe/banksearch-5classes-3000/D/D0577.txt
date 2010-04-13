@@ -1,0 +1,37 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+	
+ 
+JSP Directives
+We have been fully qualifying the java.util.Date in the examples
+in the previous sections. Perhaps you wondered why we don't just
+import java.util.*;
+It is possible to use "import" statements in JSPs, but the
+syntax is a little different from normal Java. Try the following
+example:
+Hello! The time is now 
+The first line in the above example is called a "directive". A JSP
+"directive" starts with 
+There are a number of JSP directives, besides the page directive. 
+Besides the page directives, the other most useful directives are include
+and taglib. We will be covering taglib separately.
+The include directive is used to physically include the contents of
+another file. The included file can be HTML or JSP or anything else
+-- the result is as if the original JSP file actually contained the included
+text. To see this directive in action, create a new JSP
+Going to include hello.jsp...
+View this JSP in your browser, and you will see your original hello.jsp
+get included in the new JSP.
+Exercise: Modify all your earlier exercises to import the
+java.util packages.
+ 
+Next tutorial: JSP Declarations 
+Contents
+ 
+ 
+ 

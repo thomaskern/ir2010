@@ -1,0 +1,58 @@
+
+SHContextMenu
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 08/23/98,
+ last update: 03/17/99 
+ 
+Home 
+ 
+ 
+ SHContextMenu: How to
+ show the shell's context menu for directories and files
+ 
+ After sending EnumDeskVB out last summer and receiving an overwhelming amount of response
+ from it, the one question which was asked most frequently was "How do I call
+ DoTheMenuThing in my app?", inquiring about displaying the shell's context menu for
+ files and folders. Well it's finally here, a demo showing the simplest and bare minimum
+ required to do just that (well, with a few cute tricks too...). But still, it's a fair bit
+ of work...
+ 
+ In order the display the context menu for any object in the namespace, two essential
+ things are needed: a reference to the specified object's parent IShellFolder interface;
+ and the object's pidl (pointer to an item ID list), relative to the parent IShellFolder.
+ Once obtained, a reference to the parent folder's IContextMenu interface must also be
+ obtained, initialized with the proper data, and finally TrackPopupMenu is called to
+ display the context menu. Easier said than done. Bit the demo does do a pretty good job of
+ explaining everything, hopefully making it all as clear as possible. If you spend enough
+ time with it, you should have a pretty good grasp on what pidls are all about too...
+ 
+ 03/17/99 update (v1.30)
+ - Added IContextMenu2 support, allowing the "Send To" and "Open With"
+ submenus to be filled with their respective items.
+ - Added subclassing module to catch ownerdraw menu messages for above.
+ - Now inserts the focused FileListBox file as the first element of the array of relative
+ pidls passed to ShowShellContextMenu. This allows the context menu to contain the commands
+ for this file when multiple files are selected.
+ - Both listboxes now refresh after each context menu command is carried out.
+ 
+ 10/02/98 update (v1.20)
+ - Corrected FileListBox selection bug, again.
+ - Shows how insert and execute a user-defined menu command in the context menu
+ - Did a little more documenting...
+08/24/98 update
+ (v1.10)
+ - Corrected FileListBox selection bug
+ - Shows how to retrieve the selected context menu command's string
+ - Added the option to prompt before executing the selected command
+ 
+ Download shellmenu13.zip (22kb) 
+ 

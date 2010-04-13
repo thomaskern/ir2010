@@ -1,0 +1,354 @@
+
+ 
+ Sun lets Jini Starter Kit 1.1 out of the bottle
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2000 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Sun lets Jini Starter Kit 1.1 out of the bottle
+ 
+ JavaWorld author Frank Sommers talks with Jini architect Jim
+ 
+ 
+ 
+Summary
+JavaWorld author Frank Sommers caught up with Jim Waldo, Jini architect and Sun Microsystems Distinguished Engineer, via telephone. In this interview, Waldo discusses the Jini 1.1 release and Jini's role in enterprise systems, offers advice on introducing business-specific APIs into Jini, and gives insight into scaling Jini down to the smallest devices and up to worldwide networks. (5,000 words)
+ 
+ By Frank Sommers
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+his year is shaping up as a success for Jini technology. Jini licensees now exceed 50,000, and the technology is deploying everywhere from automobiles to enterprise software systems. The upcoming Fifth Jini Community Meeting, scheduled for December 11-12 in Amsterdam, Netherlands, has received a remarkable response. The meeting reached its capacity well in advance, and excess registrations spilled over onto a waiting list. For developers, the year's most important event may have been the October release of the 1.1 version of the Jini Starter Kit (JSK).
+Jim Waldo and his team at Sun have been instrumental in this success story. Waldo has been investigating the use of Java technology for distributed computing and persistence for the past 6 years. Waldo is also an adjunct faculty member at Harvard University in the department of engineering and applied sciences, where he teaches distributed computing. 
+Prior to joining the Java group, Waldo was a principal investigator for Sun Microsystems Laboratories; he did research in the areas of object-oriented programming and systems, distributed computing, and user environments. Before joining Sun, Waldo spent 8 years at Apollo Computer and Hewlett-Packard working in the areas of distributed object systems, user interfaces, class libraries, text, and internationalization. He holds a doctorate in philosophy from the University of Massachusetts Amherst. 
+JavaWorld: What's new in the Jini Starter Kit 1.1?
+Jim Waldo: First, it's important to realize that the 1.1 release is an addition to Jini, as opposed to a change in Jini. All of the interfaces and services that were available in the first release are still available and unchanged. Anything that used to run as a Jini service will still run as a Jini service.
+For the 1.1 release, we put together some utility classes to make writing a Jini service or a Jini client easier. Some of these were actually included in the first Jini release. We tried to apply to them the same careful design effort that we put in the earlier interfaces that define Jini as whole, mainly to make these utilities easier to use and more robust. Mostly, people can use these utility classes -- yet they don't have to -- to write their services. We make a distinction between utilities, which are classes, and services that are real Jini services living out on the network. This time around, we put in a lease-renewal service, a lookup discovery service, and an event mailbox. 
+JavaWorld: What other utilities and services are you planning to introduce in a future version of the JSK?
+Jim Waldo: One of these items might be a service used to send events. A number of people have been looking at a utility class that will grant leases, to make the whole leasing model somewhat simpler. Another addition will be a set of utilities or tools that will make it easier to configure a Jini network. Also, we will be adding services and utilities that will help you get your classpath right, and your code-base right.
+JavaWorld: Will there be any security-related services?
+Jim Waldo: Security is a rather large and hairy subject. Right now, Bob Scheifler is working on a security JSR (Java Specification Request) for basic RMI. The RMI security will form the semantic model for security in Jini, in the same way that RMI forms the semantic model for communication in Jini. You don't have to use RMI, but whatever you use has to preserve the meanings that RMI gives you.
+JavaWorld: So this security mechanism will be an abstraction that one could implement in different methodologies or in different protocols as well?
+Jim Waldo: In some ways, it is almost like a service provider interface. It details what security means inside an RMI and Jini framework. You can have many preferences and requirements associated with clients and services -- to indicate that you must authenticate either one, for instance, or that you desire privacy but don't require it, that you want encryption on the wire, and so forth. Depending on how the community review goes, it could actually show up in the next Java release, the Merlin release.
+On top of that security model, we're also talking about adding services that can be used inside a Jini network to allow a fairly simple implementation of that security model within a Jini federation. These services will be built on top of the API and on top of the semantic model; they will provide the ability to obtain certificates for authentication, for instance. 
+JavaWorld: This will be a security service?
+Jim Waldo: Exactly. That is something that we're looking at probably for the release after the next release of Jini, which we're talking about naming Alewife. We would name the release after Alewife, Davis. We're naming them after subway stops, for those of you familiar with Boston. The Davis release is the one that would include Jini security.
+JavaWorld: Besides the new utilities and services, what else is new with Jini 1.1? 
+Jim Waldo: We also changed the commercial licensing terms. Jini is now free.
+JavaWorld: Many programmers associate device programming with Jini. Has Jini been used in applications that do not involve devices at all, such as enterprise software?
+Jim Waldo: Absolutely. Everything in Jini is set up to mask how a service is implemented. There is no real distinction in Jini between hardware and software, only alternate ways of implementing an interface. We've seen a lot of this happening, where a large enterprise software service wraps itself in a little Java code, which enables this service to register itself as a Jini service and be found by other services. A company called BizTone, out of Malaysia, was the first to do this. It built an entire ERP (enterprise resource planning) package out of components that talk to each other via Jini.
+JavaWorld: Those might not even be Java-based components. 
+Jim Waldo: Some of them may not be Java-based. All BizTone does is present a Java object that can be used by somebody else to talk to their services.
+One of the very interesting things about distributing Jini the way we have, which is essentially to make it freely available on the Web, is that we don't really know who our customers are. We find out about the customers who are having trouble because they call us up and tell us. We find out about our customers who aren't having trouble when they're about to ship their product and need a commercial license. That is, when they remember they need to obtain a commercial license before they ship, which many people forget, and we actually don't mind. 
+JavaWorld: Let's return for a moment to Jini 1.1. What is the relationship between the Jini core, the Jini extended specifications, and the JSK that you're including all of these services in? 
+Jim Waldo: The Jini core is what really defines Jini. It is the base set of interfaces, and not much else. That's where the Jini programming model is defined, and where what it means to be a Jini system is defined. The Jini core defines things such as the interface to a lookup service, the basic discovery protocol, the interfaces for leasing, events, and the two-phase commit for transactions. The extended APIs are our service APIs. They don't define what it is to be Jini, but rather what you can expect from a service that's in a Jini federation.
+Outside of the core, we also have implementation. There is Reggie, which is our implementation of the lookup service. And then there's also JavaSpaces. The interface to JavaSpaces is a definition of a service interface. JavaSpaces at one time was outside of the central part of Jini. Now JavaSpaces is part of the basic release. It was just too confusing to separate the extended services, which was JavaSpaces, from everything else in Jini. So, now it's one download, and one package.
+JavaWorld: So, basically, this extended API is the extension point where other APIs could be introduced for specific services?
+Jim Waldo: Absolutely. 
+JavaWorld: And that's open to the community process? 
+Jim Waldo: Yes. Now, the community process can also introduce services into the core, but these services will be introduced very slowly. We're going to be very conservative about that, at least if I have anything to say about it. 
+JavaWorld: Are you aware of Jini core implementations or extended APIs by companies other than Sun? 
+Jim Waldo: ProSyst, in Germany, has been shipping their own implementation of a lookup service for about a year. The ProSyst lookup service does not use RMI to talk between the lookup service and the entity that communicates with the lookup service. They decided they would try a different protocol. They hand out an object that implements the lookup service interface, but it uses a different wire protocol than RMI.
+Just recently, PersonalGenie introduced a lookup service that they claim has some security features in it. They implemented their own security scheme inside their own lookup service, and it follows all the rules of a Jini lookup service. We don't require that the implementation be the same. We just require that it implement the same interface. That's all we care about, the interoperation. 
+JavaWorld: In addition to the APIs that define basic Jini behavior and services, do you foresee industry-specific APIs that will expose certain business functionality? 
+Jim Waldo: At JavaOne, Ford showed a system for the car, where a Palm Pilot had a directory service that interacted with the GPS device and the navigation system in the car, both of which interacted with a voice recognition system. When you place your Palm Pilot in the car's cradle, it registers itself as a directory service with the lookup service that runs inside the car. While you're driving, you could say, "I want to get to Carl's house." The voice recognition system would recognize that as a request for a route. It would recognize Carl as a name. It would then go to the directory service on your Palm Pilot to obtain an address that matches Carl. Finally, it would feed that to the location service, which is your navigation system, find a route, and display it.
+JavaWorld: It would be a useful service if, when you enter your car, your cell phone could locate the car's stereo system as the speaker and mic for the phone.
+Jim Waldo: That is exactly the kind of interaction we've been talking about. If you said, "I want to call Carl," the system in your car would look up his number in your directory service and hand that to the telephone, which could then dial him up. You could hear Carl and talk to him via the stereo system's speakers and microphone, while keeping your hands on the wheel.
+JavaWorld: Besides the automobile industry, are you aware of other efforts for industry-specific Java APIs? 
+Jim Waldo: A group in Europe is using Jini to stitch together a system for tourism. That group found that many of the service providers in Europe's tourism industry use customized software that doesn't interact with everybody else's software. They've defined a set of Jini interfaces for the tourism industry that can then be implemented to talk to these various legacy systems and present a unified front to everybody else. 
+JavaWorld: Could other companies implement that API as a layer on top of their existing legacy systems? 
+Jim Waldo: Yes. And then they can tie together all of the tourism systems that have subscribed inside of Europe. You could find out what hotels are available in the area, what services they offer, make your reservation. You could make your reservation for the next night, at the next place you're going to. All of this will be tied into the network. 
+JavaWorld: Suppose the cell phone in your car is part of a network of Jini services. How would this device discover what business-specific APIs are available in the Jini federation? How would it know that it can reserve hotel rooms, find gas stations and service stations, access weather and ski reports, etc.? How would it learn about the existence of an API it never used before?
+Jim Waldo: Clearly, you need a client that knows how to talk to the API. We don't have any magic there. 
+JavaWorld: Is there some semantic, some kind of a translation that would say, "Give me a tourism-specific API"?
+Jim Waldo: Not that we have now. Although you could look for services that had a particular label, like "Tourism API." If they supported the ServiceUI, you could then download a client program that could talk to it.
+JavaWorld: On the Web, search engines allow users to learn about Webpages they did not know of before -- for instance, by keywords. You can type in "Hotel rooms, Berlin" and you get a list of Websites that, very likely, have information about hotel rooms in Berlin. Do you foresee a Jini search engine that provides some easy human readable way of locating services based on functionality? 
+Jim Waldo: That would be an interesting service for people to provide inside the Jini world. Remember that Jini was really designed not so much for people to talk to services as for programs to talk to services. Programs are remarkably bad at understanding human language. That is why we use the Java type system to discover things: because we suspect that it will be programs that are looking for services. 
+If a program doesn't know the API, it's hard to change the program on the fly to use that API. It can be done, and there are all sorts of experiments in AI [artificial intelligence] that allow you to do this. Any of those would work just as well in the Jini system as they do anywhere else because Java does have the ability to do reflection. 
+But, in most cases, a client program will look for a service that implements an interface that the client program already knows about. Now, the client may not know the implementation, but that's okay. All the Jini clients know is the interface, and they will download the object that implements the interface.
+JavaWorld: How can companies or individuals recommend or specify business-specific APIs? For example, say an insurance company would like to allow customers to report insurance claims through devices such as cell phones or computers. They would benefit from a common API so that all insurance companies could cooperate or use this particular software service. So, if two people get into an accident, their respective insurance companies can exchange claim information via this common API. How could one go about defining such an "Insurance API"? 
+Jim Waldo: One way is for a company or an individual to come up with the API, publish it to the Jini community, and see if people started to use it. It's always good to have an implementation as well. You could just publish the API without the implementation, but nobody may use it.
+JavaWorld: So an organization or an individual would create an "Insurance API" project on the Jini.org Website, publish its API recommendation, possibly upload an implementation... 
+Jim Waldo: And off they go. Another alternative is to start a project beforehand and collect community input. The printer group has followed this route for the Jini printing API. Basically all of the major printer manufacturers are working through what the API for printing should be in the Jini network.
+We try to provide people with the mechanisms they need to actually pull together these projects and move them forward. Sometimes we may even supply some cycles from some of our people to help them, to shepherd along the work. We may not know printing, for example, but we know Jini pretty well.
+JavaWorld: You provide input that mainly simplifies the API or tailors it to the Jini environment?
+Jim Waldo: That's certainly what I try to do. There is a certain aesthetic to Jini. We take the network-failure problems very seriously, so we worry about what happens when your call fails in unexpected ways. With this experience alone, we can help people in designing their interfaces.
+JavaWorld: And that's where the Jini.org discussion groups, or projects, come in? 
+Jim Waldo: Absolutely. For example, the ServiceUI project was started inside the community by Bill Venners. People put together an interface, and after preparing a draft, Bill actually spent a day with the Jini group. We looked it over, made a suggestion here, filed off an edge there, and asked some questions. As a result of that interaction, Bill made some minor changes in the ServiceUI. That's the way we see magnifying the talents inside the Jini group. That's why we've migrated to this open source approach. 
+JavaWorld: What would an industry-specific API look like? For our hypothetical "Insurance API" expert group, what sort of functionality should they be thinking about? 
+Jim Waldo: In addition to service interfaces specific to their industry, we would certainly encourage not to duplicate the functionality currently in Jini. If an expert group had a notion of something like leasing, they should use the leasing interface. If they had a notion that was similar to two-phase commit, they should use the two-phase commit interfaces. That way they can interoperate with other services. The Jini programming model is built around how services interoperate with other services. 
+What basic conventions are required? First, the Jini programming model says that leasing is basic because you need a time-based convention to deal with failure. Second, if you're going to have agreement between multiple entities, you must previously have an agreement about how you came to that agreement. That's why Jini includes the two-phase commit interfaces. Third, if you're going to react to events happening someplace else, you have to know what an event is and how you send it. That's why Jini includes the event interfaces. Fourth, you also must agree on how you advertise yourself, and how you find things. For an implementation to be a Jini service it must be able to find lookup services, register itself with those lookup services and renew its leases with those lookup services, just as any other Jini service would. And, finally, you must be able to hand out an object that can represent you in another address space. That's the Java programming type object that is placed in the lookup service and is reconstituted when you obtain a service from the lookup service. 
+JavaWorld: You mentioned a moment ago that clients need to know about the Jini interfaces in advance. If an industry expert group creates and publishes an API and its implementation, do they need to follow a standards procedure similar to the Java Community Process? How would they make their API known?
+Jim Waldo: The Jini community process differs slightly from the Java Community Process. We don't have anything nearly so formal as the JSR. To guarantee acceptance by the community, there are a number of tracks you can follow. One is to just publish your interface. Although you can't publish it as part of the net.jini or the net.jini.core namespace, people may start using your project, which will make it useful to other parts of the Jini community. If it becomes useful, then no extra step is needed. Some people feel that their project should have a more official status. In that case, put the project out for community review and ask the community to vote.
+Right now, the community has essentially two houses. In one house stands the Jini community who can vote; in the other, the companies that hold a commercial Jini license. If both groups vote affirmatively, then the interface and the type definitions can be included in the net.jini name space.
+The Technical Oversight Committee provides our checks and balances; it's basically an appeals body. Currently, nine members make up the Technical Oversight Committee.
+JavaWorld: How do people get on this board? 
+Jim Waldo: They are nominated by the community, and then the board is voted in at a community meeting. 
+JavaWorld: So the members are representing individuals, not corporations?
+Jim Waldo: Yes. The Technical Oversight Committee can decide if a vote was essentially not one that the Jini community should have followed. It's sort of an analog of the Supreme Court. 
+JavaWorld: So, they have a final say as to what's going to be included in the net.jini name space? 
+Jim Waldo: Yes. At this point, they do. 
+JavaWorld: But if something becomes really popular then it might not even be necessary to go through that process. 
+Jim Waldo: I am a huge believer in de facto standards, as opposed to de jure standards. I think they work much better.
+JavaWorld: To switch topics, could you talk about scaling Jini down to small devices, specifically the Surrogate Project? 
+Jim Waldo: The Surrogate Project began when we started thinking seriously about devices that had limited resources, particularly in regards to memory. Many people think that the Surrogate Project focuses on how to deal with devices that can't run Java at all. But it's more than that. Even if a small device could be running Java, the idea behind Jini is that you move an object into the client that enables the client to use the service. If you have a memory-limited device that runs Java, and you start receiving objects, at some point you're going to exhaust the available memory. Your system will break in a way that will be hard for you to understand, because it will seem random. 
+JavaWorld: Because it will no longer be able to load classes or data into memory. 
+Jim Waldo: Exactly. We realized that the code-motion in this case was going the wrong way, to the limited device. The Surrogate Project defines an environment where these limited devices can move Java code to a host where no limits prevent the code from running on the device's behalf. 
+JavaWorld: That would be the surrogate host. 
+Jim Waldo: The surrogate host will be discovered by anything that wants to find a spot that can run an object on its behalf. Rather than trying to download classes to my Palm Pilot or some other small, memory-limited device, I'm going to find a surrogate host and move code from my Palm Pilot to that host. The code will run on the host; it will talk Jini to the rest of the network, and it can talk to me directly because it knows my details.
+JavaWorld: How would a device discover its surrogate host? 
+Jim Waldo: The surrogate architecture includes a discovery protocol for finding surrogate hosts. It features the same idea that Jini uses, where inside Jini, the discovery protocol is saying, "Find me a lookup service." In this case, a discovery protocol will allow a device looking for a surrogate host to match with a surrogate host. 
+JavaWorld: So this device would have to have a piece of software that knows that protocol? 
+Jim Waldo: Right. And by the way, this protocol may differ over different networks. Bluetooth, for example, may not be running TCP/IP. 
+JavaWorld: So the surrogate discovery protocol is specific to the underlying network transport? 
+Jim Waldo: Right, the discovery protocol has to match your actual physical networking. So we can foresee, for example, a surrogate discovery protocol running over FireWire. With FireWire, when you plug in a device, it basically sends the moral equivalent of a bus interrupt down the FireWire network. In that case, the surrogate host can discover that a new device has turned on and contact it directly, instead of having the device send out a query such as, "Are you a surrogate host?" 
+JavaWorld: So the surrogate architecture could be used by items other than devices, for example, applications that, for some reason or another, would not want to run the service themselves. Do you envision the surrogate architecture to be used to interoperate with non-Java based software -- Microsoft Windows-based COM objects, for example? 
+Jim Waldo: Absolutely. That is another way to talk to non-Java things, or even to those items not written in a programming language. You could have something that plugged in that talked straight socket packet. But you can now do that in standard Jini. If you were to put something into the network that didn't understand Java, but would be able to obtain an interface to a lookup service and register a proxy with it, then that object does not need to know Java at all to communicate with its proxy.
+JavaWorld: It could create its own private protocol...
+Jim Waldo: Exactly. Many people don't understand this concept. Our implementation of Jini uses RMI. When we implement our Jini services, we use RMI to talk between the object and the proxy that represents this object in a Jini federation. But you don't have to do that. You could, in fact, just open up a socket and talk to a socket. 
+JavaWorld: Would the communication protocol between the proxy and the object have to use some sort of a TCP/IP connection currently? 
+Jim Waldo: Currently, yes, because our current implementation of Jini runs over TCP/IP networks. If you know your network is not a TCP/IP network, you don't have to use TCP/IP. What you know as the service can export the object that you hand out to people to talk to you. How you talk to that exported object is a private matter between you and the object. 
+JavaWorld: What is the status of the Surrogate Project?
+Jim Waldo: Right now the spec is being reviewed. I think the implementation is about a week behind the spec. Once the spec has been decided, an implementation of it will be available shortly. I believe there are [other companies and individuals] that will provide implementations as well. 
+JavaWorld: Beyond the Surrogate Project, what challenges do you see in scaling Jini down in small devices? 
+Jim Waldo: We're also thinking about how we could scale down to places where a surrogate host cannot run. As well, there are some interesting questions that may require additions to the Java environment itself. How can I ask a virtual machine how much memory it has available? How do I ask an object how much space it needs?
+JavaWorld: Somehow, the VM would have to relay this information... 
+Jim Waldo: Exactly, and the other thing that would be needed in a case like this is better garbage collection for classes, not just objects, inside Java. That's a hard problem, by the way. 
+I've talked about this to the small-VM guys a fair amount; they get headaches and say they'll work on it. We'll see. It is an exciting area because we don't know the answers. Jini started up in a research group back in Sun Labs. We still have the feeling that if we really knew all the answers to what we were talking about, then we shouldn't be doing it in the first place.
+JavaWorld: To venture out in the other direction, what are the challenges scaling Jini up to large, perhaps worldwide, networks? What's the largest Jini deployment so far, in terms of number of services and number of users? 
+Jim Waldo: I don't know what the largest one is, but I do know a group that completed a benchmark with a large system. The performance of the lookup service scaled absolutely linearly. This group had something like up to 10,000 agents. The time to register 500 agents didn't change, no matter how many agents were already there. The time to look up an agent was absolutely flat.
+As for large-scale networks, right now the lookup service is built around the idea of a workgroup: you register everything in a lookup service, and you find things in that lookup service. That's fine for a workgroup. But it doesn't scale up to larger and larger groups. In larger and larger groups, you want to filter somehow.
+If I had a lookup service for all of Sun, I wouldn't want all the printers to be included. I would only want to know about the local printers. But there might be Sun-wide services that I'd want to use, like the HR database information, which provides someone's phone number when given their name. Those are things that I'd like to find anywhere within the corporation. However, I don't want this information available outside the corporation. 
+One of the things we're thinking about now is how you identify services that should be registered in a hierarchy of lookup services, rather than just your local lookup service. What kind of gradations do you want? How do these gradations work? Are the gradations based on locality of service? Are they based on who uses the service? 
+One of the ideas I'm playing around with is the notion of a Person object that could register in various places. The idea is to find what printer, for example, or what lookup service is associated with me or some other person. You would register this Person object in many different lookup services. If I were doing this for Sun, a top-level lookup service might contain Person objects for everybody in Sun. And so I would go to that lookup service to find the Person object for somebody else in Sun, say Ken Arnold. And based on that object, I could ask it what current lookup service is associated with this person. And from that, I could find the printer, or the scanner, or other services that were local to him, not me. 
+JavaWorld: In that case, the lookup service would belong to a person. A person might have several lookup services that he or she prefers to use.
+Jim Waldo: Yes. Or, it might be a lookup service that associates with the location of a person. When Ken is visiting California, I find the lookup service that he uses in California. 
+JavaWorld: Would all the services he uses register in the California lookup service? 
+Jim Waldo: Yes. 
+JavaWorld: And that would take place automatically; the user would not have to be aware of that. So, if someone moves about, he would carry those services with him?
+Jim Waldo: That's what I'm playing with right now. There is this notion of your home lookup service, and your current lookup service. 
+You know, we're having a great time. I hope other people in the Jini community are having as much fun as we are. And the people who are using it are the ones who are making it so much fun. 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+About the author
+ 
+Frank Sommers is the founder and CEO of Autospaces, a startup focused on bringing Jini technology to the automotive software market. He has been programming in Java since 1995, after attending the first public demonstration of the language on the Sun Microsystems campus in November of that year. His interests include parallel and distributed computing, the discovery and representation of knowledge in databases, and the philosophical foundations of computing. When not thinking about computers, he composes and plays piano, studies the symphonies of Gustav Mahler, and explores the writings of Aristotle and Ayn Rand. 
+ 
+Resources
+- Access Jini community projects, find out how to create your own, and download JSK 1.1 at Sun's Jini page: 
+http://www.jini.org
+- Information about the Fifth Jini Community Meeting: 
+http://www.jini.org/community_fifth.html
+- The Jini Surrogate Project page and specifications: 
+http://developer.jini.org/exchange/projects/surrogate
+- Early draft of the RMI Security specifications: 
+http://java.sun.com/products/jdk/rmi/rmisec-doc/intro.html
+- JavaOne 2000 conference sessions on Jini: 
+http://jsp.java.sun.com/javaone/javaone2000/tracks.jsp?ts=975565718118#5
+- "Java Technology Hits the Road," Steven Meloan (java.sun.com, Aug. 29, 2000): 
+http://java.sun.com/features/2000/08/ford.html
+- BizTone's ERP system: 
+http://www.biztone.com
+- PersonalGenie: 
+http://www.personalgenie.com
+- ProSyst's mBedded Server: 
+http://www.prosyst.com
+- Bill Venners's Jini page at Artima: 
+http://www.artima.com
+- Hear Jim Waldo and Frank Sommers talk about the Surrogate Project: 
+http://mithras.itworld.com/media/hearit/1100/001116sommers_jini.ram
+- Sign up for the JavaWorld This Week free weekly email newsletter and keep up with what's new at JavaWorld: 
+http://www.idg.net/jw-subscribe
+- Check out JavaWorld's Jiniology column for more stories on Jini technology: 
+http://www.javaworld.com/javaworld/topicalindex/jw-ti-jiniology.html
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,216 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq18_9.html 
+ 
+search 
+ 
+Node:Hardware interrupts,
+Next:_go32 vs __dpmi,
+Previous:RMCB,
+Up:Low-level
+18.9 How to hook hardware interrupts
+Q: How do I register my DJGPP function as a hardware interrupt handler?
+A: The optimal setup depends on the interrupt frequency and on the
+amount of processing it requires. Therefore, only some basic
+considerations and techniques are listed below. What combination of these
+is best for your application is up to you to decide.
+First, some background. Hardware interrupts can occur when the
+processor is either in real mode (like when your program calls some DOS
+service) or in protected mode. When your program runs under a DPMI
+host, hardware interrupts are caught by the DPMI host and passed to
+protected mode first; only if unhandled, they are then reflected to real
+mode. Therefore, in DPMI mode you can get away with installing only a
+protected-mode handler. However, if the interrupts happen at a high
+frequency (say, more than 10 KHz), and if your program spends lots of
+time calling real-mode DOS/BIOS functions, then the overhead of the
+interrupt reflection from real to protected mode might be too painful,
+and you should consider installing a real-mode interrupt handler in
+addition to the protected-mode one. Such a real-mode handler will be
+called before the interrupt gets to the DPMI host, and handle the
+interrupt entirely in real mode, so it must be written in assembly and
+located in conventional memory (below the 1MB mark). If you need to
+hook an interrupt with both PM and RM handlers, you must hook the PM
+interrupt first, then the RM one (because hooking the PM interrupt
+modifies the RM one). Also, you should know that some DPMI hosts don't
+allow you to hook the RM interrupt (CWSDPMI does), and some call both
+handlers, no matter in what mode the interrupt arrived (CWSDPMI will
+only call one of them); the only way to be sure is to try.
+To install a protected-mode interrupt handler, you do this:
+- In general, your handler should be written in assembly to be
+bullet-proof. You should lock35 all the
+memory (code, data and stack) that could be touched by your handler
+during interrupt processing (this is virtually impossible if the handler
+is written in C), explicitly issue the `STI' instruction before `IRET',
+and perform all the other chores described in the DPMI spec (see DOS Protected Mode Interface Specification). To install an assembly handler, you should do this:
+- Call __dpmi_get_protected_mode_interrupt_vector and save the
+structure it returns (to restore the previous handler address before your
+program exits).
+- Lock all the memory your handler touches, the code of the handler
+itself, and any function it calls, with a series of calls to
+__dpmi_lock_linear_region. Failure to lock memory accessed
+during the interrupt handling will cause your program to crash. 
+Alternatively, you could set the _CRT0_FLAG_LOCK_MEMORY bit in
+the _crt0_startup_flags variable, like this:
+#include 
+int _crt0_startup_flags = _CRT0_FLAG_LOCK_MEMORY;
+Another possibility is to disable virtual memory by using CWSDPR0 as
+your DPMI server.
+- Finally, call __dpmi_set_protected_mode_interrupt_vector and pass
+it a pointer to a __dpmi_paddr structure filled with the value
+returned by _my_cs() in the selector field and the address
+of your function in the offset32 field. 
+- If your handler function is written in C, you should generally call the
+_go32_dpmi_XXX functions instead of the bare-bones API wrappers
+whose names start with __dpmi_. Specifically:
+- Call _go32_dpmi_get_protected_mode_interrupt_vector. This
+function puts the selector and offset of the specified interrupt vector
+into the pm_selector and pm_offset fields of the structure
+pointed to by its second argument. This data should be saved and later
+passed to _go32_dpmi_set_protected_mode_interrupt_vector to
+restore the vector on exit.
+- Call _go32_dpmi_allocate_iret_wrapper, passing it the address of
+your function in the pm_offset field and the value returned by
+_my_cs() in the pm_selector field. The pm_offset
+field will get replaced with the address of the wrapper function which
+is a small assembler function that handles everything an interrupt
+handler should do on entry and before exit (and what the code GCC
+generates for an ordinary C function doesn't include); the effect is
+similar to using the interrupt or _interrupt keyword in
+other DOS-based compilers.
+- You then call _go32_dpmi_set_protected_mode_interrupt_vector with
+the address of the _go32_dpmi_seginfo structure you got from
+_go32_dpmi_allocate_iret_wrapper.
+- If you want your handler to chain to the previous handler, call
+_go32_dpmi_chain_protected_mode_interrupt_vector. This will set
+up a wrapper function which, when called, will call your handler, then
+jump to the previous handler after your handler returns. Put the
+address of your handler into the pm_offset field and the value of
+_my_cs into the pm_selector field of the
+_go32_dpmi_seginfo structure and pass a pointer to it to this
+function. _go32_dpmi_chain_protected_mode_interrupt_vector
+allocates the wrapper internally, and also arranges for the interrupt to
+call your handler, so you need not call
+_go32_dpmi_allocate_iret_wrapper and
+_go32_dpmi_set_protected_mode_interrupt_vector functions
+yourself. Also note that currently,
+_go32_dpmi_chain_protected_mode_interrupt_vector doesn't return
+to you the address of the wrapper it allocates, so that wrapper cannot
+be freed by your program. It will be freed by the DJGPP exit code,
+though, so this issue is only of concern to programs that allocate and
+free lots of wrappers. 
+The problem with writing handlers in C as above is that in practice you
+can't lock all of memory the handler itself uses, because there's no
+standard way of finding the size of the code of a C function, or the
+addresses on the stack used by C code. Thus, this approach is generally
+unsuitable for production-quality software and should be used only when
+the program is known not to page (i.e., if only the physical memory is
+used). You might consider disabling virtual memory to make sure your
+program doesn't page. To accomplish this, either set the
+_CRT0_FLAG_LOCK_MEMORY bit in the _crt0_startup_flags
+variable, or use CWSDPR0 or PMODE/DJ as your DPMI host. In fact, using
+one of these methods is the recommended way of debugging the first
+versions of a program that hooks hardware interrupts; only after you are
+sure that your basic machinery works should you move to testing it in a
+setup when paging might happen.
+Additional considerations apply if your interrupt handler is a C++
+class member function. First, you need to remember that member
+functions expect a hidden extra first parameter--this is important if
+you use member functions as callbacks. Second, if the function is
+virtual, you will need to lock the class's virtual table. Third, you
+need to lock the object itself, not only the method you call on it.
+Note that _CRT0_FLAG_LOCK_MEMORY is only recommended for small
+programs that run on a machine where enough physical memory is always
+available, because the startup code currently doesn't test if memory is
+indeed locked, and if there's not enough physical memory installed to
+page in all of the memory your program needs, you can end up with
+unlocked or partially unlocked memory, which will crash your program. 
+If you want to make sure all memory is locked, use a DPMI server which
+disables paging.
+Buffers in conventional memory (allocated via the
+__dpmi_allocate_dos_memory function and its equivalents)
+generally need not be locked, since most DPMI servers lock DOS memory by
+default. For safer code, you could try to lock them, and if the call to
+__dpmi_lock_linear_region returns a failure indication, it means
+that the buffer is already locked.
+It is possible to lock only the code and data segments of your program,
+but leave everything else unlocked. The following code snippet shows
+how:
+ #include 
+ int _crt0_startup_flags =
+ _CRT0_FLAG_LOCK_MEMORY | _CRT_FLAG_NONMOVE_SBRK;
+ int (main (void)
+ {
+ _crt0_startup_flags &= ~_CRT0_FLAG_LOCK_MEMORY;
+ ...
+ }
+This locks the .data, .bss, and .text segments of
+the program, and its stack, but doesn't lock the heap allocated after
+main is called. 
+To install a real-mode interrupt handler, you do this:
+- Call __dpmi_get_real_mode_interrupt_vector and save the structure
+it returns (to restore the previous handler address before your program
+exits).
+- Allocate some conventional memory with __dpmi_allocate_dos_memory
+and put the code of your handler there with the dosmemput function. 
+(You could also call one of the functions which allocate a real-mode
+call-back, but these will cause a mode switch on every interrupt, which you
+want to avoid; otherwise there is no point in installing a real-mode
+handler, right?)
+- Put the address which __dpmi_allocate_dos_memory returned into a
+__dpmi_raddr structure (the lower 4 bits into offset16
+field, the rest into segment field), then call
+__dpmi_set_real_mode_interrupt_vector.
+Note that Windows 9X is reported to call both the RM and PM handlers if
+both are installed, at least for some interrupts (CWSDPMI only invokes
+one of them). So, if you want to play safe, you will need some kind of
+a semaphore variable that the two handlers could use so that only one of
+them actually handles the interrupt in any given case.
+The DPMI spec says that 3 software interrupts are special, in
+that they also get reflected to a protected-mode handler. These
+interrupts are: 1Ch (the timer tick interrupt), 23h (Keyboard Break
+interrupt), and 24h (Critical Error interrupt). This means that, to
+catch these interrupts, you need to install a protected-mode handler
+only. Unlike hardware interrupts, it doesn't make sense to install dual
+RM and PM handlers for these software interrupts. In particular,
+Windows will call both RM and PM handlers if you install both, so you
+effectively wind up handling the same interrupt twice.
+For examples of installing and using hardware interrupt handlers, see
+the sources of the Allegro library, the sample code written by
+Bill Currie, the Sound Blaster
+interrupt-driven functions, the mkkbd package, and the
+libhw library, described under sample DJGPP packages. 
+Alaric B. Williams has written a
+tutorial on interrupt handling.
+The DJGPP User's Guide includes a chapter on hardware interrupts, written by Peter
+Marinov, which includes sample code for hooking hardware interrupts.
+The file src/libc/go32/dpmiexcp.c in the DJGPP library sources,
+djlsrNNN.zip, is one example of the subtleties involved with
+installing a real-mode interrupt handler. The handlers themselves are
+in the file src/libc/go32/exceptn.S.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

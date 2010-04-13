@@ -1,0 +1,255 @@
+
+ 
+online C++ tutorial: Glossary
+ 
+ 
+ 
+ 
+Glossary
+ algorithm 
+ A series of steps that systematically outline how 
+	to accomplish a goal.
+ 
+	
+ assembler 
+ a piece of software that translates a specific 
+	assembly language into 
+	machine language 
+	for a specific processor.
+ 
+	
+ assembly language 
+ a set of instructions that a programmer
+	can use to create a program for use on a specific 
+	processor. Assembly language is translated into
+	machine language by a piece of software called an
+	assembler
+ 
+	
+ bit 
+ The smallest possible unit of memory. A bit can store only
+	two different values - a "0" or a "1". If a bit could
+	store only one possible value, it would not store any information
+	at all, because each bit would look identical. However, a
+	bit storing one of two possible values can be combined with
+	lots of other bits to store huge quantities of information.
+	The term for a group of eight bits, a common occurrence,
+	is called a byte. 
+ 
+	
+ byte 
+ A small unit of memory.
+	A byte is composed of eight bits. 
+	One bit
+	can store two different combinations (0 or 1), two bits can store
+	four different combinations (00, 01, 10, 11), three bits can store 
+	eight
+	different combinations (000, 001, 010, 011, 100, 101, 110, 111);
+	following the pattern,
+	eight bits, or one byte, can store 256 different values.
+ 
+	
+ casting 
+ The act of viewing (and often converting) the information 
+	contained in a variable of one type as if that 
+	information was of another type.
+ 
+	
+ class 
+ ...
+ 
+	
+ comment 
+ These are put into source code by programmers in order 
+	to better explain what the code does. When source code is
+	compiled into 
+	assembly language, all comments 
+	are removed. Comments
+	only describe code, there is no action associated with them.
+	Since comments are removed by the compiler, they can be
+	written in plain English (or any other natural language
+	you choose!).
+ 
+	
+ compiled 
+ Once third-generation languages have been translated
+	into assembly code and then to machine code, they are said
+	to have been compiled. Loosely, this could also be used to
+	refer to any single intermediate step.
+ 
+	
+ compiler 
+ a piece of software that takes third-generation
+	language code and translates it into a specific 
+	assembly
+	code. Compilers can be quite complicated pieces of software. 
+ 
+	
+ constructor 
+ ...
+ 
+	
+ cout 
+ In the C++ language, this is the name given to the standard
+	output stream. When a buffer of characters is sent to this 
+	stream, they will appear as output on the terminal the program
+	was ran from.
+ 
+	
+ debug 
+ the act of removing errors, logical mistakes, or 
+	flow of control problems in a program.
+ 
+	
+ decimal 
+ a number represented as a whole number and some fractional
+	part as well. Decimal numbers either take up more memory than 
+	integers, or are accurate to less places, or both.
+ 
+	
+ execute 
+ The act of starting up and running a certain program.
+	This involves loading the program from disk into main memory,
+	reserving memory space for the program to work with, and
+	sequentially executing the steps of the program as outlined 
+	by the programmer
+ 
+	
+ function 
+ ... 
+	
+ garbage 
+ an all-encompassing term used to denote variable values 
+	that are undefined, or bad input into a program.
+ 
+	
+ gcc 
+ this is the name of the gnu C++ compiler. 
+	This free compiler is
+	frequently used on machines running the UNIX operating 
+	system. The latest version of gcc can be
+	downloaded
+	via ftp.
+ 
+	
+ instruction set 
+ a set of commands that a certain CPU 
+	understands.
+	These are very basic instructions that are wired into the 
+	logic of the CPU.
+ 
+	
+ integer 
+ a whole number value. In programming languages, integers
+	also have a maximum value, depending on the language definition
+	or the architecture of the machine that the code is compiled
+	on
+ 
+	
+ keyword 
+ a word that has some sort of predefined meaning in the
+	context of a programming language
+ 
+	
+ machine language 
+ a processor specific set of binary codes
+	that correspond to actions to be taken by the processor of a 
+	machine.
+ 
+	
+ main 
+ In C++, this is the first function that is called when a 
+	program is executed. When a program returns from main, 
+	execution has been completed.
+ 
+	
+ object 
+ ...
+ 
+	
+ operator 
+ Acts on one or more subexpressions to produce a value. 
+ 
+	
+ parameter 
+ a piece of data that is passed into a program,
+	subroutine, or function call.
+ 
+	
+ path 
+ A path is used to specify where certain files can be found
+	in a directory tree. Sometimes path is used to mean where 
+	an application looks to find certain files, such as "make
+	sure stdio.h is in your path, or the compiler won't find it."
+ 
+	
+ portable 
+ a description of how easy it is to take
+	code written on one machine or system and
+	correctly compile it on another
+	machine or system. This process is called "porting".
+ 
+	
+ preprocessor directive 
+ a command placed within a source code 
+	listing, that directs the compiler to do something before
+	the rest of the source code is parsed and compiled.
+ 
+	
+ private 
+ ...
+ 
+	
+ protected 
+ ...
+ 
+	
+ pseudo-code 
+ a high-level abstraction of code, usually used to 
+	outline the general steps in an algorithm
+	without having to
+	write actual code (usually done for the reader's 
+	or programmer's benefit).
+ 
+	
+ public 
+ ...
+ 
+	
+ public interface 
+ ...
+ 
+	
+ return type 
+ specifies the type of data that is returned from a
+	function call. 
+ 
+	
+ type 
+ describes what sort of information a variable
+	stores, as
+	well as how much space that information takes up.
+ 
+	
+ UNIX 
+ A multi-processing, multi-user, family of operating systems 
+	that run on a variety of architechtures. A shareware version
+	of this operating system, Linux, runs on the IBM compatible 
+	PC.
+ 
+	
+ variable 
+ a name, given by a programmer, to represent a piece of 
+	data within a certain program. This name is then used
+	to refer to that piece of data.
+ 
+	
+ Windows 
+ A family of operating systems created by Microsoft, that
+	run on Intel based IBM compatible machines. 
+ 
+	
+ 
+ 
+ 
+ 

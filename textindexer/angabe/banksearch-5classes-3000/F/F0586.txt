@@ -1,0 +1,41 @@
+
+StatusBar
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 06/26/97,
+ last update: 06/26/97 
+ 
+Home 
+ 
+ 
+ StatusBar: Example of
+ how to create a status bar common control
+ 
+ This example shows how to dynamically create a fully functional status bar common control
+ exposed by the common control library comctl32.dll at runtime without the use of
+ comctl32.ocx.
+ 
+ The advantages of this implementation are obviously beneficial. First and foremost the
+ need to distribute comctl32.ocx with an application is eliminated, reducing distribution
+ size. Also an application's memory footprint is significantly reduced by not loading an
+ ActiveX control. And finally, there is a noticeable improvement in performance. And that's
+ why I wrote it, but...
+ 
+ There is one drawback here though. There are no stock VB mouse events to work with as are
+ provided by comctl32.ocx. To work around this, you can implement your own events via
+ either a subclassing control in VB4 or the AddressOf operator in VB5.
+ 
+ Due to the nature of the status bar control, this particular demo is quite a bit more
+ involved than the progress bar demo also found at
+ this site. This demo is also a precursor to the extremely involved MenuHelp function demo.
+ 
+ Download status.zip (27kb) 
+ 

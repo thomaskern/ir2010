@@ -1,0 +1,131 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class PrimeNumbers
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class PrimeNumbers
+java.lang.Object
+ |
+ +--javax.servlet.GenericServlet
+ |
+ +--javax.servlet.http.HttpServlet
+ |
+ +--coreservlets.PrimeNumbers
+public class PrimeNumbersextends HttpServlet
+Servlet that processes a request to generate n
+ prime numbers, each with at least m digits.
+ It performs the calculations in a low-priority background
+ thread, returning only the results it has found so far.
+ If these results are not complete, it sends a Refresh
+ header instructing the browser to ask for new results a
+ little while later. It also maintains a list of a
+ small number of previously calculated prime lists
+ to return immediately to anyone who supplies the
+ same n and m as a recent completed computation.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Constructor Summary 
+PrimeNumbers()
+ 
+ 
+Method Summary 
+ void 
+doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ 
+ void 
+doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ 
+ 
+Methods inherited from class javax.servlet.http.HttpServlet 
+doDelete, 
+doOptions, 
+doPut, 
+doTrace, 
+getLastModified, 
+service, 
+service 
+ 
+Methods inherited from class javax.servlet.GenericServlet 
+destroy, 
+getInitParameter, 
+getInitParameterNames, 
+getServletConfig, 
+getServletContext, 
+getServletInfo, 
+getServletName, 
+init, 
+init, 
+log, 
+log 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+PrimeNumbers
+public PrimeNumbers()
+Method Detail 
+doGet
+public void doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+Overrides:doGet in class HttpServlet
+doPost
+public void doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+Overrides:doPost in class HttpServlet
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

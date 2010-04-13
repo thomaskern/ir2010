@@ -1,0 +1,48 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+	
+	
+ 
+JSP Sessions
+On a typical web site, a visitor might visit several pages and perform
+several interactions.
+If you are programming the site, it is very helpful to be able to associate
+some data with each visitor. For this purpose, "session"s
+can be used in JSP.
+A session is an object associated with a visitor. Data can be
+put in the session and retrieved from it, much like a Hashtable. 
+A different set of data is kept for each visitor to the site.
+Here is a set of pages that put a user's name in the session, and display
+it elsewhere. Try out installing and using these.
+First we have a form, let us call it GetName.html
+What's your name? 
+The target of the form is "SaveName.jsp", which saves the user's name in
+the session. Note the variable "session". This
+is another variable that is normally made available in JSPs, just like
+out
+and request variables. (In the @page directive, you can
+indicate that you do not need sessions, in which case the "session" variable
+will not be made available.)
+Continue
+The SaveName.jsp saves the user's name in the session, and puts a link
+to another page, NextPage.jsp.
+NextPage.jsp shows how to retrieve the saved name.
+Hello, 
+If you bring up two different browsers (not different windows of the same
+browser), or run two browsers from two different machines, you can put
+one name in one browser and another name in another browser, and both names
+will be kept track of.
+The session is kept around until a timeout period. Then it is
+assumed the user is no longer visiting the site, and the session is discarded.
+Exercise: Add another attribute "age" to the above example.
+ 
+Next tutorial: Processing HTML Forms in JSP 
+Contents
+ 
+ 
+ 

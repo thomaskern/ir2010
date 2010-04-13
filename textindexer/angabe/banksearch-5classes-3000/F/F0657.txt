@@ -1,0 +1,37 @@
+
+ProgressBar
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 05/25/97,
+ last update: 05/25/97 
+ 
+Home 
+ 
+ 
+ ProgressBar: Example of
+ how to create a progress bar common control
+ 
+ This example shows how to dynamically create a fully functional progress bar common
+ control exposed by the common control library comctl32.dll at runtime without the use of
+ comctl32.ocx.
+ 
+ The advantages of this implementation are obviously beneficial. First and foremost the
+ need to distribute comctl32.ocx with an application is eliminated, reducing distribution
+ size. Also an application's memory footprint is significantly reduced by not loading an
+ ActiveX control. And finally, there is a noticeable improvement in performance. And that's
+ why I wrote it, but...
+ 
+ There is one drawback here though. There are no stock VB mouse events to work with as are
+ provided by comctl32.ocx. To work around this, you can implement your own events via
+ either a subclassing control in VB4 or the AddressOf operator in VB5.
+ 
+ Download Progress.zip (13kb) 
+ 

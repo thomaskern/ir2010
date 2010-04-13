@@ -1,0 +1,1054 @@
+
+Guru of the Week (GotW) Archive - Main Index Page
+ 
+ 
+ Guru of the Week 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Guru of the Week is a regular series of C++ programming problems
+ created and written by Herb Sutter. Since 1997,
+ it has been a regular feature
+ of the Internet newsgroup comp.lang.c++.moderated,
+ where you can find each issue's questions and answers (and a lot of
+ interesting discussion).
+ 
+ 
+For quick links to the most current GotW issues, watch the News
+ & Events page. 
+ 
+ 
+For revised and (sometimes greatly) expanded solutions for GotW issues #1
+ to #30, along with additional material never published in GotW form, see the
+ book Exceptional C++. 
+ 
+For revised and (sometimes greatly) expanded solutions for GotW issues
+ #31
+ to #62, along with additional material never published in GotW form, see the
+ book More Exceptional C++. 
+ 
+ GotW Archive (Most Recent First)
+ 
+ 
+ 
+ 
+ Issue
+ # 
+ Title
+ and Description 
+ 
+ 
+ #84
+ 
+ (February 24, 2002) 
+ 
+Monoliths
+ "Unstrung." "All for one, and one for all"
+ may work for Musketeers, but it doesn't work nearly as well for
+ class designers. Here's an example that is not altogether exemplary,
+ and it illustrates just how badly you can go wrong when design turns
+ into overdesign. The example is, unfortunately, taken from a
+ standard library near you...
+ 
+ 
+ 
+ #83
+ 
+ (February 13, 2002) 
+ 
+Style Case
+ Study #2: Generic Callbacks. Part of the allure of generic code
+ is its usability and reusability in as many kinds of situations as
+ reasonably possible. How can the simple facility presented in the
+ cited article be stylistically improved, and how can it be made more
+ useful than it is and really qualify as generic and widely-usable
+ code?
+ 
+ 
+ 
+ #82
+ 
+ (June 30, 2001) 
+ 
+Debate #1:
+ Exception Safety and Specifications -- Are They Worth It? Is it
+ worth the effort to write exception-safe code? Are exception
+ specifications worthwhile? It may surprise you that these are still
+ disputed and debated points, and ones where even experts may
+ sometimes disagree.
+ 
+ 
+ 
+ #81
+ 
+ (May 10, 2001) 
+ 
+Constant
+ Optimization? Does const-correctness help the compiler to
+ optimize code? Most programmers' reaction is that, yes, it probably
+ does. Which brings us to the interesting thing...
+ 
+ 
+ 
+ #80
+ 
+ (Mar 31, 2001) 
+ 
+ 
+Order, Order! Programmers learning
+ C++ often come up with interesting misconceptions of what can and
+ can't be done in C++. In this example, contributed by Jan Christiaan
+ van Winkel, a student makes a basic mistake -- but one that many
+ compilers allow to pass with no warnings at all.
+ 
+ 
+ 
+ #79
+ 
+ (Feb 18, 2001) 
+ 
+ 
+Template Typedef. This GotW exists
+ to answer a recurring question about C++ syntax: When, and how,
+ could you make use of a template typedef?
+ 
+ 
+ 
+ #78
+ 
+ (Jan 31, 2001) 
+ Operators,
+ Operators Everywhere. How many operators can you put
+ together, when you really put your mind to it? This issue takes a
+ break from production coding to get some fun C++ exercise. 
+ 
+ 
+ #77
+ 
+ (Dec 25, 2000) 
+ #Definition.
+ What can and can't macros do? Not all compilers agree. 
+ 
+ 
+ #76
+ 
+ (Dec 8, 2000) 
+ Uses
+ and Abuses of Access Rights. Who really has access to your
+ class's internals? This issue is about liars, cheats, pickpockets,
+ and thieves, and how to recognize and avoid them. 
+ 
+ 
+ #75
+ 
+ (Oct 15, 2000) 
+ Istream
+ Initialization? Most people know the famous quote:
+ "What if they gave a war and no one came?" This time, we
+ consider the question: "What if we initialized an object and
+ nothing happened?" As Scarlett might say in such a situation:
+ "This isn't right, I do declare!" 
+ 
+ 
+ #74
+ 
+ (Sep 30, 2000) 
+ Uses
+ and Abuses of Vector. Almost everybody uses std::vector,
+ and that's good. Unfortunately, many people misunderstand some of
+ its semantics and end up unwittingly using it in surprising and
+ dangerous ways. How many of the subtle problems illustrated in this
+ issue might be lurking in your current program? 
+ 
+ 
+ #73
+ 
+ (Aug 27, 2000) 
+ Style
+ Case Study #1: Index Tables. This GotW introduces a new
+ theme that we'll see again from time to time in future Style Case
+ Study issues: We examine a piece of published code, critique it to
+ illustrate proper coding style, and develop an improved version. You
+ may be amazed at just how much can be done even with code that has
+ been written, vetted, and proofread by experts. 
+ 
+ 
+ #72
+ 
+ (Jul 31, 2000) 
+ Data
+ Formats and Efficiency. How good are you at choosing highly
+ compact and memory-efficient data formats? How good are you at
+ writing bit-twiddling code? This GotW gives you ample opportunity to
+ exercise both skills, as we consider efficient representations of
+ chess games and a BitBuffer to hold them. 
+ 
+ 
+ #71
+ 
+ (Jun 30, 2000) 
+ Inheritance
+ Traits? This issue reviews traits templates, and
+ demonstrates some cool traits techniques. What can a template figure
+ out about its type -- and then what can it do about it? The answers
+ are nifty and illuminating, and not just for people who write C++
+ libraries. 
+ 
+ 
+ #70
+ 
+ (May 17, 2000) 
+ Encapsulation.
+ What exactly is encapsulation as it applies to C++ programming? What
+ does proper encapsulation and access control mean for member data --
+ should it ever be public or protected? This issue focuses on
+ alternative answers to these questions, and shows how those answers
+ can increase either the robustness or the fragility of your code. 
+ 
+ 
+ #69
+ 
+ (Apr 11, 2000) 
+ Enforcing
+ Rules for Derived Classes. Too many times, just being at
+ the top of the (inheritance) world doesn't mean that you can save
+ programmers of derived classes from simple mistakes. But sometimes
+ you can! This issue is about safe design of base classes, so that
+ derived class writers have a more difficult time going wrong. 
+ 
+ 
+ #68
+ 
+ (Mar 26, 2000) 
+ Flavors
+ of Genericity. How generic is a generic function, really?
+ The answer can depend as much on its implementation as on its
+ interface, and a perfectly generalized interface can be hobbled by
+ simple -- and awkward-to-diagnose -- programming lapses. 
+ 
+ 
+ #67
+ 
+ (Feb 29, 2000) 
+ Double
+ or Nothing. No, this issue isn't about gambling. It is,
+ however, about a different kind of "float," so to speak,
+ and lets you test your skills about basic floating-point operations
+ in C and C++. 
+ 
+ 
+ #66
+ 
+ (Jan 29, 2000) 
+ Constructor
+ Failures. What exactly happens when a constructor emits an
+ exception? What if the exception comes from an attempt to construct
+ a subobject or member object? This issue of GotW analyzes one aspect
+ of C++ in detail, shows why it should work the way that it does, and
+ demonstrates the implications for constructor exception
+ specifications. 
+ 
+ 
+ #65
+ 
+ (Jan 3, 2000) 
+ Try
+ and Catch Me. Is exception safety all about writing try and
+ 
+ catch in the right places? If not, then what? And what kinds of
+ things should you consider when developing an exception safety
+ policy for your software? 
+ 
+ 
+ #64
+ 
+ (Dec 8, 1999) 
+ Standard
+ Library Member Functions. Reuse is good, but can you always
+ reuse the standard library with itself? Here is an example that
+ might surprise you, where one feature of the standard library can be
+ used portably with any of your code as much as you like, but it
+ cannot be used portably with the standard library itself. 
+ 
+ 
+ #63
+ 
+ (Nov 10, 1999) 
+ Amok
+ Code. Sometimes life hands you some debugging situations
+ that seem just plain deeply weird. Try this one on for size, and see
+ if you can reason about possible causes for the problem. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GotW Issues #31 - #62
+ 
+ 
+ 
+Note: The book More Exceptional C++
+ is the authoritative reference for GotW issues #31 to #62, #66, #71, and
+#77 plus much more.
+ The solutions archived here, shown below, are the original GotW solutions substantially
+ as posted to the newsgroup; these solutions were later revised (and some
+ greatly expanded) in the book, to bring them up to the date with the
+ published ISO/ANSI C++ standard and to add additional new material.
+ 
+ 
+ Issue
+ # 
+ Title
+ and Description 
+ 
+ 
+ #62
+ 
+ (Oct 29, 1999) 
+ Smart
+ Pointer Members. Most C++ programmers know they have to take special
+ care for classes with pointer members. But what about classes with 
+ auto_ptr members? And can we make life safer for ourselves and our
+ users by devising a smart pointer class designed specifically for
+ class membership? 
+ 
+ 
+ #61
+ 
+ (Sep 18, 1999) 
+ CHALLENGE
+ EDITION: ACID Programming. What are the similarities
+ and differences in reasoning about exception safety in particular,
+ and program safety in general? Is it possible to generalize an
+ approach that encompasses general program correctness analysis, both
+ in C++ and in other languages? And what guidelines can we
+ extrapolate that will help improve our day-to-day programming? For
+ answers, see this first-ever "10/10 difficult" issue of
+ GotW. 
+ 
+ 
+ #60
+ 
+ (Aug 7, 1999) 
+ Exception-Safe
+ Class Design, Part 2: Inheritance. What does
+ IS-IMPLEMENTED-IN-TERMS-OF mean? It may surprise you to learn that
+ there are definite exception-safety consequences when choosing
+ between inheritance and delegation. Can you spot them? 
+ 
+ 
+ #59
+ 
+ (Jul 19, 1999) 
+ Exception-Safe
+ Class Design, Part 1: Copy Assignment. Is it possible to
+ make any C++ class strongly exception-safe, for example for its copy
+ assignment operator? If so, how? What are the issues and
+ consequences? 
+ 
+ 
+ #58
+ 
+ (Jul 10, 1999) 
+ Nested
+ Functions. C++ has nested classes, but not nested
+ functions. When might nested functions be useful, and can they be
+ simulated in C++? 
+ 
+ 
+ #57
+ 
+ (Jun 26, 1999) 
+ Recursive
+ Declarations. Can you write a function that returns a
+ pointer to itself? If so, why would you want to? 
+ 
+ 
+ #56
+ 
+ (May 23, 1999) 
+ Exception-Safe
+ Function Calls. Regular readers of GotW know that exception
+ safety is anything but trivial. This puzzle points out an exception
+ safety problem that was discovered only weeks before posting, and
+ shows how best to avoid it in your own code. 
+ 
+ 
+ #55
+ 
+ (May 16, 1999) 
+ Equivalent Code? Can subtle code differences really matter, especially
+ in something as simple as postincrementing a function parameter?
+ This issue explores an interesting interaction that becomes
+ important in STL-style code. 
+ 
+ 
+ #54
+ 
+ (Apr 30, 1999) 
+ Using Vector and Deque. What is the difference between vector and
+ deque? When should you use each one? And how can you properly shrink
+ such containers when you no longer need their full capacity? These
+ answers and more, as we consider news updates from the standards
+ front. 
+ 
+ 
+ #53
+ 
+ (Mar 16, 1999) 
+ Migrating to Namespaces. Standard C++ includes support for namespaces
+ and name visibility control with using declarations and directives.
+ What's the best way to use these powerful facilities, and what's the
+ most effective way to initially migrate your existing C++ code to a
+ namespace-aware compiler and library? 
+ 
+ 
+ #52
+ 
+ (Feb 28, 1999) 
+ Extending
+ the Standard Library - Part II. Following up from the
+ introduction given in #51, we now examine "stateful"
+ predicates. What are they? When are they useful? How compatible are
+ they with standard containers and algorithms? 
+ 
+ 
+ #51
+ 
+ (Feb 7, 1999) 
+ Extending
+ the Standard Library - Part I. This issue lets you test
+ your standard algorithm skills. What does the standard library
+ function remove() actually do, and how would you go about writing a
+ generic function to remove only the third element in a container? 
+ 
+ 
+ #50
+ 
+ (Jan 9, 1999) 
+ Using
+ Standard Containers. Oil and water just don't mix. Do
+ pointers and standard containers mix any better? 
+ 
+ 
+ #49
+ 
+ (Dec 30, 1998) 
+ Template
+ Specialization and Overloading. How do you specialize and
+ overload templates? When you do, how do you determine which template
+ gets called? Try your hand at analyzing these twelve examples. 
+ 
+ 
+ #48
+ 
+ (Nov 23, 1998) 
+ Switching
+ Streams. What's the best way to switch between different
+ stream sources and targets, including the standard console streams
+ and files? 
+ 
+ 
+ #47
+ 
+ (Nov 9, 1998) 
+ Uncaught
+ Exceptions. What is the standard function uncaught_exception(), and when should it be used? The answer given
+ here isn't one that most people would expect. 
+ 
+ 
+ #46
+ 
+ (Oct 25, 1998) 
+ Typedefs.
+ Why use typedef? Besides the many traditional reasons, we'll
+ consider typedef techniques that make using the C++ standard library
+ safer and easier. 
+ 
+ 
+ #45
+ 
+ (Oct 3, 1998) 
+ Reference
+ Counting - Part III. In this final chapter of the
+ miniseries, we consider the
+ effects of thread safety on reference-counted strings. Is reference
+ counting really an optimization? The answer will likely surprise
+ you. 
+ 
+ 
+ #44
+ 
+ (Sep 8, 1998) 
+ Reference
+ Counting - Part II. In the second of this three-part
+ miniseries, we examine the effect of references and iterators into a
+ reference-counted string. Can you spot the issues? 
+ 
+ 
+ #43
+ 
+ (Aug 30, 1998) 
+ Reference
+ Counting - Part I. Reference counting is a common
+ optimization (also called "lazy copy" and "copy on
+ write"). Do you know how to implement it? 
+ 
+ 
+ #42
+ 
+ (Aug 23, 1998) 
+ Using
+ auto_ptr. This issue illustrates a common pitfall with
+ using auto_ptr. What is the problem, and how can you solve it? 
+ 
+ 
+ #41
+ 
+ (Aug 3, 1998) 
+ Using
+ the Standard Library. How well do you know the standard
+ library's algorithms? This puzzle requires a "master
+ mind." 
+ 
+ 
+ #40
+ 
+ (Jul 27, 1998) 
+ Controlled
+ Polymorphism. IS-A polymorphism is a very useful tool in OO
+ modeling, but sometimes you may want to restrict which code can use
+ certain classes polymorphically. This issue gives an example, and
+ shows how to get the intended effect. 
+ 
+ 
+ #39
+ 
+ (Jul 20, 1998) 
+ Multiple
+ Inheritance - Part III. Overriding inherited virtual
+ functions is easy -- as long as you're not trying to override a
+ virtual function that has the same signature in two base classes.
+ This can happen even when the base classes don't come from different
+ vendors! 
+ 
+ 
+ #38
+ 
+ (Jun 29, 1998) 
+ Multiple
+ Inheritance - Part II. If you couldn't use multiple
+ inheritance, how would you emulate it? Don't forget to emulate as
+ natural a syntax as possible for the client code. 
+ 
+ 
+ #37
+ 
+ (Jun 13, 1998) 
+ Multiple
+ Inheritance - Part I. Some languages, including the
+ emerging SQL3 standard, continue to struggle with the decision of
+ whether to support single or multiple inheritance. This GotW invites
+ you to consider the issues. 
+ 
+ 
+ #36
+ 
+ (May 22, 1998) 
+ Initialization.
+ What's the difference between direct initialization and copy
+ initialization, and when are they used? 
+ 
+ 
+ #35
+ 
+ (Apr 24, 1998) 
+ Typename.
+ "What's in a (type) name?" Here's an exercise that
+ demonstrates why and how to use typename, using an idiom that's
+ common in the standard library. 
+ 
+ 
+ #34
+ 
+ (Apr 3, 1998) 
+ Forward
+ Declarations. Forward declarations are a great way to
+ eliminate needless compile-time dependencies. But here's an example
+ of a forward-declaration snare... how would you avoid it? 
+ 
+ 
+ #33
+ 
+ (Mar 22, 1998) 
+ Inline.
+ Contrary to popular opinion, the keyword inline is not
+ some sort of magic bullet. It is, however, a useful tool when
+ employed properly. The question is, When should you use it? 
+ 
+ 
+ #32
+ 
+ (Feb 27, 1998) 
+ Preprocessor
+ Macros. With all the type-safe features in C++, why would
+ you ever use #define? 
+ 
+ 
+ #31
+ 
+ (Jan 31, 1998) 
+ (Im)pure
+ Virtual Functions. Does it ever make sense to make a
+ function pure virtual, but still provide a body? 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GotW Issues #1 - #30
+ 
+ 
+ 
+ 
+ 
+Note: The book Exceptional C++
+ is the authoritative reference for GotW issues #1 to #30, plus much more.
+ The solutions archived here, shown below, are the original GotW solutions substantially
+ as posted to the newsgroup; these solutions were later revised (and some
+ greatly expanded) in the book, to bring them up to the date with the
+ published ISO/ANSI C++ standard and to add additional new material.
+ 
+ 
+ Issue
+ # 
+ Title
+ and Description 
+ 
+ 
+ #30
+ 
+ (Jan 22, 1998) 
+ Name Lookup. When you call a function, which function do you
+ call? The answer is determined by name lookup, but you're almost
+ certain to find some of the details surprising . 
+ 
+ 
+ #29
+ 
+ (Jan 3, 1998) 
+ 
+ 
+ Strings. So you want a case-insensitive string
+ 
+ class? Your mission, should
+ you choose to accept it, is to write one. 
+ 
+ 
+ #28
+ 
+ (Dec 20, 1997) 
+ The Fast Pimpl Idiom.
+ It's sometimes tempting to cut corners in
+ the name of "reducing dependencies" or in the name of
+ "efficiency," but it may not always be a good idea. Here's
+ an excellent idiom to accomplish both objectives simultaneously and
+ safely. 
+ 
+ 
+ #27
+ 
+ (Nov 29, 1997) 
+ Forwarding Functions.
+ What's the best way to write a forwarding
+ function? The basic answer is easy, but we'll also learn about a
+ recent and subtle change to the language. 
+ 
+ 
+ #26
+ 
+ (Nov 22, 1997) 
+ Bool. Do we really need a builtin
+ bool type? Why not just emulate it in
+ the existing language? This GotW shows the answer. 
+ 
+ 
+ #25
+ 
+ (Nov 8, 1997) 
+ SPECIAL
+ EDITION: auto_ptr. This GotW covers basics about how you
+ can use the standard auto_ptr safely and effectively. (This GotW
+ Special Edition was written in honor of the voting out of the Final Draft
+ International Standard for Programming Language C++, which included
+ a last-minute auto_ptr change.) 
+ 
+ 
+ #24
+ 
+ (Oct 31, 1997) 
+ Compilation Firewalls.
+ Using the Pimpl Idiom can
+ dramatically reduce code interdependencies and build times. But what
+ should go into a pimpl_ object, and what is the safest way to use
+ it? 
+ 
+ 
+ #23
+ 
+ (Oct 11, 1997) 
+ Object Lifetimes - Part
+ II. Following up from #22, this issue
+ considers a C++ idiom that's frequently recommended... but often
+ dangerously wrong. 
+ 
+ 
+ #22
+ 
+ (Oct 4, 1997) 
+ Object Lifetimes - Part
+ I. "To be, or not to be..." When
+ does an object actually exist? This problem considers when an object
+ is safe to use. 
+ 
+ 
+ #21
+ 
+ (Sept 21, 1997) 
+ Code Complexity - Part
+ II. The challenge: Take the three-line
+ function from GotW #20 and make it strongly exception-safe. This exercise
+ illustrates some important lessons about exception safety. 
+ 
+ 
+ #20
+ 
+ (Sept 14, 1997) 
+ Code Complexity - Part
+ I. This problem presents an interesting
+ challenge: How many execution paths can there be in a simple
+ three-line function? The answer will almost certainly surprise you. 
+ 
+ 
+ #19
+ 
+ (Aug 29, 1997) 
+ Automatic
+ Conversions. Automatic conversions from one type to another
+ can be extremely convenient. This GotW covers a typical example to
+ illustrate why they're also extremely dangerous. 
+ 
+ 
+ #18
+ 
+ (Aug 18, 1997) 
+ 
+ 
+ Iterators. Every programmer who uses the standard library has to be aware of
+ these common and not-so-common iterator mistakes. How many of them
+ can you find? 
+ 
+ 
+ #17
+ 
+ (Aug 7, 1997) 
+ 
+ 
+ Casts. How well do you know C++'s casts? Using them well can greatly
+ improve the reliability of your code. 
+ 
+ 
+ #16
+ 
+ (Jul 30, 1997) 
+ Maximally Reusable
+ Generic Containers. How flexible can you make this
+ simple container class? Hint: You'll learn more than a little about
+ member templates along the way. 
+ 
+ 
+ #15
+ 
+ (Jul 21, 1997) 
+ Class Relationships -
+ Part II. Design patterns are an important
+ tool in writing reusable code. Do you recognize the patterns used in
+ this GotW? If so, can you improve them? 
+ 
+ 
+ #14
+ 
+ (Jun 28, 1997) 
+ Class Relationships -
+ Part I. How are your OO design skills? This
+ GotW illustrates a common class design mistake that still catches
+ many programmers. 
+ 
+ 
+ #13
+ 
+ (Jun 13, 1997) 
+ 
+ 
+ OOP. Is C++ an object-oriented language? It both is and is not, contrary
+ to popular opinion. 
+ 
+ 
+ #12
+ 
+ (May 30, 1997) 
+ Control Flow. How well do you really know the order in which C++
+ code is executed? Test your knowledge against this problem. 
+ 
+ 
+ #11
+ 
+ (May 16, 1997) 
+ Object Identity. "Who am I, really?" This problem
+ addresses how to decide whether two pointers really refer to the
+ same object. 
+ 
+ 
+ #10
+ 
+ (Apr 30, 1997) 
+ Memory Management -
+ Part II. Are you thinking about doing your own
+ class-specific memory management, or even replacing C++'s global new
+ and delete? First try this problem on for size. 
+ 
+ 
+ #9
+ 
+ (Apr 16, 1997) 
+ Memory Management -
+ Part I. This GotW covers basics about C++'s
+ main distinct memory stores. The following problem attacks some
+ deeper memory-management questions in more detail. 
+ 
+ 
+ #8
+ 
+ (Apr 4, 1997) 
+ CHALLENGE
+ EDITION: Exception Safety. Exceptions can be an elegant
+ solution to some problems, but they introduce many hidden control
+ flows and can be difficult to use correctly. Try your hand at
+ implementing a very simple container (a stack that users can push
+ and pop) and see the issues involved with making it exception-safe
+ and exception-neutral. 
+ 
+ 
+ #7
+ 
+ (Mar 28, 1997) 
+ Compile-Time
+ Dependencies. Most programmers #include many more headers
+ than necessary. Do you? To find out, consider this issue's problem. 
+ 
+ 
+ #6
+ (Mar 21, 1997) 
+ Const-Correctness. Always use
+ const as much as possible, but no more. Here are some
+ obvious and not-so-obvious places where const should be used
+ -- or
+ shouldn't. 
+ 
+ 
+ #5
+ 
+ (Mar 14, 1997) 
+ Overriding Virtual
+ Functions. Virtual functions are a pretty basic
+ feature, right? If you can answer questions like this one, then you
+ know them cold. 
+ 
+ 
+ #4
+ 
+ (Mar 7, 1997) 
+ Class Mechanics. How good are you at the details of writing
+ classes? This GotW focuses not only on blatant errors, but even more
+ so on professional style. 
+ 
+ 
+ #3
+ 
+ (Feb 28, 1997) 
+ Using the Standard
+ Library (or, Temporaries Revisited). You're
+ much better off using standard library algorithms than handcrafting
+ your own. Here we reconsider the example in the last GotW to
+ demonstrate how many of the problems would have been avoided by
+ simply reusing what's already available in the standard library. 
+ 
+ 
+ #2
+ 
+ (Feb 21, 1997) 
+ Temporary Objects. Unnecessary temporaries are frequent culprits that
+ can throw all your hard work - and your program's performance -
+ right out the window. 
+ 
+ 
+ #1
+ 
+ (Feb 21, 1997) 
+ Variable
+ Initialization. How many ways are there to initialize
+ variables? Don't forget to watch out for bugs that look like
+ variable initialization, but aren't. 
+ 
+ 
+Copyright ©
+2002 Herb Sutter
+ 

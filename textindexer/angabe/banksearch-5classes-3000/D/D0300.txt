@@ -1,0 +1,48 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+ 
+JSP Tutorial
+	
+ 
+Sending e-mail from JSP
+To be able to send e-mail, you need access to an "SMTP server". SMTP stands
+for "Simple Mail Transfer Protocol". Most of the email on the internet
+is sent using SMTP servers.
+If your email address is "you@yourhost.com", then there is
+a good chance your SMTP server is either "yourhost.com" or something
+like "mail.yourhost.com" or "smtp.yourhost.com". You
+need to find out exactly what it is. Your email program should have a "Settings"
+page which shows you the name of your SMTP server (perhaps shown as "mail
+server" or "outgoing mail server".)
+(If you have web-based email, you probably won't be able to send email
+out directly.)
+Once you have the SMTP server information, you are ready to send email
+out from your JSP pages. Following is a small sample that uses the Blazix
+Tag library to send an email with an attachment.
+First of all, let us write an HTML page to start things off.
+Please enter name: 
+Please enter email address: 
+Now let us write the target JSP, SendMail.jsp. Replace "yoursmtphost.com"
+by your SMTP server, and "you@youremail.com" by your email address. 
+Before testing it, also create a file "C:\contents.txt" which will be sent
+as an attachment.
+Please enter an email address.
+ 
+ 
+Thank you for registering with us. You registered the
+following name: 
+Your registration was received at 
+Attached, please find a contents file.
+" instead of "text/plain".
+2) Send the HTML file as an attachment, without using any other text. 
+In the "blx:email" tag, also set "noText=true".
+ 
+Conclusion: Material for further learning 
+Contents
+ 
+ 
+ 

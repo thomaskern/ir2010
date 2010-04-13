@@ -1,0 +1,220 @@
+
+ASCII Code
+ ASCII
+ (American Standard Code for Information Interchange)
+ 
+ 
+ 
+ 
+It is well-known for much people that in fact computers only handle
+0s (zeros) and 1 (ones). By means of sequences of
+0 and 1 the computer can express in binary form
+diverse ranks of numbers (as explains the document numeral radixes).
+Nevertheless there is no such evident way to represent letters with 0s
+and 1s. Then, to be able to do that, computers use the ASCII code,
+that is a table or list that contains all the letters in the alphabet plus other additional
+characters. In this code each character is always represented by the same order number.
+For example, in ASCII code the capital letter A is always represented by
+the order number 65, which is easily representable using
+0s and 1s in binary (1000001).
+The standard ASCII code defines 128 character codes (from 0 to 127), of which,
+the first 32 are control codes (non-printable), and the other 96 are representable
+characters:
+* 
+0 
+1 
+2 
+3 
+4 
+5 
+6 
+7 
+8 
+9 
+A 
+B 
+C 
+D 
+E 
+F 
+0 
+NUL 
+SOH 
+STX 
+ETX 
+EOT 
+ENQ 
+ACK 
+BEL 
+BS 
+TAB 
+LF 
+VT 
+FF 
+CR 
+SO 
+SI 
+1 
+DLE 
+DC1 
+DC2 
+DC3 
+DC4 
+NAK 
+SYN 
+ETB 
+CAN 
+EM 
+SUB 
+ESC 
+FS 
+GS 
+RS 
+US 
+2 
+ 
+&#33 
+&#34 
+&#35 
+&#36 
+&#37 
+&#38 
+&#39 
+&#40 
+&#41 
+&#42 
+&#43 
+&#44 
+&#45 
+&#46 
+&#47 
+3 
+&#48 
+&#49 
+&#50 
+&#51 
+&#52 
+&#53 
+&#54 
+&#55 
+&#56 
+&#57 
+&#58 
+&#59 
+&#60 
+&#61 
+&#62 
+&#63 
+4 
+&#64 
+&#65 
+&#66 
+&#67 
+&#68 
+&#69 
+&#70 
+&#71 
+&#72 
+&#73 
+&#74 
+&#75 
+&#76 
+&#77 
+&#78 
+&#79 
+5 
+&#80 
+&#81 
+&#82 
+&#83 
+&#84 
+&#85 
+&#86 
+&#87 
+&#88 
+&#89 
+&#90 
+&#91 
+&#92 
+&#93 
+&#94 
+&#95 
+6 
+&#96 
+&#97 
+&#98 
+&#99 
+&#100 
+&#101 
+&#102 
+&#103 
+&#104 
+&#105 
+&#106 
+&#107 
+&#108 
+&#109 
+&#110 
+&#111 
+7 
+&#112 
+&#113 
+&#114 
+&#115 
+&#116 
+&#117 
+&#118 
+&#119 
+&#120 
+&#121 
+&#122 
+&#123 
+&#124 
+&#125 
+&#126; 
+ 
+* This panel is organized to be easily read in hexadecimal: row numbers represent the
+first digit and the column numbers represent the second one. For example, the
+A character is located at the 4throw and the
+1st column, for that it would be represented in hexadecimal
+as 0x41 (65).
+In addition to the 128 standard ASCII codes there are other 128 that are known as extended
+ASCII, and that are platform-dependent. So there is more than one extended ASCII character
+set.
+The two most used extended ASCII character sets are the one known as OEM, that comes
+from the default character set incorporated by default in the IBM-PC and the other is
+the ANSI extend ASCII which is used by recent operating systems.
+First of them, the OEM character set, is included in the immense majority of PC compatibles
+when starting before loading any operating system or under MS-DOS system. 
+It includes diverse foreign signs, some marked characters and pieces to represent panels.
+Unfortunately it is usually redefined according to regional configurations
+to incorporate own symbols in many countries.
+The ANSI character set is a standard that incorporates systems like Windows, some
+UNIX platforms and many applications. It includes many more local symbols and marked
+letters so that it can be used with no need of being redefined in many more languages:
+Here you have an interactive Decimal-Hexadecimal-Octal-ASCII converter (Netscape 3+ or MSIE 4+):
+ 
+ "POST"name="theform" >
+ 
+ 
+ DEC:
+ 
+ hex:
+ 
+ oct:
+ 
+ ASCII:
+ 
+ 
+ 
+ 
+ Write a data in the suitable input field and press TAB
+ 
+ 
+ 
+ 
+ ©The C++ Resources Network, 2000 - All rights reserved 
+ 
+ Return back 
+ Return to Documents Section 
+ 

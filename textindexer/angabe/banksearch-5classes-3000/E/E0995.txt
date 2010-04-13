@@ -1,0 +1,312 @@
+
+View PR 1027 - gnatsweb
+gcc User: guest Access: viewconf
+ 
+ gnatsweb
+ 
+ 
+MAIN PAGE CREATE QUERY ADV. QUERY LOGIN AGAIN HELP 
+ 
+View Problem Report: 1027
+ or send email to interested parties
+Reporter's email: 
+cwitty@newtonlabs.com 
+CC these people
+on PR status email: 
+ 
+ 
+ 
+Number: 
+1027
+ 
+Category: 
+c
+ 
+Synopsis: 
+slightly misleading printf format warning
+ 
+Confidential: 
+no
+ 
+Severity: 
+non-critical
+ 
+Priority: 
+low
+ 
+Responsible: 
+jsm28
+ 
+State: 
+analyzed
+ 
+Class: 
+sw-bug
+ 
+Submitter-Id: 
+net
+ 
+Arrival-Date: 
+Sat Dec 09 17:46:01 PST 2000
+ 
+Closed-Date: 
+ 
+Last-Modified: 
+Sun Dec 10 05:06:01 PST 2000
+ 
+Originator: 
+Carl Witty
+ 
+Release: 
+gcc version 2.7.2.3 (also with Code Sourcery compilation server as of 20001209)
+ 
+Organization: 
+ 
+Environment: 
+Debian GNU/Linux (slink); x86
+ 
+Description: 
+When you compile the following code with -c -O -Wall -g,
+the warning messages include:
+7: warning: char format, double arg (arg 2)
+for the line
+printf("%s", &d);
+I find this warning misleading; I would prefer:
+warning: char* format, double* arg (arg 2)
+ 
+File Attachments: 
+ 
+How-To-Repeat: 
+#include 
+void foo() {
+ double d;
+ printf("%c", d);
+ printf("%s", &d);
+ printf("%c", &d);
+ printf("%s", d);
+}
+ 
+Fix: 
+ 
+Release-Note: 
+ 
+Unformatted: 
+ 
+ or send email to interested parties
+Audit Trail:
+From: "Joseph S. Myers" 
+To: 
+Cc: , 
+Subject: Re: c/1027: slightly misleading printf format warning
+Date: Sun, 10 Dec 2000 11:40:57 +0000 (GMT)
+ On 10 Dec 2000 cwitty@newtonlabs.com wrote:
+ 
+ > When you compile the following code with -c -O -Wall -g,
+ > the warning messages include:
+ > 7: warning: char format, double arg (arg 2)
+ > for the line
+ > printf("%s", &d);
+ > I find this warning misleading; I would prefer:
+ > warning: char* format, double* arg (arg 2)
+ 
+ The problem is that the code for printing type names when format checking
+ tries to be too clever about working out the names to use and deciding
+ that types are the same from their names when it had already decided that
+ they were different types. This leads to various other oddities with
+ messages referring to "different type arg" when they could be more
+ precise.
+ 
+ The C++ front end includes general support for producing a name for an
+ arbitrary type in diagnostics with the %T format specifier in cp_error,
+ cp_pedwarn etc.. What's needed to fix this problem properly is for the C
+ front end to get something along the lines of what the C++ front end has
+ for formatting types; then the actual argument type could be formatted
+ with %T. (Adding these capabilities to the C front end could probably
+ also lead to better diagnostics in various other places.)
+ 
+ -- 
+ Joseph S. Myers
+ jsm28@cam.ac.uk
+ 
+From: Gabriel Dos Reis 
+To: "Joseph S. Myers" 
+Cc: , , 
+Subject: Re: c/1027: slightly misleading printf format warning
+Date: 10 Dec 2000 12:57:16 +0100
+ "Joseph S. Myers" writes:
+ 
+ | On 10 Dec 2000 cwitty@newtonlabs.com wrote:
+ | 
+ | > When you compile the following code with -c -O -Wall -g,
+ | > the warning messages include:
+ | > 7: warning: char format, double arg (arg 2)
+ | > for the line
+ | > printf("%s", &d);
+ | > I find this warning misleading; I would prefer:
+ | > warning: char* format, double* arg (arg 2)
+ | 
+ | The problem is that the code for printing type names when format checking
+ | tries to be too clever about working out the names to use and deciding
+ | that types are the same from their names when it had already decided that
+ | they were different types. This leads to various other oddities with
+ | messages referring to "different type arg" when they could be more
+ | precise.
+ | 
+ | The C++ front end includes general support for producing a name for an
+ | arbitrary type in diagnostics with the %T format specifier in cp_error,
+ | cp_pedwarn etc.. What's needed to fix this problem properly is for the C
+ | front end to get something along the lines of what the C++ front end has
+ | for formatting types; then the actual argument type could be formatted
+ | with %T. (Adding these capabilities to the C front end could probably
+ | also lead to better diagnostics in various other places.)
+ 
+ I've already put in the necessary machinery for so doing in
+ diagnostics.*. What remains to be done is to replace error_with_decl()
+ and warning_with_decl() to error() and warning() (maybe error_at())
+ with use of those specifiers. That was planed but I didn't get the
+ chance to finish the work. Already on my TODO list but I would love
+ to assist any taker. 
+ 
+ -- Gaby
+From: "Joseph S. Myers" 
+To: Gabriel Dos Reis 
+Cc: , , 
+ 
+Subject: Re: c/1027: slightly misleading printf format warning
+Date: Sun, 10 Dec 2000 12:09:45 +0000 (GMT)
+ On 10 Dec 2000, Gabriel Dos Reis wrote:
+ 
+ > I've already put in the necessary machinery for so doing in
+ > diagnostics.*. What remains to be done is to replace error_with_decl()
+ > and warning_with_decl() to error() and warning() (maybe error_at())
+ > with use of those specifiers. That was planed but I didn't get the
+ > chance to finish the work. Already on my TODO list but I would love
+ > to assist any taker.
+ 
+ What's also needed for the present PR is for the code in cp/error.c for
+ formatting types to move to common code where C can use it as well. (I'd
+ guess that most of it can probably be shared, though stylistic differences
+ such as "int*" for C++ versus "int *" for C should be allowed for. Or, a
+ version covering only C types might be a lot simpler.) The existing code
+ in c-lang.c
+ 
+ case 'D':
+ case 'F':
+ case 'T':
+ {
+ const char *n = DECL_NAME (t)
+ ? (*decl_printable_name) (t, 2)
+ : "({anonymous})";
+ output_add_string (buffer, n);
+ }
+ return 1;
+ 
+ along with the default decl_printable_name / decl_name doesn't seem
+ adequate for even the simple case of this PR (where a name for a pointer
+ type should be constructed).
+ 
+ -- 
+ Joseph S. Myers
+ jsm28@cam.ac.uk
+ 
+From: Gabriel Dos_Reis 
+To: "Joseph S. Myers" 
+Cc: Gabriel Dos Reis , ,
+ , 
+Subject: Re: c/1027: slightly misleading printf format warning
+Date: Sun, 10 Dec 2000 13:45:40 +0100 (MET)
+ | On 10 Dec 2000, Gabriel Dos Reis wrote:
+ | 
+ | > I've already put in the necessary machinery for so doing in
+ | > diagnostics.*. What remains to be done is to replace error_with_decl()
+ | > and warning_with_decl() to error() and warning() (maybe error_at())
+ | > with use of those specifiers. That was planed but I didn't get the
+ | > chance to finish the work. Already on my TODO list but I would love
+ | > to assist any taker.
+ | 
+ | What's also needed for the present PR is for the code in cp/error.c for
+ | formatting types to move to common code where C can use it as well. (I'd
+ | guess that most of it can probably be shared, though stylistic differences
+ | such as "int*" for C++ versus "int *" for C should be allowed for. 
+ 
+ Certainly. In C++ we tend to systematically print scopes and such.
+ But it is true that all those differences can be parameterized through
+ call-backs. The codes in cp/error.c are still under development
+ (although there has been no visible activity about them).
+ In the long run cp_error() and cp_warning() are supposed to killed in
+ favor of error() and warning().
+ 
+ | ... Or, a
+ | version covering only C types might be a lot simpler.) The existing code
+ | in c-lang.c
+ | 
+ | case 'D':
+ | case 'F':
+ | case 'T':
+ | {
+ | const char *n = DECL_NAME (t)
+ | ? (*decl_printable_name) (t, 2)
+ | : "({anonymous})";
+ | output_add_string (buffer, n);
+ | }
+ | return 1;
+ | 
+ | along with the default decl_printable_name / decl_name doesn't seem
+ | adequate for even the simple case of this PR (where a name for a pointer
+ | type should be constructed).
+ 
+ Do you see a better short term solution?
+ 
+ -- Gaby
+ CodeSourcery, LLC	
+ http://www.codesourcery.com
+From: "Joseph S. Myers" 
+To: Gabriel Dos_Reis 
+Cc: Gabriel Dos Reis , , 
+ , 
+Subject: Re: c/1027: slightly misleading printf format warning
+Date: Sun, 10 Dec 2000 12:55:17 +0000 (GMT)
+ On Sun, 10 Dec 2000, Gabriel Dos_Reis wrote:
+ 
+ > Do you see a better short term solution?
+ 
+ No. I don't think this PR is release-critical, so fixing it can wait
+ until the diagnostics support for type names is shared between C and C++.
+ 
+ -- 
+ Joseph S. Myers
+ jsm28@cam.ac.uk
+ 
+Responsible-Changed-From-To: unassigned->jsm28
+Responsible-Changed-By: jsm28
+Responsible-Changed-When: Sun Dec 10 04:59:32 2000
+Responsible-Changed-Why:
+ I'll fix this when the necessary diagnostics support
+ (see messages sent to this PR) is available in GCC.
+State-Changed-From-To: open->analyzed
+State-Changed-By: jsm28
+State-Changed-When: Sun Dec 10 04:59:32 2000
+State-Changed-Why:
+ Confirmed as a bug.
+From: jsm28@gcc.gnu.org
+To: cwitty@newtonlabs.com, gcc-gnats@gcc.gnu.org, jsm28@cam.ac.uk,
+ jsm28@gcc.gnu.org, nobody@gcc.gnu.org
+Cc: 
+Subject: Re: c/1027
+Date: 10 Dec 2000 12:59:32 -0000
+ Synopsis: slightly misleading printf format warning
+ 
+ Responsible-Changed-From-To: unassigned->jsm28
+ Responsible-Changed-By: jsm28
+ Responsible-Changed-When: Sun Dec 10 04:59:32 2000
+ Responsible-Changed-Why:
+ I'll fix this when the necessary diagnostics support
+ (see messages sent to this PR) is available in GCC.
+ State-Changed-From-To: open->analyzed
+ State-Changed-By: jsm28
+ State-Changed-When: Sun Dec 10 04:59:32 2000
+ State-Changed-Why:
+ Confirmed as a bug.
+ 
+ 
+ http://gcc.gnu.org/cgi-bin/gnatsweb.pl?cmd=view&pr=1027&database=gcc

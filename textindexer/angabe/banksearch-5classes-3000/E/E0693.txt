@@ -1,0 +1,77 @@
+
+ 
+ PHP HOW-TO: Appendix B Midgard Installation
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 29. Appendix B Midgard Installation
+RPMs for Midgard from 
+http://www.midgard-project.org/download/binaries currently do not
+include 
+PostgreSQL
+, and hence you need to install from the source tar 
+ball file . 
+Download the Midgard source tarball and read the INSTALL.REDHAT file -
+bash# cd midgard-lib-1.4beta6
+bash# ./configure --prefix=/usr/local --with-mysql=/usr/local --includedir=/usr/include/mysql --with-midgard=/usr/local --with-pgsql=/var/lib/pgsql --includedir=/usr/include/pgsql
+bash# make
+bash# make install
+bash# ldconfig -v | grep -i midga
+Copy the header files, just in case make install did not do that..
+bash# cp *.h /usr/local/include
+bash# cd ../mod_midgard-1.4beta5c
+bash# ./configure --prefix=/usr/local --with-mysql=/usr/local --includedir=/usr/include/mysql --with-midgard=/usr --with-pgsql=/var/lib/pgsql --includedir=/usr/include/pgsql
+bash# make
+bash# make install
+#modify apache line to correct /usr/.....
+bash# vi /etc/httpd/conf/httpd.conf (or it is /etc/apache/httpd.conf)
+bash# /etc/init.d/apache restart
+#apache should restart!!!
+bash# cd ../midgard-php-1.4beta6
+bash# ./configure '--with-apxs' '--with-mysql' '--with-pgsql' '--with-midgard' --prefix=/usr/local --with-midgard=/usr/local
+bash# gvim Makefile
+And add -I/usr/include/pgsql to INCLUDE variable.
+Also add $(INCLUDE) to $(APXS) command as below - 
+libphp3.so: mod_php3.c libmodphp3-so.a pcrelib/libpcre.a midgard/libphpmidgard.a
+ -@test -f ./mod_php3.c || test -L ./mod_php3.c || $(LN_S) $(srcdir)/mod_php3.c ./mod_php3.c
+ -@test -f ./mod_php3.c || test -h ./mod_php3.c || $(LN_S) $(srcdir)/mod_php3.c ./mod_php3.c
+ $(APXS) -c -o libphp3.so -I$(srcdir) $(INCLUDE) -I. -I/usr/local/include -I/usr/lib/glib/include -Wl,'-rpath /usr/local/lib' ./mod_php3.c libmodphp3-so.a $(APXS_LDFLAGS) 
+bash# make
+bash# make install
+#modify apache line to correct /usr/.....
+# and add lines like these -
+ LoadModule php4_module modules/libphp4.so
+ AddModule mod_php4.c
+ LoadModule php4_module lib/apache/libphp4.so
+ 
+ AddType application/x-httpd-php4 .php4
+ AddType application/x-httpd-php4 .php
+ AddType application/x-httpd-php4-source .phps
+ AddType application/x-httpd-php .php
+ 
+bash# vi /etc/httpd/conf/httpd.conf (or it is /etc/apache/httpd.conf)
+bash# /etc/init.d/apache restart
+#apache should restart!!!
+ 29.1 Testing Midgard PHP Server
+To test the installation do this -
+Create a file in your document root directory. I usually call 
+it info.php and in it put this single line:
+Then load it up in your browser: http://localhost/info.php
+You should see a nice summary page showing all sorts of information
+about your setup. You probably shouldn't leave this file around on
+a production server, but for debugging and general info during 
+development, it is very handy.
+ 29.2 Security OpenSSL 
+You may also need to get the RSA package for to enable SSL encryption from
+ftp://ftp.deva.net/pub/sources/crypto/rsaref20.1996.tar.Z
+See also OpenSSL RPM package on Linux cdrom (
+http://www.openssl.org
+If you do not want the SSL to be enabled (or if you face any problem), then
+download the source RPM of Apache-Midgard and edit the *.spec file and comment
+out SSL and rebuild the RPM.
+Next
+Previous
+Contents

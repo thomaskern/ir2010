@@ -1,0 +1,99 @@
+
+RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+	
+ RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator 
+ 
+Hi,
+ I already had put xalan.jar and xerces.jar in tomcat's classpath but still it doesn't work.
+Any solutions?
+Infact somebody suggested to put these jar files in jdkx.x.x\jre\lib\ext file and then try. Even that didn't work.
+Does anybody know how to overcome this?
+Thanks,
+Vikas
+Submitted by vikas, 6/10/2001 1:34:40 AM
+Replies:
+- RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator (1 reply) 
+, 
+rengaraj, 6/15/2001 7:46:26 AM
+- RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator (1 reply) 
+, 
+WeeGoSh, 7/4/2001 7:16:31 AM
+- RE: RE: RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+, 
+Srinivas Bongoni, 12/19/2001 1:16:51 AM
+[ Reply | Return ] 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

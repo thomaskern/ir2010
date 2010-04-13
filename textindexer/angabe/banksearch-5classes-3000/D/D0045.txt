@@ -1,0 +1,193 @@
+
+Don's Java Central - Java Developer's Workshop
+Java Developer's Workshop
+ 
+This page is intended to be an interactive resource for Java
+programmers.
+ e-mail me if you have
+a Java Question you would like to ask or a Java Tip
+you can contribute, and I will add it to the page! I will also be
+monitoring the comp.lang.java forums and adding tips of my own to
+this page. 
+Java Classes
+ 
+- Netscape Internet Foundation Classes - 
+ Netscape Internet Foundation Classes
+ 
+- Acme Java Classes - 
+ Acme Java Classes for lots of things (Web crawling, encryption, and lots of other utility classes)
+ 
+- Cooper & Peters, Inc. - 
+	 Take a look at these outstanding Java controls. They are outstanding, but they cost money.
+	You can see lots of great demos here. 
+ 
+- Java Foundation Classes - 
+ The Java Foundation Classes (JFC)
+ 
+- List the classes that come with Visual Cafe here...
+ 
+ 
+- JavaSoft developer resources:
+ 
+ 
+- The Java Language Tutorial.
+ 
+- Java 1.0.2 API Documentation.
+ 
+- Java 1.1 API Documentation.
+ 
+- Download the Java Development Toolkit 1.0.2.
+ 
+- Download the Java Development Toolkit 1.1.
+ 
+- Get the JDK source.
+ 
+	 
+Java Questions
+ 
+- Why can't I see Java applets with my
+ Netscape 2.0 browser!? 
+ 
+- Java security frustrations - What an
+ Applet can and can't do... 
+Java Tips & Techniques
+ 
+- Java Developers Kit 1.02 Known Bugs
+ list. You may want to check here if you've got a tough
+ Java problem that no-one can seem to help you with. 
+ 
+- Visual Cafe Tips
+	 A user's guide for Visual Cafe. Full of great tips for using this visual development environment.
+ 
+- Here's a table of Java event differences by browser:
+	
+	
+- A quick way to create a String out of a basic integer type
+ 
+- Creating your own layouts 
+ 
+- If you are doing JavaScript programming, try typing
+ "mocha:" at the Netscape URL window. You'll get
+ a command line for JavaScript! 
+ 
+- Applet
+ using sockets example code 
+ 
+- Ask
+ the Java Pro has the answers to several commonly
+ asked questions such as: 
+ 
+- How do I get data into an applet? 
+ 
+- How do I get data out of an applet? 
+ 
+ 
+ 
+- Java Docs in WinHelp format! Click
+	 HERE to download'em. This Winhelp file
+ includes: 
+ 
+- The Java API 
+ 
+- The Java Language Environment white paper 
+ 
+- The Java Language Spec 
+ 
+- The Java Virtual Machine Spec 
+ 
+- Java man pages 
+ 
+- A Java FAQ 
+ 
+- Some Java tips and tricks 
+ 
+- A guide to Java resources 
+ 
+ 
+ 
+- Ok, so I don't have very many tips here yet. Until I do,
+ check out the Java Developer - How do I? link. It's
+ got lots of great Java Tips! 
+Creating your own layouts:
+In addition to the 5 layouts that come with the Java SDK, you
+can create your own layouts. SunWorld Online has an example of a
+new layout called the PackerLayout. The PackerLayout provides a
+geometry manager that arranges components by packing them around
+the edges of the parent.
+A Quick way to convert an integer to a String:
+A quick way to create a String out of a basic integer type:
+int i = 1;
+String str = "" + i;
+Things to check if you can't see the Java
+applets: 
+ 
+- Windows - You need the 32 bit Netscape 2.0 browser
+ to see Java Applets. Unfortunately, the 16 bit Netscape
+ 2.0 browser for Windows 3.1 does not support Java. If you
+ were waiting for a reason to upgrade to Win95, now you've
+ got one!
+ 
+- Macintosh - You need to download Netscape 2.0 Java
+ beta 1 for the Macintosh (from Netscape) in order to run
+ Java applets. Java was not supported yet when the Mac
+ version of Netscape 2.0 first came out. 
+ 
+- If you're still reading, and your browser still
+ won't display Java applets, check under the menus
+ "Options" -> "Security" and make
+ sure that Java is not 'disabled'.
+ 
+- If none of the above helped, or if you know of new
+ information that I don't have here, send me an e-mail and
+ I'll try to help you figure it out!
+ Java Applet Security frustrations: 
+Java Applets need to be secure so that rogue applets cannot
+unleash viruses or perform other nasty operations on the
+end-user's computer. Unfortunately, this is causing me much
+frustration as I try to write useful Java Applets. 
+ 
+- A Java Applet can't read or write files on the client,
+ unless loaded via "file loader". Netscape
+ always loads applets via "applet loader". I can
+ definitely see why writing files to the client's computer
+ needs to be restricted, but I think there needs to be
+ some mechanism where trusted Applets can write to the
+ client computer. It seems that Sun has provided this
+ mechanism, but Netscape decided to prohibit it for the
+ time being. Also speak about signatures to verify
+ "trusted applets"
+ 
+- A Java Applet can't open a network connection to any
+ computer other than the host the applet originated from.
+ 
+- A Java Applet can't maintain a persistent state. This
+ means the applet dissappears when going to another web
+ server/home page than the one that called it, and that
+ the applet must be downloaded every time it is run,
+ instead of only when it changes.
+There are many
+ discussions on comp.lang.java about the security
+ limitations of applets. For client side file access, the
+ consensus seems to be that Netscape and other Java client
+ designers need to give the user the ability to allow
+ limited local access throught he client's file access
+ system. 
+ 
+A simple implementation, discussed many times, is for
+ the browser settings to include a yes/no option for file
+ read/write to a single local directory. The user
+ specifies the directory name and allows or prohibits
+ applet access to that directory, as the user chooses from
+ time to time. The installation default would be no access
+ whatsoever. A finer grained implementation might permit
+ the user to enable reading and writing separately, and
+ perhaps even specify multiple directories rather than a
+ single location. 
+ 
+For more details on Java Applet security, see Sun's Java
+ Security FAQ. 
+| Home | Java Links | Workshop | Java Applets | Java News | Other Links | E-Mail | 
+ 
+Don's Java Central /
+donc500@earthlink.net / © 1996 Don Campbell 
+Established Feb 7, 1996 

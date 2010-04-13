@@ -1,0 +1,44 @@
+
+ vsprintf()
+ 
+ 
+vsprintf-Formatted write of a varying-length argument list to a string
+Synopsis
+ #include &#060;stdarg.h&#062;
+ #include &#060;stdio.h&#062;
+ x = vsprintf(buf, ctl, args);
+ int x; /* number of characters placed in the */
+ /* output buffer */
+ char *buf; /* String for resulting image */
+ const char *ctl; /* control string specifying formatting */
+ va_list args; /* items to be formatted */
+Description
+ This function is identical in capabilities to the sprintf 
+ function, except that the argument list is passed as a va_list
+ instead of on the stack. The argument list args must be
+ initialized by the caller with a va_start macro (and any preceding
+ va_arg macros that it wants to call). When terminated, it is the
+ responsibility of the caller to call the va_end macro on the
+ argument list.
+Returns
+ This function returns the number of characters placed in the
+ output buffer (excluding the terminating NULL byte).
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;stdarg.h&#062;
+ /* Format an arbitrary message into a buffer */
+ void getmsg(char *buffer, char *string, ...)
+ {
+ va_list arglist;
+ va_start(arglist, string);
+ vsprintf(buffer, string, arglist);
+ va_end(arglist);
+ }
+ void main(void)
+ {
+ char buf[256];
+ getmsg(buf, "Formatted with %d argument.n", 1);
+ printf(buf);
+ }
+See Also
+ sprintf 

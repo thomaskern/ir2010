@@ -1,0 +1,194 @@
+	
+	 WDVL: Variables
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+USA Mailing Address
+Computer Training
+Find A Web Developer
+Register Domains
+Anti-Virus Software
+Freelance Projects
+Free DNS Offer
+Search Marketplace
+Find Annual Reports
+Software Store
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Variables	
+What are member variables?
+Member variables are defined within the class but not within a method of the class. Member variables are available for use by all methods of the class.
+static int num_recs=50; defines a constant integer variable with the value of 50.
+List itemList = new List(5,false); creates a List object to display 5 items. The "false" parameter indicates that multiple items can not be selected from the List.
+String email_address [ ] = new String[50]; defines an array of String objects with a maximum of 50 items.
+Each object is an instance of a class previously defined with its own data and methods. The List object is available to the Contact class as part of the java.awt.* package. Here is the reference documentation that specifies the 
+List object. Here is the reference documentation index for all Java objects.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

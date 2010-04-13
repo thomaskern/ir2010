@@ -1,0 +1,382 @@
+
+ 
+ News and New Product Briefs (11/14/98)
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 1998 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ News and New Product Briefs (11/14/98)
+ 
+ 
+ 
+ 
+Summary
+Newshound Kane Scarlett hits the Net (and beyond) to bring you this month's batch of 38 select, Java-related news and new product announcements, including: recent developments in the Microsoft vs. DOJ lawsuit; what's new from IBM's alphaWorks; what's hot on the embedded Java front; and why the Real-Time Java Working Group is dead set on opening up Sun's standards process for Java
+ 
+ By Kane Scarlett
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+Index
+- Phaos joins Netscape to offer Java-based security
+- TIS trio aids in communication
+- All-programming Java almanac 
+- HP offers embedded chai instead of coffee
+- When JDK 1.2 ships, it'll have a port for Linux
+- Motorola coughs up E-Java VM for M.CORE processor
+- Softera releases Java modeling tool beta
+- RSA beefs Java SSL security to level 3
+- EDS joins smart card initiative
+- Judge lets Gates's taped testimony in
+- Apple's Tevanian testifies
+- Caffeine Buzz gone; Java Lobby redoes site
+- Insignia debuts JENE Java for embedded systems
+- JavaHelp 1.0 beta is here
+- Fujitsu Micro ports Java embedded app to SPARClite
+- Spyglass unveils Java-based TV programming guide
+- Java Speech API specification available
+- Sun plans to enter browser market
+- Sqribe updates enterprise reporting suite 
+- CDSI to build Java-based inmate info system
+- Agranat ports EmWeb embedded Web server to Patriot's PSC1000
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+Phaos joins Netscape to offer Java-based security 
+Phaos Technology announced that Netscape has licensed its Secure Sockets Layer (SSL) technology toolkit, SSLava, to use in Netscape's Java-based Mission Control Console, designed to help administer resources for intranets. 
+The open SSL encryption protocol is used to authenticate clients and servers using the certificate method, as well as to encrypt the datastream during HTTP sessions.
+The SSLava toolkit aids developers in integrating security into Internet applications and building standalone applications. It comes with such advanced features as Diffie-Hellman Key Agreement, support for Digital Signature Standard (DSS) certificates, and the SSL tunneling protocol for communicating across firewalls. 
+It includes sample security applets, such as an HTTPS (HTTP with SSL) client application, a multithreaded HTTPS server application, an SSL telnet application, and an SSL proxy for easily securing any TCP/IP traffic. 
+SSLava supports the SSL 3.0 protocol, and is compatible with JDK 1.0.2, 1.1.x, and 1.2. Check with the company for pricing. 
+http://www.phaos.com/products/sslavafr.htm 
+Back to index
+TIS trio aids in communication 
+Transaction Information Systems (TIS) has come up with HumanActive components, a set of Java-based applications to make communications easier. 
+HumanActive NetCollaboration is like a chat room (allowing two people to interact in realtime), but in addition to text, users can share images, Web pages, audio, and applications. Now, client-customer phone calls can also share pictures and spec sheets (it easily integrates into call-center applications). And it pierces through proxies and firewalls. No client software needed; just a Java 1.1-capable browser. 
+It runs on Solaris 2.4 and 2.6 for SPARC, Solaris 2.5 and 2.6 for x86, or Windows NT 4.0. You need a Java runtime environment, such as JRE 1.1.x or JDK 1.1.x, and one of the following Web servers: Netscape FastTrack 3.0, NT only; Netscape Enterprise Server 3.0, NT only; Microsoft Internet Information Server 3.0; or Java Web Server 1.1. JRun must be installed to run the Sales Assistant Java servlet. 
+HumanActive Publisher allows you to manage the building, editing, and workflow involved in publishing material to the Web, easily translating the entire body of work into HTML. Publisher supports Java applets and runs on NT 4.0 Server (service pack 3). 
+HumanActive Integrator is channel-enabled with an on-the-fly page-generation system that lets customers personalize the way they view data and allows them a window into the order system. It also generates targeted advertising based on ever-changing user profiles. Integrator supports both Java applets and access to Java servlets.
+http://www.tisny.com/products/index.html 
+Back to index
+All-programming Java almanac 
+ If a quick reference to the most esoteric programming detail is what you need, sneak a peek at The Java Developers Almanac. 
+Patrick Chan's tome skips over all the history, perspective, modeling criteria, and real-world code for Java. It does contain an overview for each version of Java through 1.2, including specifics of the multitude of classes. 
+The index offers everything up in two ways -- by method and by class. 
+(The Java Developers Almanac, Patrick Chan, Addison-Wesley, 1998, $18.95, 962 pages, paperback. ISBN 0-201-37967-8.) 
+http://www.amazon.com 
+Back to index
+HP offers embedded chai instead of coffee 
+Hewlett-Packard debuted the ChaiServer and the Chai Developer Kit, a pair of Java products for embedded-systems developers. 
+ChaiServer is a pure Java implementation that supports COM and CORBA, running on most Java VMs, including the company's own recently introduced ChaiVM 2.0 for embedded systems. ChaiServer also contains a set of "chailets" servlet-like applets for loading and cleaning applications, event notification, and security management. 
+The Chai Developer Kit is intended to help developers design chailets. 
+Developers get both products free through the end of January 1999. 
+http://www.chai.hp.com/emso/ 
+Back to index
+When JDK 1.2 ships, it'll have a port for Linux 
+In a probable response to the recent rapid rise of Linux, Sun announced that it will support a port of JDK 1.2 to Linux. 
+Linux developer Steve Byrne said, "Sun has enabled the Linux porting team to validate and certify that the Linux port of the JDK is a dependable and reliable place for users to develop and deploy Java-based applications, servlets, and Enterprise JavaBeans." 
+http://www.linuxworld.com 
+Back to index
+Motorola coughs up E-Java VM for M.CORE processor 
+Motorola announced it's built an EmbeddedJava (E-Java) virtual machine for the M.CORE processor, a VM implementation designed especially for reduced-memory environments. It is also the first JVM produced by Motorola since it licensed Java last year. 
+E-Java was designed to complement small-device, realtime operating systems; it lets portable applications run Java programs and connect to networks. 
+The Motorola implementation was validated on the M.CORE EmbeddedJava Reference Platform that consists of a graphics LCD, keyboard, Ethernet, and processor with flash memory and RAM. A desktop Java program was downloaded onto the processor 
+The Motorola port currently sits atop the RTEK OS, but can be ported to any OS that supports the M.CORE architecture, such as those from Microtek, Microware, and Wind River. (A porting guide for these OSs will be available the first quarter of 1999.) 
+http://www.mot.com/SPS/MCORE/02nov98-java.htm 
+Back to index
+Softera releases Java modeling tool beta 
+Softera Ltd. announced SoftModeler/Business (SM/B), a beta release of its enterprise Java modeling tool designed for business software developers. 
+SoftModeler/Business uses a graphical model-driven approach to develop component-based three-tier applications. It supports Unified Modeling Language (UML) as a modeling language, JavaBeans and Enterprise JavaBeans as component frameworks, and CORBA/RMI as the distribution protocol. 
+SM/B supports workgroup efforts, and features include seamless Java code generation, reverse engineering, and dynamic-model simulation. It is platform-independent. 
+Softera also has a realtime Java modeler on the drawing board. SM/B should ship in January 1999.
+http://www.softera.com/ 
+Back to index
+RSA beefs Java SSL security to level 3 
+RSA Data Security announced an updated Secure Sockets Layer (SSL) and enhanced crypto component tools for Java developers in its new BSafe SSL-J 2.0 and upgraded BSafe Crypto-J 2.0. 
+BSafe SSL-J 2.0 contains new protocol components. It also includes sample code, API libraries, certificate authority components, a suite of socket libraries, and user and API documentation. 
+The BSafe Crypto-J 2.0 (formerly JSafe 1.1) Java toolkit delivers SSL 3-level security to Java apps. It implements the core RSA cryptographic algorithms with additional support for Java Crypto Extensions and the Digital Signature Algorithm. It uses the JDK 1.1-compatible Java Security API or Crypto-J's API to add an implementation of RSA's Public Key Cryptosystem. It is also compliant with the Public-Key Cryptography Standards. Future releases will support the Transport Layer Security protocol.
+The software supports X.509 versions 1 and 3 digital certificates, session ID caching, blocking and nonblocking I/O, hardware accelerators and multithreading, and debugging through an error reporting system. 
+Development kits for either product cost $295 (deployment licenses based on royalty, per-seat, or annual-fee basis). 
+BSafe SSL-J 2.0: http://www.rsa.com/rsa/products/sslj/index.html 
+BSafe Crypto-J 2.0: http://www.rsa.com/rsa/products/cryptoj/index.html 
+Back to index
+EDS joins smart card initiative 
+Electronic Data Systems (EDS) announced it has joined the Visa Smart global smart card initiative. 
+EDS will provide systems integration, consulting, project management, and implementation services to Visa members in the initiative.
+The goal of Visa Smart is to round up hardware, software, and technology service providers in order to spread the adoption of smart card technology for financial transactions.
+http://www.eds.com/news 
+Back to index
+Judge lets Gates's taped testimony in 
+Judge Thomas Penfield Jackson decided to let the prosecution show excerpts of the videotaped testimony of Microsoft Chairman and CEO Bill Gates in court, then afterwards to the public, after hearing Microsoft's objections in a private meeting. 
+Jackson also agreed to allow Microsoft to choose the excerpts to be shown. 
+Microsoft spokesperson Mark Murray said of the decision: "Microsoft has never objected to the playing of the videotapes but we want to make sure it is done in a fair manner." He added that the government is "trying to use the videotape to turn this into a sensational attempt. It's clear the government knows their case was undermined last week."
+According to Stephen Houck, the attorney representing the 20 state attorneys general in the suit, noted that Microsoft also tried to keep Gates's videotaped testimony from being released to the media. 
+Back to index
+Apple's Tevanian testifies 
+Apple Senior Vice President Avie Tevanian testified Wednesday, November 4, 1998, and he refused refute his charge that Microsoft sabotaged QuickTime for Windows, Apple's multimedia player, in favor of its own media software.
+Tevanian claimed Microsoft planted incompatibilities in its operating system running Internet Explorer 4.0 that caused QuickTime to malfunction, and that those quirks weren't contained in earlier versions of the browser. 
+Tevanian alleged that, asked to help resolve incompatibilities, Microsoft did fix a problem with one of the file formats, but did nothing to correct the other problems. 
+During his Thursday, November 5, testimony, Tevanian lead with reports made to him by Apple's Peter Hoddie, who attended several meetings with Microsoft in 1997. According to Tevanian, because he wasn't certain what Microsoft officials were asking for in respect to QuickTime, Hoddie asked, "Are you really asking us to kill playback? Do you want us to 'knife the baby'?" (At the time, QuickTime was popular but not yet profitable for Apple.) 
+According to Tevanian, Hoddie noted that Microsoft Multimedia Development Manager Christopher Phillips said, "Yes, we're talking about knifing the baby." 
+Microsoft attorney Theodore Edelman countered with an internal Apple slide show presentation from an August 21, 1996 meeting entitled, "What to do about Microsoft." One slide, entitled "Why Microsoft needs us," had the letters "DOJ" on it. Also, Edelman brought out that Apple was continuing with a $1.2 billion patent-infringement lawsuit against Microsoft and was thinking of putting pressure on Microsoft to adopt QuickTime as a multimedia standard. 
+Back to index
+Caffeine Buzz gone; Java Lobby redoes site 
+The Caffeine Buzz Java news site is closing down. Editor Jonathan Williams has taken the position of editor on the redesigned Java Lobby site. 
+The new Java Lobby site purports to be more interactive at every level, with easy-to-search categories (general, devtools, FAQs, etc.) for a broad audience, ranging from Java neophytes to the heartiest of programmers, as well as posted news articles (complete with links and synopses) to Java news from around the Net. 
+Check out the Java Lobby site's preview at the URL below. 
+http://preview.javalobby.org/ 
+Back to index
+Insignia debuts JENE Java for embedded systems 
+Insignia Solutions announced JENE, its implementation of Java for embedded systems, and an associated beta program to allow developers to begin building for JENE. 
+JENE comes with two primary and complementary components. First there's JENERuntime, which is comprised of the Embedded Virtual Machine (EVM) and JENEClass embedded class libraries. Second, there's the JENESuite, which consists of the JENEBuild build-time tools for editing, compiling, and browsing Java applications, and the JENEDebug runtime debug utilities, which includes an event monitor, memory-use analyzer, code-coverage analyzer, and performance profiler.
+To cover the range of limitations in possible embedded devices, the EVM can be configured to include or exclude certain components. Also, individual components may be tuned for optimal performance, depending on the memory size and configuration in the embedded device. The EVM uses an adaptive optimizing dynamic compiler that matches its execution to the amount of available memory.
+With the EVM, bytecode execution is based on a combo of interpretation and dynamic compilation -- the balance adjusts itself depending on the behavior of the embedded application and the available resources. 
+In related announcements, Metrowerks announced that its CodeWarrior Java tools will be integrated with the EVM. Also, selected VioSoft developer tools will be integrated with JENE. 
+Currently, JENE is available for VxWorks and Windows CE/NT OS on Hitachi SH, Intel x8.6 and MIPS platforms. 
+http://www.insignia.com/ 
+Back to index
+JavaHelp 1.0 beta is here 
+Sun announced the availability of the JavaHelp 1.0 beta release, complete with new features and enhancements. JavaHelp is an API and platform-independent, extensible system for designing application help and online documentation.
+This version of the JavaHelp system adds internationalization and localization support to the features lineup, as well as the ability to embed JComponents into HTML topics.
+Enhancements include improvements to the HTML viewer and to the full-text search's interface and performance. The updated JavaHelp 1.0 Draft Specification v0.70 is also included. 
+JavaHelp runs on Solaris 2.5.1 and 2.6 (SPARC) or Windows 95/98/NT 4.0 (Pentium). 
+http://java.sun.com/products/javahelp 
+Back to index
+Fujitsu Micro ports Java embedded app to SPARClite 
+Fujitsu Microelectronics (FMI) announced a business Java port to an embedded application that runs on Fujitsu's MB86832 SPARClite processor. The port is also bundled into the company's new J-StarterKit, a quick-start kit to help users get Java going on SPARC-based Internet appliances. 
+FMI Embedded-Processor Product Marketing Director Basheer Ahmed says the combination of the port and the SPARClite board could "enable dramatic reductions in the time required to build a Java-based appliance." He adds that the J-StarterKit "allows OEMs to use SPARClite and Java to build the new generations of appliances [printers, faxes, communication devices] that are connected to the Internet." 
+Peripheral drivers available so far are for video, graphics, keyboards, mice, and the garden-variety basic computer functions, with new functions arriving as more Java drivers pop up. 
+http://www.fujitsumicro.com/ 
+Back to index
+Spyglass unveils Java-based TV programming guide 
+At the recent Embedded Systems Conference, Spyglass announced a Java-based electronic programming guide (EPG), a set of Java applications designed for viewing and organizing TV programming. A probable target is future set-top boxes and television sets. 
+Some of EPG's applications are designed to display television show times, program ratings, a calendar to notify watchers that a desired program is coming on -- but according to Spyglass Business Development Director Wayne Yurtin, this demo is just the beginning.
+These types of easily adapted and upgraded programming applications are probably a good bet to address the needs of tomorrow's broadcast system. Future Java apps could allow users to pluck bits of individual shows out of single-channel broadcast streams. 
+Spyglass also has signed an agreement with General Instrument to create software and programming tools for the satellite and cable television industries. 
+Back to index
+Java Speech API specification available 
+Sun announced the release of the Java Speech API 1.0 Specification, a vendor-neutral interface that lets developers include speech-recognition and speech-synthesis features into applets and applications. 
+The Java Speech API specifies a single interface for developing and deploying speech-enabled applications. The API includes input from vendors in the platform, speech, and Java technology industries. 
+Java Speech API implementations are available from IBM and Lernout & Hauspie. 
+In a related announcement, Sun is releasing the Java Speech Grammar Format 1.0 Specification. It offers a standard text format used to define grammars for cross-platform and cross-vendor control of speech recognizers.
+http://java.sun.com/products/java-media/speech/ 
+Back to index
+Sun plans to enter browser market 
+In a surprising announcement at a recent Java Software Strategy Day, Sun Director of Enterprise Products Jonathan Schwartz announced that the company has plans to join in the browser-market wars with a Java browser for desktops and non-PC clients. 
+Schwartz said, "No one underestimates the importance of Netscape on the desktop today. We share the fear of the existence of a single browser, which could turn the world into a company store where everyone is forced to pay with company money -- Microsoft's."
+Look for a first version at the Java Business Expo in NYC in December 1998; it should be an upgrade to the HotJava browser. 
+As for Netscape, Schwartz noted that it and Sun will "work together on some business, and meet in others."
+Back to index
+Sqribe updates enterprise reporting suite 
+Sqribe Technologies announced an upgrade of Sqribe Enterprise, its Java-based enterprise reporting suite.
+The upgrade includes
+ 
+- A new interactive report builder called VisualSqribe
+- A new version of the ReportMart enterprise information portal 
+- An updated SQR enterprise reporting server, which now supports reports generated using VisualSqribe 
+VisualSqribe lets developers create reports in its drag-and-drop environment. The component also generates code, so designers can edit and tweak it. It has a feature called Empowered Reports, which allows VisualSqribe users to embed interactive-analysis capabilities into reports. 
+The finished report is published to the ReportMart Enterprise Information Portal, which handles repository, management, and security of reports. Users navigate through an Internet portal interface. 
+No changes have been made to the PowerSqribe visual query and analysis component.
+VisualSqribe runs on a Windows 95/98/NT platform. ReportMart server runs on AIX, HP-UX, NT, and Solaris. The agents can be deployed on any server with a JVM. The SQR server runs on AIX, DEC Unix, DG-UX, HP-UX, Irix, MVS, NCR SVR4, OpenVMS, OS/400, SCO UNIX, Sequent Dynix, SGISNI Reliant Unix, Solaris, and Windows NT. It can use such data sources as DB2, Informix, ODBC, OpenIngres, Oracle, Oracle RDB, RedBrick, SQL Server, SQLBase, and Sybase. 
+http://www.sqribe.com/products/prodind.htm 
+Back to index
+CDSI to build Java-based inmate info system 
+Central Design Systems's newly acquired Thurber Works has inked a deal with the Oregon Department of Corrections to develop a Java-based inmate information system.
+The state plans the system as a front end to an Oracle database. It will use existing client/server technology and be deployed at every Corrections Department client workstation, delivering inmate information and photographs to any authorized user in the correctional hierarchy, regardless of the client being used.
+Thurber Works is also working with the Corrections Department to design and implement an advanced network security system. The project requires a system able to control Internet network access, provide a secure user-authentication process for dialup users, and allow for network and host security auditing.
+http://www.cendes.com/ 
+Back to index
+Agranat ports EmWeb embedded Web server to Patriot's PSC1000 
+Patriot Scientific announced that Agranat Systems has ported its EmWeb embedded Web server and development environment directly to Patriot's PSC1000 Java microprocessor.
+By directly porting EmWeb to the microprocessor, the license cost and RTOS memory requirements are eliminated. If an application requires an RTOS, EmWeb can also run on top of Wind River's VxWorks (also ported to the PSC1000). ' Back to index
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

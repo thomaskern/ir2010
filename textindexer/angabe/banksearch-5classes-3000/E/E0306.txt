@@ -1,0 +1,538 @@
+
+ 
+Allegro Tutorial
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Allegro Tutorial
+ 
+This tutorial requires an understanding of C, provided 
+ in the previous tutorial. This teaches the beginnings of using the Allegro 
+ library. Once a basic understanding is achieved, using the library is 
+ as simple as reading the library docs, which is what I learned from, and 
+ learned very well. Allegro is one of the best documented libs I have ever 
+ seen. And it is for this reason that this tutorial will be fairly short. 
+ The real learning will come from the next tutorial on how to use Allegro 
+ in a game.
+ 
+How is this more than restating the manual? Well basically 
+ a lot of areas are pieced together where they need to be. The bulk of 
+ new info comes from the Learning Allegro section, which basically are 
+ random tips of what to learn, and things I don't feel the documentation 
+ covers well or points out.
+ 
+This tutorial applies to the latest Allegro 4.0.0.
+ 
+The latest Allegro library needs to be installed, and 
+ can be found at: http://www.talula.demon.co.uk/allegro/
+ 
+Back to Tutorials 
+ Page
+ 
+Table of Contents
+ 
+Starting Allegro
+ Learning Allegro
+ Sample Code
+ Eliminating overhead/driver control
+ Using Microsoft Visual 
+ C++ with Allegro
+ 
+ 
+Starting Allegro
+ 
+First thing is to include the header file:
+ #include 
+ 
+Before doing anything with Allegro, you must initalize it:
+ 
+alleg_init();
+ 
+Before initializing other functions, it is best to setup the current 
+ .CFG file, which is created by Allegro's included setup program, or by 
+ your program. It defaults to allegro.cfg, but if you want to change it 
+ to the name of your application/game, use this command:
+ 
+set_config_file("myapp.cfg");
+ 
+If you want timing functions, or use the mouse/music/movies/etc which 
+ require the timing functions, install the timer. This is very important 
+ to keep your program running the same speed on all computers.
+ 
+install_timer();
+ 
+Next if you want to install the keyboard, do so now:
+ 
+install_keyboard();
+ 
+While Allegro has the keyboard, none of the C library commands will work 
+ on the keyboard.
+ 
+Next step is installing the mouse, if needed, returns 0 on error (no 
+ buttons):
+ 
+int buttons = install_mouse();
+ 
+This returns the number of buttons on the mouse. The left button is #0, 
+ right is #1, and middle button is #2. This is important when detecting 
+ which button is pressed.
+ 
+If you want the joystick, install it (returns non-zero on error):
+ if (install_joystick(JOY_TYPE_AUTODETECT)) {
+ allegro_message("Joystick Error: %s", allegro_error);
+ return 1; //exit to DOS
+}
+ 
+All of the different joysticks are listed in the Allegro docs, but autodetect 
+ will pull info from the .CFG file if loaded, or it will pick a generic 
+ joystick type. Allegro_error is a global char* which contains an error 
+ message from most functions when they give an error.
+ 
+If you want sound drivers, install them now:
+ if(install_sound(DIGI_AUTODETECT, MIDI_AUTODETECT, NULL)) {
+ allegro_message("Sound Error: %s", allegro_error);
+ return 1;
+}
+ 
+If you don't want sound or MIDI music, replace the driver name with DIGI_NONE 
+ or MIDI_NONE, respectively. The NULL parameter refers to a char*, which 
+ was an old feature in Allegro, and is only there for compatability now. 
+ Nothing you put in there will have any effect. At this time you may also 
+ wish to set the volume levels, which could come from the .CFG file (this 
+ discussed later in the tutorial):
+ 
+set_volume(255, 255); //digital and 
+ music to max levels
+ 
+The last thing you do is initialize graphics. This is because the other 
+ functions will output text mode errors, which cannot be displayed in graphics 
+ mode. Another good reason for this is that if a problem occurs, video 
+ is most likely the incompatable part.
+ 
+The first thing to do is set the color depth, and the screen size. I 
+ strongly recommend that the screen size be placed in 
+ constants in alleg.h or some global include file -- this has the advantage 
+ of being able to change these 2 constants and never having to change any 
+ code, and the application will adjust, if you base all your calculations 
+ on these constants, so you can have on-the-fly resolution changes.
+ set_color_depth(8); //256 color mode (8 bits mode)
+//in a global file, scrx is: const int scrx = 640;
+//in a global file, scry is: const int srcy = 480;
+if (set_gfx_mode(GFX_AUTODETECT, scrx, scry, 0, 0) {
+ printf("Video Error: %s", allegro_error); //screen would still be in text mode on error
+ return 1;
+}
+ 
+You could also support multiple screen modes (for example if a card didn't 
+ support a certain resolution or color depth) by nesting if statements 
+ like the one above, to test all acceptable modes.
+ 
+Now Allegro is set up and ready to go. Remember to add the line END_OF_MAIN() 
+ right after your main functions ending brace.
+ 
+Back to Top
+ 
+ 
+The Allegro documentation is written so 
+ well that it would be hopelessly redundant trying to write a tutorial 
+ for all of its hundreds of functions. So basically this section here is 
+ some Allegro tips on where to start playing around with Allegro and what 
+ methods I found to be good, and what I found that sucked. More advanced 
+ issues working with Allegro are in the game tutorial.
+ 
+The first thing to do for learning Allegro is getting some cool graphics 
+ and musics off the net to play around with. Then try making a few small 
+ projects with Allegro, such as:
+ 
+A ball screensaver project -- create a bouncing ball, start with a drawn 
+ circle, then move to a .bmp file of a better ball (perhaps a beach ball) 
+ and bounce that. If you want to expand the project some more, have a MIDI 
+ file play in the background, or have a sound effect (.wav file) when the 
+ ball hits the sides. If you want to get really fancy, add in some keyboard 
+ controls and gravity to the ball and let the user "nudge" the 
+ ball in directions, using geometric vectors, sin and cos to calculate 
+ the position.
+ 
+Allegro Tips
+ A few random raves that the Allegro docs don't 
+ cover, plus what to waste your time on, and what to certainly not even 
+ try. . .
+ 
+I see sooooo many Allegro programmers not using these features and they 
+ are the best in there, espically from a user point of view. Use datafiles 
+ whenever you can. There is nothing more annoying to me than having 100s 
+ of little .BMP files taking up valuable slack space on the hard drive, 
+ slowing it down. Datafiles are compressed and can knock those .BMPs to 
+ 1/4 of their size! Plus it's a lot faster to program since they load into 
+ an array -- no need to type in all the filenames into load_bitmap()!
+ 
+Also on this issue, use the packfile functions to read and save everything 
+ you do (with the exception of .CFG files of course.) They take no time 
+ to learn since they perfectly emulate the C-style file functions, and 
+ give all the benefits of compressed data.
+ 
+Although this is a very controversial subject in today's Pentium II and 
+ Pentium III world, fixed numbers might be something to consider when using 
+ them in a game, where floating accuracy is not needed. This has the advantage 
+ of using integer math. If you ever plan to run your game on a 486, definately 
+ use these, and also fixed point is very friendly to old (pre-Athlon)AMD 
+ and Cyrix processors. On the latest processors, though, double precision 
+ floating point variables were tested to be faster than fixed point (see 
+ fixtest.cpp for the test results). Also Allegro 
+ fixed point trig is fairly inaccurate and is noticeable over a distance 
+ of more than 200 pixels or so. I recommend using double type variables 
+ if you are planning on running the program on "today's" computers.
+ 
+I've never used the 3D routines on Allegro. I would think you would be 
+ wasting your time. If you really want to do 3D, move to Windows and do 
+ Direct3D and OpenGL. The only good reason I could see for doing this would 
+ be to make some simple 3D rotating logo perhaps on the title screen or 
+ something small like that. I wouldn't base an application off the 3D functions. 
+ I suggest the Allegro GL library which you can find on http://allegro.cc 
+ as a library extension.
+ 
+I would say the same thing about GUI. If you look at the GUI in my Project 
+ V2143 game, you will see that it looks nice, but I will warn you that 
+ I've spend literally 3x as much time on that GUI as I did on the game. 
+ I could probably do it in Windows in 1/4 of the time. If you want a GUI-heavy 
+ application, use Windows. It's not worth the trouble. I really should 
+ have made the map editor in Windows. . . Learn from my mistake.
+ 
+RLE sprites and compiled sprites are usually not worth the trouble, since 
+ their speed boost is exteremely small. This boost may increase on lower 
+ class machines, but I haven't seen any yet.
+ 
+Read the FAQ on making screenshots. For some reason I've seen a lot of 
+ Allegro programmers saying they can't do screenshots yet. It's just a 
+ simple one-line statement that works anywhere anytime:
+ 
+save_bitmap("screen.pcx", BUFFER, pal);
+ 
+Where BUFFER is the BITMAP* to your double buffer, and pal is the current 
+ pallete (use a dummy pallette if in truecolor mode.) Even if you aren't 
+ double buffering you can still save the screen.
+ 
+And by the way, a final note about the BUFFER. Usually you don't draw 
+ directly to the screen. Use a technique like double buffering where you 
+ draw everything to a buffer then draw the buffer to the screen to eliminate 
+ flicker and increase speed. Dirty rectangles is also a good variation 
+ of double buffering which draws only changed areas to the screen.
+ 
+Back to Top
+ 
+ 
+Sample Code
+ 
+This sample program was made and tested under both MSVC and DJGPP using 
+ the latest Allegro WIP as of 7/9/00. It displays Hello World!!! in the 
+ middle of the screen in yellow with a blue background then waits for a 
+ keypress. Many other examples can be found in Allegro's examples directory.
+ 
+If you have seen Allegro 3.1 you may notice some differences from the 
+ code you are used to seeing. The function allegro_message works like printf 
+ but works under environments like Windows in the form of a pop-up box, 
+ since they have no default text output. In GUI environments the set_window_title 
+ function sets the window's title.
+ 
+Each hicolor and truecolor depth is tested since different cards support 
+ different depths. For example my Voodoo3 card supports 24 but not 32 in 
+ VESA but 32 and not 24 under Windows. 15 and 16 bit color depths have 
+ roughly the same amount of colors and 24 and 32 bit color depths have 
+ the same amount of colors. The makecol function takes red, green, and 
+ blue components to form a color. See the Allegro documentation for detailed 
+ explanations of all of these functions.
+ #include 
+const int scrx = 640;
+const int scry = 480;
+int main(int argc, char* argv[]) {
+ if (allegro_init()) {
+ allegro_message("Cannot initalize Allegro.\n");
+ return 1;
+ }
+ //Set the window title when in a GUI environment
+ set_window_title("Hello World");
+ if (install_keyboard()) {
+ allegro_message("Cannot initalize keyboard input.\n");
+ return 1;
+ }
+ //set graphics mode, trying all acceptable depths
+ set_color_depth(32);
+ if (set_gfx_mode(GFX_AUTODETECT, scrx, scry, 0, 0)) {
+ set_color_depth(24);
+ if (set_gfx_mode(GFX_AUTODETECT, scrx, scry, 0, 0)) {
+ set_color_depth(16);
+ if (set_gfx_mode(GFX_AUTODETECT, scrx, scry, 0, 0)) {
+ set_color_depth(15);
+ if (set_gfx_mode(GFX_AUTODETECT, scrx, scry, 0, 0)) {
+ allegro_message("Video Error: %s.\n", allegro_error);
+ return 1;
+ }
+ }
+ }
+ }
+ //set text background color to bright blue
+ text_mode(makecol(0, 0, 255));
+ //prints yellow "Hello World!!!" in middle of screen
+ textout_centre(screen, font, "Hello World!!!", scrx/2,
+ scry/2, makecol(255, 255, 0));
+ //Wait for a key to be pressed
+ while (!keypressed()) {}
+ return 0;
+ //Allegro will automatically deinitalize itself on exit
+}
+END_OF_MAIN()
+ 
+Back to Top
+ 
+ 
+Using Microsoft Visual C++ 
+ with Allegro
+ 
+I wrote these instructions using MSVC 6.0, and probably work for other 
+ MSVC versions too. This section assumes you have never seen MSVC before.
+ 
+The first thing is to get Allegro installed. Follow the instructions 
+ in the Allegro package (at the time of writing, the readme.vc file).
+ 
+Once Allegro is setup you will want to try to create new Allegro programs 
+ or port your Allegro 3.x programs to the new WIP, and to do this you will 
+ want to create a new project.
+ 
+In the file menu, select new, then click projects tab, select Win32 application, 
+ and in the project name box type in the name for your new project. If 
+ you wish you may change the location of the created directory in the Location 
+ box. Press the OK button.
+ 
+Note for those porting their old projects: it is not 
+ necessary for the source code to be in that same directory -- for example 
+ if you are working on a project that you want both DOS and Windows executables 
+ and you started it in DJGPP, you could leave your source code in the DJGPP 
+ directory so both DJGPP and MSVC share the same code, and what you change 
+ in MSVC changes in the DJGPP version and vice versa.
+ 
+The next window will ask what kind of application to you want. Select 
+ "An empty project" then press the finish button.
+ 
+If you do not have any source files to add (from a previous Allegro project 
+ you wish to port to Windows), select the new option from the file menu. 
+ Select the files tab. From here you can create C++ source and header files, 
+ as well as other files which you will probably not create while using 
+ Allegro. To create a file select the appropiate file from the list on 
+ the left, type in a file name, and press OK. By default the file will 
+ be added to your newly created project
+ 
+If you are porting a program and already have the source code, you can 
+ add your code in the Project menu. Select Add To Project > Files, then 
+ locate your source files and add them. Remember you can drag a box and 
+ use the shift to select multiple files just like other Windows file dialogs. 
+ You should add all of your C/C++ source files and your headers as well. 
+ Although adding the headers is not required, adding them makes it easy 
+ to click on the file in the project to edit it. You can add any other 
+ file type as well, for example a readme.txt file or a Word document, for 
+ quick editing.
+ 
+The left pane has the class view, which when you add your C++ files you 
+ can get a chart of all your classes and their data members and methods 
+ which you can double click to see/edit, a very valuable feature when using 
+ C++. You can click the tabs below to see files, resources, and a help 
+ window. Click on the FileView tab to see the source you added. Use the 
+ above tree to navigate the files in your project -- double click to edit.
+ 
+If you are porting your program from Allegro 3.x, there are a few changes 
+ you need to make, which are mentioned in the Allegro documentation. Once 
+ you make these changes your program will compile under any compiler supported 
+ by Allegro.
+ 
+Once you have your source code in MSVC, you will want to set up your 
+ project to compile for Allegro. In the project menu select settings. In 
+ the Settings For box make sure Win32 Debug is selected. Make sure your 
+ project's name is highlighted in the tree box below by clicking on it, 
+ then click on the Link tab. In the Object/library modules textbox add 
+ "alld.lib" to the end of the list (do not type the quotes). 
+ Lastly, change the Settings For box to Win32 Release and add "alleg.lib" 
+ to the end of the Object/library modules list and press OK.
+ 
+To compile your program press the build button on the toolbar (shortcut 
+ F7). The message window at the bottom will show any errors and warnings 
+ -- double click on a line to be shown the error to be fixed. After all 
+ errors are fixed press the build again until the EXE builds (It will show 
+ 0 errors and warnings if it worked). To run your program press the the 
+ execute button which looks like an exclaimation point (shortcut Shift-F5) 
+ to run the program. If you want to run the program in debugging mode press 
+ the button next to it, the "Go" button (shortcut F5). Common 
+ debugging functions are shown on the debugging menu.
+ 
+NOTE: The MSVC debugger cannot be used if your program 
+ is running in full-screen DirectX mode. Change your graphics driver to 
+ GFX_DIRECTX_WIN or GFX_DIRECTX_OVL if your card supports it, else use 
+ GFX_GDI which is unfortunately much slower. You obviously will also need 
+ to have your desktop in a higher resolution than your game if you intend 
+ to see other windows.
+ 
+After your program is complete and you want to distribute it, you will 
+ want to compile the program in release mode. Note that release mode only 
+ works on the Professional and Enterprise editions of MSVC; MSVC standard 
+ does not have an optimizer and only runs in debugging mode. In the Build 
+ menu pick "Set Active Configuration" and pick the release mode 
+ for your project and rebuild your project as before. You will find the 
+ release and debug EXE files in the Release and Debug directories in your 
+ main project's directory.
+ 
+Back to Top
+ 
+ 
+ 
+ 

@@ -1,0 +1,182 @@
+
+Stroustrup:Open Issues for The C++ Programming Language (3rd Edition)
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+Open issues for The C++ Programming Language (3rd Edition)
+Standard language/library issues related to
+Bjarne Stroustrup:
+The C++ Programming Language (3rd edition),
+Addison-Wesley, 1997. ISBN0-201-88954-4.
+There are examples in my book that are in error according to
+the standard but that I haven't changed because there is a defect
+report on the issue.
+Issues marked by * have been resolved so that the standard agrees with my book.
+The issue marked ** was resolved in favor of the draft standard.
+*pg 61:
+I write
+	ostream_iterator oo(os);
+I got caught by using an old version of STL where ostream_iterator
+was defined like this:
+	template 
+	class ostream_iterator : public output_iterator {
+	protected:
+	ostream* stream;
+	char* string;
+	// ...
+	};
+The standards conforming version (pg 560) looks like this:
+	template >
+	class ostream_iterator : public iterator {
+	public:
+	typedef Ch char_type;
+	typedef Tr traits_type;
+	typedef basic_ostream ostream_type;
+	// ...
+	};
+Consequently, I find that my code using istream_iterators and ostream_iterators
+is broken according to the standard if not for most current implementations.
+For example:
+	ostream_iterator oo(os);	// error: too few template arguments
+It should be:
+	ostream_iterator oo(os);
+The problem appears to be caused by an accidentally incomplete
+conversion of ostream_iterator to use templatized streams.
+I think the proper definition ought to be:
+	template >
+	class ostream_iterator : public iterator {
+	public:
+	typedef Ch char_type;
+	typedef Tr traits_type;
+	typedef basic_ostream ostream_type;
+	// ...
+	};
+I have raised the issue in the standards committee and hope to see it resolved soon. 
+pg 42	I use
+	char vc2[200];
+	copy(&vc1[0],&vc1[200],&vc2[200]);
+The issue is whether taking the address of one-past-the-last element of an
+array is conforming C and C++.
+I could make the example clearly conforming by a simple rewrite:
+	copy(vc1,vc1+200,vc2+200);
+However, I don't want to introduce addition to pointers at this point of
+the book. It is a surprise to most experienced C and C++ programmers that
+&vc2[200] isn't completely equivalent to vc2+200. In fact, it was a surprise
+to the C committee also and I expect it to be fixed in the upcoming revision
+of the standard.
+(resolved for C9x - bs 10/13/98).
+(this means that the example was ok in K&R C, in ARM C++, an error in C89 and ISO C++, and ok in C9x - a thorny issue).
+pg 279:
+The standard appears to prohibit making a private function a friend.
+I consider such a restriction a mistake.
+Someone has already listed this as a defect, but there is not yet a resolution
+from the committee.
+*pg 287:
+In the draft standard, for_each() is required not to modify its input sequence.
+This is of course necessary when for_each() is invoked for an input_iterator.
+However, I think that the requirement is unnecessary for most sequences and
+that useful code is unnecessarily deemed nonstandard by this requirement.
+Given the obvious and almost universal definition of for_each() the requirement
+is neither obvious nor easy to avoid breaking:
+	template Op for_each(In first, In last, Op f)
+	{
+	while (first != last) f(*first++);
+	return f;
+	}
+I consider for_each() overconstrained and use it in ways that goes beyond
+what is guaranteed by the draft standard.
+I hope/expect that the requirement will be relaxed.
+*pg 340:
+Due to an unfortunate oversight, the standard simply bans default arguments
+for template parameters for a function template.
+pg 378:
+The draft standard doesn't support the mapping of exceptions as I describe
+it in 14.6.3.
+It specifies mapping to std::bad_exception for exceptions thrown explicitly
+within an unexpected() function.
+This makes std::bad_exception an ordinary and rather pointless exception.
+The current wording does not agree with the intent of
+the proposer of the mechanism (Dmitry Lenkov of HP) and what he
+thought was voted in.
+I have raised the issue in the standards committee.
+*pg 519:
+In the standard,
+there are no versions of binders that apply to non-const elements of a sequence.
+Thus, the example of for_each() using bind2nd() on page 521 is non-conforming.
+Suitable versions of the binders needs to be added.
+*pg 521:
+There are no versions of member function adapters for const member function
+in the draft standard.
+A proposal to add those versions - as they have been added to working
+implementations of the library - has been made, and I hope to see the issue
+resolved soon.
+Given the full set of member function adapters, the examples on page 521 and
+other such reasonable uses of mem_fun() works.
+*pg 522:
+It is not possible to have a reference to a reference so the calls to bind2nd()
+appears to be nonconforming.
+The committee has resolved this issue by deeming T&& equivalent to T&.
+**pg 641:
+It has been claimed that the standard is unclear about the meaning of
+a string initializer for an ostring stream. For example:
+ostringstream ost("Hello, ");
+ost 
+According to my reading of the standard, this should output "Hello, world!".
+The claim is that ignoring the initializer and producing the output "world "
+is what was intended (eventhough the standards text doesn't explicitly say so).
+Resolution: That example prints "world! " If you want, "Hello, world!" say
+ostringstream ost("Hello, ",ios_base::ate); // open to write "at end"
+ost 
+Note that this makes a string stream behave for a string analogously to the
+way a file stream behaves for a file.
+pg 663:
+The subscript operator for a const valarray returns a T rather than a const T&.
+This implies that we cannot obtain a pointer to an element of a const val_array.
+I believe this to be an unintended limitation.
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

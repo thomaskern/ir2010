@@ -1,0 +1,1043 @@
+
+	
+	Yet Another Code Site
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+ 
+	 
+	
+	
+Yet Another Code Site
+	 
+	
+	
+	
+	
+ 
+This site is dedicated to advancing the
+	understanding of Borland's C++ Builder, the Borland Visual
+	Component Library (VCL), and related Microsoft Windows API
+	issues.
+	
+In particular, I have spent an inexcusable amount of time
+	working through many of the problems associated with Rich Edit
+	controls. Here you will find information on using OLE with
+	Rich Edit controls, using the relatively unknown Rich Edit
+	version 2.0, using the even newer Rich Edit version 3.0, answers
+	to frequently asked questions about Rich Edit controls, and other
+	information that I hope you will find useful.
+	
+To save others a little effort, I have made most of the code
+	that I use available for downloading. Unless otherwise
+	stated, you may use it freely with the following limitation: 
+	You may not distribute the code to others. Please send them
+	here if they are interested. If you find the code useful, a
+	little credit would be appreciated, but is not required.
+ 
+	 
+	
+	
+	
+	
+New Stuff
+	 
+	
+	
+	
+	
+Things recently added or changed on the
+	site. Typically, only the last five or six changes are
+	noted here so, if you have not been here in a while, you might
+	want to scan through this entire page.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	The TAE TraceToolKit Is Now Available (October 17, 2000)
+The
+	most frustrating part of being a developer is not getting useful
+	debugging information from users. With this small toolkit,
+	you can get detailed trace information from your users. See
+	the Code Samples section
+	for new code.
+	
+TaeRichEdit
+	Component users: I am adding trace support to the
+	TaeRichEdit Component. You will be able to disable the
+	trace support for release builds, of course. (Actually, you will
+	be able to disable the trace support in debug builds as well.)
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+StarOffice Is Now Open Source! (October 13,
+	2000)
+StarOffice, a free Microsoft Office compatible
+	application suite for Windows, Unix, and Solaris (a Macintosh
+	version coming soon) is now available as open source. See
+	the Open Source
+	Efforts links for more information.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	Interim Bug Fixes for the TaeRichEdit Component Available
+	(September 9, 2000)
+Interim bug fixes for the TaeRichEdit
+	Component are now available which address GPF problems with
+	certain printers, improve STL compatibility, and correct certain
+	problems not previously reported. The changes are not yet
+	fully incorporated into the component beta distribution code but
+	are supplied as replacements for *.cpp & *.h files in the
+	1.0.0.9 distribution. See the TaeRichEdit
+	Component section for more information.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	New Code: Regular Expression Searches
+After some
+	lengthy effort, I have developed a light-weight class to
+	implement regular expression searches for TRichEdit components. 
+	See the Code Samples
+	section for the TTaeRegExp class. If you do not know what
+	"regular expressions" are, check out the Regular
+	Expression Syntax.page. (Note: This code "upgrades"
+	the BCB/VCL from PCRE 2.x to PCRE 3.4.)
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Open Source Efforts Links
+Thanks to site visitors, I
+	recently became aware of open source efforts that may interest
+	you. Some of these include near replacements for Rich Edit
+	controls, RTF compatible editors, syntax-highlighting editors,
+	and sites with links to other open source endeavors. See
+	the new Open Source
+	Efforts links.
+ 
+	 
+	
+	
+	
+	
+Code
+	Section
+	 
+	
+	
+	
+	
+Free code samples, snippets, and cheap
+	tricks. Please see the restrictions on redistribution at
+	the top of this page.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+TaeRichEdit Component
+	 
+	
+	
+	
+	
+The TaeRichEdit Component is a full-featured TRichEdit
+	analogue. It supports Rich Edit 2.0 & 3.0 character and
+	paragraph formatting; provides OLE support (including embedded
+	graphics); expands printing options to include headers, footers,
+	and border lines; and much more. The Borland C++ Builder
+	(no Delphi) source is included. The component is free for
+	non-commercial use.
+ 
+	 
+	
+	
+	
+	
+September 09, 2000: 
+	A set of interim fixes for version 1.0.0.9 is now available.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Component
+	information and downloads
+	 
+	
+	
+	
+	
+	 
+	
+	
+Component bug
+	reports and history
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+Code Samples
+	 
+	
+	
+	
+	
+Most of the code samples were written in BCB 3.0 and should be
+	simple to port to BCB 4.0. Recent and future code samples
+	are or will be BCB 4.0. See the FAQ section for information
+	on using the controls with BCB 1.0.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Rich Edit 3.0 Code Samples
+Rich Edit 3.0 is now
+	freely available to developers. If you have it, here is the
+	code you need to get started (a really basic class to get v3.0
+	loaded) and code samples to demonstrate the new features that I
+	have tested (paragraph numbering, zoom in/out, saving/restoring
+	the scroll position, etc.), MSDN documentation errors that I have
+	overcome, and unexpected limitations that I have encountered. 
+	This page will definitely be changing frequently for a while, so
+	check back often.
+Go
+	to the Rich Edit 3.0 Code Samples page. Last
+	updated 05-29-1999.
+	
+If you do not yet have the new Rich Edit control DLL, see the
+	FAQs section for an
+	overview of the promised new features.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+MEd &#150; A Rich
+	Edit 2.0 Sample
+MEd is the project for which most of the
+	code on this site was developed. 
+	The program executable is posted here as an example of what can
+	be done with the Rich Edit 2.0 control. 
+	If you find code on this site that does not work as expected, as
+	a favor to me, try this executable to determine if the
+	sample code is munged or if my "best effort" does not
+	solve the problem.
+Go
+	to the MEd - A Rich Edit 2.0 Sample page. Last
+	updated 06-25-1999. 
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Add OLE functionality to TRichEdit (TRichEditOle &
+	TRichEditOleCallback classes)
+Want
+	to insert a bitmap into a TRichEdit component? Here is some
+	code you can use that adds bitmap support and more.
+Download
+	RichEditOle.zip. 
+	Last updated 08-30-2000, 12KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Add Rich Edit 2.0 functionality to TRichEdit (TRichEdit20
+	class)
+The Microsoft Rich Edit control v2.0 adds multiple
+	undo/redo and much more. See Using
+	Rich Edit 2.0 with BCB for more information. 
+	(Note: This class optionally uses the TRichEditOle &
+	TRichEditOleCallback classes above.) This download also
+	contains classes that extend the TTextAttributes and
+	TParaAttributes classes to provide support for the WinAPI
+	CHARFORMAT2 and PARAFORMAT2 structures. These classes,
+	TTextAttributes2 and TParaAttributes2, further extend the VCL
+	classes to set individual character styles to text selections
+	containing a mix of formats.
+Download
+	RichEdit20.zip. 
+	Last updated 10-04-1998, 115KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Access RTF codes in TRichEdit (TRichEditRawRtf class)
+Need
+	to copy formatted text from one TRichEdit control to another? 
+	Want to insert RTF format codes directly into a TRichEdit
+	control? This class makes it simple.
+Download
+	RichEditRawRtf.zip. 
+	Last updated 10-19-1998, 13KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Use the native Windows Browse Folders Dialog
+	(TBrowseFolders component class)
+The
+	Borland VCL implements almost every common dialog that you might
+	need &#150; except for this one. If you want to let users
+	select a folder (but not a specific file), this component may
+	help.
+	Download
+	BrowseFoldersBcb3.zip. 
+	Last updated 07-19-1998, 4KB.
+	Download
+	BrowseFoldersBcb4.zip. 
+	Last updated 04-26-1999, 4KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Use the native Windows Page Setup Dialog (TPageSetupDialog
+	component class)
+Oddly,
+	the Borland VCL does not include a Page Setup Dialog component. 
+	Here is my solution.
+	Download
+	PageSetupBcb3.zip. 
+	Last updated 07-19-1998, 4KB.
+	Download
+	PageSetupBcb4.zip. 
+	Last updated 04-26-1999, 4KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Windows mailslots class (TMailSlot class).
+Add
+	"mailslots" to your application. Can be used to ensure
+	that only one instance of an application runs and, if needed, let
+	secondary instances send messages to the first application
+	instance. 
+(For a more common approach to this problem,
+	see The
+	Singleton Application at The
+	Bits hosted by UK-BUG.)
+	Download MailSlot.zip. 
+	Last updated 02-24-2000, 16KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Microsoft Office RTF Converters (TRtfConverter &
+	TRtfConverterList classes).
+Import or export a variety of
+	Microsoft Office file formats to and from TRichEdit
+	controls.
+Download
+	RichEditConv.zip. 
+	Last updated 02-06-1999, 51KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Regular expressions searches for Rich Edit controls
+	(TTaeRegExp class)
+A light-weight class to add regular
+	expression searches to TRichEdit controls. The class
+	supports both forward and reverse searches. For an
+	explanation of the VCL regular expression syntax, see the Regular
+	Expression Syntax page.
+	Download
+	TaeRegExp.zip. Last updated 08-27-2000, 36KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Upgrading the BCB regular expression library to PCRE
+	3.4
+The regular expression library shipped with BCB4 &
+	5 is based upon PCRE 2.x. This archive includes the entire
+	PCRE 3.4 distribution, code modifications for BCB5, project files
+	for building the new version of the library, and updated versions
+	of the TTaeRegExp class and demonstration code.
+	Download
+	PCRE3.4.zip. Last updated 09-02-2000, 463KB.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+The
+	TAE TraceToolKit
+The most frustrating part of being a
+	developer is not getting useful debugging information from
+	users. If you are willing to invest a little time, you can
+	get detailed trace information from your users.
+	
+	
+	Download
+	TaeTraceToolkit.zip. Last updated 10-19-2000,
+	406KB.
+ 
+	 
+	
+	
+	
+	
+Code Snippets
+	 
+	
+	
+	
+	
+Small pieces of code that have proved useful more than once.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+If you are willing to invest a little brain-power to
+	understand the small snips of code, you can learn how to:
+	
+	
+- 
+Send the contents of a
+	TRichEdit via e-mail using MAPI.
+	
+- 
+Get the user's Windows login
+	name.
+	
+- 
+Get the icon or title
+	associated with a file type.
+	
+- 
+Get the long name of a file.
+	
+- 
+Convert a byte to hexadecimal.
+	
+- 
+And more...
+	
+	
+Go to the Code
+	Snippets Page
+Last updated 03-03-2001.
+ 
+	 
+	
+	
+	
+	
+Cheap Tricks
+	 
+	
+	
+	
+	
+Even smaller pieces of code, IDE settings, other miscellaneous
+	tricks and tips taken largely from newsgroup posts. They
+	are not necessarily tested, complete, or accurate, so use them at
+	your own risk. (Worse yet for mono-lingual visitors, the
+	tricks may be Delphi or assembler code.)
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+Go to the Cheap
+	Tricks Page
+Last updated 03-06-2001.
+ 
+	 
+	
+	
+	
+	
+Papers
+	 
+	
+	
+	
+	
+Extended discussions on particularly
+	vexing programming problems.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+Rich Edit Control Papers
+	 
+	
+	
+	
+	
+Extended discussions on how to use Rich Edit controls. 
+	Start with these and you can skip many of the FAQs.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Window handles vs.
+	TRichEdit and other VCL controls.
+	
+	
+The
+	VCL does not always create controls when you would expect. 
+	Worse yet, sometimes it destroys and recreates them, silently
+	destroying your changes to the WinAPI.
+Last updated
+	10-28-1998.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+BCB 1.0 & 3.0
+	TRichEdit bugs.
+	
+Not
+	a comprehensive list of bugs, but definitely some you need to
+	know about. BCB4 bugs to be added as soon as I find
+	any....
+Last updated 08-04-1999.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Using Rich Edit 2.0 with
+	BCB.
+	
+	
+All
+	versions of the TRichEdit control use the Microsoft Rich Edit 1.0
+	control. Rich Edit v2.0 adds a lot of
+	features to the Rich Edit control. Here is a summary of
+	what is new and where you can get it (maybe).
+Last updated
+	10-28-1998.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Printing and Previewing Rich
+	Edit Controls - Part 1: About TRichEdit::Print().
+	
+	
+You
+	can print TRichEdit text using Print(). Here is why it may
+	not be good enough.
+Last updated 10-22-1998.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Printing and Previewing Rich
+	Edit Controls - Part 2: Printing Rich Edit Controls.
+	
+	
+An
+	excruciatingly detailed explanation of printing Rich Edit text to
+	a printer.
+Last updated 06-30-1999.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Printing and Previewing Rich
+	Edit Controls - Part 3: Previewing Rich Edit Controls.
+	
+	
+An
+	equally excruciating explanation of displaying a preview of Rich
+	Edit text &#150; and some imperfections.
+Last updated
+	05-14-2001.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Printing and
+	Previewing Rich Edit Controls - Part 4: Page-Breaks in Rich Edit
+	Controls.
+	
+	
+Adding
+	page-breaks turned out to be easier than I expected. This
+	part explains one technique and includes sample code.
+Last
+	updated 06-27-1999.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Faster
+	Rich Edit Syntax Highlighting. 
+	
+	
+This
+	is a Microsoft Word97 document containing the full text of an
+	article that appeared in the October 1999 issue of the C++Builder
+	Developer's Journal.
+Last updated 02-12-2000.
+ 
+	 
+	
+	
+	
+	
+Other Papers
+	 
+	
+	
+	
+	
+Extended discussions on other topics. Windows API and
+	VCL issues are the focus.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Creating a Windows
+	callback to a member function.
+	
+	
+Borland
+	code can set up a member function to be a Windows callback. 
+	You can do it, too.
+Last updated 10-28-1998.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+Storing program state in the
+	Windows Registry.
+	
+	
+Storing
+	information in the Windows Registry may not be as difficult as
+	you think.
+Last updated 11-13-1998.
+ 
+	 
+	
+	
+	
+	
+	 
+	
+	
+VCL
+	Regular Expression Library Syntax.
+	
+	
+	
+The
+	BCB4 and BCB5 VCL includes a regular expression library. 
+	This paper describes the syntax used by the VCL library and
+	explains where to get more recent versions of the library.
+The
+	TTaeRegExp class available on this site implements a simple class
+	for using regular expressions with TRichEdit components. 
+	See the Code Samples
+	section for the sample code.
+Last updated 08-27-2000.
+ 
+	 
+	
+	
+	
+	
+Frequently Asked
+	Questions
+	 
+	
+	
+	
+	
+I have seen these questions asked more
+	than once. Maybe I have an answer &#150; and, then again,
+	maybe I don't.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+Solutions to common
+	problems
+Answers to common questions
+	about Rich Edit controls and other WinAPI issues. Some
+	fixes for known problems with code samples and classes available
+	on this site. Lots of tidbits and loose ends.
+Last
+	updated 03-04-2001.
+ 
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+Information on the
+	new Rich Edit 3.0 control
+Version 3.0
+	adds a few new features. Here is what I have learned so far
+	and where you can get it.
+Last updated 01-13-2000.
+ 
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+TRichEdit
+	Changes Between BCB4 & BCB5
+Naturally, the first
+	thing that I did after upgrading to BCB5 was try to determine
+	what changes had been made to the TRichEdit class. Here is
+	what I found out.
+Last updated 02-23-2000.
+ 
+	 
+	
+	
+	
+	
+Site Search
+	 
+	
+	
+	
+	
+Find what you are looking for quickly.
+	 
+	
+	
+	
+	
+ 
+	 
+	
+	
+ 
+Enter YACS site search text: Help
+ 
+	 
+	
+	
+	
+	
+Feedback
+	 
+	
+	
+	
+	
+Contacting me is easy and welcome.
+	 
+	
+	
+	
+	
+ 
+Please feel free to send me e-mail. In
+	particular, I am interested in corrections to the site and
+	additional information on Rich Edit controls. Of course, I
+	am happy to answer questions on just about any topic, so do not
+	hesitate to ask.
+	
+(Well, almost any topic. Please, please do not ask me
+	questions about homework assignments. Learning is a journey
+	through which you make mistakes, find dead-ends, and think very
+	hard. You are supposed to struggle a little, maybe a lot,
+	and you would be cheating yourself if I did your assignment for
+	you. If you need help with homework, please ask your
+	instructor -- he is paid to teach and is, I trust, much better at
+	it than I am. Having said all of that, I have answered the
+	most frequently asked homework question on the FAQs
+	page -- how to print the results of the C/C++ homework
+	assignment when using Borland C++ Builder.)
+	
+You can reach me by
+	e-mail at robertdunn@worldnet.att.net.
+ 
+	 
+	
+	
+	
+	
+	
+Home | Top
+	Of Page |
+	Code
+	| Papers
+	| FAQs
+	| Links
+	| Search |
+	Feedback
+	 
+	
+	
+Page updated May 14, 2001
+	 
+	
+	
+	
+	
+This
+	site was built with StarOffice
+	5
+StarOffice
+	is now Open Source!
+	 
+	
+	
+FastCounter
+	by Link Exchange
+	 
+	
+Copyright
+© 1998-2001 Thin Air Enterprises and Robert Dunn. All
+rights reserved.

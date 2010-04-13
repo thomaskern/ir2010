@@ -1,0 +1,543 @@
+
+CSocket class - replacement for the MS Winsock Control
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - CSocket 
+ class 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CSocket class - replacement 
+ for the MS Winsock Control
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ FTP Client sample project with CSocket class 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Version: 1.0.6 Last Modified: 
+ 08-JULY-2002
+ 
+ 
+Download CSocket-106.zip
+ 
+Major change: Since version 1.0.6 the class 
+ doesn't try to resolve IP address into domain name while connecting, in 
+ the case when a valid IP address string has been assigned to the 
+ RemoteHost property.
+ 
+ 
+What the hell is this?
+ 
+ 
+This is an attempt to simulate 
+ functionality and behavior of the 
+ MS Winsock ActiveX Control. Why do I call it "an attempt"? Because I 
+ don't know what exactly is going on inside that control. I can suppose 
+ which Winsock API functions are called by the control's methods but I 
+ don't know a lot of other things in the control implementation. Anyway 
+ the class does work. To prove it, I just have ported the existing 
+ project - FTP Client Sample Application. Download and see it yourself. 
+ 
+There are several reasons why we 
+ in need of such an "only VB code solution" that exposes almost exactly 
+ the same interface as the MS Winsock Control. The main reason is that we 
+ have no ability to develop VB classes that utilize the Winsock Control. 
+ At the first sight, it is possible to use the control as a windowless 
+ library, but it works only on the development systems that do have a 
+ development license installed for this control. 
+ 
+ 
+Implementation
+ 
+ 
+I'm not going to discuss the class implementation 
+ here. Source code of the class contains a lot of green lines of text that (I 
+ hope) explain what is going on. However, to understand the class 
+ implementation you should know and understand a lot of advanced things 
+ that I have no possibility to explain in a single article. So wait for 
+ more tutorials on the advanced Winsock API techniques or read the 
+ documentation and books and to try to get the knowledge, if you cannot 
+ wait for my explanations. 
+ 
+Frankly, the reason I published this project now is 
+ that I hope to get constructive response from you. I expect that some 
+ one will replace the Winsock Control with the CSocket class in an 
+ existing working project and find out some problems this that.
+ 
+ 
+Dependencies
+ 
+ 
+Unfortunately, the CSocket class has got a dependency 
+ - MSocketSupport code module. You have no chance to use the class 
+ without that module. I think it is not a big price.
+ 
+ 
+Beware - the interface is changed
+ 
+ 
+The CSocket class has the same interface as the 
+ Winsock Control except several members. See the table below:
+ 
+ 
+ 
+ 
+ 
+ Winsock Control members 
+ 
+ CSocket class members 
+ 
+ 
+ 
+ 
+Methods 
+ 
+ 
+ Close 
+ CloseSocket 
+ 
+ 
+ 
+ 
+Events 
+ 
+ 
+ Connect 
+ OnConnect 
+ 
+ 
+ ConnectionRequest 
+ OnConnectionRequest 
+ 
+ 
+ DataArrival 
+ OnDataArrival 
+ 
+ 
+ Error 
+ OnError 
+ 
+ 
+ SendComplete 
+ OnSendComplete 
+ 
+ 
+ SendProgress 
+ OnSendProgress 
+ 
+ 
+ 
+ 
+ 
+ 
+Help
+ 
+ 
+I need your help again. Please report about any problems and bugs. I 
+ have set up the special 
+ discussion group in the forum for this purpose. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Thanks.
+	O.E. Tuesday, February 26, 2002	
+	
+	
+	
+Not resolving host.
+	Brian Thursday, March 07, 2002	
+	
+	
+	
+Cannot resolve hostname
+	Aldoir Friday, March 22, 2002	
+	
+	
+	
+resolving names
+	xavier Monday, March 25, 2002	
+	
+	
+	
+Resolve Host
+	Salam Elias Monday, March 25, 2002	
+	
+	
+	
+The Resolving Host Bug is Fixed
+	Oleg Gdalevich Monday, March 25, 2002	
+	
+	
+	
+Thanx !! Unfortunately hung under XP
+	LB Tuesday, March 26, 2002	
+	
+	
+	
+Cannot accept multiples connectios
+	Aldoir Thursday, April 25, 2002	
+	
+	
+	
+Two bugs.
+	white Sunday, May 12, 2002	
+	
+	
+	
+Really usefull
+	john G Monday, May 13, 2002	
+	
+	
+	
+THANK YOOOOOOOOOOOOOO!!!!!
+	Devin Quick Tuesday, May 14, 2002	
+	
+	
+	
+Great module!
+	Javin Sunday, April 07, 2002	
+	
+	
+	
+Can not upload big files
+	xiaojc Monday, April 08, 2002	
+	
+	
+	
+Cannot transfer files using PASV
+	Chad Robinson Wednesday, April 17, 2002	
+	
+	
+	
+PASV transfer problem solved
+	Chad Robinson Thursday, April 18, 2002	
+	
+	
+	
+Bugs, design issues - ftp sample app.
+	Donovan Bernauer Tuesday, April 23, 2002	
+	
+	
+	
+Can't Resolve Host in 2000
+	M. Jahedbozorgan Saturday, May 25, 2002	
+	
+	
+	
+Doesn't work with vbArray + vbByte
+	Michael Tuesday, May 28, 2002	
+	
+	
+	
+Re: Doesn't work with vbArray + vbByte
+	Oleg Gdalevich Thursday, May 30, 2002	
+	
+	
+	
+Accept multiple?
+	Daniel Sunday, June 02, 2002	
+	
+	
+	
+Can you send a command line ?!
+	Ben Friday, June 07, 2002	
+	
+	
+	
+asdf
+	asdf Monday, June 10, 2002	
+	
+	
+	
+Can't Resolve Host (by IP Address) in Windows2K
+	JamesDeChile Friday, June 14, 2002	
+	
+	
+	
+Windows 2000
+	Yello Wednesday, June 19, 2002	
+	
+	
+	
+Can anyone see whats wrog ???
+	Yello Wednesday, June 19, 2002	
+	
+	
+	
+CSocket licencing query
+	ceppe Thursday, June 20, 2002	
+	
+	
+	
+Version Changes?
+	Pj Wednesday, June 26, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - CSocket 
+ class 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

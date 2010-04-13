@@ -9,8 +9,8 @@ import java.io.*;
 import java.util.*;
 
 public class Reader {
-    private int upper_bound;
-    private int lower_bound;
+    private double upper_bound;
+    private double lower_bound;
     private boolean stemming;
     private ArrayList<String> files;
 
@@ -18,11 +18,11 @@ public class Reader {
         create(0, -1);
     }
 
-    public Reader(int lower_bound, int upper_bound) {
+    public Reader(double lower_bound, double upper_bound) {
         create(lower_bound, upper_bound);
     }
 
-    private void create(int lower_bound, int upper_bound) {
+    private void create(double lower_bound, double upper_bound) {
         this.lower_bound = lower_bound;
         this.upper_bound = upper_bound;
     }
@@ -32,8 +32,14 @@ public class Reader {
         files = new ArrayList<String>();
         search_for_files(dir);
 
+        System.out.println("FOUND: "+files.size());
+
+        int i = 0;
         for (String file : files) {
+            i++;
             al = readFromFile(file, n, al);
+            if(i > 300)
+                break;
         }
         return filter(al);
     }
@@ -48,20 +54,32 @@ public class Reader {
                 files.add(file.getPath());
         }
     }
-
     private ArrayList<CountedNGram> filter(ArrayList<CountedNGram> al) {
+        int total = sum_ngrams_up(al);
+
         for (Iterator<CountedNGram> it = al.iterator(); it.hasNext();) {
             CountedNGram ng = it.next();
-            if (ng.getCount() < lower_bound || (upper_bound > 0 && ng.getCount() > upper_bound))
+
+            System.out.println("upper: "+(ng.getCount()*100.0/total ));
+            if (ng.getCount()*100.0/total < lower_bound || (upper_bound > 0 && ng.getCount()*100.0/total >= upper_bound))
                 it.remove();
         }
         return al;
     }
 
-    public ArrayList<CountedNGram> readFromFile(String file, int n, ArrayList<CountedNGram> ng) throws IOException {
+    private int sum_ngrams_up(ArrayList<CountedNGram> al) {
+        int ret = 0;
+
+        for (CountedNGram ng : al) {
+            ret += ng.getCount();
+        }
+        System.out.println("total: "+ret);
+        return ret;
+    }
+
+    private ArrayList<CountedNGram> readFromFile(String file, int n, ArrayList<CountedNGram> ng) throws IOException {
         InputStream stream = new BufferedInputStream(new FileInputStream(file));
-        ArrayList<CountedNGram> list = read(stream, n, ng);
-        return filter(list);
+        return read(stream, n, ng);
     }
 
     private ArrayList<CountedNGram> read(InputStream stream, int n, ArrayList<CountedNGram> ng)

@@ -1,0 +1,789 @@
+
+Displaying the directory tree using the treeview in VB.Net
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies 
+ - Miscellaneous - DirectoryInfo 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DirectoryInfo
+ 
+ Displaying the directory tree using the TreeView control in VB.NET 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ by Terry Hutt 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download
+ DirectoryInfo sample project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ his project was created using the
+ .Net Beta 2 Release. It was 
+ originally written in VB6 and then rewritten in VB.Net. It teaches how 
+ to browse the directory structure and display it using the TreeView 
+ control. I make a point of highlighting differences between the VB6 and 
+ the VB.Net solutions. Some of them were quite a surprise.
+ 
+Requirements
+ 
+ 
+To write a program that allows the user to browse around their C: 
+ drive, listing subfolders and files. The purpose is to learn something 
+ about the .Net equivalent of the FileSystem object and the TreeView 
+ control. 
+ 
+You will need Visual Studio.Net Beta 2 or Release Candidate 1 or 
+ later installed. 
+ 
+ 
+Let’s get started
+ 
+ 
+ 
+- Start a new project in Visual Studio.Net.
+ 
+ 
+- Under Visual Basic Projects, select Windows Application and name 
+ it DirDemo.
+ 
+ 
+- Rename Form1 as
+ frmDirDemo, change the text to Directory Demo.
+ 
+ 
+ 
+ 
+- In the toolbox select TreeView in the Windows Forms group.
+ 
+ 
+- Create a TreeView control covering the entire client area of 
+ frmDirDemo. 
+ 
+ 
+- As you know, treeviews use image lists so you need to add and 
+ populate an image list. Double click ImageList in the toolbox. You 
+ will see ImageList1 added under the form. This is different to how 
+ invisible controls are displayed at design time in VB6.
+ 
+ 
+- Select ImageList1 and open the 
+ Images property in the property 
+ frame. 
+ 
+ 
+- Now we can add the images to the image list 
+ 
+ 
+- Click [Add] in the Image Collection Editor dialog box 
+ 
+ 
+- Browse to … 
+ C:\Program Files\Microsoft Visual 
+ Studio.Net\Common7\Graphics\Bitmaps\Outline\ 
+ 
+ 
+- Select Closed.bmp, Open.bmp, and Leaf.bmp in that order. The 
+ dialog box should look like this… 
+ 
+ 
+ 
+ 
+ 
+ 
+- Click OK to close the dialog box. 
+ 
+ 
+- Now we need to tell the TreeView control to use the image list 
+ we just created. Select the TreeView control and select 
+ ImageList1 
+ in the ImageList property. 
+ 
+ 
+ 
+This is pretty much the same as adding a TreeView and ImageList 
+ in VB6. 
+ 
+ 
+ 
+Time to add some code
+ 
+ 
+In VB6 we would have used the Visual Basic Scripting reference to 
+ get access to the FileSystem object. In VB.Net we could do the same 
+ thing but the System assembly contains several interesting objects 
+ such as System.IO.FileSystemInfo, 
+ DirectoryInfo, and 
+ FileInfo which we 
+ will use instead. 
+ 
+Bring up the code for frmDirDemo.. It should look like this 
+ 
+ 
+ 
+ 
+ Public Class Form1  
+Inherits System.Windows.Forms.Form  
+  
+  Windows Form Designer generated code  
+  
+ End Class  
+ 
+ 
+ 
+ 
+Start by renaming Form1 as
+ frmDirDemo.
+ 
+We want to use several references from 
+ System.IO so we can add an
+ Imports statement at the top to reduce the amount of code we 
+ have to write.
+ 
+ 
+ 
+ 
+Imports System.io 
+ 
+ 
+ 
+ 
+Next we want to write the code that executes when the form loads. 
+ Above the code window there are two combo boxes, same as VB6. But if 
+ you drop the left combo box you’ll see it looks very different. The 
+ entry that says ‘form’ in VB6 has been broken into three entries in 
+ VB.Net.
+ 
+ 
+ 
+ 
+Because forms are now classes, the top entry gives you access to 
+ all the methods and properties of the current form, the second entry 
+ gives you access to all the overridable methods and properties of the 
+ base class (Form), and the third entry gives you access to all the 
+ events of the base class. After the third entry, all the controls are 
+ listed as in VB6. 
+ 
+To add code to the form load event, select Base Class Events from 
+ the left combo box and the right combo box will be populated with the 
+ familiar list of form events (with a few changes). 
+ 
+Now select the Load event. Visual Studio will add the following 
+ code. 
+ 
+ 
+ 
+ 
+Private Sub frmDirDemo_Load(ByVal sender As Object, ByVal e As _ 
+ 
+ System.EventArgs) Handles MyBase.Load 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+Which is a little more than you expected isn’t it? Fact is, there’s 
+ a lot more information passed to events in .Net. Note the subroutine 
+ does not have to be called frmDirDemo_Load. Visual Studio calls it 
+ that to make VB6 programmers feel more at home. You can call it 
+ anything you like. The important thing is Handles MyBase.Load. Don’t 
+ mess with that bit! 
+ 
+Our form load code will simply create one node in the tree view 
+ called C: It looks like this… 
+ 
+ 
+ 
+ 
+Private Sub frmDirDemo_Load(ByVal sender As Object, ByVal e As _ 
+ 
+ System.EventArgs) Handles MyBase.Load 
+ Dim oNode As New System.Windows.Forms.TreeNode 
+ Try 
+ oNode.ImageIndex = 0 ' Closed folder 
+ oNode.SelectedImageIndex = 0 
+ oNode.Text = "C:" 
+ TreeView1.Nodes.Add(oNode) 
+ oNode.Nodes.Add("") 
+ Catch ex As Exception 
+ MsgBox("Cannot create initial node:" & ex.ToString) 
+ 
+ End 
+ End Try 
+End Sub 
+ 
+ 
+ 
+ 
+ 
+(If you don’t have a C: drive, use another letter instead.)
+ 
+The .Net tree view control is a quite different from the VB6 tree 
+ control. The add method has far fewer parameters in .Net. 
+ Specifically, the node no longer has a key, only a text property. 
+ Also, you build the node object first, then add it to the node 
+ collection.
+ 
+Whereas in VB6 you might see…
+ 
+ 
+ 
+ 
+TreeView1.Nodes.Add 1, 1, "Key", "text", 2, 3
+ 
+ 
+ 
+the equivalent in VB.Net might be…
+ 
+ 
+ 
+ 
+Dim oNode As New System.Windows.Form.TreeNode 
+oNode.Text = "Text" 
+oNode.ImageIndex = 2 
+oNode.SelectedImageIndex = 3 
+TreeView1.nodes.add oNode 
+ 
+ 
+ 
+ 
+I’ll leave you to 
+ judge which is better.
+ 
+The first thing the user will want to do is expand 
+ the C: node. They can only do this is there is a
+ symbol by the node. The 
+ TreeView control will only put a
+ symbol by a node if the 
+ node’s node collection has members. This creates a chicken and egg 
+ situation. We can’t expand a node without a
+ symbol to click on but 
+ the symbol won’t be there until we’ve expanded the node.
+ 
+To solve this dilemma, I create an empty child 
+ node. If, when we expand the node (folder) it turns our there are no 
+ children (subfolders), we will remove the empty node and the
+ symbol will go away. 
+ Hence the line of code 
+ 
+ 
+ 
+ 
+oNode.Nodes.Add("")
+ 
+ 
+ 
+This introduces an alternative add method which takes a string 
+ instead of a TreeNode object.
+ 
+The last thing worth looking at in this subroutine 
+ is the Try/Catch error handling. Almost every other language has had 
+ this kind of error handling syntax since inception. It’s much better 
+ than the VB On Error Resume… syntax and results in far fewer lines of 
+ code devoted to handling exceptions.
+ 
+If you run the program as it currently stands all you’ll see is a 
+ C: node which does nothing.
+ 
+ 
+Reacting to events
+ 
+ 
+There are two events we need to react to. They occur when the user 
+ expands or collapses a node in the tree. The expand event is most 
+ complex so we’ll discuss it first.
+ 
+In the left combo box select TreeView1 and in the 
+ right combo box select BeforeExpand. Insert the code so the event 
+ handler looks like this…
+ 
+ 
+ 
+ 
+Private Sub TreeView1_BeforeExpand(ByVal sender As Object, ByVal e As _ 
+ System.Windows.Forms.TreeViewCancelEventArgs) Handles _ 
+ TreeView1.BeforeExpand 
+ 
+ If e.Node.ImageIndex = 2 Then Exit Sub 
+ 
+ 
+Try 
+ 
+ If e.Node.GetNodeCount(False) = 1 And e.Node.Nodes(0).Text = "" Then 
+ e.Node.Nodes(0).Remove() 
+ EnumerateChildren(e.Node) 
+ 
+ End If 
+ 
+Catch ex As Exception 
+ 
+ MsgBox("Unable to expand " & e.Node.FullPath & ":" & ex.ToString) 
+ End Try 
+ 
+ If e.Node.GetNodeCount(False) > 0 Then 
+ 
+ e.Node.ImageIndex = 1 
+ 
+ e.Node.SelectedImageIndex = 1 
+ End If 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+How do we know which node is being expanded? If you browse through 
+ the sender and 
+ e objects passed to the event handler you’ll find all 
+ sorts of interesting things. For this event, the 
+ e object contains the
+ TreeNode object being expanded.
+ 
+We don’t want to expand leaf nodes (files) so how can we tell the 
+ node represents a file? We could use the treenode’s
+ Tag property to 
+ store this information as we create it, or we could subclass the
+ TreeNode class to add custom properties. I chose to use the fact that 
+ the ImageIndex for any node that represents a file will be 2. That’s 
+ why we added leaf.bmp last.
+ 
+Once we’ve decided we’re expanding a folder, we look to see if 
+ there exactly one child node with no text. If this is the case, we’ve 
+ never expanded this node before so we need to root around in the file 
+ system to see what folders and files are in this folder. Before we do 
+ that, we remove the dummy child.
+ 
+When we’ve finished expanding the node we look to see how many 
+ children it has. If it has any, we alter the 
+ ImageIndex to point to an 
+ open folder image. If it doesn’t have any children, we leave the image 
+ as it is (a closed folder).
+ 
+This leaves us with a subroutine to write - 
+ EnumerateChildren
+ 
+ 
+ 
+ 
+Private Sub EnumerateChildren(ByVal oParent As System.Windows.Forms.TreeNode) 
+ 
+ Dim oFS As New DirectoryInfo(oParent.FullPath & "\") 
+ Dim oDir As DirectoryInfo 
+ Dim oFile As FileInfo 
+ 
+ Try 
+ For Each oDir In oFS.GetDirectories() 
+ Dim oNode As New System.Windows.Forms.TreeNode() 
+ oNode.Text = oDir.Name 
+ oNode.ImageIndex = 0 
+ oNode.SelectedImageIndex = 0 
+ oParent.Nodes.Add(oNode) 
+ oNode.Nodes.Add("") 
+ Next 
+ Catch ex As Exception 
+ MsgBox("Cannot list folders of " & oParent.FullPath & ":" & ex.ToString) 
+ End Try 
+ 
+ Try 
+ For Each oFile In oFS.GetFiles() 
+ Dim oNode As New System.Windows.Forms.TreeNode() 
+ oNode.Text = oFile.Name & " (" & oFile.Length & " bytes)" 
+ oNode.ImageIndex = 2 
+ oNode.SelectedImageIndex = 2 
+ oParent.Nodes.Add(oNode) 
+ Next 
+ Catch ex As Exception 
+ MsgBox("Cannot list files in " & oParent.FullPath & ":" & ex.ToString) 
+ End Try 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+Note that VB.Net does not object to the two 
+ Dim oNode statements. 
+ It’s smart enough to realize they have non-overlapping scopes. VB6 
+ would not have compiled this.
+ 
+This routine expects a TreeNode object. This might have a text 
+ such as "WinZip7". We need to find all the children of the "WinZip7" 
+ folder but to do that we need the full path. Fortunately, the
+ TreeNode 
+ object has a FullPath property which is really a concatenation of all 
+ the texts of the node’s parents separated by the "\" character (as 
+ specified in TreeView1.PathSeparator). So if the tree looks like this
+ 
+ 
+ 
+ 
+and the user expands the WinZip7 node, the fullpath property of the 
+ node will be C:\download\WinZip7. This is perfect for passing to the 
+ constructor of the DirectoryInfo class.
+ 
+We create the DirectoryInfo object by pointing it at a directory. 
+ When we execute the GetDirectories() method we get back an array of
+ DirectoryInfo objects which we can iterate through, creating a new 
+ child node for each directory. They start with an 
+ ImageIndex of 0 
+ meaning a closed folder.
+ 
+When we execute the GetFiles() method we get back an array of
+ FileInfo objects which we can iterate through, creating a new child 
+ for each file. They start with an ImageIndex of 2.
+ 
+ 
+We’re almost done
+ 
+ 
+When a node is collapsed we want to close the folder icon for the 
+ node. The following code in the TreeView1.BeforeCollapse event handler 
+ does this.
+ 
+ 
+ 
+ 
+Private Sub TreeView1_BeforeCollapse(ByVal sender As Object, ByVal e As _ 
+ System.Windows.Forms.TreeViewCancelEventArgs) Handles _ 
+ TreeView1.BeforeCollapse 
+ 
+ 
+e.Node.ImageIndex = 0 
+ 
+e.Node.SelectedImageIndex = 0 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+When the form is resized we want the tree view control to fill the 
+ entire client area. The following code in the frmDirDemo Resize event 
+ handler will do this.
+ 
+ 
+ 
+ 
+Private Sub frmDirDemo_Resize(ByVal sender As Object, ByVal e As _ 
+ System.EventArgs) Handles MyBase.Resize 
+ 
+ If Me.WindowState = FormWindowState.Minimized Then Exit Sub 
+ 
+ TreeView1.Bounds = New Rectangle(0, 0, Me.ClientSize.Width, _
+ Me.ClientSize.Height) 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+Note the Bounds property can be used to set the location and size 
+ of a control at the same time. It takes a rectangle object as its 
+ parameter.
+ 
+The Form.Unload event no longer exists. Instead, use the 
+ Leave 
+ event to terminate the program.
+ 
+ 
+ 
+ 
+Private Sub frmDirDemo_Leave(ByVal sender As Object, ByVal e As _ 
+ System.EventArgs) Handles MyBase.Leave 
+ 
+ End 
+End Sub 
+ 
+ 
+ 
+ 
+ 
+There is one more thing to note. In VB6 we are used to having a 
+ Form.Resize event raised as soon as the form loads. This does not 
+ occur in VB.Net.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+nice article
+	shane Thursday, May 30, 2002	
+	
+	
+	
+Excellent article - thanks!!
+	Mike Tuesday, June 11, 2002	
+	
+	
+	
+Just What the Doctor Ordered.
+	Chuck Snyder Monday, June 17, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies 
+ - Miscellaneous - DirectoryInfo 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

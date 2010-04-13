@@ -1,0 +1,21 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Labels
+Labels are very simple to understand. Basically they just hold text that appears on the Form.
+For example, if you had a picture of your dog on the Form, in the label you would write
+something like "My Dog" to describe the pic. Many programmers use labels around textboxes
+so the user knows what to put in the textbox... 
+ 
+Label properties:
+Alignment - Determines if the label's text is in the middle, towards the right or the left
+AutoSize - Sizes the label to fit the text in it perfectly
+BackStyle - Determines if the Label is transparent or not
+BorderStyle - Determines how the border of the label looks like
+Caption - The label's caption
+Font - The label's font type
+ForeColor - Determines what color the font is
+TabIndex - What order the label gets focus
+ToolTipText - Holds text that will pop up when the mouse is over the label
+Visible - Determines if the control is visible at run time or not
+Back
+Next

@@ -1,0 +1,836 @@
+
+Frequently Asked Questions About Visual C++ .NET
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Product Information: Overview
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Frequently Asked Questions About Visual C++ .NET
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	Content Updated: February 13, 2002 
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+Find answers to frequently asked questions about Microsoft Visual C++® .NET, including information on ATL Server and Managed Extensions for C++.
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is the name of the new version of Visual C++? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The version of Visual C++ following Visual C++ 6.0 is Visual C++ .NET.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Can I use Visual C++ 6.0 and Visual C++ .NET on the same computer? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Yes, you can install Visual C++ .NET on a computer that is running Visual C++ 6.0 and use both, system requirements permitting.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What happened to ClassWizard? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+ClassWizard has been replaced with several new wizards that individually provide more control for adding member variables, message handlers, methods, properties, and events.	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is ATL Server? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+ATL Server is a new set of native C++ classes that allow developers to create high-performance native code Web applications and XML Web services. 
+	Many of the classes can also be used in client applications or components that have a need for features such as performance monitoring support, 
+	caching, and thread pooling.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What are attributes? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+Attributes are designed to simplify COM programming and Microsoft .NET Framework common language runtime development. When you include attributes 
+	in your source files, the compiler works with provider dynamic-link libraries (DLLs) to insert code or modify the code in the generated object 
+	files. Some attributes are interpreted directly by the compiler. Other attributes inject code into the program source, which the compiler then 
+	compiles. Yet others are included in the metadata generated from your code and therefore are available at run time to other managed applications.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is managed code and do I have to use it? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+Managed code runs within the context of the .NET run-time environment. It is not compulsory to use managed code, but there are many advantages to doing so. 
+	A program written with managed code using Managed Extensions for C++, for example, can operate with the common language runtime to provide services such 
+	as memory management, cross-language integration, code access security, and automatic lifetime control of objects.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What are Managed Extensions for C++? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+Managed Extensions for Visual C++ extend the standard C++ language to make it easy to add support for the .NET Framework to new and existing applications.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is the /clr compiler option? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+The /clr compiler option enables the use of Managed Extensions for C++ and creates an output file that will require the .NET Framework common language runtime at run time.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is the .NET Framework? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+The .NET Framework is a new computing platform designed to simplify application development in the highly distributed environment of the Internet. 
+	Software running on the .NET Framework can communicate with software running anywhere else through SOAP and can use standard objects locally or 
+	distributed across the Internet. Consequently, the developer experience is made consistent so that you can focus on features rather than on plumbing.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What is C#? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+C# (pronounced "C sharp") is a simple, modern, object-oriented, and type-safe programming language derived from C and C++. C# aims to combine 
+	the high productivity of Microsoft Visual Basic® and the raw power of C++. Microsoft Visual C#&#153; .NET is Microsoft's C# development tool.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Can I easily recompile my Visual C++ 6.0 projects? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+In most cases, Visual C++ 6.0 code will run in Visual C++ .NET without alteration. Developer attention may be required for code using certain 
+	features of the Standard Template Library, which has been updated to be more standards compliant.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How can I set the environment up so that it uses the key bindings I am accustomed to? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+On the Tools menu, click Customize, and then click the Keyboard button. You can select several different key bindings from the Keyboard mapping scheme drop-down menu or you can define your own.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Can I continue to write unmanaged applications with Visual C++ .NET? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+Yes. Visual C++ .NET can generate both managed and unmanaged applications and components.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How does Visual C++ support Microsoft .NET? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+You can use Visual C++ to produce code for the .NET platform. In addition, we have extensively improved ATL, MFC, and the compiler in Visual C++ .NET. 
+	We have also introduced ATL Server for producing native-code XML Web service applications.	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Does Visual C++ .NET work on Microsoft Windows® 95, Windows 98, and Windows Millennium Edition (Windows Me) operating systems? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+These platforms will not be supported at design time. This decision was made to ensure that developers will be able to benefit from the most advanced platform features available in the Microsoft Visual Studio® environment. For code execution, Windows 98 and higher will be supported.	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Where are the Professional and Enterprise versions of Microsoft Visual Basic .NET and Visual C++ .NET? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 	
+	
+The functionality previously available in Professional and Enterprise versions of the individual language products is now available in the 
+ Professional and Enterprise versions of Visual Studio .NET. In addition, a new Visual Studio .NET Enterprise Architect Edition is available with tools specifically designed for software architects building enterprise software, including Microsoft Visio® Enterprise Architect Edition.	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

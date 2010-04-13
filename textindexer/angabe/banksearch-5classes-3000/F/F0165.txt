@@ -1,0 +1,78 @@
+
+ A Programmer's Introduction to C# 
+By: Eric Gunnerson 
+ISBN: 1-893115-86-0 
+Publisher: Apress 
+ 
+ 
+2 Reviews 
+Julie Woo Moklesur Rahman 
+First Impressions 
+Reviewed By: Julie Woo 
+My impression after reading Eric Gunnerson's 'A 
+Programmer's Introduction to C#' is that its easy to follow and it gives the 
+reader a nice overview of the language and the .Net Framework. Best of all he 
+has something to offer for programmers at all levels. For novice OO programmers, 
+Gunnerson provides a concise overview of Object Oriented Programming techniques 
+in the first six or seven chapters. Some of the topics he touches on in these 
+chapters include the P.I.E principle (Polymorphism, Inheritance and 
+Encapsulation), classes, member functions, exception handling, and overloading.
+For novice programmers - actually for all programmers but perhaps especially 
+for the novice, the best thing about a book on programming is the code samples. 
+Gunnerson does a great job not only by providing many samples, (I think it'd be 
+safe to say that for every one page of text, he includes two pages of code) but 
+they're very clear and easy to follow. One other feature that is particularly 
+helpful for novice programmers is that in many chapters, after discussing a 
+particular topic, he'll provide some general design guidelines you can follow to 
+improve your code. 
+For the more seasoned OO programmer, this book provides a good overview of 
+the language and some details about the .NET Framework. It's certainly not 
+detailed enough to be used as a programming reference but it does give you a 
+feel for what you're getting in to. The book includes some neat little code 
+snippets in Chapter 30 to traverse directory structures, read web pages etc. He 
+also dedicates a chapter to discuss the differences between C# and other 
+languages such as VB, JAVA and C++. Some differences he lists between C# and VB 
+include: 
+ 
+- no Dim statement
+ 
+- no Variant data type
+ 
+- a VB int is a C# short, VB long is int
+ 
+- no With, Choose or Switch statements
+ 
+- no CallByName 
+Overall, I think the book does what the title implies... it gives the reader 
+an introduction to the language. While I can't see myself referring to it too 
+often, I think it is a worthwhile read.
+ Julie Woo 
+Making the Transistion 
+Reviewed By: Moklesur Rahman 
+This book is for C++ or Java programmers who want to 
+make a transition to C#. It is kind of reference book that explains aspects of 
+OO concept and C# language itself.
+The author Eric Gunnerson was a member of the Microsoft #C design team, so 
+naturally the book is about what C# is, its features and relationship to 
+other.Net framework.
+It starts with Object Oriented concepts, then goes through basic features of 
+C# language before entering deeper into C# features. At the end it discusses 
+some relevant concepts like .Net Framework, Comparison to other languages like 
+C++ and Java.
+One striking thing about this book is the amount of examples. Every concept 
+is accompanied by one or more examples. About half of the space of the book is 
+filled with examples.
+The book is clear, concise and easy to understand, but previous knowledge of 
+OO and relevant technology is expected. 
+The flow of the topics is good. It goes through different concepts and 
+features of C# with simple examples. 
+It is not a walk through or ‘how to’ book, rather an introduction to C# 
+language with relevant examples. 
+Although the book does not come with any CD ROM, all the source codes of the 
+book can be downloaded from a web site. Understandably as .Net is still in Beta 
+and not much relevant information can be found on Internet, this book do not 
+have any reference to any web site for further information.
+There is no discussion of IDE of .Net framework. The layout of the book is 
+very plain. It does not have 'Tips", "Caution" or similar subsections that has 
+become common on many IT books. 
+	

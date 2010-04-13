@@ -1,0 +1,819 @@
+
+Using and Porting GNU Fortran
+Using and Porting GNU Fortran
+Contributed by James Craig Burley (craig@jcb-sc.com). 
+Inspired by a first pass at translating g77-0.5.16/f/DOC that
+was contributed to Craig by David Ronis (ronis@onsager.chem.mcgill.ca).
+Short Contents
+- Introduction
+- GNU GENERAL PUBLIC LICENSE
+- GNU Free Documentation License
+- Contributors to GNU Fortran
+- Funding Free Software
+- Funding GNU Fortran
+- Getting Started
+- What is GNU Fortran?
+- Compile Fortran, C, or Other Programs
+- GNU Fortran Command Options
+- News About GNU Fortran
+- User-visible Changes
+- The GNU Fortran Language
+- Other Dialects
+- The GNU Fortran Compiler
+- Other Compilers
+- Other Languages
+- Debugging and Interfacing
+- Collected Fortran Wisdom
+- Known Causes of Trouble with GNU Fortran
+- Open Questions
+- Reporting Bugs
+- How To Get Help with GNU Fortran
+- Adding Options
+- Projects
+- Front End
+- Diagnostics
+- Index
+Table of Contents
+- 
+ Introduction
+- 
+ GNU GENERAL PUBLIC LICENSE
+- Preamble
+- How to Apply These Terms to Your New Programs
+- 
+ GNU Free Documentation License
+- ADDENDUM: How to use this License for your documents
+- 
+ Contributors to GNU Fortran
+- 
+ Funding Free Software
+- 
+ Funding GNU Fortran
+- 
+ Getting Started
+- 
+ What is GNU Fortran?
+- 
+ Compile Fortran, C, or Other Programs
+- 
+ GNU Fortran Command Options
+- Option Summary
+- Options Controlling the Kind of Output
+- Shorthand Options
+- Options Controlling Fortran Dialect
+- Options to Request or Suppress Warnings
+- Options for Debugging Your Program or GNU Fortran
+- Options That Control Optimization
+- Options Controlling the Preprocessor
+- Options for Directory Search
+- Options for Code Generation Conventions
+- Environment Variables Affecting GNU Fortran
+- 
+ News About GNU Fortran
+- 
+ User-visible Changes
+- 
+ The GNU Fortran Language
+- Direction of Language Development
+- ANSI FORTRAN 77 Standard Support
+- No Passing External Assumed-length
+- No Passing Dummy Assumed-length
+- No Pathological Implied-DO
+- No Useless Implied-DO
+- Conformance
+- Notation Used in This Chapter
+- Fortran Terms and Concepts
+- Syntactic Items
+- Statements, Comments, and Lines
+- Scope of Symbolic Names and Statement Labels
+- Characters, Lines, and Execution Sequence
+- GNU Fortran Character Set
+- Lines
+- Continuation Line
+- Statements
+- Statement Labels
+- Order of Statements and Lines
+- Including Source Text
+- Cpp-style directives
+- Data Types and Constants
+- Data Types
+- Double Notation
+- Star Notation
+- Kind Notation
+- Constants
+- Integer Type
+- Character Type
+- Expressions
+- The %LOC() Construct
+- Specification Statements
+- NAMELIST Statement
+- DOUBLE COMPLEX Statement
+- Control Statements
+- DO WHILE
+- END DO
+- Construct Names
+- The CYCLE and EXIT Statements
+- Functions and Subroutines
+- The %VAL() Construct
+- The %REF() Construct
+- The %DESCR() Construct
+- Generics and Specifics
+- REAL() and AIMAG() of Complex
+- CMPLX() of DOUBLE PRECISION
+- MIL-STD 1753 Support
+- f77/f2c Intrinsics
+- Table of Intrinsic Functions
+- Abort Intrinsic
+- Abs Intrinsic
+- Access Intrinsic
+- AChar Intrinsic
+- ACos Intrinsic
+- AdjustL Intrinsic
+- AdjustR Intrinsic
+- AImag Intrinsic
+- AInt Intrinsic
+- Alarm Intrinsic
+- All Intrinsic
+- Allocated Intrinsic
+- ALog Intrinsic
+- ALog10 Intrinsic
+- AMax0 Intrinsic
+- AMax1 Intrinsic
+- AMin0 Intrinsic
+- AMin1 Intrinsic
+- AMod Intrinsic
+- And Intrinsic
+- ANInt Intrinsic
+- Any Intrinsic
+- ASin Intrinsic
+- Associated Intrinsic
+- ATan Intrinsic
+- ATan2 Intrinsic
+- BesJ0 Intrinsic
+- BesJ1 Intrinsic
+- BesJN Intrinsic
+- BesY0 Intrinsic
+- BesY1 Intrinsic
+- BesYN Intrinsic
+- Bit_Size Intrinsic
+- BTest Intrinsic
+- CAbs Intrinsic
+- CCos Intrinsic
+- Ceiling Intrinsic
+- CExp Intrinsic
+- Char Intrinsic
+- ChDir Intrinsic (subroutine)
+- ChMod Intrinsic (subroutine)
+- CLog Intrinsic
+- Cmplx Intrinsic
+- Complex Intrinsic
+- Conjg Intrinsic
+- Cos Intrinsic
+- CosH Intrinsic
+- Count Intrinsic
+- CPU_Time Intrinsic
+- CShift Intrinsic
+- CSin Intrinsic
+- CSqRt Intrinsic
+- CTime Intrinsic (subroutine)
+- CTime Intrinsic (function)
+- DAbs Intrinsic
+- DACos Intrinsic
+- DASin Intrinsic
+- DATan Intrinsic
+- DATan2 Intrinsic
+- Date_and_Time Intrinsic
+- DbesJ0 Intrinsic
+- DbesJ1 Intrinsic
+- DbesJN Intrinsic
+- DbesY0 Intrinsic
+- DbesY1 Intrinsic
+- DbesYN Intrinsic
+- Dble Intrinsic
+- DCos Intrinsic
+- DCosH Intrinsic
+- DDiM Intrinsic
+- DErF Intrinsic
+- DErFC Intrinsic
+- DExp Intrinsic
+- Digits Intrinsic
+- DiM Intrinsic
+- DInt Intrinsic
+- DLog Intrinsic
+- DLog10 Intrinsic
+- DMax1 Intrinsic
+- DMin1 Intrinsic
+- DMod Intrinsic
+- DNInt Intrinsic
+- Dot_Product Intrinsic
+- DProd Intrinsic
+- DSign Intrinsic
+- DSin Intrinsic
+- DSinH Intrinsic
+- DSqRt Intrinsic
+- DTan Intrinsic
+- DTanH Intrinsic
+- DTime Intrinsic (subroutine)
+- EOShift Intrinsic
+- Epsilon Intrinsic
+- ErF Intrinsic
+- ErFC Intrinsic
+- ETime Intrinsic (subroutine)
+- ETime Intrinsic (function)
+- Exit Intrinsic
+- Exp Intrinsic
+- Exponent Intrinsic
+- FDate Intrinsic (subroutine)
+- FDate Intrinsic (function)
+- FGet Intrinsic (subroutine)
+- FGetC Intrinsic (subroutine)
+- Float Intrinsic
+- Floor Intrinsic
+- Flush Intrinsic
+- FNum Intrinsic
+- FPut Intrinsic (subroutine)
+- FPutC Intrinsic (subroutine)
+- Fraction Intrinsic
+- FSeek Intrinsic
+- FStat Intrinsic (subroutine)
+- FStat Intrinsic (function)
+- FTell Intrinsic (subroutine)
+- FTell Intrinsic (function)
+- GError Intrinsic
+- GetArg Intrinsic
+- GetCWD Intrinsic (subroutine)
+- GetCWD Intrinsic (function)
+- GetEnv Intrinsic
+- GetGId Intrinsic
+- GetLog Intrinsic
+- GetPId Intrinsic
+- GetUId Intrinsic
+- GMTime Intrinsic
+- HostNm Intrinsic (subroutine)
+- HostNm Intrinsic (function)
+- Huge Intrinsic
+- IAbs Intrinsic
+- IAChar Intrinsic
+- IAnd Intrinsic
+- IArgC Intrinsic
+- IBClr Intrinsic
+- IBits Intrinsic
+- IBSet Intrinsic
+- IChar Intrinsic
+- IDate Intrinsic (UNIX)
+- IDiM Intrinsic
+- IDInt Intrinsic
+- IDNInt Intrinsic
+- IEOr Intrinsic
+- IErrNo Intrinsic
+- IFix Intrinsic
+- Imag Intrinsic
+- ImagPart Intrinsic
+- Index Intrinsic
+- Int Intrinsic
+- Int2 Intrinsic
+- Int8 Intrinsic
+- IOr Intrinsic
+- IRand Intrinsic
+- IsaTty Intrinsic
+- IShft Intrinsic
+- IShftC Intrinsic
+- ISign Intrinsic
+- ITime Intrinsic
+- Kill Intrinsic (subroutine)
+- Kind Intrinsic
+- LBound Intrinsic
+- Len Intrinsic
+- Len_Trim Intrinsic
+- LGe Intrinsic
+- LGt Intrinsic
+- Link Intrinsic (subroutine)
+- LLe Intrinsic
+- LLt Intrinsic
+- LnBlnk Intrinsic
+- Loc Intrinsic
+- Log Intrinsic
+- Log10 Intrinsic
+- Logical Intrinsic
+- Long Intrinsic
+- LShift Intrinsic
+- LStat Intrinsic (subroutine)
+- LStat Intrinsic (function)
+- LTime Intrinsic
+- MatMul Intrinsic
+- Max Intrinsic
+- Max0 Intrinsic
+- Max1 Intrinsic
+- MaxExponent Intrinsic
+- MaxLoc Intrinsic
+- MaxVal Intrinsic
+- MClock Intrinsic
+- MClock8 Intrinsic
+- Merge Intrinsic
+- Min Intrinsic
+- Min0 Intrinsic
+- Min1 Intrinsic
+- MinExponent Intrinsic
+- MinLoc Intrinsic
+- MinVal Intrinsic
+- Mod Intrinsic
+- Modulo Intrinsic
+- MvBits Intrinsic
+- Nearest Intrinsic
+- NInt Intrinsic
+- Not Intrinsic
+- Or Intrinsic
+- Pack Intrinsic
+- PError Intrinsic
+- Precision Intrinsic
+- Present Intrinsic
+- Product Intrinsic
+- Radix Intrinsic
+- Rand Intrinsic
+- Random_Number Intrinsic
+- Random_Seed Intrinsic
+- Range Intrinsic
+- Real Intrinsic
+- RealPart Intrinsic
+- Rename Intrinsic (subroutine)
+- Repeat Intrinsic
+- Reshape Intrinsic
+- RRSpacing Intrinsic
+- RShift Intrinsic
+- Scale Intrinsic
+- Scan Intrinsic
+- Second Intrinsic (function)
+- Second Intrinsic (subroutine)
+- Selected_Int_Kind Intrinsic
+- Selected_Real_Kind Intrinsic
+- Set_Exponent Intrinsic
+- Shape Intrinsic
+- Short Intrinsic
+- Sign Intrinsic
+- Signal Intrinsic (subroutine)
+- Sin Intrinsic
+- SinH Intrinsic
+- Sleep Intrinsic
+- Sngl Intrinsic
+- Spacing Intrinsic
+- Spread Intrinsic
+- SqRt Intrinsic
+- SRand Intrinsic
+- Stat Intrinsic (subroutine)
+- Stat Intrinsic (function)
+- Sum Intrinsic
+- SymLnk Intrinsic (subroutine)
+- System Intrinsic (subroutine)
+- System_Clock Intrinsic
+- Tan Intrinsic
+- TanH Intrinsic
+- Time Intrinsic (UNIX)
+- Time8 Intrinsic
+- Tiny Intrinsic
+- Transfer Intrinsic
+- Transpose Intrinsic
+- Trim Intrinsic
+- TtyNam Intrinsic (subroutine)
+- TtyNam Intrinsic (function)
+- UBound Intrinsic
+- UMask Intrinsic (subroutine)
+- Unlink Intrinsic (subroutine)
+- Unpack Intrinsic
+- Verify Intrinsic
+- XOr Intrinsic
+- ZAbs Intrinsic
+- ZCos Intrinsic
+- ZExp Intrinsic
+- ZLog Intrinsic
+- ZSin Intrinsic
+- ZSqRt Intrinsic
+- Scope and Classes of Symbolic Names
+- Underscores in Symbol Names
+- I/O
+- Fortran 90 Features
+- 
+ Other Dialects
+- Source Form
+- Carriage Returns
+- Tabs
+- Short Lines
+- Long Lines
+- Ampersand Continuation Line
+- Trailing Comment
+- Debug Line
+- Dollar Signs in Symbol Names
+- Case Sensitivity
+- VXT Fortran
+- Meaning of Double Quote
+- Meaning of Exclamation Point in Column 6
+- Fortran 90
+- Pedantic Compilation
+- Distensions
+- Implicit Argument Conversion
+- Ugly Assumed-Size Arrays
+- Ugly Complex Part Extraction
+- Ugly Null Arguments
+- Ugly Conversion of Initializers
+- Ugly Integer Conversions
+- Ugly Assigned Labels
+- 
+ The GNU Fortran Compiler
+- Compiler Limits
+- Run-time Environment Limits
+- Timer Wraparounds
+- Year 2000 (Y2K) Problems
+- Array Size
+- Character-variable Length
+- Year 10000 (Y10K) Problems
+- Compiler Types
+- Compiler Constants
+- Compiler Intrinsics
+- Intrinsic Groups
+- Other Intrinsics
+- ACosD Intrinsic
+- AIMax0 Intrinsic
+- AIMin0 Intrinsic
+- AJMax0 Intrinsic
+- AJMin0 Intrinsic
+- ASinD Intrinsic
+- ATan2D Intrinsic
+- ATanD Intrinsic
+- BITest Intrinsic
+- BJTest Intrinsic
+- CDAbs Intrinsic
+- CDCos Intrinsic
+- CDExp Intrinsic
+- CDLog Intrinsic
+- CDSin Intrinsic
+- CDSqRt Intrinsic
+- ChDir Intrinsic (function)
+- ChMod Intrinsic (function)
+- CosD Intrinsic
+- DACosD Intrinsic
+- DASinD Intrinsic
+- DATan2D Intrinsic
+- DATanD Intrinsic
+- Date Intrinsic
+- DbleQ Intrinsic
+- DCmplx Intrinsic
+- DConjg Intrinsic
+- DCosD Intrinsic
+- DFloat Intrinsic
+- DFlotI Intrinsic
+- DFlotJ Intrinsic
+- DImag Intrinsic
+- DReal Intrinsic
+- DSinD Intrinsic
+- DTanD Intrinsic
+- DTime Intrinsic (function)
+- FGet Intrinsic (function)
+- FGetC Intrinsic (function)
+- FloatI Intrinsic
+- FloatJ Intrinsic
+- FPut Intrinsic (function)
+- FPutC Intrinsic (function)
+- IDate Intrinsic (VXT)
+- IIAbs Intrinsic
+- IIAnd Intrinsic
+- IIBClr Intrinsic
+- IIBits Intrinsic
+- IIBSet Intrinsic
+- IIDiM Intrinsic
+- IIDInt Intrinsic
+- IIDNnt Intrinsic
+- IIEOr Intrinsic
+- IIFix Intrinsic
+- IInt Intrinsic
+- IIOr Intrinsic
+- IIQint Intrinsic
+- IIQNnt Intrinsic
+- IIShftC Intrinsic
+- IISign Intrinsic
+- IMax0 Intrinsic
+- IMax1 Intrinsic
+- IMin0 Intrinsic
+- IMin1 Intrinsic
+- IMod Intrinsic
+- INInt Intrinsic
+- INot Intrinsic
+- IZExt Intrinsic
+- JIAbs Intrinsic
+- JIAnd Intrinsic
+- JIBClr Intrinsic
+- JIBits Intrinsic
+- JIBSet Intrinsic
+- JIDiM Intrinsic
+- JIDInt Intrinsic
+- JIDNnt Intrinsic
+- JIEOr Intrinsic
+- JIFix Intrinsic
+- JInt Intrinsic
+- JIOr Intrinsic
+- JIQint Intrinsic
+- JIQNnt Intrinsic
+- JIShft Intrinsic
+- JIShftC Intrinsic
+- JISign Intrinsic
+- JMax0 Intrinsic
+- JMax1 Intrinsic
+- JMin0 Intrinsic
+- JMin1 Intrinsic
+- JMod Intrinsic
+- JNInt Intrinsic
+- JNot Intrinsic
+- JZExt Intrinsic
+- Kill Intrinsic (function)
+- Link Intrinsic (function)
+- QAbs Intrinsic
+- QACos Intrinsic
+- QACosD Intrinsic
+- QASin Intrinsic
+- QASinD Intrinsic
+- QATan Intrinsic
+- QATan2 Intrinsic
+- QATan2D Intrinsic
+- QATanD Intrinsic
+- QCos Intrinsic
+- QCosD Intrinsic
+- QCosH Intrinsic
+- QDiM Intrinsic
+- QExp Intrinsic
+- QExt Intrinsic
+- QExtD Intrinsic
+- QFloat Intrinsic
+- QInt Intrinsic
+- QLog Intrinsic
+- QLog10 Intrinsic
+- QMax1 Intrinsic
+- QMin1 Intrinsic
+- QMod Intrinsic
+- QNInt Intrinsic
+- QSin Intrinsic
+- QSinD Intrinsic
+- QSinH Intrinsic
+- QSqRt Intrinsic
+- QTan Intrinsic
+- QTanD Intrinsic
+- QTanH Intrinsic
+- Rename Intrinsic (function)
+- Secnds Intrinsic
+- Signal Intrinsic (function)
+- SinD Intrinsic
+- SnglQ Intrinsic
+- SymLnk Intrinsic (function)
+- System Intrinsic (function)
+- TanD Intrinsic
+- Time Intrinsic (VXT)
+- UMask Intrinsic (function)
+- Unlink Intrinsic (function)
+- ZExt Intrinsic
+- 
+ Other Compilers
+- Dropping f2c Compatibility
+- Compilers Other Than f2c
+- 
+ Other Languages
+- Tools and advice for interoperating with C and C++
+- C Interfacing Tools
+- Accessing Type Information in C
+- Generating Skeletons and Prototypes with f2c
+- C++ Considerations
+- Startup Code
+- 
+ Debugging and Interfacing
+- Main Program Unit (PROGRAM)
+- Procedures (SUBROUTINE and FUNCTION)
+- Functions (FUNCTION and RETURN)
+- Names
+- Common Blocks (COMMON)
+- Local Equivalence Areas (EQUIVALENCE)
+- Complex Variables (COMPLEX)
+- Arrays (DIMENSION)
+- Adjustable Arrays (DIMENSION)
+- Alternate Entry Points (ENTRY)
+- Alternate Returns (SUBROUTINE and RETURN)
+- Assigned Statement Labels (ASSIGN and GOTO)
+- Run-time Library Errors
+- 
+ Collected Fortran Wisdom
+- Advantages Over f2c
+- Language Extensions
+- Diagnostic Abilities
+- Compiler Options
+- Compiler Speed
+- Program Speed
+- Ease of Debugging
+- Character and Hollerith Constants
+- Block Data and Libraries
+- Loops
+- Working Programs
+- Not My Type
+- Variables Assumed To Be Zero
+- Variables Assumed To Be Saved
+- Unwanted Variables
+- Unused Arguments
+- Surprising Interpretations of Code
+- Aliasing Assumed To Work
+- Output Assumed To Flush
+- Large File Unit Numbers
+- Floating-point precision
+- Inconsistent Calling Sequences
+- Overly Convenient Command-line Options
+- Faster Programs
+- Aligned Data
+- Prefer Automatic Uninitialized Variables
+- Avoid f2c Compatibility
+- Use Submodel Options
+- 
+ Known Causes of Trouble with GNU Fortran
+- Bugs Not In GNU Fortran
+- Signal 11 and Friends
+- Cannot Link Fortran Programs
+- Large Common Blocks
+- Debugger Problems
+- NeXTStep Problems
+- Stack Overflow
+- Nothing Happens
+- Strange Behavior at Run Time
+- Floating-point Errors
+- Known Bugs In GNU Fortran
+- Missing Features
+- Better Source Model
+- Fortran 90 Support
+- Intrinsics in PARAMETER Statements
+- Arbitrary Concatenation
+- SELECT CASE on CHARACTER Type
+- RECURSIVE Keyword
+- Increasing Precision/Range
+- Popular Non-standard Types
+- Full Support for Compiler Types
+- Array Bounds Expressions
+- POINTER Statements
+- Sensible Non-standard Constructs
+- READONLY Keyword
+- FLUSH Statement
+- Expressions in FORMAT Statements
+- Explicit Assembler Code
+- Q Edit Descriptor
+- Old-style PARAMETER Statements
+- TYPE and ACCEPT I/O Statements
+- STRUCTURE, UNION, RECORD, MAP
+- OPEN, CLOSE, and INQUIRE Keywords
+- ENCODE and DECODE
+- AUTOMATIC Statement
+- Suppressing Space Padding of Source Lines
+- Fortran Preprocessor
+- Bit Operations on Floating-point Data
+- Really Ugly Character Assignments
+- POSIX Standard
+- Floating-point Exception Handling
+- Nonportable Conversions
+- Large Automatic Arrays
+- Support for Threads
+- Enabling Debug Lines
+- Better Warnings
+- Gracefully Handle Sensible Bad Code
+- Non-standard Conversions
+- Non-standard Intrinsics
+- Modifying DO Variable
+- Better Pedantic Compilation
+- Warn About Implicit Conversions
+- Invalid Use of Hollerith Constant
+- Dummy Array Without Dimensioning Dummy
+- Invalid FORMAT Specifiers
+- Ambiguous Dialects
+- Unused Labels
+- Informational Messages
+- Uninitialized Variables at Run Time
+- Portable Unformatted Files
+- Better List-directed I/O
+- Default to Console I/O
+- Labels Visible to Debugger
+- Disappointments and Misunderstandings
+- Mangling of Names in Source Code
+- Multiple Definitions of External Names
+- Limitation on Implicit Declarations
+- Certain Changes We Don't Want to Make
+- Backslash in Constants
+- Initializing Before Specifying
+- Context-Sensitive Intrinsicness
+- Context-Sensitive Constants
+- Equivalence Versus Equality
+- Order of Side Effects
+- Warning Messages and Error Messages
+- 
+ Open Questions
+- 
+ Reporting Bugs
+- Have You Found a Bug?
+- Where to Report Bugs
+- How to Report Bugs
+- 
+ How To Get Help with GNU Fortran
+- 
+ Adding Options
+- 
+ Projects
+- Improve Efficiency
+- Better Optimization
+- Simplify Porting
+- More Extensions
+- Machine Model
+- Internals Documentation
+- Internals Improvements
+- Better Diagnostics
+- 
+ Front End
+- Overview of Sources
+- Overview of Translation Process
+- g77stripcard
+- lex.c
+- sta.c
+- sti.c
+- stq.c
+- stb.c
+- expr.c
+- stc.c
+- std.c
+- ste.c
+- Gotchas (Transforming)
+- Multi-character Lexemes
+- Space-padding Lexemes
+- Bizarre Free-form Hollerith Constants
+- Hollerith Constants
+- Confusing Function Keyword
+- Weird READ
+- TBD (Transforming)
+- Philosophy of Code Generation
+- Two-pass Design
+- Two-pass Code
+- Why Two Passes
+- Challenges Posed
+- Transforming Statements
+- Statements Needing Temporaries
+- Transforming DO WHILE
+- Transforming Iterative DO
+- Transforming Block IF
+- Transforming SELECT CASE
+- Transforming Expressions
+- Internal Naming Conventions
+- 
+ Diagnostics
+- CMPAMBIG
+- EXPIMP
+- INTGLOB
+- LEX
+- GLOBALS
+- LINKFAIL
+- Y2KBAD
+- 
+ Index
+Node:Top,
+Next:Copying,
+Up:(DIR)
+Introduction
+This manual documents how to run, install and port g77,
+as well as its new features and incompatibilities,
+and how to report bugs. 
+It corresponds to the GCC-3.2 version of g77.
+Warning: This document is still under development,
+and might not accurately reflect the g77 code base
+of which it is a part. 
+Efforts are made to keep it somewhat up-to-date,
+but they are particularly concentrated
+on any version of this information
+that is distributed as part of a released g77.
+In particular, while this document is intended to apply to
+the GCC-3.2 version of g77,
+only an official release of that version
+is expected to contain documentation that is
+most consistent with the g77 product in that version.
+- Copying: GNU General Public License says
+ how you can copy and share GNU Fortran. 
+- GNU Free Documentation License: 
+	 How you can copy and share this manual. 
+- Contributors: People who have contributed to GNU Fortran. 
+- Funding: How to help assure continued work for free software. 
+- Funding GNU Fortran: How to help assure continued work on GNU Fortran.
+- Getting Started: Finding your way around this manual. 
+- What is GNU Fortran?: How g77 fits into the universe. 
+- G77 and GCC: You can compile Fortran, C, or other programs. 
+- Invoking G77: Command options supported by g77. 
+- News: News about recent releases of g77. 
+- Changes: User-visible changes to recent releases of g77. 
+- Language: The GNU Fortran language. 
+- Compiler: The GNU Fortran compiler. 
+- Other Dialects: Dialects of Fortran supported by g77. 
+- Other Compilers: Fortran compilers other than g77. 
+- Other Languages: Languages other than Fortran. 
+- Debugging and Interfacing: How g77 generates code. 
+- Collected Fortran Wisdom: How to avoid Trouble. 
+- Trouble: If you have trouble with GNU Fortran. 
+- Open Questions: Things we'd like to know. 
+- Bugs: How, why, and where to report bugs. 
+- Service: How to find suppliers of support for GNU Fortran.
+- Adding Options: Guidance on teaching g77 about new options. 
+- Projects: Projects for g77 internals hackers. 
+- Front End: Design and implementation of the g77 front end.
+- M: Diagnostics produced by g77.
+- Index: Index of concepts and symbol names. 

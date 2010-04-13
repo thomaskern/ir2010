@@ -1,0 +1,207 @@
+
+Bean Persistence
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: JavaBeans(TM)
+Lesson: Bean Persistence
+For complete information on persistence and serialization,
+see the
+Java Object Serialization web site, and theObject Serialization trail.
+A Bean persists by having its properties, fields, and state information
+saved and restored to and from storage. The mechanism that
+makes persistence possible is called serialization. When
+a Bean instance is serialized, it is converted into a data stream and
+written to storage. Any applet, application, or tool that
+uses that Bean can then "reconstitute" it by
+deserialization.
+JavaBeans uses the JDK's
+Object Serialization API for its serialization needs.
+All Beans must persist. To persist, your Beans must
+support serialization by implementing either the
+java.io.Serializable interface, or the
+java.io.Externalizable interface. These interfaces offer you the choice between
+automatic serialization, and "roll your own".
+As long as one class in a class's inheritance hierarchy
+implements Serializable or
+Externalizable, that class is serializable.
+Controlling Serialization
+You can control the level of serialization that your
+Beans undergo:
+ 
+- Automatic: implement Serializable. Everything gets
+ serialized by the Java serialization software.
+ 
+- Selectively exclude fields you do not want serialized
+ by marking with the transient
+ (or static) modifier.
+ 
+- Writing Beans to a specific file format: implement
+ Externalizable, and its two methods.
+Default Serialization: The Serializable Interface
+The Serializable interface provides automatic
+serialization by using the Java Object Serialization tools.
+Serializable declares no methods; it acts as a marker,
+telling the Object Serialization tools that your Bean class is serializable. 
+Marking your class with Serializable means you
+are telling the Java Virtual Machine (JVM) that you have made sure your class
+will work with default serialization. Here are some
+important points about working with the Serializable
+interface:
+ 
+- Classes that implement Serializable must have
+ a no-argument constructor. This constructor will
+ be called when an object is "reconstituted" from a
+ .ser file.
+ 
+- You don't need to implement Serializable in
+ your class if if it is already implemented in a superclass
+ (but you do need to make sure works correctly and as you
+ expect with default serialization).
+ 
+- All fields but static and transient are serialized. Use
+ the transient modifier to specify fields you do not
+ want serialized, and to specify classes that are not serializable.
+The BeanBox writes serialized Beans to a file with
+a .ser extension.
+The OurButton demo Bean uses default serialization to make its
+properties persist. OurButton only added Serializable
+to its class definition to make use of default serialization:
+public class OurButton extends Component implements Serializable,...
+If you drop an OurButton instance into the BeanBox, the
+properties sheet displays OurButton's properties. To ascertain
+that serialization is working
+ 
+- Change some OurButton properties. For example
+ change the font size and colors.
+ 
+- Serialize the changed OurButton instance by selecting
+ the File|SerializeComponent... BeanBox menu item. A
+ file browser will pop up.
+ 
+- Put the .ser file in a
+ JAR file with a suitable manifest.
+ 
+- Clear the BeanBox form by selecting the File|Clear menu item.
+ 
+- Reload the serialized instance by selecting the
+ File|LoadJar menu item.
+ 
+The OurButton instance will appear in the BeanBox with your
+property changes intact. By implementing Serializable
+in your class, simple, primitive properties and fields can be
+serialized. For more complex class members, different
+techniques must be used, as described in the following sections.
+Selective Serialization Using the transient Keyword
+To exclude fields from serialization in a Serializable object
+from serialization, mark the fields
+with the transient modifier.
+transient int Status;
+Default serialization will not serialize transient and
+static fields.
+Selective Serialization: writeObject and readObject
+If your serializable class contains either of the
+following two methods (the signatures must be exact), then
+the default serialization will not take place.
+private void writeObject(java.io.ObjectOutputStream out)
+ throws IOException;
+private void readObject(java.io.ObjectInputStream in)
+ throws IOException, ClassNotFoundException;
+You can control how more complex objects are serialized,
+by writing your own implementations of the
+writeObject and readObject
+methods.
+Implement writeObject when you need to exercise
+greater control over what gets serialized, when you need
+to serialize objects that default serialization cannot handle,
+or when you need to add data to the serialization stream that
+is not an object data member.
+Implement readObject to reconstruct the
+data stream you wrote with writeObject.
+Example: The Molecule Demo Bean
+The Molecule demo keeps a version number in a static
+field. Since static fields are not serialized by default,
+writeObject and readObject are 
+implemented to serialize this field. Here is 
+the writeObject and readObject
+implementations in Molecule.java:
+private void writeObject(java.io.ObjectOutputStream s)
+ throws java.io.IOException {
+ s.writeInt(ourVersion);
+ s.writeObject(moleculeName);
+}
+private void readObject(java.io.ObjectInputStream s)
+ throws java.lang.ClassNotFoundException,
+ java.io.IOException {
+ // Compensate for missing constructor.
+ reset();
+ if (s.readInt() != ourVersion) {
+ throw new IOException("Molecule.readObject: version mismatch");
+ }
+ moleculeName = (String) s.readObject();
+}
+These implementations limit the fields serialized to
+ourVersion and moleculeName. 
+Any other data in the class will not be serialized.
+It is best to use the ObjectInputStream's
+defaultWriteObject and defaultReadObject
+before doing your own specific stream writing. For example:
+private void writeObject(java.io.ObjectOutputStream s)
+ throws java.io.IOException {
+ //First write out defaults
+ s.defaultWriteObject();
+ //...
+}
+private void readObject(java.io.ObjectInputStream s)
+ throws java.lang.ClassNotFoundException,
+ java.io.IOException {
+ //First read in defaults
+ s.defaultReadObject();
+ //...
+}
+The Externalizable Interface
+Use the Externalizable interface
+when you need complete control over your Bean's serialization
+(for example, when writing and reading a specific file format).
+You need to implement 
+two methods: readExternal and
+writeExternal. Externalizable
+classes must also have a no-argument constructor.
+Example: The BlueButton and OrangeButton Demo Beans
+When you run the BeanBox, you will see two
+Beans named BlueButton and 
+OrangeButton in the ToolBox.
+These two Beans are actually serialized
+instances of the ExternalizableButton
+class.
+ExternalizableButton implements
+the Externalizable interface. This
+means it does all its own serialization, by
+implementing Externalizable.readExternal
+and Externalizable.writeExternal.
+The BlueButtonWriter program
+is used by the buttons makefile to create 
+an ExternalizableButton instance,
+change its background property
+to blue, and write the Bean out to the file
+BlueButton.ser. Another button, OrangeButton,
+is created the same way using OrangeButtonWriter.
+The button makefile then puts these .ser
+files in buttons.jar, where the ToolBox
+can find and reconstitute them.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

@@ -1,0 +1,740 @@
+
+VBWM Forums
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login: 
+ 
+ 
+ 
+ 
+ 
+ 
+ password: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ Resources
+ Code & Tip Library
+ Message Board
+ Articles
+ News
+ LearnVB
+ Tutorials
+ Vendors
+ Job Market
+ Advertising
+ About Us
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Active Topics
+ |
+ Members
+ |
+ Search
+ |
+ FAQ
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ All Forums
+ Frequently Asked Questions
+ 
+ 
+ 
+ 
+ 
+ FAQ Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+- Do I have to register?
+ 
+- How can I use smilies and images?
+ 
+- Can I add a hyperlink to my messages?
+ 
+- Can I change the format of my text?
+ 
+- What are Moderators?
+ 
+- Are cookies used?
+ 
+- What are active topics?
+ 
+- Can I edit my own posts?
+ 
+- Can I attach files?
+ 
+- Can I search?
+ 
+- Can I edit my profile?
+ 
+- Can I attach my own signature to my posts?
+ 
+- Are there any censor features?
+ 
+- What do I do if I forget my UserName and/or Password?
+ 
+- Can I be notified by email when there are new posts?
+ 
+- What does it mean if a forum has Moderation enabled?
+ 
+- What is COPPA?
+ 
+- Where can I get my own copy of this Forum?
+ 
+- Can't find your answer here? Send us an e-mail.
+ 
+ 
+ 
+ 
+ 
+ Registering 
+ 
+ 
+ 
+ 
+ Registration is not required to view current topics on the Forum; however, 
+ if you wish to post a new topic or reply to an existing topic registration is 
+ required. Registration is free and only takes a few minutes. The only 
+ required fields are your UserName, which may be your real name or a nickname, and a 
+ valid e-mail address. The information you provide during registration is not 
+ outsourced or used for any advertising by VBWM Forums. If you believe someone 
+ is sending you advertisements as a result of the information you provided through 
+ your registration, please notify us immediately.
+ 
+ 
+ 
+ 
+ Smilies 
+ 
+ 
+ 
+ 
+ You've probably seen others use smilies before in email messages or other bulletin 
+ board posts. Smilies are keyboard characters used to convey an emotion, such as a smile 
+ or a frown 
+ . This forum 
+ automatically converts certain text to a graphical representation when it is 
+ inserted between brackets []. Here are the smilies that are currently 
+ supported by VBWM Forums:
+ 
+ 
+ 
+ 
+ 
+ 
+ smile 
+ [:)] 
+ 
+ 
+ 
+ big smile 
+ [:D] 
+ 
+ 
+ 
+ cool 
+ [8D] 
+ 
+ 
+ 
+ blush 
+ [:I] 
+ 
+ 
+ 
+ tongue 
+ [:P] 
+ 
+ 
+ 
+ evil 
+ [}:)] 
+ 
+ 
+ 
+ wink 
+ [;)] 
+ 
+ 
+ 
+ clown 
+ [:o)] 
+ 
+ 
+ 
+ black eye 
+ [B)] 
+ 
+ 
+ 
+ eightball 
+ [8] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ frown 
+ [:(] 
+ 
+ 
+ 
+ shy 
+ [8)] 
+ 
+ 
+ 
+ shocked 
+ [:O] 
+ 
+ 
+ 
+ angry 
+ [:(!] 
+ 
+ 
+ 
+ dead 
+ [xx(] 
+ 
+ 
+ 
+ sleepy 
+ [|)] 
+ 
+ 
+ 
+ kisses 
+ [:X] 
+ 
+ 
+ 
+ approve 
+ [^] 
+ 
+ 
+ 
+ disapprove 
+ [V] 
+ 
+ 
+ 
+ question 
+ [?] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating a Hyperlink in your message 
+ 
+ 
+ 
+ 
+You can easily add a hyperlink to your message.
+ 
+All that you need to do is type the URL (http://www.vbwm.com/forums/), and it will automatically be converted to a URL (http://www.vbwm.com/forums/)!
+ 
+ 
+The trick here is to make sure you prefix your URL with the http://, https:// or file://
+ 
+You can also add a mailto link to your message by typing in your email address.
+ 
+	This Example:
+	editor@vbwm.com
+	Outputs this:
+	editor@vbwm.com.
+ 
+ 
+ 
+Another way to add hyperlinks is to use the [url]linkto[/url] tags
+	 
+ This Example:
+ [url]http://www.vbwm.com/forums/[/url] takes you home!
+ Outputs This:
+ http://www.vbwm.com/forums/ takes you home!
+ 
+	 
+ 
+ 
+If you use this tag: [url="linkto"]description[/url] you can add a description to the link.
+ 
+ This Example:
+ Take me to [url="http://www.vbwm.com/forums/"]VBWM Forums[/url]
+ Outputs This:
+ Take me to VBWM Forums
+ 
+ 
+ This Example:
+ If you have a question [url="editor@vbwm.com"]Email Me[/url]
+ Outputs This:
+ If you have a question Email Me
+ 
+ 
+ 
+ 
+ 
+ 
+ How to format text with Bold, Italic, Quote, etc... 
+ 
+ 
+ 
+ 
+ There are several Forum Codes you may use to change the appearance 
+ of your text. Following is the list of codes currently available:
+ 
+ 
+Bold: enclose your text with [b] and [/b] . Example: This is [b]bold[/b] text. = This is bold text.
+ 
+Italic: enclose your text with [i] and [/i] . Example: This is [i]italic[/i] text. = This is italic text.
+ 
+Underline: enclose your text with [u] and [/u]. Example: This is [u]underline[/u] text. = This is underline text.
+ 
+Aligning Text Left:
+ Enclose your text with [left] and [/left]
+ 
+ 
+Aligning Text Center:
+ Enclose your text with [center] and [/center]
+ 
+ 
+Aligning Text Right:
+ Enclose your text with [right] and [/right]
+ 
+ 
+Striking Text:
+ Enclose your text with [s] and [/s]. Example: [s]mistake[/s] = mistake
+ 
+ 
+ 
+ 
+Font Colors:
+ Enclose your text with [fontcolor] and [/fontcolor] 
+ Example: [red]Text[/red] = Text
+ Example: [blue]Text[/blue] = Text
+ Example: [pink]Text[/pink] = Text
+ Example: [brown]Text[/brown] = Text
+ Example: [black]Text[/black] = Text
+ Example: [orange]Text[/orange] = Text
+ Example: [violet]Text[/violet] = Text
+ Example: [yellow]Text[/yellow] = Text
+ Example: [green]Text[/green] = Text
+ Example: [gold]Text[/gold] = Text
+ Example: [white]Text[/white] = Text
+ Example: [purple]Text[/purple] = Text
+ 
+ 
+ 
+ 
+Headings:
+ Enclose your text with [hnumber] and [/hn]
+ 
+ 
+ 
+ Example: [h1]Text[/h1] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ 
+ Example: [h2]Text[/h2] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ Example: [h3]Text[/h3] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ 
+ Example: [h4]Text[/h4] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ 
+ Example: [h5]Text[/h5] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ 
+ Example: [h6]Text[/h6] =
+ 
+ 
+ 
+Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Font Sizes:
+ Example: [size=1]text[/size=1] = Text
+ Example: [size=2]text[/size=2] = Text
+ Example: [size=3]text[/size=3] = Text
+ Example: [size=4]text[/size=4] = Text
+ Example: [size=5]text[/size=5] = Text
+ Example: [size=6]text[/size=6] = Text
+ 
+ 
+ 
+ 
+Bulleted List: [list] and [/list], and items in list with [*] and [/*].
+ 
+Ordered Alpha List: [list=a] and [/list=a], and items in list with [*] and [/*].
+ 
+Ordered Number List: [list=1] and [/list=1], and items in list with [*] and [/*].
+ 
+Code: enclose your text with [code] and [/code].
+ 
+Quote: enclose your text with [quote] and [/quote].
+ 
+ 
+ 
+ 
+ Moderators 
+ 
+ 
+ 
+ 
+ Moderators control individual forums. 
+ They may edit, delete, or prune any posts in their forums. 
+ If you have a question about a particular forum, you should direct it to your forum moderator.
+ 
+ 
+ 
+ 
+ Cookies 
+ 
+ 
+ 
+ 
+ These Forums use cookies to store the following information: the last time you logged in, your UserName and 
+ your Password, if you set it in preferences. These cookies are stored on your hard drive. Cookies are not used 
+ to track your movement or perform any function other than to enhance your use of these forums. 
+ If you have not enabled cookies in your browser, many of these time-saving features will not work properly. Also, you 
+ need to have cookies enabled if you want to enter a private forum or post a topic/reply.
+ 
+ 
+You may delete all cookies set by these forums in selecting the "logout" button at the top of any page.
+ 
+ 
+ 
+ 
+ Active Topics 
+ 
+ 
+ 
+ 
+ 
+Active Topics are tracked by cookies. When you click on the "active topics" link, a page is generated listing all topics that have been posted since your last visit to these forums (or approximately 20 minutes).
+ 
+ 
+ 
+ 
+ Editing Your Posts 
+ 
+ 
+ 
+ 
+ You may edit or delete your own posts at any time. Just go to the topic where the 
+ post to be edited or deleted is located 
+ and you will see a edit or delete icon () 
+ on the line that begins "posted on..." Click on this icon to edit or 
+ delete the post. No one else can edit your post, except for the forum Moderator 
+ or the forum administrator. 
+ A note is generated at the bottom of each edited post displaying when and by whom the post was edited.
+ 
+ 
+ 
+ 
+ Attaching Files 
+ 
+ 
+ 
+ 
+ For security reasons, you may 
+ not attach files to any posts. However, you may cut and paste text into your post.
+ 
+ 
+ 
+ 
+ Searching For Specific Posts 
+ 
+ 
+ 
+ 
+ You may search for 
+ specific posts based on a word or words found in the posts, user name, date, and 
+ particular forum(s). Simply click on the "search" link at the top of most pages. 
+ 
+ 
+ 
+ 
+ Editing Your Profile 
+ 
+ 
+ 
+ 
+You may easily change any information stored in your registration profile by using the "profile" link located near the top of each page. Simply identify yourself by typing your UserName and Password and all of your profile information will appear on screen. You may edit any information (except your UserName).
+ 
+ 
+ 
+ Signatures 
+ 
+ 
+ 
+ 
+You may attach signatures to the end of your posts when you post either a New Topic or Reply. Your signature is editable by clicking on "profile" at the top of any forum page and entering your UserName and Password.
+ 
+NOTE: HTML can't be used in Signatures.
+ 
+ 
+ 
+ Censoring Posts 
+ 
+ 
+ 
+ 
+ The Forum does censor certain words that may be posted; however, this 
+ censoring is not an exact science, and is being done based on the words that are being 
+ screened, so certain words may be censored out of context. Words that are censored are replaced with asterisks.
+ 
+ 
+ 
+ 
+ Lost User Name and/or Password 
+ 
+ 
+ 
+ 
+ Retrieving your 
+ UserName and Password is simple, assuming that email features are turned on for 
+ this forum. All of the pages that require you to identify yourself with 
+ your UserName and Password carry a "lost Password" link that you can use to have 
+ your UserName and Password mailed instantly to your email address of 
+ record.
+ 
+ 
+ 
+ 
+ Can I be notified by email when there are new posts ? 
+ 
+ 
+ 	
+ 	
+	Yes, the Subscription feature allows you to subscribe to the entire Board, individual Categories, Forums and/or Topics, depending on what the administrator of this site allows. You will receive an email notifying you of a post that has been made to the Category/Forum/Topic that you have subscribed to.
+	There are four levels of subscription:
+	
+	- Board Wide Subscription
+	If you can subscribe to an entire Board, you'll get a notification for any posts made within all the forums inside that board.
+	
+	- Category Wide Subscription
+	You can subscribe to an entire Category, which will notify you if there was any posts made within any topic, within any forum, within that Category.
+	
+	- Forum Wide Subscription
+	If you don't want to subscribe to an entire Category, you can subscribe to a single forum. This will notify you of any posts made within any topic, within that forum.
+	- Topic Wide Subscription
+	More conveniently, you can subscribe to just an individual topic. You will be notified of any post made within that topic.
+	
+	Each level of subscription is optional. The administrator can turn On/Off each level of subscription for each Category/Forum/Topic.
+	To Subscribe or Unsubscribe from any level of subscription, you can use the "My Subscriptions" link, located near the top of each page to manage your subscriptions. Or you can click on the subscribe/unsubscribe icons ( ) for that Category/Forum/Topic you want to subscribe/unsubscribe to/from.
+	
+	 
+ 
+ 
+ What does it mean if a forum has Moderation enabled? 
+ 
+ 
+ 	
+ 	
+	Moderation: This feature allows the Administrator or the Moderator to "Approve", "Hold" or "Delete" a users post before it is shown to the public.
+	Approve: Only the administrators or the moderators will be able to approve a post made to a moderated forum. When the post is approved, it will be made viewable to the public.
+	Hold: When a user posts a message to a moderated forum, the message is automatically put on hold until a moderator or an administrator approves of the post. No one will be able to view the post while it is put on hold.
+ Note: Authors of the post will be able to edit thier post during this mode.
+	Delete: If the administrator or moderator chooses this option, the post will be deleted and an email will be sent to the poster of the message, informing them that thier post was not approved. The administrator/moderator will be able to give thier reason for not approving the post in the email.
+	
+	 
+ 
+ 
+ What is COPPA 
+ 
+ 
+ 
+ 
+The Children's Online Privacy Protection Act and Rule apply to individually identifiable
+ information about a child that is collected online, such as full name, home address, email address,
+ telephone number or any other information that would allow someone to identify or contact the
+ child. The Act and Rule also cover other types of information -- for example, hobbies, interests
+ and information collected through cookies or other types of tracking mechanisms -- when they
+ are tied to individually identifiable information. More information can be found 
+ here.
+ 
+ 
+ 
+ 
+ Getting Your Own Forum 
+ 
+ 
+ 
+ 
+The most recent version of this Snitz Forum can be downloaded at this Internet web site.
+ 
+NOTE: The software is highly configurable, and the baseline Snitz Forum may not have all the features this forum does.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+VBWM Forums
+ 
+ 
+ 
+© 2002 BowmanSoft, Inc.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Snitz Forums 2000cronym>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+ 
+ 
+ 

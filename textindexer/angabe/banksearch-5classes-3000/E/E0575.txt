@@ -1,0 +1,436 @@
+
+ 
+C/C++ Tutorial Page 1
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+The main function 
+ is the place where the code exectuion begins. Unlike BASIC and Pascal, 
+ a function needs to be declared for code execution.
+ void main() {
+}
+ 
+The void means that the function does not 
+ return any data (called a procedure in BASIC or PASCAL when it doesn't 
+ return anything.) The main is its name, and the () state that this function 
+ takes no parameters. The brackets indicate the beginning and end of the 
+ function/procedure.
+ 
+Similar to BASIC and Pascal: in BASIC anything 
+ typed outside a function is assumed to be the main code. In Pascal, BEGIN 
+ END. are equalvent to this code.
+ 
+A note to C users--most C compilers will 
+ give a warning about void being used on main. You can ignore this for 
+ now, but if it becomes annoying just change the "void" to "int", 
+ and place the command "return 0;" at the end of your code in 
+ the brackets like this (the true reason for this will be given later in 
+ Main Function II):
+ int main() {
+ return 0;
+}
+ 
+Back To 
+ Top
+ 
+ 
+Comments in C help to explain what 
+ a program is doing. The syntax is fairly simple:
+ /*This is a comment in the
+ C or C++ language*/
+ void main() { //Comments like these only appear in C++
+}
+ 
+The /* */ method works for multiple lines. C++ has a shortcut 
+ method, using just //, which is like the single quote from BASIC, and 
+ only comments until the end of a line. Mostly I will be using the // comments 
+ which are much faster and easier to type.
+ 
+ADDEDENUM: It has come to my attention that some new C 
+ compilers, espically when bundled with C++ ones, like gcc, will take the 
+ // comment method despite not being standard C. You might wish to check 
+ your compiler to see if it takes this shortcut, but keep in mind it's 
+ not standard C and may not work on ALL compilers.
+ 
+Back To 
+ Top
+ 
+ 
+Simple output to a 
+ text screen is achieved in C through the printf statement and in C++ with 
+ cout.
+ 
+ #include 
+ int main() {
+ printf("Hello World!\n");
+ return 0; /* this and the int is to get rid of
+ the annoying warning most compilers give*/
+}
+ 
+If using C++, you can use the above program 
+ (REMEMBER: all of C commands work with C++), but C++ allows for an extra 
+ feature called cout, which is really a class. Cout will be discussed in 
+ depth in a later tutorial.
+ 
+ #include 
+ void main() {
+ cout 
+ 
+ void main() {
+ cout > as bitwise shifts. This is true when 
+ used variables, and this concept will be explained in later lessons.
+ 
+Now an explanation how these statements work. 
+ Printf is much like print using from BASIC or write from Pascal. The reason 
+ why printf is like print using instead of just print will be explaned 
+ in the Output II lesson. The endl in the cout and the \n in the printf 
+ terminates the line, like what writeln does from Pascal. Each parameter 
+ for cout is seperated by Back To 
+ Top
+ 
+ 
+Variables in C 
+ need to be declared, but unlike Pascal, can be declared at any time during 
+ a procedure in C++, but unfortunately in C it must be declared at the 
+ beginning of the procedure. The program below shows valid delcarations 
+ in C++:
+ 
+ void main() {
+ int c; //This declares an integer
+ c = 50; //This sets c to 50
+ int d = 75; //Combo declaration and initalization
+ float f = 17.235; //A real number type variable
+ char g = 'g'; //A character type variable
+}
+ 
+However, to do this in C, where the variables 
+ have to be first, you must convert the program to this, since all declarations 
+ must come before any executable code. This is also good programming style, 
+ to always declare variables first anyways, despite the language, however 
+ there are times where you only need a variable temporarily for a very 
+ short time (such as a for loop described later), where C++'s declarations 
+ can come handy. Notice that initalization is not considered executable 
+ code -- it is more like "preloaded" into the variable.
+ 
+ int main() {
+ int c; //This declares an integer
+ int d = 75; //Combo declaration and initalization
+ float f = 17.235; //A real number type varaible
+ char g = 'g'; //A character type varaible
+ 
+ //Declarations complete, now to executable code:
+ c = 50; //This sets c to 50
+}
+ 
+Variables are pretty straight forward and do not need 
+ much explanation, but a few notes on variable types. Integers in most 
+ compilers can only handle ranges of -2^32 to 2^32, which is roughly +/- 
+ 2 billion. This is good for most applications but they cannot handle decimals, 
+ like float can. Floats can store pretty much any number to a certain accuracy, 
+ since they are basically stored like scientific notation. Char variables 
+ only hold a letter or an integer between -128 and 127, but notice that 
+ characters are in single quotes and not double quotes, which are strings. 
+ Strings, despite what BASIC/Pascal lead you to believe, are really arrays 
+ of characters, and will be discussed in a later section.
+ 
+Any name given to something in C is case-sensitive. Many 
+ characters can be used in the names, however most programmers only use 
+ the letters, and the underscore, _, for spaces. Numbers can be used in 
+ the names, but the name cannot start with one.
+ //Valid Names
+ MyFunction
+ My_Procedure
+ Display600Variables
+ ProfitMargin
+ //Invalid Names
+ 600Variables
+ 
+Most programmers, when using multiple words in a name, 
+ capitalize each word, or use the underscore, _.
+ 
+Converting a character to its ASCII value or vice versa 
+ is much simpler in C than in BASIC or Pascal, since in reality they are 
+ the same thing. Char variables always store a number--it's just that the 
+ compiler interprets it as a character. So the two statements below are 
+ the EXACT same thing:
+ void main() {
+ char x = 65; //ASCII 65 is 'A'
+ char g = 'A';//x and g are the same thing now
+}
+ 
+Working with varaibles in C is much like any other language:
+ void main() {
+ int x = 0; int y = 5; /* Notice multiple commands on one
+ line, since whitespace does not
+ count*/
+ x = y; //Some obvious operation examples follow
+ x = y + 5;
+ x = 500 * 50;
+ y = x / 50;
+ y = y + 1; //Adds one to y
+ x = 10 % 3 //% returns the remainder, in this case x will be 1
+}
+ 
+Back To 
+ Top
+ 
+ 
+Output with variables with C are 
+ a little more complex than in C++. The C++ method will be shown first 
+ since it is simpler to understand.
+ #include //For cout command
+void main() {
+ int x = 50; int y = 10;
+ x = x + y;
+ cout //for printf()
+ void main() {
+ int x = 50; int y = 10;
+ x = x * y;
+ printf("The current value of x is: %i\n", x);
+}
+ 
+The printf takes a format string like BASIC's print using. 
+ The %i is replaced by the value of x, the first parameter. Extra parameters 
+ to printf are passed in the order the variables appear in the format string, 
+ for example:
+ 
+printf("The value of x is: %i 
+ and the value of y is: %i\n", x, y);
+ 
+There are more format specifiers than %i. These get more 
+ complex, but these are the simple and most used ones:
+ 
+%i -- outputs an integer
+ %f -- outputs a float
+ %c -- outputs a character
+ %% -- outputs a percent sign instead of a variable
+ 
+In addition to the % format specifiers there are special 
+ characters which can appear in any string, not just in a printf. These 
+ are a few of them:
+ 
+\n -- end-of-line character
+ \" -- a double quote
+ \' -- a single quote
+ 
+Throughout the rest of the tutorial I will mostly be using 
+ couts, since they are easier to understand. However even for C++ programmers 
+ it is important to understand printf, since it is used in many programs 
+ and is required in some cases (I use it sometimes to conserve memory and 
+ for speed, as cout is slow and requires a lot more memory.)
+ 
+Back To 
+ Top
+ 
+ 
+There are some more complex 
+ and shortcut ways to work with variables than specified in Variables I. 
+ Also variables can be compared and used in if statements. If statements 
+ in C work just like those in BASIC or Pascal but just with a few syntactial 
+ changes.
+ #include 
+ void main() {
+ int x = 5;
+ int y = 10;
+ x *= 5; //This is the same as x = x * 5;
+ x += y; //Same as x = x + y;
+ x %= 3; //x = x % 3; This shortcut works for all operators,
+ // even the odd ones like %.
+ x--; //This simply subracts 1 from x like x=x-1;
+ x++; //Adds one to x
+ if (x > 0) //Let's see what we've done
+ cout 10) {
+ cout Back To 
+ Top
+ 
+ 
+Input in C is difficult and personally 
+ I don't use it over cin from C++, however both topics will be covered 
+ here. Cin will be covered first again due to simplicity.
+ #include 
+ void main() {
+ int x;
+ cout > x; //Notice the opposite direction of the operator
+ if (x >. Really these are operators like + or - 
+ in C++, but are used only with classes. The names for the operators come 
+ from the fact that in C++, cout and cin are streams, and the data is "inserted" 
+ to or "extracted" from the stream. However, in C the input is 
+ a little changed.
+ #include 
+ void main() {
+ int x; char f;
+ printf("Enter an integer: ");
+ scanf("%i", &x);
+ if (x > x1 >> x2; //The user should enter something like 50 
+ 90
+ 
+In C it gets a little more complicated:
+ 
+printf("Enter two integers seperated 
+ by spaces: ");
+ scanf("%i %i", &x1, &x2);
+ 
+Notice again how scanf works like printf.
+ 
+Back To 
+ Top
+ 
+Move onto the 
+ first section of part 2
+ 
+ 
+ 
+ 

@@ -1,0 +1,84 @@
+Zeto - CryptDLL
+ 
+ 
+Home
+ 
+Resources
+ 
+Applications
+ 
+Source Code
+ 
+VB Tutorial
+ 
+Links
+ 
+ Mail Zeto
+ 
+ 
+ 
+ Resources: CryptDll 
+ 
+ 
+ 
+Current version: 1.02 (1/8/99)
+ 
+32-Bit Visual Basic Dll that provides cryptographic functions to your application by use of the CryptoAPI.
+ 
+The zip file contains only the Dll, without supporting files. It is assumed that a copy of 'Advapi32.dll' resides in your system directory, and that you have the VB service pack 3 runtime files (available from the resources section of this site).
+ 
+Download CryptDll (22k)
+ 
+Download CryptoAPI example program (10k)
+ 
+ 
+Information:
+ 
+Crypt.dll provides string data password based encryption/decryption by using the Win32-API to access the Microsoft Base Cryptographic Provider. All the hard work is done for you! All you have to do is call the encryption/decryption procedure and pass it the string you want to perfrom the operation on. The encrypted string is then stored in the same variable. The mapping of password to key is fixed, so if at a later time the password is presented again, the same key can be regenerated and the encrypted text decoded.
+ 
+Installation:
+ 
+ 
+- Copy Crypt.dll to your Windows\System directory.
+ 
+- At a command prompt in the system directory type the following: regsvr32 crypt.dll
+ 
+- To add this to your VB project check it under Project-References. It should appear as "CryptDLL".
+ 
+ 
+Specifics of use:
+ 
+Example of encryption call:
+ 
+Dim c as new Crypt
+Dim Example as String
+Private Sub Form_Load()
+Example="Example text"
+c.Password="Password"
+c.Encrypt Example, True
+Msgbox Example
+c.Decrypt Example, True
+Msgbox Example
+End Sub
+This should show two message boxes; one of a meaningless jumble of characters, the second your example text.
+ 
+How to register:
+ 
+ 
+Simply mail Zeto with the following:
+ 
+ 
+- Your name and email address
+ 
+- How you liked crypt.dll
+ 
+- Any bugs you found
+ 
+- Any ideas you have for improving crypt.dll
+ 
+Update information
+1.02 1/8/99 Improved encryption / decrpytion routines and updated about screen 
+1.01 1/12/98 Code screen removed 
+Before you use this product please read the disclaimer.
+© Zeto 1999. All Rights Reserved.
+ 

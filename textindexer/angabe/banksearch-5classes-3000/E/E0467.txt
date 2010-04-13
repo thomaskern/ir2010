@@ -1,0 +1,194 @@
+
+DevX: C++ Zone: Book of the Week
+	
+ 	
+ 
+ DevX Home 
+ 
+ Premier Club 
+ Search 
+ RFP Exchange 
+ eLearning 
+ Code Library 
+ Help 
+ Locator+ 
+Shop DevX 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+	
+	
+	
+ 	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+	
+ 
+ 
+	 Book Review
+	of the week 
+	 
+	
+	 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ Standard C++ Bible 
+ 
+ 
+ 
+ By Al Stevens et al. 
+ 
+ 
+ 
+ Foster City,CA:IDG Books 
+ 
+ 
+ 
+ ISBN 0764546546 
+ 
+ 
+ 
+ 840 pages 
+ 
+ 
+ 
+ Includes CD-ROM 
+ 
+ 
+ 
+ Price: $39.99 
+ 
+ 
+ 
+ (Reviewed 7/31/2001) 
+ 
+	
+	 
+	Join the Discussion 
+	
+	
+ 
+ 
+ 
+ 
+ C++ Catechizing 
+ 
+ 
+ A comprehensive ANSI/ISO C++ tutorial
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	
+Standard C++ Bible
+ 
+The three years that have elapsed since the ratification of the ANSI/ISO standard have enabled compiler vendors and programmers alike to get used to the novelties of C++. It seems that there's no better time for novices to learn C++. Standard C++ Bible by Al Stevens and Clayton Walnum is aiming at this audience.
+Several years ago, C++ books usually assumed that their readers were mostly C programmers making the transition to C++. Today many programmers learn C++ as their first language. The authors judiciously decided not to assume user familiarity with C. They teach the C subset of C++ as an integral part of C++. Thus Part I covers functions, structures, and templates all at once. Personally, I prefer this approach. Among other things, the powerfulness of C++ stems from its ability to combine different programming paradigms seamlessly. 
+Part II discusses object orientation topics, starting with classes&#8212;the fundamental concept of object-oriented programming&#8212;and then moving on to operator overloading, inheritance, multiple inheritance and class templates. The text is approachable, clear, and replete with concrete examples (albeit somewhat contrived). 
+However, the coverage is at times lacking. In Chapter 14, for example, the reader might get the impression that multiple inheritance is a dubious or experimental feature, failing to acknowledge that the Standard Library itself uses it extensively.
+Part III covers the Standard Library. It presents the stream libraries, namely , , and . In many C++ books, this discussion gets blurred with "standardese" and unintuitive descriptions. Not here. The use tables and other graphical features make things much clearer. However, you should be aware that significant parts of the Standard Library, such as std::auto_ptr, aren't covered.
+Part IV describes STL. Although complete coverage of this framework requires a complete book, it will teach you the basic concepts of containers, algorithms, iterators, and adaptors. For some reason, the last chapter of this part covers exception handling&#8212;undoubtedly an important and useful feature, but I can't fathom why the authors decided to relate it to STL.
+The final part deals with various issues. I wouldn't necessarily consider them advanced, as some of them (namespaces, for example) are simple and straightforward. The fact that this is a relatively new feature doesn't necessarily make it advanced. RTTI and locales are discussed here as well. Here again, the parsimonious coverage provides the reader with the basic notions but not much beyond that. The text doesn't explain, for instance, that in the event of an uncaught exception, C++ doesn't guarantee that stack unwinding takes place.
+Apart from sporadic typos and omissions (the "export" keyword is missing from the two keyword lists included in the book), Standard C++ Bible does a fairly good job at presenting C++ in a way that is neither intimidating nor shallow. However, for the intrepid neophyte I would still recommend Bjarne Stroustrup's C++ Programming Language, Special Edition.
+Danny Kalev is a system analyst and software engineer with 13 years of experience, specializing in C++ and object-oriented analysis and design. He is a member of the ANSI C++ standardization committee and the author of "ANSI/ISO C++ Professional Programmer's Handbook" (Que, 1999; read the DevX review). Reach him at dannykk@inter.net.il.
+ 
+	 
+	
+ 
+ 
+ 
+	
+	
+Sponsored Links 
+Click here for a free FREE iSeminar and Oracle9i Application Server software!
+ 
+SPECIAL REPORT: Winning with Web Services
+ 
+Deliver a Better Product Faster with the Intel® Early Access Program
+ 
+How do Drivers Access UNICODE? Get the Scoop Here...
+ 
+Learn Web Services and Win Cool Prizes--Take the IONA Dream Warrior Challenge TODAY!
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+ 
+ 
+	 
+ 
+	Back to C++ Zone 
+ 
+	
+	More Reviews 
+ 
+	Book Guide 
+ 
+	
+	Marketplace 
+ 
+	 

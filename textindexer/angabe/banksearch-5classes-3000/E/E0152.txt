@@ -1,0 +1,454 @@
+
+GotW #73: Style Case Study #1 - Index Tables
+ 
+ 
+ GotW #73 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Style Case Study #1: Index Tables 
+ Difficulty: 5 / 10
+This GotW introduces a new theme that we'll see again from time to time in
+future Style Case Study issues: We examine a piece of published code, critique
+it to illustrate proper coding style, and develop an improved version. You may
+be amazed at just how much can be done even with code that has been written,
+vetted, and proofread by experts.
+Problem
+JG Question
+1. Who benefits from clear, understandable
+code?
+Guru Question
+2. The following code presents an interesting
+and genuinely useful idiom for creating index tables into existing containers.
+For a more detailed explanation, see the original article.[1]
+Critique this code and identify:
+ 
+a) Mechanical errors, such as invalid syntax or nonportable conventions.
+ 
+b) Stylistic improvements that would improve code clarity, reusability, and
+ maintainability.
+ 
+// program sort_idxtbl(...) to make a
+ permuted array of indices
+ #include 
+ #include 
+ 
+ template 
+ struct sort_idxtbl_pair
+ {
+ RAIter it;
+ int i;
+ bool operator
+ void sort_idxtbl( RAIter first, RAIter last, int* pidxtbl )
+ {
+ int iDst = last-first;
+ typedef std::vector > V;
+ V v( iDst );
+ 
+ int i=0;
+ RAIter it = first;
+ V::iterator vit = v.begin();
+ for( i=0; it vecai(ai, ai+10);
+ int aidxtbl[10];
+ sort_idxtbl(vecai.begin(), vecai.end(), aidxtbl);
+ 
+ for (int i=0; i[2]) Further,
+when you return to the code a month or a year later -- as you surely will if the
+code is any good and is actually being used -- then it's much easier to pick it
+up again and understand what's going on. Most programmers find it difficult to
+keep full details of code in their heads for even a few weeks, especially after
+having moved on to other work; after a few months, or even a few years, it's too
+easy to go back to your own code and imagine it was written by a stranger --
+albeit a stranger who curiously happened to follow your personal coding style.
+But enough about selfishness. Let's turn to altruism: Those who have to
+maintain your code also benefit from clarity and readability. After all, to
+maintain code well one must first grok the code. "To grok," as coined
+by Robert Heinlein, means to comprehend deeply and fully; in this case, that
+includes understanding the internal workings of the code itself, as well as its
+side effects and interactions with other subsystems. It is altogether too easy
+to introduce new errors when changing code one does not fully understand. Code
+that is clear and understandable is easier to grok, and therefore fixes to such
+code become less fragile, less risky, less likely to have unintended side
+effects.
+Most importantly, however, your end users benefit from clear and
+understandable code for all of the above reasons: Such code is likely to have
+had fewer initial bugs in the first place, and it's likely to have been be
+maintained more correctly without as many new bugs being introduced.
+2. The following code presents an interesting
+and genuinely useful idiom for creating index tables into existing containers.
+For a more detailed explanation, see the original article.[1]
+Critique this code and identify:
+Again, let me repeat that which bears repeating: This code presents an
+interesting and genuinely useful idiom. I've frequently found it necessary to
+access the same container in different ways, such as using different sort
+orders. For this reason it can be useful indeed to have one principal container
+that holds the data (for example, a vector) and
+secondary containers of iterators into the main container that support
+variant access methods (for example, a set::iterator,
+Funct> where Funct is a functor that compares Employee
+objects indirectly yielding a different ordering than the order in which the
+objects are physically stored in the vector).
+Having said that, style matters too. The original author has kindly allowed
+me to use his code as a case in point, and I'm not trying to pick on him here;
+I'm just adopting the technique, pioneered long ago by luminaries like P.J.
+Plauger, of expounding coding style guidelines via the dissection and critique
+of published code. I've critiqued other published material before, have had
+other people critique my own, and I'm positive that further dissections will no
+doubt follow.
+Having said all that, let's see what we might be able to improve in
+this particular piece of code:
+Correcting Mechanical Errors
+ 
+a) Mechanical errors, such as invalid syntax or
+ nonportable conventions.
+The first area for constructive criticism is mechanical errors in the code,
+which on most platforms won't compile as shown.
+ 
+#include
+ 
+1. Spell standard headers correctly: Here the header 
+is misspelled as . My first guess was that this is
+probably an artifact of an 8-character file system used to test the original
+code, but even my old version of MSVC on an old version of Windows (based on the
+8.3 filename system) rejected this code. Anyway, it's not standard, and even on
+hobbled file systems the compiler itself is required to support any standard
+long header names even if it silently maps it onto a shorter filename (or onto
+no file at all).
+ 
+ main()
+2. Define main() correctly: The signature "main()"
+has never been valid C++. That used to be valid in pre-1999 C, which had an
+implicit int rule, but it's nonstandard in both C++ (which never
+had implicit int) and C99 (which as far as I can tell didn't merely
+deprecate implicit int, but actually removed it outright). In the
+C++ standard, see:
+ 
+ 
+3.6.1/2: portable code must
+ define main() as either "int main()" or
+ "int main( int, char*[] )" 
+ 
+ 
+7/7 footnote 78, and 7.1.5/2
+ footnote 80: implicit int banned 
+ 
+ 
+Annex C (Compatibility), comment
+ on 7.1.5/4: explicitly notes that "main()" is invalid
+ C++, and must be written "int main()" 
+ 
+ cout . Why did this probably work on the
+original developer's system? Because C++ standard headers can #include
+each other, but unlike C, C++ does not specify which standard headers #include
+which other standard headers.
+In this case, the program does #include and ,
+and on the original system it probably just so happened that one of those
+headers happened to indirectly #include too. That
+may work on the library implementation used to develop the original code, and it
+happens to work on mine too, but it's not portable and not good style.
+4. Follow the guidelines in my Migrating to Namespaces article[3]
+about using namespaces: Speaking of cout and endl, the
+program must also qualify them with std::, or write "using
+std::cout; using std::endl;". Unfortunately it's still common for
+authors to forget namespace scope qualifiers -- I hasten to point out that this
+author did correctly scope vector and sort.
+Improving Style
+ 
+b) Stylistic improvements that would improve code
+ clarity, reusability, and maintainability.
+Beyond the above mechanical errors, there were several things I personally
+would have done differently in the code example. First, a couple of comments
+about the helper struct:
+ 
+ template 
+ struct sort_idxtbl_pair
+ {
+ RAIter it;
+ int i;
+ bool operator
+ void sort_idxtbl( RAIter first, RAIter last, int* pidxtbl )
+ {
+ int iDst = last-first;
+ typedef std::vector > V;
+ V v( iDst );
+ 
+ int i=0;
+ RAIter it = first;
+ V::iterator vit = v.begin();
+ for( i=0; it
+ void sort_idxtbl( RAIter first, RAIter last, int* pidxtbl )
+ 
+takes a bald int* pointer to the output area, which I generally
+try to avoid in favor of managed storage (say, a vector). But at
+the end of the day the user ought to be able to call sort_idxtbl
+and put the output into a plain array, or a vector, or anything
+else. Well, the requirement "be able to put the output into any
+container" simply cries out for an iterator, doesn't it?
+ 
+template
+ void sort_idxtbl( RAIn first, RAIn last, Out result )
+13. Reuse Part 4, or Prefer comparing iterators using !=: When
+comparing iterators, always use != (which works for all kinds of
+iterators) instead of [5]
+True, that probably doesn't make a material difference in the original code
+because vector::iterator does not have to be a
+cheap-to-copy T* (although it almost always will be); but if we
+implement point 13 we may no longer be limited to just vector::iterators,
+and most other iterators are of class type -- perhaps often still not too
+expensive to copy, but why introduce this possible inefficiency needlessly?
+That covers most the important issues. There are other things we could
+critique but that I didn't consider important enough to call attention to here;
+for example, production code should have comments that document each class's and
+function's purpose and semantics, but that doesn't apply to code accompanying
+magazine articles where the explanation is typically written in better English
+and in greater detail than code comments have any right to expect.
+I'm deliberately not critiquing the mainline for style (as opposed to the
+mechanical errors already noted above that would cause the mainline to fail to
+compile) because after all this particular mainline is only meant to be a
+demonstration harness to help readers of the magazine article see how the index
+table apparatus is meant to work, and it's the index table apparatus that's the
+intended focus.
+Conclusion
+Let's preserve the original code's basic interface choice instead of straying far afield and proposing alternate design
+choices.[6] Limiting our critique just to correcting the code for mechanical
+errors and basic style, then, consider the three alternative improved versions below. Each has its own benefits, drawbacks, and style
+preferences as explained in the accompanying comments. What all three versions have in common is that they are clearer, more understandable,
+and more portable code -- and that ought to count for something, in your company and in mine.
+ 
+// An improved version of the code
+ originally
+ // published in [1].
+ //
+ #include 
+ #include 
+ #include 
+ 
+ 
+ 
+// Solution 1 does some basic cleanup
+ but still
+ // preserves the general structure of the
+ // original's approach. We're down to 17 lines
+ // (even if you count "public:" and "private:"
+ // as lines), where the original had 23.
+ //
+ namespace Solution1
+ {
+ template
+ class sort_idxtbl_pair
+ {
+ public:
+ void set( const Iter& it, int i ) { it_ = it; i_ = i; }
+ 
+ bool operator
+ void sort_idxtbl( IterIn first, IterIn last, IterOut out )
+ {
+ std::vector >
+ v(last-first);
+ // int iDst = last-first;
+ // typedef std::vector > V;
+ // V v(iDst);
+ 
+ for( int i=0; i 
+ struct ComparePair1stDeref
+ {
+ bool operator()( const std::pair& a,
+ 
+ const std::pair& b ) const
+ { return *a.first 
+ void sort_idxtbl( IterIn first, IterIn last, IterOut out )
+ {
+ std::vector > s(
+ last-first );
+ for( int i=0; i () );
+ for( int i=0; i 
+ struct CompareDeref
+ {
+ bool operator()( const T& a, const T& b ) const
+ { return *a 
+ struct Pair2nd
+ {
+ const U& operator()( const std::pair& a
+ ) const
+ { return a.second; }
+ };
+ 
+ 
+ template
+ void sort_idxtbl( IterIn first, IterIn last, IterOut out )
+ {
+ std::multimap > v;
+ for( int i=0; first != last; ++i, ++first )
+ v.insert( std::make_pair( first, i ) );
+ std::transform( v.begin(), v.end(), out,
+ 
+ Pair2nd() );
+ }
+ }
+ 
+ 
+ 
+// I left the test harness
+ essentially unchanged,
+ // except to demonstrate putting the output in an
+ 
+// output iterator (instead of necessarily an
+ // int*) and using the source array directly as a
+ // container.
+ //
+ #include 
+ 
+int main()
+ {
+ int ai[10] = { 15,12,13,14,18,11,10,17,16,19 };
+ 
+ std::cout aidxtbl( 10 );
+ 
+ // use another namespace name to test a different solution
+ Solution3::sort_idxtbl( ai, ai+10, aidxtbl.begin() );
+ 
+ for( int i=0; iCopyright ©
+2002 Herb Sutter
+ 

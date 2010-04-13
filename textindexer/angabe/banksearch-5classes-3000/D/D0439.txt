@@ -1,0 +1,205 @@
+
+Algorithms
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: Collections
+Lesson: Algorithms
+The polymorphic algorithms described in this section are pieces of
+reusable functionality provided by the JDK. All of them come from the
+Collectionsclass. All take the form of static methods whose first argument is the
+collection on which the operation is to be performed.
+The great majority of the algorithms provided by the Java platform operate on
+Listobjects, but a couple of them (min and max) operate
+on arbitrary
+Collectionobjects. The algorithms are described below.
+Sorting
+The sort algorithm reorders a List so that its elements are ascending
+order according to some ordering relation. Two forms of the operation are
+provided. The simple form just takes a List and sorts it
+according to its elements' natural ordering. If you're unfamiliar with
+the concept of natural ordering, now would be a good time to read the Object Ordering section.
+The sort operation uses a slightly optimized merge sort
+algorithm. If you don't know what this means but you do care, see any basic
+textbook on algorithms. The important things to know about this algorithm are
+ that it is:
+- Fast: This algorithm is guaranteed to run in n log(n) time, and runs
+substantially faster on nearly sorted lists. Empirical studies
+showed it to be as fast as a highly optimized quicksort. Quicksort is
+generally regarded to be faster than merge sort, but isn't stable, and
+doesn't guarantee n log(n) performance.
+- Stable: That is to say, it doesn't reorder equal elements.
+This is important if you sort the same list repeatedly on different
+attributes. If a user of a mail program sorts his in-box by mailing date, and
+then sorts it by sender, the user naturally expects that the now-contiguous
+list of messages from a given sender will (still) be sorted by mailing date.
+This is only guaranteed if the second sort was stable.
+Here's 
+a trivial little program
+that prints out its arguments in lexicographic (alphabetical) order.
+import java.util.*;
+public class Sort {
+ public static void main(String args[]) {
+ List l = Arrays.asList(args);
+ Collections.sort(l);
+ System.out.println(l);
+ }
+}
+Let's run the program:
+% java Sort i walk the line
+[i, line, the, walk]
+The program was included only to show you that I have nothing up my sleeve:
+The algorithms really are as easy to use as they appear to be. I won't insult
+your intelligence by including any more silly examples.
+The second form of sort takes a
+Comparatorin addition to a List and sorts the elements with the 
+Comparator. Remember the permutation group example at the end of
+the Map section? It printed
+out the permutation groups in no particular order. Suppose you wanted to
+print them out in reverse order of size, largest permutation group first.
+The following example below shows you how to achieve this with the help of the
+second form of the sort method.
+Recall that the permutation groups are stored as values in a Map,
+in the form of List objects. The revised printing code
+iterates through the Map's values-view, putting
+every List that passes the minimum-size test into a
+List of Lists. Then, the code sorts this
+List using a Comparator that expects
+List objects, and implements reverse-size ordering.
+Finally, the code iterates through the now-sorted List,
+printing its elements (the permutation groups). This code replaces the
+printing code at the end of Perm's main method:
+// Make a List of all permutation groups above size threshold
+List winners = new ArrayList();
+for (Iterator i = m.values().iterator(); i.hasNext(); ) {
+ List l = (List) i.next();
+ if (l.size() >= minGroupSize)
+	winners.add(l);
+}
+// Sort permutation groups according to size
+Collections.sort(winners, new Comparator() {
+ public int compare(Object o1, Object o2) {
+	return ((List)o2).size() - ((List)o1).size();
+ }
+});
+// Print permutation groups
+for (Iterator i=winners.iterator(); i.hasNext(); ) {
+ List l = (List) i.next();
+ System.out.println(l.size() + ": " + l);
+}
+Running 
+this program on the 
+same dictionary
+in the Map section,
+with the same minimum permutation group size (eight)
+produces the following output:
+% java Perm2 dictionary.txt 8
+12: [apers, apres, asper, pares, parse, pears, prase, presa, rapes,
+ reaps, spare, spear]
+11: [alerts, alters, artels, estral, laster, ratels, salter, slater,
+ staler, stelar, talers]
+10: [least, setal, slate, stale, steal, stela, taels, tales, teals,
+ tesla]
+ 9: [estrin, inerts, insert, inters, niters, nitres, sinter, triens,
+ trines]
+ 9: [capers, crapes, escarp, pacers, parsec, recaps, scrape, secpar,
+ spacer]
+ 9: [anestri, antsier, nastier, ratines, retains, retinas, retsina,
+ stainer, stearin]
+ 9: [palest, palets, pastel, petals, plates, pleats, septal, staple,
+ tepals]
+ 8: [carets, cartes, caster, caters, crates, reacts, recast, traces]
+ 8: [ates, east, eats, etas, sate, seat, seta, teas]
+ 8: [arles, earls, lares, laser, lears, rales, reals, seral]
+ 8: [lapse, leaps, pales, peals, pleas, salep, sepal, spale]
+ 8: [aspers, parses, passer, prases, repass, spares, sparse, spears]
+ 8: [earings, erasing, gainers, reagins, regains, reginas, searing,
+ seringa]
+ 8: [enters, nester, renest, rentes, resent, tenser, ternes, treens]
+ 8: [peris, piers, pries, prise, ripes, speir, spier, spire]
+Shuffling
+The shuffle algorithm does the opposite of what sort does: it destroys any
+trace of order that may have been present in a List. That
+is to say, it reorders the List, based on input from a
+source of randomness, such that all possible permutations occur with
+equal likelihood (assuming a fair source of randomness). This algorithm is
+useful in implementing games of chance. For example, it could be used to
+shuffle a List of Card objects representing a deck.
+Also, it's useful for generating test cases. 
+There are two forms of this operation. The first just takes a List
+and uses a default source of randomness. The second requires the caller to
+provide a
+Randomobject to use as a source of randomness. The actual code for this algorithm
+is used as an example in the List section.
+Routine Data Manipulation
+The Collections class provides three algorithms for doing routine data manipulation on
+List objects. All of these algorithms are pretty
+straightforward:
+- 
+reverse: Reverses the order of the elements in a List.
+- 
+fill: Overwrites every element in a List with the specified value.
+This operation is useful for re-initializing a List.
+- 
+copy: Takes two arguments, a destination List and a source
+List, and copies the elements of the source into the destination,
+overwriting its contents. The destination List must be at least
+as long as the source. If it is longer, the remaining elements in the
+destination List are unaffected.
+Searching
+The binarySearch algorithm searches for a specified element in a sorted List using
+the binary search algorithm. There are two forms of this algorithm.
+The first takes a List and an element to search for (the "search
+key"). This form assumes that the List is sorted into ascending
+order according to the natural ordering of its elements. The second
+form of the call takes a Comparator in addition to
+the List and the search key, and assumes that the
+List is sorted into ascending order according to the specified
+Comparator. The sort algorithm (described above) can
+be used to sort the List prior to calling
+binarySearch.
+The return value is the same for both forms: if the List contains
+the search key, its index is returned. If not, the return value 
+is (-(insertion point) - 1), where the insertion
+point is defined as the point at which the value would
+be inserted into the List: the index of the first element
+greater than the value, or list.size() if all elements in
+the List are less than the specified value. This admittedly ugly
+formula was chosen to guarantee that the return value will be >= 0 if
+and only if the search key is found. It's basically a hack to combine
+a boolean ("found") and an integer ("index") into a single int
+return value.
+The following idiom, usable with both forms of the binarySearch
+operation, looks for the specified search key, and inserts it at the
+appropriate position if it's not already present:
+ int pos = Collections.binarySearch(l, key);
+ if (pos 
+Finding Extreme Values
+The min and max algorithms return, respectively, the minimum and maximum element contained in
+a specified Collection. Both of these operations come in two
+forms. The simple form takes only a Collection, and returns
+the minimum (or maximum) element according to the elements' natural
+ordering. The second form takes a Comparator in addition
+to the Collection and returns the minimum (or maximum)
+element according to the specified Comparator.
+These are the only algorithms provided by the Java platform that work on
+arbitrary Collection objects, as opposed to List
+objects. Like the fill algorithm above, these algorithms are
+quite straightforward to implement. They are included in the Java platform
+solely as a convenience to programmers.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

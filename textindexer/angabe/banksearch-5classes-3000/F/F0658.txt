@@ -1,0 +1,477 @@
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	
+	 
+	 
+searchVB.com: The VB Specific Search Engine presented by TechTarget.com
+	 
+	 
+	 
+	 
+ 
+	 
+	 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 Featured Topic: 
+	
+	Design a VB.NET client 
+	
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	 
+	
+	
+	
+	 
+	Search our content and thousands of pre-screened sites. 
+	 
+	
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	 
+	Advanced Search 
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+ 
+	Last Updated: May 15, 2002 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	In his last article, Roy Hoobler showed you how to create a VB.NET Web service. Now, Roy walks you through designing a VB.NET client for Web services. We've collected more .NET resources for you below. 
+	
+	
+	>> 
+	.NET INFO CENTER -- Don't miss the latest .NET news, tips and expert advice. 
+	
+	
+	
+	>> 
+	Looking for .NET technical tips? 
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	 
+	 
+	
+	
+	
+	 Designing a VB.NET client for Web services
+	
+	 (Jun 07, 2002)
+	
+Creating Web services with Visual Studio.NET is a great way to get systems communicating with each other; either internally over the network or externally over the Internet. However, building a scalable OOP client is just as important. This article discusses building an ASP.NET application that retrieves event information from a Web service.
+	
+	Read Full Story
+	 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	NEWS: 
+	
+	 
+	 
+	>> 
+	
+	Creating a VB.NET Web service (SearchWebServices) Apr 11, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	WebPutty takes a .NET approach to change (the451, Special to SearchVB) May 15, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Microsoft's MapPoint .NET - A Web service for developers with real live business benefits (Hurwitz Group, special to SearchWebServices) Apr 18, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	A rush and a push and Visual Studio.NET is here (Hurwitz Group, special to searchWebServices) Mar 19, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Analysis: .NET tools mark new Web services battle (the451) Feb 15, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	The Dynamic, Smart, e-Business, .NET World of Web Services (Hurwitz Group, special to searchWebServices) Feb 18, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Crystal Decisions provides VS.NET with a familiar feel (searchWebServices) Feb 13, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Tool promises to untangle VS.NET config files (CRN) May 14, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	REST could burst SOAP's bubble (SearchWebServices) May 13, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Microsoft, SmartPipes unveil .NET alliance (CRN) May 13, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Microsoft, SmartPipes unveil .NET alliance (CRN) May 13, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Web services future will not be ruled by Java or .NET (cw360) May 10, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Gimme a VB developer--stat! (InformationWeek) May 09, 2002 
+	
+	
+	 
+	 
+	>> 
+	
+	Microsoft releases tool for creating analytics apps (IDG News) May 09, 2002 
+	
+	 
+ 
+ 
+ADVICE: 
+	 
+	>> 
+	
+	ISA Server installation dos and don'ts
+	TIP :Overlook hot fixes and security packs and installation security can fly out the window. 
+	 
+	>> 
+	
+	Introduction to the .NET runtime
+	TIP :Discussion of this entity in the .NET environment. 
+	 
+	>> 
+	
+	More on SOAP extensions
+	TIP :How to use the extensions previously discussed. 
+	 
+	>> 
+	
+	Say hello to VS .NET, a developer's friend
+	TIP :Microsoft released the production version of Visual Studio .NET, its premier development toolkit, in February of this year. 
+	 
+	>> 
+	
+	Reasons to move to .NET
+	TIP :Find out why multi threading is a good reason to move to .NET. 
+	 
+	>> 
+	
+	Understand SOAP extensions
+	TIP :Explanation of SOAP extensions. 
+	 
+	>> 
+	
+	If I write an application using Visual.NET, will it run on a machine that doesn't have the .NET framework installed?
+	ASK THE EXPERTS :If I write an application using Visual.NET, will it run on a machine that doesn't have the .NET framework installed? 
+ 
+	 
+ 
+	>> 
+	
+	Where can I find data on the use of Microsoft technology in mission critical applications?
+	ASK THE EXPERTS :Where can I find data on the use of Microsoft technology (IIS, ASP, VB, VB.Net) in mission critical applications? What ... 
+	 
+ 
+	>> 
+	
+	What are the main differences between COM+ and .NET?
+	ASK THE EXPERTS :What are the main differences between COM+ and .NET? Should I forget everything I know about COM+ and start thinking about ... 
+	 
+ 
+	>> 
+	
+	Will there be transition problems when moving from VB6 to VB.NET?
+	ASK THE EXPERTS :I'm a Visual Basic developer and I'm a bit confused over this whole VB.NET thing. Believe it or not, our small shop is just ... 
+	 
+ 
+	>> 
+	
+	Using Web services to integrate .NET with Java (Event Details)
+	ONLINE EVENT :The co-author of "Building Web Services and .NET Applications" shows you how to add Web services to a Java application, ... 
+ 
+	 
+	BOOKS: 
+	
+	 
+	 >> 
+	
+	
+	 Learn to Program with Visual Basic.NET Price: $ 31.99 
+	 
+	 
+More than 100,000 people have learned how to program from Professor John Smiley. In this unique guide, the guru himself will ... 
+	
+	
+	 
+	 >> 
+	
+	
+	 Professional VB.NET Price: $ 59.99 
+	
+	
+	 
+	 >> 
+	
+	
+	 Bertrand Meyer's .NET Training Course Price: $ 59.49 
+	 
+	 
+This CD-ROM includes 6 hours of instruction on the .NET platform, as well as .NET beta software, white papers, code samples, ... 
+	
+	
+ 
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+ 
+	
+	
+	 
+	 	 
+	
+	
+	
+	
+	
+	 
+	
+	> 
+	Certification: Pros and Cons 
+	
+	 
+	 
+	
+	> 
+	Designing a VB.NET application 
+	
+	 
+	 
+	
+	> 
+	Psst...wanna a hot tip? 
+	
+	 
+	 
+	
+	> 
+	Need VB Help? Look here... 
+	
+	 
+	 
+	
+	> 
+	Five recent Internet code downloads 
+	
+	 
+	 
+	 
+	View full list of Featured Topics 
+	
+	 
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	 
+	 
+	 
+	 
+	
+	 	
+	 	
+	This week's poll:
+Of these three articles, which was your favorite or helped you the most? 
+	
+ 
+	 	
+	 
+	 Designing a VB.NET client for Web services 
+	 
+	 
+	 Creating a VB.NET Web service 
+	 
+	 
+	 A rush and a push and Visual Studio.NET 
+	 
+	 
+	 Ack! I just can't decide. 
+	 
+	 
+	 
+	
+	 
+	
+	
+	 Poll participation is restricted to registered members. Not a member? Register. Otherwise, log in:
+	 
+	
+	 
+	
+	username: 
+	 
+	 
+	password: 
+	 
+	 
+	 
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+	
+ 	

@@ -1,0 +1,70 @@
+
+ strtok()
+ 
+ 
+strtok-Get a token
+Synopsis
+ #include &#060;string.h&#062;
+ t = strtok(s,b);
+ char *t; /* token pointer */
+ char *s; /* input string pointer or NULL */
+ const char *b; /* break character string pointer */
+Description
+ This function treats the input string as a series of one or more
+ tokens separated by one or more characters from the break string.
+ By making a sequence of calls to the strtok function, you can
+ obtain the tokens in left-to-right order. To get the first
+ (leftmost) token, supply a non-NULL pointer for the s argument.
+ To get the next tokens, call the function repeatedly with a NULL
+ pointer for the s argument, until you get a NULL return pointer to
+ indicate that there are no more tokens. The break string can be
+ changed from one call to another.
+ Each time it is entered, the strtok function takes the following
+ steps:
+ · If the input string is NULL, the strtok function gets the
+ string pointer that was used on the preceding call.
+ Otherwise, it uses the new input string pointer.
+ · The strtok function scans forward through the string to the
+ next nonbreak character. If it is a NULL byte, the
+strtok
+ function returns a value of NULL to indicate that there are
+ no more tokens.
+ · The strtok function scans forward through the string to the
+ next break character or the NULL terminator byte. In the
+ former case, it writes a NULL byte into the string to
+ terminate the token, and then scans forward until the next
+ nonbreak character is found. In either case, it saves the
+ final value of the string pointer for the next call and
+ returns the token pointer.
+ The input string gets changed as the scan progresses.
+ Specifically, a NULL byte is written at the end of each token.
+Returns
+ A NULL pointer is returned when there are no more tokens.
+Example
+ /*
+ * This example breaks out words that are separated
+ * by blanks or commas. The token pointer takes on
+ * the following values as the program loops:
+ *
+ * LOOP TOKEN
+ * 1 "first"
+ * 2 "second"
+ * 3 "third"
+ * 4 "fourth"
+ * 5 NULL
+ */
+ #include &#060;string.h&#062;
+ #include &#060;stdio.h&#062;
+ char test[] = "first, second third, fourth";
+ void main(void)
+ {
+ char *token;
+ token = strtok(test,", ");
+ while(token != NULL)
+ {
+ printf("%sn",token);
+ token = strtok(NULL,", ");
+ }
+ }
+See Also
+ strcspn , strspn 

@@ -1,0 +1,1020 @@
+
+Host/Target specific installation notes for GCC
+- GNU Project - Free Software Foundation (FSF)
+Host/Target specific installation notes for GCC
+Please read this document carefully before installing the
+GNU Compiler Collection on your machine.
+- alpha*-*-*
+- alpha*-dec-osf*
+- alphaev5-cray-unicosmk*
+- arc-*-elf
+- arm-*-aout
+- arm-*-elf
+- arm*-*-linux-gnu
+- avr
+- c4x
+- DOS
+- dsp16xx
+- *-*-freebsd*
+- h8300-hms
+- hppa*-hp-hpux*
+- hppa*-hp-hpux9
+- hppa*-hp-hpux10
+- hppa*-hp-hpux11
+- i370-*-*
+- *-*-linux-gnu
+- i?86-*-linux*aout
+- i?86-*-linux*
+- i?86-*-sco
+- i?86-*-sco3.2v4
+- i?86-*-sco3.2v5*
+- i?86-*-udk
+- i?86-*-esix
+- ia64-*-linux
+- *-lynx-lynxos
+- *-ibm-aix*
+- ip2k-*-elf
+- m32r-*-elf
+- m68000-hp-bsd
+- m6811-elf
+- m6812-elf
+- m68k-att-sysv
+- m68k-crds-unos
+- m68k-hp-hpux
+- m68k-ncr-*
+- m68k-sun
+- m68k-sun-sunos4.1.1
+- mips-*-*
+- mips-sgi-irix5
+- mips-sgi-irix6
+- powerpc*-*-* powerpc-*-sysv4
+- powerpc-*-darwin*
+- powerpc-*-elf powerpc-*-sysv4
+- powerpc-*-linux-gnu*
+- powerpc-*-netbsd*
+- powerpc-*-eabiaix
+- powerpc-*-eabisim
+- powerpc-*-eabi
+- powerpcle-*-elf powerpcle-*-sysv4
+- powerpcle-*-eabisim
+- powerpcle-*-eabi
+- powerpcle-*-winnt powerpcle-*-pe
+- #s390-*-linux*
+- #s390x-*-linux*
+- *-*-solaris2*
+- sparc-sun-solaris2*
+- sparc-sun-solaris2.7
+- sparc-sun-sunos4*
+- sparc-unknown-linux-gnulibc1
+- sparc-*-linux*
+- sparc64-*-*
+- sparcv9-*-solaris2*
+- *-*-sysv*
+- vax-dec-ultrix
+- xtensa-*-elf
+- xtensa-*-linux*
+- Microsoft Windows
+- OS/2
+- Older systems
+- all ELF targets (SVR4, Solaris 2, etc.) 
+<!- ------- host/target specific issues start here --------------- ->
+alpha*-*-*
+This section contains general configuration information for all
+alpha-based platforms using ELF (in particular, ignore this section for
+DEC OSF/1, Digital UNIX and Tru64 UNIX). In addition to reading this
+section, please read all other sections that match your target.
+We require binutils 2.11.2 or newer. 
+Previous binutils releases had a number of problems with DWARF 2
+debugging information, not the least of which is incorrect linking of
+shared libraries.
+alpha*-dec-osf*
+Systems using processors that implement the DEC Alpha architecture and
+are running the DEC/Compaq Unix (DEC OSF/1, Digital UNIX, or Compaq
+Tru64 UNIX) operating system, for example the DEC Alpha AXP systems.
+As of GCC 3.2, versions before alpha*-dec-osf4 are no longer
+supported. (These are the versions which identify themselves as DEC
+OSF/1.)
+In Tru64 UNIX V5.1, Compaq introduced a new assembler that does not
+currently (2001-06-13) work with mips-tfile. As a workaround,
+we need to use the old assembler, invoked via the barely documented
+-oldas option. To bootstrap GCC, you either need to use the
+Compaq C Compiler:
+ % CC=cc srcdir/configure [options] [target]
+or you can use a copy of GCC 2.95.3 or higher built on Tru64 UNIX V4.0:
+ % CC=gcc -Wa,-oldas srcdir/configure [options] [target]
+As of GNU binutils 2.11.2, neither GNU as nor GNU ld
+are supported on Tru64 UNIX, so you must not configure GCC with
+--with-gnu-as or --with-gnu-ld.
+The --enable-threads options isn't supported yet. A patch is
+in preparation for a future release.
+GCC writes a .verstamp directive to the assembler output file
+unless it is built as a cross-compiler. It gets the version to use from
+the system header file /usr/include/stamp.h. If you install a
+new version of DEC Unix, you should rebuild GCC to pick up the new version
+stamp.
+Note that since the Alpha is a 64-bit architecture, cross-compilers from
+32-bit machines will not generate code as efficient as that generated
+when the compiler is running on a 64-bit machine because many
+optimizations that depend on being able to represent a word on the
+target in an integral value on the host cannot be performed. Building
+cross-compilers on the Alpha for 32-bit machines has only been tested in
+a few cases and may not work properly.
+make compare may fail on old versions of DEC Unix unless you add
+-save-temps to CFLAGS. On these systems, the name of the
+assembler input file is stored in the object file, and that makes
+comparison fail if it differs between the stage1 and
+stage2 compilations. The option -save-temps forces a
+fixed name to be used for the assembler input file, instead of a
+randomly chosen name in /tmp. Do not add -save-temps
+unless the comparisons fail without that option. If you add
+-save-temps, you will have to manually delete the .i and
+.s files after each series of compilations.
+GCC now supports both the native (ECOFF) debugging format used by DBX
+and GDB and an encapsulated STABS format for use only with GDB. See the
+discussion of the --with-stabs option of configure above
+for more information on these formats and how to select them.
+There is a bug in DEC's assembler that produces incorrect line numbers
+for ECOFF format when the .align directive is used. To work
+around this problem, GCC will not emit such alignment directives
+while writing ECOFF format debugging information even if optimization is
+being performed. Unfortunately, this has the very undesirable
+side-effect that code addresses when -O is specified are
+different depending on whether or not -g is also specified.
+To avoid this behavior, specify -gstabs+ and use GDB instead of
+DBX. DEC is now aware of this problem with the assembler and hopes to
+provide a fix shortly.
+alphaev5-cray-unicosmk*
+Cray T3E systems running Unicos/Mk.
+This port is incomplete and has many known bugs. We hope to improve the
+support for this target soon. Currently, only the C front end is supported,
+and it is not possible to build parallel applications. Cray modules are not
+supported; in particular, Craylibs are assumed to be in
+/opt/ctl/craylibs/craylibs.
+You absolutely must use GNU make on this platform. Also, you
+need to tell GCC where to find the assembler and the linker. The
+simplest way to do so is by providing --with-as and
+--with-ld to configure, e.g.
+configure --with-as=/opt/ctl/bin/cam --with-ld=/opt/ctl/bin/cld
+--enable-languages=c
+The comparison test during make bootstrap fails on Unicos/Mk
+because the assembler inserts timestamps into object files. You should
+be able to work around this by doing make all after getting this
+failure.
+arc-*-elf
+Argonaut ARC processor. 
+This configuration is intended for embedded systems.
+arm-*-aout
+Advanced RISC Machines ARM-family processors. These are often used in
+embedded applications. There are no standard Unix configurations. 
+This configuration corresponds to the basic instruction sequences and will
+produce a.out format object modules.
+You may need to make a variant of the file arm.h for your particular
+configuration.
+arm-*-elf
+This configuration is intended for embedded systems.
+arm*-*-linux-gnu
+We require GNU binutils 2.10 or newer.
+avr
+ATMEL AVR-family micro controllers. These are used in embedded
+applications. There are no standard Unix configurations. 
+See "AVR Options" in the main manual
+for the list of supported MCU types.
+Use configure --target=avr --enable-languages="c" to configure GCC.
+Further installation notes and other useful information about AVR tools
+can also be obtained from:
+- http://home.overta.ru/users/denisc
+- http://www.amelek.gda.pl/avr
+We strongly recommend using binutils 2.11 or newer.
+The following error:
+ Error: register required
+indicates that you should upgrade to a newer version of the binutils.
+c4x
+Texas Instruments TMS320C3x and TMS320C4x Floating Point Digital Signal
+Processors. These are used in embedded applications. There are no
+standard Unix configurations. 
+See "TMS320C3x/C4x Options" in the main manual
+for the list of supported MCU types.
+GCC can be configured as a cross compiler for both the C3x and C4x
+architectures on the same system. Use configure --target=c4x
+--enable-languages="c,c++" to configure.
+Further installation notes and other useful information about C4x tools
+can also be obtained from:
+- http://www.elec.canterbury.ac.nz/c4x/
+CRIS
+CRIS is the CPU architecture in Axis Communications ETRAX system-on-a-chip
+series. These are used in embedded applications.
+See "CRIS Options" in the main manual
+for a list of CRIS-specific options.
+There are a few different CRIS targets:
+cris-axis-aout
+Old target. Includes a multilib for the elinux a.out-based
+target. No multilibs for newer architecture variants. 
+cris-axis-elf
+Mainly for monolithic embedded systems. Includes a multilib for the
+v10 core used in ETRAX 100 LX. 
+cris-axis-linux-gnu
+A GNU/Linux port for the CRIS architecture, currently targeting
+ETRAX 100 LX by default. 
+For cris-axis-aout and cris-axis-elf you need binutils 2.11
+or newer. For cris-axis-linux-gnu you need binutils 2.12 or newer.
+Pre-packaged tools can be obtained from
+ftp://ftp.axis.com/pub/axis/tools/cris/compiler-kit/. More
+information about this platform is available at
+http://developer.axis.com/.
+DOS
+Please have a look at our binaries page.
+You cannot install GCC by itself on MSDOS; it will not compile under
+any MSDOS compiler except itself. You need to get the complete
+compilation package DJGPP, which includes binaries as well as sources,
+and includes all the necessary compilation tools and libraries.
+dsp16xx
+A port to the AT&T DSP1610 family of processors.
+*-*-freebsd*
+The version of binutils installed in /usr/bin is known to work unless
+otherwise specified in any per-architecture notes. However, binutils
+2.12.1 or greater is known to improve overall testsuite results.
+FreeBSD 1 is no longer supported in GCC 3.2.
+For FreeBSD 2 or any mutant a.out versions of FreeBSD 3: All
+configuration support and files as shipped with GCC 2.95 are still in
+place. FreeBSD 2.2.7 has been known to bootstrap completely; however,
+it is unknown which version of binutils was used (it is assumed that it
+was the system copy in /usr/bin) and C++ EH failures were noted.
+For FreeBSD using the ELF file format: DWARF 2 debugging is now the
+default for all CPU architectures. It had been the default on
+FreeBSD/alpha since its inception. You may use -gstabs instead
+of -g, if you really want the old debugging format. There are
+no known issues with mixing object files and libraries with different
+debugging formats. Otherwise, this release of GCC should now match more
+of the configuration used in the stock FreeBSD configuration of GCC. In
+particular, --enable-threads is now configured by default. 
+However, as a general user, do not attempt to replace the system
+compiler with this release. Known to bootstrap and check with good
+results on FreeBSD 3.0, 3.4, 4.0, 4.2, 4.3, 4.4, 4.5-STABLE and 5-CURRENT.
+In principle, --enable-threads is now compatible with
+--enable-libgcj on FreeBSD. However, it has only been built
+and tested on i386-*-freebsd4.5 and alpha-*-freebsd5.0. The static
+library may be incorrectly built (symbols are missing at link time). 
+There is a rare timing-based startup hang (probably involves an
+assupmtion about the thread library). Multi-threaded boehm-gc (required for
+libjava) exposes severe threaded signal-handling bugs on FreeBSD before
+4.5-RELEASE. The alpha port may not fully bootstrap without some manual
+intervention: gcjh will crash with a floating-point exception while
+generating java/lang/Double.h (just copy the version built on
+i386-*-freebsd* and rerun the top-level gmake with no arguments and it
+should properly complete the bootstrap). Other CPU architectures
+supported by FreeBSD will require additional configuration tuning in, at
+the very least, both boehm-gc and libffi.
+Shared libgcc_s.so is now built and installed by default.
+h8300-hms
+Hitachi H8/300 series of processors.
+Please have a look at our binaries page.
+The calling convention and structure layout has changed in release 2.6. 
+All code must be recompiled. The calling convention now passes the
+first three arguments in function calls in registers. Structures are no
+longer a multiple of 2 bytes.
+hppa*-hp-hpux*
+We highly recommend using gas/binutils 2.8 or newer on all hppa
+platforms; you may encounter a variety of problems when using the HP
+assembler.
+Specifically, -g does not work on HP-UX (since that system
+uses a peculiar debugging format which GCC does not know about), unless you
+use GAS and GDB and configure GCC with the
+--with-gnu-as and
+--with-as=... options.
+If you wish to use pa-risc 2.0 architecture support, you must use either
+the HP assembler, gas/binutils 2.11 or a recent
+snapshot of gas.
+There are two default scheduling models for instructions. These are
+PROCESSOR_7100LC and PROCESSOR_8000. They are selected from the pa-risc
+architecture specified for the target machine when configuring. 
+PROCESSOR_8000 is the default. PROCESSOR_7100LC is selected when
+the target is a hppa1* machine.
+The PROCESSOR_8000 model is not well suited to older processors. Thus,
+it is important to completely specify the machine architecture when
+configuring if you want a model other than PROCESSOR_8000. The macro
+TARGET_SCHED_DEFAULT can be defined in BOOT_CFLAGS if a different
+default scheduling model is desired.
+More specific information to hppa*-hp-hpux* targets follows.
+hppa*-hp-hpux9
+The HP assembler has major problems on this platform. We've tried to work
+around the worst of the problems. However, those workarounds may be causing
+linker crashes in some circumstances; the workarounds also probably prevent
+shared libraries from working. Use the GNU assembler to avoid these problems.
+The configuration scripts for GCC will also trigger a bug in the hpux9
+shell. To avoid this problem set CONFIG_SHELL to /bin/ksh
+and SHELL to /bin/ksh in your environment.
+hppa*-hp-hpux10
+For hpux10.20, we highly recommend you pick up the latest sed patch
+PHCO_19798 from HP. HP has two sites which provide patches free of
+charge:
+- US, Canada, Asia-Pacific, and
+Latin-America
+- Europe
+The HP assembler on these systems is much better than the hpux9 assembler,
+but still has some problems. Most notably the assembler inserts timestamps
+into each object file it creates, causing the 3-stage comparison test to fail
+during a make bootstrap. You should be able to continue by
+saying make all after getting the failure from make
+bootstrap.
+hppa*-hp-hpux11
+GCC 3.0 and up support HP-UX 11. You must use GNU binutils 2.11 or above on
+this platform. Thread support is not currently implemented for this
+platform, so --enable-threads does not work. 
+See http://gcc.gnu.org/ml/gcc-prs/2002-01/msg00551.html
+and http://gcc.gnu.org/ml/gcc-bugs/2002-01/msg00663.html. 
+GCC 2.95.x is not supported under HP-UX 11 and cannot be used to
+compile GCC 3.0 and up. Refer to binaries for
+information about obtaining precompiled GCC binaries for HP-UX.
+i370-*-*
+This port is very preliminary and has many known bugs. We hope to
+have a higher-quality port for this machine soon.
+*-*-linux-gnu
+If you use glibc 2.2 (or 2.1.9x), GCC 2.95.2 won't install
+out-of-the-box. You'll get compile errors while building libstdc++. 
+The patch glibc-2.2.patch, that is to be
+applied in the GCC source tree, fixes the compatibility problems.
+Currently Glibc 2.2.3 (and older releases) and GCC 3.0 are out of sync
+since the latest exception handling changes for GCC. Compiling glibc
+with GCC 3.0 will give a binary incompatible glibc and therefore cause
+lots of problems and might make your system completly unusable. This
+will definitly need fixes in glibc but might also need fixes in GCC. We
+strongly advise to wait for glibc 2.2.4 and to read the release notes of
+glibc 2.2.4 whether patches for GCC 3.0 are needed. You can use glibc
+2.2.3 with GCC 3.0, just do not try to recompile it.
+i?86-*-linux*aout
+Use this configuration to generate a.out binaries on Linux-based
+GNU systems. This configuration is being superseded. You must use
+gas/binutils version 2.5.2 or later.
+i?86-*-linux*
+You will need binutils 2.9.1.0.15 or newer for exception handling to work.
+If you receive Signal 11 errors when building on GNU/Linux, then it is
+possible you have a hardware problem. Further information on this can be
+found on www.bitwizard.nl.
+i?86-*-sco
+Compilation with RCC is recommended. Also, it may be a good idea to
+link with GNU malloc instead of the malloc that comes with the system.
+i?86-*-sco3.2v4
+Use this configuration for SCO release 3.2 version 4.
+i?86-*-sco3.2v5*
+Use this for the SCO OpenServer Release 5 family of operating systems.
+Unlike earlier versions of GCC, the ability to generate COFF with this
+target is no longer provided.
+Earlier versions of GCC emitted DWARF 1 when generating ELF to allow
+the system debugger to be used. That support was too burdensome to
+maintain. GCC now emits only DWARF 2 for this target. This means you
+may use either the UDK debugger or GDB to debug programs built by this
+version of GCC.
+Use of the -march=pentiumpro flag can result in
+unrecognized opcodes when using the native assembler on OS versions before
+5.0.6. (Support for P6 opcodes was added to the native ELF assembler in
+that version.) While it's rather rare to see these emitted by GCC yet,
+errors of the basic form:
+ /usr/tmp/ccaNlqBc.s:22:unknown instruction: fcomip
+ /usr/tmp/ccaNlqBc.s:50:unknown instruction: fucomip
+are symptoms of this problem. You may work around this by not
+building affected files with that flag, by using the GNU assembler, or
+by using the assembler provided with the current version of the OS. 
+Users of GNU assembler should see the note below for hazards on doing
+so.
+The native SCO assembler that is provided with the OS at no
+charge is normally required. If, however, you must be able to use
+the GNU assembler (perhaps you're compiling code with asms that
+require GAS syntax) you may configure this package using the flags
+--with-gnu-as. You must
+use a recent version of GNU binutils; versions past 2.9.1 seem to work
+well.
+In general, the --with-gnu-as option isn't as well tested
+as the native assembler.
+Look in gcc/config/i386/sco5.h (search for "messy") for
+additional OpenServer-specific flags.
+Systems based on OpenServer before 5.0.4 (uname -X
+will tell you what you're running) require TLS597 from
+ftp://ftp.sco.com/TLS/
+for C++ constructors and destructors to work right.
+The system linker in (at least) 5.0.4 and 5.0.5 will sometimes
+do the wrong thing for a construct that GCC will emit for PIC
+code. This can be seen as execution testsuite failures when using
+-fPIC on 921215-1.c, 931002-1.c, nestfunc-1.c, and gcov-1.c. 
+For 5.0.5, an updated linker that will cure this problem is
+available. You must install both
+ftp://ftp.sco.com/Supplements/rs505a/
+and OSS499A.
+The dynamic linker in OpenServer 5.0.5 (earlier versions may show
+the same problem) aborts on certain G77-compiled programs. It's particularly
+likely to be triggered by building Fortran code with the -fPIC flag. 
+Although it's conceivable that the error could be triggered by other
+code, only G77-compiled code has been observed to cause this abort. 
+If you are getting core dumps immediately upon execution of your
+G77 program--and especially if it's compiled with -fPIC--try applying
+sco_osr5_g77.patch to your libf2c and
+rebuilding GCC. 
+Affected faults, when analyzed in a debugger, will show a stack
+backtrace with a fault occurring in rtld() and the program
+running as /usr/lib/ld.so.1. This problem has been reported to SCO
+engineering and will hopefully be addressed in later releases.
+i?86-*-udk
+This target emulates the SCO Universal Development Kit and requires that
+package be installed. (If it is installed, you will have a
+/udk/usr/ccs/bin/cc file present.) It's very much like the
+i?86-*-unixware7* target
+but is meant to be used when hosting on a system where UDK isn't the
+default compiler such as OpenServer 5 or Unixware 2. This target will
+generate binaries that will run on OpenServer, Unixware 2, or Unixware 7,
+with the same warnings and caveats as the SCO UDK.
+This target is a little tricky to build because we have to distinguish
+it from the native tools (so it gets headers, startups, and libraries
+from the right place) while making the tools not think we're actually
+building a cross compiler. The easiest way to do this is with a configure
+command like this:
+CC=/udk/usr/ccs/bin/cc /your/path/to/gcc/configure
+--host=i686-pc-udk --target=i686-pc-udk --program-prefix=udk-
+You should substitute i686 in the above command with the appropriate
+processor for your host.
+After the usual make bootstrap and
+make install, you can then access the UDK-targeted GCC
+tools by adding udk- before the commonly known name. For
+example, to invoke the C compiler, you would use udk-gcc. 
+They will coexist peacefully with any native-target GCC tools you may
+have installed.
+ia64-*-linux
+IA-64 processor (also known as IPF, or Itanium Processor Family)
+running GNU/Linux.
+The toolchain is not completely finished, so requirements will continue
+to change. 
+GCC 3.0.1 and later require glibc 2.2.4. 
+GCC 3.0.2 requires binutils from 2001-09-05 or later. 
+GCC 3.0.1 requires binutils 2.11.1 or later.
+None of the following versions of GCC has an ABI that is compatible
+with any of the other versions in this list, with the exception that
+Red Hat 2.96 and Trillian 000171 are compatible with each other:
+3.0.2, 3.0.1, 3.0, Red Hat 2.96, and Trillian 000717. 
+This primarily affects C++ programs and programs that create shared libraries. 
+Because of these ABI incompatibilities, GCC 3.0.2 is not recommended for
+user programs on GNU/Linux systems built using earlier compiler releases. 
+GCC 3.0.2 is recommended for compiling linux, the kernel. 
+GCC 3.0.2 is believed to be fully ABI compliant, and hence no more major
+ABI changes are expected.
+*-lynx-lynxos
+LynxOS 2.2 and earlier comes with GCC 1.x already installed as
+/bin/gcc. You should compile with this instead of /bin/cc. 
+You can tell GCC to use the GNU assembler and linker, by specifying
+--with-gnu-as --with-gnu-ld when configuring. These will produce
+COFF format object files and executables; otherwise GCC will use the
+installed tools, which produce a.out format executables.
+<!- rs6000-ibm-aix*, powerpc-ibm-aix* ->
+*-ibm-aix*
+AIX Make frequently has problems with GCC makefiles. GNU Make 3.76 or
+newer is recommended to build on this platform.
+Errors involving alloca when building GCC generally are due
+to an incorrect definition of CC in the Makefile or mixing files
+compiled with the native C compiler and GCC. During the stage1 phase of
+the build, the native AIX compiler must be invoked as cc
+(not xlc). Once configure has been informed of
+xlc, one needs to use make distclean to remove the
+configure cache files and ensure that CC environment variable
+does not provide a definition that will confuse configure. 
+If this error occurs during stage2 or later, then the problem most likely
+is the version of Make (see above).
+The GNU Assembler incorrectly reports that it supports WEAK symbols on
+AIX which causes GCC to try to utilize weak symbol functionality which
+is not really supported on the platform. The native as and
+ld still are recommended. The native AIX tools do
+interoperate with GCC.
+Building libstdc++.a requires a fix for an AIX Assembler bug
+APAR IY26685 (AIX 4.3) or APAR IY25528 (AIX 5.1).
+Linking executables and shared libraries may produce warnings of
+duplicate symbols. The assembly files generated by GCC for AIX always
+have included multiple symbol definitions for certain global variable
+and function declarations in the original program. The warnings should
+not prevent the linker from producing a correct library or runnable
+executable.
+AIX 4.3 utilizes a "large format" archive to support both 32-bit and
+64-bit object modules. The routines provided in AIX 4.3.0 and AIX 4.3.1
+to parse archive libraries did not handle the new format correctly. 
+These routines are used by GCC and result in error messages during
+linking such as "not a COFF file". The version of the routines shipped
+with AIX 4.3.1 should work for a 32-bit environment. The -g
+option of the archive command may be used to create archives of 32-bit
+objects using the original "small format". A correct version of the
+routines is shipped with AIX 4.3.2 and above.
+Some versions of the AIX binder (linker) can fail with a relocation
+overflow severe error when the -bbigtoc option is used to link
+GCC-produced object files into an executable that overflows the TOC. A fix
+for APAR IX75823 (OVERFLOW DURING LINK WHEN USING GCC AND -BBIGTOC) is
+available from IBM Customer Support and from its
+techsupport.services.ibm.com
+website as PTF U455193.
+The AIX 4.3.2.1 linker (bos.rte.bind_cmds Level 4.3.2.1) will dump core
+with a segmentation fault when invoked by any version of GCC. A fix for
+APAR IX87327 is available from IBM Customer Support and from its
+techsupport.services.ibm.com
+website as PTF U461879. This fix is incorporated in AIX 4.3.3 and above.
+The initial assembler shipped with AIX 4.3.0 generates incorrect object
+files. A fix for APAR IX74254 (64BIT DISASSEMBLED OUTPUT FROM COMPILER FAILS
+TO ASSEMBLE/BIND) is available from IBM Customer Support and from its
+techsupport.services.ibm.com
+website as PTF U453956. This fix is incorporated in AIX 4.3.1 and above.
+AIX provides National Language Support (NLS). Compilers and assemblers
+use NLS to support locale-specific representations of various data
+formats including floating-point numbers (e.g., . vs , for
+separating decimal fractions). There have been problems reported where
+GCC does not produce the same floating-point formats that the assembler
+expects. If one encounters this problem, set the LANG
+environment variable to C or En_US.
+By default, GCC for AIX 4.1 and above produces code that can be used on
+both Power or PowerPC processors.
+A default can be specified with the -mcpu=cpu_type
+switch and using the configure option --with-cpu-cpu_type.
+ip2k-*-elf
+Ubicom IP2022 micro controller. 
+This configuration is intended for embedded systems. 
+There are no standard Unix configurations.
+Use configure --target=ip2k-elf --enable-languages=c to configure GCC.
+m32r-*-elf
+Mitsubishi M32R processor. 
+This configuration is intended for embedded systems.
+m68000-hp-bsd
+HP 9000 series 200 running BSD. Note that the C compiler that comes
+with this system cannot compile GCC; contact law@cygnus.com
+to get binaries of GCC for bootstrapping.
+m6811-elf
+Motorola 68HC11 family micro controllers. These are used in embedded
+applications. There are no standard Unix configurations.
+m6812-elf
+Motorola 68HC12 family micro controllers. These are used in embedded
+applications. There are no standard Unix configurations.
+m68k-att-sysv
+AT&T 3b1, a.k.a. 7300 PC. This version of GCC cannot
+be compiled with the system C compiler, which is too buggy. 
+You will need to get a previous version of GCC and use it to
+bootstrap. Binaries are available from the OSU-CIS archive, at
+ftp://archive.cis.ohio-state.edu/pub/att7300/.
+m68k-crds-unos
+Use configure unos for building on Unos.
+The Unos assembler is named casm instead of as. For some
+strange reason linking /bin/as to /bin/casm changes the
+behavior, and does not work. So, when installing GCC, you should
+install the following script as as in the subdirectory where
+the passes of GCC are installed:
+#!/bin/sh
+casm $*
+The default Unos library is named libunos.a instead of
+libc.a. To allow GCC to function, either change all
+references to -lc in gcc.c to -lunos or link
+/lib/libc.a to /lib/libunos.a.
+When compiling GCC with the standard compiler, to overcome bugs in
+the support of alloca, do not use -O when making stage 2. 
+Then use the stage 2 compiler with -O to make the stage 3
+compiler. This compiler will have the same characteristics as the usual
+stage 2 compiler on other systems. Use it to make a stage 4 compiler
+and compare that with stage 3 to verify proper compilation.
+(Perhaps simply defining ALLOCA in x-crds as described in
+the comments there will make the above paragraph superfluous. Please
+inform us of whether this works.)
+Unos uses memory segmentation instead of demand paging, so you will need
+a lot of memory. 5 Mb is barely enough if no other tasks are running. 
+If linking cc1 fails, try putting the object files into a library
+and linking from that library.
+m68k-hp-hpux
+HP 9000 series 300 or 400 running HP-UX. HP-UX version 8.0 has a bug in
+the assembler that prevents compilation of GCC. This
+bug manifests itself during the first stage of compilation, while
+building libgcc2.a:
+_floatdisf
+cc1: warning: `-g' option not supported on this version of GCC
+cc1: warning: `-g1' option not supported on this version of GCC
+./xgcc: Internal compiler error: program as got fatal signal 11
+A patched version of the assembler is available as the file
+ftp://altdorf.ai.mit.edu/archive/cph/hpux-8.0-assembler. If you
+have HP software support, the patch can also be obtained directly from
+HP, as described in the following note:
+This is the patched assembler, to patch SR#1653-010439, where the
+assembler aborts on floating point constants.
+The bug is not really in the assembler, but in the shared library
+version of the function "cvtnum(3c)". The bug on "cvtnum(3c)" is
+SR#4701-078451. Anyway, the attached assembler uses the archive
+library version of "cvtnum(3c)" and thus does not exhibit the bug. 
+This patch is also known as PHCO_4484.
+In addition, if you wish to use gas, you must use
+gas version 2.1 or later, and you must use the GNU linker version 2.1 or
+later. Earlier versions of gas relied upon a program which converted the
+gas output into the native HP-UX format, but that program has not been
+kept up to date. gdb does not understand that native HP-UX format, so
+you must use gas if you wish to use gdb.
+On HP-UX version 8.05, but not on 8.07 or more recent versions, the
+fixproto shell script triggers a bug in the system shell. If you
+encounter this problem, upgrade your operating system or use BASH (the
+GNU shell) to run fixproto. This bug will cause the fixproto
+program to report an error of the form:
+./fixproto: sh internal 1K buffer overflow
+To fix this, you can also change the first line of the fixproto script
+to look like:
+#!/bin/ksh
+m68k-ncr-*
+On the Tower models 4n0 and 6n0, by default a process is not
+allowed to have more than one megabyte of memory. GCC cannot compile
+itself (or many other programs) with -O in that much memory.
+To solve this problem, reconfigure the kernel adding the following line
+to the configuration file:
+MAXUMEM = 4096
+m68k-sun
+Sun 3. We do not provide a configuration file to use the Sun FPA by
+default, because programs that establish signal handlers for floating
+point traps inherently cannot work with the FPA.
+m68k-sun-sunos4.1.1
+It is reported that you may need the GNU assembler on this platform.
+mips-*-*
+If on a MIPS system you get an error message saying "does not have gp
+sections for all it's [sic] sectons [sic]", don't worry about it. This
+happens whenever you use GAS with the MIPS linker, but there is not
+really anything wrong, and it is okay to use the output file. You can
+stop such warnings by installing the GNU linker.
+It would be nice to extend GAS to produce the gp tables, but they are
+optional, and there should not be a warning about their absence.
+mips-sgi-irix5
+This configuration has considerable problems, which will be fixed in a
+future release.
+In order to compile GCC on an SGI running IRIX 5, the "compiler_dev.hdr"
+subsystem must be installed from the IDO CD-ROM supplied by Silicon
+Graphics. It is also available for download from
+http://www.sgi.com/developers/devtools/apis/ido.html.
+make compare may fail on version 5 of IRIX unless you add
+-save-temps to CFLAGS. On these systems, the name of the
+assembler input file is stored in the object file, and that makes
+comparison fail if it differs between the stage1 and
+stage2 compilations. The option -save-temps forces a
+fixed name to be used for the assembler input file, instead of a
+randomly chosen name in /tmp. Do not add -save-temps
+unless the comparisons fail without that option. If you do you
+-save-temps, you will have to manually delete the .i and
+.s files after each series of compilations.
+If you use the MIPS C compiler to bootstrap, it may be necessary
+to increase its table size for switch statements with the
+-Wf,-XNg1500 option. If you use the -O2
+optimization option, you also need to use -Olimit 3000.
+To enable debugging under IRIX 5, you must use GNU as 2.11.2
+or later,
+and use the --with-gnu-as configure option when configuring GCC. 
+GNU as is distributed as part of the binutils package. 
+When using release 2.11.2, you need to apply a patch
+http://sources.redhat.com/ml/binutils/2001-07/msg00352.html
+which will be included in the next release of binutils.
+When building GCC, the build process loops rebuilding cc1 over
+and over again. This happens on mips-sgi-irix5.2, and possibly
+other platforms. It has been reported that this is a known bug in the
+make shipped with IRIX 5.2. We recommend you use GNU
+make instead of the vendor supplied make program;
+however, you may have success with smake on IRIX 5.2 if you do
+not have GNU make available.
+mips-sgi-irix6
+If you are using IRIX cc as your bootstrap compiler, you must
+ensure that the N32 ABI is in use. To test this, compile a simple C
+file with cc and then run file on the
+resulting object file. The output should look like:
+test.o: ELF N32 MSB ...
+If you see:
+test.o: ELF 32-bit MSB ...
+or
+test.o: ELF 64-bit MSB ...
+then your version of cc uses the O32 or N64 ABI by default. You
+should set the environment variable CC to cc -n32
+before configuring GCC.
+If you want the resulting gcc to run on old 32-bit systems
+with the MIPS R4400 CPU, you need to ensure that only code for the mips3
+instruction set architecture (ISA) is generated. While GCC 3.x does
+this correctly, both GCC 2.95 and SGI's MIPSpro cc may change
+the ISA depending on the machine where GCC is built. Using one of them
+as the bootstrap compiler may result in mips4 code, which won't run at
+all on mips3-only systems. For the test program above, you should see:
+test.o: ELF N32 MSB mips-3 ...
+If you get:
+test.o: ELF N32 MSB mips-4 ...
+instead, you should set the environment variable CC to cc
+-n32 -mips3 or gcc -mips3 respectively before configuring GCC.
+GCC on IRIX 6 is usually built to support both the N32 and N64 ABIs. If
+you build GCC on a system that doesn't have the N64 libraries installed,
+you need to configure with --disable-multilib so GCC doesn't
+try to use them. Look for /usr/lib64/libc.so.1 to see if you
+have the 64-bit libraries installed.
+You must not use GNU as (which isn't built anyway as of
+binutils 2.11.2) on IRIX 6 platforms; doing so will only cause problems.
+GCC does not currently support generating O32 ABI binaries in the
+mips-sgi-irix6 configurations. It is possible to create a GCC
+with O32 ABI only support by configuring it for the mips-sgi-irix5
+target and using a patched GNU as 2.11.2 as documented in the
+mips-sgi-irix5 section above. Using the
+native assembler requires patches to GCC which will be included in a
+future release. It is
+expected that O32 ABI support will be available again in a future release.
+The --enable-threads option doesn't currently work, a patch is
+in preparation for a future release. The --enable-libgcj
+option is disabled by default: IRIX 6 uses a very low default limit
+(20480) for the command line length. Although libtool contains a
+workaround for this problem, at least the N64 libgcj is known not
+to build despite this, running into an internal error of the native
+ld. A sure fix is to increase this limit (ncargs) to
+its maximum of 262144 bytes. If you have root access, you can use the
+systune command to do this.
+GCC does not correctly pass/return structures which are
+smaller than 16 bytes and which are not 8 bytes. The problem is very
+involved and difficult to fix. It affects a number of other targets also,
+but IRIX 6 is affected the most, because it is a 64-bit target, and 4 byte
+structures are common. The exact problem is that structures are being padded
+at the wrong end, e.g. a 4 byte structure is loaded into the lower 4 bytes
+of the register when it should be loaded into the upper 4 bytes of the
+register.
+GCC is consistent with itself, but not consistent with the SGI C compiler
+(and the SGI supplied runtime libraries), so the only failures that can
+happen are when there are library functions that take/return such
+structures. There are very few such library functions. Currently this
+is known to affect inet_ntoa, inet_lnaof,
+inet_netof, inet_makeaddr, and semctl. Until the
+bug is fixed, GCC contains workarounds for the known affected functions.
+See http://freeware.sgi.com/ for more
+information about using GCC on IRIX platforms.
+powerpc-*-*
+You can specify a default version for the -mcpu=cpu_type
+switch by using the configure option --with-cpu-cpu_type.
+powerpc-*-darwin*
+PowerPC running Darwin (Mac OS X kernel).
+GCC 3.0 does not support Darwin, but 3.1 and later releases will work.
+Pre-installed versions of Mac OS X may not include any developer tools,
+meaning that you will not be able to build GCC from source. Tool
+binaries are available at
+http://www.opensource.apple.com/projects/darwin (free
+registration required).
+Versions of the assembler prior to "cctools-364" cannot handle the
+4-argument form of rlwinm and related mask-using instructions. Darwin
+1.3 (Mac OS X 10.0) uses cctools-353 for instance. To get cctools-364,
+check out cctools with tag Apple-364, build it, and
+install the assembler as usr/bin/as. See
+http://www.opensource.apple.com/tools/cvs/docs.html for details.
+Also, the default stack limit of 512K is too small, and a bootstrap will
+typically fail when self-compiling expr.c. Set the stack to 800K
+or more, for instance by doing limit stack 800. It's also
+convenient to use the GNU preprocessor instead of Apple's during the
+first stage of bootstrapping; this is automatic when doing make
+bootstrap, but to do it from the toplevel objdir you will need to say
+make CC='cc -no-cpp-precomp' bootstrap.
+Note that the version of GCC shipped by Apple typically includes a
+number of extensions not available in a standard GCC release. These
+extensions are generally specific to Mac programming.
+powerpc-*-elf, powerpc-*-sysv4
+PowerPC system in big endian mode, running System V.4.
+powerpc-*-linux-gnu*
+You will need
+binutils 2.12.90.0.7
+or newer for a working GCC.
+powerpc-*-netbsd*
+PowerPC system in big endian mode running NetBSD. To build the
+documentation you will need Texinfo version 4.1 (NetBSD 1.5.1 included
+Texinfo version 3.12).
+powerpc-*-eabiaix
+Embedded PowerPC system in big endian mode with -mcall-aix selected as
+the default.
+powerpc-*-eabisim
+Embedded PowerPC system in big endian mode for use in running under the
+PSIM simulator.
+powerpc-*-eabi
+Embedded PowerPC system in big endian mode.
+powerpcle-*-elf, powerpcle-*-sysv4
+PowerPC system in little endian mode, running System V.4.
+powerpcle-*-eabisim
+Embedded PowerPC system in little endian mode for use in running under
+the PSIM simulator.
+powerpcle-*-eabi
+Embedded PowerPC system in little endian mode.
+powerpcle-*-winnt, powerpcle-*-pe
+PowerPC system in little endian mode running Windows NT.
+s390-*-linux*
+S/390 system running Linux for S/390.
+s390x-*-linux*
+zSeries system (64-bit) running Linux for zSeries.
+*-*-solaris2*
+Sun does not ship a C compiler with Solaris 2. To bootstrap and install
+GCC you first have to install a pre-built compiler, see our
+binaries page for details.
+The Solaris 2 /bin/sh will often fail to configure
+libstdc++-v3, boehm-gc or
+libjava. If you encounter this problem, set CONFIG_SHELL to
+/bin/ksh in your environment before running configure.
+Solaris 2 comes with a number of optional OS packages. Some of these
+packages are needed to use GCC fully, namely SUNWarc,
+SUNWbtool, SUNWesu, SUNWhea, SUNWlibm,
+SUNWsprot, and SUNWtoo. If you did not install all
+optional packages when installing Solaris 2, you will need to verify that
+the packages that GCC needs are installed.
+To check whether an optional package is installed, use
+the pkginfo command. To add an optional package, use the
+pkgadd command. For further details, see the Solaris 2
+documentation.
+Trying to use the linker and other tools in
+/usr/ucb to install GCC has been observed to cause trouble. 
+For example, the linker may hang indefinitely. The fix is to remove
+/usr/ucb from your PATH.
+All releases of GNU binutils prior to 2.11.2 have known bugs on this
+platform. We recommend the use of GNU binutils 2.11.2 or the vendor
+tools (Sun as, Sun ld).
+Sun bug 4296832 turns up when compiling X11 headers with GCC 2.95 or
+newer: g++ will complain that types are missing. These headers assume
+that omitting the type means int; this assumption worked for C89 but
+is wrong for C++, and is now wrong for C99 also.
+g++ accepts such (invalid) constructs with the option
+-fpermissive; it
+will assume that any missing type is int (as defined by C89).
+There are patches for Solaris 2.6 (105633-56 or newer for SPARC,
+106248-42 or newer for Intel), Solaris 7 (108376-21 or newer for SPARC,
+108377-20 for Intel), and Solaris 8 (108652-24 or newer for SPARC,
+108653-22 for Intel) that fix this bug.
+sparc-sun-solaris2*
+When GCC is configured to use binutils 2.11.2 or later the binaries
+produced are smaller than the ones produced using Sun's native tools;
+this difference is quite significant for binaries containing debugging
+information.
+Sun as 4.x is broken in that it cannot cope with long symbol names. 
+A typical error message might look similar to the following:
+/usr/ccs/bin/as: "/var/tmp/ccMsw135.s", line 11041:
+error: can't compute value of an expression involving an external symbol.
+This is Sun bug 4237974. This is fixed with patch 108908-02 for Solaris
+2.6 and has been fixed in later (5.x) versions of the assembler,
+starting with Solaris 7.
+Starting with Solaris 7, the operating system is capable of executing
+64-bit SPARC V9 binaries. GCC 3.1 and later properly supports
+this; the -m64 option enables 64-bit code generation. 
+However, if all you want is code tuned for the UltraSPARC CPU, you
+should try the -mtune=ultrasparc option instead, which produces
+code that, unlike full 64-bit code, can still run on non-UltraSPARC
+machines.
+When configuring on a Solaris 7 or later system that is running a kernel
+that supports only 32-bit binaries, one must configure with
+--disable-multilib, since we will not be able to build the
+64-bit target libraries.
+sparc-sun-solaris2.7
+Sun patch 107058-01 (1999-01-13) for Solaris 7/SPARC triggers a bug in
+the dynamic linker. This problem (Sun bug 4210064) affects GCC 2.8
+and later, including all EGCS releases. Sun formerly recommended
+107058-01 for all Solaris 7 users, but around 1999-09-01 it started to
+recommend it only for people who use Sun's compilers.
+Here are some workarounds to this problem:
+- Do not install Sun patch 107058-01 until after Sun releases a
+complete patch for bug 4210064. This is the simplest course to take,
+unless you must also use Sun's C compiler. Unfortunately 107058-01
+is preinstalled on some new Solaris 7-based hosts, so you may have to
+back it out.
+- Copy the original, unpatched Solaris 7
+/usr/ccs/bin/as into
+/usr/local/lib/gcc-lib/sparc-sun-solaris2.7/3.1/as,
+adjusting the latter name to fit your local conventions and software
+version numbers.
+- Install Sun patch 106950-03 (1999-05-25) or later. Nobody with
+both 107058-01 and 106950-03 installed has reported the bug with GCC
+and Sun's dynamic linker. This last course of action is riskiest,
+for two reasons. First, you must install 106950 on all hosts that
+run code generated by GCC; it doesn't suffice to install it only on
+the hosts that run GCC itself. Second, Sun says that 106950-03 is
+only a partial fix for bug 4210064, but Sun doesn't know whether the
+partial fix is adequate for GCC. Revision -08 or later should fix
+the bug. The current (as of 2001-09-24) revision is -14, and is included in
+the Solaris 7 Recommended Patch Cluster. 
+sparc-sun-sunos4*
+A bug in the SunOS 4 linker will cause it to crash when linking
+-fPIC compiled objects (and will therefore not allow you to build
+shared libraries).
+To fix this problem you can either use the most recent version of
+binutils or get the latest SunOS 4 linker patch (patch ID 100170-10)
+from Sun's patch site.
+Sometimes on a Sun 4 you may observe a crash in the program
+genflags or genoutput while building GCC. This is said to
+be due to a bug in sh. You can probably get around it by running
+genflags or genoutput manually and then retrying the
+make.
+sparc-unknown-linux-gnulibc1
+It has been reported that you might need
+binutils 2.8.1.0.23
+for this platform, too.
+sparc-*-linux*
+GCC versions 3.0 and higher require binutils 2.11.2 and glibc 2.2.4
+or newer on this platform. All earlier binutils and glibc
+releases mishandled unaligned relocations on sparc-*-* targets.
+sparc64-*-*
+GCC version 2.95 is not able to compile code correctly for
+sparc64 targets. Users of the Linux kernel, at least,
+can use the sparc32 program to start up a new shell
+invocation with an environment that causes configure to
+recognize (via uname -a) the system as sparc-*-* instead.
+sparcv9-*-solaris2*
+The following compiler flags must be specified in the configure
+step in order to bootstrap this target with the Sun compiler:
+ % CC="cc -xildoff -xarch=v9" srcdir/configure [options] [target]
+-xildoff turns off the incremental linker, and -xarch=v9
+specifies the v9 architecture to the Sun linker and assembler.
+*-*-sysv*
+On System V release 3, you may get this error message
+while linking:
+ld fatal: failed to write symbol name something
+ in strings table for file whatever
+This probably indicates that the disk is full or your ulimit won't allow
+the file to be as large as it needs to be.
+This problem can also result because the kernel parameter MAXUMEM
+is too small. If so, you must regenerate the kernel and make the value
+much larger. The default value is reported to be 1024; a value of 32768
+is said to work. Smaller values may also work.
+On System V, if you get an error like this,
+/usr/local/lib/bison.simple: In function `yyparse':
+/usr/local/lib/bison.simple:625: virtual memory exhausted
+that too indicates a problem with disk space, ulimit, or MAXUMEM.
+On a System V release 4 system, make sure /usr/bin precedes
+/usr/ucb in PATH. The cc command in
+/usr/ucb uses libraries which have bugs.
+vax-dec-ultrix
+Don't try compiling with VAX C (vcc). It produces incorrect code
+in some cases (for example, when alloca is used).
+xtensa-*-elf
+This target is intended for embedded Xtensa systems using the
+newlib C library. It uses ELF but does not support shared
+objects. Designed-defined instructions specified via the
+Tensilica Instruction Extension (TIE) language are only supported
+through inline assembly.
+The Xtensa configuration information must be specified prior to
+building GCC. The gcc/config/xtensa/xtensa-config.h header
+file contains the configuration information. If you created your
+own Xtensa configuration with the Xtensa Processor Generator, the
+downloaded files include a customized copy of this header file,
+which you can use to replace the default header file.
+xtensa-*-linux*
+This target is for Xtensa systems running GNU/Linux. It supports ELF
+shared objects and the GNU C library (glibc). It also generates
+position-independent code (PIC) regardless of whether the
+-fpic or -fPIC options are used. In other
+respects, this target is the same as the
+xtensa-*-elf target.
+Microsoft Windows (32-bit)
+A port of GCC 2.95.x is included with the
+Cygwin environment.
+Current (as of early 2001) snapshots of GCC will build under Cygwin
+without modification.
+OS/2
+GCC does not currently support OS/2. However, Andrew Zabolotny has been
+working on a generic OS/2 port with pgcc. The current code can be found
+at http://www.goof.com/pcg/os2/.
+An older copy of GCC 2.8.1 is included with the EMX tools available at
+ftp://ftp.leo.org/pub/comp/os/os2/leo/devtools/emx+gcc/.
+Older systems
+GCC contains support files for many older (1980s and early
+1990s) Unix variants. For the most part, support for these systems
+has not been deliberately removed, but it has not been maintained for
+several years and may suffer from bitrot.
+Starting with GCC 3.1, each release has a list of "obsoleted" systems. 
+Support for these systems is still present in that release, but
+configure will fail unless the --enable-obsolete
+option is given. Unless a maintainer steps forward, support for these
+systems will be removed from the next release of GCC.
+Support for old systems as hosts for GCC can cause problems if the
+workarounds for compiler, library and operating system bugs affect the
+cleanliness or maintainability of the rest of GCC. In some cases, to
+bring GCC up on such a system, if still possible with current GCC, may
+require first installing an old version of GCC which did work on that
+system, and using it to compile a more recent GCC, to avoid bugs in the
+vendor compiler. Old releases of GCC 1 and GCC 2 are available in the
+old-releases directory on the GCC mirror sites. Header bugs may generally be avoided using
+fixincludes, but bugs or deficiencies in libraries and the
+operating system may still cause problems.
+Support for older systems as targets for cross-compilation is less
+problematic than support for them as hosts for GCC; if an enthusiast
+wishes to make such a target work again (including resurrecting any of
+the targets that never worked with GCC 2, starting from the last CVS
+version before they were removed), patches
+following the usual requirements would be
+likely to be accepted, since they should not affect the support for more
+modern targets.
+For some systems, old versions of GNU binutils may also be useful,
+and are available from pub/binutils/old-releases on
+sources.redhat.com mirror sites.
+Some of the information on specific systems above relates to
+such older systems, but much of the information
+about GCC on such systems (which may no longer be applicable to
+current GCC) is to be found in the GCC texinfo manual.
+all ELF targets (SVR4, Solaris 2, etc.)
+C++ support is significantly better on ELF targets if you use the
+GNU linker; duplicate copies of
+inlines, vtables and template instantiations will be discarded
+automatically.
+Return to the GCC Installation page
+Please send FSF & GNU inquiries & questions to
+gnu@gnu.org.
+There are also other ways
+to contact the FSF.
+These pages are maintained by
+The GCC team.
+Please send comments on these web pages and GCC to
+gcc@gnu.org or
+gcc@gcc.gnu.org,
+send other questions to gnu@gnu.org.
+Copyright (C) Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111, USA.
+Verbatim copying and distribution of this entire article is
+permitted in any medium, provided this notice is preserved.
+ Last modified 2002-07-01
+ 
+ 
+ 

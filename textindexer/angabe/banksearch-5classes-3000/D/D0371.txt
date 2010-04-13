@@ -1,0 +1,427 @@
+
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 5
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ August 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java Developer
+ 
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 5
+ 
+ Manage users and content with Brazil
+ 
+ 
+ 
+Summary
+Part 5 of Rinaldo Di Giorgio's Brazil technology series demonstrates how to use Brazil to process content from diverse Websites, tailor the content to reflect a user's desires, and provide the content as a Web service. He also shows how to use Brazil to integrate new technologies with legacy Web applications that aren't XML-enabled. In the article's sample application, he creates a new Webpage with data from both financial and news Websites. The Webpage allows users to create personal portfolios, and Brazil's session-tracking features remembers those portfolios. (2,100 words)
+ 
+ By Rinaldo Di Giorgio
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ Page 1 of 2
+ 
+Advertisement 
+ 
+ 
+ 
+n Parts 1 through 4 of this series, I discussed how to use the Brazil technology to process content from various nontraditional sources, how to add to that content, and how to deliver that content to users implementing different delivery mechanisms and networks, such as applets, Java Reliable Multicast Service (JRMS), wireless clients, and plain HTML. For a review of Brazil, see the Brazil technology review below. In Part 5, I focus on one of Brazil's most powerful features: its ability to create new content from existing content. In the sidebar "Web Services and the JAX Pack," I lay the groundwork for using Brazil with new Web-services-oriented technologies, like the Java APIs for XML, also called the JAX Pack, from Sun. The JAX Pack is an all-in-one download of Java/XML technologies that includes the Simple API for XML (SAX), the Document Object Model (DOM), Extensible Stylesheet Language Transformations (XSLT), and the Simple Object Access Protocol (SOAP).
+Read the whole series on Brazil technology:
+ 
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols 
+- Part 2: How to support XML applications with the Brazil project 
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project 
+- Part 4: Build multicast-aware apps with JRMS 
+- Part 5: Manage users and content with Brazil 
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil 
+To show how Brazil can create new content from existing content, I will demonstrate how it allows users to create their own portfolios, remembers this information, and delivers the data as a Web service. In addition, in this article I'll show you how to parse non-XML-based content. Many Websites don't provide XML representations of their data, and while that isn't always a showstopper, some Websites produce content in such a way that the data is nearly impossible to parse. Using Brazil, you can process this content to create new XML-enabled data. 
+I begin by discussing how to configure the Brazil technology using a config file. I then go over our sample application's two main files: index.html and GetNews.html. The file index.html is used at http://www.digiorgio.com:9001/ by default, while the file GetNews.html is called periodically to parse the news information. (The support Website www.digiorgio.com runs several Brazil servers and hosts the Web application I discuss in this article at port 9001.) These two files and the config file are all you need to implement a system that supports many user accounts featuring dynamic news and stock price data.
+Readers interested in creating their own Websites can download the following software packages from Resources:
+ 
+- The Brazil distribution 
+- The Jython distribution 
+- config 
+- index.html 
+- GetNews.html 
+Once your application is up and running, please "> Configure the Brazil server 
+In this article, we will work with several handlers and templates to develop a Website that provides session tracking, allows users to customize the Website, integrates contents from diverse Websites, and utilizes Brazil Scripting Language (BSL) and Jython to manipulate content easily. Jython is a 100 percent pure Java implementation of Python. As an interpreted language, Python facilitates program writing and testing. Python programs are compact and readable, and the language includes a rich set of libraries. Jython, which is Python supporting a Java interface, is an excellent replacement for Perl and Tcl. Jython allows you to run Python on any Java platform. See Resources for more information. 
+When you start Brazil, you need to specify a config file or a series of config files, like so: 
+java -Dpython.home=. sunlabs.brazil.server.Main -config config
+These config files are nothing more than Java properties files, which use the format name=value to determine the various handlers' configuration. Java applications can easily manipulate properties files. See the Java documentation for java.util.Properties. 
+You must understand these files in order to configure the Brazil server. The config file below comes from the server running at http://www.digiorgio.com:9001.
+You define values for properties that all handlers, filters, and templates access by setting a name to a value. The code below sets the log level, the port that listens for requests, control over printing properties, and whether or not to exit when the server reports an error:
+log=5
+port=9001
+root=doc
+debugProperties=on
+exitOnError=true
+Our example will support the stocks listed below. We must limit them since our free service is for instructional use only. Stability issues for reporting the prices of 10,000 different stocks have been considered but not tested in a running system:
+stocklist=SUNW LU CIEN NT GLW JDSU AVNX A BRCM TERN CNXT LOR GSTRF 
+QCOM PCS MOT LVLT MFNX GBLX NOPT WCOM NOVL XLA PRCM STOR ADI AMCC ATML 
+CUBED LSI NSM TXN XLNX
+Brazil uses a special token called a handler to determine which handler list to start with. In this case, we tell the Brazil server to look for a property with the prefix main: 
+Note: In Python/Jython code, the # character indicates a comment. 
+handler=main
+#--------------------------------------------------------------------
+----
+# Here's where it all starts
+main.class=sunlabs.brazil.server.ChainHandler
+main.handlers=pollnews pollstock session persist savestate filter 
+The prefix.class identifies the Java classfile to run for the specific handler. The selected handler sunlabs.brazil.server.ChainHandler understands additional properties; for instance, it understands main.handlers, which has a list of additional handlers, templates, and filters to run. The chain handlers call each handler in the list for each input request. The first called handler is pollnews, with several additional properties specified with the same prefix. The configuration properties below instruct the Brazil server to periodically call the Python script in the file GetNews.py. The file GetNews.py is a Jython script that reformats data from other Websites and makes this data available to other handlers, templates, and filters:
+#--------------------------------------------------------------------
+----
+# Fetch the news
+pollnews.class=sunlabs.brazil.handler.PollHandler
+# how often to fetch new news every 5 minutes
+pollnews.interval=300
+# do a fetch at startup, before waiting for "interval"
+pollnews.fast=1
+# prefix all results with this string
+pollnews.prepend=
+# set the .py suffix as a recognized mime type
+mime.py=text/python
+# the url from which to get the news
+pollnews.url=http://localhost:9001/GetNews.py
+The next handler in the chain, pollstock, uses the same pollhandler to periodically request stock price information instead of stock news information. The stock data returns in name=value pairs with stock. added to each value so we receive different values like this: stock.SUNW.price=17.5: 
+#--------------------------------------------------------------------
+----
+# Fetch stock quotes from yahoo
+# url:
+# 
+http://quote.yahoo.com:80/d/quotes.csv?s=sunw+msft&f=sl1d1t1&e=.csv
+# result:
+# "SUNW",19.75,"5/4/2001","1:19PM"
+# "MSFT",70.10,"5/4/2001","1:19PM"
+pollstock.class=sunlabs.brazil.handler.RePollHandler
+# how often to fetch new quotes
+pollstock.interval=30
+# do a fetch at startup, before waiting for "interval"
+pollstock.fast=1
+# prefix all results with this string
+pollstock.prepend=stock.
+# You can send a request here to change the url on the fly, 
+# thus dynamically modifying the list of stocks to retrieve
+pollstock.prefix=/pollstock
+# uncomment and fill in to use your favorite proxy, if you need 
+one
+# pollstock.proxy=
+# the token denoting the regular expression that will be applied to 
+content
+pollstock.re=pollextract
+# The url to get the stock quotes (the symbols are hard-wired for 
+now)
+pollstock.url=http://quote.yahoo.com:80/d/quotes.csv?f=sl1d1t1c&e=.cs
+v&s=SUNW+LU+CIEN+NT+GLW+JDSU+AVNX+A+BRCM+TERN+CNXT+LOR+GSTRF+QCOM++PCS+MOT+
+LVLT+MFNX+GBLX+NOPT+WCOM+NOVL+XLA+PRCM+STOR+ADI+AMCC+ATML+CUBED+LSI+NSM+TXN
++XLNX
+#--------------------------------------------------------------------
+----
+# This is the regular expression that turns the csv format file from 
+yahoo
+# into a name/value "properties" list
+pollextract.exp="([^"]*)",([^,]*),"([^"]*)","([^"]*)","([^ ]*) - 
+([^"]*)"
+pollextract.sub=\\1.price=\\2\n\\1.date=\\3\n\\1.time=\\4\n\\1.change
+=\\5\n
+The Brazil server supports session tacking with or without cookies. If a user turns cookies off, the session filter provides an ID that can be appended to the URL to provide URL tracking information. Before cookies became popular, early Web servers tracked users with this same technique:
+#--------------------------------------------------------------------
+----
+# Do session tracking. Use browser cookies where
+# possible, and URL rewriting otherwise. This
+# filter gets called as a handler first (even
+# before the content is generated), to extract the
+# session information, then again as the last
+# filter to (if needed) add the session information
+# back onto the urls.
+session.class=sunlabs.brazil.filter.SessionFilter
+# the name of the cookie is passed to the browser
+session.cookie=JavaWorld-Brazil
+# causes cookies to be set so they persist across browser 
+"instances"
+session.persist=true
+When a user loads the index.html page, the SessionFilter looks for any session information. If this information exists, it loads into the user's session object. As the user interacts with the system, session data is modified and created; this data must be saved. In our example, the data is not stored in a database. In order to maintain sessions, the session information should back up to disk in case the server fails and needs restarting. Commercial implementations would use a properties cache manager that maintains the ACID properties using a database or fault-tolerant memory.
+The ACID properties are: 
+ 
+- Atomic -- transactions happen indivisibly 
+- Consistent -- there are no violation of system invariants 
+- Isolated -- there are no interference between concurrent transactions 
+- Durable -- after transaction commits, changes are permanent (persistent) 
+The code below demonstrates how to save our data:
+#--------------------------------------------------------------------
+----
+# Session state kept by the SetTemplate. We'll
+# define a special URL that dumps out all current
+# state, so it may be restored if we re-start the server.
+persist.class=sunlabs.brazil.session.PropertiesCacheManager
+# save state if this URL is requested -- issue this "by hand" 
+before
+# shutting down the server
+persist.match=/save_state
+# the directory in which the state is stored
+persist.storeDir=session_data
+# save state for 5000 most recent users
+persist.size=5000
+#--------------------------------------------------------------------
+----
+# Set up a background thread that will issue a url
+# to save the current session state every night.
+savestate.class=sunlabs.brazil.handler.PollHandler
+# check the time every 50 seconds
+savestate.interval=50
+# to see if it's 2:02 AM
+savestate.match=.*02-02
+# and, if so, issue the URL that causes session state to be 
+saved
+savestate.url=http://localhost:9001/save_state
+#--------------------------------------------------------------------
+----
+# Retrieve the local content, after processing through templates, 
+and then
+# filter through the previously invoked SessionFilter to do URL 
+rewriting
+# if necessary
+filter.class=sunlabs.brazil.filter.FilterHandler
+filter.handler=process
+filter.filters=session
+#--------------------------------------------------------------------
+----
+#
+# Templates through which the local content is processed
+process.class=sunlabs.brazil.template.TemplateHandler
+# instead of removing template elements during processing, leave 
+them
+# in as comments
+process.debug=true
+# the mime headers, url, query string, etc. are placed in the 
+request
+# properties prefixed with "headers."
+process.headers=headers.
+# individual query items are placed in the request properties 
+prefixed
+# with "query."
+process.query=query.
+process.templates= \
+ sunlabs.brazil.template.SetTemplate \
+ sunlabs.brazil.template.PropsTemplate \
+ sunlabs.brazil.template.BSLTemplate \
+ sunlabs.brazil.python.PythonServerTemplate
+ Next page >
+Page 1 Serve clients' specific protocol requirements with Brazil, Part 5
+Page 2 Acquire the quote and news data
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- "Serve Clients' Specific Protocol Requirements with Brazil," Rinaldo Di Giorgio (JavaWorld):
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols (August 2000)
+- Part 2: How to support XML applications with the Brazil project (October 2000)
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project (January 2001)
+- Part 4: Build multicast-aware apps with JRMS (April 2001)
+- Part 5: Manage users and content with Brazil (August 2001)
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil (July 2002)
+- "Proposed Web Protocol Sparks Tampering Fears," Carolyn Duffy Marsan (Network World, 2001): 
+http://www.nwfusion.com/archive/2001/123819_08-13-2001.html?nw
+- To build your own application, download Brazil, Jython, and the following files (rename config.txt to config and change the others so that they end in .html; start the Brazil server with the config file):
+- The config file: http://www.digiorgio.com:9001/config.txt
+- The index.html file: http://www.digiorgio.com:9001/index.txt
+- The GetNews.html file: http://www.digiorgio.com:9001/GetNews.txt
+- Brazil technology: http://research.sun.com/brazil/
+- Commercial prototype using some of the concepts in this article: http://dev.experimentalstuff.com:8080/
+The following two Sun press releases provide a high-level introduction to the Web services approach to building applications with the Java APIs for XML.
+- "Sun Microsystems Announces Early Access Availability of Key Java Technologies for XML": http://www.sun.com/smi/Press/sunflash/2000-12/sunflash.20001204.3.html
+- "Web Services Pack To Simplify Building Java-Based Web Services": http://www.sun.com/smi/Press/sunflash/2001-06/sunflash.20010604.3.html
+- JAXM specification and download: 
+http://java.sun.com/xml/jaxm/index.html
+- java.util.Properties, a class used extensively by Brazil that holds much of the data used by the BSL scripting language: 
+http://java.sun.com/j2se/1.3/docs/api/java/util/Properties.html
+- Jython download site: 
+http://www.jython.org
+- Introduction to the JAX Pack: 
+http://java.sun.com/xml/jaxpack.html
+- Introduction to the SOAP specification: 
+http://www.w3.org/TR/SOAP/
+- Read more from Java Developer: 
+http://www.javaworld.com/columns/jw-developer-index.shtml
+- For more JavaWorld articles, browse our Topical Index: 
+http://www.javaworld.com/channel_content/jw-topical-index.shtml
+You'll find a wealth of IT-related articles from our sister publications at IDG.net
+- Sign up for the JavaWorld This Week free weekly email newsletter to find out what's new on JavaWorld: 
+http://www.idg.net/jw-subscribe
+ 
+ 
+ Sidebar 1: Brazil technology review 
+HTTP servers are the single most important component of the content delivery system for the Internet. We have seen three generations of HTTP servers: 
+ 
+- Initial CERN servers 
+- Netscape, Microsoft, Apache 
+- Java HTTP servers and Brazil 
+There have been relatively few advances in the one-size-fits-all world of HTTP server products. The architecture from Sun Labs called Brazil is a third-generation HTTP server. Brazil uses well-established software engineering principles to support small modular objects called handlers. Handlers implement specific abilities like file services, security services, and so on. em>Filters, which are similar to handlers, process content in an easy-to-understand, pipe-like model. A user's content can pass to any number of filters and handlers for processing. In this article, I demonstrate this modularity by implementing a personal stock and news portfolio without writing a line of Java code. Instead, I use handlers written in Java for Brazil technology. Developers can use and reuse over 50 handlers to implement a broad spectrum of services. 
+Brazil provides an extensible yet understandable framework for a developer looking to build small, possibly application-specific HTTP servers without incurring the higher learning curves and administration costs of other technologies. (Of course, some problems merit the immediate use of more controlled environments.) The architecture features two fundamental objects: the Request object and the Server object. The Server object dispatches incoming HTTP requests to handlers encapsulating the request in a Request instance. Developers use the Request and Server objects to manipulate properties to change behavior. 
+Hundreds of Websites already do just that, so you might ask, "What is the point?" The answer: Brazil provides some ideas for separating content from presentation, interfacing to legacy applications, and reducing code writing. The example at " width=186 border=0> 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

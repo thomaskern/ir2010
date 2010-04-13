@@ -1,0 +1,143 @@
+ 
+ 
+Yet Another Code Site - Rich Edit 2.0
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ Yet Another Code
+	 Site
+ 
+ 
+ Using
+Rich Edit 2.0 With BCB
+Rich Edit 2.0 is an updated version of the Rich Edit
+ control. It includes additional features such as: 
+ 
+- Support for more Rich Text Format (RTF) codes (RTF
+1.5?). 
+- Multi-level undo/redo. You can ask the control
+what is about to be undone/redone and display it for the
+user. 
+- Auto-URL detection -- automatically underlines and
+highlights in blue text URL links such as text beginning
+with "http://', "ftp://", etc. Your
+program can be notified when the user clicks/double-clicks
+on the text and, with just a little code, start the user's
+browser and link to the URL. 
+- Additional visual character formatting using an
+extended version of the CHARFORMAT structure (CHARFORMAT2)
+that supports: User-defined character background
+colors; strike-out character format; super- and subscripted
+text; a second functional underline style (dotted); and the
+ability to show revisions by different authors in different
+colors. 
+- Additional non-visual character formatting using
+CHARFORMAT2 that supports a "link" format that
+notifies the parent control of mouse movements over the
+text. Although this is probably used to support the
+Auto-URL detection mentioned above, you could use it to get
+notification when the cursor moves over or is clicked on
+your own special text. 
+- Additional paragraph formatting using an extended
+version of the PARAFORMAT structure (PARAFORMAT2) that
+supports: Vertical spacing before and after a
+paragraph; and single, 1 1/2, double, and user-defined line
+spacing within a paragraph. 
+- Presumably, bug fixes. I have no examples, but
+one can always hope. 
+Disclaimer: The above list is based primarily on
+ the online documentation available at Microsoft's developer
+ site (MSDN). I have tested only some of this
+ functionality. Before getting all excited over some
+ feature that you absolutely must have but dread to code up
+ yourself, visit
+ MSDN and make sure that the above is
+ correct. On the other hand, some functionality seems
+ to be supported that the documentation is incorrect, both
+ on MSDN and in the header files. As an example, the
+ dotted underline style is supported in my Win98 version of
+ Rich Edit 2.0 despite all statements to the contrary. 
+ The bottom line is: If you need the functionality and
+ it is mentioned anywhere, try it -- but do not count on it
+ until you have confirmed that it works. 
+ 
+Rich Edit 2.0 Availability Information
+Rich Edit 1.0 is implemented in riched32.dll. The
+ newer version is implemented in riched20.dll. To see
+ if you already have version 2.0, search your drive for
+ riched20.dll. 
+ 
+Unfortunately for those who do not already have it, I
+ have been unable to determine where it comes from. I
+ did find the following unhelpful comment on the Microsoft
+ Developer site (MSDN): 
+ "Windows 95: Windows
+95 ships only RICHED32.DLL. However, RICHED20.DLL is
+compatible with Windows 95 and may be present if an
+application that uses rich edit 2.0 has been installed on
+the system."
+My best guess is that it comes with Internet Explorer
+ 4.0. My second guess is that it comes with the Common
+ Controls 4.0 update (40comupd.exe) which is available free
+ from Microsoft's site. If you have a better guess or,
+ better yet, have solved the mystery, please, please let me
+ know. 
+ 
+Updated Rich Edit 2.0 Availability Information 
+Kenneth R. de Camargo, Jr., reports definite origins on
+ a "clean machine" of either Office 97 or the
+ Win95 service pack. 
+ 
+Gerard Patel reports that he "can confirm that you
+ can get the thing [riched20.dll] for free by downloading
+ the 4 mb Word Viewer 97. A little overkill
+ maybe." 
+ 
+I believe that it is included in Windows98. 
+ 
+Sample Code Availability
+Both BCB 1.0 & 3.0 use Rich Edit 1.0. An
+ example of adapting the VCL TRichEdit class to use the Rich
+ Edit 2.0 control is available in the Code Samples section
+ of this site. Among other things, the sample
+ demonstrates how to: 
+ 
+- Implement multi-level undo/redo. 
+- Simplify forward and reverse searches. 
+- Identify RTF and binary files. 
+- Track the current insert/overstrike state. 
+- Recognize and execute URL links. 
+- Implement new text formatting (character background
+color, superscript, subscript, link, dotted underline,
+etc.). 
+- Allow setting of a single character-formatting
+attribute, e.g., bold, without resetting other formatting
+attributes. 
+ 
+ 
+	 
+Home |
+	Top Of Page |
+	Code |
+	Papers |
+	FAQs |
+	Links |
+	Search |
+	Feedback
+	 
+ 
+ 
+	 
+Page updated 
+	
+ 
+	 
+ 
+ 
+Copyright © 1998-2001 Thin Air
+ Enterprises and Robert Dunn. All rights reserved. 
+ 

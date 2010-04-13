@@ -1,0 +1,323 @@
+
+GNE::Thread class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::Thread Class Reference
+A class resembling a thread. 
+More...
+#include 
+Inheritance diagram for GNE::Thread::
+List of all members.
+Public Methods
+ 
+ Thread (std::string name2=DEF_NAME, int priority2=DEF_PRI) 
+ Creates a new thread, ready to run but not yet running. More...
+ 
+virtual ~Thread () 
+std::string getName () const 
+ Returns the name of this thread.
+ 
+virtual void shutDown () 
+ Tells this thread to shutdown, if it is in an infinite loop. More...
+ 
+void join () 
+ A blocking call that returns when this thread terminates, or returns immediately if the thread has terminated. More...
+ 
+void detach (bool delThis) 
+ Detaches a running thread. More...
+ 
+bool isRunning () const 
+ Determine the running state of the thread.
+ 
+virtual void start () 
+ Starts this thread running. More...
+ 
+int getPriority () const 
+ Returns the priority of this class.
+ 
+Static Public Methods
+ 
+Thread * currentThread () 
+ Returns the Thread object that represents this calling thread. More...
+ 
+void sleep (int ms) 
+ The currently running thread sleeps for the time given in milliseconds.
+ 
+bool waitForAllThreads (int ms) 
+ This method will wait for all threads that the user can control or see to end. More...
+ 
+Static Public Attributes
+ 
+const int DEF_PRI = 0 
+ The default priority of a thread.
+ 
+const std::string DEF_NAME = "Thread" 
+ The default name for a thread.
+ 
+const int HIGH_PRI = 1 
+ A "boosted priority" for a thread. More...
+ 
+Protected Methods
+ 
+virtual void run ()=0 
+ This function is the starting point for this thread. More...
+ 
+Protected Attributes
+ 
+volatile bool shutdown 
+ This variable is set to true when this thread should exit. More...
+ 
+Detailed Description
+A class resembling a thread.
+Derive your own classes from this class that implement the run function. Execution begins in the run method. All methods of this class are thread- safe.
+This class is a wrapper for pthreads, so please read man pages or other documentation for the equivalent pthreads functions if you need to understand the specifics on the semantics of these functions.
+NOTE: All threads must either be detached or joined. If you choose to detach a thread you may not access that Thread object again. If you need to access it at a later time, keep a pointer, then at a later time call join on this pointer, then delete at some later time.
+Todo: 
+ Priorities are not yet implemented. 
+Constructor & Destructor Documentation
+ 
+ 
+ 
+ 
+ GNE::Thread::Thread 
+ ( 
+ std::string 
+ name2 = DEF_NAME, 
+ 
+ 
+ 
+ 
+ int 
+ priority2 = DEF_PRI 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creates a new thread, ready to run but not yet running.
+Parameters: 
+name2 
+the name of this thread 
+priority2 
+the priority this thread has 
+ 
+ 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ Thread * GNE::Thread::currentThread 
+ ( 
+ 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the Thread object that represents this calling thread.
+Returns: 
+the currently running thread, or NULL if no Thread object resembles this thread. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Thread::detach 
+ ( 
+ bool 
+ delThis 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Detaches a running thread.
+A thread must always either be joined or detached if system resources are to be recovered. A thread may not be joined after being detached. After detaching a thread, with delThis set to true, it is undefined to access it any longer outside of its own actual thread. In other words, at any moment after detach the Thread instance could be be deleted because the thread terminated (or has already terminated). But, of course a running thread could still access itself as it clearly has not stopped and is still running.
+If you care about reading the data from a thread after its completion, do not use detach and instead use join. It is useful to do this if you want to release OS thread resources and still keep the class running (as in the Connection classes).
+Pass false if the the thread should not auto-destruct when it ends -- this is useful when you declared a thread on the stack, or you want to poll for completion.
+Parameters: 
+delThis 
+true if the thread should delete itself when it finishes executing. 
+See also: 
+join 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Thread::join 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A blocking call that returns when this thread terminates, or returns immediately if the thread has terminated.
+A thread must always either be joined or detached if system resources are to be recovered. A thread may not be joined after being detached. 
+See also: 
+detach 
+ 
+ 
+ 
+ 
+ 
+ virtual void GNE::Thread::run 
+ ( 
+ 
+ ) 
+ [protected, pure virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This function is the starting point for this thread.
+Derive your own class from Thread, and implement this function. When this function returns, the thread ends. 
+Reimplemented in GNE::ClientConnection, GNE::ConnectionEventGenerator, GNE::EventThread, GNE::PacketStream, GNE::ServerConnection, and GNE::Timer. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Thread::shutDown 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Tells this thread to shutdown, if it is in an infinite loop.
+You will probably want to call join right after calling this to wait for the shutdown to complete which is dependant on the thread you are shutting down.
+This function is virtual if the thread needs any additional actions to notify itself to shutdown, for example if it is waiting for some event on a ConditionVariable.
+You will want to call this function from the override to make sure that shutdown is set to true.
+This function is safe to call multiple times, but you cannot undo a shutdown once it has been called. 
+Reimplemented in GNE::ConnectionEventGenerator, GNE::EventThread, and GNE::PacketStream. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Thread::start 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Starts this thread running.
+The thread will be marked as running before this function completes. 
+Reimplemented in GNE::EventThread. 
+ 
+ 
+ 
+ 
+ 
+ bool GNE::Thread::waitForAllThreads 
+ ( 
+ int 
+ ms 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This method will wait for all threads that the user can control or see to end.
+All of the threads created implicitly have a deterministic end so that when you destruct objects the threads associated with them are deleted. Therefore only threads that you have directly created and detached (rather than joined) might still be running. You can use this static method to wait for and therefore verify their completion, since when main exits, your threads will be terminated forcefully if they are running.
+The implementation of this method is simple and therefore not intended to be used to create a program where you create detached threads and then use the main thread to sit in this function until the "real" program completes. It is meant solely as a method of definitvely verifying the completion of detached threads, and waiting short times for these threads to finish if needed. If you need to wait a long time, use join on the threads you've made, as this method is more efficient.
+Parameters: 
+ms 
+the amount of time to wait for the threads before giving up. This is used so a stalled or crashed thread will still allow you to terminate the program. 
+Returns: 
+true if all threads have completed, or false if there are still some threads running and the method timed out. 
+ 
+Member Data Documentation
+ 
+ 
+ 
+ 
+ const int GNE::Thread::HIGH_PRI = 1 [static]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A "boosted priority" for a thread.
+This is optimized to give some extra priority for the network threads to reduce network latency in favor of a little in-game fps. 
+ 
+ 
+ 
+ 
+ 
+ volatile bool GNE::Thread::shutdown [protected]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This variable is set to true when this thread should exit.
+Users that implement a Thread class must respond to this if the thread wants to wait in an infinite loop. Threads that will eventually stop can respond only optionally to this, but if they last for a long time, shutting down all threads may take awhile. Responding to this flag usually takes nothing more than a while (!shutdown) {} loop. 
+ 
+The documentation for this class was generated from the following files:
+- Thread.h
+- Thread.cpp
+Generated on Fri Mar 8 03:03:23 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

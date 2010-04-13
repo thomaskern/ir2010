@@ -1,0 +1,27 @@
+
+ 
+ 
+ Gradient Background
+ 
+Rebooting
+the System
+Declare
+Function ExitWindowsEx Lib "user32" Alias "ExitWindowsEx" (ByVal _ 
+uFlags
+As Long, ByVal dwReserved As Long) As Long 
+'uFlags
+are: 
+Public
+Const EWX_LOGOFF = 0 'Logoff 
+Public
+Const EWX_REBOOT = 2 'Reboot Windows 
+Public
+Const EWX_SHUTDOWN = 1 'Shutdown 
+Just 
+use the function like this: 
+Call
+ExitWindowsEx (EWX_REBOOT, 0) 
+'The
+code above reboots the system. dwReserved should be 0 
+ 
+ 

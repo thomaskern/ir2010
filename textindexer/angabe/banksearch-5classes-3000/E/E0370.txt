@@ -1,0 +1,224 @@
+
+C++ Tutorial: 5.1, Templates
+ Section 5.1 
+ Templates
+ 
+ 
+ 
+ 
+Templates are a new feature introduced by ANSI-C++ standard. If 
+you use a C++ compiler that is not adapted to this standard it is possible
+that you cannot use them.
+ 
+Function templates
+Templates allow to create generic functions that admit any data type as parameters
+and return value without having to overload the function with all the possible data types.
+Until certain point they fulfill the functionality of a macro. Its prototype is any
+of the two following ones:
+template function_declaration;
+template function_declaration;
+the only difference between both prototypes is the use of keyword class
+or typename, its use is indistinct since both expressions have exactly
+the same meaning and behave exactly the same way.
+For example, to create a template function that returns the greater one of two objects
+we could use:
+template 
+GenericType GetMax (GenericType a, GenericType b) {
+ return (a>b?a:b);
+}
+As specifies the first line, we have created a template for a generic data type that we
+have called GenericType. Therefore in the function that follows,
+GenericType becomes a valid data type and it is used
+as type for its two parameters a and b and as return value
+for the function GetMax.
+GenericType still does not represent any concrete data type;
+when the function GetMax will be called we will be able
+to call it with any valid data type. This data type will serve as pattern and
+will replace GenericType in the function.
+The way to call a template class with a type pattern is the following:
+function (parameters);
+Thus, for example, to call GetMax and to compare two integer values
+of type int we can write:
+ int x,y;
+ GetMax (x,y);
+so GetMax will be called as if each appearance of
+GenericType was replaced by an int expression.
+Ok, here is the complete example:
+// function template
+#include 
+template 
+T GetMax (T a, T b) {
+ T result;
+ result = (a>b)? a : b;
+ return (result);
+}
+int main () {
+ int i=5, j=6, k;
+ long l=10, m=5, n;
+ k=GetMax(i,j);
+ n=GetMax(l,m);
+ cout 
+or . So we could have written:
+int i,j;
+GetMax (i,j);
+since being both i and j of type int
+the compiler would assume automatically that the wished function is for type
+int. This implicit method is more usual and would produce the same result:
+// function template II
+#include 
+template 
+T GetMax (T a, T b) {
+ return (a>b?a:b);
+}
+int main () {
+ int i=5, j=6, k;
+ long l=10, m=5, n;
+ k=GetMax(i,j);
+ n=GetMax(l,m);
+ cout 
+T GetMin (T a, U b) {
+ return (a (j,l);
+or even
+i = GetMin (j,l);
+even although j and l are of different types.
+Class templates
+We also have the possibility to write class templates, so that a class can have members
+based on generic types that do not need to be defined at the moment of creating the class
+or whose members use these generic types. For example:
+template 
+class pair {
+ T values [2];
+ public:
+ pair (T first, T second)
+ {
+ values[0]=first; values[1]=second;
+ }
+};
+The class that we have just defined serves to store two elements of any valid type.
+For example, if we wanted to declare an object of this class to store two integer values
+of type int with the values
+115 and 36 we would write:
+pair myobject (115, 36);
+this same class would serve also to create an object to store any other type:
+pair myfloats (3.0, 2.18);
+The only member function has been defined inline within the class declaration,
+nevertheless if this is not thus and we define a function member outside the declaration
+we always must also precede the definition with the prefix template .
+// class templates
+#include 
+template 
+class pair {
+ T value1, value2;
+ public:
+ pair (T first, T second)
+ {value1=first; value2=second;}
+ T getmax ();
+};
+template 
+T pair::getmax ()
+{
+ T retval;
+ retval = value1>value2? value1 : value2;
+ return retval;
+}
+int main () {
+ pair myobject (100, 75);
+ cout 
+T pair::getmax ()
+All Ts that appear are necessary, reason why whenever you declare
+member functions you will have to follow a format similar to this (the second
+T makes reference to the type returned by the function, so this may vary).
+Template specialization
+A template specialization allows a template to make specific implementations for when
+the pattern is of a determined type. For example, suppose that our class template
+pair included a function to return the result of the module operation
+between the objects contained in it, but we only want that it works when the contained
+type is int
+and for the rest of types we want that this function always returns 0.
+This can be done this way:
+// Template specialization 
+#include 
+template 
+class pair {
+ T value1, value2;
+ public:
+ pair (T first, T second)
+ {value1=first; value2=second;}
+ T module () {return 0;}
+};
+template {
+ int value1, value2;
+ public:
+ pair (int first, int second)
+ {value1=first; value2=second;}
+ int module ();
+};
+template ::module() {
+ return value1%value2;
+}
+int main () {
+ pair myints (100,75);
+ pair myfloats (100.0,75.0);
+ cout 
+The specialization is part of a template, for that reason we must begin the declaration
+with template 
+template 
+class array {
+ T memblock [N];
+ public:
+ setmember (int x, T value);
+ T getmember (int x);
+};
+template 
+array::setmember (int x, T value) {
+ memblock[x]=value;
+}
+template 
+T array::getmember (int x) {
+ return memblock[x];
+}
+int main () {
+ array myints;
+ array myfloats;
+ myints.setmember (0,100);
+ myfloats.setmember (3.0,3.1416);
+ cout // The most usual: one class parameter.
+template // Two class parameters.
+template // A class and an integer.
+template // With a default value.
+template // A function as parameter.
+Templates and multiple-file projects
+From the point of view of the compiler, templates are not normal function or classes.
+They are compiled on demand. Meaning that the code of a template function is not
+compiled until an instantiation is required. At that moment, when an instantiation is
+required, the compiler generates from the template a function specifically for that type.
+When projects grow it is usual to split the code of a program in different source files.
+In these cases, generally the interface and implementation are separated.
+Taking as example a library of functions, the interface generally consists on the
+prototypes of all the functions that can be called, these are generally declared in a
+"header file" with .h extension, and the implementation (the definition
+of these functions) is in an independent file of c++ code.
+The macro-like functionality of templates, forces us to a restriction for multi-file
+projects: the implementation (definition) of a template class or function must be
+in the same file as the declaration. That means we cannot separate the interface in a
+separate header file and we must include both interface and implementation in any file
+that uses the templates.
+Going back to the library of functions, if we wanted to make a library of function templates,
+instead of creating a header file (.h) we should create a "template file"
+with both the interface and implementation of the function templates
+(there is no convention on the extension for these type of file other that no extension at all or to keep the .h).
+The inclusion more
+than once of the same template file with both declarations and definitions in a project
+doesn't generate linkage errors, since they are compiled on demand and compilers that allow
+templates should be prepared to not generate duplicate code in these cases.
+ 
+ © The C++ Resources Network, 2000-2001 - All rights reserved 
+ 
+ Previous:
+4-4. Polymorphism. 
+ 
+ index 
+ 
+ Next:
+5-2. Namespaces.
+ 

@@ -1,0 +1,395 @@
+
+ 
+ Java Product News (updated July 12, 2002)
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ July 2002 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java Product News (updated July 12, 2002)
+ 
+ Companies partner to enable Web services interaction; Zion launches IM products; and more
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+Index
+- Companies partner to enable Web services interaction
+- Zion launches IM products
+- SolarMetric teams up with Borland
+- Nazomi licenses Sun's CLDC and J2ME
+- Infinity Database stores compressed data 
+- BEA announces WebLogic 7.0 and new partnership
+- Sun introduces wireless technologies
+- Borland enhances server for Web services
+- TogetherSoft adds WebLogic 7.0 support
+- PolarLake previews Web services platform 
+- O'Reilly releases new Java books
+- Sun updates Web services package
+- Manning publishes exam kit
+- Neon casts ShadowConnect
+- ThinkFree and SavaJe partner
+- Sun releases Sun ONE Studio
+- ObjectVenture adds new features to pattern-oriented IDE
+- Parasoft upgrades WebKing
+- IBM unifies toolset around Eclipse
+- MetraTech and Cape Clear partner
+- NSIcom releases Windows JVM
+- Ixiasoft enhances TextML Server interoperability
+- RemoteApps launches Xyrian
+- Tangosol updates clustered caching software
+- PointBase adds JDBC 3.0 compatibility to RDBMS suite
+- TogetherSoft voices support for Sun ONE
+- MKS enhances source code analysis tool
+- Rational Software introduces ScriptAssure
+- Phaos Technology launches three XML toolkits
+- LogicLibrary integrates Logidex with Sun ONE
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+Companies partner to enable Web services interaction 
+July 12 &#8212; BEA Systems, Intalio, SAP AG, and Sun Microsystems have published an XML-based Web services interface that bridges the gap between Web services and business process management. The Web Services Choreography Interface (WSCI) enables Web services to interact with each other, fulfilling business process needs such as delivering automated, application-to-application collaboration. 
+http://dev2dev.bea.com/techtrack/wsci.jsp 
+http://titan.intalio.com:8080/intalio/wsci 
+http://ifr.sap.com/wsci 
+http://wwws.sun.com/software/xml 
+Back to index
+Zion launches IM products 
+July 12 &#8212; Zion Software has introduced JSuperChat, a cross-service, cross-platform instant-messaging (IM) client for Java 2 Platform, Standard Edition (J2SE)-compliant PCs and devices. The company has also announced JMessageServer, a presence and IM real-time communications platform available for Java 1.4 computing environments.
+http://www.zion.com 
+Back to index
+SolarMetric teams up with Borland 
+July 12 &#8212; As a new participant in Borland Software's partner program, SolarMetric will include Kodo JDO (Java Data Objects) for object/relational mapping in the Borland JBuilder 7.0 companion CD. Kodo JDO relieves developers of hand coding data access. 
+http://www.solarmetric.com 
+http://www.borland.com/jbuilder 
+Back to index
+Nazomi licenses Sun's CLDC and J2ME 
+July 12 &#8212; Nazomi Communications will incorporate Sun Microsystems' Connected Limited Device Configuration (CLDC) and Mobile Information Device Profile (MIDP) into its current JA108 Universal Acceleration chip for Java architectures and multimedia, and its JStar and JSmart acceleration technologies. Nazomi's JA108, JStar, and JSmart solutions are optimized for mobile wireless environments.
+http://www.nazomi.com 
+Back to index
+Infinity Database stores compressed data 
+July 12 &#8212; Boiler Bay has released a new Java database engine for wireless, PDA, embedded, or thick-client environments. The Infinity Database Engine B-Tree occupies 165 KB byte code and uses the Java 2 Platform, Micro Edition Connected Device Configuration (J2ME CDC). 
+http://boilerbay.com/infinitydb 
+Back to index
+BEA announces WebLogic 7.0 and new partnership 
+June 28 &#8212; BEA Systems will start shipping its WebLogic Platform 7.0 at the end of June. In an attempt to unify enterprise application development, version 7.0 includes BEA WebLogic Server 7.0, its application server; BEA WebLogic Portal 7.0, a portal framework; BEA WebLogic Integration 7.0, a integration services broker; and BEA WebLogic Workshop, a Java IDE. BEA will also partner with Hewlett-Packard to market, sell, and deliver BEA's integrated solutions across HP operating systems. 
+http://www.bea.com/products/weblogic/platform/index.shtml 
+Back to index
+Sun introduces wireless technologies 
+June 28 &#8212; Sun Microsystems has launched the CLDC (Connected Limited Device Configuration) HotSpot Implementation, a JVM designed for ARM-based microprocessors. It delivers a performance higher than most VMs in a small footprint. In addition, Sun has released the final version of J2ME (Java 2 Platform, Micro Edition) Wireless Toolkit.
+http://java.sun.com/products/cldc 
+http://java.sun.com/products/j2mewtoolkit 
+Back to index
+ Borland enhances server for Web services 
+June 28 &#8212; Borland Software has released a new version of Borland Enterprise Server, its J2EE (Java 2 Platform, Enterprise Edition) 1.3-compliant application server. Version 5.1 features enhanced support for Web Services, proactive application management, and improved performance. 
+http://borland.com/besappserver/index.html 
+Back to index
+TogetherSoft adds WebLogic 7.0 support 
+June 28 &#8212; TogetherSoft has integrated support for BEA WebLogic Platform 7.0 into Together ControlCenter, an application development tool. The partnership allows developers to deploy Web applications with BEA WebLogic while using TogetherSoft's development tools.
+http://www.bea.com/products/weblogic/platform/index.shtml 
+http://www.togethersoft.com 
+Back to index
+PolarLake previews Web services platform 
+June 28 &#8212; The forthcoming release of PolarLake 2.0 includes integration with a JMS (Java Message Service) framework and Sun ONE (Open Network Environment). PolarLake is an XML and Web services assembly and deployment platform for Java. 
+http://www.polarlake.com/products/polarlake/ 
+Back to index
+O'Reilly releases new Java books 
+June 28 &#8212; Robert Englander introduces the basics of Simple Object Access Protocol in Java and SOAP. Eric M. Burke and Jesse E. Tilly teach developers how to use Ant with Java in Ant: The Definitive Guide. And in Java and XML Data Binding, Brett McLaughlin explains data binding and covers the data-binding toolkits currently available: Sun's Java API for XML Binding (JAXB), Zeus, Castor, and Quick. All three books are available from O'Reilly.
+http://www.oreilly.com/catalog/anttdg/ 
+http://www.oreilly.com/catalog/javasoap/ 
+http://www.oreilly.com/catalog/javaxmldatabind/ 
+Back to index
+Sun updates Web services package 
+June 21 &#8212; Sun Microsystems has announced a new version of the Java Web Services Developer Pack (WSDP), a set of APIs and tools for developing Web services. The package includes tools for building SOAP (Simple Object Access Protocol) messages, support for WSDL (Web Services Description Language), plus support for accessing both UDDI (Universal Description, Discovery, and Integration) and ebXML registries. Sun has also added the Apache Tomcat application server and the JSP (JavaServer Pages) Standard Tag Libraries. 
+http://www.java.sun.com/webservices 
+Back to index
+Manning publishes exam kit 
+June 21 &#8212; Manning Publications has released the SCWCD Exam Study Kit: Java Web Component Developer Certification, which teaches the concepts needed to pass the Sun Certified Web Component Developer exam. Authors Hanumant Deshmukh and Jignesh Malavia cover exception handling, session management, security, custom tags, design patterns, and filters. The book also includes 120 review questions and a section for last minute crammers.
+http://www.manning.com/deshmukh 
+Back to index
+Neon casts ShadowConnect 
+June 21 &#8212; Neon Systems has introduced ShadowConnect a connector technology for linking Web application servers and integration servers to mainframe data sources and transactions. The product is based on the Shadow code base, Neon's technology for accessing data stored on J2EE (Java 2 Platform, Enterprise Edition) and .Net platforms.
+http://www.neonsys.com/solutions/shadow/shadow-connect.asp 
+Back to index
+ThinkFree and SavaJe partner 
+June 21 &#8212; ThinkFree will integrate its ThinkFree Office Viewer technology with the SavaJe OS 2.0 Smartphone Edition. The combination of these Java-based technologies provides advanced messaging capabilities, allowing mobile computing users to access and read email attachments in Microsoft Word, Excel, and PowerPoint file formats. 
+http://www.thinkfree.com 
+http://www.savaje.com 
+Back to index
+Sun releases Sun ONE Studio 
+June 21 &#8212; The Sun ONE (Open Network Environment) Studio 4, formerly Forte for Java, is now available for download. The suite includes an enterprise edition, which supports components of the Java Web Services Developer Pack; a mobile edition for developing Java-enabled mobile devices; and a community edition. 
+http://www.sun.com/software/sundev/jde 
+Back to index
+ObjectVenture adds new features to pattern-oriented IDE 
+June 21 &#8212; ObjectVenture has announced a beta version of ObjectAssembler 2.0, a software development environment that supports the pattern-oriented design, development, assembly, and deployment of enterprise applications. This latest version features support for NetBeans, JBuilder, EJB (Enterprise JavaBeans) 2.0, Struts 1.1, JSP (Java ServerPages), servlet, and JavaBean components. 
+http://www.objectventure.com/products/objectassembler.html 
+Back to index
+Parasoft upgrades WebKing 
+June 21 &#8212; The new version of WebKing, a testing tool from Parasoft, analyzes server log files and creates virtual users that mimic actual user paths and traffic patterns. WebKing also introduces features that automate SOAP (Simple Object Access Protocol) testing. 
+http://www.parasoft.com/jsp/products/home.jsp?product=WebKing 
+Back to index
+IBM unifies toolset around Eclipse 
+June 14 &#8212; By releasing new software tools that support IBM's middleware portfolio, the company has introduced an integrated set of tools for deploying, securing, and managing e-business data and applications. Built on the Eclipse open source platform, these tools support WebSphere, Lotus Domino, CrossWorlds, DB2, Tivoli, MQ, and IBM eServer iSeries. 
+http://www.ibm.com 
+http://www.eclipse.org 
+Back to index
+MetraTech and Cape Clear partner 
+June 14 &#8212; Cape Clear Software will combine its Web services software with MetraTech's XML-based billing solution. This partnership will enable Web services billing across IT systems based on .Net, J2EE (Java 2 Platform, Enterprise Edition), and CORBA. 
+http://www.capeclear.com 
+http://www.metratech.com/index.html 
+Back to index
+NSIcom releases Windows JVM 
+June 14 &#8212; CrEme 3.2, a JVM for Windows CE, is now available from NSIcom. The VM comes with an applet plug-in for all releases of Internet Explorer and Pocket Internet Explorer and supports various Java APIs, including Swing, SQL, and SSL (Secure Socket Layer).
+http://www.nsicom.com/products/creme.asp 
+Back to index
+Ixiasoft enhances TextML Server interoperability 
+June 14 &#8212; Ixiasoft has introduced a Java API for its TextML Server, a native XML server that stores, indexes, and retrieves XML documents. The API addition improves TextML's interoperability.
+http://www.ixiasoft.com 
+Back to index
+RemoteApps launches Xyrian 
+June 14 &#8212; Xyrian is a new tool that provides Java developers with an architecture for simplifing the creation and management of J2EE (Java 2 Platform, Enterprise Edition) applications. Developed by RemoteApps, the tool runs on most J2EE application servers; reuses application functionality across Web, EJB (Enterprise JavaBean), Swing, J2SE (Java 2 Platform, Standard Edition), and J2ME (Java 2 Platform, Micro Edition) environments; and provides J2EE application content management. 
+http://portal.remoteapps.com 
+Back to index
+Tangosol updates clustered caching software 
+June 14 &#8212; Tangosol has issued a prerelase of Coherence 1.1.3, its clustered caching software. This latest version features support for Tomcat 4. 
+http://www.tangosol.com/products-clustering.jsp 
+Back to index
+PointBase adds JDBC 3.0 compatibility to RDBMS suite 
+June 7 &#8212; PointBase has updated its relational database management systems (RDBMS). PointBase Server 4.3 and PointBase Embedded 4.3 now feature JDBC (Java Database Connectivity) 3.0 compatibility and improved transactional performance, functionality, database console, and documentation. The company has also released PointBase Micro 4.3 and PointBase UniSync 4.3 
+http://www.pointbase.com/home.shtml 
+Back to index
+TogetherSoft voices support for Sun ONE 
+June 7 &#8212; TogetherSoft will deliver its Together ControlCenter development tool with the Sun ONE (Open Network Environment) Portal Server 6.0, formerly the iPlanet Portal Sever. 
+http://www.togethersoft.com/products/controlcenter/index.jsp 
+http://wwws.sun.com/software/sunone 
+Back to index
+MKS enhances source code analysis tool 
+June 7 &#8212; MKS has released Code Integrity Enterprise 7.4, its C/C++ and Java source code analysis and comprehension product, previously known as Discover 7.3. The company has added impact analysis, JBuilder integration, improved information model procedures, plus additional enhancements.
+http://www.mks.com/products/iman 
+Back to index
+Rational Software introduces ScriptAssure 
+June 7 &#8212; Rational Software has released Rational Suite TestStudio 2002 Release 2 with ScriptAssure, a technology that produces resilient test scripts for Java and Web business applications. ScriptAssure uses a pattern-matching technology to automatically find the correct object for testing and validate dynamic application technology. 
+http://www.rational.com/announcing2002_r2.jsp 
+Back to index
+Phaos Technology launches three XML toolkits 
+June 7 &#8212; The Phaos XML Security Suite 1.3, one of three new XML-based technologies recently introduced by Phaos Technology, offers Java developers a tool for creating secure XML applications. The suite supports Phaos XKMS 1.0 and Phaos SAML (Security Assertion Markup Language) 1.0. Phoas XKMS implements the XML Key Information Service Specification (X-KISS) and the XML Key Registration Service Specification (X-KRSS), allowing software to work with signature and encryption keys. Phaos SAML enables application development with SAML.
+http://www.phaos.com 
+Back to index
+LogicLibrary integrates Logidex with Sun ONE 
+June 7 &#8212; LogicLibrary will support the Sun ONE (Open Network Environment) Portal Server 6.0 and the Sun ONE architecture for Web services. The company will integrate its Logidex product line, software for asset management, into the Sun ONE Portal Server.
+http://www.logiclibrary.com/index.jsp 
+http://wwws.sun.com/software/sunone/ Back to index
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- Submit your Java industry and product news here: 
+http://www.javaworld.com/feedback
+- JavaWorld's News Around the Net section is updated daily with breaking Java news: 
+http://www.javaworld.com/netnews/index.shtml
+- Check out the latest product news and reviews from JavaWorld: 
+- "Eclipse Casts Shadows," Jon Udell, InfoWorld Test Center (July 2002)
+- "Is the JCP Adequately Preparing Java for Web Services?" Jennifer Orr (June 2002)
+- "Shirt-Pocket Java: BlackBerry Java SDK," Tom Yager, InfoWorld Test Center (June 2002) 
+- Check out JavaWorld's Product News index page for more product news: 
+http://www.javaworld.com/news-reviews/jw-nr-products.shtml
+- Browse JavaWorld's Product Reviews index page for information on specific products: 
+http://www.javaworld.com/news-reviews/jw-nr-product-reviews.shtml
+- The JavaWorld Developer Tools Guide features more than 1,000 Java tools: 
+http://www.javaworld.com/javaworld/tools/jw-tools-index.html
+- Sign up for JavaWorld's free weekly Java Industry News email newsletter: 
+http://www.javaworld.com/subscribe
+- Speak out in our JavaWorld Forum: 
+http://forums.idg.net/webx?13@@.ee6b802 
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,104 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6
+Using the Implements Keyword
+ID: 778
+Author: Abstractvb
+Date: 7/20/2000 7:40:19 PM
+VB6
+Create a new project and add two class modules to the project. Name one clsProductTemplate and the other clsSoftware. 
+Then open clsProductTemplate and add the following code:
+Public Property Get ProductID() As Variant
+End Property
+Public Property Let ProductID(ByVal vNewValue As Variant)
+End Property
+Public Property Get ProductName() As Variant
+End Property
+Public Property Let ProductName(ByVal vNewValue As Variant)
+End Property
+Public Property Get ProductCategory() As Variant
+End Property
+Public Property Let ProductCategory(ByVal vNewValue As Variant)
+End Property
+Now open clsSoftware and add the following like of code to the general declarations sections:
+Implements clsProductTemplate
+Now you will notice that the dropdown box above will have a new object in it called clsProductTemplate. If you select clsProductTemplate the event dropdown will now show a list of all the properties you added to clsProductTemplate.
+Why would you want to do this? Well one of the major reasons for using the implements keyword is to ensure a standard interface across your objects. clsSoftware implements clsProductTemplate and therefore MUST add the properties listed in clsProductTemplate. 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

@@ -1,0 +1,538 @@
+
+ 
+C >> Looping ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Conditional Branching 2 
+ Main Menu 
+ Hexadecimal Numbers 
+ 
+ 
+ 
+ 
+Looping
+ 
+ 
+ 
+ 
+ 
+ 
+The Concept of Looping
+ 
+ 
+ 
+ 
+ 
+The term "looping" describes the way in which the program executes statements over and over again, before exiting the loop 
+ and continuing with program flow. 
+ 
+In C, there are three types of loops: for loops, while loops and do while loops. 
+ 
+ 
+ 
+It is possible to simulate each type by writing code using other loops. 
+ 
+Tell a lie - there is a fourth kind of loop but has no specific keyword. INFINITE LOOPS can cause your computer 
+ to hang! They sometimes end after a while, but in theory they should go on forever. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+for Loops
+ 
+ 
+ 
+ 
+ 
+I use for loops a lot. Here's the basic form: 
+ for (a ; b ; c) {
+ /* statements */
+}
+ 
+Brief example:
+ for(i=10, j=0 ; i!=j ; i--, j++) {
+ printf("%d - %d = %d\n", i, j, i-j);
+}
+ 
+a, b and c are expressions that are evaluated at different times. 
+ 
+a is evaluated once only - before entering the loop. It is a very good place to assign values to variables. If you wanted 
+ to assign values to multiple variables, you can separate each assignment with a comma like this: i=10, j=0 
+ 
+ 
+ 
+b determines whether or not the program loops. If b returns a non zero value, an iteration of the loop is performed. 
+ In other words, the program enters the loop and executes the statements inside. b should therefore be some sort of condition. 
+ You can use logical operators in your condition as usual. 
+ 
+c is evaluated after an iteration of the loop, i.e. after all the statements inside the loop body have been executed. If you 
+ have multiple expressions you want evaluating, you can separate each one with a comma like this: i--, j++ 
+ 
+The round brackets and semi colons are required at all times. The three expressions aren't compulsory, but omitting b and 
+ failing to place a break statement somewhere in the loop can result in an infinite loop! 
+ 
+Let's look at a proper example: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int i,j; 
+ for(i=10, j=0 ; i!=j ; i--, j++) {
+ printf("%d - %d = %d\n", i, j, i-j);
+ }
+ return 0;
+}
+ 
+ 
+ 
+Before entering the loop, i is initialized with 10 and j with 0. Let's step through the loop one 
+ iteration at a time: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Iteration
+ 
+ 
+ 
+Before Loop
+ 
+ 
+ 
+After Loop
+ 
+ 
+ 
+ i 
+ j 
+ i!=j 
+ i 
+ j 
+ 
+ 
+ 
+ 
+1
+ 
+ 10 
+ 0 
+ 
+ 
+1
+ 
+ 9 
+ 1 
+ 
+ 
+ 
+ 
+2
+ 
+ 9 
+ 1 
+ 
+ 
+1
+ 
+ 8 
+ 2 
+ 
+ 
+ 
+ 
+3
+ 
+ 8 
+ 2 
+ 
+ 
+1
+ 
+ 7 
+ 3 
+ 
+ 
+ 
+ 
+4
+ 
+ 7 
+ 3 
+ 
+ 
+1
+ 
+ 6 
+ 4 
+ 
+ 
+ 
+ 
+5
+ 
+ 6 
+ 4 
+ 
+ 
+1
+ 
+ 5 
+ 5 
+ 
+ 
+ 
+ 
+6
+ 
+ 5 
+ 5 
+ 
+ 
+0
+ 
+ - 
+ - 
+ 
+ 
+ 
+ 
+ 
+ 
+At the end of each iteration, i is decremented by 1, j is incremented by 1. 
+ 
+The sixth evaluation of i!=j returns 0 for false, because i and j are equal at 
+ that time, so the loop body is not executed. 
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 10 - 0 = 10
+ 9 - 1 = 8
+ 8 - 2 = 6
+ 7 - 3 = 4
+ 6 - 4 = 2
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You should be familiar with the logic behind the printf statement, so I'll focus on the loop itself. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+while 
+ Loops
+ 
+ 
+ 
+ 
+ 
+Some might say that while loops are simpler to use, since they only require one expression in the brackets: 
+ while (expression) {
+ /* statements */
+}
+ 
+The loop body is executed if expression returns a non zero value. Most of the time, you'd want to put some sort of condition 
+ to be evaluated. 
+ 
+I mentioned earlier on that you can simulate one type of loop with another type - there is no unique way to loop. 
+ 
+The previous example can be rewritten using a while loop. 
+ 
+ 
+ #include 
+int main() {
+ int i=10; /* initialize variables */
+ int j=0; /* part a of a for loop */
+ while (i!=j) { /* test for condition 
+ part b of for loop */
+ printf("%d - %d = %d\n", i, j, i-j);
+ i--; /* do something to variables */
+ j++; /* part c of for loop */
+ }
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Infinite 
+ Loops
+ 
+ 
+ 
+ 
+ 
+Having an expression that always returns a non zero value in the brackets of a while loop (or the second expression of a for 
+ loop) can result in an infinite loop. Missing the second expression in a for loop will also result in an infinite loop, but 
+ missing the expression in the brackets of a while loop causes a compilation error. This program should loop forever: 
+ 
+ 
+ 
+I say "should" loop forever, but sometimes the computer crashes and the program is shut down. 
+ 
+while (1) {} also causes an infinite loop. 
+ 
+To combat infinite loops, you can use the break statement (or in the last resort, Ctrl-Alt-Delete!). 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int i;
+ for(i=0 ; /* no expression */ ; i++) {
+ printf("%d\n", i);
+ }
+ return 0;
+}
+ 
+ 
+ #include 
+int main() {
+ int i;
+ for(i=0 ; /* no expression */ ; i++) {
+ printf("%d\n", i);
+ if(i==1000) {
+ break; /* exits the loop when */
+ } /* i equals 1000 */
+ }
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+do 
+ while Loops
+ 
+ 
+ 
+ 
+ 
+The last type of loop I rarely use. 
+ 
+It's almost identical to a while loop, except the loop body is executed at least once - the while (expression) part is after 
+ the loop body, like this: 
+ do {
+ /* loop body */
+} while (expression);
+ 
+This example prints out the numbers 0-9: 
+ 
+ 
+ 
+Don't forget the semi colon after the
+ while(expression) part! 
+ 
+If you run the example again, but initialize i with 11 you'll notice that the loop body is still executed. 
+ 
+Simulating a do while loop with either a for or while loop is fiddley - most of the time I'd write the statements 
+ in the loop body once, before the loop: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int i = 0;
+ do {
+ printf("%d", i);
+ i++;
+ } while (i
+int main() {
+ int i = 0;
+ printf("%d", i); /* "loop body" */
+ i++;
+ while (i 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

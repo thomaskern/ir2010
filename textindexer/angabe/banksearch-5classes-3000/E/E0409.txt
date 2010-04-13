@@ -1,0 +1,116 @@
+
+ 
+ PHP HOW-TO: PHP Libraries 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 9. PHP Libraries 
+The PHP is a object-oriented scripting language. Hence PHP code is 
+"classes, classes, classes and classes". When you write PHP code you must 
+design your classes such that they are re-usable or they use existing PHP classes.
+There are hundreds of PHP classes already written and ready to use. There are
+classes for accessing databases, classes for generating XML, HTML forms, classes for
+creating tables, forms and other HTML objects. If you write some generic classes then
+please upload to sites. By year 2005, there will be more than hundred million 
+re-usable PHP classes. Advantage of PHP classes are they provide - data hiding,
+inheritance, encapsulation, reliability, reusability and polymorphism.
+The most important PHP sites are PHP classes and PEAR as given below.
+ 9.1 Classes and PEAR 
+Visit the following web sites which have large collections of
+ready to use PHP class libraries. 
+- PHP classes are at 
+http://phpclasses.upperdesign.com.
+- PEAR (PHP Extension and Application Repository) is a code repository
+for PHP extensions and PHP library code similar to Perl's CPAN and is at
+http://pear.php.net and 
+mirror 
+linux 
+php-pear-rpms
+and 
+pear-tutorials.
+- ADODB (Active Data Objects Data Base) 
+http://php.weblogs.com/ADODB :
+PHP's database access functions are not standardised. Every database extension uses a different
+and incompatibile API. This creates a need for a database class library to hide the
+differences between the different databases (encapsulate the differences) so we can easily
+switch databases. 
+ADODB currently support MySQL, 
+PostgreSQL
+, Interbase, Oracle, MS SQL 7, 
+Foxpro, Access, ADO, Sybase and generic ODBC. 
+See also 
+ADODB-manual.
+The 
+PhpLens is based on ADODB.
+- Metabase (Database independent access and management)
+http://phpclasses.upperdesign.com/browse.html/package/20
+- PHP Hot scripts 
+http://www.hotscripts.com/PHP
+- Very popular PHP resources 
+http://php.resourceindex.com 
+and 
+CGI-Resources
+- PHP projects are at 
+http://php.net/projects.php
+- PHP Lib Netuse 
+http://phplib.netuse.de (This is deprecated, merged with PEAR)
+- PHP widgets 
+http://www.northern.ca/projects/phpwidgets
+- Generic Framework PHP4 
+http://sourceforge.net/projects/gpfr
+- Source Forge PHP Lib 
+http://phplib.sourceforge.net
+- Source Forge PHP Snippets, go and click on PHP here 
+http://sourceforge.net/snippet
+- E-gineer PHP lib 
+http://e-gineer.com/articles/php-hacker
+- FAQ PHP 
+http://php.faqts.com
+- PHP Lib 
+http://px.sklar.com
+- PHP Factory 
+http://alfalinux.sourceforge.net/phpfact.php3
+- PHP Builder site 
+http://phpbuilder.com/snippet
+- PHP developer 
+http://www.phpdeveloper.org
+- PHP newbie 
+http://www.newbienetwork.net
+- PHP walrus 
+http://www.evilwalrus.com
+ 9.2 Other PHP Utilities 
+Other PHP utilities are at :
+- User Login sample: 
+http://www.devshed.com/Server_Side/PHP/Commerce1
+- phpPDFtable is a class written in php to ease the creation of 
+tables in PDF files. It requires php (4.0 but should 
+run with 3.x too), and pdflib 
+http://sourceforge.net/projects/phppdftable
+- Data-Admin aims to provide a PHP based interface to Database 
+Administration. This will not be limited to just one or two 
+databases. Also, the underlying class library encapsulates the 
+native PHP database calls allowing the programmer to use one set of fu
+http://sourceforge.net/projects/dadmin
+- PSlib is a PHP library for generating PostScript files. It offers 
+an easy way of generating PostScript files: simple call PSlib functions 
+from within your PHP script and the PS files are created on the fly
+http://sourceforge.net/projects/pslib
+- A complete collection of php scripts that work tightly together to 
+create a highly customizable, dynamic and module oriented website
+http://sourceforge.net/projects/twebs
+- phpOpenTracker is a comprehensive solution for your site- and 
+visitor-tracking needs. The collected data is stored in a SQL 
+database, allowing complex, yet easy analysis. A powerful API for 
+analysis and report generation (HTML or PDF output) is included.
+http://www.phpopentracker.de
+- PHPShopCart is a shopping-cart web application demo written in 
+PHP and designed to connect to a MySQL database. It was written 
+for the book, "A Guide to Databases under Linux" (Syngress Media) but 
+is available under the GNU Public License. 
+http://sourceforge.net/projects/phpshopcart
+Next
+Previous
+Contents

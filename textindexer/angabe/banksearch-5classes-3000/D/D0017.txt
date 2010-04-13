@@ -1,0 +1,1187 @@
+
+Java Microbenchmark Applet
+Java Microbenchmark Applet
+[ index
+ | benchmarks
+ | speed
+ | size
+ | maintainability
+ | rules
+ | tools
+ | compilers ]
+Run the microbenchmarks
+Note: now that Doug Bell's more comprehensive
+Benchmark
+applet is out, I'm no longer recording times for these microbenchmarks.
+You can get a lot more information from Doug's applet -- but it takes a while
+longer :-).
+This applet runs the last version of the Java
+Microbenchmarks. Make sure that your machine is idle before starting the
+applet; it will take about 45 seconds to run. Each of the microbenchmarks is
+run three times for one second at a time, and the maximum number of operations
+completed within a second is used to calculate the time per operation.
+[Your browser doesn't run Java]
+For an analysis of the results for a range of Java implementations on a single
+machine, see Java Microbenchmarks.
+ The tables below show results in microseconds contributed by other users for v1.1 of the Java microbenchmarks (see
+also older results for previous versions).
+Lower times are better. I've separated the results into x86 and non-x86
+architectures, grouped results for similar platforms, and put them in rough
+order of speed. Browser names are abbreviated:
+ 
+- NN = Netscape
+ Navigator
+ 
+- IE = Internet Explorer.
+ 
+- JDK = Java Development Kit
+ 
+- MRJ = Macintosh Runtime for Java
+ 
+- CW = Metrowerks Java (CodeWarrior)
+I've highlighted the names of browsers that use a just-in-time compiler. 
+Results for x86 architectures
+ 
+ Browser
+ CPU
+& speed
+ Null
+Loop
+ Local
+i=n
+ this.
+i=n
+ Array
+a[0]=n
+ Byte
+b++
+ Short
+s++
+ Int
+i++
+ Long
+l++
+ Float
+f++
+ Doub.
+d++
+ New
+obj.
+ int
+[10]
+ Call
+f()
+ Sync
+f()
+ Math
+abs()
+ Inline
+abs()
+ 
+ NN 2.02
+(OS/2) 
+ 486
+66 MHz 
+ 0.170 
+ 0.017 
+ 0.069 
+ 0.150 
+ 0.110 
+ 0.110 
+ 0.037 
+ 0.170 
+ 0.560 
+ 0.660 
+ 23.0 
+ 27.0 
+ 1.200 
+ 88.0 
+ 2.800 
+ 0.380 
+ 
+ IE
+3.01 
+ 486
+100 MHz 
+ 0.079 
+ 0.010 
+ 0.190 
+ 0.310 
+ 0.070 
+ 0.067 
+ 0.010 
+ 0.390 
+ 0.570 
+ 0.770 
+ 55.0 
+ 51.0 
+ 0.600 
+ 21.0 
+ 2.300 
+ 0.600 
+ 
+ NN 3.0
+(Linux) 
+ 486
+133 MHz 
+ 1.200 
+ 0.580 
+ 0.930 
+ 1.200 
+ 1.400 
+ 1.400 
+ 0.270 
+ 1.700 
+ 1.300 
+ 1.300 
+ 22.0 
+ 28.0 
+ 2.400 
+ 12.0 
+ 5.1 
+ 0.630 
+ 
+ NN 3.0
+(Linux) 
+ Pentium
+OD 83MHz 
+ 1.300 
+ 0.680 
+ 1.100 
+ 1.500 
+ 1.600 
+ 1.700 
+ 0.290 
+ 1.600 
+ 1.200 
+ 1.300 
+ 21.0 
+ 27.0 
+ 2.500 
+ 12.0 
+ 5.300 
+ 0.760 
+ IE
+3.0b2 
+ Pentium
+OD 83MHz 
+ 1.400 
+ 0.440 
+ 0.800 
+ 1.000 
+ 1.100 
+ 1.000 
+ 0.260 
+ 0.970 
+ 0.860 
+ 1.100 
+ 16.0 
+ 13.0 
+ 3.300 
+ 4.7 
+ 5.800 
+ 0.580 
+ NN
+3.0 
+ Pentium
+OD 83MHz 
+ 0.049 
+ 0.006 
+ 0.110 
+ 0.110 
+ 0.076 
+ 0.076 
+ 0.012 
+ 0.037 
+ 0.086 
+ 0.086 
+ 23.0 
+ 45.0 
+ 0.200 
+ 11.0 
+ 0.530 
+ 0.120 
+ 
+ NS
+4.0b1 
+ Pentium
+60 MHz 
+ 0.069 
+ 0.020 
+ 0.110 
+ 0.086 
+ 0.100 
+ 0.100 
+ 0.017 
+ 0.049 
+ 0.120 
+ 0.120 
+ 31.0 
+ 69.0 
+ 0.270 
+ 16.0 
+ 1.000 
+ 0.140 
+ 
+ JDK
+1.0.2 
+ Pentium
+75 MHz 
+ 1.100 
+ 0.540 
+ 0.980 
+ 1.200 
+ 1.400 
+ 1.400 
+ 0.250 
+ 1.300 
+ 1.200 
+ 1.300 
+ 8.8 
+ 2.6 
+ 2.000 
+ 19.0 
+ 4.400 
+ 0.550 
+ NN
+3.0 
+ Pentium
+75 MHz 
+ 0.055 
+ 0.013 
+ 0.089 
+ 0.069 
+ 0.080 
+ 0.080 
+ 0.013 
+ 0.039 
+ 0.097 
+ 0.100 
+ 26.0 
+ 51.0 
+ 0.220 
+ 19.0 
+ 0.600 
+ 0.092 
+ IE
+3.0 
+ Pentium
+75 MHz 
+ 0.055 
+ 0.007 
+ 0.088 
+ 0.054 
+ 0.067 
+ 0.068 
+ 0.006 
+ 0.041 
+ 0.096 
+ 0.220 
+ 12.0 
+ 11.0 
+ 0.180 
+ 3.6 
+ 0.700 
+ 0.190 
+ 
+ NN 3.01
+(FreeBSD) 
+ Pentium
+100 MHz 
+ 1.100 
+ 0.510 
+ 0.860 
+ 1.100 
+ 1.300 
+ 1.300 
+ 0.240 
+ 1.300 
+ 1.100 
+ 1.100 
+ 17.0 
+ 21.0 
+ 2.100 
+ 10.00 
+ 4.400 
+ 0.570 
+ NN
+3.0 
+ Pentium
+100 MHz 
+ 0.041 
+ 0.005 
+ 0.038 
+ 0.052 
+ 0.062 
+ 0.064 
+ 0.011 
+ 0.029 
+ 0.073 
+ 0.073 
+ 19.0 
+ 33.0 
+ 0.160 
+ 11.0 
+ 0.450 
+ 0.051 
+ IE
+3.0 
+ Pentium
+100 MHz 
+ 0.043 
+ 0.005 
+ 0.037 
+ 0.040 
+ 0.052 
+ 0.050 
+ 0.005 
+ 0.030 
+ 0.074 
+ 0.140 
+ 8.6 
+ 7.5 
+ 0.140 
+ 2.8 
+ 0.540 
+ 0.079 
+ NN 3b2
+(OS/2) 
+ Pentium
+100 MHz 
+ 0.041 
+ 0.008 
+ 0.067 
+ 0.062 
+ 0.041 
+ 0.041 
+ 0.010 
+ 0.031 
+ 0.095 
+ 0.096 
+ 21.0 
+ 22.0 
+ 0.360 
+ 46.0 
+ 0.810 
+ 0.066 
+ NN 2.02GA
+(OS/2) 
+ Pentium
+100 MHz 
+ 0.041 
+ 0.010 
+ 0.067 
+ 0.066 
+ 0.041 
+ 0.041 
+ 0.012 
+ 0.031 
+ 0.096 
+ 0.095 
+ 6.4 
+ 12.0 
+ 0.420 
+ 16.0 
+ 0.910 
+ 0.067 
+ 
+ NN
+4.0b1 
+ Pentium
+120 MHz 
+ 0.034 
+ 0.011 
+ 0.077 
+ 0.043 
+ 0.051 
+ 0.051 
+ 0.009 
+ 0.023 
+ 0.059 
+ 0.060 
+ 16.0 
+ 27.0 
+ 0.130 
+ 7.4 
+ 0.390 
+ 0.073 
+ 
+ NN 2.02
+(OS/2) 
+ Pentium
+133 MHz 
+ 0.031 
+ 0.006 
+ 0.083 
+ 0.039 
+ 0.031 
+ 0.032 
+ 0.008 
+ 0.025 
+ 0.071 
+ 0.072 
+ 3.9 
+ 5.4 
+ 0.280 
+ 9.1 
+ 0.064 
+ 0.049 
+ NN
+3.0 
+ Pentium
+133 MHz 
+ 0.031 
+ 0.004 
+ 0.039 
+ 0.038 
+ 0.046 
+ 0.046 
+ 0.008 
+ 0.021 
+ 0.053 
+ 0.053 
+ 14.0 
+ 25.0 
+ 0.130 
+ 8.0 
+ 0.320 
+ 0.040 
+ NN
+4.0b1 
+ Pentium
+133 MHz 
+ 0.030 
+ 0.011 
+ 0.086 
+ 0.070 
+ 0.044 
+ 0.046 
+ 0.007 
+ 0.022 
+ 0.053 
+ 0.055 
+ 15.0 
+ 24.0 
+ 0.120 
+ 7.9i 
+ 0.340 
+ 0.086 
+ NN 2.02
+(OS/2) 
+ Pentium
+166 MHz 
+ 0.025 
+ 0.005 
+ 0.040 
+ 0.040 
+ 0.025 
+ 0.025 
+ 0.006 
+ 0.019 
+ 0.058 
+ 0.058 
+ 9.0 
+ 14.0 
+ 0.210 
+ 8.0 
+ 0.049 
+ 0.040 
+ 
+ NN 3.01
+(FreeBSD) 
+ PPro
+200 MHz 
+ 0.650 
+ 0.350 
+ 0.550 
+ 0.710 
+ 0.910 
+ 0.890 
+ 0.060 
+ 0.870 
+ 0.750 
+ 0.780 
+ 6.5 
+ 8.8 
+ 1.000 
+ 3.7 
+ 2.500 
+ 0.410 
+ NN
+3.0 
+ PPro
+200 MHz 
+ 0.015 
+ 0.003 
+ 0.007 
+ 0.021 
+ 0.008 
+ 0.006 
+ 0.004 
+ 0.014 
+ 0.009 
+ 0.014 
+ 6.0 
+ 9.4 
+ 0.046 
+ 3.6 
+ 0.120 
+ 0.025 
+ IE
+3.0 
+ PPro
+200 MHz 
+ 0.010 
+ 0.003 
+ 0.005 
+ 0.011 
+ 0.007 
+ 0.007 
+ 0.002 
+ 0.022 
+ 0.013 
+ 0.011 
+ 3.0 
+ 3.9 
+ 0.046 
+ 1.2 
+ 0.100 
+ 0.011 
+ NN 2.02GA
+(OS/2) 
+ PPro
+200 MHz 
+ 0.015 
+ 0.001 
+ 0.018 
+ 0.023 
+ 0.010 
+ 0.010 
+ 0.004 
+ 0.021 
+ 0.014 
+ 0.009 
+ 5.1 
+ 6.2 
+ 0.180 
+ 7.7 
+ 0.029 
+ 0.018 
+ 
+Results for non-x86 architectures
+ 
+ Browser
+ CPU
+& speed
+ Null
+Loop
+ Local
+i=n
+ this.
+i=n
+ Array
+a[0]=n
+ Byte
+b++
+ Short
+s++
+ Int
+i++
+ Long
+l++
+ Float
+f++
+ Doub.
+d++
+ New
+obj.
+ int
+[10]
+ Call
+f()
+ Sync
+f()
+ Math
+abs()
+ Inline
+abs()
+ 
+ NN
+3.0b7 
+ 68040
+25 MHz 
+ 72.0 
+ 22.0 
+ 40.0 
+ 41.0 
+ 60.0 
+ 59.0 
+ 24.0 
+ 71.0 
+ 59.0 
+ 81.0 
+ 220.0 
+ 180.0 
+ 66.0 
+ 140.0 
+ 220.0 
+ 37.0 
+ 
+ NN
+3.0 
+ RS/6000
+40 MHz 
+ 5.900 
+ 0.890 
+ 2.400 
+ 2.700 
+ 3.200 
+ 3.100 
+ 0.340 
+ 4.000 
+ 2.300 
+ 2.600 
+ 61.0 
+ 71.0 
+ 7.800 
+ 45.0 
+ 16.00 
+ 1.200 
+ 
+ NN
+3.0 
+ PA7100
+60 MHz 
+ 1.800 
+ 0.700 
+ 1.200 
+ 1.900 
+ 1.900 
+ 1.800 
+ 0.43 
+ 2.300 
+ 1.600 
+ 2.300 
+ 15.0 
+ 16.0 
+ 4.000 
+ 24.0 
+ 9.100 
+ 1.200 
+ 
+ NN
+3.0 
+ PPC601
+66 MHz 
+ 1.700 
+ 0.770 
+ 1.100 
+ 1.800 
+ 1.900 
+ 2.000 
+ 0.460 
+ 2.900 
+ 1.500 
+ 1.900 
+ 29.0 
+ 37.0 
+ 4.600 
+ 24.0 
+ 7.800 
+ 0.870 
+ NN
+3.0 
+ PPC601
+80 MHz 
+ 1.100 
+ 0.450 
+ 0.900 
+ 0.950 
+ 1.100 
+ 1.100 
+ 0.260 
+ 1.100 
+ 0.890 
+ 0.950 
+ 18.0 
+ 22.0 
+ 2.700 
+ 14.0 
+ 4.800 
+ 0.560 
+ NN
+3.0 
+ PPC 604
+120 MHz 
+ 0.660 
+ 0.290 
+ 0.470 
+ 0.630 
+ 0.740 
+ 0.740 
+ 0.170 
+ 1.400 
+ 0.610 
+ 0.700 
+ 11.0 
+ 15.0 
+ 1.400 
+ 7.8 
+ 2.800 
+ 0.350 
+ NN
+3.0 
+ PPC 604
+120 MHz 
+ 0.540 
+ 0.250 
+ 0.360 
+ 0.490 
+ 0.570 
+ 0.570 
+ 0.120 
+ 1.100 
+ 0.470 
+ 0.540 
+ 14.0 
+ 37.0 
+ 1.500 
+ 7.2 
+ 2.800 
+ 0.270 
+ NN
+3.01 
+ PPC 603e
+180 MHz 
+ 0.430 
+ 0.180 
+ 0.310 
+ 0.450 
+ 0.460 
+ 0.460 
+ 0.100 
+ 0.720 
+ 0.390 
+ 0.430 
+ 11.0 
+ 13.0 
+ 1.900 
+ 7.500 
+ 2.0 
+ 0.210 
+ MRJ
+1.0 
+ PPC 603e
+180 MHz 
+ 0.690 
+ 0.300 
+ 0.490 
+ 0.680 
+ 0.750 
+ 0.750 
+ 0.160 
+ 0.700 
+ 0.600 
+ 0.640 
+ 6.1 
+ 8.6 
+ 1.200 
+ 7.0 
+ 2.300 
+ 0.320 
+ CW
+1.03 
+ PPC 603e
+180 MHz 
+ 0.290 
+ 0.110 
+ 0.170 
+ 0.230 
+ 0.270 
+ 0.270 
+ 0.070 
+ 0.260 
+ 0.220 
+ 0.270 
+ 6.1 
+ 11.0 
+ 0.410 
+ 16.0 
+ 0.910 
+ 0.130 
+ CW
+1.04b1 
+ PPC 603e
+180 MHz 
+ 0.079 
+ 0.012 
+ 0.056 
+ 0.096 
+ 0.024 
+ 0.024 
+ 0.004 
+ 0.041 
+ 0.047 
+ 0.072 
+ 6.9 
+ 14.0 
+ 0.400 
+ 13.0 
+ 0.610 
+ 0.034 
+ NN
+3.0 
+ PPC 604e
+180 MHz 
+ 0.370 
+ 0.160 
+ 0.260 
+ 0.350 
+ 0.410 
+ 0.410 
+ 0.097 
+ 0.800 
+ 0.340 
+ 0.390 
+ 6.3 
+ 9.8 
+ 0.780 
+ 4.4 
+ 1.600 
+ 0.200 
+ NN
+3.0 
+ PPC604e
+225 MHz 
+ 0.290 
+ 0.130 
+ 0.210 
+ 0.280 
+ 0.340 
+ 0.340 
+ 0.079 
+ 0.630 
+ 0.270 
+ 0.320 
+ 5.2 
+ 6.9 
+ 0.620 
+ 3.6 
+ 1.200 
+ 0.160 
+ 
+ NN
+3.0 
+ A21064
+133 MHz 
+ 0.990 
+ 0.470 
+ 0.750 
+ 1.000 
+ 1.300 
+ 1.300 
+ 0.270 
+ 1.100 
+ 1.000 
+ 1.200 
+ 25.0 
+ 20.0 
+ 2.200 
+ 15.0 
+ 4.800 
+ 0.640 
+ NN
+3.01 
+ 21064A
+233 MHz 
+ 0.670 
+ 0.270 
+ 0.430 
+ 0.580 
+ 0.670 
+ 0.670 
+ 0.160 
+ 0.590 
+ 0.590 
+ 0.630 
+ 12.0 
+ 11.0 
+ 1.400 
+ 9.4 
+ 3.800 
+ 0.320 
+ IE
+3.0 
+ A21164
+500 MHz 
+ 0.430 
+ 0.110 
+ 0.180 
+ 0.200 
+ 0.250 
+ 0.270 
+ 0.087 
+ 0.270 
+ 0.220 
+ 0.320 
+ 6.100 
+ 5.200 
+ 0.370 
+ 1.200 
+ 1.200 
+ 0.150 
+ 
+ NN
+3.0 
+ R4600
+100 MHz 
+ 1.000 
+ 0.500 
+ 0.790 
+ 1.100 
+ 1.100 
+ 1.100 
+ 0.260 
+ 1.000 
+ 0.920 
+ 1.000 
+ 17.0 
+ 25.0 
+ 2.000 
+ 11.0 
+ 4.800 
+ 0.520 
+ NN
+2.01S 
+ R4400
+150 MHz 
+ 0.770 
+ 0.380 
+ 0.760 
+ 0.850 
+ 0.910 
+ 0.920 
+ 0.220 
+ 0.900 
+ 0.800 
+ 0.940 
+ 11.0 
+ 37.0 
+ 1.800 
+ 15.0 
+ 3.800 
+ 0.490 
+ 
+ NN
+3.0 
+ Sparc5
+85 MHz 
+ 1.100 
+ 0.550 
+ 0.880 
+ 1.200 
+ 1.400 
+ 1.400 
+ 0.310 
+ 1.300 
+ 1.100 
+ 1.400 
+ 19.0 
+ 23.0 
+ 2.500 
+ 19.0 
+ 6.400 
+ 0.690 
+ 
+ JDK
+1.1 
+ Sparc5
+110 MHz 
+ 0.390 
+ 0.180 
+ 0.300 
+ 0.400 
+ 0.420 
+ 0.420 
+ 0.100 
+ 0.450 
+ 0.360 
+ 0.480 
+ 7.100 
+ 9.400 
+ 1.100 
+ 3.700 
+ 2.500 
+ 0.260 
+ JDK
+1.1 
+ Ultra 1
+170 MHz 
+ 0.330 
+ 0.150 
+ 0.250 
+ 0.340 
+ 0.410 
+ 0.410 
+ 0.097 
+ 0.370 
+ 0.320 
+ 0.360 
+ 3.5 
+ 4.9 
+ 0.490 
+ 2.100 
+ 1.200 
+ 0.180 
+ NN
+3.0 
+ UltraSPARC
+167 MHz 
+ 0.540 
+ 0.300 
+ 0.450 
+ 0.630 
+ 0.750 
+ 0.740 
+ 0.170 
+ 0.650 
+ 0.600 
+ 0.850 
+ 6.2 
+ 7.6 
+ 1.200 
+ 4.4 
+ 2.500 
+ 0.330 
+ Guava
+(proto) 
+ UltraSPARC
+167 MHz 
+ 0.024 
+ 0.005 
+ 0.006 
+ 0.036 
+ 0.024 
+ 0.024 
+ 0.003 
+ 0.030 
+ 0.150 
+ 0.280 
+ 22.0 
+ 9.9 
+ 0.170 
+ 3.8 
+ 0.960 
+ 0.740 
+ 
+Contributors
+ 
+- Andrew Begel: Power Mac 7500/120, System 7.5.5, 32MB, 0kB.
+ 
+- Ron Bolin: SuperMicro PP 200, FreeBSD 3.0, 128MB, 256kB.
+ 
+- Christophe Boulange: Pentium 120, Windows NT 4.0, 32MB, 256kB.
+ 
+- Jean Brouwers: Power Mac 7100/80, System 7.5, 40MB, 256kB.
+ 
+- Peter Caven: AMD DX4-100, Windows 95, 32MB, 256kB.
+ 
+- Edwin Chan: Micron Millenia Pro, Windows NT 4.0, 64MB, 256kB.
+ 
+- John Cowan: IBM PC 750-P90, Windows NT 4.0 b2, 32MB.
+ 
+- Robert Crosbie: Pentium 75, Windows 95, 16MB, 256kB.
+ 
+- He Da-ke: PowerMac 7200/120, System 7.5.5, 40MB, 256kB.
+ 
+- Dieter: PowerMac
+ 8500, System 7.6, 80MB, 256kB.
+ 
+- Sam Felton: DEC Rebel AVL, WinNT 4.0, 32MB, 512kB.
+ 
+- Jeremy Fitzhardinge: Sun Ultra Enterprise 1, Solaris 2.5.1.
+ 
+- Achim Gratz: Sun Ultra 1/170E, Solaris 2.5.
+ 
+- Achim Gratz: Sun SparcStation 5/110, Solaris 2.5.
+ 
+- Brian Griffith: PowerComputing PowerBase 180, System 7.6,
+ 48MB, 256kB.
+ 
+- Jonathan Hardwick: DEC 3000/400, OSF 3.2, 64MB, 512kB.
+ 
+- Jonathan Hardwick: HP 712/60, HP-UX 9.03, 32MB, 96kB.
+ 
+- Jonathan Hardwick: IBM 25T, AIX 3.2.5, 32MB, 0kB.
+ 
+- Jonathan Hardwick: SPARCstation 5/85, Solaris 2.5, 32MB,
+ 24kB.
+ 
+- Philippe Huybrechts: Pentium 133, OS/2 Warp 4 (IBM JDK), 64MB,
+ 512kB.
+ 
+- Chris Kelly: Macintosh Centris 650, System 7.5.1, 8MB, 0kB.
+ 
+- Joe Maziasz: Pentium 166, OS/2 v4.0, 64MB, 512kB.
+ 
+- Myche McAuley: SGI Indy, Irix 5.3, 160MB, 1MB.
+ 
+- Matthew Mung: Pentium 60, Windows NT 4.0, 32MB, 256kB.
+ 
+- Jonathan McPhillips: Pentium Overdrive 83, Linux 2.0.18, 16MB,
+ 128kB.
+ 
+- Jonathan McPhillips: Power Mac 6100/66, System 7.5.3,
+ 24MB, 256 Kb.
+ 
+- Matthew Mung: Digital Venturis 5133, Windows 95, 32MB, 256kB.
+ 
+- Ronaldo Nascimento: Power Mac 9500/120, System 7.5.3, 132MB,
+ 512kB.
+ 
+- Graham Nicholls: Dell XPS P133C, Windows 95, 32MB, 512kB.
+ 
+- Kaz Okuda: 486 DX2-66, OS/2 v4.0 (using IBM's JDK 1.02), 20MB,
+ 128kB.
+ 
+- James Robinson: Pentium 100, FreeBSD 2.1.6, 48MB, 256kB.
+ 
+- Noam Sadot: Pentium 133, Windows 95, 32 MB.
+ 
+- William Saphir: Power Mac 7100/66, System 7.5.3, 16MB, 256kB.
+ 
+- Mike Salim: IBM RS/6000 model 530, AIX 3.2.5, 64MB.
+ 
+- John Simpson: Dell Pentium 100, Windows 95, 32MB, 256kB.
+ 
+- Matthias Suencksen:
+ AMD DX4-133, Linux, 32MB, 256kB.
+ 
+- Blake Sullivan: PowerTower Pro 225, System 7.5.5, 64MB, 1MB.
+ 
+- Richard Tomasso: AlphaStation 400 4/233,
+ Digital Unix 4.0b, 144MB, 512kB.
+ 
+- Tony Sweeney: Sun Ultra 2, Solaris 2.5.1, 64MB.
+ 
+- Chua Teng Thiam: Pentium Pro 200, OS/2 v4.0, 64MB, 256kB.
+ 
+- Ed Tomlinson: Pentium 100, OS/2 v4.0.
+ 
+- Ed Tomlinson: Pentium 100, OS/2 v4.0 (using IBM's JDK 1.02
+ ESV).
+ 
+- Jeroen van der Most: SGI Indy, Irix 5.3, 32MB, 32kB.
+ 
+- Magnus Walldal: Compaq Deskpro 6000, Windows NT 4.0, 32MB, 256kB.
+See also older results for previous versions
+of the microbenchmarks.
+Source code is available on request.
+ 
+ http://www.cs.cmu.edu/~jch/java/microbench.html 
+ Java Microbenchmark Applet 
+ 
+ 
+ Last modified: Wed 21 May 1997 
+ Copyright &#169 1996, 1997 Jonathan Hardwick 
+ 

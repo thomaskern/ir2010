@@ -1,0 +1,29 @@
+
+	VBUG News Group
+	
+If you are posting code, surround it with [code] [/code] tags - it helps preserve the formatting and spacing.
+Hello,
+Can someone please tell me how to pass array control to a function in VB.
+This is what I want to do. I want to write a function which loads a shape with index. Then I would like to re-use that code to load several shapes:
+I think a part of the code should look like this....
+1) code for the function:
+public function load_shape(shape,n)
+for i=1 to n
+load shape(i)
+....
+next i
+2) code to call function:
+load_shape(shp1,5)
+Who can help me?
+Thanks Leonardo
+ 
+	Name 
+ 
+	Email Address 
+ 
+	Subject: 
+	 
+	 
+	 
+	
+	

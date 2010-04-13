@@ -1,0 +1,41 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+List Boxes & Combo Boxes
+List boxes and Combo boxes are very useful in programs. They hold data that you put in them, and can also be changed at runtime. You will often find yourself using one when you need the user to choose data in the list/combo box, or you can use them to show the user data...
+List Boxes
+They are usually used for showing lists of things, for example a list of all your friends.
+List box properties:
+Columns - This determines the number of columns in a list box
+List - Lists hold the data in your list box (ex. your friends names)
+MultiSelect - MultiSelect, meaning you can highlight/select more then one item at the same time.
+Sorted - Means that the list boxes data (your friends names) is sorted automatically, not the way you entered them
+Style - Determines the list box's style
+.ListCount - Counts the number of items in your list
+.Selected - Does something w/ selected item
+Now here are some list box methods:
+.AddItem - Adds the item to a list
+.Clear - Clears the whole list
+.RemoveItem - Removes the item
+Coding example...
+ Private Sub Command1_Click()
+ List1.AddItem Text1.Text
+ 'Adds Text1.Text (whatever the text is) to the list
+ End Sub
+Example
+List1.RemoveItem List1.ListIndex 
+'Removes the selected item by using the index property
+Now for instance lets say you had a button to clear your list, your code would be something like "List1.Clear." As for Removing an item, well every item in the list box has a subscript, or a value for it. Your first Item's subscript by default is the number 0, but you can change the subscripts by changing the number in the ItemData (in list box properties). Many programmers switch the first subscript to 1 instead of 0. Now the more items you have in your listbox the higher the subscript should be, 1 then 2, then 3 etc... Back to .Removing an item it would be something like this; List1.RemoveItem(0) that removes the Item from the subscript 0 & then higher.
+Combo Boxes
+They are pretty much the same as list boxes. Most of the methods you learned above work the same w/ Combo boxes.
+Combo box properties:
+List - Enter values into the combo box
+Sorted - Determines if the combo box is sorted or just left the way you entered the items
+Style - This determines the style/type of your combo box, there are 3 types by the way
+Coding example...
+ Private Sub Command1_Click()
+ Label1.Caption = Combo1.ListCount
+ 'Shows the number of things in the combo box
+ End Sub
+That's about it for list boxes & combo boxes (Look for an example in the DL example sec), lets see what's next...
+Back
+Next

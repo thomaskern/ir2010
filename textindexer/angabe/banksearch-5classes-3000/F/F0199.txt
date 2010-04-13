@@ -1,0 +1,711 @@
+
+Visual Basic and Winsock API - End points of the connection
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - End 
+ points of the connection 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+End points of the connection
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ 
+ Winsock API Test Bench 5 project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+If you are familiar with the Winsock ActiveX 
+ Control, you probably know something about its properties which provide 
+ information about end-points of the connection established between two 
+ computers via TCP/IP. I'm talking about the following properties:
+ 
+ 
+- 
+ 
+ 
+ LocalIP
+ 
+ 
+- 
+ 
+ 
+ LocalHostName
+ 
+ 
+- 
+ 
+ 
+ LocalPort
+ 
+ 
+- 
+ 
+ 
+ RemoteHostIP
+ 
+ 
+- 
+ 
+ 
+ RemoteHost
+ 
+ 
+- 
+ 
+ 
+ RemotePort
+ 
+ 
+ 
+Today we'll learn how to use two functions from 
+ the Winsock API that allow us to retrieve such an information at any 
+ time of the communication session between connected hosts.
+ 
+ 
+getsockname and 
+ getpeername 
+ functions
+ 
+ 
+In most cases you'll know properties of the remote 
+ end-point of the connection without any additional efforts, cause you 
+ just cannot establish the connection without providing the 
+ connect 
+ Winsock API function with values of remote host address and port number. 
+ That's OK to hold those values in some global variables, if you use just 
+ one socket in your application. But what about several or dozens of 
+ sockets. In this case you should develop some data structure (like 
+ 3-demantional array or a simple array of UDT's) to hold those values for 
+ each socket. The 
+ 
+ getpeername function saves us from that.
+ 
+Declare Function 
+ getpeername _
+ Lib "ws2_32.dll" (ByVal 
+ s As Long, ByRef 
+ name As sockaddr_in, _
+ 
+ ByRef namelen 
+ As Long) As Long
+ 
+In order to retrieve the remote end-point 
+ properties, you should provide this function with the socket handle (the
+ s argument), empty
+ 
+ 
+ sockaddr_in structure (the name 
+ argument), and length of the structure (the 
+ namelen argument). If the function returned 0, you can 
+ retrieve the host address and port number from the corresponding members 
+ of the structure; you already know how to do that, if you have read the 
+ previous article.
+ 
+Ok. What about the local end-point of the 
+ connection? When you call the connect function you do not provide it 
+ with the local host address (your system may have two or more IPs) and 
+ port number. Which ones are used by default in order to establish the 
+ connection? To find out the answer call the 
+ 
+ getsockname Winsock API function:
+ 
+Declare Function 
+ getsockname _
+ Lib "ws2_32.dll" (ByVal s
+ As Long, ByRef 
+ name As sockaddr_in, 
+ _
+ 
+ ByRef namelen As Long)
+ As Long
+ 
+ 
+ 
+ 
+Actually, you can bind a socket to a specified local 
+ IP address and IP port using the 
+ bind 
+ Winsock API function. We'll talk about this function in the next article.
+ 
+ 
+ 
+As you can see, the 
+ 
+ getsockname function looks exactly like the
+ 
+ 
+ getpeername one. It has got the same set of arguments, and I ensure you the same behavior. 
+ 
+Since we should do the same things in order to 
+ extract the end-points' properties using these functions, I have got an 
+ idea to develop a single function for the sample application that will 
+ return a single value - specified by an argument of the function.
+ 
+ 
+The GetIPEndPointField function
+ 
+ 
+Firstly, let's declare a new enumeration type - 
+ IPEndPointFields.
+ 
+ 
+ 
+ 
+Public Enum IPEndPointFields 
+ LOCAL_HOST 
+ LOCAL_HOST_IP 
+ LOCAL_PORT 
+ REMOTE_HOST 
+ REMOTE_HOST_IP 
+ REMOTE_PORT 
+End Enum
+ 
+ 
+ 
+This type will be used by the function to 
+ determine what value to return. See the code of the function to get an 
+ idea how it works.
+ 
+ 
+ 
+ 
+Public Function GetIPEndPointField(ByVal lngSocket As Long, _
+ ByVal EndPointField As IPEndPointFields) As Variant 
+'********************************************************************************
+'Purpose :Retrieves IP address or host name or port number of
+' an end-point of the connection established
+' on the socket - lngSocket
+'Returns :If no errors occurres, the function returns the value
+' requested by the EndPointField argument.
+' Otherwise, it returns the value of SOCKET_ERROR
+'Arguments :
+' lngSocket - socket's handle. The socket must be connected to the remote host.
+' EndPointField - specifies the value to return:
+' LOCAL_HOST
+' LOCAL_HOST_IP
+' LOCAL_PORT
+' REMOTE_HOST
+' REMOTE_HOST_IP
+' REMOTE_PORT
+'********************************************************************************
+ '
+ Dim udtSocketAddress As sockaddr_in 
+ Dim lngReturnValue As Long 
+ Dim lngPtrToAddress As Long 
+ '
+ On Error GoTo ERROR_HANDLER 
+ '
+ Select Case EndPointField 
+ Case LOCAL_HOST, LOCAL_HOST_IP, LOCAL_PORT 
+ '
+ 'If the info of a local end-point of the connection is
+ 'requested, call the getsockname Winsock API function
+ lngReturnValue = getsockname(lngSocket, udtSocketAddress, LenB(udtSocketAddress)) 
+ '
+ Case REMOTE_HOST, REMOTE_HOST_IP, REMOTE_PORT 
+ '
+ 'If the info of a remote end-point of the connection is
+ 'requested, call the getpeername Winsock API function
+ lngReturnValue = getpeername(lngSocket, udtSocketAddress, LenB(udtSocketAddress)) 
+ '
+ End Select '->EndPointField
+ '
+ If lngReturnValue = 0 Then 
+ '
+ 'If no errors were occurred, the getsockname or getpeername
+ 'function returns 0.
+ '
+ Select Case EndPointField 
+ Case LOCAL_PORT, REMOTE_PORT 
+ '
+ 'If the port number is requested, retrieve that value
+ 'from the sin_port member of the udtSocketAddress
+ 'structure, and change the byte order of that value from
+ 'the network to host byte order.
+ GetIPEndPointField = IntegerToUnsigned(ntohs(udtSocketAddress.sin_port)) 
+ '
+ Case LOCAL_HOST_IP, REMOTE_HOST_IP 
+ '
+ 'The host address is stored in the sin_addr member of the structure
+ 'as 4-byte value.
+ '
+ 'To get an IP address of the host:
+ '
+ 'Get pointer to the string that contains the IP address
+ lngPtrToAddress = inet_ntoa(udtSocketAddress.sin_addr) 
+ '
+ 'Retrieve that string by the pointer
+ GetIPEndPointField = StringFromPointer(lngPtrToAddress) 
+ '
+ Case LOCAL_HOST, REMOTE_HOST 
+ '
+ 'The same procedure as for an IP address.
+ 'But here is the GetHostNameByAddress function call
+ 'to retrieve host name by IP address.
+ lngPtrToAddress = inet_ntoa(udtSocketAddress.sin_addr) 
+ GetIPEndPointField = GetHostNameByAddress(StringFromPointer(lngPtrToAddress)) 
+ '
+ End Select '->
+ '
+ Else 
+ '
+ GetIPEndPointField = SOCKET_ERROR 
+ '
+ End If '->lngReturnValue = 0
+ '
+EXIT_LABEL: 
+ Exit Function 
+ERROR_HANDLER: 
+ GetIPEndPointField = SOCKET_ERROR 
+ 
+End Function 
+ 
+ 
+ 
+ 
+The GetHostNameByAddress function was 
+ developed in the first part of this tutorial series; see the
+ "How to get host name 
+ by IP address" article for more info.
+ 
+ 
+Modifying the sample application
+ 
+ 
+We are to add a new feature to the TestBench sample application. If 
+ the user clicks the Connect button in the case the selected socket is 
+ already connected to the remote host, a dialog window will be displayed 
+ to inform the user about the connection's end-points parameters.
+ 
+Add to the project a new form. Name it as 
+ frmConnectionInfo. Place on the form two frames controls, 12 labels, and a command button as shown in the picture. 
+ 
+ 
+All the parameters of both end-points of the 
+ connection will be retrieved during the loading of the form - in the 
+ Form_Load event procedure. Take a look at the code for the form:
+ 
+ 
+ 
+ 
+Option Explicit 
+'local variable for SocketHandle property
+Private m_lngSocketHandle As Long 
+Public Property Let SocketHandle(NewValue As Long) 
+ m_lngSocketHandle = NewValue 
+End Property 
+Private Sub cmdClose_Click() 
+ Unload Me 
+End Sub 
+Private Sub Form_Load() 
+ 
+ If m_lngSocketHandle > 0 Then 
+ 
+ lblLocalHost.Caption = GetIPEndPointField(m_lngSocketHandle, LOCAL_HOST) 
+ lblLocalIPAddress.Caption = GetIPEndPointField(m_lngSocketHandle, LOCAL_HOST_IP) 
+ lblLocalPort.Caption = GetIPEndPointField(m_lngSocketHandle, LOCAL_PORT) 
+ lblRemoteHost.Caption = GetIPEndPointField(m_lngSocketHandle, REMOTE_HOST) 
+ lblRemoteIPAddress.Caption = GetIPEndPointField(m_lngSocketHandle, REMOTE_HOST_IP) 
+ lblRemotePort.Caption = GetIPEndPointField(m_lngSocketHandle, REMOTE_PORT) 
+ 
+ End If 
+ 
+End Sub 
+ 
+ 
+ 
+ 
+As you can see, a new property of the form is 
+ created - SocketHandle. This property is just to pass the value of a 
+ socket handle to the form, and thus it must be initialized before the 
+ call of the Show method of the form. See how the
+ cmdConnect_Click event 
+ procedure is changed:
+ 
+ . . .
+ Dim lngRetValue As Long 
+ '
+ 'Check for existence of the socket
+ If Not lvSockets.SelectedItem Is Nothing Then 
+ 
+ 
+ 
+ '
+ If lvSockets.SelectedItem.Bold Then 
+ '
+ Dim frmInfo As frmConnectionInfo 
+ Set frmInfo = New frmConnectionInfo 
+ '
+ frmInfo.SocketHandle = CLng(lvSockets.SelectedItem.Text) 
+ '
+ frmInfo.Show vbModal 
+ '
+ Exit Sub 
+ '
+ End If 
+ ' 
+ 
+ 
+ 'Create an instance of the frmConnect
+ Set frm = New frmConnect 
+ '
+ With frm 
+ ' 
+ 
+ 
+At this moment, we don't know how to find out the 
+ state of a socket using the Winsock API. So, the program does check the 
+ Bold property of the list item to find out that the socket is already 
+ connected. 
+ 
+ 
+If you have read the previous article, you 
+ should know that the sample application marks connected sockets with a 
+ bold font in the list view control.
+ 
+ 
+At the next step, the program creates an instance 
+ of the frmConnectionInfo form, passes value of the socket's handle to 
+ the form through the SocketHandle property, and finally calls the 
+ Show 
+ method to display the form.
+ 
+ 
+Testing the sample application
+ 
+ 
+Press F5 to run the application. Create a new 
+ socket with the parameters shown in the table:
+ 
+ 
+ 
+ 
+ Address family 
+ AF_INET 
+ 
+ 
+ Socket type 
+ SOCK_STREAM 
+ 
+ 
+ Protocol 
+ IPPROTO_TCP 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Click the Connect button, then enter some values 
+ of the host address and port number in the Connect dialog box:
+ 
+ 
+ 
+Click the Connect button on the dialog box. 
+ 
+ 
+ 
+Now click the Connect button one more time. You 
+ should see the dialog window that displays parameters of the end-points 
+ of the connection.
+ 
+ 
+ 
+Conclusion
+ 
+ 
+I don't like how the app is designed regarding the
+ GetIPEndPointField function, maybe 
+ because it returns the Variant, maybe 
+ because it's too universal. But I have found it is suitable for this 
+ sample application. In "a real life programming" you can use the 
+ 
+ getpeername and 
+ 
+ getsockname functions by other ways. Anyway, my work for today is 
+ done - you should know what those functions are for, and how they work. 
+ Also you learned today that the Winsock service chooses the IP address 
+ and port number for you by default. But you can control this - you can 
+ assign both the local IP address and the local port number for a socket 
+ using the 
+ bind Winsock API function we 
+ are going to talk about in the next article.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+port # as integer
+	Joseph Dunne Thursday, November 01, 2001	
+	
+	
+	
+GetHostNameByAddress 
+	John Smith Monday, November 26, 2001	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - End 
+ points of the connection 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

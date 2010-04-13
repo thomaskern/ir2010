@@ -1,0 +1,154 @@
+Zeto - CryptDLL
+ 
+ 
+Home
+ 
+Resources
+ 
+Applications
+ 
+Source Code
+ 
+VB Tutorial
+ 
+Links
+ 
+ Mail Zeto
+ 
+ 
+ 
+ Source Code Listing - FileInfo 
+ 
+ 
+Retrieve information about a file, such as its attribues, size, and creation, write, and access dates.
+Download this code (2k)
+Declare Function FindFirstFile Lib "kernel32" Alias "FindFirstFileA" (ByVal lpFileName As String, lpFindFileData As WIN32_FIND_DATA) As Long
+Declare Function FindClose Lib "kernel32" (ByVal hFindFile As Long) As Long
+Declare Function FileTimeToSystemTime Lib "kernel32" (lpFileTime As FILETIME, lpSystemTime As SYSTEMTIME) As Long
+Public Const FILE_ATTRIBUTE_READONLY = &H1
+Public Const FILE_ATTRIBUTE_HIDDEN = &H2
+Public Const FILE_ATTRIBUTE_SYSTEM = &H4
+Public Const FILE_ATTRIBUTE_DIRECTORY = &H10
+Public Const FILE_ATTRIBUTE_ARCHIVE = &H20
+Public Const FILE_ATTRIBUTE_NORMAL = &H80
+Public Const FILE_ATTRIBUTE_TEMPORARY = &H100
+Public Const FILE_ATTRIBUTE_COMPRESSED = &H800
+Type CustFILETIME
+ cuYear As Integer
+ cuMonth As Integer
+ cuDay As Integer
+ cuHour As Integer
+ cuMin As Integer
+ cuSec As Integer
+End Type
+Type custFILEINFO
+ cuFileName As String
+ cuAlternate As String
+ cuCreationTime As CustFILETIME
+ cuWriteTime As CustFILETIME
+ cuAccessTime As CustFILETIME
+ cuFileSize As String
+ cuAtrHidden As Boolean
+ cuAtrSystem As Boolean
+ cuAtrReadOnly As Boolean
+ cuAtrArchive As Boolean
+ cuAtrTemp As Boolean
+ cuAtrNormal As Boolean
+ cuAtrCompressed As Boolean
+End Type
+Type FILETIME
+ LowDateTime As Long
+ HighDateTime As Long
+End Type
+Type WIN32_FIND_DATA
+ dwFileAttributes As Long
+ ftCreationTime As FILETIME
+ ftLastAccessTime As FILETIME
+ ftLastWriteTime As FILETIME
+ nFileSizeHigh As Long
+ nFileSizeLow As Long
+ dwReserved0 As Long
+ dwReserved1 As Long
+ cFileName As String * 260
+ cAlternate As String * 14
+End Type
+Type SYSTEMTIME
+ wYear As Integer
+ wMonth As Integer
+ wDayOfWeek As Integer
+ wDay As Integer
+ wHour As Integer
+ wMinute As Integer
+ wSecond As Integer
+ wMilliseconds As Integer
+End Type
+Private Function Findfile(vFileName) As WIN32_FIND_DATA
+ Dim mFileInfo As WIN32_FIND_DATA
+ Dim mFirstFile As Long
+ Dim lretval As Long
+ mFirstFile = FindFirstFile(vFileName, mFileInfo)
+ If mFirstFile = 0 Then
+ Findfile.cFileName = "Error"
+ Else
+ Findfile = mFileInfo
+ End If
+ lretval = FindClose(mFirstFile)
+End Function
+Public Function GetFileInfo(mFileName As String) As custFILEINFO
+Dim cTime As SYSTEMTIME
+Dim mFileData As WIN32_FIND_DATA
+mFileData = Findfile(mFileName)
+GetFileInfo.cuFileName = mFileName
+GetFileInfo.cuAlternate = mFileData.cAlternate
+If mFileData.nFileSizeHigh = 0 Then
+ GetFileInfo.cuFileSize = mFileData.nFileSizeLow & "Bytes"
+Else
+ GetFileInfo.cuFileSize = mFileData.nFileSizeHigh & "Bytes"
+End If
+FileTimeToSystemTime mFileData.ftCreationTime, cTime
+GetFileInfo.cuCreationTime.cuYear = cTime.wYear
+GetFileInfo.cuCreationTime.cuMonth = cTime.wMonth
+GetFileInfo.cuCreationTime.cuDay = cTime.wDay
+GetFileInfo.cuCreationTime.cuHour = cTime.wHour
+GetFileInfo.cuCreationTime.cuMin = cTime.wMinute
+GetFileInfo.cuCreationTime.cuSec = cTime.wSecond
+FileTimeToSystemTime mFileData.ftLastWriteTime, cTime
+GetFileInfo.cuWriteTime.cuYear = cTime.wYear
+GetFileInfo.cuWriteTime.cuMonth = cTime.wMonth
+GetFileInfo.cuWriteTime.cuDay = cTime.wDay
+GetFileInfo.cuWriteTime.cuHour = cTime.wHour
+GetFileInfo.cuWriteTime.cuMin = cTime.wMinute
+GetFileInfo.cuWriteTime.cuSec = cTime.wSecond
+FileTimeToSystemTime mFileData.ftLastAccessTime, cTime
+GetFileInfo.cuAccessTime.cuYear = cTime.wYear
+GetFileInfo.cuAccessTime.cuMonth = cTime.wMonth
+GetFileInfo.cuAccessTime.cuDay = cTime.wDay
+GetFileInfo.cuAccessTime.cuHour = cTime.wHour
+GetFileInfo.cuAccessTime.cuMin = cTime.wMinute
+GetFileInfo.cuAccessTime.cuSec = cTime.wSecond
+GetFileInfo.cuAtrHidden = False
+GetFileInfo.cuAtrSystem = False
+GetFileInfo.cuAtrReadOnly = False
+GetFileInfo.cuAtrArchive = False
+GetFileInfo.cuAtrTemp = False
+GetFileInfo.cuAtrNormal = False
+GetFileInfo.cuAtrCompressed = False
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_HIDDEN) = FILE_ATTRIBUTE_HIDDEN Then: GetFileInfo.cuAtrHidden = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_SYSTEM) = FILE_ATTRIBUTE_SYSTEM Then: GetFileInfo.cuAtrSystem = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_READONLY) = FILE_ATTRIBUTE_READONLY Then: GetFileInfo.cuAtrReadOnly = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_ARCHIVE) = FILE_ATTRIBUTE_ARCHIVE Then: GetFileInfo.cuAtrArchive = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_TEMPORARY) = FILE_ATTRIBUTE_TEMPORARY Then: GetFileInfo.cuAtrTemp = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_NORMAL) = FILE_ATTRIBUTE_NORMAL Then: GetFileInfo.cuAtrNormal = True
+If (mFileData.dwFileAttributes And FILE_ATTRIBUTE_COMPRESSED) = FILE_ATTRIBUTE_COMPRESSED Then: GetFileInfo.cuAtrCompressed = True
+End Function
+Example of a call:
+ 
+Dim lRetVal as custFILEINFO
+ 
+lRetVal = GetFileInfo(filename)
+ 
+Msgbox lRetVal.cuAtrArchive 'Archive proerty of "filename" (true or false)
+ 
+Msgbox lRetVal.cuWriteTime.cuDay 'Returns day of month "filename" was last written to
+© Zeto 1999. All Rights Reserved.
+ 

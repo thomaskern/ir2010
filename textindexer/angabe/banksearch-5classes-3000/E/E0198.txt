@@ -1,0 +1,552 @@
+
+Developer Productivity
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Evaluation Guide
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Developer Productivity
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Download 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6evalguide.exe 
+ 
+ 
+	 
+ 1000 KB file 
+	
+	
+ 
+	 
+ 5 min @ 28.8 Kbps 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Windows 2000 Ready 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Developer Productivity 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Highest Performance and Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest Platform, Internet, and Component Support 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Enterprise Application Development 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	 
+	Community and Training 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual C++ 6.0 includes several features specifically intended to enhance developer productivity where it matters most&#151;without sacrificing flexibility, performance, or control. Significant innovations in the integrated development environment (IDE), the debugger, and the many wizards in Visual C++:
+- Make it easier than ever to write C++ code. Enable the IDE to assist the developer in writing C++ code by providing statement completion, function and member information, and easy API access. Provide the most up-to-date graphical view of the code for easier navigation.
+- Provide powerful, flexible debugging tools that save significant development time. Make debugging as intuitive and flexible as possible by allowing developers to change code while debugging and see the changes reflected in that same debugging session. Simplify application status information and provide detailed information on what modules are loaded.
+- Quickly generate functional, full-featured applications. Provide developers with the widest range of project options and then make creation of these projects as simple as possible without sacrificing control. Reduce development time by generating much of the code automatically, based on the chosen options.
+- Capitalize on the richness and functionality of existing applications. Simplify the encapsulation and extension of existing applications with an absolute minimum requirement for new code, while allowing end users to utilize familiar techniques in familiar environments.
+- Support multiple monitors and efficient automation. Allow developers to configure the tool as they see fit and provide a simple mechanism to automate common, repetitive tasks.
+Performance and Control
+Users of Visual C++ cite the optimizing compiler, fast compile and link times, and small, fast executables as three of their top five reasons to use Visual C++. Clearly, the performance of generated applications and of the tool itself are important to developers using Visual C++. To exploit the performance Visual C++ can provide to their applications, developers want the ability to code directly to Windows APIs. Making available a large number of APIs and supporting standards is thus very important. When developers combine control and performance they are able to produce the fastest and most scalable code for distributed, enterprise scenarios. In these areas, Visual C++ 6.0 focuses on:
+- Enhancing compiler throughput and flexibility. Decrease compile time to shorten the overall turnaround cycle for a given project. Support custom scenarios by compiling and building as flexibly as possible. 
+- Generating the fastest compiled code. Continue to optimize the compiler to provide developers with the fastest and smallest code by supporting additional optimizations and special features of key microprocessors.
+- Improving application performance with more control over DLL loading. Enable applications to load only the code they need when they need it for better application performance.
+- Supporting important standards and APIs. Make APIs more discoverable and usable in the environment. Support key language and operating systems standards, as well as hardware, network, legacy, database, and Internet standards to meet the diverse needs of enterprise developers.
+Latest Platform, Internet, and Component Development Support
+ 
+The majority of customers using Visual C++ identify support for the latest Microsoft user interface innovations as a key factor in deciding to use Visual C++. Support must be up to date for professional developers to meet their customers' requirements and to avoid sacrificing usability and functionality. These customers seek frameworks that can encapsulate user interface innovations and provide consistent usage models. Because many of these customers rely on multitier Internet or intranet solutions as key aspects of their businesses, tool support for component development and the latest Internet and Web technologies are essential. Visual C++ 6.0 relies on libraries and a powerful component object model to provide:
+- Access to tested and proven UI elements and controls. Support the latest controls and simplify their use with graphical placement and manipulation. Make these user interface innovations part of the platform application framework to ensure they are accessible.
+- Support for the latest Web technologies. Evolve Web support to include the latest standards like Dynamic HTML. Support the creation of applications and content that have a Web-based (browser) usage model.
+- Support for Web server development. Allow developers to write code to customize Internet Information Server and include up-to-date, native support for the core Internet protocols.
+- Support for combining controls. Reduce coding requirements by allowing controls to be easily combined and reused. Make this functionality available for ActiveX and Windows controls.
+- Simplified component development and expedited code reuse.
+Extend COM support and allow for wizard-based creation of a wide range of COM objects.
+Enterprise Application Development
+As the use of information technology changes to meet new business needs, the very definition of "enterprise applications" is also evolving. While enterprise infrastructures and applications vary widely across organizations, common attributes of "enterprise" applications include:
+- They are component based for flexibility and scalability.
+- They require life cycle support, including design, development, management, and analysis.
+- They require more sophisticated database architectures.
+- They are developed by teams. 
+- They are distributed in nature and integrated with disparate back-end systems.
+Developers using Visual C++ who acquire Visual Studio, Enterprise Edition receive additional enterprise development features to address these needs including a complete suite for component-based development, enterprise database features, enhanced lifecycle productivity inclusive of application design, performance analysis, and deployment tools, team development support, and development versions of the Microsoft BackOffice family of applications servers.
+Visual C++ 6.0 also provides additional new features for building enterprise applications. These features provide the most comprehensive control of execution and scalability, as well as support for revolutionary platform technologies and flexible data programming. In fact, Visual C++ provides the most thorough support for Microsoft's Universal Data Access strategy&#151;including ADO and OLE DB&#151;to provide efficient access to all types of data on the widest variety of systems.
+The productivity advances in Visual C++ 6.0 dramatically increase turnaround time while making coding C++ much faster and more accessible&#151;without generating unnecessary code or making assumptions about what the developer is trying to do. Of course, control at the lowest level is present if developers choose to access it. Visual C++ includes numerous productivity enhancements in the IDE, in standards and technology accessibility, and in hardware support.
+IntelliSense Technology
+Five IntelliSense features in Visual C++ 6.0 speed development time by monitoring what is typed and by assisting with code syntax, parameter information, APIs, and more:
+- Complete word automatically completes the rest of a variable or function name once it has identified enough characters to do so. 
+- Auto list members opens a drop-down menu in the editor that contains a list of valid member variables or functions for the selected class or structure. When this feature is used on a blank line, a global list of methods and members is displayed, including system API functions, C++ classes, and variables. Selecting from the list inserts the member into the code.
+- Auto parameter info displays the complete prototype, including a parameter list, for a function when the open parenthesis is typed immediately after the function name. The parameter in bold indicates the next parameter required as you type the function. With overloaded functions, the parameter list gives the user a choice of which function to use.
+- Auto type info displays the complete declaration for any identifier in a pop-up window when the mouse cursor is positioned over the identifier. 
+- Code comments displays comments in a ToolTip window for the functions selected in the members drop-down list (see above). By default, any comments in the source code that use the "//", "/*", and "*/" delimiters are displayed.
+Figure 1: Auto List Members is one example of IntelliSense technology in Visual C++ 6.0. Here the user is provided with a drop-down menu of methods appropriate for an instance of a CAboutDlg object.
+Dynamic ClassView Updating
+Dynamic ClassView updating increases developer productivity and has the added benefit of relaying the most up-to-date information to the programmer. The ClassView tab of the Project Workspace window displays the classes and their members for all projects on the workspace. When a new class definition, variable, or member function is added to a source file, ClassView is automatically updated to reflect the existence of the new item. No rebuild is required. The opposite scenario also applies: when an addition or deletion is made in ClassView, the source code is automatically updated to reflect the change. Navigation is also improved because developers can now jump directly from a class that implements a dialog box to the dialog editor. Finally, classes are more easily modified with the member function deletion available through the ClassView pop-up menu and the WizardBar.
+Both the new IntelliSense technology and Dynamic ClassView updating in Visual C++ 6.0 rely on the new Dynamic Parsing capability of the Visual C++ IDE. Dynamic Parsing parses code as it is typed to update the IDE automatically. More than simply providing C++ code snippets like some other tools, Dynamic Parsing allows Visual C++ to intelligently predict, assist, and focus the coding process. Developers can easily turn off the features enabled by Dynamic Parsing.
+Powerful and Flexible Debugging Tools
+Users of Visual C++ cite the integrated debugger as the feature most important to them in Visual C++ and the feature most likely to bring them to Visual C++ for their next development project. With Visual C++ 6.0, the debugger has been updated to provide developers with even greater productivity and detailed information about the state of their system and their code.
+Edit and Continue
+Edit and Continue allows developers to change source code during a debugging session and then continue-without forcing an end to the session, a subsequent rebuild, and reinstantiation of the debugger. For example, while debugging, a user could change the number of times a particular loop is executed, and the Edit and Continue feature will allow the debugging session to continue uninterrupted. Changes are simply recompiled and applied to the executable's image in memory. Edit and Continue dramatically improves turnaround, especially on large projects, by saving developers the time it takes to stop and restart the debugger, rebuild, and return the application to the state it was in when the bug occurred.
+Making Edit and Continue possible required significant changes to many parts of Visual C++. In addition to the creation of an Edit and Continue engine, changes were made in the Debugger, Compiler Driver, Compiler Front End, Compiler Back End, Project/build system, Linker, Object file interfaces, Editor, and PDB files. Thorough testing was completed to ensure:
+- Stability and robustness. If a failure occurs, users must be able to continue the original debugging session.
+- Accuracy. Changes in the memory image should only occur where necessary.
+- Dependability. Edit and Continue should occur only when a rebuild is not required and should be optional. 
+- Efficiency. Edit and Continue must be faster than a minimal rebuild to be advantageous to users.
+- Usability. The functionality must be understandable and support developer preferences and input settings.
+Module List
+Windows-based programs often rely on dynamic link libraries (DLLs) to provide resources or other functionality. Developers writing these programs need to know which DLLs are being loaded, especially when a bug or crash occurs in unfamiliar code. The Modules selection in the Debug menu shows developers which DLLs are loaded. Developers can then identify which DLL was being executed when the crash occurred. When the origin of a DLL is unknown or it is only in a release (non-debug) form, this feature can save developers from needless debugging.
+Figure 2: Module List shows which modules (DLLs) are being loaded by the application being debugged. Developers can more easily track down bugs and other problems since they know what code is being loaded by their application.
+Additional Debugger Productivity Improvements
+A host of other additions to the debugger make it more approachable and productive for developers. Variants are now automatically displayed in their correct form (for example, integers are displayed numerically and a BSTR appears as a string). Pointers to functions and v-table entries are displayed symbolically (including parameters) rather than as hex addresses. In addition, formatting is now supported in the Watch window so variable names can be displayed in their true form-a character can be seen as a character rather than a memory address, for example.
+New and Enhanced Wizards
+Visual C++ includes many wizards to make developers more productive in completing the widest range of tasks. For Visual C++ 6.0, several new wizards have been added to address new technologies supported in Visual C++, and many existing wizards have been enhanced.
+New Wizards
+Visual C++ 6.0 adds several new project wizards to assist developers in creating new projects:
+- Cluster Resource Type Wizard simplifies the development of applications that can be managed and monitored by Microsoft Cluster Server on Windows NT clusters. This wizard generates two projects: one for the resource being created and another for adding graphical management capabilities for the new resource type to the Cluster Administrator.
+- Extended Stored Procedure Wizard creates an Extended Stored Procedure for use with Microsoft SQL Server databases. 
+- Utility Project Wizard creates Utility projects, which by default neither contain files nor generate output files. They can be used as master projects for subprojects or as containers for files that can be built without a link step.
+Figure 3: Several new project wizards simplify the creation of even more types of applications.
+Enhanced Wizards
+Enhancements to other project wizards facilitate developer access to the latest technologies and more efficient use of the development environment:
+- ATL COM AppWizard now includes a checkbox for Microsoft Transaction Server support. Checking this box makes Visual C++ generate project build settings that support Microsoft Transaction Server (see the Enterprise Application Development section for more information on Microsoft Transaction Server).
+- MFC AppWizard, one of the most commonly used wizards in Visual C++, has been enhanced to provide more support for new technologies:
+ 
+- Disabling of the default Document/View Architecture. Sometimes applications do not use the traditional document paradigm. With this option, developers can take advantage of MFC while avoiding the inclusion of unnecessary functionality that would increase an application's size.
+- Windows Explorer-style applications. Developers can use the wizard to create a two-pane application-like the Windows (File) Explorer-for them. This type of application is particularly well suited to situations in which hierarchical relationships and specific entity information must be related.
+- Support for Internet Explorer 4.0 (or higher)-style "Rebar" controls. The Rebar is the type of toolbar users are familiar with from Internet Explorer 4.0 (or higher). Rebars contain "bands" that can be repositioned to show or hide controls or information. 
+- New view class for Dynamic HTML and Web functionality. The CHtmlView class can be selected as the base class in the final step of the MFC AppWizard. This class wraps the Web-browsing functionality of Microsoft Internet Explorer 4.0 (or higher) and allows users to easily create MFC applications with HTML or Dynamic HTML front ends.
+- Additional database connectivity through OLE DB. If database support is added to an MFC application in Step 2 of the MFC AppWizard, OLE DB may be chosen as the Data Source type. This is significant for developers because OLE DB allows access to data stores that are unstructured or semistructured in addition to traditional, structured databases. For example, a developer could choose a Microsoft Exchange mail server data store as the data source if an OLE DB provider for Exchange was installed.
+- Check box for Active Document Container creation. MFC applications can be made to act as Active Document Containers (see Active Document Containment described below) by selecting this option.
+Figure 4: The latest user interface elements can be added to MFC applications easily with MFC AppWizard support for Internet Explorer Rebars.
+Active Document Containment
+The Active Document Containment support in Visual C++ 6.0 allows developers to seamlessly provide standard functionality from applications like Microsoft Excel and Microsoft Word in their own MFC applications. Specifically, Active Document Containment is a technology that provides a single frame in which to work with documents, instead of forcing the developer to create and use multiple application frames for each document type. With Active Document Containment, an entire document is activated (that is, an entire application, including associated menus, toolbars, and so on) within the context of a single frame. An Active Document (provided by an Active Document Server such as Word or Excel) is essentially a full-scale, conventional document that is embedded as an object within an Active Document Container. Unlike embedded objects, Active Documents have complete control over their pages, and the full interface of the application (with all its underlying commands and tools) is available to the user for editing. Active Document Containment is a benefit for end users because they can manage disparate information as a single entity, which can be uniquely named, saved, printed, and so on. Moreover, developers can provide end users with the functionality and richness they are accustomed to from other applications while minimizing the amount of code they need to write on their own.
+Figure 5: Developers can include rich functionality in their MFC applications by making them Active Document containers. Active Documents from Word, Excel, and other applications can be hosted.
+Enhanced Monitor and Keyboard Support
+Multiple Monitors
+Visual C++ now supports the display of its windows on multiple monitors. By placing the debugger and the application being debugged on separate screens, developers can avoid obscuring their applications. Thus, a developer stepping through code can see the entire user interface of both the debugger and their application. Previously, developers had to ALT-Tab to switch between the debugger and their application or resize both windows to fit on a single screen at the same time. 
+Quick Macro Recorder
+In response to numerous requests from customers, simplified access to the Visual Basic Script macro recording functionality of the Visual C++ development environment is available in Visual C++ 6.0 through new Quick Macro Recording. To record a macro, "Record Quick Macro" is selected from the Tools menu. A floating toolbar with stop-and-pause functionality then appears in the IDE. Replaying the recorded operations is performed by choosing "Play Quick Macro" from the Tools menu or invoking a redefinable accelerator key. By bypassing the regular macro recording interfaces, Quick Macro Recording allows developers to record simple macros efficiently, just as a simple keystroke recorder would.
+Figure 6: Easy macro recording is back in Visual C++! Quick Macro Recorder puts fast, simple macro recording capabilities at the user's fingertips.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

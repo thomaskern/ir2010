@@ -1,0 +1,326 @@
+
+Free Java Help --- Tutorials --- Input/Output --- Reading and Writing
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Reading and Writing 
+ 
+ 
+index:
+1. general information
+ 2. preparations
+ 3. writing data
+ 4. reading data
+ 5. putting it all together
+ 
+------------------------------------------------------------------
+ 
+*** 1. general information:
+ 
+First you need to know that Java has a very clever security concept: you read
+ about that in Jim's article about methods for example: public means that access
+ from other classes is allowed, private means that only the class itself can 
+ access
+ the data and methods and so on.
+ Another effect of that severe security concept affects the Java IO (input/output)
+ system:
+there are a few basics you need to know:
+1.1) you cannot access your local file system with an applet (wether read nor 
+ write), and
+ your applet cannot access the filesystem of the client system which is running 
+ the applet except if your applet is signed and the user allows the applet to access his/her filesystem
+1.2) your applet can only access files on the webserver it resides in (but then you won't use FileInputStream and FileOutputStream).
+I will write a tutorial on that later.
+1.3) Java applications can access your filesystem (reading, writing, making 
+ directories ...)
+1.4) you have to use exceptions when dealing with IO
+ 
+ 
+*** 2. preparations:
+ 
+To use Java's IO system you need to import the needed packages. Do so by just 
+ importing
+java.io.* by typing:
+ 
+import java.io.*;
+ 
+ 
+*** 3. writing data:
+ 
+with the following code you can write data:
+DataOutputStream output_stream;
+output_stream = new DataOutputStream(new FileOutputStream("c:\\data.txt")); 
+output_stream.writeUTF("Hi there");
+output_stream.close();
+ 
+If you use this code correctly then it will make a new file (data.txt) on your
+C drive with the content: Hi there.
+*** 4. reading data:
+ 
+DataInputStream input_stream;
+input_stream = new DataInputStream(new FileInputStream("c:\\data.txt"));
+String test = input_stream.readUTF();
+input_stream.close();
+Now the first line of the file c:\data.txt will be read and written to the 
+ variable
+test.
+*** 5. putting it all together
+ 
+5.1) write a writedata() method
+ 
+private void writedata(String arg) throws IOException
+{
+ 
+&#9; DataOutputStream output_stream;
+&#9;output_stream = new DataOutputStream(new FileOutputStream("c:\\data.txt")); 
+&#9;output_stream.writeUTF(arg);
+&#9;output_stream.close();
+}
+ 
+Now to each line of code:
+5.1.1) private boolean writedata(String arg) throws IOException
+ 
+This generates a new private method with the name writedata without any return 
+ statement
+ (void). The methods has one paramter (arg) which is a String. The method throws 
+ an
+ IOException: this is necessary, because reading/writing must be placed in a 
+ try, catch
+ block.
+ 
+5.1.2) DataOutputStream output_stream;
+ 
+The new instance output_stream is created from the class DataOutputStream. 
+ 
+5.1.3) output_stream = new DataOutputStream(new FileOutputStream("c:\\data.txt"));
+ 
+We say, that this new DataOutputStream instance shall be a FileOutputStream. 
+ The
+ String in the brackets is the parameter of the method and points to the file.
+5.1.4) output_stream.writeUTF(arg);
+ 
+Here we actually write one line to the file. It's value comes from the methods 
+ parameter
+ arg. We use writeUTF, because it is very easy to use. See appendix (A) for details. 
+ You
+ can read UTF data later with readUTF().
+ 
+5.1.5) output_stream.close();
+After finishing our write operation we finally close the outputstream.
+5.2) write a readdata() method but before create the global String our_output;
+String our_output;
+ 
+private void readdata() throws IOException
+{
+ 
+ 
+ 
+&#9;DataInputStream input_stream;
+ 
+&#9;input_stream = new DataInputStream(new FileInputStream("c:\\daten.txt"));
+ 
+&#9;our_output = input_stream.readUTF();
+ 
+&#9;input_stream.close();
+}
+Now to each line of the code:
+5.2.1) private void readdata() throws IOException
+ 
+This generates a new private method with the name readdata without any return 
+ statement
+ (void). The methods has no parameter. The method throws an IOException: this 
+ is necessary,
+ because reading/writing must be placed in a try, catch block.
+ 
+5.2.2) input_stream = new DataInputStream(new FileInputStream("c:\\daten.txt"));
+Our input comes from the file c:\daten.txt. See appendix (B) for details.
+5.2.3) String our_output = input_stream.readUTF();
+One line is read and saved to the String variable our_output.
+5.2.4) input_stream.close();
+ 
+Finally we close the stream.
+ 
+5.3) call the methods to do something
+ 
+For example create an application with one Jtextfield (jtextf_1) and two buttons 
+ (jcb_1 and jcb_2).
+ The programm shall read an entered String, write it to the file data.txt in 
+ drive C, then clear
+ the Jtextfield, then read the data out of the prior written file and finally 
+ display it's
+ content in the Jtestfield, which has just been cleared.
+make a global String to hold the read data:
+ 
+String our_data;
+write the following code in the action of jcb_1 (labeled "write data"):
+ 
+String newdata;
+newdata = jtextf_1.getText();&#9;&#9;&#9;// read data from the jtextfiels
+try
+ 
+ 
+{
+ 
+ 
+&#9;writedata(newdata);&#9;&#9;&#9;// write 
+ the new data
+ 
+}
+ 
+catch(java.lang.Exception e)
+ 
+ 
+{
+ 
+ 
+&#9;jtextf_1.setText("error while writing");&#9;// 
+ output an error when writing fails
+ 
+}
+write the following code in the action of jcb_2 (labeled "read data"):
+ 
+try
+ 
+ 
+ 
+{
+ 
+ 
+&#9;jtextf_1.setText(""); &#9;&#9;&#9;// 
+ clear jtextf_1
+ 
+readdata();&#9;&#9;&#9;&#9;// read the data
+ 
+&#9;jtextf_1.setText(our_output);&#9;&#9;// 
+ show the data
+ 
+}
+ 
+catch(java.lang.Exception e)
+ 
+ 
+ 
+{
+ 
+ 
+&#9;jtextf_1.setText("error while reading");&#9;// 
+ output an error when reading fails
+ 
+}
+ 
+ 
+Tutorial Contents
+ 
+ 
+Lessons in the Input/Output Section
+ 
+Beginning
+Reading And Writing
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

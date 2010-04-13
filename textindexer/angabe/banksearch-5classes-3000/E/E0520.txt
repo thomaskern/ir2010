@@ -1,0 +1,720 @@
+
+Build status for GCC 3.0
+- GNU Project - Free Software Foundation (FSF)
+Build status for GCC 3.0
+This list summarizes build reports for GCC 3.0.x, with links to the
+archived mail messages that reported the builds and to test result
+summaries.
+Instructions for running the test suite and for submitting test results
+are part of
+Installing GCC: Testing.
+Instructions for reporting a successful build, including a list of
+information to include in such a report, are part of
+Installing GCC: Final Installation.
+alpha-dec-osf4.0d 
+ 
+Successful:
+3.0.1 
+alpha-dec-osf4.0e 
+ 
+Successful (C, C++):
+3.0.2 
+alpha-dec-osf4.0f 
+ 
+Successful:
+3.0.1,
+3.0.2,
+3.0.3;
+Successful (C, C++, F77, Java):
+3.0.4 
+alpha-dec-osf5.1 
+ 
+Successful:
+3.0,
+3.0.3,
+3.0.4 
+alpha-suse-linux-gnu 
+SuSE 7.1, glibc 2.2, kernel 2.4.x 
+Successful:
+3.0.3 
+alpha-pld-linux-gnu 
+PLD devel 1.0, glibc 2.2.3, kernel 2.2.19 
+Successful:
+3.0.1 
+alphaev5-dec-osf4.0e 
+ 
+Successful:
+3.0.2 
+alphaev5-dec-osf4.0g 
+ 
+Successful:
+3.0.3 
+alphaev5-dec-osf5.1 
+ 
+Successful:
+3.0 
+alphaev56-dec-osf4.0b 
+ 
+Successful:
+3.0 
+alphaev56-dec-osf4.0c 
+ 
+Successful (C, C++, F77):
+3.0 
+alphaev56-dec-osf4.0d 
+ 
+Successful:
+3.0.4 
+alphaev56-dec-osf5.1 
+ 
+Successful:
+3.0.3 
+alphaev56-unknown-linux-gnu 
+Red Hat 6.2 
+Successful:
+3.0.1 
+alphaev6-dec-osf4.0f 
+ 
+Successful:
+3.0.4 
+alphaev6-dec-osf5.1 
+ 
+Successful:
+3.0.3 
+alphaev6-unknown-linux-gnu 
+Debian 2.2, glibc 2.1.3, kernel 2.2.17 
+Successful:
+3.0.3 
+alphaev67-dec-osf4.0f 
+ 
+Successful:
+3.0.3,
+3.0.4 
+alphaev67-dec-osf5.1 
+ 
+Successful:
+3.0,
+3.0.2,
+3.0.3,
+3.0.4 
+alphaev67-unknown-linux-gnu 
+ 
+Successful:
+3.0 
+alphaev68-unknown-linux-gnu 
+Red Hat 7.1, glibc 2.2.3, kernel 2.4.3-12 
+Successful:
+3.0.3 
+armv5l-unknown-linux-gnu (xscale) 
+LFS 3.0 (Linux from Scratch), glibc 2.2.5, kernel 2.4.16 
+Successful:
+3.0.4
+Test results:
+3.0.4
+ 
+hppa1.1-hp-hpux10.10 
+ 
+Successful (except fastjar):
+3.0.1 
+hppa1.1-hp-hpux10.20 
+ 
+Successful:
+3.0,
+3.0.3,
+3.0.4 
+hppa1.1-hp-hpux11.00 
+ 
+Successful (C and C++):
+3.0.1 
+hppa2.0-hp-hpux10.20 
+ 
+Successful:
+3.0;
+Successful (C, C++):
+3.0.4 
+hppa2.0w-hp-hpux11.00 
+ 
+Successful:
+3.0,
+3.0.3;
+Successful (C):
+3.0.3;
+Successful (C, C++, F77, Java):
+3.0.4;
+Successful (C, C++):
+3.0.4
+ 
+hppa2.0w-hp-hpux11.11 
+ 
+Successful:
+3.0.3 
+hppa64-hp-hpux11.00 
+ 
+Successful:
+3.0.1,
+3.0.2 
+i386-pc-sco3.2v5.0.4 
+ 
+Successful (C, C++, F77):
+3.0 
+i386-pc-sco3.2v5.0.5 
+ 
+Successful (C, C++):
+3.0.3 
+i386-pc-solaris2.6 
+ 
+Successful:
+3.0.1 
+i386-pc-solaris2.7 
+ 
+Successful:
+3.0.3 
+i386-pc-solaris2.8 
+ 
+Successful:
+3.0,
+3.0.4 
+i386-pld-linux-gnu 
+PLD devel 1.0, glibc 2.2.3, kernel 2.2.19 
+Successful:
+3.0.1 
+i386-redhat-linux-gnu 
+WinLinux 2001 
+Successful:
+3.0.1 
+i386-redhat-linux-gnu 
+Red Hat 6.2, glibc 2.1.3, kernel 2.4.14 
+Successful:
+3.0.3 
+i386-sequent-sysv4 
+DYNIX/ptx V4.6.1, binutils 2.11.2 
+Successful:
+3.0.3 
+i386-unknown-freebsd4.2 
+ 
+Successful:
+3.0 
+i386-unknown-freebsd4.3 
+ 
+Successful: 3.0 
+i386-unknown-freebsd4.4 
+ 
+Successful:
+3.0.3,
+3.0.4;
+Test results:
+3.0.4
+ 
+i386-unknown-freebsd4.5 
+ 
+Test results:
+3.0.4,
+3.0.4
+ 
+i386-unknown-netbsdelf1.5ZA 
+NetBSD 1.5ZA (BLUE); AMD K6-2 
+Successful:
+3.0.4 
+i386-unknown-openbsd3.0 
+ 
+Successful (C, C++):
+3.0.3 
+i386-unknown-openbsd3.0 (Athlon) 
+ 
+Successful (C, C++, Java):
+3.0.4 
+i486-pc-linux-gnu 
+CAEN Linux 6.1, glibc 2.1.3, kernel 2.2.19 
+Successful:
+3.0.4 
+i486-suse-linux-gnu 
+SuSE 7.1, glibc 2.2, kernel 2.4.x 
+Successful:
+3.0.3 
+i486-suse-linux-gnu 
+SuSE 7.2, glibc 2.2.2, kernel 2.4.x 
+Successful:
+3.0.3 
+i486-suse-linux-gnu 
+SuSE 7.3, glibc 2.2.4, kernel 2.4.x 
+Successful:
+3.0.3 
+i586-ncr-sysv4.3.03 
+ 
+Successful (C):
+3.0.2 
+i586-pc-cygwin 
+Cygwin 1.3.2, Win98 
+Successful:
+3.0 
+i586-pc-linux-gnu 
+ 
+Successful:
+3.0
+Test results:
+3.0.4
+ 
+i586-pc-linux-gnu 
+Caldera OpenLinux 2.2 
+Successful:
+3.0.1 
+i586-pc-linux-gnu 
+Debian 3.0, glibc 2.2.5, kernel 2.2.19 
+Successful:
+3.0.4 
+i586-pc-linux-gnu 
+Mandrake 7.0, glibc 2.1.2, kernel 2.2.14 
+Successful:
+3.0.4 
+i586-pc-linux-gnu 
+Red Hat 7.0, glibc 2.1.92, kernel 2.2.16 
+Successful (C, C++, ObjC, Java):
+3.0.3 
+i586-pc-linux-gnu (k6) 
+Red Hat 6.0 plus changes; glibc 2.1.3; kernel 2.4.18 
+Successful:
+3.0.4 
+i586-pc-linux-gnu (k6) 
+Red Hat 7.0 with upgrades, glibc 2.2.4 
+Successful:
+3.0.2,
+3.0.3,
+3.0.4;
+Unsuccessful:
+3.0 and 3.0.1;
+Test results:
+3.0.4,
+3.0.4,
+3.0.4
+ 
+i586-pc-linux-gnu 
+Red Hat 7.1, glibc 2.2.4, kernel 2.4.9 
+Successful:
+3.0.3 
+i586-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.7 
+Successful:
+3.0.4 
+i586-pld-linux-gnu 
+PLD devel 1.0, glibc 2.2.3, kernel 2.2.19 
+Successful:
+3.0.1 
+i686-pc-cygwin 
+ 
+Successful:
+3.0 
+i686-pc-cygwin 
+Cygwin-1.3.5-3 on Windows XP Professional 
+Successful:
+3.0.3;
+Successful with modifications:
+3.0.3 
+i686-pc-cygwin 
+Cygwin-1.3.6-6 on Windows 2000 Professional 
+Successful:
+3.0.3 
+i686-pc-cygwin 
+Cygwin-1.3.6-6 on Windows NT v4.0 
+Successful:
+3.0.3 
+i686-pc-cygwin 
+Cygwin-1.3.6-6 on WinXP Pro 
+Successful (C, C++):
+3.0.3 
+i686-pc-cygwin 
+Cygwin-1.3.8-1 on Windows 2000 5.0 
+Successful:
+3.0.3 
+i686-pc-cygwin 
+Cygwin-1.3.9 on Windows NT v4.0 
+Successful:
+3.0.4 
+i686-pc-cygwin 
+Cygwin-1.3.9 on Windows 2000 5.0 
+Successful (C, C++):
+3.0.4 
+i686-pc-cygwin 
+Cygwin-1.3.10 on Windows 2000 5.0 
+Successful (C, C++):
+3.0.3,
+3.0.4,
+3.0.4 
+i686-pc-cygwin 
+Cygwin-1.3.10-1 on WinXP Pro 
+Successful (C, C++):
+3.0.4 
+i686-pc-linux-gnu 
+ 
+Test results:
+3.0.4,
+3.0.4,
+3.0.4,
+3.0.4
+ 
+i686-pc-linux-gnu 
+homebrew GNU/Linux, glibc 2.2.5, kernel 2.4.18 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Caldera 2.4, glibc 2.1.2 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+Debian 2.2, glibc 2.1.3 
+Successful:
+3.0.1,
+3.0.2,
+3.0.3 
+i686-pc-linux-gnu 
+Debian 3.0, glibc 2.2.5, kernel 2.4.17 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Mandrake 8.0, glibc 2.2.4 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+Mandrake 8.0, glibc 2.2.2, kernel 2.4.3 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Mandrake 8.1, glibc 2.2.4, kernel 2.4.8 
+Successful:
+3.0.2,
+3.0.3,
+3.0.4 
+i686-pc-linux-gnu 
+Mandrake 8.1, glibc 2.2.4, kernel 2.4.17 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Mandrake 8.2 beta 2, glibc 2.2.4, kernel 2.4.17 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Red Hat 6.0, glibc 2.1.3, kernel 2.4.16 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Red Hat 6.2 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+Red Hat 6.2, glibc 2.1.3, kernel 2.2.16 
+Successful:
+3.0.3 
+i686-pc-linux-gnu (C3) 
+Red Hat 6.2, glibc 2.1.3, kernel 2.2.19 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 6.2, glibc 2.2.5, kernel 2.2.14 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Red Hat 7.1 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+Red Hat 7.1, glibc 2.2.2, kernel 2.4.2 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 7.1, glibc 2.2.2, kernel 2.4.9-12 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+Red Hat 7.1, glibc 2.2, kernel 2.4.10 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+Red Hat 7.1, glibc 2.2.4, kernel 2.4.16 
+Successful (C, C++, Java):
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.7 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.9 
+Successful:
+3.0.4,
+3.0.4,
+3.0.4
+ 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.13 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.17 
+Successful:
+3.0.4;
+Successful (C, C++, ObjC):
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.18 
+Successful (C, C++, Java):
+3.0.3 
+i686-pc-linux-gnu 
+Red Hat 7.2, glibc 2.2.5, kernel 2.4.18 
+Successful:
+3.0.4 
+i686-pc-linux-gnu (Athlon) 
+Red Hat 7.2, glibc 2.2.4, kernel 2.4.14 
+Successful:
+3.0.4 
+i686-pc-linux-gnu (Athlon) 
+homebrew GNU/Linux, glibc2-1-branch, kernel 2.4.7 
+Test results:
+3.0.4
+ 
+i686-pc-linux-gnu 
+Slackware 7.1, glibc 2.1.3, kernel 2.4.17 
+Successful (C, C++):
+3.0.3;
+Successful (C, C++, Java):
+3.0.4 
+i686-pc-linux-gnu 
+Slackware 8.0, glibc 2.2.3 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+Slackware 8.0, glibc 2.2.3, kernel 2.4.18 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Slackware 8.0, glibc 2.2.4, kernel 2.4.17 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+Slackware 8.0.47, glibc 2.2.5, kernel 2.4.18 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+Sorcerer 20020227, glibc 2.2.5, kernel 2.4.17 
+Successful:
+3.0.4 
+i686-pc-linux-gnu 
+SuSE 6.2, glibc 2.1.1, kernel 2.2.19 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+SuSE 7.0, glibc 2.1, kernel 2.2.16 
+Successful:
+3.0.1 
+i686-pc-linux-gnu 
+SuSE 7.0, glibc 2.1, kernel 2.4.15/2.5.0 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+SuSE 7.1, glibc 2.2, kernel 2.4.16 
+Successful:
+3.0.3 
+i686-pc-linux-gnu 
+SuSE 7.2, glibc 2.2, kernel 2.4.4-4GB 
+Successful:
+3.0.2 
+i686-pc-linux-gnu 
+SuSE 7.2, glibc 2.2.2, kernel 2.4.4 
+Successful:
+3.0.3,
+3.0.4 
+i686-pc-linux-gnu 
+SuSE 7.3, glibc 2.2.4, kernel 2.4.10 
+Successful:
+3.0.3,
+3.0.4 
+i686-pld-linux-gnu 
+PLD devel 1.0, glibc 2.2.3, kernel 2.2.19 
+Successful:
+3.0.1 
+i686-pc-sco3.2v5.0.6 
+SCO OpenServer 5.0.6, binutils 2.12 
+Successful:
+3.0.4 
+ia64-unknown-linux-gnu 
+Red Hat 7.1.94, glibc 2.2.4 
+Successful:
+3.0.1,
+3.0.3,
+3.0.4;
+Test results:
+3.0.4
+ 
+mips-dec-ultrix4.4 
+ 
+Successful (C, C++, F77):
+3.0.3,
+3.0.4 
+mips-sgi-irix6.2 
+ 
+Successful:
+3.0.1
+Test results:
+3.0.4
+ 
+mips-sgi-irix6.5 
+ 
+Successful:
+3.0,
+3.0.1,
+3.0.3,
+3.0.4;
+Successful (C,C++):
+3.0.4;
+Test results:
+3.0.4
+ 
+powerpc-ibm-aix4.2.1.0 
+ 
+Successful (C and C++):
+3.0.2;
+Successful:
+3.0.4 
+powerpc-ibm-aix4.3.1.0 
+ 
+Successful:
+3.0.4 
+powerpc-ibm-aix4.3.2.0 
+ 
+Successful:
+3.0,
+3.0.2 
+powerpc-ibm-aix4.3.3.0 
+ 
+Successful:
+3.0.1,
+3.0.4,
+3.0.4,
+3.0.4 
+powerpc-ibm-aix5.1.0.0 
+ 
+Successful:
+3.0.3,
+3.0.4 
+powerpc-suse-linux-gnu 
+SuSE 7.3, glibc 2.2.4, kernel 2.4.x 
+Successful:
+3.0.3 
+powerpc-unknown-linux-gnu 
+ 
+Successful:
+3.0 
+powerpc-unknown-linux-gnu 
+Debian 3.0 (testing snapshot 20011231), glibc 2.2.4, kernel 2.4.16 
+Successful:
+3.0.3 
+powerpc-unknown-linux-gnu 
+SuSE 7.3, glibc 2.2.4, kernel 2.4.12 
+Successful:
+3.0.4 
+powerpc-unknown-linux-gnu 
+Vine Linux 2.5CR, glibc 2.2.4, kernel 2.4.18 
+Successful:
+3.0.4 
+powerpc-unknown-linux-gnu 
+Yellow Dog 2.1, glibc 2.2.4, kernel 2.4.18 
+Successful:
+3.0.4 
+rs6000-ibm-aix4.3.2.0 
+ 
+Successful:
+3.0.3
+rs6000-ibm-aix4.3.3.0 
+ 
+Successful:
+3.0.3 
+s390-linux-gnu 
+Supported beginning with 3.0.1 
+Successful:
+3.0.1 
+sparc-linux-gnu 
+Debian 
+Successful:
+3.0 
+sparc-linux-gnu 
+No particular distribution, glibc 2.2.4, kernel 2.4.18-pre1 
+Successful:
+3.0.3 
+sparc-pld-linux-gnu 
+PLD devel 1.0, glibc 2.2.3, kernel 2.2.19 
+Successful:
+3.0.1 
+sparc-sun-solaris2.5.1 
+ 
+Successful:
+3.0,
+3.0.4 
+sparc-sun-solaris2.6 
+ 
+Successful:
+3.0,
+3.0.1,
+3.0.3;
+Successful (C, C++, Java):
+3.0.4;
+Test results:
+3.0.4
+ 
+sparc-sun-solaris2.7 
+ 
+Successful:
+3.0,
+3.0.1,
+3.0.3,
+3.0.4;
+Test results:
+3.0.4
+3.0.4,
+ 
+sparc-sun-solaris2.8 
+ 
+Successful:
+3.0,
+3.0.1,
+3.0.2,
+3.0.3,
+3.0.4,
+3.0.4;
+Successful (C,C++):
+3.0.4;
+Test results:
+3.0.4,
+3.0.4
+ 
+sparc-sun-solaris2.9 
+ 
+Successful:
+3.0.4 
+sparc-sun-solaris2.* (64 bits) 
+Not supported 
+ 
+sparc-unknown-linux-gnu 
+ 
+Test results:
+3.0.4,
+3.0.4
+ 
+vax-unknown-netbsd1.5.2 
+ 
+Successful (C):
+3.0.4 
+Please send FSF & GNU inquiries & questions to
+gnu@gnu.org.
+There are also other ways
+to contact the FSF.
+These pages are maintained by
+The GCC team.
+Please send comments on these web pages and GCC to
+gcc@gnu.org or
+gcc@gcc.gnu.org,
+send other questions to gnu@gnu.org.
+Copyright (C) Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111, USA.
+Verbatim copying and distribution of this entire article is
+permitted in any medium, provided this notice is preserved.
+ Last modified 2002-07-10
+ 
+ 
+ 

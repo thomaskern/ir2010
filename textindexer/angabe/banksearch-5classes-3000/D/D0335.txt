@@ -1,0 +1,45 @@
+
+Absolute Java - Using One-Element Arrays to Wrap Primitives
+Using One-Element Arrays to Wrap Primitives
+This is an article I originally wrote for the August, 2001 edition of JavaPro Magazine.
+	
+There are often times when it is necessary to maintain a primitive type value (e.g., int, char, etc.) using one of the "primitive wrapper" classes. A common example of this is the problem of maintaining a counter of the number of times a particular object appears in the data you are processing. Let's look at an example of an approach to counting the number of times a unique String is passed to a method. The method below maintains a mapping between the unique Strings passed to it and the number of times each unique String is passed:
+1 void incrementWordCount(String s, Map m) { 
+2 Integer counter = (Integer)m.get(s); 
+3 if(counter == null) 
+4 counter = new Integer(1); 
+5 else 
+6 counter = new Integer(counter.intValue() + 1); 
+7 
+8 m.put(s, counter); 
+9 } // incrementWordCount() 
+The problem with this code is that it may create an excessive number of objects, depending on how frequently the incrementWordCount() method is called. Since Java's primitive wrapper objects are immutable, each time the counter is incremented it is necessary to create a new Integer object whose value is one plus the previous value. Excessive temporary object creation (and its associated garbage collection) can cause performance problems.
+In cases like this it may be preferable to use a one-element array rather than a primitive wrapper class (such as Integer). Here's the incrementWordCount() method re-written to use a one-element array of int instead of Integer objects:
+	
+ 
+1 void incrementWordCount(String s, Map m) { 
+2 int[] counter = (int[])m.get(s); 
+3 if(counter == null) 
+4 m.put(s, new int[] {1}); 
+5 else 
+6 ++counter[0]; 
+7 } // incrementWordCount() 
+This code allocates a one-element int array to be used as the counter.
+	There are two advantages to using this approach over allocating a new
+	Integer objects. The first advantage is that we've avoided excessive
+	object creation. When the counter needs to be incremented we simply
+	retrieve the existing one-element array from the Map and increment its
+	(only) element. A new int[] is created only when a word is encountered
+	for the first time. The second advantage is that there is no need to
+	"re-add" the updated int[] to the Map after incrementing the counter.
+Using a one-element array is a general technique for wrapping primitive
+	type values with an object, allowing the primitive value to be modified
+	without requiring creation of a new object. Of course, whether or not
+	it is appropriate to use this technique will depend on your
+	application. Java primitive wrappers have functionality that you cannot
+	get from a simple one-element array. If you find it necessary to
+	frequently update the value maintained in a primitive wrapper, however,
+	you should give serious consideration to the viability of using a
+	one-element array.
+Copyright © 1999-2002, Tony LaPaso
+	All Rights Reserved.

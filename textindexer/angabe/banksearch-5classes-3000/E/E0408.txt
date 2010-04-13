@@ -1,0 +1,176 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Subroutines and References in PERL
+Troubleshooters.Com
+and Code Corner Present
+Steve Litt's PERLs of Wisdom:
+Quirky Behavior of Args in Prototyped Subroutines
+Copyright (C) 2000 by Steve Litt
+Danger! Warning! Peligro! Achtung! Watch it!
+When using prototyped subroutines, subroutine order (sometimes) counts.
+This is especially true of hash and array arguments. When passing arguments
+in subroutines prototyped certain ways, if the called subroutine is defined
+after the call, a very non-obvious runtime error is generated.
+I have nothing against the language requiring the programmer to order
+subroutines correctly (as long as he has some method of forward references
+for recursion), but the error should be compile time and informative. This
+error is not, and can lead to long and frustrating debugging sessions.
+Until solved, it can even look intermittent.
+Once again, the problem is in the order of subroutine definition. As
+a hash argument example, consider the following program:
+ 
+#!/usr/bin/perl -w
+use strict;
+sub showHash(\%)
+ {
+ my(%hashh) = %{(shift)};
+ my($temp);
+ foreach $temp (keys(%hashh)) { print "$temp=" . $hashh{$temp} . "\n"; }
+ print "\n";
+ }
+sub higherLevel(\%)
+ {
+ my(%hashh) = %{(shift)};
+ showHash(%hashh);
+ }
+my(%hashh) = ("1"=>"one","2"=>"two","3"=>"three");
+higherLevel(%hashh); 
+ 
+In the preceding program, every call is to a previously defined function,
+so everything works. Running this problem (assume it's called jj) yields
+the expected output, as follows:
+ 
+[slitt@mydesk slitt]$ ./jj
+1=one
+2=two
+3=three
+[slitt@mydesk slitt]$
+ 
+But now make the simple change of moving subroutine higherLevel() above
+subroutine showHash(), as shown in the listing that follows:
+ 
+#!/usr/bin/perl -w
+use strict;
+sub higherLevel(\%)
+ {
+ my(%hashh) = %{(shift)};
+ showHash(%hashh);
+ }
+sub showHash(\%)
+ {
+ my(%hashh) = %{(shift)};
+ my($temp);
+ foreach $temp (keys(%hashh)) { print "$temp=" . $hashh{$temp} . "\n"; }
+ print "\n";
+ }
+my(%hashh) = ("1"=>"one","2"=>"two","3"=>"three");
+higherLevel(%hashh);
+ 
+Running the preceding code yields the following non-obvious error:
+ 
+[slitt@mydesk slitt]$ ./jj
+Can't use string ("1") as a HASH ref while "strict refs" in use at ./jj line 13.
+[slitt@mydesk slitt]$ 
+ 
+As you can see, the program somehow thinks that %{(shift)} is delivering
+the first key of the hash, instead of the hash itself. An odd outcome to
+be produced by a simple change of subroutine order.
+ALWAYS BE ON THE LOOKOUT FOR THIS! Although it looks simple enough
+here, when occurring in a large program, especially when subroutines have
+both hash args and array args, this can be *extremely* non-obvious. It
+took an effort to synthesize this error into a 20 line program.
+This looks obvious in this 20 line program, but it's VERY CRYPTIC in
+a large program, especially with multiple args like myFunction(\%\@$).
+Unless you're aware of this, it can take hours to track down in a large
+program. Even more misleading is the fact that if you have the functions
+defined after calls to them, you can "fix" the problem by backslashing
+the args in the call. However, if you then move the calls with backslashed
+args below the subroutine definitions, that will cause an error. The whole
+thing looks very intermittent unless you understand the role of definition
+order. Watch out!
+Whenever an error message seems to say you're dealing with an element
+of an array or hash when you know it to be the hash or array (or more correctly,
+a reference to the hash or array), ascertain correct subroutine definition.
+You can save hours.
+-*-*-*-
+The following shows a similar problem when passing arrays, starting with
+the correct code:
+ 
+#!/usr/bin/perl -w
+use strict;
+sub showArray(\@)
+ {
+ my(@arr) = @{(shift)};
+ my($temp);
+ foreach $temp (@arr) { print "$temp\n"; }
+ }
+sub higherLevel(\@)
+ {
+ my(@arr) = @{(shift)};
+ showArray(@arr);
+ }
+my(@arr) = ("one","two","three");
+higherLevel(@arr);
+ 
+As you can see, the preceding code calls already defined subroutines
+and yields the following output, as expected:
+ 
+[slitt@mydesk slitt]$ ./jj
+one
+two
+three
+[slitt@mydesk slitt]$
+ 
+But now place higherLevel() above showArray(), as follows:
+ 
+#!/usr/bin/perl -w
+use strict;
+sub higherLevel(\@)
+ {
+ my(@arr) = @{(shift)};
+ showArray(@arr);
+ }
+sub showArray(\@)
+ {
+ my(@arr) = @{(shift)};
+ my($temp);
+ foreach $temp (@arr) { print "$temp\n"; }
+ }
+my(@arr) = ("one","two","three");
+higherLevel(@arr);
+ 
+The preceding code involves a call to an as of yet undefined subroutine,
+and results in the extremely non-obvious error message shown following:
+ 
+[slitt@mydesk slitt]$ ./jj
+Can't use string ("one") as an ARRAY ref while "strict refs" in use at ./jj line
+ 13.
+[slitt@mydesk slitt]$
+ 
+ALWAYS BE ON THE LOOKOUT FOR THIS!. To repeat, it looks obvious
+in this 20 line program, but it's VERY CRYPTIC in a large program, especially
+with multiple args like myFunction(\%\@$). Unless you're aware of this,
+it can take hours to track down in a large program. Even more misleading
+is the fact that if you have the functions defined after calls to them,
+you can "fix" the problem by backslashing the args in the call. However,
+if you then move the calls with backslashed args below the subroutine definitions,
+that will cause an error. The whole thing looks very intermittent unless
+you understand the role of definition order. Watch out!
+Whenever an error message seems to say you're dealing with an element
+of an array or hash when you know it to be the hash or array (or more correctly,
+a reference to the hash or array), ascertain correct subroutine definition.
+You can save hours.
+ [ Troubleshooters.com
+| Code Corner | Email
+Steve Litt ]
+Copyright
+(C)2000 by Steve Litt -- Legal
+ 
+ 

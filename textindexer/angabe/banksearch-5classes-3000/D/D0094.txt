@@ -1,0 +1,214 @@
+	
+	 WDVL: Screen
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+Tech Magazines-Free
+For CGI Scripts
+Build Flash Online
+Find a Consultant
+Internet Jobs
+Business Search
+Comparison Shopping
+Free DNS Offer
+Search Marketplace
+Promote Your Website
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Screen	
+How do you create a graphical user interface?
+designScreen()
+The designScreen() method first creates a button object with this statement
+Button emailButton = new Button("Send Mail");.
+ A new object is created by declaring the object name and then using the "new" statement to create an instance of the object. The object parameter list supplies data specific to the object. In this case the "Send Mail" text string is used to define the emailButton label.
+The listLabel object is created with this statement,
+Label listLabel = new Label("Directory");.
+A panel called listPanel is created with
+Panel listPanel = new Panel(); and
+listPanel.setLayout(new BorderLayout()); 
+The setLayout method of the Panel class specifies the type of layout manger to use for the listPanel. There are five standard layout managers. The default layout manager is called FlowLayout which arranges components in a panel from left to right in a row. However, we wanted to arrange our components differently so we defined listPanel to use the BorderLayout manager. The BorderLayout manager allows components to be placed in the regions North, South, East, West and Center. The other layout managers provide additional flexibility to allow the programmer to provide more specific suggestions in order to layout the components. Yes I said, suggestions because the programmer doesn't actually place components at certain pixels on the screen he/she only provides suggestions to encourage the placement of components relative to other components in approximate locations on the panel.
+The following statements specify formatting characteristics of the panel components.
+listLabel.setAlignment(Label.CENTER);
+ Center the label text.
+listPanel.setBackground(Color.lightGray);
+ Set the color of the listPanel to light gray.
+itemList.setBackground(Color.yellow);
+ Set the color of the itemList to yellow.
+ setBackground(Color.white);
+Set the color of the entire applet panel to white.
+The add method of the Panel class adds the components to the listPanel as follows:
+listPanel.add("North",listLabel);
+listPanel.add("Center",itemList);
+listPanel.add("South",sendButton);
+The 
+add(listPanel); statement adds the listPanel to the Applet panel, which puts it in our HTML document.
+For simplicity, the foreground color and font of the text have assumed the default values. A good enhancement to this program would be to read in the color and font as parameters and set the foreground text color and font.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

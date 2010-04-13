@@ -1,0 +1,506 @@
+
+ 
+C >> Strings 2 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Strings 1 
+ Main Menu 
+ atoi, itoa, sprintf and sscanf 
+ 
+ 
+ 
+ 
+Strings 2
+ 
+ 
+ 
+ 
+ 
+scanf Versus gets - Round 2! 
+ 
+ 
+ 
+ 
+ 
+This example demonstrates another reason for avoiding scanf when inputting strings: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char array1[50];
+ char array2[50];
+ printf("Try entering a string less than 50 characters, with spaces: \n");
+ scanf("%s", array1);
+ printf("\nYou entered: %s\n", array1);
+ printf("Now enter another string less than 50 characters with spaces: \n");
+ gets(array2);
+ printf("\nYou entered: ");
+ puts(array2);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Try entering a string less than 50 characters, with spaces: 
+ hello world 
+ 
+ You entered: hello 
+ Now enter another string less than 50 characters with spaces: 
+ 
+ You entered: world 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+All I did was entered "hello world" and pressed return. The scanf captures your return press, so 
+ it tries to read in what you entered. Because of the space, only "hello" is stored in array1. 
+ 
+Now for the gets. The remainder of what you inputted after the space gets read in - that includes the return 
+ press, so the program continues and thinks you entered " world". 
+ 
+So scanf can do some pretty weird stuff - gets seems a safer bet! 
+ 
+However, you can solve this problem by FLUSHING the input stream, in other words, resetting 
+ it. Simply call the fflush function, passing it the standard input stream, like this: fflush(stdin), and it'll solve 
+ the problem. Here's the above example fixed: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char array1[50];
+ char array2[50];
+ printf("Try entering a string less than 50 characters, with spaces: \n");
+ scanf("%s", array1);
+ printf("\nYou entered: %s\n", array1);
+ fflush(stdin); /* flush input stream */
+ printf("Now enter another string less than 50 characters with spaces: \n");
+ gets(array2);
+ printf("\nYou entered: ");
+ puts(array2);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Other 
+ String Functions
+ 
+ 
+ 
+ 
+ 
+There are two string functions I'd like to draw your attention to, both of which require the string.h header file. 
+ 
+First of all, if you ever wanted to find out how long a string is without counting the number of characters manually, you could use 
+ the strlen function. It takes one argument, which is char pointer. The number of characters in the string is returned, 
+ NOT INCLUDING the null character. 
+ 
+ 
+ 
+ 
+ 
+Secondly, to copy a string from one place to another, you could use the strcpy function. This takes 2 arguments, both of which 
+ are char pointers. The first char * is where you'd like the string copied TO. The second is where the string will 
+ be copied FROM. 
+ 
+ 
+Obviously, you'll need to declare an array to copy a string into! 
+ 
+ 
+ 
+ 
+ #include 
+#include /* required for strlen and strcpy */
+int main() {
+ char array1[50];
+ char array2[50] = "Boring!";
+ int size;
+ printf("Enter a string less than 50 characters: \n");
+ gets(array1);
+ size = strlen(array1); /* work out the length */
+ printf("\nYour string is %d byt%s long...\n", size, (size==1 ? "e" : "es"));
+ printf(" ... and contains %d characters\n\n", size);
+ printf("Before copying, array2[] contains \"%s\"\n", array2);
+ strcpy(array2, array1);
+ printf("Now array2[] contains \"");
+ puts(array2);
+ printf("\"\n");
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ Enter a string less than 50 characters: 
+ hello happy people 
+ 
+ Your string is 18 bytes long... 
+ ... and contains 18 characters 
+ 
+ Before copying, array2[] contains "Boring!" 
+ Now array2[] contains "hello happy people 
+ "
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Nothing too complex about this example: the (size==1 ? "e" : "es") corrects the grammar, should the size be 
+ 1 byte! 
+ 
+But look carefully inside printf - notice the \" bits. This denotes the double quote mark character 
+ in the same way that \n denotes newline. You see, if I wrote, 
+ printf("Now array2[] contains ""); the program would think that there were too many quote marks in printf. So use 
+ \" every time you want to display a double quote mark. 
+ 
+Finally, notice that puts adds a newline when it exits - that's why there is a quote mark on the next line. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+When copying a string to another array, make sure the array is big enough to hold all the characters, including \0 - the null 
+ character. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A 
+ Word About The Null Character
+ 
+ 
+ 
+ 
+ 
+Important fact: Every non zero value in a string is considered as logical TRUE. The null character is considered logical FALSE. 
+ 
+This makes it possible to print out a string using loops: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char array1[] = "String section is ";
+ char array2[] = "almost done! It's 23:40 \n";
+ int i = 0;
+ while(array1[i]!='\0') { /* \0 is treated as ONE character constant */
+ printf("%c", array1[i]);
+ i++;	
+ }
+ for(i=0 ; array2[i] ; i++) { /* loop until false - \0 returns false */
+ printf("%c", array2[i]);
+ }
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Of course, this isn't the most efficient way of printing a string, but it demonstrates how to use the existence of the null character 
+ at the end of a string constant. 
+ 
+The condition in the while loop is more readable than in the for loop. Note that the null character is enclosed in 
+ single quote marks - this is because it's considered as a character constant and we're evaluating character constants as we iterate 
+ through each element of the array. 
+ 
+In the for loop, one iteration is performed if the expression in the middle returns logical TRUE. All the elements in character 
+ arrays return logical TRUE except for the null character. Therefore the for loop will stop iterating once the null character 
+ (i.e. the end of the string) is reached. 
+ 
+One final remark is that in the second array in the example, the zero returns logical TRUE. Why? Because it's a character constant 
+ and not an actual number. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I used unsized arrays to hold my strings in this example because I was too tired (or lazy?!) to count the number of characters used! 
+ But I knew all I was going to do was initialize them, then print them out. If I was going to copy one to another, or ask for user input, 
+ I would've set some size for them. 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Strings 1 
+ Main Menu 
+ atoi, itoa, sprintf and sscanf 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

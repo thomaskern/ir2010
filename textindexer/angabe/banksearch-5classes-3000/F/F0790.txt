@@ -1,0 +1,32 @@
+
+Win32Errors
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 03/23/97, last
+ update: 03/23/97 
+ 
+Home 
+ 
+ 
+ Win32Errors: How to obtain
+ descriptions of a Win32 error codes
+ 
+ If a description of a Visual Basic run-time error can be obtained with the Err object's
+ Description property (or with the Error function), why couldn't a description of a Win32
+ API error be obtained? Well it can, of course...
+ 
+ Win32err.zip contains sample code implementing the FormatMessage() API call which returns
+ a description of every error code defined by Win32 in Win95 or WinNT (OLE error codes
+ too). We're talking over 1000 of them. It's a pretty cool code. So cool you'll find it in
+ Issue #2 of the 1997 VB Tips & Tricks help file.
+ 
+ Download win32err.zip (10kb) 
+ 

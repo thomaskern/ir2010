@@ -1,0 +1,204 @@
+
+ 
+ C++ Programming HOW-TO: Introduction
+ 
+ 
+Next
+Previous
+Contents
+1. Introduction
+(The latest version of this document is at 
+http://www.milkywaygalaxy.freeservers.com. You may
+want to check there for changes).
+The purpose of this document is to provide you with a comprehensive list of
+URL pointers and programming tips on C++. Also, this document provides a
+Java-like String class, string tokenizer, memory functions and many other
+functions, which can be used in general C++ applications.
+C++ and Java is often used concurrently in many software projects.
+Programmers jump back and forth between C++ and Java will find this Java-like classes
+very helpful.
+Various examples are given which demonstrate the usage of this library and the Standard C++
+Library.
+This document is not a textbook on C++, and there are already several
+excellent on-line text books on the internet. Since C++ is being used for a long time
+there are very large number of C++ documents/articles/tutorials on Internet. 
+If you are new to C++ and you
+never programmed in C++, then it is strongly suggested that you first either
+read an online C++ textbook given in chapter 
+C++ Online Textbooks or you buy a C++ book from online bookstores such as 
+Amazon or 
+barnes.
+As someone said - Leave the C/C++ programming to system engineers who write
+operating system, device drivers and fast response real-time programming, you should use 
+Java/PHP-scripting as speed of the
+computers in year 2005 will be several billion times faster than computers of year 2002!! 
+Hardware is getting cheaper and faster.
+1.1 Program in C++ ? C++ vs. Java/PHP
+C++ is one of the most powerful languages and will be used for a long time in
+the future in spite of emergence of Java or PHP-scripting. 
+Programs which need real-time ultra fast response use C/C++.
+C++ runs extremely fast
+and is in fact 10 to 20 times FASTER than Java. 
+Java is the "offspring" of C++.
+The only complaint against Java is - "Java is GOD DAMN SLOW" .
+Java byte-code is slower when running in a VM than the equivalent natively compiled code.
+Java runs faster with JIT (Just-In-Time) compiler, but it is still slower
+than C++. And optimized C/C++ program is about 3 to 4 times faster
+than Java compiled to native code with JIT compiler or ahead-of-time compiler!! 
+Then, why do people use Java? Because it is
+pure object oriented and is easier to program in Java, as Java automates
+memory management, and programmers do not directly deal with memory
+allocations. This document attempts to automate the memory management in C++
+to make it much more easy to use. The library given here will make C++ look
+like Java and will enable C++ to compete with the Java language.
+Because of manual memory allocations, debugging the C++ programs consumes a
+major portion of time. This document will give you some better ideas and
+tips to reduce the debugging time. 
+When should you use C++ and when you should use Java/PHP? 
+Bottom line is, you use C++:
+- If you are developing a program where speed and performance is very important.
+- If the user base of your application or program is very large. Since C++
+involves compile-link-debug cycle it is more time consuming to develop application in C++.
+You can justify the cost only if the user base of your program is large enough.
+Linking a large number of object files to create an executable takes time. (You can use
+archives, libraries or shared libraries to reduce linking time).
+- If you have lot of experience programming in C++.
+Use Java/PHP:
+- If speed and performance is not important (relative to C/C++).
+- Lower cost of development - There is no compile-link cycle, Java/PHP development is 
+faster than C++.
+- Need rapid development.
+- You want no code maintenance nightmare. Maintaining C++ is more 
+difficult than Java or PHP-scripting.
+- Java and PHP-scripting is the future, hardware speed will be zooming with the 
+introduction of molecular, atomic 
+and sub-atomic scale computers. Future computers will be several trillion times
+faster than today's computer. Runtime performance of Java or PHP-script becomes less important as
+speed of hardware zooms in future. The computers you are using
+today (as of year 2002) are extremely slow and crawling and are not fast enough.
+NOTE: There are lot of improvements in Java compilers (JIT and ahead-of-time). Java 
+programs can be compiled with GNU GCJ 
+http://gcc.gnu.org/java,
+GCJ is a portable, optimizing, ahead-of-time compiler for the Java
+programming language. It can compile - Java source code directly to native machine code, 
+Java source code to Java bytecode (class files), 
+and Java bytecode to native machine code.
+The Java native code compiler "gnu GCJ" is very rapidly maturing and in near future
+everybody will be programming in Java instead of C++. Special optimizers in gnu GCJ
+compiler can make Java programs as fast as C++ programs. The gnu GCJ compiler 
+is 2-3 years away in becoming the de facto compiler on all platforms (initially on Linux
+and then on MS Windows).
+GCJ resources:
+- Main site GNU GCJ 
+http://gcc.gnu.org/java,
+- Redhat rpm GNU GCJ 
+http://www.redhat.com/apps/download. Go here and under the section "Find latest RPMs"
+search by keyword 'gcc-java' and 'libgcj'.
+- Redhat GCJ Installation 
+instructions 
+http://www.redhat.com/devnet/articles/gcj.pdf
+. In this document see also the "Usage of gnu GCJ", it gives some examples on howto
+compile the Java programs using gcj (you MUST read the examples otherwise you will be
+confused).
+1.2 Which one Ada95, C, C++, Java or PHP?
+Language choice is very difficult. There are too many parameters - people,
+people skills, cost, tools, politics (even national politics) and influence
+of business-people/commercial companies. The best language based on technical
+merits does not get selected simply due to political decisions!
+See the language comparison chart of David Wheeler at
+Ada comparison chart.
+Ada got 93%, Java 72%, C++ 68% and C got 53%. C++ and Java 
+are closer in points (only 4% difference).
+Development costs of Ada is half of C++ as per
+Stephen F. Zeigler.
+Ada95 is available at -
+- Ada home 
+http://www.gnuada.org.
+- Google 
+Ada index
+The C++ compiler is lot more complex than a C compiler and C++ programs may
+run bit slower than C programs. 
+The C compiler is very mature and seasoned.
+On some system, you can use compiler options, to optimize the code
+generated.
+Nowadays, C is primarily used for low level systems programming to develop
+operating systems, device drivers and applications which must perform fast.
+Note: Using the String, StringBuffer, StringTokenizer and
+StringReader classes given in this howto, you can code in C++ which
+"exactly" looks like Java. Parts of this document tries to close the gap
+between C++ and Java, by imitating Java classes in C++. Java programmers
+who jump to and from C++ to Java will like this String class.
+If you want to bypass the edit-compile-debug-compile cycle of C++ then see
+scripting languages like PHP which can be used for web development and for
+general purpose programming. Scripting languages like PHP and PERL enable
+rapid application development. PHP has some features of object-oriented
+programming. PHP is at 
+http://www.linuxdoc.org/HOWTO/PHP-HOWTO.html. 
+1.3 Problems facing the current C++ compilers
+Since C++ is a super-set of C, it has all the "bad" features of C.
+Manual allocation and deallocation of memory is tedious and error prone 
+(see 
+Garbage Collector for C++).
+In C programming - memory leaks, memory overflows are very common due
+to usage of features like -
+ Datatype char * and char[]
+ String functions like strcpy, strcat, strncpy, strncat, etc..
+ Memory functions like malloc, realloc, strdup, etc..
+The usage of char * and strcpy causes horrible memory 
+problems due to "overflow", 
+"fence past errors", "memory corruption", "step-on-others-toe" 
+(hurting other variable's memory locations) or "memory leaks".
+The memory problems are extremely hard to debug and are 
+very time consuming to fix and trouble-shoot. Memory problems bring down
+the productivity of programmers. This document helps increase the
+productivity of programmers via different methods addressed to solve the
+memory defects in C++.
+Memory related bugs are very tough to crack, and even experienced programmers 
+take several days or weeks to debug memory related problems. Memory 
+bugs may hide inside the code for several months and can cause unexpected
+program crashes. The memory bugs due to usage of
+char * and pointers in C/C++ 
+is costing $2 billion 
+every year in time lost due to debugging and downtime of programs. If you use
+char * and pointers 
+in C++ then it is a very costly affair, especially if your program size is greater 
+than 10,000 lines of code.
+Hence, the following techniques are proposed to overcome the faults of C.
+Give preference in the following order -
+- Use references instead of pointers.
+- Java style String class (given in this HOWTO) or the string class from the Standard C++ Library.
+- Character pointers (char *) in C++ limit the usage of char * to cases where you
+cannot use the String class.
+- Character pointers (char *) in C using extern linkage specification, if you
+do not want to use (char *) in C++.
+To use "C char *", you would put 
+all your C programs in a separate file and link to C++ programs using 
+the linkage-specification statement extern "C" -
+extern "C" {
+#include 
+}
+extern "C" {
+ comp();
+ some_c_function();
+}
+The extern "C" is a linkage specification and is a flag that 
+everything within the enclosing block (brace-surrounded) uses C linkage,
+not C++ linkage. 
+The 'String class' utilizes the constructor and destructor features
+to automate memory management and provides access to functions like
+ltrim, substring, etc.. 
+See also related 
+string class in your C++
+compiler. The string class is part of the Standard C++ Library
+library and provides many string manipulation functions. 
+Because the C++ 'string class' and 'String class' library
+provides many string manipulation functions, there is less need to use the
+character pointer approach to write your own string functions. Also, C++
+programmers must be encouraged to use 'new', 'delete' operators instead of
+using 'malloc' or 'free'.
+Both string classes do everything that char * or char []
+do. One of the added benefits is that you do not have to worry about the
+memory problems and memory allocation at all.
+Next
+Previous
+Contents

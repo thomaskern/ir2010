@@ -1,0 +1,38 @@
+
+Visual Basic: Map Control Exercises
+Exercise One
+Some Initial Terminology
+"How can we program the computer to "see" numerically what the cartographer sees visually"
+The answer is to use analytical geometry which uses algebra to solve geometical problems. For example the simplest geometic object is a point in space; if the space is two dimensional it can be described using a pair of coordinate axes which create a Cartesian coordinate system which descibe the location of a point using a single pair of numbers. From this starting point lines can be modelled as vectors and areas a sets of vectors. 
+There is a whole set of terminology associated with Geometry and it is difficult to describe some of the functions without using specialised terms. So some of the more important terms are defined in the list below.
+A Real number
+A number that includes a decimal fraction
+An Integer number
+A number that has no fractional part
+A Vector
+A force (often represented as a line) emanating from an origin point that has both a direction and a fixed length or magnitude.
+A directedline segment
+A directedline segment is equivalent to a vector
+Scalars
+one dimensional vectors i.e. they have an origin but no magnitude. A point is a scalar
+Calculating the Distance between Two Points
+The magnitude of a vector (the hypotinuse), denoted as |a|, is defined as the square root of the sum of the squares of the its components (the other two sides of the triangle)
+|a| = (x2 + y2)1/2
+This can be expanded to calculate the distance between two points as this distance is equal to the magnitude of a vector connecting these points.
+|a| = [(x1 - x2) + (y1 - y2)1/2
+To code this in VB...
+Step 1
+Load the BMP (Basic Mapping Program) project into Visual Basic
+Step 2
+Create a new Group File and Data Set
+Step 3
+Step 4
+Map Control Software © 1994, 1995 Geosoft Ltd.
+Forward: Basic BASIC
+Back: Map Control Properties
+This Web Page forms part of a series that describe the Custom
+GIS Course at the School of Geography, Leeds University.
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 31 January 1996 11:48:55

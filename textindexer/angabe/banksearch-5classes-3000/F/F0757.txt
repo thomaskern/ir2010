@@ -1,0 +1,479 @@
+
+VBWM Forums
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login: 
+ 
+ 
+ 
+ 
+ 
+ 
+ password: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ Resources
+ Code & Tip Library
+ Message Board
+ Articles
+ News
+ LearnVB
+ Tutorials
+ Vendors
+ Job Market
+ Advertising
+ About Us
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Active Topics
+ |
+ Members
+ |
+ Search
+ |
+ FAQ
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 All Forums
+	
+	
+	
+	
+	 General Coding Techniques/Questions (VB6)
+	 Controlling the focus
+ 
+ 
+ 
+ New Topic
+ Reply to Topic
+ 
+ Printer Friendly
+ 
+ Add Topic to My Favorites
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Author 
+ Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 	
+	Gretchen Bruce
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+5 Posts 
+ 
+	Posted - 06/25/2002 : 14:46:35
+	 
+ 
+ 
+ 
+ 
+ 
+ I'm having trouble controlling the focus in some(but not all) of the applications I've written which result in the user having to click a command button several times before it executes. This seems to be because the click on the command button doesn't override the tab index process. Thus, if a user wants to get out of the screen by clicking the "Exit" button, for instance, it seems to kick off the "lostfocus" event for the the text box it is currently on, and sends to focus to the next tab index. Finally after several clicks on the exit button it executes the click event for that command button. Can you suggest any ways I can get around this problem? Thank you for whatever tips you might have. 
+ 
+ 
+ 
+ 
+	
+	
+	Allen
+ 
+ 
+Senior Member
+ 
+ 
+ 
+ 
+269 Posts 
+ 
+	
+	Posted - 06/25/2002 : 15:22:25
+	 
+ 
+ 
+ 
+ 
+ Does the program do any processing in the LostFocus or Validate events of your code? Any code in those events might override your click event.
+ 
+ 
+ 
+ 
+	
+	
+	null
+ 
+ 
+Senior Member
+ 
+ 
+United Kingdom
+ 
+286 Posts 
+ 
+	
+	Posted - 06/26/2002 : 04:53:44
+	 
+ 
+ 
+ 
+ 
+ yes, click a command button would inadvertantly fire a lost focus event on a control, if that had the focus when you clicked the button. If each of the controls in the sequence had lostfocus events, it would go through each one until it met a control with no lostfocus event code, therefore letting the command button get a chance!
+If you have put code into the lostfocus event of some controls in order to control the flow of control focus, this can be achieved by setting each control's tabindex so that each control is a number higher than the one before it.
+null 
+ 
+ 
+ 
+	
+	
+	Gretchen Bruce
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+5 Posts 
+ 
+	
+	Posted - 06/26/2002 : 11:32:11
+	 
+ 
+ 
+ 
+ 
+ 
+ Thanks to you both for the clarification. I actually do have code in the lost focus events, so that explains it. It doesn't make for a very professional presentation to the user, however. I wonder if there's a way (in the lost focus event) to say "if a click on the exit button has been done, then go there and do the click event instead of sending the focus to the next object." I suppose it does make sense in most cases that the lost focus event would be triggered, but wish there was a way to make the flow smoother. 
+'preciate it. Gretchen
+ 
+ 
+ 
+ 
+	
+	
+	null
+ 
+ 
+Senior Member
+ 
+ 
+United Kingdom
+ 
+286 Posts 
+ 
+	
+	Posted - 06/26/2002 : 11:46:08
+	 
+ 
+ 
+ 
+ 
+ I dont think there is a way to turn off a control's events, so you will have to think of another way around it. The first thing to look at is what your lostfocus event is doing, then try to find away around it. If you could write back and explain what code you have in the lostfocus events, we may be able to come up with something that does the same job, but does not rely on the event.
+null 
+ 
+ 
+ 
+	
+	
+	Gretchen Bruce
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+5 Posts 
+ 
+	
+	Posted - 06/26/2002 : 15:28:53
+	 
+ 
+ 
+ 
+ 
+ 
+ Hi Null - There are 3 text boxes that have a lostfocus event which execute prior to the command button. The first one enables a frame for purchase information if the user enters "sold" in that box. It also enables the command button called "File", and equates a public variable to the text in the text box. The second text box's lostfocus event validates the date that is entered. The third box lostfocus event sets the focus on the first field of the purchase information frame if the status is "sold", instead of having it go directly to the "file" button. Hope this is not too confusing. I don't have much interaction with other VB programmers, so I might be unaware of some other techniques I could be using. Any suggestions will be appreciated. Thanks, Gretchen
+ 
+ 
+ 
+ 
+	
+	
+	Allen
+ 
+ 
+Senior Member
+ 
+ 
+ 
+ 
+269 Posts 
+ 
+	
+	Posted - 06/26/2002 : 16:38:39
+	 
+ 
+ 
+ 
+ 
+ One way to get around it is to set a module level flag to be activated when the MouseDown event occurs on your command button.
+Then in the Textbox LostFocus event, check to see if it is set. If it isn't continue on to set the focus to your other control. If it is set then don't set the focus to the other control, and the Command_Click event will perform as intended. 
+The reason this seems to work is beacuse MouseDown events occur before LostFocus events.
+To see this in action create a form with three text boxes, a label and a command button and paste the code below into the code window:
+ 
+Option Explicit
+'
+Private Command1MouseDownFlag As Boolean
+'
+Private Sub Command1_Click()
+Label1.Caption = "Command1_Click"
+End Sub
+'
+Private Sub Command1_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Label1.Caption = "Command1_MouseDown"
+Command1MouseDownFlag = True
+End Sub
+'
+Private Sub Text1_GotFocus()
+Command1MouseDownFlag = False
+End Sub
+'
+Private Sub Text1_LostFocus()
+Label1.Caption = "Text1_LostFocus"
+If Command1MouseDownFlag = False Then Text3.SetFocus
+Command1MouseDownFlag = False
+End Sub
+'
+Private Sub Text3_GotFocus()
+Label1.Caption = "Text3_GotFocus"
+End Sub
+ 
+Edited by - allen on 06/26/2002 16:51:53 
+ 
+ 
+ 
+	
+	
+	Gretchen Bruce
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+5 Posts 
+ 
+	
+	Posted - 06/28/2002 : 13:43:45
+	 
+ 
+ 
+ 
+ 
+ 
+ Allen, thank you so much. That solution is exactly what I needed! I had never used the Mouse Down event before, and it will come in very handy for this project and for others in the future. I appreciate your taking the time to make the suggestion and even write sample code. Gretchen
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ New Topic
+ Reply to Topic
+ 
+ Printer Friendly
+ 
+ Add Topic to My Favorites
+ 
+ 
+ 
+ 	Jump To:
+	 
+	 Select Forum
+ VB .NET
+ Controls and Components (VB.NET)
+ Database Programming (VB.NET)
+ General Coding Techniques/Questions (VB.NET)
+ Web Forms and other Web development (VB.NET)
+ Web Development
+ ASP (Classic) - General Forum
+ ASP.NET General Forum
+ Visual Basic 6.0
+ Controls and Components (VB6)
+ Database programming (VB6)
+ General Coding Techniques/Questions (VB6)
+ Internet development (VB6)
+ Miscellaneous
+ General Discussion
+ Installation and Setup
+ Site Administration & Future Direction
+ Site Announcements
+	 --------------------
+	Home
+	Active Topics
+	Frequently Asked Questions
+	Member Information
+	Search Page
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+VBWM Forums
+ 
+ 
+ 
+© 2002 BowmanSoft, Inc.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Snitz Forums 2000cronym>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,41 @@
+
+Home - About - Assembly - DirectX - OpenGL - .NET - Platform SDK - Downloads - Links 
+June 28, 2001 
+privacy
+ 
+2D Graphics - Sprite > 3D Graphics - Matrices 
+2D Graphics - Surfaces
+Download : d3d8_03.zip (59 Kb)
+Rectangular surfaces are now created using the Direct3DSurface8 class. Initialization is done using two steps :
+- the surface is first created using a particular size and a surface format. We are using the same format than the current display mode.
+- The newly created surface is now loaded from a bitmap file.
+' Added
+Dim DisplayMode As D3DDISPLAYMODE
+Dim BackGround As Direct3DSurface8
+Dim BackBuffer As Direct3DSurface8
+Direct3D.GetAdapterDisplayMode D3DADAPTER_DEFAULT, DisplayMode
+Set BackGround = Device.CreateImageSurface(320, 240, DisplayMode.Format)
+d3dx.LoadSurfaceFromFile
+ BackGround, _
+ ByVal 0, _
+ ByVal 0, _
+ App.Path & "\cloud3.bmp", _
+ ByVal 0, _
+ D3DX_DEFAULT, _
+ 0, _
+ ByVal 0
+Parameters are :
+- Destination surface
+- No destination palette (ByVal 0)
+- Using the whole destination surface (ByVal 0)
+- Source file
+- Using the whole source surface (ByVal 0)
+- As the source file width and height doesn't match the destination surface dimensions, the D3DX_DEFAULT filter to resize the bitmap during the copy operation.
+- No color key
+- We don't need the surface description
+We now have a Direct3DSurface8 class object that is loaded with our background image. We need now to get access to the back buffer.
+Set BackBuffer = Device.GetBackBuffer(0, D3DBACKBUFFER_TYPE_MONO)
+This single line of code allows to gain access to the back buffer surface (that is also a Direct3DSurface8 object).
+The only thing left now is to fill the back buffer with the background image. This is done using the Direct3DDevice8.CopyRects method :
+Device.CopyRects BackGround, ByVal 0, 0, BackBuffer, ByVal 0
+Patrice Scribe

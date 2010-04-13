@@ -1,0 +1,948 @@
+
+Javalobby Forums - NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 75053 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 33 replies on
+ 4 pages.
+ Most recent reply:
+ Apr 18, 2002 10:47 AM
+ by
+ 
+ Dmitry Leskov
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: « 1 2 3 4 » ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jilles Van Gurp
+ 
+ 
+ 
+ Posts: 100
+ 
+ 
+ From: The Netherlands
+ 
+ Registered: Feb, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 3:45 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ They could at least bother to support the de facto standard for Java GUIs, like it or not it isn't going away anytime soon. As long as it doesn't support swing I have no use for it. I've only played with eclipse for a short moment. It looks pretty decent but I'd say swing looks prettier. I wasn't impressed with the speed either. SWT or not, it loads about as fast as netbeans on my machine. That's not so strange since both actually spend most of their initialization time initializing plugins. 
+Most proponents of SWT cite either performance or look and feel as the advantages. However, on my 2 1/2 year old PC swing performance is very satisfactory with jre 1.4. I'm pretty happy running Jedit and limewire for instance, both of which work at near native speeds on my machine (500 Mhz pIII, 512MB). And as has been pointed out, creating a SWT look and feel for swing is easy (not that I'd use it anyway).
+BTW. how does one distribute SWT applications? I haven't actually seen any yet (except for the IDE) and I suppose you need SWT preinstalled in order to run SWT apps. Since SWT requires native components stuff like webstart is probably not an option.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Steve Benigan
+ 
+ 
+ 
+ Posts: 62
+ 
+ 
+ Registered: Feb, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 6:42 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I just read through everything I could find about SWT again. I would understand if they made SWT for the tool itself (sort of like the old IDE's that were mostly native code) but it sounds like they really want to make it a toolkit for everyone to use.
+They say a wise developer would have to test their application on every target platform... the same is true of Swing applications but in a much different sense. With SWT you'd be testing behavior of native components for things like automatically selected radio buttons on windows but no on the mac, window focusing, etc. With Swing you'd be testing to see if you hit any of the Swing bugs on the various platforms. This is a big difference.
+I too did not notice a great speed difference between Eclipse and Swing applications. I think the perceived speed difference lies in the look and feel and drag and drop capability in Eclipse. The workspaces (perspectives) are well thought out and easy to use.
+I do not know of another SWT application.
+I don't know how they'd distribute SWT applications... You may be right about having to have SWT installed beforehand. Does this mean that IBM JDKs will have SWT along with the JVM? Oh what a mess.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Olivier Refalo
+ 
+ 
+ 
+ Posts: 19
+ 
+ 
+ From: Miami, USA
+ 
+ Registered: Sep, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 11:52 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hey guys, there might be something you haven't notices about SWT <-> Swing war.
+SWT supports OLE and that's a key point in terms of integration. Remember Eclipse is an integration platform.
+Ever wondered how rational got an "eclipse like" version of rose so quickly ? here is your answer.
+Plus SWT closes a huge gap in terms of UI built around Java. SWT is what AWT should have been and I hope this API will be used by many other applications. The more application use it, the more platforms it might be ported to.
+Why bother about UI portability since 99% of the market runs Windows for frontends.
+Just my 3c comments.
+Regards,
+OR
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	ufans 
+ 
+ 
+ 
+ Posts: 61
+ 
+ 
+ Registered: May, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 2:39 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In order to run swt one only needs the native library in the java library path 
+(for windows: -Djava.library.path=eclipse\plugins\org.eclipse.swt\os\win32\x86, 
+for a *nix: -Djava.library.path=eclipse/plugins/org.eclipse.swt/os/linux/x86). 
+This will make your native library (swt-win32-2031.dll, swt-motif-2031.so) accessible to your java application. 
+In addition, since not all widgets are supported on all platforms one also needs this jar in the classpath (for windows: eclipse\plugins\org.eclipse.swt\ws\win32\swt.jar, for *nix: eclipse/plugins/org.eclipse.swt/ws/motif/swt.jar), which emulates the missing widgets.
+That's it.
+Java Web Start ought to support this. I haven't tried this myself yet. If anybody knows, how to get the Web Start vm to start with the -Djava.library.path option set from the server, please post it. 
+Bernard
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Steve Benigan
+ 
+ 
+ 
+ Posts: 62
+ 
+ 
+ Registered: Feb, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 3:42 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Oh man, Microsoft must love you. I do care about UI portability b/c I do not want to alienate any platform. The closest I can come to this ideal is by using Swing.
+Isn't OLE going to be killed off by Microsoft anyway? OLE support is not a bad thing bad in my opinion it should not be tied to the windowing system. That doesn't make sense.
+No, I don't think I missed something about the SWT Swing war. It's an IBM Sun war when it comes down to it.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Steve Benigan
+ 
+ 
+ 
+ Posts: 62
+ 
+ 
+ Registered: Feb, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 3:45 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I don't think the issue is whether WebStart can support it. It's how is the dll going to get on the user's machine in the first place? I don't think Webstart is capable of adding native libraries. Maybe it is... but then there's the issue of the security policy...
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Fred Barney
+ 
+ 
+ 
+ Posts: 13
+ 
+ 
+ Registered: Jan, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: I hope Sun is cleverer than that.
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 8:16 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Swing is fat, slow and ugly, with no traction whatsoever on the desktop after years of trying.
+It seems you do not grasp this concept.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Olivier Refalo
+ 
+ 
+ 
+ Posts: 19
+ 
+ 
+ From: Miami, USA
+ 
+ Registered: Sep, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 9:16 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I never said OLE was a good thing in terms of portability. 
+The whole problem is about legacy apps.. If you already have a product running on Windows, why would you spend millions of $$$ to convert it to Swing ?
+It's so much easier to integrate it using OLE (or DCOM). Portability.. who cares... Rational never had a Unix version of their products. Why would they go for it ?
+-> And actually besides MacX, there is no better desktop than W$. It's sad but it's a fact... look at the market shares.
+As far as the M$ war thing, I don't care who wins... I will go for the one who pays my paychecks. I had the same kind of arguments with C++ programers who were complaining about Java a few years ago. Guess what they are programming today ?
+Who knows what they will be using tomorrow...
+Regards,
+OR
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Greg Brown
+ 
+ 
+ 
+ Posts: 17
+ 
+ 
+ Registered: Oct, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 11:50 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ WebStart does support native libraries. You just have to wrap them in a signed JAR. See the JNLP spec. I would include an example, but I'm having trouble posting XML.
+I've been a huge Swing advocate for years, but I like SWT, too, and I think it's very much a step in the right direction. 
+One thing SWT lacks right now is support for applets. SWT applet support would definitely help Java make inroads into the client development space. Right now, options for web-based client side development include HTML, DHTML, AWT, Swing, and Flash. HTML, AWT, and Flash are too limited for building any interface that is more than moderately complex (especially forms). DHTML isn't consistently supported across browsers and platforms. Swing is slow and the platform L & Fs never look quite right. Additionally, if you want your Swing applet to run consistently, your users need to download a 10MB plugin (JRE 1.4). SWT apps load faster, run faster, and look exactly like the native platform. Build Swing (or something Swing-like) on top of SWT, and you've got customizability, too - best of both worlds.
+ 
+G
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Steve Benigan
+ 
+ 
+ 
+ Posts: 62
+ 
+ 
+ Registered: Feb, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 4, 2002 1:17 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Ok, so it has to be a signed JAR. I guess that's ok but it means that the application won't be as widely accepted as it would without the libraries.
+I just checked the some sizes:
+swt.jar 971 KB
+swt-win32x.dll 256 KB
+Not bad.
+If parts of the JVM were loaded already, Swing apps would start very very fast. To test this, try writing a custom classloader for an application only, not the core classes and then run the app. The difference is more than dramatic. If Sun were to push a shareable VM through, startup issues wouldn't be a problem. Runtime speed would still be a problem.
+I'm all for a faster crossplatform GUI. I don't care so much about native platform L&F but it certainly should be available. It seems that Swing needs to be more flexible or we need better L&F's to handle the native look and feels. Apple has managed to do it better than any other L&F. It should be possible for windows as well.
+I guess my ultimate concern is that SWT doesn't seem to fit in the WORA mentality. Hopefully if SWT becomes popular, it will exist on as many platforms as possible instead of a just 1.5 (Windows and sort linux and solaris). I just noticed that late last month they had a GTK1.2 version available. I'll take a look at it.
+Another thing that concerns me is that SWT is more conducive to breaking when the native UI system changes. This is true of AWT/Swing but not as much so as SWT. Hopefully SWT would be released simultaneously with the new platform... ie when GTK2 comes out, I hope Eclipse is immediately available.
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 33 replies
+ on 4 pages
+ [
+ «
+ |
+ 1 
+ 2
+ 3
+ 4
+	 |
+ »
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

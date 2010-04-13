@@ -1,0 +1,329 @@
+
+ 
+ Create your own type 3 JDBC driver, Part 3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ July 2002 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ Create your own type 3 JDBC driver, Part 3
+ 
+ Enhance the custom JWDriver with advanced logging, connection pooling, and Predefined Data Sets
+ 
+ 
+ 
+Summary
+In Parts 1 and 2 of this three-part series, you created a type 3 JDBC (Java Database Connectivity) driver, deployed it, and used it in a sample application. Beyond that, you can make the custom JWDriver more robust and improve its diagnostic capabilities by adding extra features such as SQL statement logging, connection pooling, and Predefined Data Sets (PDS). (1,800 words; July 12, 2002)
+ 
+ By Sunil Kumar and Nitin Nanda
+ 
+ 
+ 
+ 
+rchitecturally, type 3 JDBC (Java Database Connectivity) drivers prove flexible enough that you can easily add enhancements. In Parts 1 and 2 of this three-part series, you learned how to create a custom type 3 JDBC driver, named JWDriver, that employed RMI (Remote Method Invocation) to communicate with the middle tier. In this article, the last of the series, we demonstrate how to enhance JWDriver's functionality with three new features: 
+ 
+- SQL statement logging for diagnosis 
+- Database connection pooling for faster connection retrieval 
+- Predefined Data Sets (PDS) for improved network latency 
+Read the whole "Create Your Own Type 3 JDBC Driver" series: 
+- Part 1: Connect your Java applications to databases&#8212;the easy way 
+- Part 2: Compile, deploy, and access data using your custom-built JDBC driver 
+- Part 3: Enhance the custom JWDriver with advanced logging, connection pooling, and Predefined Data Sets 
+Let's examine each new feature in turn. 
+Note: You can download this article's source code from Resources. 
+ Feature 1: SQL statement logging for diagnosis 
+Business applications typically contain numerous SQL data-manipulation and data-retrieval statements to implement various business features. You sometimes may wish to log for later analysis such SQL statements as they execute on the database server. Other uses for logging SQL statements include finding, during the development life cycle, performance bottlenecks from slow SQL statements, or tracking hard-to-find bugs in a complex business transaction containing multiple SQL statements. 
+To add SQL statement logging capability to JWDriver, begin by adding a new class, DriverLog, in the driver's middle tier. That class provides the interface to write SQL statements to a predefined file. Each executed SQL statement passes through the remote statement class's executeQuery() and executeUpdate() methods in the middle tier, so the two methods contain the call to the DriverLog methods to log the SQL statements.
+Let's now see DriverLog's implementation and its use in the driver's remote statement class. 
+ The DriverLog class 
+The SQL statement logging occurs in the Web server, where the driver's middle tier is deployed. Create DriverLog under the middle tier's com.jw.server package. To handle concurrent clients, DriverLog employs the Singleton pattern by making its constructor private to ensure only one instance. The getInstance() method returns the DriverLog reference. The public logQuery() method actually logs the SQL statements into the log file. 
+The DriverLog constructor opens the C:\TEMP\JWDriver.log disk file for logging SQL statements. The constructor uses the PrintWriter and FileWriter classes to access the JWDriver.log file. The constructor also opens JWDriver.log in append mode. Here's the constructor's code: 
+private DriverLog()
+{
+ try
+ {
+ logFileWriter = new FileWriter(logFile,true);
+ logPrintWriter = new PrintWriter(logFileWriter,true);
+ }
+ catch(Exception ex)
+ {
+ logFileWriter = null;
+ logPrintWriter = null;
+ ex.printStackTrace();
+ }
+}
+Since we've marked the DriverLog class constructor as private, the class is accessed via a public getInstance() method. The getInstance() method always returns the same DriverLog class reference. The single DriverLog instance is maintained in a static class variable singleLogInstance and created only once as soon as the getInstance() method is first accessed: 
+public static DriverLog getInstance(){
+ if(singleLogInstance == null)
+ singleLogInstance = new DriverLog();
+ 
+ return singleLogInstance;
+}
+The remote statement calls the public logQuery() method to log SQL statements into the file. The logQuery() method, which logs the SQL statements with the current date and time, includes a synchronized block that ensures the concurrent clients access the log file one at a time. logQuery() logs SQL statements only if you've switched the logging on, which you'll see in the next section. Here's the code: 
+public void logQuery(String query){
+ try{
+ if(RemoteDriverImpl.queryLog == 1){
+ if(logPrintWriter != null){ 
+ synchronized(logPrintWriter){ 
+ Date theDate = new Date();
+ String fullMsg = "Logged at:" + theDate.toString();
+ logPrintWriter.println("----------------------------------
+ --------------------------------------------------------");
+ logPrintWriter.println(fullMsg);
+ logPrintWriter.println(query);
+ }
+ } 
+ } 
+ }
+ catch(Exception ex){}
+}
+ Log SQL statements in the server 
+The SQL statements get logged in the driver middle-tier machine in a JWDriver.log file. Switch on SQL statement logging by setting QueryLog to 1 in the DriverSettings.properties file. (You can switch logging back off by setting QueryLog to 0.) 
+The driver client tier passes the SQL statement to the middle tier via IRemoteStatement for execution in the database server. The executeQuery() and executeUpdate() methods in RemoteStatementImpl then call the logQuery() method to log the SQL statements before execution: 
+public IRemoteResultSet executeQuery(String Query) throws RemoteException,SQLException{
+ // Log the SQL statement
+ DriverLog.getInstance().logQuery(Query);
+ ResultSet rs = sqlStatment.executeQuery(Query);
+ RemoteResultSetImpl remoteRs = new RemoteResultSetImpl(rs);
+ return (IRemoteResultSet)remoteRs;
+}
+public int executeUpdate(String Query) throws RemoteException,SQLException{
+// Log the SQL statement
+ DriverLog.getInstance().logQuery(Query);
+ return sqlStatment.executeUpdate(Query);
+}
+ Feature 2: Database connection pooling for faster connection retrieval 
+Establishing a database connection to execute a SQL statement always takes time. To increase an application's performance, you can cache database connections, a feature you can easily implement in JWDriver. Whenever a connection request to the database server comes from the middle tier to serve the client application request, the connection returns from the pool. When the client application closes a connection, the connection in the middle tier returns to the pool so that it could serve other client requests. All that happens with the client unaware whether connection pooling is implemented in the middle tier. 
+We will cover the following topics to discuss JWDriver's connection-pooling support: 
+ 
+- The connection pool 
+- Initializing the connection pool 
+- Retrieving the connection from the pool 
+- Returning the connection to the pool 
+ The connection pool 
+The ConnectionPool class, created in the driver middle tier under the com.jw.server package, implements the connection pool. ConnectionPool employs the Singleton pattern to handle the concurrent clients by making its constructor private to ensure only one instance. The getInstance() method returns a ConnectionPool reference. ConnectionPool provides the addConnection() method for adding the connections to the pool during the server's launch. The included getConnection() method gets the connection from the pool. 
+The constructor creates the empty stack that will hold the connections as: 
+private ConnectionPool()
+{
+ connectionPool = new Vector();
+}
+ConnectionPool is accessed via the public getInstance() method, which always returns the same reference of the ConnectionPool class. The single ConnectionPool instance is maintained in a static class variable connectionPoolInstance. The single connectionPoolInstance instance is created only once when the getInstance() method is first accessed. The code for the getInstance() method is given below:
+public static ConnectionPool getInstance()
+{
+ if(connectionPoolInstance == null)
+ connectionPoolInstance = new ConnectionPool();
+ 
+ return connectionPoolInstance;
+}
+The ConnectionPool class keeps the pooled database connections in a stack implemented by the Vector object. ConnectionPool provides two methods&#8212;addConnection() and getConnection()&#8212;to access the connection pool stack. These methods push and pop the connection from the stack, respectively: 
+public synchronized void addConnection(Connection con){
+ // Add the JDBC-ODBC bridge connection to the pool
+connectionPool.addElement(con);
+}
+ 
+public synchronized Connection getConnection(){
+ Connection con = null;
+ 
+ if(connectionPool.size() > 0){ 
+ con = (Connection)connectionPool.lastElement();
+ connectionPool.removeElementAt(connectionPool.size() - 1);
+ }
+ 
+ return con;
+}
+ Initialize the connection pool 
+The connection pool initializes when JWDriver's RMI server starts up. The RemoteDriverImpl class creates the JDBC-ODBC (Open Database Connectivity) bridge connections and adds them into the pool: 
+private void initializeConnectionPool(){
+String URL="jdbc:odbc:"+DSN;
+for(int i = 0; i 
+Figure 1. Get a connection from the connection pool. Click on thumbnail to view full-size image. 
+ 
+ Return the connection to the pool 
+The database connection returns to the pool whenever the client program closes the connection. JWDriver's client tier delegates the close connection request to the middle tier through the IRemoteConnection class. RemoteConnectionImpl then returns the database connection to the pool as: 
+public void closeConnection() throws RemoteException,SQLException{
+ ConnectionPool.getInstance().addConnection(sqlConnection);
+}
+ Feature 3: PDS setting for improved network latency 
+You can use JWDriver in intranet applications. Client programs such as applets run in client machine browsers while the middle tier runs in the Web server. After a SQL statement executes, the result-set data passes from the middle tier to the client tier via RMI. The client tier, provided in Part 2, gets the data for each result-set row from the middle tier, causing expensive network calls to retrieve each result row between the client and middle tiers. Excessive network calls can slow performance, especially with large result sets.
+To reduce such network calls, we've created the PDS. The set of result-set rows pack into an array in the middle tier and return to the client tier. The client tier returns the data from the array for each row instead of going to the server every time. This approach reduces the network calls per result set by: 
+ Network calls saved = ResultSet row count - ResultSet row count / size of PDS 
+JWDriver's ResultSetChunk class implements the PDS. The ResultSetChunk instance containing the result-set rows inside an array passes from the middle tier to the client tier. Let's now detail the ResultSetChunk class. 
+ The ResultSetChunk class 
+The ResultSetChunk class, included under the com.jw.server package, sends the data to the client tier from the middle tier. The ResultSetChunk class also implements the JDK Serializable interface so its instances can pass to the client tier via RMI. ResultSetChunk also provides the interface to set the result-set data rows in its constructor, and then get each row one by one in the getNextRow() method. 
+The middle tier extracts the rows from the JDBC result set and populates them into a ResultSetChunk instance. ResultSetChunk class contains the set of rows in a Vector object. Each row is further an array of Objects. The ResultSetChunk constructor accepts the row set as arguments: 
+public ResultSetChunk(Vector rows){
+ rsRows = rows;
+}
+We cover getNextRow() in more detail in the "Fetch Data from the PDS" section. 
+ Prepare the PDS 
+The client program executes a query and then calls the next() method in the client tier's JWResultSet. For the next() call, the client tier delegates the call to the middle tier's getNextChunk() method through IRemoteResultSet to get the PDS. The getNextChunk() method prepares the PDS with a 50-result-set-row maximum by iterating over the JDBC ResultSet. Each row is packed into an Object array. A ResultSetChunk instance containing the data row set is then prepared and returned to client tier. If the JDBC Resultset has no more rows to iterate, null returns to the client tier: 
+public ResultSetChunk getNextChunk() throws RemoteException,SQLException{
+ Vector rsDataChunk = new Vector();
+ for(int curRowIndex = 0; curRowIndex 
+Figure 2. Fetch data from the PDS. Click on thumbnail to view full-size image. 
+ 
+The next() method gets the PDS from the server if the PDS was not obtained earlier or if all rows in the current PDS have already iterated. Once the PDS has been retrieved from the middle tier, the getNextRow() method obtains the next data row from the PDS. Below you'll find the code for the JWResultSet's next() method: 
+public boolean next() throws SQLException{
+try{
+ // Get the chunk data first time
+ if(rsChunkData == null)
+ rsChunkData = remoteResultSet.getNextChunk();
+ 
+ if(rsChunkData != null){
+ // Check if data row can be obtained from the local chunk first 
+ row = rsChunkData. getNextRow(); 
+ if(row == null){ 
+ rsChunkData = remoteResultSet.getNextChunk();
+ // If event-remote result set is not over
+ if(rsChunkData != null){
+ row = rsChunkData.getNextRow();
+ }
+ }
+ } 
+ }
+ catch(Exception ex){
+ throw new SQLException(ex.getMessage());
+ } 
+ 
+ if(row == null){
+ return false;
+ }
+ 
+ return true;
+}
+The PDS ResultSetChunk internally iterates through the data rows it encapsulates. The ResultSetChunk remembers the current row position internally in a curIndex variable and returns null once all the rows have iterated. Here's the code for the ResultSetChunk's getNextRow() method: 
+public Object[]getNextRow () {
+ Object []row = null;
+ if(curIndex Professional Java Data (2001; ISBN: 1861004109) and Beginning Java Databases (2001; ISBN: 1861004370), both from Wrox Press. He worked with Cadence Design Systems prior to joining Quark.
+Sunil Kumar is associate team lead at Quark's research and development center based in Chandigarh, India. He designs and develops the various components for a CRM product being engineered in VJ++/ASP/COM+/SQL Server. He worked with RAMCO Systems, developing generic ERP (enterprise resource planning) software, prior to joining Quark.
+ 
+Resources
+- To download this article's example driver code, go to: 
+http://www.javaworld.com/javaworld/jw-07-2002/jdbcdriver3/DriverCode.zip
+- For this article's deployment source code, download: 
+http://www.javaworld.com/javaworld/jw-07-2002/jdbcdriver3/Deployment.zip
+- Nitin Nanda and Sunil Kumar's "Create Your Own Type 3 JDBC Driver" series (JavaWorld):
+- Part 1: Connect your Java applications to databases&#8212;the easy way (May 2002)
+- Part 2: Compile, deploy, and access data using your custom-built JDBC driver (June 2002)
+- Part 3: Enhance the custom JWDriver with advanced logging, connection pooling, and Predefined Data Sets (July 2002)
+- Nitin Nanda's "JDBC Drivers in the Wild" (JavaWorld, July 2000) explains the four JDBC driver types: 
+http://javaworld.com/javaworld/jw-07-2000/jw-0707-jdbc.html
+- See Sun Microsystems' JDBC page: 
+http://java.sun.com/products/jdbc
+- For a description on RMI, see: 
+http://java.sun.com/products/jdk/rmi/
+- Siva Visveswaran explains how to manage access to shared, server-side resources for high performance in "Dive Into Connection Pooling with J2EE" (JavaWorld, October 2000): 
+http://www.javaworld.com/javaworld/jw-10-2000/jw-1027-pool.html
+- Java Q&A expert Tony Sintes's Java/Microsoft Excel series (JavaWorld) employs JDBC to read and write from Microsoft Excel files:
+- "It's Excel-lent" (June 2001)
+- "The Java-Excel Solution Revisited" (August 2001)
+- "It's POI-fect" (May 2002)
+- For more JDBC stories, visit the Java Database Connectivity (JDBC) section of JavaWorld's Topical Index: 
+http://www.javaworld.com/channel_content/jw-jdbc-index.shtml
+- Sunil Kumar and Nitin Nanda also wrote "Log It or Lose It" (JavaWorld, September 2001), which shows how to log events to the Windows NT Event Log with JNI (Java Native Interface): 
+http://www.javaworld.com/javaworld/jw-09-2001/jw-0928-ntmessages.html
+- Talk about JDBC in our Enterprise Java discussion: 
+http://forums.idg.net/webx?50@0@.ee6b80a
+- Sign up for JavaWorld's free weekly Enterprise Java email newsletter: 
+http://www.javaworld.com/subscribe
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,19 @@
+
+ 
+ C++ Programming HOW-TO: Templates
+ 
+ 
+ 
+Next
+Previous
+Contents
+16. Templates
+Templates is a feature in C++ which enables generic programming, with
+templates code-reuse becomes much easier.
+Consider this simple example:
+#include 
+#include 
+void printstring(const std::string& str) {
+ std::cout 
+void print(const T& var) {
+ std::cout 

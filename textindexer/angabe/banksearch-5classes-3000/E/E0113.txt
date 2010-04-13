@@ -1,0 +1,652 @@
+
+ 
+C >> Bitwise Operators Quiz Answers ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bitwise Operators Quiz 
+ Main Menu 
+ Bitwise Operators 3 
+ 
+ 
+ 
+ 
+Bitwise Operators Quiz Answers
+ 
+ 
+ 
+ 
+ 
+AND, OR, XOR
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Expression
+ 
+ 
+ 
+returns...
+ 
+ 
+ 
+Reason
+ 
+ 
+ 
+ 
+ 
+3 & 4
+ 
+ 
+ 
+0
+ 
+ 
+ 
+3 is 010 in binary and 4 is 100. Comparing the bits using AND, you'd get 000 which is zero. 
+ 
+ 
+ 
+ 
+ 
+5 & 4
+ 
+ 
+ 
+4
+ 
+ 
+ 
+5 is 4+1, which is 101 in binary. 4 is simply 100, so 5 & 4 returns 100 in binary, which is decimal 4. 
+ 
+ 
+ 
+ 
+ 
+8 & 7
+ 
+ 
+ 
+0
+ 
+ 
+ 
+8 is simply 1000. 7 is 0111. So 8 & 7 returns 0000 in binary, which is zero. 
+ 
+ 
+ 
+ 
+ 
+16 & 6
+ 
+ 
+ 
+0
+ 
+ 
+ 
+16 is 10000. 6 is 00110. So 16 & 6 returns 00000 in binary, which is zero. 
+ 
+ 
+ 
+ 
+ 
+24 & 16
+ 
+ 
+ 
+16
+ 
+ 
+ 
+24 is 16+8, which is 11000 in binary. 16 is simply 10000. So 24 & 16 returns 10000 in binary, which is 16. 
+ 
+ 
+ 
+ 
+ 32 & 16 
+ 
+ 
+0
+ 
+ 
+ 
+Now we're comparing 2 powers of 2 using bitwise AND. In the cases when the powers are different, the result is always zero: 
+ 32 is 100000, 16 is 010000 and since the 1 occurs in different places, 32 & 16 is 0. 
+ 
+ 
+ 
+ 17 && 23 
+ 
+ 
+1
+ 
+ 
+ 
+Trick question!! Remember that bitwise AND is just &, where as logical AND is &&. 
+ Since both operands are non zero, 1 is returned by logical AND. 
+ 
+ 
+ 
+ 8 ^ 12 
+ 
+ 
+4
+ 
+ 
+ 
+Now for bitwise XOR. 8 is 1000, 12 is 8+4, which is 1100. Now, 1 XOR 1 is zero because BOTH operands is one. The a XOR 
+ b returns 1 if only one of a or b are 1. So 8 ^ 12 returns 0100, which is 4 in decimal. 
+ 
+ 
+ 
+ 1 ^ 17 
+ 
+ 
+16
+ 
+ 
+ 
+1 is simply 00001, 17 is 16+1, which is 10001 in binary. Doing a XOR comparison, we see that 1 ^ 17 returns 10000, 
+ which is 16. 
+ 
+ 
+ 
+ 3 ^ 8 
+ 
+ 
+11
+ 
+ 
+ 
+3 is 2+1, which is 0011 in binary, 8 is 1000. Doing a XOR comparison, we see that 3 ^ 8 returns 1011, which is 
+ 8+2+1 = 11. 
+ 
+ 
+ 
+ 
+ 
+13 | 23
+ 
+ 
+ 
+31
+ 
+ 
+ 
+Now for bitwise OR. 13 is 8+4+1, so it's 01101 in binary. 23 is 16+4+2+1, so it's 10111 in binary. Unlike XOR, a OR b returns 
+ 1 if any of the operands are 1. So applying bitwise OR, 13 | 23 is 11111, which is 31. 
+ 
+ 
+ 
+ 
+ 
+16 | 4
+ 
+ 
+ 
+20
+ 
+ 
+ 
+Here's another trick: if you're comparing 2 different powers of 2 using bitwise OR, you simply add them. So 16 | 4 
+ returns 16 + 4 =20. 
+ 
+ 
+ 
+ 
+ 
+3 | 10
+ 
+ 
+ 
+11
+ 
+ 
+ 
+3 is 0011 in binary. 10 is 1010. So 3 | 10 is 1011, which is 11. 
+ 
+ 
+ 
+ 
+ 
+8 | 3
+ 
+ 
+ 
+11
+ 
+ 
+ 
+8 is 1000 in binary. 3 is 0011. So 8 | 3 is 1011, which is 11. 
+ 
+ 
+ 
+ 
+ 
+5 | 3
+ 
+ 
+ 
+7
+ 
+ 
+ 
+5 is 101 in binary. 3 is 011. So 5 | 3 is 111, which is 7. 
+ 
+ 
+ 
+ 8 | 10 
+ 
+ 
+10
+ 
+ 
+ 
+8 is 1000 in binary. 10 is 1010. So 8 | 10 is 1010, which is 10. 
+ 
+ 
+ 
+ 32 | 64 
+ 
+ 
+96
+ 
+ 
+ 
+We are comparing 2 different powers of 2 again, using bitwise OR. So we just add them to get 96 as the return value. 
+ 
+ 
+ 
+ 3 ^ 5 
+ 
+ 
+6
+ 
+ 
+ 
+Back to XOR, 3 is 011 in binary, 5 is 101. So 3 ^ 5 returns 110, which is 6 in decimal. 
+ 
+ 
+ 
+ 6 ^ 13 
+ 
+ 
+11
+ 
+ 
+ 
+6 is 0110 in binary, 13 is 1101. So 6 ^ 13 returns 1011, which is 11 in decimal. 
+ 
+ 
+ 
+ 20 ^ 20 
+ 
+ 
+0
+ 
+ 
+ 
+You may have noticed that a & a and a | a return a. But a ^ a always returns 0. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Left 
+ and Right Shifts
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Expression
+ 
+ 
+ 
+returns...
+ 
+ 
+ 
+Reason
+ 
+ 
+ 
+ 
+ 
+ 3 > 2
+ 
+ 
+ 
+8
+ 
+ 
+ 
+This is the same as saying 32/22 i.e. 32/4, which is 8. 
+ 
+ 
+ 
+ 
+ 
+34 >> 3
+ 
+ 
+ 
+4
+ 
+ 
+ 
+23 is 8. But 34/8 is 4.25, which rounds down to 4. 
+ 
+ 
+ 
+ 
+ 
+56 >> 4
+ 
+ 
+ 
+3
+ 
+ 
+ 
+24 is 16, and 56/16 is 3.5, which rounds down to 3. 
+ 
+ 
+ 
+ 
+ 
+100 >> 5
+ 
+ 
+ 
+3
+ 
+ 
+ 
+25 is 32, and 100/32 is 3.125, which also rounds down to 3. 
+ 
+ 
+ 
+ 
+ 
+1 >> 6
+ 
+ 
+ 
+0
+ 
+ 
+ 
+26 is 64, and 1/64 is 0.015625, which rounds down to 0. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Bitwise Operators Quiz 
+ Main Menu 
+ Bitwise Operators 3 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

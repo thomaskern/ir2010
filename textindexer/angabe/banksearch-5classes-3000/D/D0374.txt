@@ -1,0 +1,926 @@
+
+Javalobby Forums - NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 75053 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 33 replies on
+ 4 pages.
+ Most recent reply:
+ Apr 18, 2002 10:47 AM
+ by
+ 
+ Dmitry Leskov
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: 1 2 3 4 » ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Ray Offiah
+ 
+ 
+ 
+ Posts: 135
+ 
+ 
+ Registered: Feb, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 9:30 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ According to this news item, Sun and IBM are are thinking about setting a date for a quick chat to see if there is any common ground that can be discussed to decide if it's worth meeting to see if they can agree on a possible future forum for a discussion on merging NetBeans and Eclipse.
+Well, it's early days yet ...
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Rick Ross
+ 
+ 
+ 
+ Posts: 21
+ 
+ 
+ From: Cary, North Carolina
+ 
+ Registered: Nov, 1998
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Interesting, Ray - I wonder how they would address SWT?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 11:29 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ It seems there is a fundamental disconnect between the two projects in their respective frameworks for user interface construction. I'm actually glad to see the SWT effort moving ahead with momentum because there are definitely some cases where a performant UI is a "make or break" factor in the application space. I'm not saying Swing is bad, but I think there is a place in the world for both approaches.
+At JavaOne I had a good discussion with Roman Stanek, the founder of NetBeans. He had interesting insights about the differences that exist just because Eclipse was started some years after NetBeans. He seemed to suggest that sometimes projects need to start over to enter the next generation, that incremental progress from the long-established base will sometimes be less effective than a fresh beginning.
+I wonder if Sun sees it that way?
+Rick
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Cornellious Mann
+ 
+ 
+ 
+ Posts: 70
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Interesting, Ray - I wonder how they would address SWT?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 2:26 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Couldn't Swing be rewritten on top of SWT instead of AWT?
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jason Osgood
+ 
+ 
+ 
+ Posts: 1
+ 
+ 
+ Registered: Nov, 1998
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 5:03 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I'm totally fine with Sun doing its thing and IBM doing its thing; the competition is terrific for us developers.
+The only criticism I have of IBM's Eclipse is the use of SWT. The issue is a distraction. It's unnecessary. It must be ported for each platform (e.g. Mac OS X). It requires tool developers to have duplicate knowledge (both Swing and SWT). It'd be great of IBM made it a non-issue by adopting Swing.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	mark lesk
+ 
+ 
+ 
+ Posts: 4
+ 
+ 
+ Registered: Apr, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 6:05 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I am not sure this is an accurate representation. 
+First : developers do not need to understand or know anything about swt in order to use eclipse as a development platform. Developers only need to know about swt if they want to create plugins for eclipse, or if they want to use eclipse as the basis for another product.
+Second : Swing is not free on each platform, that is why we have a motif look and feel, a windows look and feel, an aqua look and feel. The question is whether it is much more difficult to port swt to a platform or to create a look and feel for a platform, and the degree to which each provides a transparent integration with the platform. I am not qualified to answer this because I have not done either - can anyone else comment on this.
+In the end, this discussion of swt is really unnecessary, it provides a tremendous environment within eclipse, in many ways cleaner, faster, and more platform integrated than swing - at least the swing apps that I have seen. 
+An example, I think JBuilder and Together are two of the best swing apps that I have worked with. Neither provide the level of integration with windows that eclipse does, not even close. That is just my opinion. 
+For 90% of the developers that will use eclipse, they will never touch swt other than to enjoy the capabilities it provides them while doing development. Why worry about it, swing has a place and swt also has a place.
+Mark
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Steve Benigan
+ 
+ 
+ 
+ Posts: 62
+ 
+ 
+ Registered: Feb, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: NetBeans and Eclipse: IBM and Sun are thinking about it
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 8:31 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ It is not terribly difficult to create an SWT 'Look and Feel' with Swing. I'm not referring to a simple traditional Java L&F but rather a framework of panels, drag and drop, and a Java L&F. It's just that no one has done it yet. Take a look at:
+http://www.jgoodies.com/metamorphosis/
+This was a brief attempt at making a swing app look like Eclipse. Frankly, I don't think that SWT was necessary. Yes it may be slightly faster than Swing but certainly Swing can be made faster. I believe that SWT was already in the works by (I forgot the organization that was making Eclipse) by the time IBM got hold of it. As a result they decided to market it as a plus instead of using Swing. Had they used swing, they would have made a huge impact on all platforms. Have you seen Eclipse on Linux? Not pretty...
+Anyway, I'm looking forward to hearing what will become of the talks. Will they present a JSR to push SWT technology into Swing? Will they make their plugins compatible somehow? Will they merge into one tool? 
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Brad Neuberg
+ 
+ 
+ 
+ Posts: 1
+ 
+ 
+ Registered: Dec, 1998
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Interesting, Ray - I wonder how they would address SWT?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 4:31 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I agree, Rick. I'm really happy to see SWT gaining momentum. I'm planning to create a huge client-side application soon, and Swing just doesn't cut it. I'm tired of hoping that each new JDK release will "finally" make Swing fast and small enough for desktop use. It's a fabulous framework for enterprise class solutions; however, it's just not competitive for consumer-level apps. SWT looks like its shaping up to be a good answer for consumer-level Java apps.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	ufans 
+ 
+ 
+ 
+ Posts: 61
+ 
+ 
+ Registered: May, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Interesting, Ray - I wonder how they would address SWT?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 7:00 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Agreed,
+Swing on SWT would actually be a good idea, although a higher level windowing tool kit for SWT exists already, it's called JFace. But personally I would like to have Swing on top of SWT, because I am used to working with Swing components. There is actually a project on sourceforge trying this:
+http://sourceforge.net/projects/swint/
+With no published results yet. Resource handling in JFace and Swing is different, as far as I can tell. In JFace one has to programmatically dispose of components, whereas in Swing this is not necessary.
+Swallowing the bait
+Bernard
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Serge Bureau
+ 
+ 
+ 
+ Posts: 193
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I hope Sun is cleverer than that.
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 7:26 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ SWT is a rebaked AWT, no thank you
+It seems you do not grasp this concept.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	RJ Lorimer
+ 
+ 
+ 
+ Posts: 16
+ 
+ 
+ Registered: Oct, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Interesting, Ray - I wonder how they would address SWT?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 2:47 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hi everyone,
+Just thought I would put my spare change into the equation: 
+The whole concept of SWT, AWT, Swing, etc. seems irrelevent to me when referring to the different IDEs. It seems to be me that the final composition of the two (if they go in that direction) should support developing in any gui framework that has a plugin for the environment. I find it interesting that both netbeans and eclipse are SO plugin oriented, and yet the gui development aspects are rather sealed-in for both.
+This then leads to the fact that Sun could make it's GUI development systems for Swing and AWT if it wanted, and so could any other intrepid author, and likewise for SWT. I see the concept of developing a GUI using a graphical build tool as completely optional, and, if it's not, you are limiting yourself greatly.
+The only question you are then left with is - what is the development environment front-end developed in? This should also be something that is completely free from the users perspective. I know that Netbeans/Forte is Swing, and I know that Eclipse is SWT, but, does it really matter to the average user in the end? What most users want is an appealing front end that has good performance specs and allows them a lot of freedoms regarding setting it up. The work behind making the IDE work on every popular platform and work quickly is up to the IDE developers, regardless of whether they use Swing, SWT, or AWT.
+Anyway, just my rants -
+R.J.
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 33 replies
+ on 4 pages
+ [
+ 1
+ 2
+ 3
+ 4
+	 |
+ »
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

@@ -1,0 +1,82 @@
+
+ 
+ 
+ 
+ VB lesson7
+Lesson 9: Looping
+Visual Basic allows a procedure to be repeated as many times as long as
+the processor could support. This is generally called looping .
+ 
+9.1 Do Loop
+The format are
+a) Do While condition
+ Block
+of one or more VB statements
+ Loop
+b) Do
+ 
+Block of one or more VB statements
+ Loop While condition
+c) Do Until condition
+ 
+Block of one or more VB statements
+ Loop
+d) Do
+ 
+Block of one or more VB statements
+ Loop Until condition
+Example 9.1
+ Do while counter 1000.
+The above example can be rewritten as
+ Do
+ 
+num.Text=counter
+ 
+counter=counter+1
+ Loop until counter>1000
+ 
+9.2 For....Next Loop
+The format is:
+ 
+For counter=startNumber to endNumber
+(Step increment)
+ One or more VB statements
+Next
+ 
+Example:
+(a) For 
+counter=1 to 10
+ 
+display.Text=counter
+ 
+ 
+Next
+(b) For counter=1
+to 1000 step 10
+ 
+counter=counter+1
+ 
+ 
+Next
+(c) For counter=1000
+to 5 step -5
+ 
+counter=counter-10
+ 
+Next
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Back to contents page]

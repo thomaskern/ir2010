@@ -1,0 +1,26 @@
+
+Home - About - Assembly - DirectX - OpenGL - .NET - Platform SDK - Downloads - Links 
+January 9, 2000 
+privacy
+ 
+DirectDraw Essentials > Using Direct3D for 2D applications 
+Pixel Format
+pixelformat.zip (2 Kb)
+We saw that surfaces are nothing else than memory areas either in system or video memory, storing graphics data. Those data are available to a DirectDraw application in their native format, as they are stored in your graphic card memory. 
+To retrieve the pixel format used by a particular surface, you'll have to use the GetPixelFormat method. It fills a DDPIXELFORMAT structure that indicates the size and position of each color component. To better understand the layout of each pixel, it's much better to convert those masks to binary values. Though binary arithmetic is out of the scope of this page, remember that :
+- Shifting a binary value one bit to the right is nothing else than dividing by 2
+- Shifting a binary value one bit to the left is the same as multiplying by 2
+For a 16 bit mode one could find :
+lRBitMasklGBitMasklBBitMask
+Binary 0111110000000000 0000011111100000 0000000000011111 
+OneBitCount 5 5 5 
+ZeroBitCount 10 5 0 
+This mode is know as the "555" mode from the number of bits for each color component but another card could also use a 565 mode. Moreover when using a 24 bits mode, your card will likely use a 888 mode. You'll have to be able to convert a RGB value to whatever pixel format the graphic card is using.
+To convert each of the RGB color component that is stored in a 8 bit value, you'll have :
+- To drop possibly unused lower bits by shifting the value 8-OneBitCount bits to the right, that is dividing by 2^(8-OneBitCount)
+- To store this resulting value at the appropriate location by shifting the value ZeroBitCount to the left that is multiplying by 2^ZeroBitCount
+- All those individual values are added to compose the final color value
+Note : this will work for non palettized mode only (better than 8 bits per pixel). In palettized mode, the value stored at a pixel location, is the index of the corresponding color. DirectX7.CreateColorRGB could also be though as being usefull for this purpose but this one just convert a Single color components to a logical color value and is intended for Direct3D).
+Color Keying
+When using the pixel format to obtain a color key value, you could also just use something much simpler such as using magenta for your backgrounds. As magenta is just red and blue, the color key value for magenta is just PixelFormat.lRBitMask + PixelFormat.lBBitMask.
+Patrice Scribe

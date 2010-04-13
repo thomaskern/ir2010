@@ -1,0 +1,416 @@
+
+Visual C++ 4.0 Datasheet
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 4.0
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Visual C++ 4.0 Datasheet
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+Visual C++: the Fast Track for C++ Development
+Make the most of your development efforts with Microsoft Visual C++ development version 4.0. Create and code reuse and components, all with the latest Windows®-based 32-bit technology. Do this in a highly productive development environment designed to boost performance: yours.
+Overview
+Just because you're starting a new application, doesn't always mean starting from scratch. We're talking about reusing code and components from other applications to build new solutions.
+The best way to do this is with Microsoft Visual C++ development system version 4.0, the tool designed to help you accelerate application development for the Microsoft Windows 95&#153; and Windows NT&#153; Workstation operating systems.
+New to Visual C++ is the Component Gallery. It's a one-stop location for you to store and manage your reusable components, including C++ classes, OLE controls, and dozens of third-party components that enable you to quickly add advanced features.
+Microsoft Developer Studio provides an interactive development environment to simplify object-oriented programming with new class navigation tools--such as ClassView and WizardBar--and seamless integration with other Microsoft tools.
+And you can now create custom AppWizards for a fast start to building your applications.
+Another way to accelerate development is with the popular Microsoft Foundation Class (MFC) library version 4.0. MFC contains more than 150 classes and 120,000 lines of code you don't have to write or test, and it includes support for creating applications that take advantage of the interface for Windows 95. 
+For database applications, we've included Data Access Objects (DAO) classes for fast object-oriented access to the Jet database engine. And ODBC support for creating database-independent, client/server applications.
+You can also bring your applications to a range of new users with the cross-platform support of Visual C++.
+With the Microsoft Visual C++ Subscription, you get the latest version of Visual C++, plus three more releases over a year containing the latest tools and technical information. Automatically delivered to your desktop. 
+It's everything you need to create applications that can display the "Designed for Windows 95" and "Windows NT Compatible" logos. No more wondering if you have the newest Visual C++ technology.
+With this kind of convenience, it's no surprise that more and more developers who are looking for real performance gains are subscribing every day.
+Microsoft Visual C++ 4.0
+- 32-bit application development for Windows 95, Windows NT Workstation, and Windows 3.1 using Win32s®.
+- Latest Microsoft Foundation Class (MFC) library version 4.0, including support for new Windows 95-based user interface controls.
+- Component Gallery that includes C++ classes and components, your own code, and OLE controls.
+- OLE controls creation and use in the dialog editor.
+- Database support through Data Access Objects (DAO); includes Jet database engine.
+- Built-in ODBC connectivity to popular databases, including Microsoft SQL Server&#153;, Microsoft Access, and ORACLE.
+- Custom AppWizards: Create your own AppWizards to customize your applications.
+- Developer Studio, integrated with Microsoft Developer Network (MSDN) Developer Library, Microsoft Visual SourceSafe®, Microsoft Fortran PowerStation, and Microsoft Visual Test.
+- ClassView feature to navigate through C++ classes as a set of C++ classes.
+- WizardBar for navigating and adding message handlers and other member functions.
+- Namespaces, Run-Time Type Information (RTTI), C++ templates, exception handling, and Standard Template Library (STL) support.
+- Incremental compiler and linker to speed build time.
+- Minimal rebuild feature that only compiles the files that need it.
+- Support for complex projects including sub-projects (DLLs, EXEs, OCXs, and more).
+- Just In Time debugging with memory window and DataTips&#153; pop-up information, variables window, and more.
+- Full-featured editor: compatible with BRIEF&#153; and Epsilon&#153;, incremental search, full-screen editing, and fully mappable keyboard.
+- Resource editor includes toolbar editor and support for conditional resources.
+- InfoView provides more than 10,000 pages of Books Online, with integration to the MSDN Development Library.
+- Support for porting code to multiple platforms (through optional products), including Intel, PowerPC&#153;, MIPS®, Alpha , Apple® Macintosh®, and Power Macintosh&#153;.
+- UNIX® platform portability through third-party products such as Bristol and MainSoft.
+- Support for Unicode and Double Byte Character Set (DBCS) for globalizing applications.
+- Includes Visual C++ 1.52 for developing 16-bit applications for MS-DOS® and Windows 3.1
+Microsoft Visual C++ Subscription
+- One full year of updated development system and tools delivered automatically in three timely releases.
+- Includes enhancements to the MFC library, new features, C++ components, code samples, and technical notes.
+- New technical notes on Visual C++ and MFC.
+- Includes major releases as they become available during subscription period.
+- The Subscription Renewal edition offers an easy way for current users of Visual C++ Subscription to continue receiving new technology throughout the year.
+Microsoft Visual C++ Cross-Development Edition
+for Macintosh
+- Add-on tool for Microsoft Visual C++ version 4.0 for creating Macintosh-and Power Macintosh-based applications from source code written to Microsoft Foundation Classes and the Microsoft Win32 API.
+- Reuse up to 90% of your Intel-based code with a simple recompile.
+- Includes all of the tools needed to build and debug Macintosh executables.
+- Windows Portability Library for porting Windows-based features to the Macintosh, including OLE and ODBC.
+- True native Macintosh programming in applications.
+- Target applications have familiar Macintosh interface.
+- Fast executables using the Visual C++ optimizing C/C++ compiler.
+Microsoft Visual C++, RISC Edition
+- Separate edition available to support Windows NT Workstation version 3.51 on PowerPC, Digital Alpha AXP, and MIPS processors.
+- Identical toolset as for Intel processors.
+- Full source code compatibility across processors (does not include DAO and Jet database engine on RISC platforms).
+The new word for productivity: reusability.
+- Deliver fast, small, robust 32-bit applications for the Windows 95 and Windows NT operating systems.
+- Component Gallery helps improve productivity through reusability, serving as a central location for prebuilt objects including custom C++ classes, OLE Controls, and your own components.
+- Build, use, and share OLE Controls across several Microsoft products, such as the Microsoft Visual Basic® programming system and Microsoft Access database management system.
+- Latest Microsoft Foundation Class library (MFC) offers over 150 professionally written classes for you to build on.
+- The Custom AppWizard allows you to automatically create applications that meet company- or industry-specific requirements.
+- Microsoft Developer Studio provides seamless, quick access to a range of complementary Microsoft tools.
+- Simplify object-oriented programming with ClassView by managing projects as a set of related classes.
+- Speed up the edit-build-debug cycle on large projects with the incremental compiler, incremental linker, and minimal rebuild.
+The extra performance you and your users are looking for.
+- Fast, integrated database access and support with DAO and the Jet engine for creating powerful database applications and components.
+- Develop client/server applications when working with multiple databases with support for the latest version of Open Database Connectivity (ODBC).
+- Quickly create OLE compound document server containers and OLE Automation objects, and build and use OLE Controls through MFC and wizards.
+- Take advantage of full C++ language support with Namespaces, RTTI, C++ templates, exception handling, and full support for Standard Template Library (STL).
+Expand your development horizons.
+- The highly adaptable Developer Studio enables you to improve team development through integration with leading version control systems, including Microsoft Visual SourceSafe® project-oriented version control.
+- Developer Studio also integrates with Microsoft Developer Network, Microsoft Visual Test, and Microsoft Fortran PowerStation.
+- Globalize your applications through support for Unicode and Double Byte Character Sets (DBCS).
+- With the Cross-Development Edition for the Apple Macintosh, you can port your code with minimal effort to Macintosh platforms including the Power Macintosh.
+- Recompile applications using Microsoft Visual C++, RISC Edition, to run natively on Alpha, MIPS, or PowerPC systems.
+- Use third-party tools to port code to UNIX platforms.
+Microsoft Visual C++ Subscription: Welcome to the latest technology.
+- Receive three additional releases of Visual C++, including major releases as they become available during your subscription year.
+- Latest tools and information include new components, OLE controls, sample code, recent Visual C++ and MFC technical notes, and updated online documentation.
+The Development Environment
+ClassView makes it possible to manage your projects intuitively as a set of related classes, rather than a collection of files.
+Other development tools are a mouse click away, conveniently located on the Visual C++ toolbar, such as the Microsoft Developer Network Development Library, Microsoft Fortran PowerStation, Microsoft Visual Test, and Microsoft Visual SourceSafe (all available separately). 
+WizardBar allows you to quickly navigate and add message handlers and other member functions.
+Component Gallery is a central location for components that you can insert into your project, including OLE Controls, your own C++ classes, as well as components from third parties.
+Let a wizard speed your development.
+ AppWizard steps you through the process of building an application. Create your own AppWizard to meet company-specific or industry requirements.
+Use AppWizard to incorporate database support into applications. Choose from database-independent 32-bit ODBC or DAO with the Jet database engine for optimum performance.
+Minimum rebuild compiles only the files needed. Incremental compiler compiles only the functions that have changed. And the incremental linker links only modules that have changed. All helping to reduce your rebuild time.
+Microsoft Corporation reserves the right to modify or cancel the Visual C++ Subscription service at anytime upon notice to subscription holders. Upon any cancellation, subscription holders will receive a refund based on a rate of $50 per undistributed issue remaining in the affected subscription service.
+This datasheet is for informational purposes only. Microsoft makes no warranties, express or implied, in this summary.
+Company names and data used in screens are fictitious, unless otherwise noted.
+Microsoft, BackOffice, DataTips, Visual Basic, Visual C++, Visual FoxPro, Visual SourceSafe, Win32, Win32s, Windows, Windows NT, and the Windows logo are either registered trademarks or trademarks of Microsoft Corporation in the United States and other countries. Apple, AppleTalk, and Macintosh are registered trademarks and Power Macintosh is a trademark of Apple Computer, Inc. DEC and Alpha AXP are trademarks of Digital Equipment Corporation. Intel is a registered trademark of Intel Corporation. Epsilon is a trademark of Lugaru Software, Inc. PowerPC is a trademark of International Business Machines Corporation. MIPS is a registered trademark of MIPS Computer Systems, Inc. ORACLE is a registered trademark of Oracle Corporation. BRIEF is a registered trademark of SDC Software Partners II L.P. UNIX is a registered trademark in the United States and other countries, licensed exclusively through X/Open Company, Ltd.
+Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA
+Version 4.0
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

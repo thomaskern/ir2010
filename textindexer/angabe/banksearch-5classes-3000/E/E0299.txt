@@ -1,0 +1,887 @@
+
+GCC Projects
+- GNU Project - Free Software Foundation (FSF)
+Table of Contents
+- Fix bugs in the GNATS database
+- Projects for beginner GCC hackers
+- Projects for the C preprocessor
+- Projects for the GCC web pages
+- Work in progress
+- Bounds Checking with Bounded Pointers
+- New register allocator
+- SSA for trees
+- CFG branch
+- Value range propagation pass
+- Automaton based pipeline hazard recognizer
+- Tree optimization passes
+- Data prefetch support
+- Optimizer inadequacies
+- Projects to improve performance on IA-64
+- Changes to support C99 standard
+- Improve the Haifa scheduler
+- Improvements to global cse and partial redundancy elimination:
+- Miscellaneous ideas:
+- Improve -Wconversion
+- Implement various builtin functions for ISO C99's 
+- Fully document the interface of front ends to GCC
+- Better builtin string functions
+- String operation instructions
+- Optimize strcmp
+- Optimize strncpy
+- Optimize strcat
+- Optimize strspn,
+strcspn and strpbrk
+- Format (printf, scanf and
+strftime) checking:
+- Improve the installation procedure
+- The old PROJECTS file
+- Putting constants in special sections.
+- Optimize a sequence of if statements whose conditions are
+exclusive.
+- Un-cse.
+- Clean up how cse works.
+- Support more general tail-recursion among different functions.
+- Keep global variables in registers.
+- Live-range splitting.
+- Detect dead stores into memory?
+- Loop optimization.
+- Using constraints on values.
+- Change the type of a variable.
+- Better handling for very sparse switches.
+- Order of subexpressions.
+- More code motion.
+- Trace scheduling.
+- Distributive law.
+- Restructuring conditionals
+- ??? How to call this???
+- Simpler porting
+- Other languages
+- More extensions
+- Generalize the machine model
+- More warnings
+- Better documentation of how GCC works and how to port it
+- The old PROBLEMS file
+GCC Projects
+Fix bugs in the GNATS database
+You can investigate bugs in our GNATS
+database and attempt to fix them or see whether they still are
+present in current GCC.
+Projects for beginner GCC hackers
+If you are new to GCC, start with our projects for beginners.
+Projects for the C preprocessor
+There is a separate project list for the C preprocessor.
+Projects for the GCC web pages
+There is a separate projects list for the web
+pages.
+Work in progress
+Different projects that are in progress.
+Bounds Checking with Bounded Pointers
+There is a separate page for Bounds Checking with Bounded Pointers.
+New register allocator
+Daniel Berlin and Michael Matz are working on an implementation of
+a graph-coloring register allocator. A branch is created in CVS with
+the tag new-regalloc-branch. It is known to bootstrap
+under x86-linux and ppc-linux.
+SSA for trees
+Diego Novillo is working on implementing 
+SSA analysis and optimization for trees.
+CFG branch
+The cfg branch is created to develop and
+test infrastructure for easier writing of new optimizations. Some new
+passes (such as superblock formation, loop peeling, web construction,
+branch combining etc.) are being implemented there.
+Value range propagation pass
+John Wehle (john@feith.com) implemented a value
+range propagation pass which isn't yet in GCC.
+Automaton based pipeline hazard recognizer
+ 
+Vladimir Makarov has implemented an 
+automaton based pipeline hazard recognizer. It enables better
+instruction scheduling and it provides the base for a future sofware
+pipelining implementation.
+Tree optimization passes
+A separate page describes abstract
+syntax tree optimization passes that are being worked on.
+Data prefetch support
+A separate page describes 
+data prefetch support and optimizations that are in development
+in the main branch.
+ 
+Optimizer inadequacies
+We also have a page detailing optimizer
+inadequacies, if you'd prefer to think about it in terms of problems
+instead of features.
+Projects to improve performance on IA-64
+There is a separate project list for
+IA-64 performance improvements.
+Changes to support C99 standard
+The new version of the C standard (ISO/IEC 9899:1999) requires a
+number of library changes; these have to be provided by the C library,
+and not by gcc. In addition, there are also changes to the language
+proper, and some compiler support is needed for the new library
+features. An overview of the C99
+implementation status is available.
+Improve the Haifa scheduler
+ (haifa-sched.c, loop.[ch],
+unroll.c, genattrtab.c): (contact law@redhat.com before starting any
+serious haifa work)
+ 
+- Fix/add comments throughout the code. Many of the comments are
+ from the old scheduler and are out of date and misleading. Many new
+ hunks of code don't have sufficient comments and documentation.
+ Those which do have comments need to be rewritten to use complete
+ sentences and proper formatting.
+ 
+- Someone needs make one (or more) passes over the scheduler as a
+ whole to just clean it up. Try to move the machine dependent bits
+ into the target files where they belong, avoid re-creating functions
+ where or near equivalents already exist (e.g. is_conditional_branch
+ and friends), etc., etc.
+ 
+- Document the new scheduling options. Remove those options which
+ are not really useful (like reverse scheduling for example). In
+ general the haifa scheduler adds way too many options. I'm
+ definitely of the opinion that gcc already has too many
+ -foptions, and haifa doesn't help that situation.
+ 
+- Testing and benchmarking. We've converted a few ports to using
+ the Haifa scheduler (hppa, sparc, ppc, alpha). We need to continue
+ testing and benchmarking the new scheduler on additional targets.
+ 
+- We need to have some kind of docs for how to best describe a
+ machine to the haifa scheduler to get good performance. Some
+ existing ports have been tuned to deal with the old scheduler --
+ they may need to be tuned to generate good schedules with haifa.
+Improvements to global cse and partial redundancy elimination:
+The current implementation of global cse uses partial redundancy
+elimination via lazy code motion (lcm).
+lcm also provides the underlying framework for several additional
+optimizations such as shrink wrapping, spill code motion, dead store
+elimination, and generic load/store motion (all the other examples are
+subcases of load/store motion).
+It can probably also be used to improve the reg-stack pass of the
+compiler.
+Contact law@redhat.com if
+you're interested in working on lazy code motion.
+Miscellaneous ideas:
+The following are some miscellaneous ideas for GCC projects to work
+on.
+Improve -Wconversion
+Improve -Wconversion so that it can be used for
+security auditing as well as for its original intended purpose of
+helping with converting old code to ISO C. See a message
+to the security-audit list discussing this. The design for such
+an improved option or collection of options should be discussed with
+the gcc and security-audit lists.
+Implement various builtin functions for ISO C99's 
+ 
+Design and implement builtin functions that assist in implementing
+the ISO C99 macros. These builtins
+could be along the general lines of the macros used in glibc 2.2 (for
+example, the implementation of might use
+__builtin_tgmath_unary_real_only (value, log2f, log2,
+log2l) to implement the log2 macro), but should be
+designed so that, if the Annex G imaginary types are implemented in
+GCC, glibc does not need to change again to allow for them. This
+means additional functions, beyond those corresponding to the macros
+in glibc, are needed to handle the trigonometric functions which G.7
+specifies have real or imaginary result type for imaginary arguments,
+but which have complex result type for complex arguments. The design
+for these builtins should be discussed with the gcc and libc-alpha
+lists.
+Fully document the interface of front ends to GCC
+Fully document the interface of front ends to GCC (that is, the
+tree interfaces, and the various functions, hooks, etc.,
+that a front end must or may provide). gcc/c-tree.texi
+includes some of this information; gcc/LANGUAGES contains
+incomplete information about changes that have been made to this
+interface.
+Better builtin string functions
+Although GCC implements numerous optimizations of the standard C
+library's string, math and I/O functions, there are still plenty more
+transformations that could be implemented.
+The GNU libc also currently contains macros to optimize calls to
+some string functions with constant arguments and those that can be
+implemented by processor specific instructions. These transformations
+are better performed in GCC, both to reduce the overhead of macro
+expansion and to take advantage of the functions attributes, for
+example to avoid a second call to a pure function altogether. The
+use of these macros tend to cause huge blowup in the size of preprocessed
+source if nested; for example, each nested call to strcpy
+expands the source 20-fold, with four nested calls having an expansion
+ten megabytes in size. GCC then consumes a huge amount of memory
+compiling such expressions. The remaining optimizations need to be
+implemented in GCC and then disabled in glibc, with benefits to other
+systems as well, and the potential to use information GCC has about
+alignment.
+All the string functions act as if they access individual
+characters, so care may need to be taken that no
+-fstrict-aliasing problems occur when internal uses of
+other types are generated. Also, the arguments to the string function
+must be evaluated exactly once each (if they have any side effects),
+even though the call to the string function might be optimized away.
+Care must be taken that any optimizations in GCC are
+standards-conforming in terms of not possibly accessing beyond the
+arrays involved (possibly within a function call created in the
+optimization); whereas the glibc macros know the glibc implementation
+and how much memory it might access, GCC optimizations can't.
+There are some further optimizations in glibc not covered here,
+that either optimize calls to non-ISO C functions or call glibc
+internal functions in the expansion of the macro.
+Many of these optimizations should not be applied if
+-Os is specified.
+String operation instructions
+glibc has inline assembler versions of various string functions; GCC
+has some, but not necessarily the same ones on the same architectures.
+Additional optab entries, like the ones for ffs
+and strlen, could be provided for several more functions
+including memset, strchr, strcpy
+and strrchr.
+Optimize strcmp
+GCC could optimize strcmp (and memcmp)
+where one string is constant to compare successive bytes to known
+constant ones inline. For lengths longer than about 4, the inline
+comparisons could test the prefix before calling the library function
+(or inline a suitable instruction) for the remainder of the strings.
+Optimize strncpy
+glibc optimizes strncpy from a string constant, where
+the maximum length is constant and greater than the length of the
+string constant including the terminating null character, by using
+an optimization not implemented in GCC. Its makes use of its own
+__mempcpy function to copy and return the address after
+the data copied, to pass into memset. This could be
+implemented if GCC provided a __builtin_mempcpy function.
+Optimize strcat
+Similarly, GCC could transform a call to strcat into
+a call to strchr followed by a strcpy or
+memcpy.
+Optimize strspn,
+strcspn and strpbrk
+glibc optimizes strcspn, strcspn and
+strpbrk where the string of characters that need to be
+matched is constant and of length not greater than three.
+Format (printf, scanf and
+strftime) checking:
+Contact jsm28@cam.ac.uk before
+doing any substantial format checking work.
+- Make re-entrant: eliminate global state used for $
+format checking.
+- strftime: warnings for use of 0,
+- or _ flags without width on formats where
+inappropriate. Similar warnings where use of one format feature is
+useless unless another one is also used also apply for
+printf formats (0 and - flags
+when no width is specified and so there is no padding) and for
+strfmon formats.
+- Integer printf formats: warn for integer constant
+argument out of range of unpromoted type (including signed/unsigned
+where it doesn't fit in range).
+- For bounded pointers: check that all levels of pointers in the
+list of format argument have the correct boundedness
+qualification.
+- Fix detection of whether format strings are narrow or wide on
+targets where wchar_t is char. This may
+require changes elsewhere in the compiler to mark string constants
+with this information.
+- Improve how types of format arguments (both expected types and
+actual argument types) are named in diagnostics; see PR
+c/1027.
+- Include an option to warn for format extensions that have been
+obsoleted by standard C99 features.
+- Meaning of "quad" and %q: anything more accurate than
+long long? See messages 1 and
+2
+about this to gcc-bugs. (Note that %q is now largely
+obsolete given the new C99 formats and macros.)
+- Wide string format support. See a message
+soliciting views on the user interface to this and send any views
+on this to the gcc mailing list.
+- Clean up how format.exp handles
+TORTURE_OPTIONS, by making changes elsewhere in the test
+harness so that TORTURE_OPTIONS is initialized for each
+dg-init rather than just once and so needing saving and
+restoring.
+- When a format or format_arg attribute is
+applied to a function with a non-prototype declaration, and the
+function is later redeclared with a prototype or defined, the
+attribute should be checked again to see if it makes sense given the
+argument types of the function. Similarly, these checks should be
+made if the original attribute is on an old-style function
+definition.
+- Get Marc Espie's __attribute__((__nonnull__)) patch
+in (he may be working on a cleaner version that applies to current
+sources). See messages 1,
+2
+and 3
+to gcc-patches. Once this is done, further related checks could be
+done, such as for functions such as execle that require
+NULL-terminated argument lists.
+- Possible security warnings under -Wformat-security:
+ 
+ 
+- Warn for sprintf into fixed length buffer if the
+ output can't be proved not to overrun. Similarly for
+ scanf %s and %[...] without
+ width to fixed length buffer (or possibly to any buffer); or
+ %s, %[...] and %c with width
+ to too short a buffer, including %lc, %ls
+ and %l[...].
+ 
+- (Maybe eventually:) Extensible format checking: allow programs
+such as OS kernels and parts of GCC to tell GCC about additional
+format conversion characters recognised by their format
+functions.
+- fopen, freopen: warning for the
+incorrect format of the mode parameter, see PR
+c/5127. Some ideas for how to implement such a warning
+were discussed here.
+Improve the installation procedure
+Contact zackw@stanford.edu
+before working on improvements to installation.
+- See a
+message from Zack Weinberg, and follow-ups to it, for some
+discussion of some of these ideas.
+- Move the installation from incomprehensible shell scripts in the
+Makefiles to more comprehensible shell scripts outside the Makefiles.
+- When installing as root, make the installed headers in
+$(libsubdir) be owned by root rather than the user who
+did the build.
+- Support Automake-style DESTDIR: if
+DESTDIR is specified to make install,
+everything should be installed under the directory specified, from
+where it will get moved to the eventual installation location
+specified at configure time by methods not under the control of
+make install (for example, the installation of a binary
+package). That is, configure --prefix=/usr followed by
+building, then installing with make install
+DESTDIR=/some/where, would install under
+/some/where/usr, but this would work more generally where
+setting prefix at install time (the best solution at
+present) would not, if other configure options such as
+--bindir had been used.
+- Install driver programs under names such as gcc-3.0,
+to discourage the use of -V by making it easier to keep
+old driver programs around. Also, be consistent about what programs
+get links such as i686-pc-linux-gnu-gcc. Possibly
+gccbug needs this treatment as well as driver programs,
+since it embeds architecture and version information. (Maybe, after
+this is done -V could be deprecated.)
+- Add a configure option --enable-cc-links or similar
+which causes links to the compiler driver or shell scripts to be
+installed under names cc (the traditional Unix compiler
+name and a legacy utility in Unix98, accepting an unspecified C
+language variant), c89 (POSIX; a script running gcc
+-std=c89 -pedantic) and c99 (the Austin Group
+revision of POSIX; a script running gcc -std=c99
+-pedantic) for systems such as GNU/Linux where GCC is the
+system compiler.
+- Fix the issues discussed in PR
+other/346.
+The old PROJECTS file
+Stuff I know has been done has been deleted.
+Stuff in progress has a contact name associated with it.
+Better optimization.
+Putting constants in special sections.
+If a function has been placed in a special
+section via attributes, we may want to put its static data and string
+constants in a special section too. But which one? (Being able to
+specify a section for string constants would be useful for the Linux
+kernel.)
+Optimize a sequence of if statements whose conditions are
+exclusive.
+It is possible to optimize
+if (x == 1) ...;
+if (x == 2) ...;
+if (x == 3) ...;
+into
+if (x == 1) ...;
+else if (x == 2) ...;
+else if (x == 3) ...;
+provided that x is not altered by the contents of the if statements.
+It's not certain whether this is worth doing. Perhaps programmers
+nearly always write the else's themselves, leaving few opportunities
+to improve anything.
+Un-cse.
+Perhaps we should have an un-cse step right after cse, which tries to
+replace a reg with its value if the value can be substituted for the
+reg everywhere, if that looks like an improvement. Which is if the
+reg is used only a few times. Use rtx_cost to determine if the
+change is really an improvement.
+Clean up how cse works.
+The scheme is that each value has just one hash entry. The
+first_same_value and next_same_value chains are no longer needed.
+For arithmetic, each hash table elt has the following slots:
+	
+- Operation. This is an rtx code.
+	
+- Mode.
+	
+- Operands 0, 1 and 2. These point to other hash table elements.
+So, if we want to enter (plus:SI (reg:SI 30) (const_int
+104)), we first enter (const_int 104) and find the
+entry that (reg:SI 30) now points to. Then we put these
+elts into operands 0 and 1 of a new elt. We put PLUS and
+SI into the new elt.
+Registers and mem refs would never be entered into the table as
+such. However, the values they contain would be entered. There would
+be a table indexed by regno which points at the hash entry for the
+value in that reg.
+The hash entry index now plays the role of a qty number. We still
+need qty_first_reg, reg_next_eqv, etc. to record which regs share a
+particular qty.
+When a reg is used whose contents are unknown, we need to create a
+hash table entry whose contents say "unknown", as a place holder for
+whatever the reg contains. If that reg is added to something, then
+the hash entry for the sum will refer to the "unknown" entry. Use
+UNKNOWN for the rtx code in this entry. This replaces make_new_qty.
+For a constant, a unique hash entry would be made based on the
+value of the constant.
+What about MEM? Each time a memory address is referenced, we need
+a qty (a hash table elt) to represent what is in it. (Just as for a
+register.) If this isn't known, create one, just as for a reg whose
+contents are unknown.
+We need a way to find all mem refs that still contain a certain
+value. Do this with a chain of hash elts (for memory addresses) that
+point to locations that hold the value. The hash elt for the value
+itself should point to the start of the chain. It would be good for
+the hash elt for an address to point to the hash elt for the contents
+of that address (but this ptr can be null if the contents have never
+been entered).
+With this data structure, nothing need ever be invalidated except
+the lists of which regs or mems hold a particular value. It is easy
+to see if there is a reg or mem that is equiv to a particular value.
+If the value is constant, it is always explicitly constant.
+Support more general tail-recursion among different functions
+This might be possible under certain circumstances, such as when
+the argument lists of the functions have the same lengths. Perhaps it
+could be done with a special declaration.
+You would need to verify in the calling function that it does not
+use the addresses of any local variables (?) and does not use setjmp.
+-foptimize-sibling-calls does at least some of this.
+Put short statics vars at low addresses and use short addressing mode?
+Useful on the 68000/68020 and perhaps on the 32000 series, provided
+one has a linker that works with the feature. This is said to make a
+15% speedup on the 68000.
+Keep global variables in registers
+Here is a scheme for doing this. A global variable, or a local variable
+whose address is taken, can be kept in a register for an entire function
+if it does not use non-constant memory addresses and (for globals only)
+does not call other functions. If the entire function does not meet
+this criterion, a loop may.
+The VAR_DECL for such a variable would have to have two RTL
+expressions: the true home in memory, and the pseudo-register used
+temporarily. It is necessary to emit insns to copy the memory
+location into the pseudo-register at the beginning of the function or
+loop, and perhaps back out at the end. These insns should have
+REG_EQUIV notes so that, if the pseudo-register does not get a hard
+register, it is spilled into the memory location which exists in any
+case.
+The easiest way to set up these insns is to modify the routine
+put_var_into_stack so that it does not apply to the entire function
+(sparing any loops which contain nothing dangerous) and to call it at
+the end of the function regardless of where in the function the
+address of a local variable is taken. It would be called
+unconditionally at the end of the function for all relevant global
+variables.
+For debugger output, the thing to do is to invent a new binding
+level around the appropriate loop and define the variable name as a
+register variable with that scope.
+Live-range splitting
+Currently a variable is allocated a hard register either for the
+full extent of its use or not at all. Sometimes it would be good to
+allocate a variable a hard register for just part of a function; for
+example, through a particular loop where the variable is mostly used,
+or outside of a particular loop where the variable is not used. (The
+latter is nice because it might let the variable be in a register most
+of the time even though the loop needs all the registers.)
+Contact meissner@redhat.com
+before starting any work on live range splitting.
+Detect dead stores into memory?
+A store into memory is dead if it is followed by another store into
+the same location; and, in between, there is no reference to anything
+that might be that location (including no reference to a variable
+address).
+This can be modeled as a partial redundancy elimination/lazy code
+motion problem. Contact law@redhat.com before working on dead
+store elimination optimizations.
+Loop optimization
+Strength reduction and iteration variable elimination could be
+smarter. They should know how to decide which iteration variables are
+not worth making explicit because they can be computed as part of an
+address calculation. Based on this information, they should decide
+when it is desirable to eliminate one iteration variable and create
+another in its place.
+It should be possible to compute what the value of an iteration
+variable will be at the end of the loop, and eliminate the variable
+within the loop by computing that value at the loop end.
+When a loop has a simple increment that adds 1, instead of jumping
+in after the increment, decrement the loop count and jump to the
+increment. This allows aob insns to be used.
+Using constraints on values
+Many operations could be simplified based on knowledge of the
+minimum and maximum possible values of a register at any particular
+time. These limits could come from the data types in the tree, via
+rtl generation, or they can be deduced from operations that are
+performed. For example, the result of an and operation
+one of whose operands is 7 must be in the range 0 to 7. Compare
+instructions also tell something about the possible values of the
+operand, in the code beyond the test.
+Value constraints can be used to determine the results of a further
+comparison. They can also indicate that certain and
+operations are redundant. Constraints might permit a decrement and
+branch instruction that checks zeroness to be used when the user has
+specified to exit if negative.
+John Wehle (john@feith.com) implemented a value
+range propagation pass which isn't yet in GCC.
+Change the type of a variable
+Sometimes a variable is declared as int, it is
+assigned only once from a value of type char, and then it
+is used only by comparison against constants. On many machines,
+better code would result if the variable had type char.
+If the compiler could detect this case, it could change the
+declaration of the variable and change all the places that use it.
+Better handling for very sparse switches
+There may be cases where it would be better to compile a switch
+statement to use a fixed hash table rather than the current
+combination of jump tables and binary search.
+Order of subexpressions
+It might be possible to make better code by paying attention to the
+order in which to generate code for subexpressions of an expression.
+More code motion
+Consider hoisting common code up past conditional branches or tablejumps.
+Contact law@redhat.com before
+working on code hoisting.
+Trace scheduling
+This technique is said to be able to figure out which way a jump
+will usually go, and rearrange the code to make that path the
+faster one.
+Distributive law
+The C expression *(X + 4 * (Y + C)) compiles better on
+certain machines if rewritten as *(X + 4*C + 4*Y) because
+of known addressing modes. It may be tricky to determine when, and
+for which machines, to use each alternative.
+Some work has been done on this, in combine.c.
+Restructuring conditionals
+Can optimize by changing if (x) y; else z; into
+z; if (x) y; if z and x do not interfere and z has no
+effects not undone by y. This is desirable if z is faster than
+jumping.
+??? How to call this???
+For a two-insn loop on the 68020, such as
+foo:	movb	a2@+,a3@+
+	jne	foo
+it is better to insert dbeq d0,foo before the jne.
+d0 can be a junk register. The challenge is to fit this
+into a portable framework: when can you detect this situation and
+still be able to allocate a junk register?
+Simpler porting
+Right now, describing the target machine's instructions is done
+cleanly, but describing its addressing mode is done with several
+ad-hoc macro definitions. Porting would be much easier if there were
+an RTL description for addressing modes like that for instructions.
+Tools analogous to genflags and genrecog would generate macros from
+this description.
+There would be one pattern in the address-description file for each
+kind of addressing, and this pattern would have:
+ 
+- the RTL expression for the address
+ 
+- C code to verify its validity (since that may depend on
+ the exact data).
+ 
+- C code to print the address in assembly language.
+ 
+- C code to convert the address into a valid one, if it is not valid.
+ (This would replace LEGITIMIZE_ADDRESS).
+ 
+- Register constraints for all indeterminates that appear
+ in the RTL expression.
+Other languages
+We currently have front ends for Ada, C, C++, Objective C, 
+Fortran, and Java. A Pascal front end exists but has not yet
+been integrated.
+Cobol and Modula-2 front ends might be useful, and are being worked
+on.
+Pascal, Modula-2 and Ada require the implementation of functions
+within functions. Some of the mechanisms for this already exist.
+More extensions
+- Generated unique labels. Have some way of generating distinct
+labels for use in extended asm statements. I don't know what a good
+syntax would be.
+- A way of defining a structure containing a union, in which the
+choice of union alternative is controlled by a previous structure
+component.
+- Here is a possible syntax for this.
+struct foo {
+ enum { INT, DOUBLE } code;
+ auto union { case INT: int i; case DOUBLE: double d;} value : code;
+};
+- Allow constructor expressions as lvalues, like this:
+(struct foo) {a, b, c} = foo();
+This would call foo, which returns a structure, and then store the
+several components of the structure into the variables a, b, and c.
+Generalize the machine model
+Some new compiler features may be needed to do a good job on
+machines where static data needs to be addressed using base registers.
+Some machines have two stacks in different areas of memory, one
+used for scalars and another for large objects. The compiler does not
+now have a way to understand this.
+The scheduler does not do very well on recent RISC machines. Haifa
+helps but not enough.
+More warnings
+Warn about statements that are undefined because the order of
+evaluation of increment operators makes a big difference. Here is an
+example:
+*foo++ = hack (*foo);
+-Wsequence-point does some of this, but not that
+particular case.
+Better documentation of how GCC works and how to port it
+Here is an outline proposed by Allan Adler.
+- Overview of this document
+- The machines on which GCC is implemented
+ 
+ 
+- Prose description of those characteristics of target machines and
+ their operating systems which are pertinent to the implementation
+ of GCC.
+ 
+	
+- target machine characteristics
+	
+- comparison of this system of machine characteristics with
+	 other systems of machine specification currently in use
+ 
+ 
+- Tables of the characteristics of the target machines on which
+ GCC is implemented.
+ 
+- A priori restrictions on the values of characteristics of target
+ machines, with special reference to those parts of the source code
+ which entail those restrictions
+ 
+	
+- restrictions on individual characteristics
+ 
+- restrictions involving relations between various characteristics
+ 
+ 
+- The use of GCC as a cross-compiler
+ 
+	
+- cross-compilation to existing machines
+	
+- cross-compilation to non-existent machines
+ 
+ 
+- Assumptions which are made regarding the target machine
+ 
+	
+- assumptions regarding the architecture of the target machine
+	
+- assumptions regarding the operating system of the target machine
+	
+- assumptions regarding software resident on the target machine
+	
+- where in the source code these assumptions are in effect
+	made.
+ 
+ 
+- A systematic approach to writing the files tm.h and xm.h
+ 
+ 
+- Macros which require special care or skill
+ 
+- Examples, with special reference to the underlying reasoning
+ 
+- A systematic approach to writing the machine description file
+ 
+ 
+- Minimal viable sets of insn descriptions
+ 
+- Examples, with special reference to the underlying reasoning
+ 
+- Uses of the file aux-output.c
+- Specification of what constitutes correct performance of an
+ implementation of GCC
+ 
+ 
+- The components of GCC
+ 
+- The itinerary of a C program through GCC
+ 
+- A system of benchmark programs
+ 
+- What your RTL and assembler should look like with these benchmarks
+ 
+- Fine tuning for speed and size of compiled code
+ 
+- A systematic procedure for debugging an implementation of GCC
+ 
+ 
+- Use of GDB
+ 
+	
+- the macros in the file .gdbinit for GCC
+	
+- obstacles to the use of GDB
+	 
+	 
+- functions implemented as macros can't be called in
+	 GDB
+	 
+ 
+ 
+- Debugging without GDB
+ 
+	
+- How to turn off the normal operation of GCC and access specific
+	 parts of GCC
+ 
+ 
+- Debugging tools
+ 
+- Debugging the parser
+ 
+	
+- how machine macros and insn definitions affect the parser
+ 
+ 
+- Debugging the recognizer
+ 
+	
+- how machine macros and insn definitions affect the
+	recognizer
+ 
+ 
+- 
+ 
+- ... ditto for other components ...
+ 
+- 
+ 
+- Data types used by GCC, with special reference to restrictions not
+ specified in the formal definition of the data type
+- References to the literature for the algorithms used in GCC
+The old PROBLEMS file
+The following used to be in a file PROBLEMS in the GCC
+distribution. Probably much of it is no longer relevant as of GCC 3.0
+(the file hadn't changed since GCC 2.0), but some might be. Someone
+should go through it, identifying what is and isn't relevant, adding
+anything applicable to current GCC (and describing a bug) to GNATS and
+sending patches to gcc-patches to remove from the list entries that no
+longer apply or have been entered in GNATS.
+- When find_reloads is used to count number of
+spills needed it does not take into account the fact that a reload may
+turn out to be a dummy.
+I'm not sure this really happens any more. Doesn't it find all the
+dummies on both passes?
+- 
+ movl a3@,a0
+ movl a3@(16),a1
+ clrb a0@(a1:l)
+is generated and may be worse than
+ movl a3@,a0
+ addl a3@(16),a0
+ clrb a0@
+If ordering of operands is improved, many more such cases will be
+generated from typical array accesses.
+- Hack expand_mult so that if there is no
+same-modes multiply it will use a widening multiply and then truncate
+rather than calling the library.
+- Hack expanding of division to notice cases for long ->
+short division.
+- Represent divide insns as (DIV:SI ...) followed by a
+separate lowpart extract. Represent remainder insns as DIV:SI
+followed by a separate highpart extract. Then cse can work on the
+DIV:SI part. Problem is, this may not be desirable on machines where
+computing the quotient alone does not necessarily give a
+remainder--such as the 68020 for long operands.
+- Reloading can look at how reload_contents
+got set up. If it was copied from a register, just reload from that
+register. Otherwise, perhaps can change the previous insn to move the
+data via the reload reg, thus avoiding one memory ref.
+- Potential problem in cc_status.value2, if it
+ever activates itself after a two-address subtraction (which currently
+cannot happen). It is supposed to compare the current value of the
+destination but eliminating it would use the results of the
+subtraction, equivalent to comparing the previous value of the
+destination.
+- Should loops that neither start nor end with a break be
+rearranged to end with the last break?
+- Define the floating point converting arithmetic
+instructions for the 68881.
+- Combine loop opt with cse opt in one pass. Do cse on
+each loop, then loop opt on that loop, and go from innermost loops
+outward. Make loop invariants available for cse at end of loop.
+- pea can force a value to be reloaded into an areg which
+can make it worse than separate adding and pushing. This can only
+happen for adding something within addql range and it only loses if
+the qty becomes dead at that point so it can be added to with no
+copying.
+- If a pseudo doesn't get a hard reg everywhere, can it get
+one during a loop?
+- Can do SImode bitfield insns without reloading, but must
+alter the operands in special ways.
+- final could check loop-entry branches to see if they
+screw up deletion of a test instruction. If they do, can put another
+test instruction before the branch and make it conditional and
+redirect it.
+- Aliasing may be impossible if data types of refs differ
+and data type of containing objects also differ. (But check this wrt
+unions.) This may now be covered by -fstrict-aliasing.
+- Can speed up flow analysis by making a table saying
+which register is set and which registers are used by each instruction
+that only sets one register and only uses two. This way avoid the
+tree walk for such instructions (most instructions).
+- It is desirable to avoid converting INDEX to SImode if a
+narrower mode suffices, as HImode does on the 68000. How can this be
+done?
+- Possible special combination pattern: If the two
+operands to a comparison die there and both come from insns that are
+identical except for replacing one operand with the other, throw away
+those insns. Ok if insns being discarded are known 1 to 1. An andl
+#1 after a seq is 1 to 1, but how should compiler know that?
+- Can convert float to unsigned int by subtracting a
+constant, converting to signed int, and changing the sign bit.
+- Any number of slow zero-extensions in one loop, that
+have their clr insns moved out of the loop, can share one register if
+their original life spans are disjoint. But it may be hard to be sure
+of this since the life span data that regscan produces may be hard to
+interpret validly or may be incorrect after cse.
+- In cse, when a bfext insn refers to a register, if the
+field corresponds to a halfword or a byte and the register is
+equivalent to a memory location, it would be possible to detect this
+and replace it with a simple memory reference.
+- Insns that store two values cannot be moved out of
+loops. The code in scan_loop doesn't even try to deal
+with them.
+- When insn-output.c turns a bit-test into a
+sign-test, it should see whether the cc is already set up with that
+sign.
+- When a conditional expression is used as a function arg,
+it would be faster (and in some cases shorter) to push each
+alternative rather than compute in a register and push that. This
+would require being able to specify "push this" as a target for
+expand_expr.
+- On the 386, bad code results from foo (bar
+()) when bar returns a double, because the pseudo
+used fails to get preferenced into an fp reg because of the
+distinction between regs 8 and 9.
+Please send FSF & GNU inquiries & questions to
+gnu@gnu.org.
+There are also other ways
+to contact the FSF.
+These pages are maintained by
+The GCC team.
+Please send comments on these web pages and GCC to
+gcc@gnu.org or
+gcc@gcc.gnu.org,
+send other questions to gnu@gnu.org.
+Copyright (C) Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111, USA.
+Verbatim copying and distribution of this entire article is
+permitted in any medium, provided this notice is preserved.
+ Last modified 2002-05-29
+ 
+ 
+ 

@@ -1,0 +1,70 @@
+
+ 
+online C++ tutorial: Brief Explanation of "Hello, Dave"
+ 
+ 
+ 
+ Section 2: A First Program 
+Section 2.3: Brief Explanation of "Hello, Dave"
+Now that you've successfully compiled your program, let's take
+a look at each line of code so that you have a general
+understanding of how the program works. It will probably
+look confusing if you've never seen C++ syntax before, but
+that's completely natural.
+Here's the program again:
+//include this file for cout
+#include 
+int main() {
+ //print out the text string, "Hello, World!"
+ cout 
+This line is read "pound include i-o-stream dot h". The
+effect of this line is to essentially "copy and paste"
+the entire file iostream.h into your own
+file at this line. So you can think of this syntax
+as replacing the line #include 
+with the contents of the file iostream.h.
+#include is known as a
+preprocessor
+directive, which will be covered much later.
+Where is the file iostream.h?
+This file is located somewhere in your include 
+path. The include path
+indicates the directories on your computer in which to search
+for a file, if the file is not located in the current directory.
+Why do I need to include iostream.h?
+In this case, iostream.h is a file containing
+code for input/output operations. You need to include
+iostream.h so that the compiler knows about
+the word cout, which appears a couple of
+lines below.
+more on preprocessor directives
+int main() {
+Every C++ program must have what is known as a
+main function. 
+When you run the program, the program will go through every
+line of code in the
+main function and execute it. If your 
+main is empty, then your program will do
+nothing.
+There are essentially four parts to a function definition.
+They are the return type,
+the function name, the parameter
+list, and the function body, in that order. In this case:
+- return type: int
+- function name: main
+- parameter list: ()
+- function body: { ... }
+For now, the important thing to remember is that the function body
+is the part enclosed in { ... } ("curly braces").
+The { indicates the beginning of the function,
+and the } indicates the end of the function. The
+function body is the stuff in between. 
+more on functions
+//print out the text string, "Hello, World!"
+Another comment line. Remember, the compiler ignores anything
+following // (up until the end of the line), so you can
+say whatever you want on these lines.
+cout 
+ 
+ 
+ 

@@ -1,0 +1,42 @@
+
+ Professional .NET Framework 
+By: Jeffrey Hasan et all 
+ISBN: 1861005563 
+Publisher: Wrox 
+ 
+ 
+The more focused the better 
+Reviewed By: Dave Latimer 
+Profession .NET 
+Framework is a strong effort at providing a cross between a reference book and a 
+best practices and samples book. It’s a hefty book that tackles an even heftier 
+subject. It is meant for intermediate to advanced programmers of almost any 
+high-level language. The book does well at being as language agnostic as the 
+Framework itself, since samples are well-balanced between VB.NET and C#.NET 
+(sorry C++ aficionados). It seems the authors are definitely coming from the 
+C/C++/Java family of languages but they generally do a good job of hiding their 
+bias.
+While the book has 
+plenty of samples, it doesn’t have a strong focus. In my reading of .NET books 
+thus far, I’ve come to one conclusion: the more focused the better. This book 
+did a good job covering the areas it did cover in detail (e.g., remoting, 
+run-time hosts, and the inner workings of the CLR). There were some areas, 
+however, that were given rather short shrift; one, surprisingly, was Web 
+Services. The chapter dedicated to them was quite high level and didn’t have the 
+same degree of detail as one would expect on a subject of such high profile. 
+This is unfortunate given that so much type was used on areas which I wasn’t 
+looking for in a book of this kind. Best practices, migration and 
+object-oriented design and programming principles, for example, are definitely 
+subjects worthy of print; they’re just not subjects that seemed to fit with the 
+flow of the book. What this boils down to is the book covers many areas of the 
+.NET Framework very well, but it leaves some gaps (which is inevitable with a 
+subject of this size) and it doesn’t have a strong sense of flow. It jumps from 
+the nitty grittiness of CLR runtime hosts to high-level OOP, then back to the 
+underworld of Remoting channels and up to best engineering practices, with 
+little apparent rhyme or reason. 
+So, as a cover-to-cover 
+read, it lacks a little, however, each chapter is quite a well-contained 
+discussion of the topic at hand. Also, there were no apparent shortcomings due 
+to the fact that it was written during beta 1 release. For these reasons it will 
+serve as a good reference book in the future. 
+	

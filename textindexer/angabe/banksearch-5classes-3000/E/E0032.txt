@@ -1,0 +1,807 @@
+
+ 
+C >> Arithmetic Operators Quiz Answers ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Arithmetic Operators Quiz 
+ Main Menu 
+ Standard Input and Output 
+ 
+ 
+ 
+ 
+Arithmetic Operators Quiz Answers
+ 
+ 
+ 
+ 
+ 
+The 5 Operators 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Expression
+ 
+ 
+ 
+returns...
+ 
+ 
+ 
+Reason
+ 
+ 
+ 
+ 
+ 
+3+1-8
+ 
+ 
+ 
+-4
+ 
+ 
+ 
+3+1 is 4, and 4-8 is -4. 
+ 
+ 
+ 
+ 
+ 
+9-(4-3)
+ 
+ 
+ 
+8
+ 
+ 
+ 
+Because of the brackets, (4-3) is evaluated first and returns 1. Then we get 9-1, which equals 
+ 8. 
+ 
+ 
+ 
+ 
+ 
+6*7
+ 
+ 
+ 
+42
+ 
+ 
+ 
+Simple maths here! 
+ 
+ 
+ 
+ 
+ 
+2*1.5
+ 
+ 
+ 
+3
+ 
+ 
+ 
+We are not dealing with division, so 2 lots of 1.5 simply equals 3. 
+ 
+ 
+ 
+ 
+ 
+2*1+5
+ 
+ 
+ 
+7
+ 
+ 
+ 
+Multiplication has higher precedence, so 2*1 is evaluated first and returns 2. Then we have 2+5 
+ which equals 7. 
+ 
+ 
+ 
+ 
+ 
+(6+3)*4
+ 
+ 
+ 
+36
+ 
+ 
+ 
+The bracketed expression has higher precedence than the multiplication operator, so (6+3) is evaluated first and 
+ returns 9. We are left with 9*4 which equals 36. 
+ 
+ 
+ 
+ 
+ 
+1/3
+ 
+ 
+ 
+0
+ 
+ 
+ 
+1 divided by 3 is actually 0.333333..., but this is an int divided by an int 
+ which always returns an int value. Hence 0.333333... is rounded down to 0. See the Data 
+ Types section if you're unsure about the following division sums. 
+ 
+ 
+ 
+ 
+ 
+6/2
+ 
+ 
+ 
+3
+ 
+ 
+ 
+This is also an int divided by an int, but since 2 goes into 6 EXACTLY (3 
+ times), 3 is the result, as expected. 
+ 
+ 
+ 
+ 
+ 
+4/3
+ 
+ 
+ 
+1
+ 
+ 
+ 
+4 divided by 3 is actually 1.333333..., but since this is an int divided by an int,1.333333... 
+ is rounded down to 1. 
+ 
+ 
+ 
+ 
+ 
+5/2
+ 
+ 
+ 
+2
+ 
+ 
+ 
+2.5 gets rounded down to 2 for the same reason as above. 
+ 
+ 
+ 
+ 
+ 
+3.0/2
+ 
+ 
+ 
+1.5
+ 
+ 
+ 
+A float divided by an int returns a float, so 1.5 as expected. 
+ 
+ 
+ 
+ 
+ 
+3/2.0
+ 
+ 
+ 
+1.5
+ 
+ 
+ 
+An int divided by a float returns a float, so 1.5 as expected. 
+ 
+ 
+ 
+ 
+ 
+5/2.0
+ 
+ 
+ 
+2.5
+ 
+ 
+ 
+An int divided by a float returns a float, so 2.5 as expected. 
+ 
+ 
+ 
+ 
+ 
+4*6/2
+ 
+ 
+ 
+12
+ 
+ 
+ 
+Multiplication and division have the same level of precedence. Left-to-right evaluation is adopted. 6*4 is 24 
+ and so 24/2 is 12. 
+ 
+If you (incorrectly) did right-to-left evaluation, you'd get 4*3 which still gives 12 - a pure fluke!! 
+ 
+ 
+ 
+ 
+ 
+ 
+20/2*5
+ 
+ 
+ 
+50
+ 
+ 
+ 
+Left-to-right again. 20/2 is 10, 10*5 gives 50. 
+ 
+No fluke this time for right-to-left: 2*5 gives 10, 20/10 gives 2, which is incorrect. 
+ 
+ 
+ 
+ 
+ 
+ 
+4%3
+ 
+ 
+ 
+1
+ 
+ 
+ 
+3 goes into 4 once with 1 as the remainder. If you're stuck, see the Arithmetic 
+ Operators section. 
+ 
+ 
+ 
+ 
+ 
+17%4
+ 
+ 
+ 
+1
+ 
+ 
+ 
+4 goes into 17 4 times with 1 as the remainder (4*4 is 16). 
+ 
+ 
+ 
+ 
+ 
+9%3
+ 
+ 
+ 
+0
+ 
+ 
+ 
+3 goes into 9 exactly (3*3 is 9) so nothing remains. 
+ 
+ 
+ 
+ 
+ 
+4%5
+ 
+ 
+ 
+4
+ 
+ 
+ 
+5 goes into 4 zero times (since 5 is greater than 4), so 4 is the remainder. 
+ 
+ 
+ 
+ 
+ 
+ 
+7%7/*6*/
+ 
+ 
+ 
+0
+ 
+ 
+ 
+7 goes into 7 exactly, which leaves no remainder. The 6 has no effect at all! It is commented 
+ out using the opening comment, /*, and the closing comment, */. Refer back to The 
+ Basics section for more info on comments. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Arithmetic 
+ Assignment and 
+ Increment / Decrement Operators 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Statement(s)
+ 
+ 
+ 
+Comment(s)
+ 
+ 
+ 
+ 
+ int a = 5;
+int b = 9;
+int c = 2;
+int d = 7;
+int e;
+ 
+ 
+ 
+int variables a, b, c and d are declared and initialized. 
+ 
+e is also declared as an int but remains UNDEFINED - no value has been assigned 
+ to it yet. 
+ 
+ 
+ 
+ 
+ 
+a += b;
+ 
+ 
+ 
+This is the same as saying a = a+b; 
+ Before assignment, a is 5, b is 9, so this statement assigns 14 to a. 
+ 
+ 
+ 
+ 
+ 
+ 
+b += 4; 
+ 
+ 
+ 
+This is the same as saying b = b+4; 
+ Before assignment, b is 9, so this statement assigns 9+4 (which is 13) to b. 
+ 
+ 
+ 
+ 
+ 
+ 
+c *= 3; 
+ 
+ 
+ 
+This is the same as saying c = c*3; 
+ Before assignment, c is 2, so this statement assigns 2*3 (which is 6) to c. 
+ 
+ 
+ 
+ 
+ 
+ 
+d -= 4; 
+ 
+ 
+ 
+This is the same as saying d = d-4; 
+ Before assignment, d is 7, so this statement assigns 7-4 (which is 3) to d. 
+ 
+ 
+ 
+ 
+ 
+ 
+d *= c-3; 
+ 
+ 
+ 
+This is the same as saying d = d*(c-3); - NOT d = d*c-3;
+ Before assignment, d is 3, c is 6. Because of the brackets, (c-3) 
+ is calculated first before being multiplied by d. So 6-3 is 3, and 3*3 is 9, 
+ which then gets assigned to d. 
+ 
+ 
+ 
+ 
+ 
+e = c++;
+ 
+ 
+ 
+Post incrementing takes place here. The value of c gets 
+ assigned to e, THEN c is increased by 1. Before this statement is evaluated, c is 6. 
+ So 6 gets assigned to e. Then c is incremented and holds the value of 7. 
+ 
+Final values: a: 14, b: 13, c: 7, d: 9, 
+ e: 6. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Statement(s)
+ 
+ 
+ 
+Comment(s)
+ 
+ 
+ 
+ 
+ int f,g;
+int h,i;
+int j;
+f = 2;
+g = 6;
+ 
+ 
+ 
+int variables f, g, h, i and j are declared. 
+ 
+f is initialized with 2 and g is initialized with 6. 
+ 
+ 
+ 
+ 
+ 
+g %= 2;
+ 
+ 
+ 
+This is the same as saying g = g%2; 
+ Before assignment, g is 6. Since 2 goes into 6 exactly (3*2 is 6), 
+ 6%2 returns zero, which gets assigned to g. 
+ 
+ 
+ 
+ 
+ 
+f -= g+1;
+ 
+ 
+ 
+This is the same as saying f = f-(g+1); - NOT f = f-g+1;
+ Before assignment, f is 2, g is 0. Due to the brackets, (g+1) is calculated 
+ first to return 1. Then 2-1 (which is 1) gets assigned to f. 
+ 
+ 
+ 
+ 
+ 
+h = f--; 
+ 
+ 
+ 
+Post decrementing takes place here. The value of f gets assigned to h, THEN f is decreased by 
+ 1. Before this statement is evaluated, f is 1. So 1 gets assigned to h. Then 
+ f is decremented and now holds the value of 0. 
+ 
+ 
+ 
+ 
+ 
+i = --g; 
+ 
+ 
+ 
+Pre decrementing takes place here. g is decreased by 1, then the value of g gets assigned to 
+ i. Before this statement is evaluated, g is 0. After decrementing, g holds the value 
+ of -1, which gets assigned to i. 
+ 
+ 
+ 
+ 
+ 
+j = ++h; 
+ 
+ 
+ 
+Pre incrementing takes place here. h is increased by 1, then the value of h gets assigned to 
+ j. Before this statement is evaluated, h is 1. After incrementing, h holds the value 
+ of 2, which gets assigned to j. 
+ 
+Final values: f: 0, g: -1, h: 2, i: -1, 
+ j: 2. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Arithmetic Operators Quiz 
+ Main Menu 
+ Standard Input and Output 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

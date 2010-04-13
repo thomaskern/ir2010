@@ -1,0 +1,41 @@
+
+ 
+ PHP HOW-TO: Performance benchmarking - PHP, ASP, JSP, Coldfusion 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 21. Performance benchmarking - PHP, ASP, JSP, Coldfusion 
+It is very important to bear in mind that performance and running speed of the web scripting
+engine must be given TOP PRIORITY. That is, how many 
+pages per second the scripting engine can pump out to the browser clients. The greater the
+number of pages pumped out to clients in a given period of time, then the better 
+and more powerful the scripting engine is.
+The 
+Zdnet
+did a evaluation and benchmarking of 4 web scripting languages. During benchmarking, 
+the same spec
+and identical cpu, memory boxes were used. Under identical conditions, it was found 
+that PHP was the fastest - about 3.7 times faster than JSP and 
+about 1.2 times faster than ASP.
+Read the report at 
+eWeek
+and 
+mirror-site
+The benchmark results are -
+- PHP pumped out about 47 pages/second
+- Microsoft ASP pumped out about 43 pages/second
+- Allaire ColdFusion pumped out about 29 pages/second
+- Sun Java JSP pumped out about 13 pages/second
+See also PHP, ASP benchmarks at 
+http://aldev0.virtualave.net/php-perl-benchmarks.html
+Whenever you design a web site, give attention to these important points:
+- Speed of web scripting engine - how many pages per second it can pump out.
+- KISS policy (Keep It Simple Stupid!!) - your web page should be very simple without
+any fancy graphics (because web users do not want to wait for long time and they
+want the information very fast). And information they read is just plain text!!
+Next
+Previous
+Contents

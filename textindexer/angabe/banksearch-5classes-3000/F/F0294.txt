@@ -1,0 +1,17 @@
+
+Visual Basic: The User Interface
+The User Interface: the Code Window
+The Code window is used to write, display and edit code. You can open as many Code windows as you want, so you can easily view the code in different forms and modules and copy and paste between them.
+The Code window includes:
+- The Object box. For forms, the Object box lists the current form and all the controls on the current form.
+- The Procedure box. If you are editing form code, the Procedure box lists all the events recognized by Visual Basic for the form or control displayed in the Object box. When you select an event, either the event procedure associated with that event name, or a code template for the event, is displayed in the bottom part of the Code window.
+If (general) is displayed in the Object box, the Procedure box lists all of the general procedures that have been created for the form. If you are editing module code, the Procedure box lists all of the general procedures in the module. In either case, the procedure you select in the Procedure box is displayed in the bottom part of the Code window.
+- The Split bar. The Split bar is located across the window, below the title bar at the top of the vertical scroll bar. Dragging this bar down splits the Code window into two horizontal panes, each of which scrolls separately. You can then view different parts of your code at the same time. The information that appears in the Object box and Procedure box applies to the code in the pane that has the focus. Dragging the bar to the top of the window closes a pane.
+- 
+Back: the Form Window
+This Web Page forms part of a series that describe the Custom
+GIS Course at the School of Geography, Leeds University.
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

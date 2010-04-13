@@ -1,0 +1,17 @@
+
+Adding a file to the most recent documents list
+ 
+Adding a file to the most recent documents list
+You may have noticed that when you click the 'Start' button in Windows, you can access a list of the most recently used documents. Well, if your application makes use of any sort of data file, you may want to add a document to that list, too.
+You can do this by using the SHAddToRecentDocs API:
+Declare Sub SHAddToRecentDocs Lib "shell32.dll" _
+(ByVal uFlags As Long, ByVal pv As String) 
+ 
+Now that the function has been declared, the following code can be used to add a file to the list.
+Dim NewFile as String
+NewFile="c:\newfile.file"
+Call SHAddToRecentDocs(2,NewFile) 
+ 
+You can also clear the list of files by using the following code.
+Call SHAddToRecentDocs(2,vbNullString)
+ 

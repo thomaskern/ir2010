@@ -1,0 +1,458 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+MFC Under the Hood
+Creating an MFC Application
+This article was contributed by 
+Andrew Fenster.
+Environment: Visual C++
+Most of the time when you are creating a new MFC application, 
+you'll start with the MFC App Wizard. The App Wizard generates a basic
+ skeleton application which you will flesh out into a full-fledged, 
+useful program. 
+Even the skeleton application you get from the App Wizard 
+contains a lot of very arcane looking code, and there's a great deal 
+of hidden code as well. The purpose of this article is to demystify 
+some of that code. I'll show you how to build a simple MFC application
+without the App Wizard. By the time you are done, the mysterious 
+looking code that comes from the App Wizard will no longer be so 
+mysterious, and you'll be better prepared to modify it to suit your 
+own purposes.
+The hidden code first
+Every 32 bit Windows application has two essential program elements: 
+WinMain and WndProc. Your program will have one 
+WinMain for the entire program, and one WndProc for each window in 
+the program. Although MFC creates these for you, you still need to 
+know a little about them.
+WinMain is the function that starts your application. Once 
+your application is running, the Windows operating system will start 
+placing your application's messages in a message queue. WinMain makes 
+three Windows API calls to get these messages from the operating 
+system and to process them. First it calls GetMessage to retrieve 
+a message. Then it calls TranslateMessage to perform any necessary 
+conversion of the message. Finally, WinMain calls DispatchMessage, 
+which tells the operating system to send the message to the appropriate 
+WndProc for handling.
+Once WndProc receives a message, it looks through its message 
+handlers for instructions on what should be done with the message. 
+Your job as a Windows application programmer, it to write the handlers.
+A Simple MFC Application: Less Than 20 Lines of Code
+Next we'll look at a simple, bare-bones MFC application. 
+MFC provides the WinMain and WndProc. We must provide an MFC-derived 
+application class and window management class. 
+Our application class will be derived from the MFC class CWinApp. 
+CWinApp provides all the member variables and functions to initialize, 
+start, run and close an application. CWinApp contains a pointer 
+called m_pMainWnd which will point to an object of our derived window 
+management class. Each MFC application has one and only one object of 
+derived directly from CWinApp. In the example below, that class is 
+called "CMyApp."
+Our window management class will be derived from CFrameWnd. CFrameWnd 
+has all the member variables and functions to create and manage windows. 
+Note that when you create an object of our derived windows class, you 
+have not created an actual window. The new object uses its Create() 
+function to create windows.
+Here's what happens when we start our program. You can follow along 
+in the code:
+ 
+- 
+ WinMain runs this code: CMyApp app; This creates an object of type 
+ CMyApp named "app." App will have all the member variables and functions of 
+ CWinApp which are needed to start, run and close our application.
+ 
+- 
+ Then WinMain calls app's InitInstance( ) function. 
+ InitInstance() creates a new CMyWnd object with m_pMainWnd = 
+ new CMyWnd;
+ 
+- 
+ The CMyWnd constructor calls its Create( ) function, which 
+ creates an instance of the window, but does not display it.
+ 
+- 
+ The app's InitInstance() function then displays the window with 
+ m_pMainWnd-> ShowWindow(m_nCmdShow);
+ 
+- 
+ WinMain calls the app's Run( ) function, which dispatches 
+ messages to the rest of the application.
+Here is the code. Try it - it works!
+ #include 
+ //derive my own window class from CFrameWnd
+ class CMyWin: public CFrameWnd
+ {
+ public:
+ CMyWin( );
+ DECLARE_MESSAGE_MAP( )
+ };
+ //define my window class' constructor:
+ CMyWin::CMyWin( )
+ {
+ Create(0, "This Text Will Appear in the Title Bar");
+ }
+ //derive my own application class from CWinApp
+ class CMyApp: public CWinApp
+ {
+ public:
+ virtual BOOL InitInstance( );
+ };
+ //define my application class' InitInstance( )
+ BOOL CMyApp::InitInstance( )
+ {
+ m_pMainWnd = new CMyWin( );
+ m_pMainWnd->ShowWindow(m_nCmdShow);
+ m_pMainWnd->UpdateWindow();
+ return TRUE;
+ }
+ //here is my application's message map
+ BEGIN_MESSAGE_MAP(CMyWin, CFrameWnd)
+ // any messages to be processed by 
+ // CMyWin get listed here.
+ END_MESSAGE_MAP( )
+ //declare an instance of application 
+ //class for WinMain to use.
+ CMyApp app;
+Here's what you get when you compile and run:
+Your actual window will be bigger.
+Single Document Interface Applications
+The code above creates a simple, bare bones application. The code 
+you will find in a single document interface application is more 
+complicated, but still works along the same lines. You still have 
+an application class derived from CWinApp. You still have a window 
+management class derived from CFrameWnd. In this case, however, the 
+derived window management class is called CMainFrame. 
+Your derived application class still has an InitInstance() function, 
+but the function looks a lot more complicated. Among other things, 
+it contains something like this:
+ CSingleDocTemplate* pDocTemplate;
+ pDocTemplate = new CSingleDocTemplate(
+ IDR_MAINFRAME,
+ RUNTIME_CLASS(CMyDoc),
+ RUNTIME_CLASS(CMainFrame), // main SDI frame window
+ RUNTIME_CLASS(CMyView));
+ AddDocTemplate(pDocTemplate);
+Here, the application object creates a single document template pointer 
+and points it to a new single document template object. There are four 
+parameters passed to the CSingleDocTemplate constructor. The first is 
+an integer, the resource ID for the IDR_MAINFRAME resource. The next 
+three parameters pass class information for my document class, frame class 
+and view class. Then the pointer to this new CSingleDocTemplate is added 
+to the list of document templates maintained by the application object. 
+(In an SDI application, there's only one template.)
+IDR_MAINFRAME is a resource containing:
+ 
+- The application icon.
+ 
+- The application's menu.
+ 
+- The accelerator table that goes with the menu.
+ 
+- A document string. 
+The document string contains up to seven pieces of information in substrings separated 
+by '\n' characters:
+ 
+- The title that appears in the frame window's title bar.
+ 
+- The title assigned to new documents. If omitted, the default is "Untitled."
+ 
+- A description of the document type in an MDI application. This substring isn't used in an SDI application.
+ 
+- A description of the document type followed by its default file name extension, e.g., "My Big Program(*.mbp)."
+ 
+- The three letter extension for the document type, e.g., ".mbp"
+ 
+- A name with no spaces that identifies the document type in the registry.
+ 
+- A descriptive name of the document type, e.g., "My Big Program Document."
+Here's a sample string:
+"My Big Program\n\n\nMy Big Program(*.mbp)\n.mbp\nBigProgram\nMBP Document."
+Conclusion
+So there you have it. Now that you know a little more about what your wizard-generated 
+code is doing, you can go in and start modifying it. For example, if you want to change 
+the size and positioning of your application's main window, you can modify the Create( ) 
+function. Try substituting the following code for the Create( ) function listed above. 
+You'll get a much smaller window positioned in the upper left corner of the screen.
+ RECT x;
+ x.top = 30;
+ x.left = 30;
+ x.bottom = 300;
+ x.right = 300;
+ Create(NULL, "My New Window", WS_OVERLAPPEDWINDOW, x);
+There are a lot of settings and functions you can play with. You might 
+be the type who never changes the default code. Even so, the more you 
+know about what's going on, the better your programs will be.
+History
+Date Posted: June 27, 2001
+ 
+Comments:
+- A slight error - Josh (2002/07/11)
+- MFC under the hood - Ray Macchiarola (2002/06/07)
+- Same problem. unresolved external symbol _main - Billy (2002/05/19)
+- Multiple Documents? - Cacho (2001/12/19)
+- Real Beginner - TomThumb (2001/08/08)
+- Thanks for kind job done - Gimilio Raymond (2001/07/26)
+- Great ! A nice way to explain Flow of MFC Program - Shashikanth Pisse (2001/07/24)
+- Superb! - olaimat (2001/07/17)
+- Question? Use of MFC FrameWnd as DLL - Doug (2001/07/05)
+- can't link... - matt (2001/07/03)
+- Good! - Jeff (2001/07/03)
+- It is an occassion! - Ali (2001/06/29)
+- Icon in file manager - Paul (2001/06/29)
+- IDR_MAINFRAME - Andrew Fenster (2001/06/28)
+- Excellent start - sally (2001/06/28)
+- MFC Under the Hood - Madhu (2001/06/28)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Web Design
+Software Store
+Freelance Projects
+USA Mailing Address
+Send a Press Release
+Find a Web Host
+Register Domains
+Search the Web
+Business Search
+Secure Business IM
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

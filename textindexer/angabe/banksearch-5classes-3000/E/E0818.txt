@@ -1,0 +1,255 @@
+
+GNE::ServerConnectionListener class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::ServerConnectionListener Class Reference
+A connection that listens for other connections. 
+More...
+#include 
+List of all members.
+Public Methods
+ 
+ ServerConnectionListener () 
+ Initalizes this class.
+ 
+virtual ~ServerConnectionListener () 
+ The destructor will close down a listening object, so when you are done listening, just destroy this object.
+ 
+bool open (int port) 
+ Opens a socket ready for listening, but not yet listening. More...
+ 
+bool listen () 
+ Starts this socket listening. More...
+ 
+bool isListening () const 
+ Returns true if this ServerConnectionListener is active.
+ 
+Address getLocalAddress () const 
+ Returns the address of the listening socket. More...
+ 
+Protected Methods
+ 
+virtual void onListenFailure (const Error &error, const Address &from, ConnectionListener *listener)=0 
+ There was a failure when trying to listen on this socket. More...
+ 
+virtual void onListenSuccess (ConnectionListener *listener) 
+ This is an optional event to catch which is called after ConnectionListener::onNewConn. More...
+ 
+virtual void getNewConnectionParams (int &inRate, int &outRate, bool &allowUnreliable, ConnectionListener *&listener)=0 
+ A new connection is starting, and now we want the parameters for this new connection. More...
+ 
+Friends
+ 
+class ServerConnection 
+class ServerListener 
+Detailed Description
+A connection that listens for other connections.
+Inherit from this class, overriding the functions from Connection and ClientConnection based on the events you wish to respond to. 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ Address GNE::ServerConnectionListener::getLocalAddress 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the address of the listening socket.
+The socket must be opened when this function is called, but does not have to be listening. 
+ 
+ 
+ 
+ 
+ 
+ virtual void GNE::ServerConnectionListener::getNewConnectionParams 
+ ( 
+ int & 
+ inRate, 
+ 
+ 
+ 
+ 
+ int & 
+ outRate, 
+ 
+ 
+ 
+ 
+ bool & 
+ allowUnreliable, 
+ 
+ 
+ 
+ 
+ ConnectionListener *& 
+ listener 
+ 
+ 
+ 
+ ) 
+ [protected, pure virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A new connection is starting, and now we want the parameters for this new connection.
+The three parameters passed should be modified to give the new connection's flow control parameters and listener.
+The last parameter should be set to the initial event listener for the ServerConnection that is being created. This could be an entirely new ConnectionListener or an already existing one, it doesn't matter. The returned listener cannot be NULL, since onNewConn must be called or a memory leak will occur.
+This pointer will be returned to you through the socket failure event (in this case it was never used, but it is returned in case you need to delete it). If the connection is successful you can get your pointer back through the resulting ServerConnection class by using Connection::getListener.
+This function can be called from multiple threads at the same time.
+See PacketStream::PacketStream for more info about inRate and outRate. 
+Parameters: 
+inRate 
+the maximum rate we will accept. 
+outRate 
+the maximum rate of data we are able/willing to send. 
+wantUnreliable 
+set to true if you want to have an unreliable data socket. If either this function or the client refuses the unreliable socket, then it will not be created, and any data marked to be sent unreliably will instead be sent reliably. You want want to disallow this if you are not using unreliable data, or your firewall/gateway makes UDP or IPX communication difficult or impossible. 
+ 
+ 
+ 
+ 
+ 
+ 
+ bool GNE::ServerConnectionListener::listen 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Starts this socket listening.
+onNewConn will be called when a new connection has been negotiated and error checked. When you are finished, delete this object and the dtor will clean things up. 
+See also: 
+onListenFailure 
+Returns: 
+true, if there was an error. 
+ 
+ 
+ 
+ 
+ 
+ virtual void GNE::ServerConnectionListener::onListenFailure 
+ ( 
+ const Error & 
+ error, 
+ 
+ 
+ 
+ 
+ const Address & 
+ from, 
+ 
+ 
+ 
+ 
+ ConnectionListener * 
+ listener 
+ 
+ 
+ 
+ ) 
+ [protected, pure virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+There was a failure when trying to listen on this socket.
+This is not called when the actual low-level listen fails (that error is returned from listen), but instead high-level errors while connecting such as a version mismatch are sent here. Only errors that occur before or during the ConnectionListener::onNewConn event are sent here.
+This function may be called from multiple threads at the same time, and may block if it wishes; it does not have the "non-blocking" restriction most GNE events have.
+Depending on when and under what circumstances the failure happened, in any case, from might be an invalid address, and listener may be NULL.
+Parameters: 
+error 
+the type of error 
+from 
+the remote address the failed attempt came from 
+listener 
+the unused ConnectionListener that was obtained from getNewConnectionParams. If it is NULL, then getNewConnectionParams was never called. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::ServerConnectionListener::onListenSuccess 
+ ( 
+ ConnectionListener * 
+ listener 
+ ) 
+ [protected, virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is an optional event to catch which is called after ConnectionListener::onNewConn.
+The default behavior for this event is to do nothing, but you may overload it to catch it.
+This method may block, but until it completes the connection will be marked as connecting and not as connected, and listener will not start to receive any events (besides the onNewConn it just got) until this function completes.
+See the expong example of a case where the onListenSuccess event can be useful, where the same implementation using only onNewConn would be harder to program and understand.
+Parameters: 
+listener 
+The listener than you returned from getNewConnectionParams. 
+ 
+ 
+ 
+ 
+ 
+ 
+ bool GNE::ServerConnectionListener::open 
+ ( 
+ int 
+ port 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Opens a socket ready for listening, but not yet listening.
+Parameters: 
+port 
+the port to listen on. 
+Returns: 
+true if could not open a socket on the port. 
+ 
+The documentation for this class was generated from the following files:
+- ServerConnectionListener.h
+- ServerConnectionListener.cpp
+Generated on Fri Mar 8 03:03:23 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

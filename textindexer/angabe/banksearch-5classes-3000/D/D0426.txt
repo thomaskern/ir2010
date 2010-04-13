@@ -1,0 +1,156 @@
+
+Hoskinson's Growing Text Applet
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+Hoskinson's Growing
+Text Applet 
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Your browser is not Java-capable
+This applet is a simple text animation which
+"grows" a user specified string from a minimum font point size to a maximum
+point size, both specified by the user as APPLET tag parameters. If the user clicks on the
+applet container, it restarts the animation. 
+This is what the mark-up looks like to implement the
+growing text applet in your HTML page (Note: this assumes that growing_text_andyhosk.class
+is in the same directory as it's parent HTML page). The parameters, by the way, correspond
+to the instance that is running on this page right now: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Your browser is not Java-capable
+ 
+ 
+ 
+ Parameter 
+ Possible Values 
+ 
+ 
+ string 
+ Any string; represents the "growing" text . 
+ 
+ 
+ fonttype 
+ Any installed font. 
+ 
+ 
+ fontstyle 
+ plain, bold, or italic. 
+ 
+ 
+ minfontsize 
+ Any valid point size. This is the point size that the text
+ string starts at. This must be less than maxfontsize. 
+ 
+ 
+ maxfontsize 
+ Any valid point size. This is the point size that
+ the text string ends at. This must be greater than minfontsize. 
+ 
+ 
+ bgcolor 
+ white, black, red, blue, green, yellow, or an
+ integer representing the RGB value (See Note Below). 
+ 
+ 
+ fgcolor 
+ white, black, red, blue, green, yellow, or an
+ integer representing the RGB value (See Note Below). 
+ 
+ 
+ timeinterval 
+ Time delay between frames, in milliseconds; for all
+ intents and purposes, represents the speed at which the text "grows". 
+ 
+Background and Foreground Color Attributes 
+Most people will find the six basic colors sufficient.
+However, you can set the background or foreground color of the applet to any one of the
+16+ million colors in the 24 bit RGB (Red-Green-Blue) spectrum. But first, you must
+calculate the value of your custom color. To facilitate this, please use this
+calculator. 
+Download
+the applet 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

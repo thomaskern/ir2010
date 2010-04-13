@@ -1,0 +1,37 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Dialog Boxes
+A Dialog box (I'm sure you've seen one before) is basically a control that works as a pop-up window, a perfect example of what it is like when you save your form and that window comes up "Save file as," that's it. They serve many purposes, and come in many flavors, but the common dialog box's are for making things easier on your part. I mean they're nothing more then forms with controls on them, and sure you can make your own... If you have time and are willing to use it.
+Types of dialog boxes
+Open Dialog Box
+Save Dialog Box
+Font Dialog Box
+Help Dialog Box
+Color Dialog Box
+Print Dialog Box
+Now that you know what they're for and what kinds there are you need to know how to actually get one on the form and working.
+Steps to get the CDB control
+1)In VB's menu select Project/Components
+2)Select Microsoft Common Dialog Box Control & click OK
+3)Now it should be on your Toolbox window, double click it as you would any control
+If you check the common dialogs properties you can tell that they're quite different from anything you have seen up to this point. Perhaps the most unusual and most important property is the "Custom" property.
+Common Dialog properties explained:
+Custom - Basically if you fill it out it sets up the properties for you
+DialogTitle - Determines the dialog's title
+FileName - Is the default file name in the common dialog box (such as "form1" is in VB's save dialog box when you first save a form)
+Filter - The files abbreviation you want to open (.bas, .txt, .exe)
+If you wanted to display a common dialog in your program, your code would look something like this:
+ Private Sub Command1_Click()
+ CommonDialog1.ShowOpen
+ End Sub
+Codes
+.ShowOpen - opens the "Open" dialog
+.ShowFont - opens the "Font" dialog
+.ShowHelp - opens the "Help" dialog
+.ShowSave - opens the "Save" dialog
+.ShowPrinter - opens the "Printer" dialog
+ Tip: In the filter property, "." shows all files
+Find some examples to Download on Common Dialogs here
+Now you should have a better idea on Common Dialog boxes...
+Back
+Next

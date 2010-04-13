@@ -1,0 +1,62 @@
+
+Win32ErrorApp
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted 04/21/97, last
+ update: 05/02/97 
+ 
+Home 
+ 
+ 
+ Win32ErrorApp: Retrieves
+ descriptions of any or all Win32 API and OLE error codes
+ 
+ After posting the Win32err example on this site, I decided to write a programming utility
+ that extends a certain amount of functionality in returning Win32 error code descriptions.
+ The application, Win32 Error Codes, will retrieve descriptions of every API and OLE error
+ code defined in the Win32 system it's running on.
+ 
+ Win32 Error Codes is a simple yet useful utility written to assist programmers in
+ obtaining information about Win32 API and OLE errors during application development. It
+ will retrieve a list of all error code descriptions, a list of any given range of error
+ code descriptions, or retrieve a single description from any given error code. It also
+ displays all of the constants and their respective values defined in Winerror.h (VC5).
+ 
+ Output includes decimal and hexadecimal error code values. Hexadecimal notation can be
+ selected as either the C or VB prefix format. Error code descriptions are displayed in a
+ RichEdit control window which provides standard text editor functionality. An enhanced
+ Find feature is also employed providing the ability to search for any given string in the
+ output.
+ 
+ Win32 Error Codes was developed using VB4-32 running on Win95 and has been tested on both
+ Win95 and WinNT Server v4.0. You'll need the VB4-32 runtime files & Richtx32.ocx to
+ make it work.
+ 
+ If you want to see how it works, you'll find it's core source at on the Win32Errors page.
+ 
+ Revision History
+ 
+ 04/21/97 
+ 1.0 
+ Initial release 
+ 
+ 
+ 05/02/97 
+ 1.10 
+ Added statusbar (no .OCX) providing menu,
+ option and search info.
+ Subtle speed & UI enhancements 
+ 
+ 
+ 
+Download Win32 Error Codes
+ v1.10 (38kb) 
+ 

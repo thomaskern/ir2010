@@ -1,0 +1,15 @@
+
+Visual Basic: The User Interface
+The User Interface: the Form Window
+A form is a "container" for custom controls. Controls can be "drawn" anywhere within the form. When compiled a form becomes a ordinary window that can be manipulated within the Microsoft Windows environment. It is the interaction between the forms, controls and the underlying code that creates a working window application.
+Miscellaneous Information
+The dots within the form, form a grid that is useful for aligning controls. The size of the grid and whether controls are aligned at all can be control from the Options|Environment.. menu.
+Also like all controls the Property Name is set to a default. In this case Form1.
+Forward: the Code Window
+Back: the Properties Window
+This Web Page forms part of a series that describe the Custom
+GIS Course at the School of Geography, Leeds University.
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

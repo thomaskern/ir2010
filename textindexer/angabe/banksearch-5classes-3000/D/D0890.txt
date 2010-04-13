@@ -1,0 +1,137 @@
+
+Solving Common Compiler and Interpreter Problems
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: Getting Started
+Lesson: Solving Common Compiler and Interpreter Problems
+If you're having trouble compiling your Java source code
+or running your application,
+this section might be able to help you.
+If nothing in this section helps,
+please refer to the documentation
+for the compiler or interpreter you're using. 
+Compiler Problems
+Can't Locate the Compiler
+On UNIX systems, you may see the following error message
+if your path isn't set properly:
+javac: Command not found
+Use setenv or a similar command
+to modify your PATH environment variable
+so that it includes the directory
+where the Java compiler lives. 
+Syntax Errors
+If you mistype part of a program,
+the compiler may issue a syntax error.
+The message usually displays the type of the error,
+the line number where the error was detected,
+the code on that line,
+and the position of the error within the code.
+Here's an error caused by omitting a semicolon (;)
+at the end of a statement:
+testing.java:14: `;' expected.
+System.out.println("Input has " + count + " chars.")
+ ^
+1 error
+Sometimes the compiler can't guess your intent
+and prints a confusing error message
+or multiple error messages if the error cascades over several lines.
+For example, the following code snippet omits a semicolon (;)
+from the bold line:
+while (System.in.read() != -1)
+ count++
+System.out.println("Input has " + count + " chars."); 
+When processing this code, the compiler issues two error messages:
+testing.java:13: Invalid type expression.
+ count++
+ ^
+testing.java:14: Invalid declaration.
+ System.out.println("Input has " + count + " chars.");
+ ^
+2 errors
+The compiler issues two error messages
+because after it processes count++,
+the compiler's state indicates
+that it's in the middle of an expression.
+Without the semicolon,
+the compiler has no way of knowing
+that the statement is complete. 
+If you see any compiler errors,
+then your program did not successfully compile,
+and the compiler did not create a .class file.
+Carefully verify the program,
+fix any errors that you detect,
+and try again. 
+Semantic Errors
+In addition to verifying that your program is syntactically correct,
+the compiler checks for other basic correctness.
+For example, the compiler warns you each time you use a variable
+that has not been initialized:
+testing.java:13: Variable count may not have been initialized.
+ count++
+ ^
+testing.java:14: Variable count may not have been initialized.
+ System.out.println("Input has " + count + " chars.");
+ ^
+2 errors
+Again, your program did not successfully compile,
+and the compiler did not create a .class file.
+Fix the error and try again.
+Interpreter Problems
+Can't Find Class
+A common error of beginner Java programmers
+using the UNIX or Windows 95/NT JDK
+is to try to interpret the .class file
+created by the compiler.
+For example, if you try to interpret the file HelloWorldApp.class
+ rather than the class HelloWorldApp,
+the interpreter displays this error message:
+Can't find class HelloWorldApp.class
+The argument to the Java interpreter is
+the name of the class
+that you want to use,
+not the filename.
+The main Method Is Not Defined
+The Java interpreter requires
+that the class you execute with it
+have a method named main,
+because the interpreter must have somewhere
+to begin execution of your Java application.
+The main Method
+discusses the main method in detail. 
+If you try to run a class with the Java interpreter
+that does not have a main method,
+the interpreter prints this error message:
+In class classname: void main(String argv[]) is not defined
+In the above message,
+classname is the name of the class
+that you tried to run.
+Changes to My Program Didn't Take Effect
+Sometimes when you are in the edit/debug/run cycle,
+it appears that your changes to an application didn't take effect --
+a print statement isn't printing, for example.
+This is common when running Java applications on MacOS
+using Java Runner.
+If you recompile a .class file,
+you must quit Java Runner and bring it up again,
+since Java Runner does not reload classes.
+Applet Problems
+See 
+Solving Common Applet Problems
+if you have trouble getting your applet to run.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

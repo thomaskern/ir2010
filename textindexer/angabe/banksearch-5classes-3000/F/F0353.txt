@@ -1,0 +1,70 @@
+
+Home - About - Assembly - DirectX - OpenGL - .NET - Platform SDK - Downloads - Links 
+June 6, 2001 
+privacy
+ 
+DirectX 8 Setup for Visual Basic Developers > 2D Graphics - Sprite 
+Initializing DirectX Graphics
+See also : DirectX Graphics Roadmap
+Download : d3d8_01.zip
+If you are new to DirectX, you may want to check DirectX Setup for Visual Basic Developers to initialize your development environment.
+basD3D Module
+We'll keep our general DirectX Graphics code in its own module. For now, this module only brings us a very simple initialization routine, and the corresponding shutdown routine. This module provides the following public objects :
+Public DirectX As DirectX8
+Public Direct3D As Direct3D8
+Public Device As Direct3DDevice8
+Public d3dx As D3DX8
+For now, d3dStart will use the default adapter and the HAL (hardware) device.
+Public Function d3dStart(frm As Form) As CONST_D3DERR
+ Const Adapter = D3DADAPTER_DEFAULT
+ Const DeviceType = D3DDEVTYPE_HAL ' D3DDEVTYPE_REF for the "Reference Rasterizer"
+ Dim DisplayMode As D3DDISPLAYMODE
+ Dim PresentParameters As D3DPRESENT_PARAMETERS
+ Dim ReturnCode As Long
+We'll start first by setting the client area to a particular aspect ratio and we then show the rendering form.
+ SetClientSize frm, 320, 240
+ frm.Show
+Once the form is shown, we then create the basic DirectX Graphics objects :
+ ' Initialize DirectX
+ Set DirectX = New DirectX8
+ Set Direct3D = DirectX.Direct3DCreate
+ Set d3dx = New D3DX8
+Now, we can get the current display mode to initialize presentation parameters. D3DPRESENT_PARAMETERS.SwapEffect allows to specify how the back buffer will be presented to the screen. In particular changing these parameters allows to use full screen mode.
+ Direct3D.GetAdapterDisplayMode D3DADAPTER_DEFAULT, DisplayMode
+ With PresentParameters
+ .BackBufferFormat = DisplayMode.Format
+ .SwapEffect = D3DSWAPEFFECT_DISCARD
+ .Windowed = 1
+ End With
+Now, we'll check that these parameters are supported by the hardware. If it is not supported, we'll return the result code to the caller.
+- D3DERR_INVALIDDEVICE indicates that there is no hardware support (in which case you could use D3DDEVTYPE_REF, a "Reference Rasterizer" that promotes features over rendering speed (intended for use as a debugging tool or as a full featured slow device for your tries).
+- D3DERR_NOTAVAILABLE indicates that hardware acceleration mode is not supported for the current display mode. In particular 8 bit mode is not hardware accelerated and 24 bit is unlikely (for performance reasons). You'll have then to change your current desktop bit depth before running this code.
+ ReturnCode = Direct3D.CheckDeviceType(Adapter, DeviceType, DisplayMode.Format, _
+ DisplayMode.Format, PresentParameters.Windowed)
+ If ReturnCode 
+Finally we can create the rendering device.
+ Set Device = Direct3D.CreateDevice(Adapter, DeviceType, frm.hWnd, _
+ D3DCREATE_SOFTWARE_VERTEXPROCESSING, PresentParameters)
+ 
+ d3dStart = Err.Number
+End Function
+This module also provides the d3dStop subroutine that just clears the various objects...
+Public Sub d3dStop()
+ Set Device = Nothing
+ Set d3dx = Nothing
+ Set Direct3D = Nothing
+ Set DirectX = Nothing
+End Sub
+...and also SetClientSize that allows to ask for a particular client area size (wanted size + difference beetween current client size and total size).
+Private Sub SetClientSize(frm As Form, ByVal Width As Long, ByVal Height As Long)
+ frm.Move frm.Left, frm.Top, Width * Screen.TwipsPerPixelX + (frm.Width - frm.ScaleWidth), Height * Screen.TwipsPerPixelY + (frm.Height - frm.ScaleHeight)
+End Sub
+Main loop
+Now, we are ready to use this module for our tiny first application.
+Private Sub Main()
+ Dim ReturnCode As Long
+ ReturnCode = d3dStart(frmMain)
+ If ReturnCode 
+Once DirectX Graphics is initialized, through a call to our d3dStart, we clear the device to a random color and we present this device to the screen using our main window. When all windows are closed, the loop is exited and d3dStop clears DirectX objects.
+Patrice Scribe
+Patrice Scribe

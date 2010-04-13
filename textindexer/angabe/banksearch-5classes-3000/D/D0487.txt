@@ -1,0 +1,319 @@
+
+2.1)Flow Control, If and switch statements
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+2) Flow control and 
+ exception Handling 
+Objective 1)
+Write code using if and switch 
+ statements and identify legal argument types for these statements.
+If/else statements 
+If/else constructs in Java are just as you might expect from other languages. 
+ switch/case statements have a few peculiarities.
+The syntax for the if/else statement is 
+if(boolean condition){ 
+ //the boolean was true so do this 
+ }else { 
+ //do something else 
+}
+Java does not have a "then" keyword like the one in Visual 
+ Basic. 
+The curly braces are a general indicator in Java of a compound statement that 
+ allows you to execute multiple lines of code as a result of some test. This 
+ is known as a block of code. The else portion is always optional.
+ 
+ One idiosyncrasy of the Java if statement is that it must take a boolean 
+ value. You cannot use the C/C++ convention of any non zero value to represent 
+ true and 0 for false.
+Thus in Java the following will simply not compile
+int k =-1; 
+ if(k){//Will not compile! 
+ System.out.println("do something"); 
+}
+because you must explicitly make the test of k return a boolean value, as in 
+ the following example
+if(k == -1){ 
+ System.out.println("do something"); //Compiles OK! 
+ } 
+As in C/C++ you can miss out the curly brackets thus
+boolean k=true;
+if(k) 
+System.out.println("do something"); 
+This is sometimes considered bad style, because if you modify the code later 
+ to include additional statements they will be outside of the conditional block. 
+ Thus
+ if(k) 
+ System.out.println("do something"); 
+ System.out.println("also do this");
+The second output will always execute. 
+Switch statements 
+Peter van der Lindens opinion of the switch statement is summed up when he 
+ says
+"death to the switch statement"
+Thus this is a subject you should pay extra attention to. The argument to a 
+ switch statement must be a byte, char, short or int. You might 
+ get an exam question that uses a float or long as the argument 
+ to a switch statement.. A fairly common question seems to be about the 
+ use of the break statement in the process of falling through a switch 
+ statement. Here is an example of this type of question. 
+int k=10; 
+switch(k){
+ case 10: 
+ System.out.println("ten"); 
+ case 20: 
+ System.out.println("twenty"); 
+ } 
+Common sense would indicate that after executing the instructions following 
+ a case statement, and having come across another case statement 
+ the compiler would then finish falling through the switch statement. 
+ However, for reasons best known to the designers of the language case 
+ statements only stop falling through when they come across a break statement. 
+ As a result, in the above example both the strings ten and twenty will be sent 
+ to the output.
+ Another little peculiarity that can come up on questions is the placing of the 
+ default statement. 
+ 
+ 
+ 
+ 
+The default clause does not need to come at the end 
+ of a case statement
+ 
+ 
+The conventional place for the default statement is at the end of of case options. 
+ Thus normally code will be written as follows
+int k=10; 
+switch(k){
+ case 10: 
+ System.out.println("ten"); 
+ break; 
+ case 20: 
+ System.out.println("twenty"); 
+ break; 
+ default: 
+ System.out.println("This is the default output"); 
+} 
+This approach mirrors the way most people think. Once you have tried the other 
+ possibilities, you perform the default output. However, it is syntactically 
+ correct, if not advisable, to code a switch statement with the default at the 
+ top
+int k=10; 
+ switch(k){ 
+ default: //Put the default at the bottom, not here
+ System.out.println("This is the default output"); 
+ break; 
+ case 10: 
+ System.out.println("ten"); 
+ break; 
+ case 20: 
+ System.out.println("twenty"); 
+ break; 
+}
+Legal arguments for 
+ if and switch statements 
+As mentioned previously an if statement can only take a boolean 
+ type and a switch can only take a byte, char, short or 
+ int. 
+The ternary ? operator 
+Some programmers claim that the ternary operator is useful. I do not consider 
+ it so. It is not specifically mentioned in the objectives so please let me know 
+ if it does come up in the exam.
+Other flow control statements
+Although the published objectives only mention the if/else and case 
+ statements the exam may also cover the do/while and the while 
+ loop.
+ 
+ 
+ 
+ 
+Question 1)
+What will happen when you attempt to compile and run the following code?
+public class MyIf{
+boolean b;
+public static void main(String argv[]){
+ MyIf mi = new MyIf();
+}
+MyIf(){
+ if(b){
+ System.out.println("The value of b was true");
+ }
+ else{
+ System.out.println("The value of b was false");
+ }
+ }
+}
+1) Compile time error variable b was not initialised
+ 2) Compile time error the parameter to the if operator must evaluate 
+ to a boolean
+ 3) Compile time error, cannot simultaneously create and assign value for boolean 
+ value
+ 4) Compilation and run with output of false
+ 
+ Question 2) 
+What will happen when you attempt to compile and run this code?
+public class MyIf{
+public static void main(String argv[]){
+ MyIf mi = new MyIf();
+ }
+MyIf(){
+ boolean b = false;
+ if(b=false){
+ System.out.println("The value of b is"+b);
+ }
+ }
+}
+1) Run time error, a boolean cannot be appended using the + operator
+2) Compile time error the parameter to the if operator must evaluate 
+ to a boolean
+3) Compile time error, cannot simultaneously create and assign value for boolean 
+ value
+4) Compilation and run with no output
+Question 3)
+ What will happen when you attempt to compile and run this code?
+public class MySwitch{
+public static void main(String argv[]){
+ MySwitch ms= new MySwitch();
+ ms.amethod();
+ }
+public void amethod(){
+ char k=10; 
+ switch(k){ 
+ default: 
+ System.out.println("This is the default output"); 
+ break; 
+ case 10: 
+ System.out.println("ten");
+ break;
+ case 20: 
+ System.out.println("twenty"); 
+ break; 
+ }
+ }
+}
+1) None of these options
+ 2) Compile time errror target of switch must be an integral type
+ 3) Compile and run with output "This is the default output"
+ 4) Compile and run with output "ten"
+Question 4)
+What will happen when you attempt to compile and run the following code?
+public class MySwitch{
+public static void main(String argv[]){
+ MySwitch ms= new MySwitch();
+ ms.amethod();
+ }
+public void amethod(){
+ int k=10; 
+ switch(k){ 
+ default: //Put the default at the bottom, not here
+ System.out.println("This is the default output"); 
+ break; 
+ case 10: 
+ System.out.println("ten");
+ case 20: 
+ System.out.println("twenty"); 
+ break; 
+ }
+ }
+}
+1) None of these options
+ 2) Compile time errror target of switch must be an integral type
+ 3) Compile and run with output "This is the default output"
+ 4) Compile and run with output "ten" 
+Question 5)
+Which of the following could be used as the parameter for a switch statement?
+1) byte b=1;
+ 2) int i=1;
+ 3) boolean b=false;
+ 4) char c='c';
+ 
+Answers
+Answer 1) 
+ 
+ 4) Compilation and run with output of false
+ 
+ Because the boolean b was created at the class level it did not need to be explicitly 
+ initialised and instead took the default value of a boolean which is false. 
+ An if statement must evaluate to a boolean value and thus b meets this criterion.
+ 
+ Answer 2)
+ 
+ 4) Compilation and run with no output
+ 
+ Because b is a boolean there was no error caused by the if statement. If b was 
+ of any other data type an error would have occured as you attempted to perform 
+ an assignment instead of a comparison. The expression 
+if(b=false)
+would normally represent a programmer error. Often the programmer would have 
+ ment to say 
+if (b==false) 
+If the type of b had been anything but boolean a compile time error would have 
+ resulted. The requirement for the if expression is that it return a boolean 
+ and because
+(b=false )
+does return a boolean it is acceptable (if useless).
+Answer 3)
+ 
+ 4) Compile and run with output "ten"
+ 
+ Answer 4)
+ 
+ 1) None of these options
+ 
+ Because of the lack of a break statement after the
+break 10; 
+statement the actual output will be 
+ 
+ "ten" followed by "twenty" 
+Answer 5)
+ 1) byte b=1;
+ 2) int i=1;
+ 4) char c='c';
+A switch statement can take a parameter of byte, char, short or int.
+ 
+ 
+ Other sources on this topic
+ 
+ The Sun tutorial
+ http://java.sun.com/docs/books/tutorial/java/nutsandbolts/while.html
+ 
+ Richard Baldwin Covers this topic at
+ http://www.Geocities.com/Athens/Acropolis/3797/Java026.htm#the 
+ if-else statement
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec2.html#obj5
+ 
+ Bruce Eckel, Thinking in Java
+ http://codeguru.earthweb.com/java/tij/tij0045.shtml 
+ 
+ 
+Last updated
+ 24 Feb 2000
+ copyright © Marcus Green 1999
+ most recent version at www.jchq.net
+ 
+ 

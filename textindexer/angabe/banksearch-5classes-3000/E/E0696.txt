@@ -1,0 +1,317 @@
+
+Cprogramming.com: Code Journal Issue 2
+ 
+ 
+ 
+- Home
+ 
+ 
+- Tutorials
+- Source
+- Books
+- Directory
+- Quiz
+ 
+ 
+- Borland
+- DJGPP
+- Other
+ 
+ 
+- C board
+- Functions
+- Email
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Click Here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ Latest Issue of Code Journal
+ (Back to Code 
+ Journal Main)
+ 
+Code Journal is a free, biweekly newsletter on programming 
+ and computer science provided jointly by Cprogramming.com 
+ and AI Horizon. 
+This is the February 20th Issue. 
+ CODE 
+ JOURNAL: Your Guide to Programming
+ 
+ February 20, 2002
+ 
+ In This Edition:
+ - Welcome to the Code Journal
+ - Genetic Algorithms
+ - Unraveling a Pattern of Strings
+ - Programming 
+ Challenge
+ 
+ Welcome to the Code Journal, a joint 
+ venture between Cprogramming.com 
+ and AI Horizon that aims to 
+ provide insightful articles on both C++ and algorithmic programming. 
+ Code Journal is helpware: in return for reading it, you are asked 
+ to help someone else out with their own programming problems. Good 
+ luck, and quick compiling.
+ 
+ ---------------------------------------------------------
+ C/C++ Programming by Alex Allain
+ ---------------------------------------------------------
+ Genetic Algorithms
+ 
+ This article will discuss the basic concept of Genetic 
+ Algorithms. Genetic algorithms are useful for solving problems 
+ having solutions representable as strings (hence the name Genetic 
+ Algorithm - the programming model is based on DNA). In terms of practical 
+ value, Genetic Algorithms are useful for solving problems in which 
+ the solutions are difficult to find by following a set algorithm. 
+ It functions as a sort of systematized brute force approach. Problems 
+ Genetic Algorithms are valuable for solving include scheduling problems, 
+ game AI, and other problems in which stable solutions are difficult 
+ to find.
+ 
+ A simple example is finding a five digit number that acts as the best 
+ solution to an expression; for example, if you wish to find the number 
+ that makes the expression x^2+2x-11 equal to 0, you could of course 
+ use brute force to solve the equation, but a genetic algorithm can 
+ also be used, and if you have a very complex expression, it may be 
+ of great value to use a genetic algorithm, especially when one considers 
+ the time saved over brute force. In a sense, all Genetic Algorithm 
+ problems boil down to solving complex expressions or sets of expressions, 
+ as all problems are representable in that fashion.
+ 
+ Genetic algorithms work from the same basis as evolutionary theory. 
+ A genetic algorithm has several components: a pool 
+ of solutions, a method of evaluating the effectiveness of each 
+ solution, a breeding function that combines 
+ the best solutions into new solutions, and a mutation 
+ function. The pool of solutions do not compete for resources; 
+ rather, each solution is tested by an evaluation function (called 
+ the "fitness" function), which then gives 
+ it a ranking based on its effectiveness at solving the problem compared 
+ to the other solutions. 
+ 
+ The best solution strings are the ones that are ranked highest (that 
+ are the most "fit"); the breeding function takes two of the better 
+ performing solutions and combines them together into a new solution. 
+ The breeding function should repeat the process of randomly selecting 
+ two solutions and breeding them; the better performing functions should 
+ be given the higher percentage chance of being selected. 
+ 
+ The breeding function generally works by taking slices of each solution 
+ and splicing them together into a new one. Solutions are often represented 
+ as strings, so generally, a breeding function will take fragments 
+ of random lengths from each string and concatenate them together to 
+ form a new string. Each fragment should be placed into the location 
+ in the new string that corresponds to its location in the old string. 
+ For example, if a string fragment is from positions 5 to 8 in the 
+ first string being bred, it should be placed into positions 5 through 
+ 8 in the new child solution.
+ 
+ After the strings have been bred, and the set of potential solutions 
+ has been refilled, it is important to have the mutation function. 
+ The mutation function is important because it introduces an element 
+ of randomness that allows variation in the solution sets, which otherwise 
+ would stagnate and have no advantage over a hand-crafted solution. 
+ Mutations may diminish the strength of some solutions, but in general 
+ it will increase the overall value of the solution set; by including 
+ a very small mutation rate, you introduce new traits that might never 
+ have otherwise existed within the pool. 
+ 
+ ************************************
+ Alexander Allain is the webmaster of Cprogramming.com.
+ Contact him at webmaster@cprogramming.com 
+ (Return 
+ to Top)
+ 
+ ---------------------------------------------------------
+ Algorithms and Programming by Eric Suh
+ ---------------------------------------------------------
+ Unraveling Patterns of Strings 
+ 
+ Imagine that you are given a large string of text, and you wish to 
+ find a certain string that it contains. The text you are searching 
+ through is called the master string and 
+ the string you are searching for is called the pattern 
+ string. Now, there is a simple algorithm, for this search, 
+ and then there is an efficient one. The simple one, of course, follows 
+ like this: 
+ -------------
+ Master String: GGRLGGT...
+ Pattern String: GGT
+ -------------
+ You see that the first two letters match in this position, but the 
+ third R T | character does not. Shift the pattern one character to 
+ the right. 
+ -------------
+ Master String: GGRLGGT...
+ Pattern String: GGT
+ -------------
+ Now, the second character in the pattern doesn't match. Shift again.
+ 
+ And so on. The problem is that in this search, you are making a lot 
+ of unnecessary comparisons. In the first step, for instance, we see 
+ that since 'R' doesn't appear at all in the pattern, the next two 
+ string comparisons are a waste.
+ 
+ What we could do is take the pattern and shift it until the 'R' is 
+ behind it. That would save a few comparisons. The new algorithm could 
+ get away with only 3 shifts of the pattern to find the match. This 
+ algorithm is called the Boyer-Moore String Search 
+ Algorithm.
+ 
+ The algorithm, first of all, works back to front when comparing the 
+ pattern and the master string. The pattern is still moved from front 
+ to back, but the comparisons are made from the last character of the 
+ pattern. So, in the first step of the above example, the algorithm 
+ would compare 'T' in the pattern with 'R' in the master string.
+ 
+ If there is a mismatch, such as in the first step of example, then 
+ the algorithm goes through the pattern and finds in the remaining 
+ part of the pattern the rightmost occurrence of the mismatched character 
+ of the master string. 
+ 
+ Now, this would be slow if you did this every loop, so the algorithm 
+ is usually precomputed. That means that you go through the pattern 
+ and record some often-used data into tables. Specifically, you need 
+ to know how much to shift for any character that you might encounter 
+ when there isn't a match. You precompute for each character how far 
+ you would shift the pattern if that character were to appear in the 
+ master string while we were comparing the last character in the pattern. 
+ Then, when we search, we can offset the table value with how far we've 
+ matched the pattern and the master string.
+ 
+ The table for the pattern of the example might look like this: 
+ G : 1
+ T : 0
+ Any character that doesn't appear in the table would signify a shift 
+ of the length of the pattern. So, in the first step of the example, 
+ the pattern would be shifted 3 (since 'R' doesn't appear in the example 
+ string at all).
+ 
+ Let's take a more complicated pattern: 
+ TAWEGAGATA
+ The searching table would look like this: (For convenience sake, the 
+ algorithm takes the second occurrence from the end of the last letter.) 
+ A: 2
+ E: 6
+ G: 3
+ T: 1
+ W: 7
+ The algorithm also computes substrings. For instance, say that we 
+ matched the last two characters of this new pattern. The character 
+ bank doesn't help very much, since it only tells us to shift it once. 
+ What we would like is if the algorithm saw that there was a pattern 
+ in the string, and that the "TA" substring occurs again at the beginning 
+ of the string.
+ 
+ Well, the algorithm does, and we compute substrings before the search. 
+ There are only as many substrings as there are characters in the pattern, 
+ because we are only looking for substrings that include the last character 
+ of the pattern (since we're searching from the last character to the 
+ left).
+ 
+ There are only seven values in the substring table, one for each character. 
+ The value at each character is where the next occurrence is of the 
+ part of the pattern up to that character. So, the value at the second 
+ to last 'A' of the substring table would contain the shift value for 
+ the substring "TA".
+ 
+ The substring table would look like this: 
+ T: 8
+ A: 8
+ W: 8
+ E: 8
+ G: 8
+ A: 8
+ G: 8
+ A: 8
+ T: 2
+ A: 1
+ Thus, the algorithm takes whatever is larger, the character shift 
+ value or the substring value, and shifts the pattern by that much. 
+ So, the pattern skips some of the letters when searching, which greatly 
+ increases the speed of the search. This search is one of the best 
+ search algorithms for natural text. It should be interesting to program 
+ this.
+ 
+ ************************************
+ Eric Suh is the webmaster of AI 
+ Horizon, a site devoted to Artificial Intelligence and Computer 
+ Science programming.
+ Contact him at webmaster@aihorizon.com.
+ (Return 
+ to Top)
+ 
+ 
+ ---------------------------------------------------------
+ Code Challenge
+ ---------------------------------------------------------
+ Every issue, we will issue a programming challenge and ask people 
+ to submit their solutions within two weeks. A few of the best solutions 
+ will be published the next issue, along with a new challenge.
+ 
+ No one submitted any answers to last week's code challenge, so we 
+ will offer it again this week, except with a hint.
+ 
+ This Week's Challenge
+ ------------------------------------
+ 
+ One famous chess problem is the Knight's Tour, 
+ in which a knight, placed on a starting square, is then moved to every 
+ other square on the chessboard. The Knight's Tour is a fairly typical 
+ chess problem. Your challenge is not only to write a program to calculate 
+ the Knight's Tour from any square on the board, but also to allow 
+ the user to add up to five pieces to the board that the moving knight 
+ must avoid capturing and must also avoid being moved onto a square 
+ where it could be captured. As an interesting note, in The Psychology 
+ of Chess, the authors talk about a test for chess talent that 
+ works under similar conditions and is based on the speed of response. 
+ The test accurately predicated a future grandmaster.
+ 
+ HINT: Use recursion. 
+ 
+ Send your solutions to solutions@cprogramming.com 
+ as source code files, and you may find it published. Please include 
+ either your name or an identifying username so that we may attribute 
+ the solution to you in the next newsletter. If you wish, you may ask 
+ us to withhold your name.
+ (Return 
+ to Top)
+ 
+ 
+ ---------------------------------------------------------
+ Suggestions and comments on this newsletter should be sent to codejournal@cprogramming.com 
+ or codejournal@aihorizon.com.
+ 
+ Editors:
+ Eric Suh, webmaster@aihorizon.com
+ Alexander Allain, webmaster@cprogramming.com
+ 
+ To unsubscribe from this journal, send a blank email to codejournal-unsubscribe@mlm.cprogramming.com. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	

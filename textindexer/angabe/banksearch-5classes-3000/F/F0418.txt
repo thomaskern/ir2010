@@ -1,0 +1,59 @@
+
+ 
+ 
+ 
+ 
+Loading
+binary files from a .res file
+ 
+To
+load any binary resources you put in a .res file, we should do the following:
+1.
+Save the resource as a "CUSTOM" type resource;
+2.
+Load it from the file into a byte array;
+3.
+Save the array in a normal file;
+4.
+Load the file.
+In
+this example, we'll cover how to load a JPEG picture. Take a look at the
+code:
+Code: 
+Public
+Sub LoadDataIntoFile (DataName As String, Filename As String)
+Dim
+myArray() As Byte 'Byte array
+Dim
+myFile As Long 
+If
+Dir(Filename) = "" Then 
+' Check if Filename exists
+' If
+not, load the resource into the byte array:
+myArray
+= LoadResData(DataName, "CUSTOM")
+myFile
+= FreeFile
+Open
+Filename For Binary Access Write As #myFile 
+'Open file
+Put
+#myFile, , myArray 'Write array to file
+Close
+#myFile 'Close file 
+End
+If 
+End
+Sub
+Ok.
+Now that you've got the function, use it just like the following:
+LoadDataIntoFile
+"JPEGRes", "c:\vb5\Pic.jpg" '
+This loads the resource named
+ 
+' "JPEGRes" into the file "Pic.jpg"
+After
+all, do what you want with the file : ) .
+ 
+ 

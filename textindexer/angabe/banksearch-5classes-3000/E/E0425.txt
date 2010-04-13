@@ -1,0 +1,243 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/ug/compiling/portother.html 
+ 
+search 
+ 
+Porting code from other 32-bit compilers to DJGPP 
+This chapter discusses porting 32-bit code written for other
+compilers to DJGPP. Mainly for console (TTY or text mode)
+applications, and I am bias towards Watcom V11.0 (and 10.5). In this
+chapter I will cover: 
+ 
+- Watcom
+ 
+ 
+- Runtime environment differences
+ 
+- Using DJGPP tools
+ 
+- Using the right optimizer switches
+ 
+ 
+- LCC-WIN32
+ 
+ 
+- Runtime environment differences
+ 
+- Using DJGPP tools
+ 
+ 
+- Tips on writting code that ports easily.
+Watcom
+You may be wondering, if you have Watcom, why use DJGPP in the
+first place. Well I will be the first to admit that Watcom generates
+some of the tightest code I have ever seen from a compiler. However
+DJGPP is fairly respectiable too. DJGPP and WATCOM both share alot of
+the same optimizations. However the area where WATCOM really shines
+is in register calling convention and
+floating point math. In this section I will cover
+the runtime differences, which are few. The tools and how to use them
+(compared to Watcom) and what optimizations switches you would like to
+use (based on what you used for WATCOM).
+Runtime Difference
+The nice thing about standards, is that they differ very slightly.
+Now you make think that a standard doesn't change, but you would be
+thinking wrong. First off WATCOM's differences are to make
+programming PC's (i386) a whole lot easier. Where DJGPP strives to be
+compatible with GCC (which it is based on).
+Hardware I/O
+Hardware IO, is provided via the following functions:
+inportb, inportw, inportl,
+outportb, outportw, outportl. All of which
+are defined in PC.H. You use the
+inportX functions to read from the ports and
+outportX to write to them. The X denotes one of the
+following. b for a 8-bit byte sized operand.
+w for a 16-bit word sized operand.
+l for a 32-bit long sized operand.
+/* Code example to write and read from ports */
+#include 
+int main(void)
+{
+ char a;
+ /* read a byte from port 0x100 */
+ a = inportb(0x100);
+ /* write it to port 0x200 */
+ outportb(0x200, a);
+}
+ It's that simple 
+Inline Assembly
+We all know that sometimes C doesn't suffice and you must use
+inline assembly for performace. Well in DJGPP that too is no
+exception. Therefore DJGPP provides a method for doing so. I will
+write a simple yet complete inline function in watcom, then covert it
+to DJGPP and comment on it.
+DJ help me, I couldn't find info on inline asm in the gcc.inf!!!
+[it's under "Externsions...C..Asm" - DJ] 
+Inline Functions
+Sometimes a function is small and written in C, and since you want
+it to become portable you decided to keep it in C. However you would
+like to inline to save time. Well that's ok, DJGPP supports this too.
+Making an inlined function is really quite simple watch.
+/* TEST.H */
+__INLINE__ int sum(int a, int b)
+{
+ return a + b;
+}
+That simple. Note the __INLINE__ is used in ANSI
+C headers only. In C code you would use inline, but
+this only effects the one module only. In C and objective C, the
+inline has no effect on how the object is linked in
+externally. Put simply, if you use the inline keyword, the
+function will be inlined for all the other functions in that one
+compilation, and leads me to suggest not to define
+inline functions in headers, since that is bad
+design.
+/* Test.C */
+inline int sum(int a, int b)
+{
+ return a + b;
+}
+int test(int a, b, c)
+{
+ return sum(a,b) + sum(b,c) + sum(c,a);
+}
+In this case, the function sum is inlined in test. Had you made a
+header to call sum from outside of this compilation,
+you would not have it inlined, even if you add __INLINE__.
+Zero based segments
+ In WATCOM you can write to the video memory, using the address
+0xA0000 however this is not true in DJGPP. I
+suggest you read 'porting from 16-bit compilers' also written by me.
+It's here.
+Compiler Tools
+In every compiler suite you must master (or atleast be able to use)
+the compiler tools contained within. However for most ms-dos users,
+who are used to Sybase or Borland style compilers, may find DJGPP
+slightly harder to get started with. However this is not the case.
+WCL386 vs. GCC
+WCL386 is Sybases' frontend tool, that will compile, assemble and
+link together source/object code to make a final image (read EXE
+file). DJGPP includes a front end too, and in my opinion is easier to
+use. It's called GCC and you will find it in
+\DJGPP\BIN\. One difference between them two that
+bothered me at first, is that GCC doesn't provide the help screens.
+However, determination got me thru it. It's quite simple.
+Compile Only
+With WCL386 you can type in: 'WCL386 /c file1.c file2.c
+file3.c' to just compile and assemble the source code. This will
+get you object files that you may wish to distribute. With DJGPP it's
+quite the same. Just type 'GCC -c file1.c file2.c file3.c'
+to get the resulting object files. You should note that with DJGPP
+objects files are in COFF format and have the .O file
+name extension.
+Linking libraries
+With WCL386 you can type
+in 'WCL386 file1.c file2.lib' to compile, assemble and link
+file1.c with file2.lib. In GCC it gets a little more complicated. In
+DJGPP library files have a .A file name extension.
+Now the way you link in libraries is dependant on one thing. If the
+library is in your \DJGPP\LIB directory, the library
+must have LIB as the first three letters of the
+filename. I.e test2.lib would be called libtest2.a.
+Now to compile/link it, type 'GCC test1.c -ltest2 -o
+test1.exe' I just introduced something else, the
+-o switch. (Note: make sure you use a small letter
+o, otherwise it will toggle the optimizer). This will make it produce
+test1.exe instead of the default A.EXE. Now if the
+library is in your current directory. You don't need
+to append the letters LIB to the filename. And to compile/link type
+'GCC test1.c test2.a -o test1.exe'
+Making libraries
+To make a library with
+WATCOM you would type 'WLIB mylib.lib +test.obj +test2.obj'
+and in DJGPP it's just as simple. Just type 'AR RS mylib.a test.o
+test2.o' and you have library called mylib.a for
+your use. If you want to put this library in
+\DJGPP\LIB thne you should append
+LIB to the beginning of the filename. For example:
+'AR RS LIBMYLIB.A test.o test2.o'.
+MAKE vs WMAKE
+With WATCOM you have WMAKE, to process makefiles. In
+DJGPP the program is the same, only it's called MAKE.
+However sometimes WATCOM makefiles will not port to DJGPP because they
+use WATCOM extenstions.
+Optimizer Switches
+hmmm....
+This concludes my section on Watcom. If you have any other ideas,
+questions, comments, queries, or problems, just email me.
+LCC-WIN32
+Runtime Differences
+Well LCC-WIN32 is not a dos compiler so there are a few
+differences. :) 
+ 
+- No DPMI
+ 
+- No INT (can't call realmode ones, and can't set one up)
+Basically when you program for LCC-WIN32 in console mode, or want
+to program portably, you must stick to the standard. That is what LCC
+(LCC- WIN32 is based on) was designed for. It follows the ANSI C
+standard closer in more repsects to GCC, but has no addons. LCC-WIN32
+is a port of LCC to make Win32 code (which you must already know :) ).
+Although there is no INT support (IRQ handler, or call real mode
+int) there is always a work around. Say you wanted to hook a INT to
+tell when to play music, well in LCC-WIN32 you just use Windows Media
+Functions. 
+Other then that, porting console mode (text mode) applications to
+LCC-WIN32 is really quite simple. In fact, most GNU software will
+port to LCC- WIN32 quite quickly. 
+Compiler Tools
+Compiling
+In LCC-WIN32 you would type
+'LCC -c test.c' to compile test.c to an object. In DJGPP
+it's just as easy. 'GCC -c test.c' is all you need.
+Linking Libraries
+In LCC-WIN32 to link in a
+library you would type 'LCCLNK test.obj test2.lib' And that
+would like test.obj and test2.lib together (along
+with the standard c lib) to make a program. In DJGPP it's quite
+similar. However there is slight difference. (Read the watcom
+section to understand). 
+Making Libs
+Please read the watcom section.
+Optimization
+in LCC-WIN32 you would type 'LCC -O test.c' to compile and
+optimize test.c. Probably the closest match is 'GCC -O2
+test.c' however DJGPP optimizes a lot better then LCC-WIN32, the
+-O2 generally doesn't make the code any bigger, and in fact
+makes it smaller most of the time.
+This sums up this chapter. I wish to make ammenmants to this
+section, such as better code snipets, and more detailed explanations.
+If you have questions about any area presented here please email
+me. 
+This section was provided by Tom St Denis
+Email questions or comments to: 
+tomstdenis@goplay.com 
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 1998 
+by DJ Delorie 
+ 
+ 
+Updated Sep 1998 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

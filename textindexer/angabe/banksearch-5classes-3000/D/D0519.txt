@@ -1,0 +1,27 @@
+
+Mouseclick coordinates
+Where click ? There, click
+This applet shows mouse-click coordinates
+Essence
+public class MouseCoords
+	extends java.applet.Applet
+	implements java.awt.event.MouseListener
+{
+	public MouseCoords ()
+	{
+	addMouseListener ( this ) ;
+	}
+	public void mouseClicked
+	 ( java.awt.event.MouseEvent ev )
+	{
+	int x ,y ;
+	
+	x = ev.getX() ;
+	y = ev.getY() ;
+	...
+	}
+	.....
+ 
+WWW.JAVALESSONS.COM
+Copyright © 2000 System Exclusive & Multi Midi (NL) All rights
+reserved

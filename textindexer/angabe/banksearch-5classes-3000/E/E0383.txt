@@ -1,0 +1,155 @@
+
+ Looping and Branching in PERL
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+and Code Corner Present
+Steve Litt's PERLs of Wisdom:
+Looping and Branching in PERL
+(With Snippets)
+Copyright (C) 1998 by Steve Litt
+Contents
+- Branching
+- Comparators
+- Looping
+- Looping Through a File
+- Looping Trhough a List
+Branching
+Check this out:
+if ($president eq "Bill Clinton")
+ {
+ print "$president: After 1992.\n";
+ }
+elsif($president eq "George Bush")
+ {
+ print "$president: 1989 through 1992.\n";
+ }
+else
+ {
+ print "$president: Before 1989\n";
+ }
+Note the following:
+- Each condition is inside parenthesis
+- Each action, even if only one statement, is enclosed in curly brackets.
+Note the difference from C/C++.
+- Note the use of the elsif keyword.
+- Note the use of the eq keyword for non-numeric equality comparisions.
+The unless Keyword
+If you're like me, you think this is ugly:
+if(!($president eq "Bill Clinton"))
+You'll be glad to know you can do this:
+unless($president eq "Bill Clinton")
+However, keep in mind that C/C++/Java/Delphi programmers will pause
+and scratch their head because they're not used to the concept of a negative
+if.
+Other Constructs
+$president eq "Bill Clinton" or print "Former president\n";
+This means the same as
+if(!($president eq "Bill Clinton"))
+ {print "Former president\n";}
+Most PERL programmers also work in other languages, and the former construct
+will give them vertigo. The saved if, parentheses, exclamation, and curly
+brackets aren't worth it. The one exception is the standard file open construct:
+open(CONFIG, "c:\\config.sys") or die "Could not open config.sys.";
+Now here's one guaranteed to get C++ programmers queazy:
+print "Current president\n" if $president eq "Bill Clinton";
+Note that now you needn't put the conditional expression in parentheses.
+This means the same as:
+if($president eq "Bill Clinton)
+ {print "Current president\n"}
+When everyone uses PERL, the former construct will be readable. Until
+then, I'd suggest using the good old "if first" construct.
+There are other constructs which are so way out I won't even discuss
+them. Please just remember the person reading your code probably works
+mainly in C++ or Java.
+Comparators
+The following simple comparators work in if statements, loops, etc.
+Note there are tons more comparators, but they can be synthesized with
+those below. Note also that any comparison can include a regular expression,
+which has its own page in this website.
+Comparison
+ 
+Numeric
+ 
+Non-Numeric
+ 
+Equality
+ 
+==
+ 
+eq
+ 
+Non equality
+ 
+!=
+ 
+ne
+ 
+Greater than
+ 
+>
+ 
+gt
+ 
+Greater or equal
+ 
+>=
+ 
+ge
+ 
+Less than
+ 
+ means open for write, 
+ # over original if existed.
+while ()
+ {
+ my($line) = $_; #preserve $_, the line just read, nomatter what
+ chomp $line; #blow off trailing newline
+ unless($line =~ /^\s*rem/i) #see regular expressions for explanation
+ {
+ print OUTPUT "$line\n"; #write the non-remmed autoexec command
+ }
+ }
+close(INPUT);
+close(OUTPUT);
+Looping Through a List
+There's a special construct, called foreach, for looping through
+a list. It automatically assigns the next element of the list to a scaler.
+The construct is like this:
+foreach SCALAR (LIST)
+ {ACTIONS} 
+Here's a file dup detector that uses this construct. Note that since
+the entire list is in memory, this isn't suitable for files that may attain
+a huge size.
+my(@allLines); #declare list to hold all file lines
+my($line); #declare local scalar for each line
+my($dupCount);
+my($lastLine); #declare scaler to hold previous line
+@allLines = sort(); #put all lines of input file into list
+ # sort list for duplicate detection
+$lastLine="~~~ ~~"; #no break first time
+$dupCount = 0;
+foreach $line (@allLines) #one by one, put next element into scalar
+ {
+ chomp($line); #blow off trailing newline
+ if($line eq $lastLine) #if duplicate of previous line
+ {
+ print "$lastLine\n";
+ $dupCount++;
+ }
+ $lastLine = $line;
+ }
+print "-----------------\n";
+print "$dupCount Duplicates.\n";
+ [ Troubleshooters.com
+| Code Corner | Email
+Steve Litt ] 
+Copyright (C)1998 by Steve Litt --
+Legal
+ 

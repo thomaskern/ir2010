@@ -1,0 +1,511 @@
+
+Getting Started
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Getting Started
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Read Document 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6GuidedTour.exe 
+ 
+ 
+	 
+ 780 KB Microsoft Word file 
+	
+	
+ 
+	 
+ 4 min @ 28.8 Kbps 
+	
+	
+	 
+	
+	
+	
+	 
+ Get Office file viewers 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Getting Started 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Setup Instructions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating the Project and Adding Components 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Linking and Implementing Controls 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Running and Testing the Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Building the MFC Application 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Debugging 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Taking it to the Web 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Welcome to the Microsoft Visual C++® 6.0 Guided Tour. This tour provides step-by-step instructions for reviewing many of the new features of Visual C++ 6.0. As you progress through the tour, you will develop the Online Educational System of the fictitious Fitch & Mather company. By the end, you will have a sense for how professional developers can use Visual C++ 6.0 to productively build high-performance applications for the enterprise.
+Fitch & Mather is one of the world&#146;s leading producers of widgets. Always known as an innovator, the company has recently expanded its intranet and moved some of its core internal operations to the network and away from traditional paper-based systems. The Chairman and Chief Executive Officer of Fitch & Mather has recently assigned the company&#146;s Information Systems group the task of moving the Internal Education group to an online system. The goal is to have audio, video, and slide presentations available online and centrally manageable. This effort requires custom software, and that&#146;s what you&#146;ll build here.
+The Fitch & Mather Online Educational System allows users to view course material (including video) and slides in a single application. Moreover, the application is designed to support network scenarios. Thus, all educational content is delivered on-demand to the user, it need not be pre-downloaded to the local machine. Instead it resides on the server where it can be easily updated and controlled. To maintain the greatest flexibility, the application queries a database for updated content listings and file locations.
+Guided Tour Exercises
+The Guided Tour exercises include: 
+- Combining a multimedia player and database access component into a fast, lightweight Composite Control
+- Using the OLE DB consumer templates to retrieve data from an Access database
+- Building the Online Educational System host application with the Microsoft Foundation Classes (MFC)
+- Using Microsoft IntelliSense® technology to speed development 
+- Using Edit and Continue debugging for flexible and efficient debugging sessions
+- Using Active Document Containment to display Microsoft PowerPoint® slides within the MFC application
+- Displaying Dynamic HTML
+- Integrating Active Template Library (ATL) code into an MFC project
+- Running the application in Microsoft Internet Explorer
+- And more&#133;
+System Requirements
+- Windows NT® 4.0 or Windows® 95 operating systems
+- PowerPoint 97 (or the free PowerPoint 97 viewer)
+- Microsoft Access 97
+- Visual C++ Enterprise Edition (install with default options)
+- Sound card
+- SVGA monitor (1024x768 or better resolution suggested)
+Special Instructions
+- Visual C++ 6.0 (and the rest of Visual Studio&#153; 6.0) as made available to reviewers and other industry insiders is not in its final release form 
+- Please be sensitive to letter case throughout the Guided Tour
+- Code should be typed exactly as it is printed here
+- After installation, a completed version of the Fitch & Mather Online Educational System (ready to run) is available in C:\Visual C++ 6.0 Guided Tour\Completed\FM_NewTraining. Double-click the file "FM_NewTraining.dsw" to open a completed project in Visual C++ 6.0. You can verify source code against this project and run the application (see usernames and passwords at the end of Section 6.4). If you have difficulty running the application, rebuild each project completely and then run the application (see usernames and passwords at the end of Section 6.4). On Windows 95, if you receive errors on the #import statement, refer to the note in section 4.3 under Using COM Compiler support to generate C++ interface definitions.
+- If you do not see the control appear below the Fitch and Mather logo (see Figure 15), the control may not be registered. In this case, right-click on CourseIntro classes in ClassView and select Set as Active Project. Then, from the Tools menu select Register Control. A window will show whether or not the control (a DLL) registered successfully.
+- If you receive errors on the Build tab of the bottom pane of Visual C++ 6.0 when building or rebuilding, find the topmost error text and double-click on it. You will be taken to the source code that is probably causing the error. At that point, you should verify that the code you entered in previous steps was correct.
+- When you execute your application or the completed application provided, the Office Assistant may appear. The Office Assistant is a small window with a graphical, animated character that serves as a first interface to Microsoft Office 97 Help. It may appear in your application because Microsoft PowerPoint is used to display the slides. If the Office Assistant appears you can close it or leave it running.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

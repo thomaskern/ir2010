@@ -1,0 +1,48 @@
+
+ 
+ 
+ 
+ Lesson 13
+Lesson 13: Arrays
+13.1 Introduction to Arrays
+By definition, an array is a list of variables, all with the same data
+type and name. When we work with a single item, we only need to use one
+variable. However, if we have a list of items which are of similar type
+to deal with, we need to declare an array of variables instead of using
+a variable for each item. For example, if we need to enter one hundred
+names, instead of declaring one hundred different variables, we need to
+declare only one array. We differentiate each item in the array by using
+subscript, the index value of each item, for example name(1), name(2),name(3)
+.......etc.
+ 
+13.2 Declaring Arrays
+We could use Public or Dim statement to declare an array just as the way
+we declare a single variable. The Public statement declares an array that
+can be used throughout an application while the Dim statement declare an
+array that could be used only in a local procedure.
+The general format to declare an array is as follow:
+Dim arrayName(subs) as dataType
+where subs indicates the last subscript in the array.
+Example 13.1
+Dim CusName(10) as String
+will declare an array that consists of 10 elements if the statement
+Option
+Base 1 appear in the declaration area, starting from CusName(1)
+to CusName(10). Otherwise, there will be 11 elements in the array starting
+from CusName(0) through to CusName(10)
+Example 13.2
+Dim Count(100 to 500) as Integer
+declares an array that consists of the first element starting from Count(100)
+and ends at Count(500)
+ 
+13.3 Sample Programs
+(i)
+The Interface
+The codes
+Dim studentName(10) As String
+Dim num As Integer
+Private Sub addName()
+For num = 1 To 10
+studentName(num) = InputBox("Enter the student
+name", "Enter Name", "", 1500, 4500)
+If studentName(num) Back to contents page]

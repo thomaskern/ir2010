@@ -1,0 +1,154 @@
+
+ AlphaList
+ 
+ 
+Function Description
+ abort abort the current process
+ abs absolute value
+ acos arccosine function
+ asctime generate an ASCII time string
+ asin arcsine function
+ assert assert program validity
+ atan2 arctangent of x/y
+ atan arctangent function
+ atexit set an exit trap
+ atof convert an ASCII string to a floating-point number
+ atoi convert an ASCII string to an integer
+ atol convert an ASCII string to a long integer
+ bsearch perform a binary search
+ calloc allocate and clear memory
+ ceil get floating-point limits
+ clearerr clear a level 2 I/O error flag
+ clock measure program processor time
+ cosh hyperbolic cosine function
+ cos cosine function
+ ctime convert a time_t value to an ASCII string
+ difftime compute the difference between two time_t values
+ div compute the quotient and the remainder
+ errno error information
+ exit terminate program execution
+ exp exponential function
+ fabs floating-point or double-precision floating-point absolute value
+ fclose close a level 2 file
+ feof check for a level 2 end-of-file
+ ferror check for a level 2 error
+ fflush flush a level 2 output buffer
+ fgetc get a character from a file
+ fgetpos get the current fileposition
+ fgets get a string from a level 2 file
+ floor get the floor of a real number
+ fmod floating-point modulus operations
+ fopen open a level 2 file
+ fprintf formatted print
+ fputc put a character to a level 2 file
+ fputs put a string to a level 2 file
+ fread read and write blocks
+ free free memory
+ freopen reopen a level 2 file
+ frexp split floating-point value
+ fscanf formatted input conversions
+ fseek set a level 2 file position
+ fsetpos reposition a file
+ ftell get a level 2 file position
+ fwrite write blocks to a level 2 file
+ getchar get a character from stdin
+ getc get a character from a file
+ getenv get environment variable
+ gets get a string from stdin
+ gmtime unpack Greenwich Mean Time (GMT)
+ isalnum check if a character is alphanumeric
+ isalpha check if a character is alphabetic
+ iscntrl check if a character is a control character
+ isdigit check if a character is a decimal digit (0-9)
+ isgraph check if a character is a graphic character
+ islower check if a character is lowercase
+ isprint check if a character is printable
+ ispunct check if a character is a punctuation character
+ isspace check if a character is a space
+ isupper check if a character is uppercase
+ isxdigit check if a character is a hex character (0-9, A-F, a-f) 
+ labs long integer absolute value
+ ldexp combine floating-point value
+ ldiv return the long integer quotient and the remainder
+ localeconv return information on locale formatting conventions
+ localtime unpack local time
+ log10 base 10 logarithm function
+ log natural logarithm function
+ longjmp perform a long jump
+ malloc allocate memory
+ mblen determine the length of a multibyte character
+ mbstowcs convert a multibyte string to a wide-character string
+ mbtowc map a multibyte character to a wide character
+ memchr find a character in a memory block
+ memcmp compare two memory blocks
+ memcpy copy a memory block
+ memmove copy bytes in memory
+ memset set a memory block to a value
+ mktime convert a broken down time to a time_t value
+ modf split a floating-point value
+ offsetof get the byte offset of a structure member
+ perror print an error message
+ pow raise a number to a power
+ printf formatted print to stdout
+ putchar put a character to stdout
+ putc put a character to a level 2 file
+ puts put a string to stdout
+ qsort sort a data array
+ raise generate a signal
+ rand generate a random number
+ realloc reallocate memory
+ remove remove a file
+ rename rename a file
+ rewind reset a level 2 file position to its first byte
+ scanf formatted input conversions
+ setbuf set the buffer mode for a level 2 file
+ setjmp set long jump parameters
+ setlocale set locale information for a program
+ setvbuf set the buffer mode for a level 2 file
+ setvbuf set the variable buffer for a level 2 file
+ signal establish event traps
+ sinh hyperbolic sine function
+ sin sine function
+ sprintf formatted print to a string
+ sqrt square root function
+ srand set a seed for the rand function
+ sscanf formatted input conversions
+ strcat concatenate strings
+ strchr find a character in a string
+ strcmp compare strings
+ strcmp compare strings, case sensitive
+ strcoll compare strings based on locale
+ strcpy copy one string to another
+ strcspn count the number of string characters not in the set
+ strerror print the text for a given error number
+ strftime format a time string
+ strlen measure the length of a string
+ strncat concatenate strings, length limited
+ strncmp compare strings, length limited
+ strncpy copy a string, length limited
+ strpbrk find a break character in a string
+ strrchr find a character not in a string
+ strspn count longest span of characters in the set
+ strstr find a substring inside of a string
+ strtod convert a string to a double-precision floating-point number
+ strtok get a token
+ strtol convert a string to a long integer
+ strtoul convert a string to an unsigned long integer
+ strxfrm transform a string
+ system call the system command processor
+ tanh hyperbolic tangent function
+ tan tangent function
+ time get the system time in seconds
+ tmpfile open a temporary file stream
+ tmpnam create a temporary filename
+ tolower convert a character to lowercase
+ toupper convert a character to uppercase
+ ungetc push an input character back
+ va_arg get an argument from a varying-length argument list
+ va_end end varying-length argument list processing
+ va_start begin varying-length argument list processing
+ vfprintf formatted write of a varying-length argument list to a file
+ vprintf formatted write of a varying-length argument list to stdout
+ vsprintf formatted write of a varying-length argument list to a string
+ wcstombs convert a wide-character string to a multibyte string
+ wctomb map a wide character to a multibyte character

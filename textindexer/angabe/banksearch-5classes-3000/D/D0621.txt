@@ -1,0 +1,62 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+ 
+JSP Tutorial
+ 
+Tutorial Overview
+The prerequisites for the tutorial are:
+- 
+HTML. You should be able to put together HTML pages.
+- 
+Java. You should be able to program in Java.
+This tutorial teaches JSP by progressing from very simple examples to complex
+examples.
+For best progress, it is recommended that you type in all the examples
+presented and get them working. The early examples might seem very
+simple; please have patience. By actually typing in the examples
+and getting them to work, you will gain familiarity with the actual practical
+issues. Also spend some time on the exercises, these are designed
+to solidify your grasp of the material.
+The steps in the tutorial are outlined below:
+- 
+Getting familiar with your JSP server
+- 
+Your first JSP
+- 
+Adding dynamic content via expressions
+- 
+Scriptlets
+- 
+Mixing Scriptlets and HTML
+- 
+Directives
+- 
+Declarations
+- 
+Tags
+- 
+Sessions
+- 
+Beans and Forms Processing
+- 
+Tag Libraries
+- 
+Form Editing
+- 
+Log-in pages
+- 
+SQL
+- 
+Sending Email
+- 
+Further learning
+If you are already familiar with some of the material, you might want to
+just complete any exercise(s) in that section and proceed to the next one.
+First step: Getting familiar with your
+JSP server
+ 
+ 

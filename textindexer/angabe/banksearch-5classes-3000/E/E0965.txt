@@ -1,0 +1,276 @@
+
+ 
+Tutorials Section
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Tutorials Section Contents
+ 
+This area will contain various learning infos on C++ and 
+ game programming. If you have any questions about programming in Pascal(DOS) 
+ or C++(DOS or Windows), feel free to contact me. 
+ For other pages related to programming topics, see my links 
+ page. The information in these tutorials is not a replacement for 
+ a good book and/or teacher since I can only put as much information my 
+ spare time and experience allows me, but it will be a good start.
+ 
+Back to main page
+ 
+Download This Section
+ 
+This section is now available for download. Just unzip 
+ to a new directory. I ask that you don't distribute this on your site 
+ or link directly to the file, instead you may link to the main page. This 
+ is so I can keep a single official copy on the net.
+ 
+Download Tutorials (99k) (1/24/2002)
+ 
+Beginning Programming
+ 
+This area of programming is best taught by a large book 
+ and hopefully a good teacher. If you are completely new to programming 
+ I suggest trying to learn a language like Visual BASIC or Pascal. Below 
+ is a link to a site which has a tutorial on QBASIC, which is an old BASIC 
+ interpreter which Microsoft always included with DOS and on the Windows 
+ CD for free.
+ 
+QBASIC 
+ Programming Tutorial -- from the same author of "A Programming Resource Megasite," 
+ an OK tutorial for beginning programmers. The Megasite probably has links 
+ to more and better beginning tutorials.
+ 
+Learning C/C++ without classes
+ 
+This tutorial requires some programming skills from any 
+ other language, espically BASIC or Pascal, since this will only explain 
+ working with the language C/C++, not programming in general.
+ 
+Tutorial here, last updated 8/9/99
+ This tutorial is "finished"
+ 
+Learning Allegro
+ 
+This tutorial requires C programming skills (as provided 
+ above). It also has a tutorial for using MSVC with Allegro step-by-step 
+ that assumes no previous MSVC knowledge.
+ 
+Tutorial here, last updated 1/24/02
+ This tutorial is "finished"
+ 
+ 
+Learning Object Oriented Programming in C++
+ 
+This tutorial requires good C++ skills (as provided above).
+ 
+Tutorial here, last updated 1/24/00
+ The first five chapters are done, the sixth is unfinished.
+ 
+Addendum to Learning OOP in C++
+ 
+Some important things to realize about the previous tutorial, 
+ and explains the changes that have occurred due to the new ISO C++ 98 
+ standard, which is very standard now but was very new and not supported 
+ when I wrote most of the tutorial in 99.
+ 
+Discusses namespaces and the new include files, iostreams, 
+ and the STL.
+ 
+Tutorial here, last 
+ updated 11/29/01
+ 
+Appendices
+ 
+Appendix A -- Escape Characters
+ Appendix B -- ios manipulators used with 
+ the 
+ IntClass.cc -- constructors, = operators, 
+ when data is copied. v1. 12/9/98. Finished.
+ 
+* means the file is fully commented (sometimes line-by-line) 
+ and explained.
+ 
+Back to main page
+ 
+ 
+Copy2.zip 
+ -- Demonstrates file I/O with fstreams. Acts like DOS's copy command. 
+ Size: 76k Last updated: 3/30/99
+ 
+Copies 2 files like DOS copy command, but unfortunately, 
+ it doesn't accept wildcards. It's just a basic program demonstrating how 
+ to read and write using fstreams. Note that this program will only work 
+ in DJGPP and not Borland C++ because the ANSI C++ doesn't have a standard 
+ for file I/O. I found that out the hard way!
+ 
+Changes since 10/98:
+ Bugs of "overcoping" now fixed, uses new operator now.
+ Fully commented line by line and explained.
+ 
+Back to top
+ 
+IntClass.cc 
+ -- constructors, = operators, when data is copied. v1. 12/9/98.
+ 
+This example program shows how to define constructors 
+ for copying, and how to define overloaded = operators, and when each is 
+ used. Also shows how many copies are made. (More made than one normally 
+ sees)
+ 
+Back to top
+ 
+ 
+ 
+ 

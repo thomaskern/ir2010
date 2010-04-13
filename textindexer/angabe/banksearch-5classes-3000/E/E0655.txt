@@ -1,0 +1,400 @@
+
+ 
+C >> Structs 1 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ enum And typedef 
+ Main Menu 
+ Structs 2 
+ 
+ 
+ 
+ 
+Structs 1
+ 
+ 
+ 
+ 
+ 
+ 
+What is a struct?
+ 
+ 
+ 
+ 
+ 
+A struct (short for STRUCTURE), is a collection of variables of different types. Structures are sometimes 
+ referred to as ABSTRACT DATA TYPES, or ADTs for short. 
+ 
+We already know how to store a group of variables of the same type using arrays. 
+ 
+ 
+ 
+Variables in a struct are called MEMBERS or FIELDS, and are accessed by their name. 
+ 
+ 
+Variables in an array are called ELEMENTS, and are accessed using square brackets an an index. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Declaring a struct
+ 
+ 
+ 
+ 
+ 
+Declaring a struct requires the struct keyword, followed by a name. Then you declare your collection of variables 
+ between a pair of curly brackets. For example: 
+ struct human { 
+ char *name; 
+ int age; 
+ float height; 
+};
+/* don't forget this semi colon!!!! */ 
+ 
+It's best to declare your struct before main. 
+ 
+ 
+ 
+human is now a structure type, with three fields: name, expressed as a string, an integer age and a floating 
+ point height. 
+ 
+You can put whatever data types you want. And you're not limited to normal variables either - arrays and pointers can also go into 
+ a struct, though, you must specify an array size. 
+ 
+ 
+ 
+You can NOT use the assignment operator with the struct declaration. 
+ 
+NOTE: The size of a struct is the sum of the sizes of all the variables it holds. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Declaring 
+ Structure Variables
+ 
+ 
+ 
+ 
+ 
+Like with enum, you can insert a list of variables after the end bracket like this: 
+ struct album { 
+ char *name; 
+ char *artist; 
+ int numTracks; 
+} CD1, CD2, CD3; 
+ 
+This declares three variables of the struct album type. 
+ 
+But if album was declared outside main, the three variables will be global variables. 
+ 
+ 
+ 
+So instead, you can write this inside main: 
+ 
+struct album CD1, CD2, CD3; 
+ 
+Or better still, declare your struct and write: 
+ 
+typedef struct album Album; 
+ 
+... then inside main: 
+ 
+Album CD1, CD2, CD3; 
+ 
+Try and group all your typedef statements outside main - it makes the code look neater and easier to maintain. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initializing 
+ Structure Variables
+ 
+ 
+ 
+ 
+ 
+Now that you know how to declare structure variables, there are two ways to initialize them: all the fields in one statement, or one 
+ field at a time. 
+ 
+To initialize all fields in one statement, you declare your variable as usual, but assign it a list of variables enclosed in brackets, 
+ like this: 
+ 
+struct human TR = {"Tony", 12, 1.5}; 
+ 
+This is similar to the method of initializing arrays. 
+ 
+Now the struct human variable, TR has all three fields initialized: the name field holds the string, "Tony", 
+ the age field holds the integer, 12, and the height is 1.5. 
+ 
+ 
+ 
+To reference an individual field, you use the DOT OPERATOR to separate the struct variable name and 
+ the field name. 
+ 
+You can use the dot operator to initialize each field individually: 
+ struct human TR;
+TR.name = "Tony"; 
+TR.age = 12; 
+TR.height = 1.5; 
+ 
+To access each field, use the dot operator again. 
+ 
+For example, TR.age will return 12. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advantages 
+ of char *name Over char 
+ name[50]
+ 
+ 
+ 
+ 
+ 
+When I first encountered structs I used a sized char array to store strings. 
+ 
+Suppose I redefine human: 
+ struct human { 
+ char name[50]; 
+ int age; 
+ float height; 
+};
+ 
+The first disadvantage, is that the name array must have a size big enough to store any string I was going to use. 
+ 
+Secondly, the only (obvious) way to initialize a string field, is to do it all at once: 
+ 
+struct human TR = {"Tony", 12, 1.5}; 
+ 
+ 
+ 
+TR.name = "Tony" won't work, simply because the only way of assigning a string into an array is when you declare 
+ an array: char name[5] = "Tony"; Recall that TR.name is actually a char pointer, but it's an R-value 
+ in this case. In other words, assigning a value into it wouldn't work, as it wasn't declared as a char *. But... 
+ TR.name[0] = 'T'; 
+TR.name[1] = 'o'; 
+TR.name[2] = 'n'; 
+TR.name[3] = 'y'; 
+TR.name[4] = '\0'; 
+ 
+... works because the elements of the name array are L-values. 
+ 
+If human was defined with char *name, you could use TR.name = "Tony"; because pointers are L-values: 
+ remember that strings are considered to be of type char * as well. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Arrays 
+ of Structured Variables
+ 
+ 
+ 
+ 
+ 
+Like with the usual data types, you can store a group of similar typed variables in an array. 
+ 
+ The method of declaring an array is the same as before, but initializing your elements isn't as simple as first thought... 
+ 
+ 
+ 
+ 
+ #include 
+typedef struct robot ROBOT;
+struct robot { 
+ char *name; 
+ int energy; 
+};
+int main() {
+ int i;
+ 
+ ROBOT robots[3];
+ robots[0].name = "Lunar Lee";
+ robots[0].energy = 50;
+ robots[1].name = "Planetary Pete";
+ robots[1].energy = 20;
+ robots[2].name = "Martian Matt";
+ robots[2].energy = 30;
+ /* robots[0] = {"Lunar Lee", 50}; WON'T WORK, BUT HERE'S ANOTHER WAY...
+ ROBOT robots[3] = { {"Lunar Lee", 50},
+ {"Planetary Pete", 20},
+ {"Martian Matt", 30} }; */
+ for(i=0 ; i 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

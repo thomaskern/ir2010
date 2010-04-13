@@ -1,0 +1,198 @@
+
+VB Square - File and Directory - Articles - Simple INI file class - Introduction
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+File and Directory > 
+Articles
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Simple INI file class
+By Sam Huggill
+Introduction
+INI Files now seem to have been completely removed
+by the registry, but sometimes they are a much better option. This can be becuase of
+safety for the registry, and allowing the user to more easily view and change settings.
+This simple wrapper class wraps up a few simple INI file functions into a reusable, drop
+in class for instant INI file use. It supports the following methods/properties:
+- CreateINI - Creates a new INI file
+- GetFile - Returns the value specified in the arguements passed
+- INIFile - Gets/Sets the current INI file path
+- MakePath - A private function used to create the ini file
+- WriteFile - Writes a value to the INI file
+You will probably want to extend its functionality by adding more INI file functions.
+Anyway, the class is based around two Win API declares: WritePrivateProfileString and
+GetPrivateProfileString. Both require a bit of extra work to make them effective, but
+overall they are quite simple to use. A good alternative to the Windows Registry.
+To get the class working just use:
+Private m_cIni As CIniFile
+Private Sub Form_Load()
+ Set m_cIni = New CIniFile
+End Sub
+Add a new class module (CIniFIle) and copy the following
+code into it:
+Option Explicit
+'// Private member that holds a reference to
+'// the path of our ini file
+Private strInI As String
+'// Win API Declares
+Private Declare Function WritePrivateProfileString _
+ Lib "kernel32" Alias "WritePrivateProfileStringA" _
+ (ByVal lpApplicationName As String, _
+ ByVal lpKeyName As Any, _
+ ByVal lpString As Any, _
+ ByVal lpFileName As String) As Long
+Private Declare Function GetPrivateProfileString _
+ Lib "kernel32" Alias "GetPrivateProfileStringA" _
+ (ByVal lpApplicationName As String, _
+ ByVal lpKeyName As Any, _
+ ByVal lpDefault As String, _
+ ByVal lpReturnedString As String, _
+ ByVal nSize As Long, _
+ ByVal lpFileName As String) As Long
+Private Function MakePath(ByVal strDrv As String, _
+ ByVal strDir As String) As String
+ 
+ '// Makes an INI file: Guarantees a sub dir
+ Do While Right$(strDrv, 1) = "\"
+ strDrv = Left$(strDrv, Len(strDrv) - 1)
+ Loop
+ Do While Left$(strDir, 1) = "\"
+ strDir = Mid$(strDir, 2)
+ Loop
+ '// Return the path
+ MakePath = strDrv & "\" & strDir
+End Function
+Public Sub CreateIni(strDrv As String, strDir As String)
+ '// Make a new ini file
+ strInI = MakePath(strDrv, strDir)
+End Sub
+Public Sub WriteFile(strSection As String, _
+ strKey As String, _
+ strValue As String)
+ 
+ '// Write to strINI
+ WritePrivateProfileString strSection, _
+ strKey, strValue, strInI
+End Sub
+Public Function GetFile(strSection As String, _
+ strKey As String) As String
+ Dim strTmp As String
+ Dim lngRet As String
+ strTmp = String$(100, 0)
+ lngRet = GetPrivateProfileString(strSection, _
+ strKey, "", strTmp, _
+ Len(strTmp), strInI)
+ 
+ GetFile = strTmp
+ 
+End Function
+Public Property Let INIFile(ByVal New_IniPath As String)
+ '// Sets the new ini path
+ strInI = New_IniPath
+ 
+End Property
+Public Property Get INIFile() As String
+ '// Returns the current ini path
+ INIFile = strInI
+ 
+End Property
+ 
+ 
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 0 comments. 
+ 
+ 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Related
+ 
+- 
+Make a file association 
+- 
+Simple INI file class 
+- 
+Sequential File Writing Function 
+- 
+Create File Association with default icon 
+- 
+Convert file size into proper strings 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

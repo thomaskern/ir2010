@@ -1,0 +1,56 @@
+
+Visual Basic Section 3: The Windows API
+Graphic Functions
+ 
+The Windows API provides many functions for manipulating graphics....one of which is the Floodfill function. 
+FloodFill API Function
+In the API Help for the Microsoft Developer's Kit (which comes with the Professional version of VB) it provides the following cryptic advice for using the Floodfill function. Unfortunately the whole of the developer's Kit help files are written with the C programmer in mind so that anyone approaching API functions as a Visual Basic programmer can get a bit confused. Fortunately Floodfill is a relatively easy function to start using. Floodfill simply fills in an area of the screen from an initial seed point to a specified boundary. The colour and style of this shading is dependent on the current FillColor & FillStyle properties of the picturebox.
+FloodFill (2.x)
+BOOL FloodFill(hdc, nXStart, nYStart, clrref)
+HDC hdc;	/* handle of device context	*/
+int nXStart;	/* x-coordinate of starting position	*/
+int nYStart;	/* y-coordinate of starting position	*/
+COLORREF clrref;	/* color of fill boundary	*/
+The FloodFill function fills an area of the screen surface by using the current brush. The area is assumed to be bounded as specified by the clrref parameter. The FloodFill function begins at the point specified by the nXStart and nYStart parameters and continues in all directions to the color boundary. 
+Parameter	Description
+hdc	Identifies the device context.
+nXStart	Specifies the logical x-coordinate at which to begin filling. 
+nYStart	Specifies the logical y-coordinate at which to begin filling. 
+clrref	Specifies the color of the boundary.
+Returns
+The return value is nonzero if the function is successful. Otherwise, it is zero, indicating that the filling cannot 
+be completed, that the given point has the boundary color specified by clrref, or that the point is outside the 
+clipping region. 
+The hDC is the handle that is provided to the device context is the internal name or "handle" of the picture box or form that is being used to display the graphics. Use the hDC property to access this handle.
+Form1.PictureBox1.hDC
+The logical x and y coordinates are coordinates for the internal (or logical) coordinate system. By default this is the based on the number of pixels along each side of the picturebox or form.
+Floodfill works by filling in an area of the screen until it reaches a boundary, it determines whether a boundary is reached by it colour. Therefore the boundary colour needs to be specified. In most cases this will be black which is QBColor(0) or RGB(0,0,0)
+A Problem of Scaling
+While coordinate system used by the Line Method can be changed using the ScaleMode property. API functions ignore this and use the logical coordinate system, by default, the number of pixels along each axis. This means that the Floodfill function interprets the centroid coordinates as pixels and not as the units used by the picturebox (these units are twips...see VB help). To solve this problem you can either
+- changed the size of the picture box so that the number of pixels approximates the number of twips....not good programming style
+- change the logical coodinate system....requires the use of another API call
+- or change the coordinate system of the picturebox using the ScaleMode Property....relatively easy to do
+The ScaleMode property can either be set at design-time from the properties window or at run-time using the following line of code. It should be set to a value of 3 which represent a coordinate system based on the number of pixels along the sides of the picturebox.
+Form1.PictureBox1.ScaleMode = 3
+This only has to be set once
+Using the FloodFill Function
+Once the function has been declared and the coordinate systems matched the FloodFill procedure can be called whenever it is required. Again it is important to get the associated argument list correct. 
+Sub PolyFill ()
+Dim i As Integer, j As Integer
+For i = 1 To PolyNum
+ Select Case ID(i)
+ Case 144 To 167
+ 
+ frmUPP.picDisplay.FillStyle = 0
+ frmUPP.picDisplay.FillColor = QBColor(1)
+ Call FloodFill(frmUPP.picDisplay.hDC, Centroid(i).X,
+ Centroid(i).Y, QBColor(0))
+ End Select
+Next i
+End Sub
+Forward: 
+Back: Plotting Polygons
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

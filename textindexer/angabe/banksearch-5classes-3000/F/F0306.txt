@@ -1,0 +1,78 @@
+
+ 
+ 
+ 
+ Printing Text using Win32 API
+Printing
+Text
+ 
+This article explains how to
+print text to any DC using the Win32 API:
+ 
+1 - Create a new project
+in Visual Basic and add a module to it;
+2 - Place the following
+code in the module:
+Declare
+Function MoveToEx
+Lib "gdi32" Alias
+"MoveToEx" (ByVal hdc
+As Long,
+ByVal x As Long,
+ByVal y As Long,
+_
+lpPoint
+As POINTAPI)
+As Long
+Declare
+Function TextOut Lib
+"gdi32" Alias
+"TextOutA" (ByVal
+hdc As Long,
+ByVal x As
+Long, ByVal
+y As Long, _
+ByVal
+lpString As String,
+ByVal nCount
+As Long)
+As Long
+Type POINTAPI
+ 
+x As Long
+ 
+y As Long
+End Type
+'---------------------------------------------
+Public
+Sub PrintText(DestDC
+As Long, X As
+Long, Y As Long,
+ByVal Text As
+String)
+Dim
+txtPointAPI As
+POINTAPI
+Call MoveToEx(DestDC,
+X, Y, txtPointAPI)
+Call
+TextOut(DestDC, X, Y, Text, Len(Text))
+End Sub
+3- After this, use the
+function whenever you want, like in the example here:
+Private
+Sub Form_Paint()
+PrintText
+Form1.hdc, 10, 10, "Testing..."
+End Sub
+If you want to change the font
+or the color you're printing, just change the destination's properties
+Font and ForeColor. You can even acheive 3D effects using
+loops and printing text, and the function is much faster than using object.Print!!!
+The sample code shows how
+to create a cool 3D effect to your text
+Download
+the sample code
+ATTENTION:
+VB Center is not responsible for any damage this code could cause to ANY
+computer

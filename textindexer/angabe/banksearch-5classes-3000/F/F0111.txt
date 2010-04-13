@@ -1,0 +1,464 @@
+
+Nico's VB Basics Page 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You are visitor number 
+ 
+Nico's VB Language Basics
+ 
+ 
+Introduction to BASIC
+Before one can start programming in Visual Basic it is important to become
+familiar with basics of BASIC
+"Beginners Access Symbolic Instruction Code"
+known as BASIC was developed at Dartmouth College by John Kemmey and Thomas Kurtz in the
+mid 1960&#146;s
+Basic is a computer language whose instructions resemble algebraic formulas, augmented
+by English words such as GO TO , INPUT , PRINT , IF , THEN ELSE
+Because of its similarity to elementary algebra Basic is particularly suited to solving
+problems in Science , Mathematics ,Engineering and Finance.
+Basic programming can be a lot of fun 
+Structure of a BASIC Program 
+ 
+- Every statement appears on a single line
+ 
+- For longer statements (multi-line) an underscore _ is placed at the end of every line
+ except the last line
+ 
+- Blank spaces , tabs can be inserted to improve the readability of the statement
+An example of a simple Basic program to get the radius and calculate the diameter of
+the circle
+ 
+R = InputBox
+A = 3.14159 * R
+MsgBox A
+End
+1.0 Simple Input / And output Message Boxes
+MsgBox is used to Place a small Form on the screen Displaying a message and
+waiting for the user to press an OK Button before the program continues
+ 
+InputBox is used to Place a small Form on the screen Displaying a message
+(Prompt) and has a text field for the user to type some input . This will also be waiting
+for the user to press an OK or Cancel Button before the program continues
+ 
+2.0 Mathematical Operators
+ 
+ * 
+ Multiplication 
+ 
+ 
+ / 
+ Division 
+ 
+ 
+ + 
+ Addition + 
+ 
+ 
+ / 
+ Subtraction&#150; 
+ 
+ 
+ ^ 
+ Raze to the power of 
+ 
+ 
+ 
+3.0 Variables
+A variable is a name that represents a Number or String or Date
+A variable is also the name given to the memory location in the computer that stores
+this 
+Number or String or Date
+ 
+ 
+ Variable Type 
+ Description 
+ 
+ 
+ Integer 
+ Stores numbers with no
+ decimals 
+ 
+ 
+ Long 
+ Stores Larger Integers 
+ 
+ 
+ Single 
+ Stores (Floating point)
+ Numbers with decimals (Scientific format) 
+ 
+ 
+ Double 
+ Stores Larger Singles 
+ 
+ 
+ Byte 
+ An 8 Bit number 0 to 255 or a
+ character 
+ 
+ 
+ Boolean 
+ A Yes /No type variable stores
+ "True" or "False" 
+ 
+ 
+ Currency 
+ Stores Numbers with Decimals 
+ 
+ 
+ String 
+ Stores text 
+ 
+ 
+ Date 
+ Stores date and time values 
+ 
+ 
+ Variant 
+ This is a variable that can
+ hold any of the above 
+However this take up a large amount of memory 
+ 
+ 
+ Object 
+ This is used to make an
+ instance of a class (OOP) 
+ 
+ 
+3.1Variable Declaration
+Implicit Declaration
+By default you don&#146;t need to declare variables before you use them
+However by default they become of the Variant Type
+If you don&#146;t want that then you need to declare them using the Dim statement
+Dim MyVar as Integer
+Dim MyVar as string
+Dim Name as string
+ 
+Explicit Declaration
+If you use the following statement you are forced to declare all variables before using
+them
+Option Explicit
+3.2 Naming Variables
+When declaring variables observe the following rules 
+ 
+- You must Start with a letter
+ 
+- You can mix letters and numbers
+ 
+- Use variable names that are meaningful (Someone else will one day be debugging your
+ code)
+Different programmers have different styles in declaring Variable names
+Dim Y2K as integer
+Dim My_Var as integer
+Dim MyVar as integer
+Dim nMyVar as integer &#145;Hungarian Naming Convention
+Today most of the Guru&#146;s are switching to using Hungarian Variable names
+Refer to the Hungarian Naming Convention Chart
+4.0 Array Variables
+Arrays are variables that can simultaneously hold more that one value to text string.
+Declaring Arrays
+Dim MemberNames(24) as string &#145; This will alloy you to save 25 names or strings in
+this array
+Dim Results(33) as integer &#145; This will alloy you to store 34 numbers in this array
+ 
+Array Index&#146;s
+If you wish to store the 15th name in the above array you need to specify
+the specific array element to save the data this is how its done
+MembersNames(14)="Nick Michael"
+And if you wish to recall the 19th name this is how you access the specific
+array element
+MsgBox MembersNames(18)
+Array Indexes always start with 0 unless 
+ 
+- Option Base=1
+ 
+- The Array is declared like this Dim Myarray (1 to 20) as integer
+ 
+The Upper And Lower Bounds of the Array
+Ubound returns the highest valid index value
+Lbound Returns the lowest valid index value (Option Base can change this)
+ 
+4.1 Dynamic Arrays
+Sometimes you don&#146;t know how large to make the array 
+Or you want to free the memory when you don&#146;t need it
+Then you would declare your arrays as Dynamic Arrays
+ 
+Declaring Dynamic Arrays
+You declare the array with no value between the brackets 
+Dim MyArry( ) as Integer
+ 
+Setting the Size or Resizing of the Dynamic Array in real time
+ReDim MyArry(20) 
+ReDim MyArray(30) 
+ReDim MyArray(0)
+ReDim MyArray(100 + Ubound( MyArry( ) ) add another 100 elements to the
+array
+The problem with doing that is you loose all the data in the array if you need that use
+the Preserve option
+ReDim Preserve MyArray(45) this will keel all elements whose index is
+smaller than 45
+ 
+Freeing up the Memory used by your array
+Erase MyArry
+ 
+5.0 Mathematical Functions
+ 
+ 
+ Sqr 
+ Square Root 
+ 
+ 
+ Log(n) 
+ Natural Log ( log base e) 
+ 
+ 
+ Log10(n) 
+ Log10(n) (log base 10) =
+ Log(n) / Log(10) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Exp 
+ Returns exponent of e
+ (e=2.718282.)
+Const e = 2.718281828459 
+ 
+ 
+ Abs 
+ Returns a Positive value for
+ an expression or variable 
+ 
+ 
+ Sgn 
+ Returns the sign 
+For
+ Greater than zero returns 1
+ 
+For Equal to zero returns 0
+ 
+For Less than zero returns -1 
+ 
+ 
+ Int 
+ Returns an integer (no
+ decimals) 
+ 
+ 
+6.0 Trigonometric functions
+ 
+ 
+The problem with Basic and even VB is that Angles are passed to Trig functions in
+Radians
+"All trigonometric functions are calculated from angles expressed in Radians"
+In order to work with angles in degrees you need to define Pi and or Rad
+Const Pi = 3.14159265359
+or
+Pi = 4 * Atn(1) &#145; This is an approximation for the value of Pi (not so accurate)
+180 degrees=Pi Radians
+1 Degree=Pi/180 Radians
+1 Degree=3.14/180=0.017Radians 
+1 Degree=1.7E2 Scientific format (Single) 
+Const Rad = 1.74532925199433E-02 (double) This is the most accurate representation to
+use for VB
+If you multiply the angle in degrees by Rad you will convert it to radians and can use
+the trigonometric
+Functions e.g. Sin of x(degrees)=Sin(x * Rad) but don&#146;t forget to define Rad
+ 
+ Sin(x) 
+ Sine of x(radians) 
+ 
+ 
+ Sin x in Degrees 
+ Sine of x(degrees)=Sin(x *
+ Rad) 
+ 
+ 
+ Cos 
+ Cosine of x(radians) 
+ 
+ 
+ Tan 
+ Tanjent of x(radians) 
+ 
+ 
+ Atn 
+ Inverse Tangent (arc tan) 
+ 
+ 
+ ArcSin has to be calculated 
+ 
+ 
+ 
+ ArcCos has to be calculated 
+ 
+ 
+ 
+ 
+For Other Functions Refer to Function Charts on this webPage
+ 
+ 
+7.0 Declaring Procedures
+There two types of Procedures: 
+ 
+ 
+- Subs (Subroutines)
+ 
+- Functions
+ 
+7.1 Subs (Subroutines)
+Subs are called and no values are returned
+However they can take values passed to them in the form of Parameters
+Declaring a Sub
+Sub MySub
+End Sub
+Declaring a Sub with Parameters
+Sub MySub(Param1 as integer, Param2 as string)
+End Sub
+Calling a Sub
+MySub or
+Call MySub( ) or
+MySub 123,"John Doe" or
+Call MySub(123,"John Doe") or
+If you use the Call command you must add the Parenthesis ( ) to your subroutine
+Optional Parameters
+Sometimes you may want to use default parameter values but allow for overriding these
+values
+Sub MyFunct(optional Param1 as integer, optional Param2 as string)
+End Sub
+Testing if an Optional parameter has a value passed to the Sub (IsMissing)
+If not Ismissing( Param1) then Statement1 
+7.2 Functions
+Functions are procedures that return a value or a string 
+They can also take values passed to them in the form of Parameters
+Declaring a Function
+Function MyFunct as integer
+End Function
+Declaring a Function with Parameters
+Function MyFunct(Param1 as integer, Param2 as string) as integer
+End Function
+Calling a Function
+MyVar=MyFunct or
+MyVar=MyFunct 123,"John Doe" or
+MyVar=MyFunct(123,"John Doe")
+Declaring Variables within a Function or Sub Local Variables
+This is done the same way as above 
+However: 
+ 
+- This variable is only accessible within the Procedure (Procedural Scope)
+ 
+- This variable is discarded/destroyed as soon as the Procedure ends (Variable Life)
+ 
+- If the variable is declared as a static variable it will not be destroyed after
+ the Procedure ends
+Optional Parameters
+Sometimes you may want to use default parameter values but allow for overriding these
+values
+Function MyFunct(optional Param1 as integer, optional Param2 as string) as integer
+End Function
+Testing if an Optional parameter has a value passed to the function (IsMissing)
+If not Ismissing( Param1) then Statement1 
+Passing Arguments By reference or By value
+Function MyFunct(ByRef Param1 as integer, ByRef Param2 as string) as integer
+End Function 
+Function MyFunct(ByVal Param1 as integer, ByVal Param2 as string) as integer
+End Function 
+8.0 Flow Control
+8.1 If Statement
+IF ELSE END IF
+A simple English like statement to switch flow between one ore two statements
+If Name="John" then
+ Statement1 
+Else
+ Statement2
+Endif
+ 
+ELSE IF 
+This is an English like statement you can use (to follow an IF ELSE ENDIF statement) to
+optionally switch to another statement with a condition test (Name="Nick")
+Else If Name = "Nick" then Statement3 
+8.2 Case Statement
+SELECT CASE CASE END SELECT
+A simple English like statement to switch flow to one of many statements
+ 
+Select Case MembersName
+ Case "Fred"
+ 
+Statement1
+ Case "John"
+ 
+Statement2
+ Case Else
+ 
+ 
+Statement 3
+ 
+End Select 
+8.3 For Next Loop
+FOR NEXT
+A simple English like statement to force a block of code to be repeated a fixed number
+of times
+For I= 1 to 10 Step 5
+ Statement1
+Next I
+This is the most versatile loop technique as you can specify the lower the upper bount
+and the increment size (positive or negative)
+ 
+8.4 Do While Loop
+DO WHILE
+A simple English like statement to force a block of code to be repeated until a test
+condition is met
+Do 
+ Statement1
+While I"
+ 
+ 
+Top Of Page
+Return to Nico's Visual Basic Page
+ 
+Please send mail to: Nicom@rocketmail.com 
+with questions or comments about the content this VB Web site.
+This page hosted by Get your own Free
+Home Page

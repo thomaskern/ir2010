@@ -1,0 +1,862 @@
+Absolute Java - Test Your Java Knowldege
+	
+Question 1: Package Visibility
+Assume we have the following code in the file /abc/def/A.java:
+	
+	1 // File: /ABC/def/A.java 
+	
+	2 package def; 
+	
+	3 
+	
+	4 public class A { 
+	
+	5 int var; 
+	
+	6 } // A 
+And this code is in /ABC/Tester.java:
+1 // File: /ABC/Tester.java 
+2 import def.A; 
+3 
+4 public class Tester { 
+	5 A a = new A(); 
+	
+	6 public void someMethod() { 
+	
+	7 a.var = 1; 
+	
+	8 } // someMethod() 
+	
+	9 } // Tester 
+ Now assume that /ABC is the current directory. When we try to 
+ compile Tester.java with the following command,
+	
+ javac Tester.java
+the compiler displays this error message:
+	
+ Tester.java:7: var is not public in def.A; cannot be accessed from outside package
+ a.var = 1;
+ ^
+1 error
+Explain why the error message occurs and how to eliminate it.
+Answer 1: Package Visibility
+The error occurs because the variable, var, in the A 
+class has package visibility. A member (variable or method) with package 
+visibility is accessible only to classes defined within the same 
+package. In the code above, class A resides in the package named 
+def. The class Tester, on the other hand, resides in 
+what's known as the default package. Java considers any class missing 
+a package statement as being in the default package. Because 
+the default package is not the same as the def package, the member 
+var in class A is not accessible within the Tester 
+class.
+ The table below should give you an idea of how member visibility declarations 
+ (i.e., public, protected, package, and private) 
+ affect where a member can be referenced. Of course, package visibility is what 
+ you get if none of the other three visibility modifiers are specified. 
+ 
+	
+	If a member is
+	declared as... then is the member accessible within... 
+	
+	its own class? any class in its
+	own package? any subclass in a
+	different package? any non-subclass in
+	a different package? 
+	
+	public YES YES YES YES 
+	
+	protected YES YES YES* NO 
+	
+	package YES YES NO NO 
+	
+	private YES NO NO NO 
+ 
+ * When a class, 
+ S, extends another class, B, every instance of S 
+ contains all the members declared in B, regardless of the visibility 
+ modifiers (e.g., private, protected, package, or public) 
+ on those members. Even though all instances of S contain all the members declared 
+ in B, they cannot necessarily refer to all of them. 
+ 
+ Let's 
+ take a look at Figure 1. This figure shows four classes: B, S, 
+ T and R with class B containing a protected 
+ member, "protAttrib". We'll use lower-case letters to 
+ represent instances of the corresponding classes, proper. For example, assume 
+ object b was created by calling new B(), and so on.
+ 
+ An object can only refer to protected members in objects that are 
+ of its own class or subclass. So, for example, object s can refer 
+ to the protAttrib variable in itself or in object r 
+ or in any other instances of S or R but not in any 
+ instances of T or B, proper. Object b 
+ can refer to the protAttrib variable in b, s, 
+ t, r as well as any other instances of B, 
+ S, T, and R. Object r can 
+ only refer to the protAttrib in itself or other instances of R, 
+ proper. Admittedly, this may be a bit hard to understand without an example. 
+ See Question 2 for a concrete example using Java code. 
+Question 2: Member Visibility
+This question builds directly on Question 1. In the 
+code that follows, take careful note of the package in which each class resides.
+Assume we have the following code in the file /abc/def/A.java: 
+ 
+ 
+1 
+	 // File: /abc/def/A.java 
+	
+2 package def; 
+3 
+4 public class A { 
+5 private int privateVar; 
+6 int packageVar; 
+7 protected int protectedVar; 
+8 public int publicVar; 
+9 } // A 
+ and this code is in /abc/B.java: 
+ 
+ 
+1 
+	 // File: /abc/B.java 
+	
+2 import def.A; 
+3 
+4 public class B extends A { 
+5 A a = new A(); 
+6 C c = new C(); 
+7 
+8 public void someMethod() { 
+9 // First, try to refer to sup's members. 
+10 a.privateVar = 1; // Line 10 
+11 a.packageVar = 2; // Line 11 
+12 a.protectedVar = 3; // Line 12 
+13 a.publicVar = 4; // Line 13 
+14 
+15 // Next, try to refer to this object's members 
+16 // supplied by class A. 
+17 privateVar = 5; // Line 17 
+18 packageVar = 6; // Line 18 
+19 protectedVar = 7; // Line 19 
+20 publicVar = 8; // Line 20 
+21 
+22 // Next, let's try to access the members of 
+23 // another instance of B. 
+24 B b = new B(); 
+25 b.privateVar = 9; // Line 25 
+26 b.packageVar = 10; // Line 26 
+27 b.protectedVar = 11; // Line 27 
+28 b.publicVar = 12; // Line 28 
+29 
+30 // Finally, try to refer to the members in a 
+31 // subclass of B. 
+32 c.privateVar = 13; // Line 32 
+33 c.packageVar = 14; // Line 33 
+34 c.protectedVar = 15; // Line 34 
+35 c.publicVar = 16; // Line 35 
+36 } // someMethod() 
+37 } // B 
+ and this code is in /abc/C.java: 
+ 
+ 
+1 
+	 // File: /abc/C.java 
+	
+2 public class C extends B {} 
+Now assume that /abc is the current directory. When we try to compile B.java with the following command,
+ C:\abc>javac B.java
+the compiler displays several error messages. For each of the labeled lines in B.java, decide whether or not a compiler error will be generated.
+Answer 2: Member Visibility
+When one class extends another class, instances of the subclass will contain their 
+own copies of all members declared in the superclass (including any private 
+variables). In the example above, all instances of B will contain 
+all four of the variables declared in A. However, not all of these 
+variables will be accessible (i.e., visible) by instances of B.
+In the descriptions below, we say a variable is inherited by a subclass if it is accessible to (in other words, it can be referred to) instances of the subclass.
+a.privateVar = 1; // Line 10
+ private members are only accessible 
+ from within the class in which they are declared. Because privateVar 
+ was declared in class A, it is not accessible from within instances 
+ of class B. The following compiler error results: 
+ 
+B.java:10: privateVar has private access in def.A
+ a.privateVar = 1; // Line 10
+ ^
+a.packageVar = 2; // Line 11 
+ package members are only accessible 
+ to classes within the same package as the class that declares them. In this 
+ case, the member packageVar, is declared in class A, 
+ in the def package. packageVar is accessible only 
+ from within classes in the def package. Since B is 
+ in the "default package" (i.e., it has no package statement) it 
+ does not have access to packageVar. The following compiler error 
+ results: 
+ 
+B.java:11: packageVar is not public in def.A; cannot be accessed from outside package
+ a.packageVar = 2; // Line 11
+ ^
+a.protectedVar = 3; // Line 12 
+ Even though class B extends class 
+ A, instances of B are not allowed access to protected 
+ members in instances of A, proper. Because field a 
+ is an instance of A, proper, a instances of B do not 
+ have access to its protected members. Instances of class B 
+ can only access protected members in instances of classes that 
+ are of type B. This includes classes that inherit from B 
+ (such as the C class). The following compiler error results: 
+ 
+B.java:12: protectedVar has protected access in def.A
+ a.protectedVar = 3; // Line 12
+ ^
+a.publicVar = 4; // Line 13 
+ 
+public members are available "everywhere". Consequently, B's 
+ reference to a.publicVar compiles without error.
+privateVar = 5; // Line 17
+ private members are only accessible 
+ from within the class in which they are declared. Because privateVar 
+ was declared in class A, it is not accessible from within instances 
+ of class B. Note that on Line 10 we attempted to refer to a private 
+ member in another object (object a). On line 17 we are attempting 
+ to refer to the copy of privateVar that B contains 
+ by virtue of being a subclass of A. In terms of the visibility 
+ of privateVar, however, it does not matter. privateVar 
+ is a private member declared in the A class and can 
+ only be accessed from within that class. The following compiler error 
+ results: 
+ 
+B.java:17: privateVar has private access in def.A
+ privateVar = 5; // Line 17
+ ^
+packageVar = 6; // Line 18 
+ As was true for line 11, package members are only 
+ accessible to classes within the same package as the class that declares them. 
+ Here an instance of B is trying to access the packageVar 
+ variable it contains by virtue of being a subclass of A. The protectedVar 
+ variable, however, was declared by a class in the def 
+ package. Recall that B is not in the default package. Therefore, 
+ B cannot access the packageVar member. The following 
+ compiler error results:
+ B.java:18: packageVar is not public in def.A; cannot be accessed from outside package
+ packageVar = 6; // Line 18
+ ^
+ protectedVar = 7; // 
+Line 19 
+ There is no compiler error for line 19. Remember 
+ that a protected member declared in a class, R, is accessible 
+ within: 
+ 
+ 
+- any instance of any class in the same package 
+ as R (this is exactly the same restriction that applies to package 
+ members)
+	 
+- an instance, m, of any class, M, 
+ such that a reference of type M is assignable to a reference of type 
+ R.
+ 
+ The language here is getting a bit abstract. In our coded example above, class 
+ R is represented by class A and class M is represented 
+ by class B. Instance m is simply an instance of B. 
+ Since B extends A, an object of class B 
+ can certainly be assigned to a reference of type A. 
+publicVar = 8; // Line 20 
+ As was the case with line 13, public 
+ members are available "everywhere". Consequently, B's reference 
+ to publicVar compiles without error.
+b.privateVar = 9; // Line 25 
+ As was the case with lines 10 and 17, the member, 
+ privateVar, is declared in class A and can therefore 
+ only be accessed by instances of class A, proper (i.e., in object 
+ of class A, but not any of its subclasses). The following compiler 
+ error results:
+ B.java:25: privateVar has private access in def.A
+ b.privateVar = 9; // Line 25
+ ^
+b.packageVar = 10; // Line 26 
+ As was the case with lines 11 and 18, the member, 
+ packageVar, is declared in class A which is in the 
+ def package. Only instances of classes in the same package as class 
+ A can access the package variable, packageVar. Remember 
+ that because the B class does not have a package statement 
+ it is placed in the default package. The following compiler error results:
+ B.java:26: packageVar is not public in def.A; cannot be accessed from outside package
+ b.packageVar = 10; // Line 26
+ ^
+ b.protectedVar = 11; // 
+Line 27 
+ You may want to refer back to the description 
+ of line 19. Generically speaking, if we have 
+ a class (call it R) that contains a protected member (call 
+ it p) and another class (call it M) extends R, then 
+ any instance of M can access the p contained in any other 
+ instance of M, including instances of subclasses of M. 
+ 
+ Once again, in this coded example, class R is class A, 
+ class M is class B, and p is the protected 
+ member, protectedVar. Line 27 is an example of an instance of 
+ B attempting to reference a protected member in 
+ another instance of B (the member, b.protectedVar). 
+ Since an instance of B is attempting to reference a protected 
+ member in another instance of B, the line compiles cleanly. 
+b.publicVar = 12; // Line 28 
+ As was the case with lines 13 and 20, public 
+ members are available "everywhere". Consequently, B's reference 
+ to b.publicVar compiles without error. 
+c.privateVar = 13; // Line 32 
+ As was the case with lines 10, 17, and 25, the 
+ member, c.privateVar, is declared as private in class 
+ A and can therefore only be accessed by instances of class A, 
+ proper (i.e., non-subclasses of A). The following compiler error 
+ results: 
+ B.java:32: privateVar has private access in def.A
+ c.privateVar = 13; // Line 32
+ ^
+c.packageVar = 14; // Line 33 
+ As was the case with lines 11, 18, and 22, the 
+ member, c.packageVar, is declared in class A which 
+ is in the def package. To access this member the class attempting 
+ the access (B, in this case) must be in the def package. 
+ Remember that since B does not have a package statement 
+ it is placed in Java's default package. The following compiler error 
+ results: 
+ B.java:33: packageVar is not public in def.A; cannot be accessed from outside package
+ c.packageVar = 14; // Line 33
+ ^
+c.protectedVar = 15; // Line 34 
+ You may want to refer back to the descriptions 
+ of lines 19 and 27. 
+ Actually, this line compiles cleanly for exactly the same reason line 27 compiled 
+ cleanly. Remember that class C extends class B. Consequently, 
+ any instances of C are also considered instances of B. 
+ Another way to look at this is that the object, c, could be assigned 
+ to a reference of type B, meaning that object c "is 
+ a B".
+c.publicVar = 16; // Line 35 
+ As was the case with lines 13, 20 and 28, public 
+ members are available "everywhere". Consequently, B's reference 
+ to c.publicVar compiles without error. 
+Question 3: Anonymous Subclass
+Assume we have the following code in the file abc/A.java:
+1 
+	 // File: abc/A.java 
+	
+2 
+	 package abc; 
+	
+3 
+4 public class A { 
+5 protected int protectedVar; 
+6 } // A 
+and this code is in the default package: 
+1 // File: Tester.java 
+2 import abc.A; 
+3 
+4 public class Tester { 
+5 private A z = new A() { 
+6 void someMethod() { 
+7 protectedVar = 1; // will this compile?? 
+8 } // someMethod() 
+9 }; 
+10 } // Tester 
+Determine whether or not the assignment statement in Tester will 
+ compile successfully. Assume the directory, /abc, is in the compiler's classpath 
+ when compiling Tester.java.
+Answer 3: Anonymous Subclasses
+Both classes compile cleanly. You may wonder why the assignment statement seems 
+ to compile cleanly since it appears that a protected member is 
+ being accessed from within a class (Tester) that does not extend 
+ the class which declared the protected member (class A). 
+ Specifically, it may seem strange that class Tester has access 
+ to protectedVar since Tester does not extend A 
+ and the two classes are in different packages.
+In actuality, the reference to protectedVar is not taking place 
+ within Tester at all! Note the declaration of the variable z 
+ within Tester. What type of object would you say that z is? The answer: z is an instance of a subclass of A, so z is also an instance of A. What's the name of this subclass? Well, it doesn't have a name -- it's an anonymous 
+ subclass. The important thing to realize is that since z is of a type which extends A, z has access to the protected members 
+ in A. This situation is exactly the same situation we saw in Question 
+ 2, line 19.
+ The result of compiling the above code is three separate class files: A.class, 
+ Tester.class, and Tester$1.class. Tester$1 is the name the Java compiler assigned 
+ to the anonymous subclass of A.
+Question 4: Method Overriding I
+Determine the result of attempting to compile and run the following code:
+1 public class Tester { 
+2 public static void main(String[] args) { 
+3 System.out.println(new Sub().g()); 
+4 } 
+5 private int f() { 
+6 return 2; 
+7 } 
+8 int g() { 
+9 return f(); 
+10 } 
+11 } // Tester 
+12 
+13 class Sub extends Tester { 
+14 public int f() { 
+15 return 1; 
+16 } 
+17 } // Sub 
+Answer 4: Method Overriding I
+The output is:
+ 
+2
+The important point to note about this code is that the method Tester.f() 
+is not overridden in class Sub. So long as Tester.f() 
+has private visibility, it cannot be overridden by any 
+subclass of Tester. The fact that class Sub has a method 
+whose name happens to be f() and which happens to return an int 
+is completely irrelevant and unrelated to Tester's version of f(). Sub.f() does not override the method, Tester.f(). 
+Now, imagine for a moment that Tester.f()'s visibility was changed 
+ to something other than private. In such a case, Tester.g()'s 
+ call to f() would use Java's "dynamic method lookup mechanism" 
+ (analogous to the C++ v-table) to determine which version of f() 
+ should be called, which, in this case would be Sub.f(). But because 
+ Tester.f() is private (and therefore, cannot be overridden), 
+ the Java compiler does not generate code to use dynamic method lookup when compiling 
+ Tester.g()'s call to f(). Instead, the compiler generates a direct (non-overridable) call to Tester's version of f().
+Note that if you were to change Tester.g()'s definition to this:
+1 int g() { 
+2 return ((Sub)this).f(); 
+3 } 
+the output of the program would be 1. Of course, you would never, 
+ever, ever want to cast this to a subclass type 
+as shown here. I'm only suggesting it to illustrate the fact that Sub.f() 
+is accessible.
+Question 5: Basic Conversions I
+Determine the result of attempting to compile and run the following code:
+ 
+1 public class Tester { 
+2 public static void main(String[] args) { 
+3 System.out.println(4 + " " + 2); 
+4 System.out.println(4 + ' ' + 2); 
+5 } // main() 
+6 } // Tester 
+Answer 5: Basic Conversions I
+The output is:
+ 
+4 2
+38
+The first line of output is probably not too surprising. The second line is 
+ a result of Java's binary numeric promotion rules. The '+' 
+ operator is a binary operator (meaning it takes two operands). Java will convert 
+ each operand of a binary operator to the "widest type" operand, or to an int, whichever is wider. In this case we have three operands: two ints and a char. The int type is the widest type so the char is converted to an int and the addition proceeds, using the Unicode value for the space character (32). Effectively, the addition proceeds as 4 + 32 + 2.
+To review how Java converts between primitives, see the "Binary Numeric Promotion" tidbit in the Java 
+ Tidbits article.
+Question 6: Conditional Operator Details
+Determine the result of attempting to compile and run the following code:
+ 
+1 public class Tester { 
+2 public static void main(String[] parms) { 
+3 int i = 10; 
+4 i == 10 ? equals10() : notEqual10(); 
+5 } // main() 
+6 
+7 private static int equals10() { 
+8 System.out.println("result is 10"); 
+9 return 10; 
+10 } // equals10() 
+11 
+12 private static int notEqual10() { 
+13 System.out.println("result is NOT 10"); 
+14 return -1; 
+15 } // notEqual10() 
+16 } // Tester 
+Answer 6: Conditional Operator Details
+The output is:
+ 
+Tester.java:4: not a statement
+ i == 10 ? equals10() : notEqual10();
+ ^
+1 error
+This was a tricky one. The fact is that the JLS 
+ 2 (§15.25) 
+ indicates that "it is not permitted for a conditional expression to appear 
+ in any context where an invocation of a void method could 
+ appear."
+The idea here is that a conditional expression (a ? b : c) always 
+ evaluates to some value (either b or c). The JLS requires 
+ that that value be assigned or used in some way. If we add an assignment operator, 
+ for example, to the above conditional expression, all will be fine:
+4 i = i == 10 ? equals10() : notEqual10(); 
+Question 7: Basic Conversions II
+Determine the result of attempting to compile and run the following code:
+ 
+ 
+1 public class Tester { 
+2 public static void main(String[] args) { 
+3 byte b = -1; 
+4 b = (byte)(b >>> 4); 
+5 System.out.println(b); 
+6 } // main() 
+7 } // Tester 
+Answer 7: Basic Conversions II
+The output is:
+ 
+-1
+The fact that it's necessary to cast the result to a byte should 
+ provide a clue as to what's going on here.
+b is a byte that starts out with a value of -1 (taking 
+ into account the fact that a byte is 8 bits in length, b's 
+ bit pattern is 0xFF).
+Before the right-shift operation takes place, b is promoted to 
+ an integer according to Java's rules for binary numeric promotion. 
+ Taking into account the fact that integers have 32 bits, B's resulting 
+ bit pattern then becomes 0xFFFFFFFF.
+After the unsigned shift operation completes, the result, 0x0FFFFF, 
+ is assigned back to b. When this result is cast back to a byte 
+ only the low-order 8 bits of 0x0FFFFFFF are assigned to b, 
+ leaving b with its original value of -1.
+ 
+Question 8: Unwinding Compound-Assignment Operators
+Determine the result of attempting to compile and run the following code:
+1 public class Tester { 
+2 public static void main(String[] args) { 
+3 int i = 0; 
+4 byte b = 0; 
+5 
+	 b += b - (i = 0xffffffc9); 
+	
+6 System.out.println(Integer.toHexString(b)); 
+7 } // main() 
+8 } // Tester 
+Answer 8: Unwinding Compound-Assignment Operators
+The output is:
+ 37
+This question illustrates use of one of Java's arithmetic compound-assignment 
+ operators (+=). There are a total of five of these operators: (+=, 
+ -=, *=, /=, and %=).
+To interpret the execution of these operators you need to see them as the Java 
+ compiler sees them. Below, assume var represents the variable being 
+ assigned to by one of the arithmetic compound-assignment operators. Let op= 
+ denote the compound-assignment operator being used and exp be the expression 
+ on the right side of the arithmetic compound-assignment operator. Finally, let 
+ T denote the type of the varable var.
+Using the notation we just defined, an arithmetic compund-assignment statement 
+ has this general form:
+ var op= exp; 
+where op is one of +, -, *, 
+ /, or % and var is of type T.
+ 
+ Java interprets such statements as if they had been written:
+ 
+var = (T)(var op (exp));
+Referring back to our example code, the Java compiler treats the following 
+ statement:
+ 
+b += b - (i = 0xffffffc9);
+as if it had been written:
+ 
+b = (byte)(b + (b - (i = 0xffffffc9)));
+ 
+Question 9: Object Construction I
+Determine the result of attempting to compile and run the following code:
+1 class A { 
+2 public A() { 
+3 System.out.println("AAA"); 
+4 } // A() 
+5 
+6 { 
+7 System.out.println("456"); 
+8 } 
+9 } // A 
+10 
+11 
+12 public class B extends A { 
+13 B() { 
+14 this(12); 
+15 System.out.println("BBB"); 
+16 } // B() 
+17 
+18 B(int x) { 
+19 System.out.println("CCC"); 
+20 } // B() 
+21 
+22 { 
+23 System.out.println("123"); 
+24 } 
+25 
+26 public static void main(String[] args) { 
+27 new B(); 
+28 } // main() 
+29 } // B 
+Answer 9: Object Construction I
+The output is:
+ 
+456
+AAA
+123
+CCC
+BBB
+The first statement to be executed in any Java constructor will always 
+ be one of the following: 
+ 
+	 
+- A call to another constructor in the same class using the "this();" 
+ notation. For example, this(parm1, parm2, parm3);
+	 
+- A call to a constructor in the super class using the "super();" 
+ notation. For example, super(parm1, parm2, parm3);
+	 
+- If neither of the above two cases applies the compiler inserts an implicit 
+ call to the superclass no-arg constructor as the first statement: super();
+ 
+From the above three cases it should be clear that if some class B extends 
+another class, A, calling B's constructor will result in one 
+of A's constructors being executed in its entirety before the 
+second statement is B is ever executed.
+Once a class' base class constructor has completed executing, any instance initializers 
+defined by the class are executed, in the order in which they are defined. After 
+all instance initializers have executed the constructor body finally executes.
+Using the example code above, the following events occur: 
+ 
+	 
+- On line 27, B's no-arg constructor is invoked from main().
+	
+- The B() constructor makes a call to another constructor (B(int)) 
+ on line 14 using the "this()" notation: this(12);.
+	 
+	
+- The B(int) constructor does not call another constructor in 
+ the same class nor does it explicitly call a constructor in the base 
+ class. Therefore, the compiler inserts an implicit call to A's 
+ no-arg constructor as the first statement in the constructor defined on line 18.
+	 
+	
+- The A() constructor does not call another constructor in the 
+ same class nor does it explicitly call a constructor in the base 
+ class (java.lang.Object). Therefore, the compiler inserts 
+ an implicit call to java.lang.Object's no-arg constructor as the first 
+ statement in the constructor defined on line 2.
+	
+- After java.lang.Object's no-arg constructor returns, all instance 
+ initializers in A are then executed in the order in which they appear. Since A has only one instance initializer (line 6), this results in the string 
+ "456" being printed.
+	
+- After A's instance initializer completes, the body of A's constructor defined on line 2 executes, printing the string, "AAA".
+	
+- Once A's constructor completes, control is returned to the B(int) 
+ constructor. But before the body of that constructor executes B's 
+ instance initializers must be run. Since B has only one instance initializer on line 22, this results in the string 
+ "123" being printed.
+	
+- After B's instance initializer completes, the B(int) 
+ constructor body resumes on line 19, printing the string, "CCC".
+	
+- Finally, control returns back to line 15 of B's no-arg constructor which 
+ prints, "BBB".
+	
+ 
+Question 10: Object Construction II
+Determine the result of attempting to compile and run the following code:
+ 
+ 
+ 
+1 class A { 
+2 public int Avar; 
+3 public A() { 
+4 System.out.println("AAA"); 
+5 doSomething(); 
+6 } // A() 
+7 
+8 public void doSomething() { 
+9 Avar = 1111; 
+10 System.out.println("A.doSomething()"); 
+11 } // doSomething() 
+12 } // A 
+13 
+14 
+15 public class B extends A { 
+16 public int Bvar = 2222; 
+17 public B() { 
+18 System.out.println("BBB"); 
+19 doSomething(); 
+20 System.out.println("Avar=" + Avar); 
+21 } // B() 
+22 
+23 public void doSomething() { 
+24 System.out.println("Bvar=" + Bvar); 
+25 } // doSomething() 
+26 
+27 public static void main(String[] args) { 
+28 new B(); 
+29 } // main() 
+30 } // B 
+Answer 10: Object Construction II
+The output is:
+ 
+AAA
+Bvar=0
+BBB
+Bvar=2222
+Avar=0
+The key to understanding this example is to observe that when the doSomething() 
+ method is invoked from within A's constructor, it is actually B's 
+ version of doSomething() that is being invoked. But since B's 
+ instance initializers have not yet executed the variable Bvar still 
+ has its default value of zero (which accounts for the Bvar=0 output).
+ 
+ It is only after control returns from A's constructor 
+ that B's instance initializers are allowed to execute, thereby 
+ initializingBvar to 2,222. By the time the B() constructor 
+ calls doSomething() the instance initializer has already initialized 
+ Bvar to 2,222 (which accounts for the Bvar=2222 output).
+The lesson to be learned from this example is that you must be very careful when calling non-private or non-final methods from within a constructor because a subclass could override the methods you think you're calling.
+Because class A called the doSomething() method from its constructor, class B was able to override doSomething(), thereby preventing Avar from being properly initialized to 1,111.
+Question 11: Static Members and Null References
+Determine the result of attempting to compile and run the following code:
+ 
+ 
+1 class A { 
+2 static A createA() { 
+3 return new A(); 
+4 } // createA() 
+5 } // A 
+6 
+7 
+8 public class Tester { 
+9 public static void main(String[] parms) { 
+10 A aVar = null; 
+11 System.out.println(aVar.createA().hashCode()); 
+12 } // main() 
+13 } // Tester 
+Answer 11: Static Members and Null References
+The code compiles and runs without any problems. A sample run of this code produces:
+ 
+2765838
+The fact that the variable, aVar, is null does not 
+ cause a problem. When accessing a class' static members, Java only considers 
+ the type of the referencing identifier, not its value. In our example 
+ the referencing identifier is aVar and its type is A. 
+ The fact that aVar's value is null is irrelevant.
+ 
+ Incidentally, your output from this program will probably be different. The 
+ lesson to take away from this example is that a NullPointerException 
+ will not be thrown due to aVar being null.
+Question 12: When Static Initializers Detour
+Determine the result of attempting to compile and run the following code (assume 
+class A is the class to be executed):
+ 
+ 
+1 public class A { 
+2 static String a = "aaa"; 
+3 static String b = new B().sayHi_B(); 
+4 static { 
+5 System.out.println("A.static: A's vars are: {" + A.a + ',' + A.b + '}'); 
+6 } 
+7 void sayHi_A() { 
+8 System.out.println("A.sayHi(): A's vars are: {" + A.a + ',' + A.b + '}'); 
+9 } // sayHi_A() 
+10 public static void main(String[] parms) {} 
+11 } // A 
+12 
+13 
+14 class B { 
+15 static { 
+16 System.out.println("B.static #1: A's vars are: {" + A.a + ',' + A.b + '}'); 
+17 new A().sayHi_A(); 
+18 System.out.println("B.static #2: A's vars are: {" + A.a + ',' + A.b + '}'); 
+19 } 
+20 String sayHi_B() { 
+21 return "Hi"; 
+22 } // sayHi_B() 
+23 } // B 
+Answer 12: When Static Initializers Detour
+The output is:
+ 
+B.static #1: A's vars are: {AAA,null}
+A.sayHi(): A's vars are: {AAA,null}
+B.static #2: A's vars are: {AAA,null}
+A.static: A's vars are: {AAA,Hi}
+What's happening here is actually pretty straight forward. A's 
+ static initializers begin executing at line 2. At line 3 a new instance of B 
+ is created. Before this instance can be created, however, B's static 
+ initializers need to run. The first line of output is produced by B's 
+ static initializer at line 16. So far, nothing here should be too surprising.
+At line 17 a new instance of A is being created. But how can A 
+ be instantiated when A's static initializers have not completed? 
+ Remember, the reason line 17 is being executed in the first place is because 
+ A's static initializer (line 3) is trying to create an instance 
+ B. It turns out that Java will allow an instance of A 
+ to be created, even though its static initializers have not completed. Any static 
+ variables in A that have not been initialized when the instance 
+ of A is created will simply have their default value (0, null, 
+ 0.0, false, etc., depending onthe type of the variable). We can see this from the second line of output 
+ produced by line 8: The variable, A.b is still null. 
+ After sayHi_A() has completed execution we return to line 18 which 
+ is responsible for the third line of output. At this point, B's 
+ static initializers have completed and a new instance of B can 
+ be created created (remember, line 3 is still executing) and the sayHi_B() 
+ method can run. Finally, the last static initializer in A (at line 
+ 4) begins executing, producing the fourth line of output.
+To summarize, a static initializer in A forced B's 
+ static initializers to be executed. During B's static initializer 
+ execution, however, an instance of A was created. Java allowed 
+ this instance of A to be created even though A's static 
+ initializer had not completed. After B's static initializers completed, 
+ A's static initializers were resumed (even though an instance of 
+ A had already been created by B's static initializer).
+Question 13: Precedence Check I
+Determine the result of attempting to compile and run the following code and explain 
+which, if any, of the casts on lines 6 through 9 are needed to avoid a compiler 
+error:
+ 
+ 
+ 
+1 public class Tester { 
+2 public static void main(String[] parms) { 
+3 long l; 
+4 int i1, i2, i3; 
+5 
+6 l = (long)0x3A895E2647L >>> 4; 
+7 i1 = (int)(0x3A895E2647L) >>> 4; 
+8 i2 = (int)(0x3A895E2647L >>> 4); 
+9 i3 = (int)0x3A895E2647L >>> 4; 
+10 
+11 System.out.println(Long.toHexString(l)); 
+12 System.out.println(Integer.toHexString(i1)); 
+13 System.out.println(Integer.toHexString(i2)); 
+14 System.out.println(Integer.toHexString(i3)); 
+15 } // main() 
+16 } // Tester 
+Answer 13: Precedence Check I
+The output is:
+ 
+3a895e264
+895e264
+a895e264
+895e264
+The answer to this question boils down to remembering Java's precedence of 
+ operations and knowing a little about the shift operators. The first point to 
+ realize is that the resulting type of a shift operation will always be the type 
+ of the left operand (JLS 
+ 2, §15.19), 
+ after applying unary numeric promotion 
+ to each operand. Since we are shifting a long in each of lines 
+ 6 through 9, the result of the shift operation will be a long. 
+ Consequently, only line 6 does not require a cast (since the resulting 
+ long is being assigned to a long).
+The output produced by line 11 should require no explanation -- it is the result 
+ of a simple shift operation with no type conversions or data truncation. To 
+ understand the output from lines 12 through 14 you need to realize that the 
+ cast operation has a higher precedence than the shift operator. Lines 7 and 
+ 9, therefore, cast the value to be shifted (0x3A895E2647L) to an 
+ int before performing the shift operation. Line 8, however, 
+ performs the shift operation first and then casts the resulting long 
+ value back to an int, which is reflected in the output produced 
+ by line 13.
+Question 14: Getting the "Superinterface" of an Interface
+Determine the result of attempting to compile and run the following code:
+ 
+ 
+1 public class Tester { 
+2 public static void main(String[] args) { 
+3 Class superclass = Z.class.getSuperclass(); 
+4 if(superclass == null) 
+5 System.out.println("superclass is null"); 
+6 else 
+7 System.out.println("superclass is " + superclass.getName()); 
+8 
+9 Class[] interfaces = Z.class.getInterfaces(); 
+10 for(int i = 0; i 

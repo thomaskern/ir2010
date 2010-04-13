@@ -1,0 +1,1152 @@
+
+Absolute Java - "Marshallization"
+Read Me First
+The process of transforming an object into a byte stream 
+ representation is generally known as marshalling. Transforming a byte 
+ stream representation of an object to an object manifestation is known as unmarshalling. 
+ Most Java literature loosely uses the terms serialization and deserialization 
+ to refer to marshalling and unmarshalling, respectively.
+In discussing Java's marshalling and unmarshalling mechanisms we have to be very careful about terminology. As you probably know, Java defines two interfaces, java.io.Serializable and java.io.Externalizable, to indicate that objects of a particular class can be marshalled and unmarshalled. Unfortunately, many Java articles and books refer to classes that implement either interface as being generically, Serializable. The same literature also uses the term Serialization to generically refer to Java's collective marshalling capabilities.
+Throughout this series of articles I will strive to be 
+ very specific in my terminology. When I use the term marshallization, 
+ I am referring to Java's general capability of transforming an object to a byte 
+ stream representation from which an object can be reconstituted at a later time. 
+ If I say a class is marshallizable (sorry for the ugly term), I mean 
+ that objects of that class use some specific form of marshallization 
+ to save their state to a byte stream from which they can later be reconstituted. 
+ Generally speaking, Java has three types of marshallization: 
+ 
+- Default Serialization
+ 
+- Custom Serialization
+ 
+- Externalization
+See the article, Marshallization - Default 
+ Serialization, Custom Serialization, and Externalization for a general 
+ overview of these types. In addition to the terms marshallization and 
+ marshallizable, I'll use the above three forms of marshallization 
+ in referring to a clas as being default serializable, custom serializable, 
+ or externalizable.
+Marshallization seems to be one of the worst documented features in the JDK and in Java books. If you've looked at the source code for ObjectInputStream you might understand why. While most programmers are aware of the java.io.Serializable and java.io.Externalizable interfaces and the readObject() and writeObject() methods, there are many other features, capabilities and complexities related to marshallization that are scarcely documented, leaving most developers unaware of the full potential of Java's marshallization or its underlying workings.
+This series of articles barely scratches the surface of marshallization. As I learn more about marshallization I will post my findings here. As always, if you notice anything that seems incorrect or if you have additional marshallization knowledge that would be a helpful contribution to these pages, please contact me at absolutejava@absolutejava.com.
+Relevant Marshallization Class Diagrams
+ 
+ 
+ 
+Marshallization - Default Serialization, Custom Serialization, 
+ and Externalization
+There are three general forms of marshallization that 
+a class may use: 
+ 
+ 
+ 
+- Default Serialization is the simplest of the 
+ three forms. It relies entirely on the java.io.ObjectOutputStream 
+ and java.io.ObjectInputStream classes to perform marshalling 
+ and unmarshalling, respectively. Default serialization will preserve 
+ the state of all fields in the object graph except for fields marked transient 
+ or static or fields contained in superclasses that are not 
+ marshallizable (i.e., superclasses that implement neither java.io.Serializable 
+ nor java.io.Externalizable). Visibility modifiers (e.g., private, 
+ protected, etc.) on fields do not affect default serialization.
+ 
+ Classes that use default serialization implement the java.io.Serializable 
+ interface, not java.io.Externalizable. Furthermore, 
+ these classes do not provide implementations of the readObject(), 
+ writeObject(), readResolve(), or writeReplace() 
+ methods; or, if they do provide implementations of one or 
+ more of these methods, the implementations do not affect the 
+ marshalled or unmarshalled results from what they would be if the methods 
+ were not implemented. See the Default 
+ Serialization Basics article below.
+ 
+ 
+ 
+- Custom Serialization allows the programmer 
+ to take more responsibility for the marshallization and unmarshallization 
+ of objects. Like default serialization, classes that are custom 
+ serializable also implement the java.io.Serializable interface, 
+ not java.io.Externalizable. Unlike default 
+ serialization, classes that are custom serializable implement 
+ one or more of the methods readObject(), writeObject(), 
+ readResolve(), or writeReplace() in such a way 
+ that the implementation(s) affect the marshalled or unmarshalled results 
+ from what they would be if the methods were not implemented. See the Custom 
+ Serialization Basics article below.
+ 
+ 
+ 
+- Externalization, like custom serialization, 
+ allows the programmer to take more responsibility for the marshallization 
+ and unmarshallization of objects. Classes that are externalizable 
+ implement the java.io.Externalizable interface. If a class 
+ implements both java.io.Serializable and java.io.Externalizable, 
+ the class is treated as externalizable. See the Externalization 
+ Basics article below. 
+ 
+ 
+Default Serialization Basics
+ Any class whose objects are to be marshalled and unmarshalled using default serialization must meet the following three requirements.
+ 
+- The class must implement the java.io.Serializable
+ marker interface (not java.io.Externalizable) although one or more superclasses may not implement this
+ interface.
+ 
+ 
+ 
+- Every class in Java has a "type hierarchy" rooted at java.lang.Object.
+ Beginning with java.lang.Object and working down the type hierarchy,
+ the last class encountered that does not implement
+ java.io.Serializable must have a no-arg constructor
+ which can be called from its serializable subclass in order for deserialization
+ to work. What do we mean by, "can be called from its serializable
+ subclass"? It simply means that the visibility modifier of this no-arg
+ constructor must be such that the constructor can be called from the class' serializable
+ subclass. Note that this does not necessarily mean that the constructor must
+ have public or protected visibility. It can have the more restrictive "package-private"
+ visibility if the serializable subclass is in the same package as the non-serializable
+ superclass.
+	 
+	 The UML diagram below and the accompanying code illustrate this concept.
+	
+	
+ 
+- Every member field of the class being marshalled must meet one of the following criteria:
+	 
+	 
+	
+	
+- It is a primitive type.
+	
+- It is a reference whose value is null.
+	
+- It is a reference declared as static or transient.
+	
+- It is a reference to an object which is marshallizable.
+	
+- It is a reference to an array for which each element is marshallizable.
+	 
+ 
+ In the UML diagram to the left, we see that class B is the last class encountered
+ that does not implement java.io.Serializable.
+ Class B, therefore, must have a no-arg constructor with a visibility such that it could be called from class C. Note that every serializable class will have at
+ least one nonserializable superclass&#151;java.lang.Object.
+ java.lang.Object's no-arg constructor is public, so it will always be accessible from a subclass.
+ 
+Default serialization will marshall only those objects which are marshallizable (i.e., default serializable, custom serializable, or externalizable). If a non-marshallizable
+ superclass has state that must be preserved (and it often will), you will need to use custom serialization or externalization since default serialization ignores non-marshallizable superclasses.
+ 
+ Using this diagram as an example, if we have an object
+ of class D, only the state of classes C
+ and D will be preserved by default serialization since
+ these are the only classes which implement java.io.Serializable.
+ No superclasses of class C
+ will be marshalled by the default serialization mechanism. When the object is later deserialized,
+ any fields defined in classes B, A, or java.lang.Object
+ will have their default values. Actually, java.lang.Object does not have any fields anyway.
+Let's look at an example where default serialization will not properly preserve
+ the state of a non-marshallizable superclass. The code below closely reflects
+ the class hierarchy shown in the UML diagram above except that
+ classes A and D have been removed for the sake of brevity:
+ 
+ 
+ 
+ 
+ 
+ 1 
+	 import java.io.*; 
+	
+ 
+ 2 
+	 
+	
+ 
+ 3 
+	 public class Tester { 
+	
+ 
+ 4 
+	 public static void main(String[] args) throws Exception { 
+	
+ 
+ 5 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+ 
+ 6 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+ 
+ 7 
+	 
+	
+ 
+ 8 
+	 // Create a new C and modify both the CLabel and BLabel. 
+	
+ 
+ 9 
+	 C cObj = new C(); 
+	
+ 
+ 10 
+	 cObj.setCLabel("NEW C LABEL"); 
+	
+ 
+ 11 
+	 cObj.setBLabel("NEW B LABEL"); 
+	
+ 
+ 12 
+	 System.out.println("cObj.toString(): " + cObj); 
+	
+ 
+ 13 
+	 
+	
+ 
+ 14 
+	 // Serialize the C object...but the superclass (B) 
+	
+ 
+ 15 
+	 // will not have its state serialized. 
+	
+ 
+ 16 
+	 oos.writeObject(cObj); 
+	
+ 
+ 17 
+	 System.out.println("--------------------"); 
+	
+ 
+ 18 
+	 
+	
+ 
+ 19 
+	 // Deserialze the cObj. 
+	
+ 
+ 20 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+ 
+ 21 
+	 ObjectInputStream ois = new ObjectInputStream(bais); 
+	
+ 
+ 22 
+	 cObj = (C)ois.readObject(); 
+	
+ 
+ 23 
+	 
+	
+ 
+ 24 
+	 // Print the deserialized C object. You'll see that the superclass 
+	
+ 
+ 25 
+	 // B object did not have its state preserved. 
+	
+ 
+ 26 
+	 System.out.println("cObj.toString(): " + cObj); 
+	
+ 
+ 27 
+	 } // main() 
+	
+ 
+ 28 
+	 } // Tester 
+	
+ 
+ 29 
+	 
+	
+ 
+ 30 
+	 
+	
+ 
+ 31 
+	 class B { 
+	
+ 
+ 32 
+	 private String BLabel = "Default B Label"; 
+	
+ 
+ 33 
+	 
+	
+ 
+ 34 
+	 void setBLabel(String s) { 
+	
+ 
+ 35 
+	 BLabel = s; 
+	
+ 
+ 36 
+	 } // setBLabel() 
+	
+ 
+ 37 
+	 
+	
+ 
+ 38 
+	 public String toString() { 
+	
+ 
+ 39 
+	 return "BLabel = " + BLabel; 
+	
+ 
+ 40 
+	 } // toString() 
+	
+ 
+ 41 
+	 
+	
+ 
+ 42 
+	 B() { 
+	
+ 
+ 43 
+	 System.out.println("B's no-arg constructor called..."); 
+	
+ 
+ 44 
+	 } // B() 
+	
+ 
+ 45 
+	 } // B 
+	
+ 
+ 46 
+	 
+	
+ 
+ 47 
+	 
+	
+ 
+ 48 
+	 class C extends B implements Serializable { 
+	
+ 
+ 49 
+	 private String CLabel = "Default C Label"; 
+	
+ 
+ 50 
+	 
+	
+ 
+ 51 
+	 void setCLabel(String s) { 
+	
+ 
+ 52 
+	 CLabel = s; 
+	
+ 
+ 53 
+	 } // setCLabel() 
+	
+ 
+ 54 
+	 
+	
+ 
+ 55 
+	 public String toString() { 
+	
+ 
+ 56 
+	 return "CLabel = " + CLabel + "...here's B's toString(): " + super.toString(); 
+	
+ 
+ 57 
+	 } // toString() 
+	
+ 
+ 58 
+	 
+	
+ 
+ 59 
+	 C() { 
+	
+ 
+ 60 
+	 System.out.println("C's no-arg constructor called..."); 
+	
+ 
+ 61 
+	 } // C() 
+	
+ 
+ 62 
+	 } // C 
+	
+ 
+	
+Running this code will produce the following output:
+	
+ 
+B's no-arg constructor called...
+C's no-arg constructor called...
+cObj.toString(): CLabel = NEW C LABEL...here's B's toString(): BLabel = NEW B LABEL
+--------------------
+B's no-arg constructor called...
+cObj.toString(): CLabel = NEW C LABEL...here's B's toString(): BLabel = Default B Label
+	
+This code creates an object of class C, which is serializable. Note that C extends B, which is not serializable. The output which appears before the dashed line should not be surprising. The main() method simply modifies the CLabel and BLabel fields in the object.
+The output below the dashed line is more interesting: It first shows that C's constructor was not called but B's constructor was. Since deserialization is considered an alternative form of object construction, classes which implement java.io.Serializable will never have their constructors called when an object is being deserialized. This is why C's constructor was not called. The deserialization process itself is considered object construction.
+A serializable class may have one or more superclasses which do not implement java.io.Serializable. When an object is deserialized, constructors for these non-serializable superclasses will be called. This actually makes perfect sense: The default serialization mechanism will not preserve the state of superclasses that are not serializable (such as class B in the example code). Consequently, when deserializing an object, there must be some mechanism for initializing the non-serializable superclass objects. This is why B's constructor was called and it is why B had to provide a no-arg constructor accessible from C.
+The second thing to notice from the output below the dashed line is that B's state was not preserved by serialization. Even though code in the main() method modified the BLabel field, that modification was not preserved when cObj was serialized. Again, this is because B is not serializable. Superclasses that are not marshallizable will not have their internal state saved by the default serialization mechanism.
+ 
+Custom Serialization Basics
+Any class whose objects are to be marshalled and unmarshalled using custom serialization must meet the following four requirements:
+ 
+	 
+- The class must implement the java.io.Serializable
+ marker interface (not java.io.Externalizable) although one or more superclasses may not implement this
+ interface.
+ 
+ 
+	 
+- Every class in Java has a "type hierarchy" rooted at java.lang.Object.
+ Beginning with java.lang.Object and working down the type hierarchy,
+ the last class encountered that does not implement
+ java.io.Serializable must have a no-arg constructor
+ which can be called from its serializable subclass in order for deserialization
+ to work. What do we mean by, "can be called from its serializable
+ subclass"? It simply means that the visibility modifier of this no-arg
+ constructor must be such that the constructor can be called from the class' serializable
+ subclass. Note that this does not necessarily mean that the constructor must
+ have public or protected visibility. It can have the more restrictive "package-private"
+ visibility if the serializable subclass is in the same package as the non-serializable
+ superclass.
+	 
+	 
+	 
+- The class must implement one or more of the methods readObject(), writeObject(), readResolve(), or writeReplace() in such a way that the implementation(s) affect the marshalled or unmarshalled results from what they would be if the methods were not implemented. If the class does not meet this requirement but meets the previous two requirements, then the class is effectively using default serialization.
+	
+	 
+	 
+- If the class calls defaultReadObject() within the readObject() method or, if the class calls defaultWriteObject() within the writeObject() method, then every member field of the class being marshalled must meet one of the following criteria:
+	 
+	 
+	
+	 
+- It is a primitive type.
+	 
+- It is a reference whose value is null.
+	 
+- It is a reference declared as static or transient.
+	 
+- It is a reference to an object which is marshallizable.
+	 
+- It is a reference to an array for which each element is marshallizable.
+	
+	 
+ 
+You may notice that the requirements for custom serializable classes are very similar to the requirements for classes that are default serializable.
+Custom serialization allows the programmer to garner a greater degree of control over the
+ marshallization process than default serialization. Generally, custom serialization is used either in addition to or as a replacement for default serialization:
+ 
+	 
+- Custom Serialization in Addition to Default Serialization: In this scenario, the readObject() and writeObject() methods delegate to default serialization by invoking defaultReadObject() and defaultWriteObject(), respectively. readObject() and writeObject() then proceed to read and write any "additional information" as required to marshall the object's state. This "additional information" might include information from a non-marshallizable superclass or static or transient fields within the current class.
+	
+	Note that it is common to mark a field as transient simply to prevent default serialization from processing the field. Also note that it may sometimes be difficult or impossible to marshall state from non-marshallizable superclasses: If the non-marshallizable superclass
+ has, for example, private data for which there are no accessor
+ or setter methods, the subclass will not be able to preserve and restore its
+ state except by using reflection, which will
+ require the proper security settings.
+	
+	
+	 
+- Custom Serialization as a Replacement for Default Serialization: In this scenario, the readObject() and writeObject() methods do not delegate to default serialization by invoking defaultReadObject() and defaultWriteObject(), respectively. In this case, the implementations of readObject() and writeObject() determine explicitly which fields are to be marshalled..
+ 
+When using custom serialization, you have to remember that the readObject() method will not be able to modify fields declared as final. Remember that final fields must be initialized
+ in a constructor or initializer. You may wish to review the article on Blank
+ Final Variable Initialization in the Java Tidbits article. Default serialization, on the other hand,
+ will correctly handle the mashallization and unmarshallization of final
+ fields.
+If you're faced with a situation where it's important to use custom serialization yet the class to be marshalled contains one or more final fields you have no choice but to delegate marshallization to default serialization in order for the final fields to be marshalled and unmarshalled correctly. In other words, you'll have to use custom serialization in addition to default serialization, as described above. Of course, delegating to default serialization will cause all fields not marked as transient or static to be marshalled&#151;not just the final fields. You may decide to mark one or more of the non-final fields as transient to prevent default serialization from processing these fields.
+ 
+ 
+Externalization Basics
+Any class whose objects are to be marshalled and unmarshalled using externalization must meet the following two requirements.
+ 
+ 	 
+- The class must implement the java.io.Externalizable
+ interface (not java.io.Serializable) although one or more superclasses may not implement this
+ interface.
+ 
+	 
+	 
+- The class must provide a public, no-arg constructor.
+ 
+ 
+Marshallization Summary/Checklist
+When making a class marshallizable, there are some issues you should remember and
+some questions you should ask yourself:
+ 
+ 
+- Default serialization will ignore fields marked static or
+ transient. If you need a static field to be marshalled/unmarshalled,
+ you will have to use either custom serialization or externalization.
+ 
+ 
+ 
+- When an object is unmarshalled using default or custom serialization, constructors will never
+ be called for those classes in the object's type hierarchy that implement
+ java.io.Serializable (whether implemented directly or through
+ inheritance). On the other hand, any classes in the object's type hierarchy
+ that do not implement java.io.Serializable will
+ have a constructor called during unmarshallization. Beginning with the class
+ of the object being unmarshalled working up
+ the type hierarchy toward java.lang.Object, the first class encountered that does not implement java.io.Serializable
+ will have it's no-arg constructor called during unmarshallization. This class
+ must have a no-arg constructor whose visibility is such that
+ it can be called from the serializable subclass or deserialization will
+ not be successful.
+ 
+ Note that every object has at least one non-serializable class in its type
+ hierarchy: java.lang.Object.
+ 
+ 
+ 
+- For some fields marshallization does not make sense. For other fields, default
+ serialization will not make sense and you will want to make the class either externalizable or custom serializable. One question you should ask yourself when considering whether
+ or not a field should be marshalled is, "Will this field's value
+ make sense if it is unmarshalled in another JVM or on another platform?"
+ 
+ Another question you should ask is, "Is the amount of space required
+ to marshall this field using default serialization prohibitive?"
+ Sometimes you will encounter a trade-off between the amount of space required
+ to marshall an object and the computational time and complexity required
+ to re-build an object if its state has to be re-computed during unmarshallization.
+ 
+ Typical examples of the sort of fields that should not be
+ marshalled are:
+ 
+ 
+- Objects related to I/O such as Readers, Writers,
+ FileDescriptors and Sockets.
+ 
+- Objects that maintain the absolute position of GUI components. Typically
+ these positions are dependent upon the default font used on the current
+ operating system.
+ 
+- Objects whose values can be "easily" re-computed.
+ 
+- Values returned by or dependent upon the default java.lang.Obect.hashCode()
+ method. The hashCode() implementation provided by java.lang.Object
+ is a native method that returns an integer whose value is dependent
+ upon the underlying JVM process.
+ 
+ 
+ 
+ 
+Turning Off Serialization and Externalization
+You may someday find that you need to extend a class which is marshallable but
+you don't want your subsclass to be marshallable. There's an easy
+way to stop your subclass from being marshallable if it extends a marshallable
+class: simply throw a java.io.NotSerializableException from the readObject()
+and writeObject() methods (if the class is serializable) or the readExternal() and writeExternal() methods (if the class is externalizable). Here's the simple code:
+ 
+1 private void readObject(ObjectInputStream ois) throws IOException { 
+2 throw new NotSerializableException("serialization is not supported."); 
+3 } // readObject() 
+4 
+5 private void writeObject(ObjectOutputStream ois) throws IOException { 
+6 throw new NotSerializableException("serialization is not supported."); 
+7 } // writeObject() 
+Validating Deserialized Object
+Someone at Sun apparently thought it would be useful to build a validation mechanism (so-called) into the marshallization API. This mechanism provides a way for the programmer to specify a method to be called after all objects in an ObjectInputStream have been unmarshalled to ensure the resulting object is "valid" and/or "fully initialized".
+ 
+The idea is that a "callback object" (which implements the java.io.ObjectInputValidation interface) is registered with the ObjectInputStream&#151;but this registration can only take place if the ObjectInputStream is actively reading from the stream. Once all objects in the ObjectInputStream have been unmarshalled, the registered callback object is invoked to validate the entire graph of objects. If the callback object finds a problem in the unmarshalled objects it can throw a java.io.InvalidObjectException. The callback registration and invocation is easy to set up. You can read about it in the javadocs for the registerValidation() method in ObjectInputStream and the ObjectInputValidation interface.
+The validation mechanism seems to have been invented to handle these two situations:
+ 
+	 
+- Some objects cannot be fully initialized until the graph of which they are a part has been completely unmarshalled. The validation mechanism allows such objects to register an ObjectInputValidation object to be invoked after the object graph of which they are a part has been completely unmarshalled, allowing the object to complete its initialization.
+	
+	 
+	 
+- Some objects cannot validate their internal state until the graph of which they are a part has been completely unmarshalled. The validation mechanism allows such objects to register an ObjectInputValidation object to be invoked after the object graph of which they are a part has been completely unmarshalled, allowing the object to validate its state. If there is a problem with the internal state of the object, an exception (java.io.InvalidObjectException) should be thrown.
+ 
+On the surface, the motivation for creating this sort of validation mechanism sounds reasonable. In practice, however, I cannot think of a single realistic case where the validation mechanism adds anything useful over what the marshallization API already provides. Objects which need to validate their internal state can always do so at the end of the readObject() method. If you can present an example, even if it's contrived, of where the validation mechanism is required to perform validation or complete object initialization, please let me know: absolutejava@absolutejava.com.
+Even though the validation mechanism seems less than useful, let's take a look at how it might be used. In the code below, the Inner object can perform some sort of validation within its validateObject() method. Take note of the output of this program: the validateObject() method is called only after the entire graph is unmarshalled.
+1 import java.io.*; 
+2 
+3 public class Tester { 
+4 public static void main(String[] args) throws Exception { 
+5 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+6 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+7 
+8 oos.writeObject(new Outer()); 
+9 oos.close(); 
+10 
+11 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+12 ObjectInputStream ois = new ObjectInputStream(bais); 
+13 Outer outer = (Outer)ois.readObject(); 
+14 ois.close(); 
+15 } // main() 
+16 } // Tester 
+17 
+18 
+19 class Outer implements Serializable { 
+20 Inner inner = new Inner(); 
+21 
+22 private void readObject(ObjectInputStream ois) throws Exception { 
+23 ois.defaultReadObject(); 
+24 System.out.println("Outer.readObject() is finished."); 
+25 } // readObject() 
+26 } // Outer 
+27 
+28 
+29 class Inner implements Serializable, ObjectInputValidation { 
+30 int someInt = -1; 
+31 
+32 private void readObject(ObjectInputStream ois) throws Exception { 
+33 ois.registerValidation(this, 0); 
+34 ois.defaultReadObject(); 
+35 System.out.println("Inner.readObject() is finished, validator has been registered."); 
+36 } // readObject() 
+37 
+38 public void validateObject() throws InvalidObjectException { 
+39 // This is where we could do some sort of additional 
+40 // initialization or validation. 
+41 System.out.println("All objects have now been deserialized."); 
+42 } // validateObject() 
+43 } // Inner 
+The output from running this code is:
+Inner.readObject() is finished, validator has been registered.
+Outer.readObject() is finished.
+All objects have now been deserialized.
+Notice that the validateObject() method is not invoked until after the Outer object has been unmarshalled.
+ 
+Objects are "Stream Immutable", by Default
+This article only applies to classes that are default serializable or custom serialable. It may or may not apply to classes that are externalizable. At this point in time it needs to be reviewed for applicability to externalizable classes.
+Once an an object has been serialized to a stream, any changes in the object's state will not, by default, be propagated to the stream if the object is re-serialized to the same stream. In other words, if an object is serialized to a stream and then the object's state changes, re-serializing the object to the stream a second time will not cause the new state to be saved&#151;the object will simply appear to be serialized twice, with the state it had the first time it was serialized.
+Before reading further, it's important to distinguish between the forms a serialized object can take within a serialized byte stream. ObjectOutputStream keeps track of each object it is asked to serialize. The first time it is asked to serialize an object it writes the bytes that make up the object's internal state, including any data provided by custom serialization, to the underlying byte stream. You can think of this form of serialization as a "byte-level" serialization since the actual bytes that make up the object's state are what are written to the underlying stream. In performing this "byte-level" serialization, ObjectOutputStream places a reference to the object in a "reference cache". This "reference cache" is simply a set of references to objects for which ObjectOutputStream has performed a "byte-level" serialization. We'll talk more about the "reference-cache" later.
+When ObjectOutputStream is later asked to serialize the same object again, instead of performing the "byte-level" form of serilaization described above, it will simply write a "back-reference" to the underlying stream. Conceptually, this "back-reference" is simply a reference to the "byte-level" data that was written to the stream the first time the object was serialized. How does ObjectOutputStream know if has previously performed a "byte-level" serialization for an object? It simply checks if a reference to the object is in its "reference cache".
+As you can imagine, it's time to look at some code. Ignore for the moment the commented code that begins on line 26.
+1 import java.io.*; 
+2 import java.util.*; 
+3 
+4 public class Tester implements Serializable { 
+5 // Some simple state information. 
+6 ArrayList list = new ArrayList(); 
+7 int someInt; 
+8 char someChar; 
+9 
+10 public static void main(String[] args) throws Exception { 
+11 Tester t = new Tester(); 
+12 t.list.add("Dog"); t.list.add("Rabbit"); t.list.add("Dragon"); 
+13 t.someInt = 10; 
+14 t.someChar = 'A'; 
+15 
+16 // Serialize the object. 
+17 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+18 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+19 oos.writeObject(t); 
+20 
+21 // Now let's change the state of t and write it out again. 
+22 t.list.add("Rat"); t.list.add("Horse"); 
+23 t.someInt = 999; 
+24 t.someChar = 'Z'; 
+25 
+26 // Uncomment the next line to tell ObjectOutputStream to 
+27 // "disregard" all the references to objects it has already 
+28 // serialized. This will cause ObjectOutputStream to start 
+29 // tracking references anew. 
+30 // oos.reset(); 
+31 
+32 oos.writeObject(t); 
+33 oos.close(); 
+34 
+35 // Now we read in the two Tester objects. 
+36 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+37 ObjectInputStream ois = new ObjectInputStream(bais); 
+38 Tester t1 = (Tester)ois.readObject(); 
+39 Tester t2 = (Tester)ois.readObject(); 
+40 ois.close(); 
+41 
+42 // Print the two Tester objects. 
+43 System.out.println("t1.equals(t2)? " + t1.equals(t2)); 
+44 System.out.println("t1 == t2? " + (t1 == t2)); 
+45 } // main() 
+46 
+47 
+48 public boolean equals(Object other) { 
+49 if(other instanceof Tester) { 
+50 Tester otherTester = (Tester)other; 
+51 if(otherTester.someInt == someInt && 
+52 otherTester.someChar == someChar && 
+53 list != null && 
+54 list.equals(otherTester.list)) 
+55 return true; 
+56 } 
+57 
+58 return false; 
+59 } // equals() 
+60 } // Tester 
+When you run this code you will see the following output:
+ t1.equals(t2)? true
+t1 == t2? true
+Even though the state of object t is modified (line 22) before being serialized a second time, the ObjectOutputStream simply substitutes a back-reference to t as it appeared the first time it was serialized. When the stream is deserialized we end up with the two identical Tester objects. Actually, we end up with a single Tester object, as the == result indicates.
+If you were to uncomment the statement on line 30 and re-run the program you would see the following output:
+t1.equals(t2)? false
+t1 == t2? false
+By calling ObjectOutputStream.reset() we have effectively told ObjectOutputStream to empty its "reference cache". The reset() method effectively tells ObjectOutputStream to behave as if it has not performed any "byte-level" serializations. Now, when the t object is serialized a second time the ObjectOutputStream will not find it in the reference cache (since the reset() method cleared it) and will perform a "byte-level" serialization to the underlying stream rather than a "back-reference" serialization. When we deserialize the two Tester objects, of course, we now see two objects with different states, rather than two objects with the same state as we had seen before.
+Whereras the reset() method does a wholesale reset of the reference cache, the writeUnshared() and readUnshared() methods allow you to fine-tune your control over whether or not ObjectOutputStream should consult its reference cache. See the article, Partners in Crime: writeUnshared() and readUnshared(), for more information.
+Partners in Crime: writeUnshared() and readUnshared()
+ObjectOutputStream keeps track of the objects it writes to the underlying stream so that if it needs to write the same object more than once, it will simply write a "back reference" that refers to the original object. ObjectOutputStream will ignore changes to an object's state when deciding whether it should write a "back reference" to the underlying stream or write the object itself. I would strongly recommend that you read the "Objects are 'Stream Immutable', by Default" article before reading this article.
+For the sake of this discussion you can visualize ObjectOutputStream as maintaining an array of the objects it has already serialzed&#151;more specifically, this array contains the serialized bytes of the objects. As it serializes each object ObjectOutputStream checks if the object is in the array. If it's not, it inserts the byte-stream representation of the object; if it is, it serializes the index of the array element to the underlying stream rather than the actual object's bytes. Again, this notion of an "internal array" is only a conceptual metaphor to aid your understanding.
+The article, "Objects are 'Stream Immutable', by Default", describes how you can completely clear ObjectOutputStream's internal "object array", forcing it to write the actual bytes for objects that have been previously been serialized.
+If you need to serialize an object to the same ObjectOutputStream more than once and the object's state has changed since it was previously serialized and you want those changes reflected in the serialization stream, you could either call ObjectOutputStream's reset() method as described in the "Objects are 'Stream Immutable', by Default" article or you could (in fact you may have to) use ObjectOutputStream's writeUnshared() method along with ObjectInputStream's readUnshared() method.
+Conceptually, ObjectOutputStream's writeUnshared() method tells the ObjectOutputStream two things:
+ 
+	 
+- Do not try to locate the object being written in the object array.
+	 
+- Do not put the object being written into the object array.
+ 
+Effectively, writeUnshared() tells ObjectOutputStream, "Write this object's serialized bytes to the underlying stream, even if you saw this object before, and then forget that this writeUnshared() call was ever made&#151;in other words, don't put this object in your array."
+The code below writes the same object to the ObjectOutputStream three times. The first and third times the writeObject() method is used while writeUnshared() is used the second time. The program's output and an explanation follows the code listing.
+1 import java.io.*; 
+2 import java.util.*; 
+3 
+4 public class Tester implements Serializable { 
+5 // Some simple state information. 
+6 ArrayList list = new ArrayList(); 
+7 int someInt; 
+8 char someChar; 
+9 
+10 public static void main(String[] args) throws Exception { 
+11 Tester t = new Tester(); 
+12 t.list.add("Dog"); t.list.add("Rabbit"); t.list.add("Dragon"); 
+13 t.someInt = 10; 
+14 t.someChar = 'A'; 
+15 
+16 // Serialize the object. 
+17 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+18 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+19 oos.writeObject(t); 
+20 oos.writeUnshared(t); 
+21 oos.writeObject(t); 
+22 oos.close(); 
+23 
+24 // Now we read in the three Tester objects. 
+25 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+26 ObjectInputStream ois = new ObjectInputStream(bais); 
+27 Tester t1 = (Tester)ois.readObject(); 
+28 Tester t2 = (Tester)ois.readObject(); 
+29 Tester t3 = (Tester)ois.readObject(); 
+30 ois.close(); 
+31 
+32 // Let's see what's what... 
+33 System.out.println("t1.equals(t2)? " + t1.equals(t2)); 
+34 System.out.println("t1.equals(t3)? " + t1.equals(t3)); 
+35 System.out.println("t2.equals(t3)? " + t2.equals(t3)); 
+36 System.out.println(); 
+37 System.out.println("t1 == t2? " + (t1 == t2)); 
+38 System.out.println("t1 == t3? " + (t1 == t3)); 
+39 System.out.println("t2 == t3? " + (t2 == t3)); 
+40 } // main() 
+41 
+42 public String toString() { 
+43 return "list: " + list + 
+44 "\nsomeInt: " + someInt + 
+45 "\nsomeChar: " + someChar; 
+46 } // toString() 
+47 
+48 public boolean equals(Object other) { 
+49 if(other instanceof Tester) { 
+50 Tester otherTester = (Tester)other; 
+51 if(otherTester.someInt == someInt && 
+52 otherTester.someChar == someChar && 
+53 list != null && 
+54 list.equals(otherTester.list)) 
+55 return true; 
+56 } 
+57 
+58 return false; 
+59 } // equals() 
+60 } // Tester 
+Here's the output from this program:
+t1.equals(t2)? true
+t1.equals(t3)? true
+t2.equals(t3)? true
+t1 == t2? false
+t1 == t3? true
+t2 == t3? false
+The results of the equals() method should not surprise you. Please tell me they don't. The results of == indicate that ObjectOutputStream handled the writeUnshared() call differently: It did not check if the object was alread in its object array. 
+Next, let's swap lines 19 and 20 so that the first object is written with writeUnshared() and the second is written with writeObject(). Running the modified program now produces this output:
+t1.equals(t2)? true
+t1.equals(t3)? true
+t2.equals(t3)? true
+t1 == t2? false
+t1 == t3? false
+t2 == t3? true
+Again, the results of == indicate that ObjectOutputStream handled the writeUnshared() call differently: It did not put the object in its internal array. It simply wrote the object's bytes to the underlying stream. When the object was written a second time (with writeObject()), however, the object was placed in the array. Then, when the object was written a third time ObjectOutputStream did not actually write the object's bytes to the underlying stream. Instead it simply wrote a "back reference" to the object it placed in that array during the second write.
+Notice that the code above always used the readObject() method to read from the ObjectInputStream. It was not necesssary to use ObjectInputStream's readUnshared() method. Judging from its name, you might think the readUnshared() method is somehow the ObjectInputStream's "counterpart" to writeUnshared()&#151;that perhaps you should use readUnshared() to read objects that were written by writeUnshared(). You might also imagine that readUnshared() will always provide a unique object from the underlying ObjectInputStream, regardless of whether the ObjectOutputStream actually wrote the object's bytes or simply a back-reference to an earlier serialized object in the stream. Actually, that's not at all how readUnshared() works at all.
+Recall that ObjectOutputStream will write an object's bytes to the underlying stream the first time the object is serialized and will write a back-reference to the object when it is subsequently serialized. The readUnshared() method can only be used to read an object that is being deserialized for the first time; it cannot read a back-reference to an object. If you attempt to read a back-reference with readUnshared(), you will get the following exception:
+ java.io.InvalidObjectException: cannot read back reference to unshared object
+A side-effect of a successful call to readUnshared() is that any remaining back-references to the deserialized object which may remain in the ObjectInputStream will be unreadable by both readObject() and readUnshared(). Conceptually, the successful readUnshared() call invalidated these back-references. Attempting to read a back reference to an object that was previously read with readUnshared() will result in a java.io.InvalidObjectException being thrown, as shown above.
+Yep, it's that time again...
+1 import java.io.*; 
+2 
+3 public class Tester implements Serializable { 
+4 public static void main(String[] args) throws Exception { 
+5 Tester t1 = new Tester(); 
+6 
+7 // Serialize the object. 
+8 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+9 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+10 oos.writeObject(t1); // first time -- bytes get serialized 
+11 oos.writeObject(t1); // subsequent time -- back-reference 
+12 oos.writeUnshared(t1); // unshared -- bytes get serialized 
+13 
+14 // Now let's serialize a new Tester 
+15 Tester t2 = new Tester(); 
+16 
+	 oos.writeObject(t2); // first time -- bytes get serialized 
+	
+17 oos.writeObject(t2); // subsequent time -- back-reference 
+18 
+19 oos.close(); 
+20 
+21 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+22 ObjectInputStream ois = new ObjectInputStream(bais); 
+23 
+24 // Now we read in the three t1 objects. 
+25 t1 = (Tester)ois.readObject(); 
+26 try { 
+27 t1 = (Tester)ois.readUnshared(); 
+28 } catch(Exception e) { 
+29 System.err.println("readUnshared() is trying to read a back-reference..."); 
+30 System.err.println(e); 
+31 } 
+32 t1 = (Tester)ois.readUnshared(); // readObject() is fine too 
+33 
+34 // Now we read in the two t2 objects. 
+35 t2 = (Tester)ois.readUnshared(); // causes the next read to fail 
+36 try { 
+37 t2 = (Tester)ois.readObject(); 
+38 } catch(Exception e) { 
+39 System.err.println("readObject() is trying to read an invalid back-reference..."); 
+40 System.err.println(e); 
+41 } 
+42 
+43 ois.close(); 
+44 } // main() 
+45 } // Tester 
+When you run this baby you get this output:
+ 
+readUnshared() is trying to read a back-reference...
+java.io.InvalidObjectException: cannot read back reference as unshared
+readObject() is trying to read an invalid back-reference...
+java.io.InvalidObjectException: cannot read back reference to unshared object
+The first two lines of output result from trying to call readUnshared() on a back reference. The last two lines of output result from trying to read an object that was previously deserialized with readUnshared(). Remember that this causes all remaining back references to be invalid.
+There's one more important detail to be aware of when using writeUnshared() and readUnshared(). In my humble opinion, this one detail severely limits the usefulness of the two methods. The behaviors of readUnshared() and writeUnshared() that were described earlier apply only to the base-level objects and not to any transitively referenced sub-objects in the object graphs. This is a very important point. Not understanding this point can ruin the whole ambiance of the serialization experience, turning you into a bitter, warped and frustrated man.
+Recall that writeUnshared() always results in a byte-level serialization of the object to the underlying stream, even if the object has been serialized previously. What if the object you are writing contains references to other objects that have previously been serialized? Will the ObjectOutputStream also perform a byte-level serialization for those objects as well, even if they have been serialized earlier? Or will it serialize back-references for those objects? The answer is, it will write back-references.
+Let me prove it.
+1 import java.io.*; 
+2 import java.util.*; 
+3 
+4 public class Tester implements Serializable { 
+5 // Some simple state information. 
+6 ArrayList list = new ArrayList(); 
+7 int someInt; 
+8 char someChar; 
+9 
+10 public static void main(String[] args) throws Exception { 
+11 Tester t = new Tester(); 
+12 t.list.add("Dog"); t.list.add("Rabbit"); t.list.add("Dragon"); 
+13 t.someInt = 10; 
+14 t.someChar = 'A'; 
+15 
+16 // Serialize the object. 
+17 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+18 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+19 oos.writeObject(t); 
+20 
+21 // Now let's change the state of t and write it out again, 
+22 // this time we will write it as unshared. 
+23 t.list.add("Rat"); t.list.add("Horse"); 
+24 t.someInt = 999; 
+25 t.someChar = 'Z'; 
+26 
+27 oos.writeUnshared(t); 
+28 oos.close(); 
+29 
+30 // Now we read in the two Tester objects. 
+31 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+32 ObjectInputStream ois = new ObjectInputStream(bais); 
+33 Tester t1 = (Tester)ois.readObject(); 
+34 Tester t2 = (Tester)ois.readObject(); 
+35 ois.close(); 
+36 
+37 // Compare the two Tester objects. 
+38 System.out.println("t1.equals(t2)? " + t1.equals(t2)); 
+39 System.out.println("t1 == t2? " + (t1 == t2)); 
+40 System.out.println("t1.list.equals(t2.list)? " + t1.list.equals(t2.list)); 
+41 System.out.println("t1: " + t1); 
+42 System.out.println("t2: " + t2); 
+43 } // main() 
+44 
+45 
+46 public String toString() { 
+47 return "list: " + list + 
+48 "\nsomeInt: " + someInt + 
+49 "\nsomeChar: " + someChar; 
+50 } // toString() 
+51 
+52 
+53 public boolean equals(Object other) { 
+54 if(other instanceof Tester) { 
+55 Tester otherTester = (Tester)other; 
+56 if(otherTester.someInt == someInt && 
+57 otherTester.someChar == someChar && 
+58 list != null && 
+59 list.equals(otherTester.list)) 
+60 return true; 
+61 } 
+62 
+63 return false; 
+64 } // equals() 
+65 } // Tester 
+When you run this code, you should see the following output:
+t1.equals(t2)? false
+t1 == t2? false
+t1.list.equals(t2.list)? true
+t1: list: [Dog, Rabbit, Dragon]
+someInt: 10
+someChar: A
+t2: list: [Dog, Rabbit, Dragon]
+someInt: 999
+someChar: Z
+Examine the code and it's output carefully. Notice that before the object was written a second time (using writeUnshared()) the state of the object was changed: the someInt variable was assigned 999, someChar was assigned 'Z' and two new entries ("Rat" and "Horse") were added to the ArrayList variable, list. Yet, when t1 and t2 were printed we find the list did not reflect the added entries. The changes to someInt and someChar, however, were correctly reflected.
+What we're seeing here is that the writeUnshared() method only serialized the bytes for the "base-level" object&#151;the Tester object&#151;but not any objects referred to by the Tester object&#151;such as the list object. When ObjectOutputStream encountered the list object during the writeUnshared() call, it simply used a back reference to refer to the previously serialized list object. Again, the behavior of writeUnshared() I described earlier only applies to the base-level object being written.
+The described behavior of readUnshared() also applies only to the "base-level" object being read. In the code below you'll notice that both t1 and t2, although different base-level objects, both refer to the same ArrayList in their list field.
+1 import java.io.*; 
+2 import java.util.*; 
+3 
+4 public class Tester implements Serializable { 
+5 // Some simple state information. 
+6 ArrayList list = new ArrayList(); 
+7 int someInt; 
+8 char someChar; 
+9 
+10 public static void main(String[] args) throws Exception { 
+11 Tester t1 = new Tester(); 
+12 t1.list.add("Dog"); t1.list.add("Rabbit"); t1.list.add("Dragon"); 
+13 t1.someInt = 10; 
+14 t1.someChar = 'A'; 
+15 
+16 // Serialize the object. 
+17 ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+18 ObjectOutputStream oos = new ObjectOutputStream(baos); 
+19 oos.writeObject(t1); 
+20 
+21 Tester t2 = new Tester(); 
+22 t2.someInt = 999; 
+23 t2.someChar = 'Z'; 
+24 t2.list = t1.list; // **** re-use t1's ArrayList **** 
+25 
+26 // This causes t2's byte stream to be written since t2 is 
+27 // a different object from t1. t2's ArrayList, however is the 
+28 // same as t1's, resulting in a back-reference to t1's 
+29 // ArrayList. 
+30 oos.writeObject(t2); 
+31 oos.close(); 
+32 
+33 // Now we read in the two Tester objects. 
+34 ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+35 ObjectInputStream ois = new ObjectInputStream(bais); 
+36 
+37 // Remember that readUnshared() invalidates all back-references... 
+38 // but only back-references to the base-level object (t1), not objects 
+39 // within it (t1.list). 
+40 t1 = (Tester)ois.readUnshared(); 
+41 
+42 // We just read t1.list above but since t1.list is not 
+43 // the base-level object, readUnshared() does not invalidate 
+44 // any back-references to it that are remaining in the stream. 
+45 t2 = (Tester)ois.readObject(); // no exception!! (could also have used readUnshared()) 
+46 ois.close(); 
+47 
+48 // Compare the two Tester objects. 
+49 System.out.println("t1.equals(t2)? " + t1.equals(t2)); 
+50 System.out.println("t1 == t2? " + (t1 == t2)); 
+51 System.out.println("t1.list == t2.list? " + (t1.list == t2.list)); 
+52 System.out.println("t1.list.equals(t2.list)? " + t1.list.equals(t2.list)); 
+53 System.out.println("t1: " + t1); 
+54 System.out.println("t2: " + t2); 
+55 } // main() 
+56 
+57 
+58 public String toString() { 
+59 return "list: " + list + 
+60 "\nsomeInt: " + someInt + 
+61 "\nsomeChar: " + someChar; 
+62 } // toString() 
+63 
+64 
+65 public boolean equals(Object other) { 
+66 if(other instanceof Tester) { 
+67 Tester otherTester = (Tester)other; 
+68 if(otherTester.someInt == someInt && 
+69 otherTester.someChar == someChar && 
+70 list != null && 
+71 list.equals(otherTester.list)) 
+72 return true; 
+73 } 
+74 
+75 return false; 
+76 } // equals() 
+77 } // Tester 
+Here's the output from running this program:
+t1.equals(t2)? false
+t1 == t2? false
+t1.list == t2.list? true
+t1.list.equals(t2.list)? true
+t1: list: [Dog, Rabbit, Dragon]
+someInt: 10
+someChar: A
+t2: list: [Dog, Rabbit, Dragon]
+someInt: 999
+someChar: Z
+Remember that readUnshared() causes all subsequent back-references in the stream to become invalid&#151;but this only applies to back-references to the base-level object being read, not to objects referred to by the base-level object. This explains why we were able to read t2's list field even though t1 had been read using readUnshared().
+Class Versioning
+This article deals with classes that are default and custom serializable but not externalizable. In the future this article will be modified to account for externalizable classes. Since this article deals only with default and custom serialization (for now), I'll use the term serializable and deserializable rather than marshallizable and unmarshallizable.
+As systems evolve (or more commonly, degenerate), classes change. It may well be the case that an object's class has changed between the time the object was initially serialized and when it's eventually deserialized. This can easily happen if a serialized object is sitting in a file, for example, that was created many moons ago. What will happen when you attempt to deserialize the object in the file after the object's class has been modified? Or, as another example, what if a client serializes an object over a network and the receiving agent has a different version of the object's class than the client?
+Class Versioning deals with the types of changes a class may undergoe and how those changes are handled by Java's serialization plumbing and, more importantly, by the classes themselves during the serialization and deserialization processes.
+When an object is serialized, Java's serialization plumbing does not serialize the object's class byte codes. By default, when an object is serialized, the ObjectOutputStream computes a 64 bit hash value based on various attributes of the object's class. This hash value is then stored along with the bytes representing the serialized object. (This 64 bit hash value is called the serial version unique identifier or SUID, for short.) Later, possibly much later, when the object is deserialized, the serialization mechanism reads in the stored SUID and compares it against a second SUID which is computed from the object's class in exactly the same way the first hash was computed. If the two SUIDs are equal, the deserialization proceeds and the object is reconstituited. If they are different, a java.io.InvalidClassException is thrown to indicate the object's class has changed since the object was serialized.
+In computing the SUID, Java's serialization mechanism takes into account several properties of a class described in the table below. Incidentally, if you want to determine the SUID for a class you can use Sun's serialver tool which is included with the JDK. If you ever need to determine a class' SUID from within your code you can simply make a call like this:
+// The ObjectStreamClass class is in the java.io package.
+Class c = Class.forName("SomeClass"); // The class must implement java.io.Serializable.
+System.out.println("The SUID is " + ObjectStreamClass.lookup(c).getSerialVersionUID;())
+ 
+In fact, Java's serialization/deserialization mechanisms uses the getSerialVersionUID() method shown above to obtain the SUID for classes. Sun's serialver tool uses this method as well and there's no reason you can't use it if you ever have the need. Actually, to be completely accurate, the getSerialVersionUID() method does not generate the default SUID. That task is handled by a private static method in ObjectStreamClass named, computeDefaultSUID(). getSerialVersionUID() simply calls computeDefaultSUID() if a SUID needs to be generated for a class.
+If you've done any reading on serialization you may have read about a special constant field you can define in your class to control the SUID used for your class. This field must be declared as static final long and have the special name of serialVersionUID. The serialVersionUID field allows you, the developer, to specify a value for the SUID rather than relying on the value calculated by the computeDefaultSUID() method. I'll discuss this constant later. For the time being, however, we are going to pretend it doesn't exist and concentrate instead on the types of changes you can make to a class and how those changes affect the SUID that is automatically generated by computeDefaultSUID(). 
+In calculating the default SUID, seven attributes of a class are taken into account. If one or more of these attributes change, the automatically generated SUID will change. Remember that when an object is deserialized the SUID stored with the object is compared against the SUID from the object's class as the class exists at the time of deserialization. If they do not match the deserialization process fails with a java.io.InvalidClassException. Here are the seven attributes that affect the automatically generated SUID:
+Class Attributes that Affect the
+Automatically Generated SUID 
+1. The name of the class. 
+2. Modifiers (e.g., final, public, etc.) on the class. The order in which the modifiers are specified is not taken into account. 
+3. 
+The interfaces implemented directly by the class. Any interfaces implemented via interitance will not affect the resulting SUID in any way. The order in which the interface names are specified is not taken into account.
+Note that superclasses are not taken into account at all. In other words, whether or not the class extends another class will not affect the resulting SUID in any way. 
+4. For each field declared in the class:
+- The name of the field.
+- The modifiers on the field (e.g., final, private, transient, static, etc.). The order in which the modifiers are specified is not taken into account.
+- The type of the field.
+This item does not apply to private static or private transient fields. Such fields can be added and removed from the class without affecting the default SUID that is generated. Note, however, that assigning a value to any static variable, even a private static, constitutes a "class initializer" as described in item 5. 
+5. 
+Whether or not the class contains at least one class initializer. The term "class initializer" refers to the assignment of a value to a static variable as well as the presence of static initializers (i.e, static {...} blocks). This item is only concerned with whether or not at least one class initializer exists. It is not concerned with how many class initializers exist or with what code is executed within a static initializer or in what order the class initializers may appear. For example, if a class contains this class initializer:
+static float x = 82727.02929F;
+then the class meets the criteria for this item. Whether or not the class contains additional class initializers is irrelevant in terms of the generated default SUID. 
+6. For each non-private constructor:
+- The visibility modifiers on the constructor (i.e., protected, public, or package). The order in which the modifiers are specified is not taken into account.
+- The formal parameter types used by the constructor. The order of the parameters will, of course, affect the resulting SUID although the names of the paramters will not.
+Note that a throws clause, if present on the constructor, has no affect on the generated default SUID. 
+7. For each non-private method:
+- The name of the method.
+- The modifiers on the method (e.g., public, static, final, etc). The order in which the modifiers are specified is not taken into account.
+- The formal parameter types used by the method. The order of the parameters will, of course, affect the resulting SUID although the names of the paramters will not.
+- The method's return type.
+Note that a throws clause, if present on the method, has no affect on the generated default SUID. 
+As you can see from the above list, even relatively minor changes in a class' definition will cause the generated SUID to change, causing the deserialization process to fail for any objects serialized prior to the class change. Earlier, I mentioned the special constant field, serialVersionUID, which a class can define to override the automatically generated SUID. If the serialVersionUID field is present in a class, Java's deserialization mechanism will use its value for the class' SUID rather than dynamically generating one.
+When you specify a serialVersionUID variable in your class you are effectively telling Java's serialization mechanisms, "I know the class definition may have changed since an object was initially serialized but my code is prepared to handle the change&#151;go ahead with the deserialization." So how will the serialization mechanism handle deserializing objects whose classes share the same serialVersionUID value yet whose class definitions differ? The quick answer to this question is that the serialization mechanism will always do something reasonable when deserializing between versions of a class, but even this reasonability has its limits.
+Let's look more closely at the situation. First, we have two classes: The original class and a modified version of the original class. Throughout the rest of this article I'll use the Person class shown below as the original class. I'll refer to this class as Person_0, as you can see by the comment in the first line of the class. As we modify the Person class I'll refer to new versions as Person_1, Person_2, etc., where each new version is a modification of Person_0. So, Person_2, for example, is a modified version of Person_0, as is Person_1. The first line of each version of Person will contain a comment indicating what version of Person the class represents. Keep in mind that we are always dealing with a class named Person. The Person_n notation is simply a way of referring to different (modified) versions of the original Person class, which is referred to as Person_0.
+We will also generate serialized objects for each new Person_n. As a convention, we'll assume the file named, Person_n.ser, is a serialized object of the Person_n version of the Person_0 class. Once we generate a serialized output file we will try to deserialize it with Person_0. Similarly, we will try to deserialize the Person_0.ser object with Person_n class, n > 0.
+Let's look at some concrete code. This is the Person_0 class:
+1 // Person_0 
+2 import java.io.*; 
+3 
+4 class Person implements Serializable { 
+5 String name = "Smith"; 
+6 String city = "Chicago"; 
+7 
+8 public String toString() { 
+9 return "name: " + name + '\n' + 
+10 "city: " + city; 
+11 } 
+12 } // Person 
+13 
+The Runner class, below, will serialize/deserialize instances of Person to/from a specified file. The first command line paramter (-s or -d) tells Runner whether it should serialze or deserialize to/from the file specified by the second parameter. Of course, we will be modifing the Person class as we go along so you will need to keep track of which serialized object files correspond to which versions of Person.
+1 import java.io.*; 
+2 
+3 public class Runner { 
+4 public static void main(String[] args) throws Exception { 
+5 if(args.length != 2) 
+6 System.out.println("Usage: java Runner -s|-d filename"); 
+7 else if(args[0].equals("-s")) { // serialize 
+8 FileOutputStream fos = new FileOutputStream(args[1]); 
+9 ObjectOutputStream oos = new ObjectOutputStream(fos); 
+10 Person p = new Person(); 
+11 oos.writeObject(p); 
+12 System.out.println("Person written is:\n" + p); 
+13 } else if(args[0].equals("-d")) { // deserialize 
+14 FileInputStream fis = new FileInputStream(args[1]); 
+15 ObjectInputStream ois = new ObjectInputStream(fis); 
+16 Person p = (Person)ois.readObject(); 
+17 System.out.println("Person read is:\n" + p); 
+18 } else 
+19 System.out.println("Usage: java Runner -s|-d filename"); 
+20 } // main() 
+21 } // Runner 
+To create a serialized Person object, compile both classes and run the Runner class with the command line options shown below. This will produce a serialized object file, Person_0.ser:
+ java Runner -s Person_0.ser
+The first modification to the Person class will be to add the serialVersionUID field. The value of this field must be exactly the same as the original version of Person or deserialization will result in a java.io.InvalidClassException. Running the JDK serialver tool on Person.class yields this value:
+ static final long serialVersionUID = 7292947232614672316L;
+The first modified version of Person.java, Person_1, will have a new field called ZIP and it will remove the city field from the original Person:
+1 // Person_1 
+2 import java.io.*; 
+3 
+4 class Person implements Serializable { 
+5 static final long serialVersionUID = 7292947232614672316L; 
+6 
+7 String name = "Smith"; 
+8 String ZIP = "12345"; 
+9 
+10 public String toString() { 
+11 return "name: " + name + '\n' + 
+12 "ZIP: " + ZIP; 
+13 } 
+14 } // Person 
+Before compiling this code make sure you make a copy of the Person.class file that was generated from compiling Person_0 (we'll need it later). Once you compile the above code we can use it to deserialize Person_0.ser:
+C:\>java Runner -d Person_0.ser
+Person read is:
+name: Smith
+ZIP: null
+As you can see, the ZIP field was assigned a default value of null. Since Person_0 did not define a ZIP field the serialization mechanism leaves it with the default value appropriate for its type. Intuitively, it may seem that the ZIP field should have been assigned a value of "12345" since that is what its initializer assigned to it. But this is wrong, remember:
+Classes which implement the Serializable interface (but not Externalizable) will not have a constructor called when objects of the class are deserialized. In addition, any initializers present in the class will not be executed when the object is deserialized. This means that instance initializer blocks will not be executed nor will instance variables be initialized.
+Recall that Person_0 had a variable named city which was removed in Person_1. When Person_0.ser was deserialized into Person_1, what became of this field? It was ignored since Person_1 did not declare the same field.
+Now let's serialize Person_1 and then deserialize it as a Person_0 object. Note that I kept the Person_0 class file in a file named person_0.class which I copied over Person.class. Here are the Windows command used to serialize a Person_1 object and then deserialize it as a Person_0 object:
+ 
+C:\>java Runner -s Person_1.ser
+Person written is:
+name: Smith
+ZIP: 12345
+C:\>copy /y Person_0.class Person.class
+ 1 file(s) copied.
+C:\>java Runner -d Person_1.ser
+Person read is:
+name: Smith
+city: null
+Since the city field did not get serialized as part of the Person_1 object it is assigned a null default value when Person_1 is deserialized as a Person_0 object.
+This was a simple example of changing a class and seeing how the change affects serialized and deserialized objects. I will expand this article in the future to discuss other types of changes in classes and how those changes affect serialization and deserialization.
+ Copyright © 1999-2002, Tony LaPaso
+ All Rights Reserved.

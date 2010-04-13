@@ -1,0 +1,907 @@
+
+Javalobby Forums - Java games at GDC covered by Gamespy
+ 
+ 
+ 75052 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ Java games at GDC covered by Gamespy
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 109 replies on
+ 11 pages.
+ Most recent reply:
+ May 17, 2002 7:56 PM
+ by
+ 
+ Bobby Martin
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: « 1 2 3 4 5 6 7 8 9 ... 11 » ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mads Andersen
+ 
+ 
+ 
+ Posts: 6
+ 
+ 
+ Registered: May, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: Strange statements ..
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 12:54 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ And the Java3D may also create a XBox DirectX mappingWhat if the Java3D team don't? This is really some sort of "could have, would have, should have" argument About code protection, anybody knows that trusting native C/C++ code (or event then newby C# native generation) to be safe is false. If this was true, no software will be cracked !Because Java is so directed at using inheritance and because of it's large standard library etc., obfuscation can not be really... obfuscating. This is not the case for C++. On top of this the x86 instruction set is much harder to decompile than java bytecode.Cracking a program is very different from actually extracting IP from a program. but I'm sure you know this.As a conclusion, .net and C# are useless for games just because they just offer features that already exists with existing MS SDKs !I don't really follow you here... Obviously what MS SDKs offer is sufficient for the large amount of games that are pumped out every month?
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ You didn't get my post!
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 1:08 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Sure, OpenGL is available everywhere... Even on PlayStation!!!The problem is that I've seen Java OpenGL bindings work only for Windows and people claim it works with Mac. Never saw anything run here on my machine. They claim it does, but whereas I can install Quake and run it, I cannot do the same with a Java app... that someone somewhere claims that he has OpenGL bindings for Java everywhere including Linux is nice... but I want to see a demo I can download... I haven't seen that!But even if it were true, you still need some form of 3D bindings and sound bindings for major gaming consoles and that is just not there! You don't even have JVMs right now!
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Cross-platform games are a reality
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 1:17 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Sega, for example, has become an expert in cross-platform gaming.Microsoft makes a point that developping for PCs and for the XBox is mostly the same thing and hence, you can release a game both for Windows and for the XBox using mostly the same codebase.I suspect this is partly why Sony is releasing a Linux distro for the PlayStation2. So they can say "developping for Linux or the PlayStation is mostly the same thing".I don't know what Nintendo's approach will be but I think they have a different strategy where they try to get only few developpers to avoid having a lot of failed games on the market. Surely, Nintendo might even by hostile to cross-platform tools for its machines... But they have the Pokemons I suppose... it explains a lot of things...Microsoft already has its own cross-platform solution... Sega is entirely cross-platform and Sony offers Linux/Playstation tools right now (not sure how this will play out... but let's see!).So yes, the answer is that console makers do want and do produce cross-platform tools (except for Nintendo... ). They would still get the same revenues because you pay to "release" the game. If the game is written in Perl, they don't care... I think the problem is more that Java is not taken seriously in the gaming industry.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Protecting IP
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 1:31 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I hope we don't go down this path again... but this is a tiring argument. The best way to protect IP is through lawyers... not with obfuscation. If you have patents, your stuff is already protected and public, so why do you care? If you don't have patents or NDA or whatever... get them because no amount of obfuscation will prevent people from stealing your ideas if your software is publicly available... this has been proven many times in the past... company A releases cool software with innovative feature X, company A coded in C and assembler so they think they are safe from reverse engineering... company B (often Microsoft) releases similar software with exactly the same feature X... ah.... whatever happened?... well, I knew one guy who makes a living reverse engineering compiled C code... all the big companies have a guy like this or can find one if they need to...Most people who freak out about IP like this and claim they require obfuscation have really no IP to begin with... they only have boring code. IP is made of innovative and worthy ideas... not for loops!Very few programmers and very few companies will ever acquire any IP. That's a myth.Real IP is either hard to steal because you can easily show the other guy stole you stuff as he needs to use a whole lot of code (complete API) or, if it is very simple to steal (a single neat idea) and also simple to reverse-engineer... So contracts and patents are always the best way to protect real IP.This is especially true for games. Very few game developpers will generate any IP. And if you ever come up with a really neat AI routine, just patent it and be done with it. That's really the best way!
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mads Andersen
+ 
+ 
+ 
+ Posts: 6
+ 
+ 
+ Registered: May, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Agreed
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 1:56 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I don't disagree with you. However, I used IP in a broader sense than you are referring to.In gaming, getting the IP of a program makes it easy to create different cheats for multi-player games. Because of bandwidth limits and the like, the clients possess more information than they actually should for a cheat-safe environment. In this environment, security through obfuscation is your only solution.I know there's cheats for Quake and clones. However, many of these cheats work by inserting a fake OpenGL/DirectX layer that paints more than what should actually be painted. Other cheats work by exchanging models and textures, or by executing game-scripts at key press. However, very few cheats changes the actual code.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Ok, but I wouldn't call it "IP" (nt)
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 2:00 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Serge Bureau
+ 
+ 
+ 
+ Posts: 193
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ And you are a teacher ???
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 3:54 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Can your student be confident ?Is'nt the JVM written in C++ ? All should be easily ported with your theory, please think before talking.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Serge Bureau
+ 
+ 
+ 
+ Posts: 193
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please go back to school
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 3:56 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jerason Banes
+ 
+ 
+ 
+ Posts: 230
+ 
+ 
+ Registered: Apr, 1999
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Dirty Java
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 4:23 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ OpenGL bindings work everywhere, but there is some native compilation to be done. When you are using "dirty Java" as it's called, you will have to do some porting work. Over at JavaGaming.org, they are talking about games they ported while at the GDC. Apparently, they managed to take a game (I think it was Magicosm) that was running on Windows and Linux with GL bindings, and port it to Solaris in a matter of a few hours (apparently it took 1 hour of compile time). Given that kind of portability, I wouldn't be surpised if companies began popping up to license and produce commercial JVMs for game consoles. Considering the potential savings and business opportunities for game makers, they would probably jump at the chance. (Escpecially when one considers that media is now cheap)Before that happens tho, I think Java will need to get a foothold on the PC gaming market. We still have the burden of proof to convince people that Java is a viable gaming platform. Once the PC market is sewn up, the console market will follow as a matter of course. Patience my friend, patience.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Gregory Pierce
+ 
+ 
+ 
+ Posts: 48
+ 
+ 
+ From: Atlanta, GA
+ 
+ Registered: Jun, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: Exactly, PC games are a small market.
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 4:59 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Wow... and I though The Sims brought in a lot of money. Guess I was wrong, guess you really can't money unless you absolutely develop for the console platforms.
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 109 replies
+ on 11 pages
+ [
+ «
+ |
+ 1 
+ 2 
+ 3 
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+	 |
+ »
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

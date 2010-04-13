@@ -1,0 +1,33 @@
+
+ 
+online C++ tutorial: Compiling and Running
+ 
+ 
+ 
+ Section 2: A First Program 
+Section 2.2: Compiling and Running
+Depending on your computer and your compiler, the
+process of compiling your program varies. For now,
+we'll assume that you are using a
+UNIX machine and the
+gcc compiler. Gcc is
+a free compiler which is available on virtually all
+UNIX systems.
+To compile your program, type the following command
+at a UNIX prompt:
+g++ hello.C -o hello
+Make sure that g++ is in your path
+and that you are running it in the directory containing
+hello.C.
+Congratulations - you've just compiled your first C++ program!
+The program is called hello and is located in the same
+directory containing the file hello.C. To run your
+program, simply type hello at your UNIX prompt.
+You should see the following output:
+# hello
+Hello, World!
+# 
+That's all there is to it!
+ 
+ 
+ 

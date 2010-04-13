@@ -1,0 +1,410 @@
+
+General
+ 
+ 
+ 
+	
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Technical Articles
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+General
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 
+	
+	 
+	 
+	 
+	
+ 
+ 
+ 	 
+	 	 	 
+ 
+	
+	
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Developing Optimized Code with Microsoft Visual C++ 6.0
+ 
+This article discusses ways in which the Microsoft® Visual C++® compiler can optimize source code for speed and size and tells why code size matters. (21 printed pages) Covers code generation; optimization switches and pragma statements supported by Visual C++; choosing the best switches on a per-project basis; and overriding switches at the function level.
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Visual C++ Small Block Heap Issues
+ 
+Learn about small block heap programming issues associated with Visual C++ 5.0 and Visual C++ 6.0.
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Visual C++ 6.0 Migration Guide
+ 
+Provides a technical drill-down of the new features of Visual C++ 6.0. Familiarity with Visual C++ necessary. 
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Enhanced Debugging with Edit and Continue
+ 
+One of the newest and most robust features of Visual C++ 6.0 is Edit and Continue. The following technical article explores this functionality in detail so you can leverage its abilities in your own code.
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Intel MMX Technology Support in Visual C++
+ 
+Beginning with Microsoft Visual C++ version 4.1 for Intel, support of Intel's MMX Technology is available in the Microsoft C/C++ compiler CL.EXE. This capability is enabled with the /GM compiler switch and is only available within inline assembly. Learn More.
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Copying Samples to a Dir with High ASCII Stops File I/O
+ 
+If you attempt to copy a sample from the online samples to a directory with high-ASCII characters in the path name, it does download, but when you try to open the project it cannot be found. Find out how to fix this known issue. 
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	Microsoft Foundation Class Library Development Guidelines
+ 
+This article is intended for use by developers who want to create extensions for the Microsoft Foundation Class Library and who want to ensure that their classes are "MFC-friendly"; that is, classes that will function well with MFC. This article is also useful for anyone writing MFC applications who wants to know the philosophy and development practices used in the Library. 
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+ 
+ 	 	 
+ 	 
+ 	 	
+ 	 	 
+ 	 	
+ 	 	 	C1001 in Third-Party STL Code Using Visual Studio 97 SP3
+ 
+If you are using a third-party Standard Template Library (STL) (such as the Hewlett-Packard implementation), and compile after applying Visual Studio 97 Service Pack 3, you may experience an error. Find the fix.
+ 	 	 	 
+ 	 	 
+ 	 
+ 	 
+	 	 
+	 
+ 
+ 
+	 
+ 
+ 
+ 	
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

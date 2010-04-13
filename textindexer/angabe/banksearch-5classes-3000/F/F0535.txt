@@ -1,0 +1,623 @@
+
+Visual Basic and Winsock API - Creating and closing a socket
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Creating and closing a socket
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creating and closing a socket
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ 
+ Winsock API Test Bench 2 project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The socket Winsock API 
+ function
+ 
+ 
+To create a new socket we need to call the
+ 
+ socket function. 
+ 
+Public Declare Function 
+ socket _ 
+ Lib "ws2_32.dll" (ByVal 
+ af As Long, _ 
+ 
+ ByVal s_type 
+ As Long, 
+ 
+ ByVal Protocol 
+ As Long) As Long
+ 
+The function expects three arguments that define 
+ the type of the socket we are going to use. Each argument can accept one 
+ of the predefined values (constants) that are defined by the Winsock 
+ specification. Those values are already declared in the project, they 
+ are the AddressFamily, 
+ SocketType and SocketProtocol types (see source 
+ code of the project or the 
+ previous article).
+ 
+ 
+ Argument 
+ Description 
+ Enum Type 
+ 
+ 
+ 
+ af 
+ Address family specification. 
+ AddressFamily 
+ 
+ 
+ 
+ s_type 
+ Type specification for the new socket. 
+ SocketType 
+ 
+ 
+ 
+ Protocol 
+ Protocol to be used with the socket 
+ that is specific to the indicated address family. 
+ SocketProtocol 
+ 
+ 
+ 
+If no error occurs, the 
+ 
+ socket function
+ returns a descriptor referencing the new socket. Otherwise, a 
+ value of INVALID_SOCKET is returned, and a specific error code can be 
+ retrieved with 
+ Err.LastDllError.
+ 
+To get more info on this function take a look at 
+ the 
+ Winsock API documentation. 
+ 
+Now let's create the 
+ vbSocket function that supposed to be a wrapper function for the
+ 
+ socket one from the API. Put this 
+ function into the modWinsockAPI module.
+ 
+ 
+ 
+ Public Function vbSocket(ByVal AdrFamily As AddressFamily, _
+ ByVal SckType As SocketType, _
+ ByVal SckProtocol As SocketProtocol) As Long
+'***********************************************************************
+'Purpose :Creates a new socket
+'Returns :The socket handle if successful, otherwise - INVALID_SOCKET
+'***********************************************************************
+ '
+ On Error GoTo vbSocket_Err_Handler
+ '
+ Dim lngRetValue As Long 'value returned by the socket API function
+ '
+ 'Call the socket Winsock API function
+ 'in order create a new socket
+ lngRetValue = socket(AdrFamily, SckType, SckProtocol)
+ '
+ 'Assign returned value
+ vbSocket = lngRetValue
+ '
+Exit_Label:
+ Exit Function
+vbSocket_Err_Handler:
+ '
+ vbSocket = INVALID_SOCKET
+ '
+End Function
+ 
+ 
+ 
+What a big deal! One more function with the same 
+ purpose and returned value. Maybe it is unnecessary effort to write this 
+ function, but I prefer to use the VB IDE editor's feature such as "List 
+ Constants" which does allow to don't keep in mind those constants.
+ 
+ 
+At the next step let's write code for the 
+ cmdCreate button. Open the code editor and type in the following code 
+ for the cmdCreate_Click event procedure.
+ 
+ 
+ 
+ Private Sub cmdCreate_Click()
+'*************************************************************
+'Purpose :Creates a new socket. If the socket is created
+' successfully, adds an item to the listview control
+'*************************************************************
+ '
+ 'Handle of a new socket, the value
+ 'returned by the vbSocket function
+ Dim lngSocket As Long
+ '
+ 'Value retrieved from the cboAddressFamily
+ 'combobox to pass as the AdrFamily argument
+ 'to the vbSocket function
+ Dim lngAddressFamily As Long
+ '
+ 'Value retrieved from the cboSocketType
+ 'combobox to pass as the SckType argument
+ 'to the vbSocket function
+ Dim lngSocketType As Long
+ '
+ 'Value retrieved from the cboProtocol
+ 'combobox to pass as the SckProtocol argument
+ 'to the vbSocket function
+ Dim lngProtocol As Long
+ '
+ 'The listview's item that will be added to the
+ 'listview control, if a new socket is creaeted
+ 'successfully
+ Dim lvItem As ListItem
+ '
+ 'Get values for arguments to pass to the vbSocket function
+ lngAddressFamily = CLng(cboAddressFamily.ItemData(cboAddressFamily.ListIndex))
+ lngSocketType = CLng(cboSocketType.ItemData(cboSocketType.ListIndex))
+ lngProtocol = CLng(cboProtocol.ItemData(cboProtocol.ListIndex))
+ '
+ 'Call the vbSocket function in order to create a new socket
+ lngSocket = modWinsockAPI.vbSocket(lngAddressFamily, lngSocketType, lngProtocol)
+ '
+ If lngSocket = INVALID_SOCKET Then
+ '
+ 'If the function has returned the INVALID_SOCKET
+ 'value the socket was not created. Call the
+ 'ShowErrorMsg subroutine to show the message box
+ 'with the error description.
+ Call ShowErrorMessage(Err.LastDllError)
+ '
+ Else
+ '
+ 'If a new socket was created successfully, add the
+ 'listview's item for that socket
+ '
+ Set lvItem = lvSockets.ListItems.Add(, "S" & CStr(lngSocket), lngSocket, , 1)
+ lvItem.SubItems(1) = cboAddressFamily.Text
+ lvItem.SubItems(2) = cboSocketType.Text
+ lvItem.SubItems(3) = cboProtocol.Text
+ '
+ End If
+ '
+End Sub
+ 
+ 
+ 
+I hope you have got a clear idea, from the 
+ comments, what this code does.
+ 
+ 
+The closesocket Winsock 
+ API function
+ 
+ 
+The Windows Sockets 
+ closesocket 
+ function closes an existing socket.
+ 
+Declare Function 
+ closesocket Lib "ws2_32.dll" (ByVal 
+ s As Long) As Long
+ 
+The function receives an argument - descriptor of 
+ the socket to close. If no error occurs, the 
+ closesocket function returns zero. Otherwise, a value of
+ SOCKET_ERROR is returned, and a specific 
+ error code can be retrieved with 
+ Err.LastDllError.
+ 
+In order to close any socket created by our sample 
+ application the user should select a socket in the listview control then 
+ click the cmdCloseSocket button. Below is the code for the 
+ cmdCloseSocket_Click event procedure.
+ 
+ 
+ 
+ Private Sub cmdCloseSocket_Click()
+ '
+ 'Handle of the socket to close
+ Dim lngSocketHandle As Long
+ '
+ If Not lvSockets.SelectedItem Is Nothing Then
+ '
+ 'Get the socket handle
+ lngSocketHandle = CLng(lvSockets.SelectedItem.Text)
+ '
+ 'Call the closesocket Winsock API function
+ 'in order to close the socket
+ Call closesocket(lngSocketHandle)
+ '
+ 'Remove the socket item from the listview control
+ lvSockets.ListItems.Remove lvSockets.SelectedItem.Index
+ '
+ End If
+ '
+End Sub
+ 
+ 
+ 
+An application should always have a matching call to 
+ 
+ closesocket for 
+ each successful call to 
+ socket to return any socket resources to the 
+ system. To be sure that we have closed all the 
+ sockets created with our sample application we may write the following 
+ code that will check for existence of any unclosed socket and do not 
+ allow to exit the program until we'll have closed all the sockets.
+ 
+ 
+ 
+ Private Sub Form_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+ '
+ If lvSockets.ListItems.Count > 0 Then
+ '
+ MsgBox "Close all the sockets before exit."
+ '
+ Cancel = 1
+ '
+ End If
+ '
+End Sub
+ 
+ 
+ 
+Frankly speaking, it is unnecessary to use this 
+ code in this sample, because we have the 
+ WSACleanup call in the body of 
+ the Form_Unload event procedure. From the Winsock documentation: 
+ "Sockets that were open when WSACleanup was called are reset and 
+ automatically deallocated as if closesocket were called;..."
+ 
+ 
+Testing the sample application
+ 
+ 
+At this stage of the tutorial, the Winsock API 
+ Test Bench sample application can create and close sockets. Let's make 
+ sure that it really can do such things. Press F5 to run the application.
+ 
+To create a connection oriented socket set the 
+ following parameters for the socket then click the "Create new socket" 
+ button.
+ 
+ 
+ Combobox control 
+ Item 
+ 
+ 
+ Address family 
+ AF_INET 
+ 
+ 
+ Socket type 
+ SOCK_STREAM 
+ 
+ 
+ Protocol 
+ IPPROTO_TCP 
+ 
+ 
+ 
+ 
+As you see, a new connection oriented socket was 
+ created. This socket can be used for communication with other computers 
+ via the Internet applications protocols such as HTTP, FTP, POP3 and so 
+ on.
+ 
+Take some time to experiment with the sample. Try 
+ to use different combinations of parameters for sockets. You will see 
+ that you can get just several types of sockets because your computer has 
+ much less transport protocols' providers than the Winsock service does 
+ support. To find out which transport protocols are installed on your 
+ system use the 
+ 
+ WSAEnumProtocols Winsock API function (see the
+ "Enumerating transport 
+ protocols" article).
+ 
+If you have implemented the code for the 
+ Form_QueryUnload event procedure, you need to close 
+ every socket you have 
+ created using the "Close socket" button.
+ 
+ 
+Conclusion
+ 
+ 
+So, our sample application can create sockets. But 
+ what we do know about that abstract substation called a socket is only 
+ the 
+ magic number - socket's handle. Oh yes, there are three more parameters 
+ in the listview control. Do you remember how we got them? We just copied 
+ those values from the combobox controls. Are you sure that the system 
+ doesn't cheat you, providing you with just an integer number? :-) Read the 
+ next article to find out how to retrieve socket's properties. 
+ Particularly we'll learn how to find out which transport protocol is 
+ used by a given socket.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Problems with listview and imagelist
+	Shashank Khanvilkar Friday, May 17, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Creating and closing a socket
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

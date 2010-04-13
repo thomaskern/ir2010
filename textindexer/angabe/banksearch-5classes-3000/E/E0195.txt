@@ -1,0 +1,166 @@
+
+C++ compilers
+ C++ Compilers 
+ 
+ 
+ 
+commercial compilers |
+free compilers
+Commercial compilers
+ 
+ 
+Microsoft Visual C++ 6.0
+ 
+Best-seller C++ compiler.
+This is probably the most used C++ compiler for MS Windows.
+In fact most of the commercial applications for these operating systems
+are developed using this compiler.
+ 
+It is a complete development tool with an IDE that integrates debugging and visual
+development tools. It also includes specific components to develop databases, internet
+applications and of course MFC and ATL based applications.
+Platforms: Windows 9.x/Me, Windows NT/2000
+ 
+ 
+ Description List price Direct link 
+Visual C++ Standard Compiler, IDE, debugging and visual development tools. $109.00 
+Visual C++ Professional Optimized compilation, MS Access Engine and extra development tools. $549.00 
+Visual C++ Enterprise Includes component managers, Visual Database Tools and SourceSafe team development utility. $1,299.00 
+ View differences between Visual C++ editions 
+Visual Studio Professional Includes also Visual Basic, Visual InterDev, Visual FoxPro and Visual J++ among other utilities. $1,079.00 
+Visual Studio Enterprise Includes also enterprise tools (Visual Database, SourceSafe...). $1,619.00 
+ View differences between Visual Studio editions 
+ 
+ 
+ 
+ 
+Borland C++ Builder 5
+ 
+Borland C++ is a productive environment to develop Windows applications
+in a fast and easy way. It is known to be one of the best ANSI-C++ compliant compilers currently
+available in the market.
+ 
+Supports the building of Windows applications using the Win32 API, COM components, ActiveX
+and OLE.
+Platforms: Windows 9x/Me, Windows NT/2000
+ 
+ Description List price Direct link 
+Borland C++ Builder Standard Complete Compiler with Development Environment and tools. $99.95 
+Borland C++ Builder Professional Enhaced development of database and internet applications. $799.00 
+Borland C++ Builder Enterprise Supports scalable distributed applications and team development. $2,499.00 
+ View differences between editions 
+ 
+ 
+ 
+ 
+ 
+Metrowerks Codewarrior Pro 6.0
+ 
+This is a powerful compiler with an easy-to-use IDE that integrates the development tools.
+It is available for many platforms and processors using the same project format and
+presenting a similar GUI in all versions.
+Platforms: Windows, Mac, Solaris, Linux, Java, Palm OS
+ 
+ Description List price Direct link 
+CodeWarrior Pro 6.0 for Mac Version for Apple MacIntosh development. $499.00 
+CodeWarrior Pro 6.0 for Windows 3.x Version for Windows. $499.00 
+CodeWarrior Pro 6.0 for Mac and Windows Package for Windows/Mac OS. $699.00 
+CodeWarrior Pro 6.0 for Palm Computing Version for Palm OS development. $369.00 
+CodeWarrior Pro 6.0 for Java Version for Java. $399.00 
+ 
+ 
+ 
+ 
+ 
+Sybase PowerBuilder 7.0
+ 
+Enterprise development environment with integrated web-based utilities support.
+Full support to develop fast and scalable client/server applications for the web.
+Platforms: Windows 9x, Windows NT
+ 
+ Description List price Direct link 
+Powerbuilder 7.0 Desktop Compiler, IDE and development tools. $295.00 
+Powerbuilder 7.0 Professional Professional Edition. $1,295.00 
+Powerbuilder 7.0 Enterprise Enterprise edition. $2,995.00 
+ 
+ 
+ 
+ 
+ 
+IBM Visual Age C++ Pro 4.0
+ 
+The IBM C++ compiler is a complete development environment to develop
+multi-platform object-oriented applications with full support of ANSI-C++ standard.
+Includes a large set of reusable components.
+Platforms: OS/2, AIX, Windows NT
+ 
+ Description List price Direct link 
+Visual Age C++ Pro v.4 IBM C++ visual development tool. Version for OS/2 and Windows NT $899.00 
+ 
+ 
+ 
+Free compilers
+ 
+ 
+Borland C++ 5 Free Compiler
+ 
+This is a free release of the 32-bit Borland C++ Builder compiler
+but limited to the command-line tools, without the Development Environment nor any other
+extra tools or visual component that comes with the commercial package.
+It is capable of building native Windows applications and it is ANSI-C++ compatible.
+Platforms: Windows 9x/Me, Windows NT/2000
+ 
+ Description List price Direct link 
+Borland C++ Free Compiler Borland C++ compiler command-line tools Free 
+ 
+ 
+ 
+ 
+ 
+GNU GCC based compilers
+ 
+GCC is a multi-language compiler originally designed for UNIX-like
+systems that can compile C++ code.
+It is available for certain UNIX systems and it is included in almost every Linux
+distribution.
+Currently there are also some ports of this compiler for other platforms.
+These compilers may generally be obtained free of charge under the terms of the
+GNU General Public Licence.
+ 
+ Description List price Direct link 
+GCC Original GNU Compiler Collection (GCC) Free 
+mingw GCC Port that can build native MSWindows' executables. Free 
+Bloodshed Dev-C++ Development environment for Windows based on mingw packages. Free 
+Cygwin Tools to build Windows applications over a UNIX-like DLL layer (cygwin.dll). Free 
+djgpp GCC Port to compile DOS and DOS+DPMI programs, including development tools. Free 
+RSXNT Extensions to compile Windows Apps for certain DOS compilers, like djgpp. Free 
+ 
+ 
+ 
+ 
+ 
+Digital Mars
+ 
+Successor of Zortech/Symantec C++ and brought to you by its original developer Walter Bright, this compiler and
+companion tools support development for DOS, extended DOS, Win16 and Win32 platforms.
+ 
+Zortech compiler, and now Digital Mars, are known to be the fastest C++ compilers in terms of
+compiling/linking time.
+ 
+Platforms: DOS, DOS32, Win16, Win32
+ 
+ Description List price Direct link 
+Digital Mars Digital Mars C++ compiler and tools Free 
+ 
+ 
+ 
+Author: Juan Soulie 
+The ownership by their respective registrants of all trademarks and logos referred here is acknowledged by the author.
+ 
+ 
+ © The C++ Resources Network, 2000-2001 - All rights reserved 
+ 
+ 
+ cplusplus.com documents 
+ 
+ 

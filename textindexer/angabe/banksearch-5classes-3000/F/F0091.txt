@@ -1,0 +1,38 @@
+
+Visual Basic Lecture 1: The Structure of the Module
+BASIC & Visual Basic
+BASIC stands for Beginner's All-purpose Symbolic Instruction Code. It was designed in the mid 1960s to provide a simple introduction to computers. Common English words are used as commands and the language is relatively simple.
+A Simple Program
+' This is a Simple Hello World Program
+Dim Text as String
+Dim i as Integer
+Text = "Hello World"
+For i = 1 to 5
+Print i, Text
+Next i
+One of the critisims of early version of BASIC was that it tended to produce unstructed code which was hard to read and debug. In the 1980's many varients of BASIC were augmented to include support for structured programming. Specifically, While and For looping and If...Then test constructs were added so that the code could be grouped into blocks.
+The idea of constructing blocks of code has continued into the 1990's 
+The Basics of a Programming Language
+Traditional program languages are composed of commands (often called statements), operators, variables and data. Variables represent data and the statements and operators operate on the data to produce the require output.
+Common Statements
+Declarations
+Variables and arrays need to be delcared so that when they are used the Tell the computer 
+Hint: There is an option to turn declaration off, but declaring them provides a useful method of keeping track of which variables are used where. In large applications it becomes hard to 
+Variables
+Local Variables
+Global Variables
+Hint: Keep the number of global variables that an application use to a minimum. Only use a global variable where the data it represents is used throuhout the application. Otherwise the programmer should use local variables and pass them between procedures & functions. The programmer is being lazy if there are lots of globals.
+Arrays
+Arrays are a type of variable and can be local or global
+Statements
+Operators
+Maths Operators
+Boolean Operators
+Forward: The Programming Process
+Back: Philosophy of Visual Basic
+This Web Page forms part of a series that describe the Custom
+GIS Course at the School of Geography, Leeds University.
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 29 January 1996 11:01:52

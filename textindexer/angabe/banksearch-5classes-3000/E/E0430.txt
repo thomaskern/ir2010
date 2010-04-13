@@ -1,0 +1,221 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Allow the user to browse for a folder
+Answer:
+There are two ways to allow the user to browse for a folder. First, there's the hard way,
+using the API function SHBrowseForFolder. Then there's the easy way, using the
+VCL's SelectFolder function. SelectFolder is documented in the BCB
+help system. This function works nicely, but unfortunately, it displays a form that uses
+the old Win 3.1 icons for folders and drives. SHBrowseForFolder shows a more
+contemporary dialog that contains the newer icons that are part of Windows 95, Windows 98,
+and Windows NT4. This FAQ explains how to utilize the SHBrowseForFolder function
+in a C++Builder project. Figure 1 shows the dialog box that pops up when you call SHBrowseForFolder.
+ 
+Figure 1. The SHBrowseForFolder dialog
+SHBrowseForFolder is part of the shell interface API. The prototype for the
+function is located in SHLOBJ.H. Like most API functions,
+SHBrowseForFolder takes a large, inexplicable structure as an argument.
+The structure's type name is BROWSEINFO. You fill in the members of this
+structure to control how the browse dialog will behave. After the user closes the dialog,
+SHBrowseForFolder returns a pointer to an ID list (PIDL) that indicates
+what folder was selected.
+One confusing aspect of SHBrowseForFolder is that it doesn't return the directory
+path to the folder that the user selected. One might presume that the BROWSEINFO
+structure would contain a string for the directory path. Of course, this would
+have made way too much sense, so Microsoft decided to implement an elaborate mechanism
+that requires you to work for that directory string. As mentioned earlier,
+SHBrowseForFolder returns a PIDL, which is a relatively worthless object. The
+API contains a function called SHGetPathFromIDList that can convert a PIDL into
+a directory path string.
+The code segment below explains how to use SHBrowseForFolder.
+#include 
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ BROWSEINFO info;
+ char szDir[MAX_PATH];
+ char szDisplayName[MAX_PATH];
+ LPITEMIDLIST pidl;
+ LPMALLOC pShellMalloc;
+ // SHBrowseForFolder returns a PIDL. The memory for the PIDL is
+ // allocated by the shell. Eventually, we will need to free this
+ // memory, so we need to get a pointer to the shell malloc COM
+ // object that will free the PIDL later on.
+ if(SHGetMalloc(&pShellMalloc) == NO_ERROR)
+ {
+ // if we were able to get the shell malloc object,
+ // then proceed by initializing the BROWSEINFO stuct
+ memset(&info, 0x00,sizeof(info));
+ info.hwndOwner = Handle; // Owner window
+ info.pidlRoot = 0; // root folder
+ info.pszDisplayName = szDisplayName; // return display name
+ info.lpszTitle = "Browse Title"; // label caption
+ info.ulFlags = BIF_RETURNONLYFSDIRS; // config flags
+ info.lpfn = 0; // callback function
+ // execute the browsing dialog
+ pidl = SHBrowseForFolder(&info);
+ // pidl will be null if they cancel the browse dialog.
+ // pidl will be not null when they select a folder
+ if(pidl)
+ {
+ // try to convert the pidl to a display string
+ // return is true if success
+ if(SHGetPathFromIDList(pidl, szDir))
+ {
+ // set one caption to the directory path
+ Label1->Caption = szDir;
+ }
+ // set another caption based on the display name
+ Label2->Caption = info.pszDisplayName;
+ // use the shell malloc com object to free the pidl.
+ // then call Relasee to signal that we don't need
+ // the shell malloc object anymore
+ pShellMalloc->Free(pidl);
+ }
+ pShellMalloc->Release();
+ }
+}
+Understanding the purpose of SHGetMalloc
+SHBrowseForFolder returns a PIDL object. The PIDL is allocated by the shell's task
+allocator. When you're done using the PIDL, it must be released by the task allocator. In
+order to properly free the PIDL object, you must obtain a reference to the shell's task
+allocator by calling the SHGetMalloc function. You can then use the task allocator
+to deallocate the PIDL.
+SHGetMalloc returns a pointer to an IMalloc COM object. The IMalloc COM interface
+is documented in the OLE Reference MS help file that comes with C++Builder. If you're not
+up to speed with COM (like...who is), then think of the IMalloc COM object as just another
+C++ object that has methods that you can call. The method that we need for this FAQ is the
+Free method. Free will release the PIDL object. When you're finished using the
+task alloctor, call the Release method of the IMalloc object. The pseudo-code below depicts the
+relationship between the COM methods and regular C++ code that we are more familiar with.
+COM code C++ psuedo-equivalent
+LPMALLOC pShellMalloc; // think of pShellMalloc as an object that
+SHGetMalloc(&pShellMalloc); // handles new and delete for OS shell tasks
+LPITEMIDLIST pidl; Tpidl *pidl;
+pidl = SHBrowseForFolder(...); pidl = new Tpidl();
+pShellMalloc->Free(pidl); delete pidl;
+pShellMalloc->Release();
+The BROWSEINFO structure
+The BROWSEINFO structure allows you to control the appearance and behavior
+of the SHBrowseForFolder dialog. Each BROWSEINFO structure is described
+below.
+typedef struct {
+ HWND hwndOwner;
+ LPCITEMIDLIST pidlRoot;
+ LPSTR pszDisplayName;
+ LPCSTR lpszTitle;
+ UINT ulFlags;
+ BFFCALLBACK lpfn;
+ LPARAM lParam;
+ int iImage;
+} BROWSEINFO;
+hwndOwner: Specifies the handle of the owner window of the browsing dialog. If you
+supply an owner, the browse dialog will behave modally with respect to the owner window.
+The user will not be able to interact with your program while the browse dialog is displayed.
+This is usually the effect that you want. Also, when you specify an owner, the taskbar will
+not display a separate icon for the browsing dialog. If you set hwndOwner to
+NULL, then the browsing dialog behaves like a separate window that is not part
+of your program. Users will still be able to interact with your program and the browsing
+dialog will have its own taskbar icon.
+pidlRoot: Specifies the root PIDL, or directory, of the browsing dialog. The root
+PIDL acts like the base folder for the dialog. The user cannot backup past the root folder.
+For example, let's say that you want your users to select a folder on the C: drive. You
+could obtain a PIDL for the C:\ drive (how you obtain that is complicated enough to
+warrant its own FAQ), and then assign this PIDL to the pidlRoot member of
+BROWSEINFO. The browsing dialog would not allow the user to backup past the root
+directory of the C: drive.
+pszDisplayName: The browse dialog writes the title of the selected folder into
+the pszDisplayName member of BROWSEINFO. You should point this member to a buffer that can
+hold at least MAX_PATH characters. Note that the display name is not the same
+thing as the directory path to the folder.
+lpszTitle: This parameter allows you to specify text that the browse info dialog
+will display just above the directory treeview (see Figure 1).
+ulFlags: Controls the type of folders that the user can browse for. The
+possible values are:
+BIF_BROWSEFORCOMPUTER Browses only for computers (network neighborhood).
+BIF_BROWSEFORPRINTER Browses for network printers (somewhat useless).
+BIF_DONTGOBELOWDOMAIN Prevents display of network folders below domain level.
+BIF_RETURNFSANCESTORS Returns file system items (drives and directories).
+BIF_RETURNONLYFSDIRS Returns file system ancestors (so what are those??).
+BIF_STATUSTEXT	 Displays a label on the browse dialog.
+Be careful when trying to control SHBrowseFolder by altering the ulFlags structure member.
+You might not get the results that you expect. For example, if you specify the BIF_BROWSEFORPRINTER flag, you
+might expect that the user will be able to select a local printer that is connected directly to their PC. This turns out
+to be false. The BIF_BROWSEFORPRINTER only allows the user to browse for network printers. Also, it doesn't
+seem to prevent them form selecting a file directory (at least, not when I tried it).
+lpfn: Pointer to a callback routine. An example is shown below.
+lParam: Value that is used in the callback routine.
+iImage: The folder that is selected by SHBrowseForFolder will have an associated icon of some
+kind. When SHBrowseForFolder closes, iImage contains an integer value. This value is the selected
+folder's index into the system imagelist. If you don't know what the system imagelist is, see my FAQ on
+displaying the same icons that Windows displays.
+Using a SHBrowseForFolder callback routine
+Two of the BROWSEINFO members pertain to some mystical callback hocus pocus. So what is this callback jazz
+all about? The callback routine exists so you can customize the behavior of the SHBrowseForFolder dialog. For
+example, if you don't like (or don't understand, like my) why the ulFlags parameter doesn't seem to behave correctly,
+you can take control of the browse dialog yourself by using a callback. The callback allows you to enable and disable
+the browse dialog's OK button. You can also navigate the dialog to a specific folder or set the status text.
+Here is a code example that demonstrates how to utilize the browse dialog's callback function.
+This code sets the status text of the dialog, and it initialize the browse dialog to a specific directory. The code
+also tracks the current selection in the browse dialog and displays the folder path in a label.
+int __stdcall BrowseProc(HWND hwnd,UINT uMsg, LPARAM lParam, LPARAM lpData )
+{
+ char szDir[MAX_PATH];
+ switch(uMsg)
+ {
+ case BFFM_INITIALIZED:
+ SendMessage(hwnd, BFFM_SETSTATUSTEXT,0, (LPARAM)"Greetings");
+ // Set the initial directory. If WPARAM is TRUE, then LPARAM is a
+ // string that contains the path. If WPARAM is FALSE, then LPARAM
+ // should be a lovely PIDL
+ SendMessage(hwnd, BFFM_SETSELECTION, TRUE, (LPARAM)"C:\\Delphi4");
+ break;
+ case BFFM_SELCHANGED:
+ if(SHGetPathFromIDList((LPITEMIDLIST)lParam, szDir))
+ Form1->Label3->Caption = szDir;
+ break;
+ }
+ return 0;
+}
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ BROWSEINFO info;
+ char szDir[MAX_PATH];
+ char szDisplayName[MAX_PATH];
+ LPITEMIDLIST pidl;
+ LPMALLOC pShellMalloc;
+ if(SHGetMalloc(&pShellMalloc) == NO_ERROR)
+ {
+ memset(&info, 0x00, sizeof(info));
+ info.hwndOwner = 0;
+ info.pidlRoot = NULL;
+ info.pszDisplayName = szDisplayName;
+ info.lpszTitle = "Browse Title";
+ info.ulFlags = BIF_RETURNONLYFSDIRS|BIF_STATUSTEXT;
+ info.lpfn = BrowseProc; // callback function
+ pidl = SHBrowseForFolder(&info);
+ if(pidl)
+ {
+ if(SHGetPathFromIDList(pidl, szDir))
+ {
+ Label1->Caption = szDir;
+ }
+ Label2->Caption = info.pszDisplayName;
+ pShellMalloc->Free(pidl);
+ pShellMalloc->Release();
+ }
+ }
+}
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

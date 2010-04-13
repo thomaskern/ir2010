@@ -1,0 +1,145 @@
+
+Lesson Five
+Now we'll take a look at input, selection, and repetition. All the programs we will be writing be interactive, which means you and the programs you write will exchange communication. This will occur while the programs are in run time, or while the program is running. To provide the method to receive input, you must write System.in.read(). This method will tell the System.out.print() what the user typed from the keyboard. For example:
+public class UsersInitials
+{
+  public static void main(String[] args) throws Exception
+  {
+    char firstInit, middleInit, lastInit;
+    System.out.print("Enter your first initial and press ENTER. ");
+    firstInit = (char)System.in.read(); System.in.read(); System.in.read();
+    System.out.print("Enter your second initial and press ENTER. ");
+    middleInit = (char)System.in.read(); System.in.read(); System.in.read();
+    System.out.print("Enter your third initial and press ENTER. ");
+    lastInit = (char)System.in.read();
+    System.out.println("Your initials are " + firstInit + middleInit + lastInit);
+  }
+}
+the program prompts the user to type his or her initials and type ENTER after each one. The words throws Exception passes the error situation to the operating system. The two extra System.in.read(); statements absorb the ENTER key after the first one retrieves the information. Finally, the last System.out.println("Your initials are " + firstInit + middleInit + lastInit); echoes (or repeats) the users input back for the user for confirmation.
+The proper way of designing programs that interact with the user is by way of creating flowcharts as diagrams that show the steps needed to complete the program. Flowcharts are especially useful when designing programs using if() statements. This next program is a fill-out form that uses if() and if()...else statements:
+public class FurnitureSizes
+{
+  public static void main(String[] args) throws Exception
+  {
+    char furnitureType, furnSize;
+    System.out.println("Enter the type of wood you want the table to be made of");
+    System.out.print("P for pine, ");
+    System.out.print("O for oak, ");
+    System.out.print("or M for mahogany. ");
+    furnitureType = (char)System.in.read();System.in.read();System.in.read();
+    System.out.println("Enter the size of table you want");
+    System.out.print("L for large, S for small. ");
+    furnSize = (char)System.in.read();
+    System.out.print("The cost of tables made of ");
+    if(furnitureType == 'P')
+    {
+    if(furnSize == 'L')
+       System.out.println("pine is $135.");
+    else
+      System.out.println("pine is $100.");
+    }
+    else if(furnitureType == 'O')
+    {
+    if(furnSize == 'L')
+      System.out.println("oak is $260.");
+    else
+      System.out.println("oak is $225.");
+    }
+    else if(furnitureType == 'M')
+    {
+    if(furnSize == 'L')
+      System.out.println("mahogany is $345.");
+    else
+      System.out.println("mahogany is $310.");
+    }
+  }
+}
+Notice the type of wood and the size of table gives you two different results. Using the if statement is called decision making. The program above allows the user to make the decision of what kind of wood the table is to be made out of and what size the table is to be. Once that decision is made, the user can find out how much the table is going to cost. You can also nest if...else statements within other if...else statements.
+There are special characters that you can use in decision making. Say you asked a child to give you a number between 1 and 10, and the child said, "13". 13 is not between 1 and 10. To write an argument to take care of this, you'd need to compare the number given with the numbers you provided. This is where the && (AND operator) comes in to play. You'd write your argument if(num >= 1 && num || (OR operator) can be used in cases such as the case of a character: if(letter == 'A' || letter == 'a').
+Another way of making decisions is to use the switch() statement. With the switch() statement, everything is put in its' own catagory and read as needed. Below is ChooseManager program that calls the Event program for its' constructor and then uses the switch() statement along with the case:, break;, and default; statements.
+public class Event
+{
+  private char eventType;
+  private double eventMinRate;
+  public Event(char event, double rate)
+  {
+    eventType = event;
+    eventMinRate = rate;
+  }
+  public char getEventType()
+  {
+    return eventType;
+  }
+  public double getEventMinRate()
+  {
+    return eventMinRate;
+  }
+}
+public class ChooseManager
+{
+  static final double CORP_RATE = 75.99;
+  static final double PRI_RATE = 47.99;
+  static final double NON_PROF_RATE = 40.99;
+  public static void main(String[] args) throws Exception
+  {
+    char eventType;
+    Event anEvent;
+    System.out.println("Enter the type of event you are scheduling");
+    System.out.println("C for a corporate event");
+    System.out.println("P for a private event");
+    System.out.println("N for a non-profit event");
+    eventType = (char)System.in.read();
+    while (eventType != 'C' && eventType != 'P' && eventType != 'N')
+    {
+    System.in.read(); System.in.read();
+    System.out.println("Entry must be C or P or N!");
+    eventType = (char)System.in.read();
+    }
+    System.out.print("The manager will be ");
+    switch(eventType)
+    {
+      case 'C':
+        System.out.println("Dustin Britt");
+        anEvent = new Event(eventType, CORP_RATE);
+        break;
+      case 'P':
+        System.out.println("Carmen Lindsey");
+        anEvent = new Event(eventType, PRI_RATE);
+        break;
+      default:
+        System.out.println("Robin Armanetti");
+        anEvent = new Event(eventType, NON_PROF_RATE);
+        break;
+    }
+    System.out.println("Event type is " + anEvent.getEventType());
+    System.out.println("Minimum rate charged is $" + anEvent.getEventMinRate());
+  }
+}
+The switch() statement takes the "eventType" and asks if the case: is "C", "P", or default: for "N", then prints the proper message accordingly. Notice that this program also features the while loop as well as the AND (&&), and NOT (!=) operators, but not the OR (||) operator. These are allowed for the boolean (true or false) statement to work. In short, while eventType is not equal to "C", "P", and "N", the statement "Entry must be C or P or N!" must execute, otherwise produce the output from the switch() statement. Another looping command is the for() loop. The for() loop uses shortcut arithmetic operators. One of them are ++ and the other is --. If you wanted "num" to be incremented by one, you'd write ++num. The same goes for decrementing. However, if you want to write "num = num + 1;" in shorthand, you'd write num += 1;. Here is an example of how a for() loop works:
+public class EvenInt
+{
+  public static void main(String[] args) throws Exception
+  {
+    int num, testNum;
+    for(testNum = 1; testNum 
+    {
+    System.out.print(testNum + " is evenly divisible by ");
+    for(num = 1; num 
+      if(testNum%num == 0)
+        System.out.print(num + " ");
+        // Print the number and two spaces
+    System.out.println();
+      if(testNum % 20 == 0)
+      {
+        System.out.println("Press ENTER to continue...");
+        System.in.read(); System.in.read();
+      }
+    }
+  }
+}
+As you can see, there are two for() loops in this program. The first one sets "testNum" to 1, says "process this loop until you've done it 100 times, then quit", and then adds 1 to "testNum". Nested inside the loop is an equation that uses modulo division (%) to determine when this loop ends. The second for() loop sets "num" to 1, says "as long as 'num' is less than 'testNum', process this loop", then adds 1 to "num". This loop also has a similar equation to find when the loop ends. However, it is designed to let the viewer see 20 lines at one time before going on to the next 20.
+Question: It seems as though these programs are the background of some similar forms I've filled out on the web. But, the thing is, I was able to type numbers. Why, after trying programs of my own like these, can't I use numbers?
+Answer: That's what we are going to cover next. The System.in.read() only reads character input, not integer. In order to read integers, you need to create an array.
+Lesson Four | Home | Lesson Six
+If you have any questions or comments about this lesson, feel free to click here and leave me your message.
+ 

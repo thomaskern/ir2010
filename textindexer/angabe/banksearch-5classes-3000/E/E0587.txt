@@ -1,0 +1,115 @@
+
+	Listing 2
+	
+ 	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	 
+	
+	
+	
+	Listing 2: Flow Control. The base class decides when and where the derived class control methods are called. You can also see how screens are created by CreateDlg().
+ 
+	
+	
+	
+ #include "stdafx.h"
+#include "TextDlg.h"
+#include "EditTextDlg.h"
+#include "NewTextDlg.h"
+#include "ViewTextDlg.h"
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+/////////////////////////////////////////////////////////////////////
+// CTextDlg dialog
+// ** Created by Class Wizard **
+CTextDlg::CTextDlg(CWnd* pParent /*=NULL*/)
+ : CDialog(CTextDlg::IDD, pParent)
+{
+ //{{AFX_DATA_INIT(CTextDlg)
+ m_Text = _T("");
+ //}}AFX_DATA_INIT
+}
+void CTextDlg::DoDataExchange(CDataExchange* pDX)
+{
+ CDialog::DoDataExchange(pDX);
+ //{{AFX_DATA_MAP(CTextDlg)
+ DDX_Control(pDX, IDC_PRINT, m_PrintBtnCtrl);
+ DDX_Control(pDX, IDC_EDIT1, m_EditCtrl);
+ DDX_Text(pDX, IDC_EDIT1, m_Text);
+ //}}AFX_DATA_MAP
+}
+BEGIN_MESSAGE_MAP(CTextDlg, CDialog)
+ //{{AFX_MSG_MAP(CTextDlg)
+ //}}AFX_MSG_MAP
+END_MESSAGE_MAP()
+/////////////////////////////////////////////////////////////////////
+// CTextDlg message handlers
+// ** Added code **
+CTextDlg *CTextDlg::CreateDlg(enum CTextDlg::dlgType type)
+{
+ // create a derived dialog class
+ switch (type)
+ {
+ case NEW:
+ return new CNewTextDlg;
+	
+ case EDIT:
+ return new CEditTextDlg;
+ case VIEW:
+ return new CViewTextDlg;
+ }
+ return NULL;
+}
+CString CTextDlg::GetText()
+{
+ // get text entered from edit control
+ return m_Text;
+}
+BOOL CTextDlg::OnInitDialog() 
+{
+ CDialog::OnInitDialog();
+ // allow derived class to initialize
+ Setup();
+ return TRUE; // return TRUE unless you set the focus to a control
+ // EXCEPTION: OCX Property Pages should return FALSE
+}
+void CTextDlg::OnOK() 
+{
+ // allow derived class to carry out "OK" action
+ DoOK();
+ CDialog::OnOK();
+}
+void CTextDlg::OnCancel() 
+{
+ // allow derived class to carry out "Cancel" action
+ DoCancel();
+ CDialog::OnCancel();
+}

@@ -1,0 +1,325 @@
+
+VB Helper: HowTo: Make an ActiveX DLL or EXE
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ TitleMake an ActiveX DLL or EXE 
+ KeywordsActiveX DLL, ActiveX EXE 
+ CategoriesActiveX 
+ 
+ 
+ 
+ 
+ 
+ 
+Why?
+Which?
+Making an ActiveX DLL/EXE Project
+Instancing
+ 
+ Private
+ 
+ PublicNotCreatable
+ 
+ SingleUse
+ 
+ GlobalSingleUse
+ 
+ MultiUse
+ 
+ GlobalMultiUse
+ 
+Test Projects
+Binding
+ 
+ Early Binding
+ 
+ Late Binding
+ 
+Why?
+You make an ActiveX DLL or EXE to allow multiple applications to share the same code. This saves you time because you only need to write the code once. It also lets you devote extra time to debugging the shared code. If you are going to use the code in a lot of different applications, you can perform extra tests to make sure the code works correctly and still save time overall.
+Centralizing the code also lets you fix, upgrade, and otherwise modify the shared library relatively easily. You can update the shared DLL/EXE and all of the applications that use it are automatically updated. The Binding section talks more about this.
+Which?
+ActiveX DLLs and ActiveX EXEs are almost exactly the same in the ways they are built and used. In both cases, you build one or more classes that applications can use to do something. The big difference lies in where they are used.
+An ActiveX DLL's code is executed within the main program's address space. It behaves as if the class was created within the main program's code. Because the code lies inside the program's address space, calling methods is very fast.
+An ActiveX EXE's code is run in a separate process. When the main program calls an ActiveX EXE's method, the system marshalls the call to translate the parameters into the ActiveX EXE's address space, calls the method, translates the results back into the main program's address space, and returns the result. This is slower than running an ActiveX DLL's method inside the main program's address space.
+Because of the difference in speed, an ActiveX DLL is almost always preferable. The reason ActiveX EXEs are useful is they can run on a different computer than the main program while an ActiveX DLL must run on the same computer as the main program.
+If you want to build a library of shared routines to save programming and debugging, use an ActiveX DLL because it will give you better performance. Even if you need to distribute several copies of the DLL on different computers, it will probably be worthwhile.
+If you want a centralized server library, use an ActiveX EXE. The EXE can sit on a central computer and work directly with that computer's resources. If you need to frequently change how the code works, you can easily change it in one place.
+Making an ActiveX DLL/EXE Project
+Start a new project and select ActiveX EXE or ActiveX DLL. Initially the project is named Project1 and contains a class named Class1. Change these to meaningful names. The model Microsoft has in mind is a DLL/EXE contains several related classes that each perform related functions. For example, a DLL might contain billing system classes named Customer, Product, and SalesPerson. The Customer class would contain methods for manipulating customer data. In this example, you might change the project name to BillingObjects. You would change Class1's name to Customer and add two more classes named Product and SalesPerson.
+Give the class Public functions and methods to perform whatever tasks it should. The main program can only invoke the Public class methods.
+Instancing
+Set the classes' Instancing properties to determine how the object can be created. In VB6 the allowed values are:
+Private
+Code outside the DLL/EXE cannot create this object type. Other classes in the DLL/EXE can use this type of class as a helper but the main program cannot use it.
+PublicNotCreatable
+The main program can use this type of class but cannot create new instances using the New keyword or with CreateObject. In this case, you need to provide some method within the other classes to create thue new object and return it to the main program.
+SingleUse
+The main program can create the object. Every time you create a new object, the system makes a new ActiveX EXE instance to service the object you created. Among other things, if the EXE contains global variables then different objects you create get different copies of the variables. This option is allowed for ActiveX EXEs only.
+GlobalSingleUse
+Similar to SingleUse except you can invoke the properties and methods of the class as if they were simple global functions. This option is allowed for ActiveX EXEs only. See GlobalMultiUse later for more details.
+MultiUse
+The main program can create the object. When it does, the system makes an ActiveX DLL/EXE component to handle the object. If you make other objects, the system uses the same ActiveX DLL/EXE component to handle them. This can be a little confusing depending on whether you are building a DLL or EXE and whether an EXE is running on different computers.
+If you build an ActiveX DLL, all programs run the DLL code in their own address spaces. That means different objects created in the same program will share the same component server so they could share global variables defined in the DLL. However, if the objects are all freed at the same time, the component server will shut down so any global values will be lost.
+The code in the SharedDll directory available for download demonstrates this kind of sharing. The BillingObjects,vbp project contains the project named BillingObjects. This project holds a BAS module holding a public variable named g_TheNumber. This variable is visible to other code in the project but not to a main program using the DLL.
+The BillingObjects project also contains a MultiUse class named Customer. This class has Property Let and Property Get procedures that set and get the value of g_TheNumber.
+The main program uses two Customer objects like this:
+ 
+ 
+ 
+ 
+ 
+ 
+ Private m_Customer1 As Object
+Private m_Customer2 As Object
+Private Sub Form_Load()
+ Set m_Customer1 = _
+ CreateObject("BillingObjects.Customer")
+ Set m_Customer2 = _
+ CreateObject("BillingObjects.Customer")
+End Sub
+Private Sub cmdGet_Click()
+ txtTheNumber.Text = m_Customer1.TheNumber
+End Sub
+Private Sub cmdSet_Click()
+ m_Customer1.TheNumber = CInt(txtTheNumber.Text)
+ txtTheNumber.Text = ""
+End Sub
+ 
+ 
+ 
+ 
+ 
+In the DLL project, open the File menu and select Make BillingObjects.dll to build the DLL. Notice how the main program uses the CreateObject function to create its instances of the Customer class. The name of the class is the project's name followed by the class name: BillingObjects.Customer.
+Notice also that the program creates the two Customer objects when it starts and it keeps those objects running. That means the component stays running so the objects share the value of g_TheNumber. If you use the Set button to save a value into this variable and then use the Get button to retrieve the value, you should get back the value you saved.
+This behavior is what you would expect if you included the DLL's modules directly inside the main program. If you want that behavior, make the DLL MultiUse. If you want each class object to have its own global variables, make the DLL SingleUse. Or better still, move the variables inside the class so each object gets its own variables but you still only need one component instance. That will save some overhead.
+Now you're probably saying, "Big deal. I could have shared values a lot more easily with simple global variables." You're right. The interesting thing is any program that uses a shared component server can share the values. Compile the test program and use Windows Explorer to launch two instances of the program. Enter 1234 in one instance and click Set. Then click Get in the other instance. The second program should see the value set by the first.
+Note that this sometimes gets messed up and a component server is left running so you may end up with two programs running different component servers.
+The ActiveX EXE project in the SharedExe directory demonstrates this sharing using an ActiveX EXE. It's basically the same as the previous example except is uses an ActiveX EXE instead of a DLL. Compile the test program and use Windows Explorer to launch two instances of the program. Enter 1234 in one instance and click Set. Then click Get in the other instance. The second program should see the value set by the first.
+GlobalMultiUse
+This is similar to MultiUser except the main program can reference methods and properties as if they were globally declared. The code in the GlobalMultiUse directory demonstrates this. The ActiveX EXE code is the same as in the previous example except the Customer class is marked GlobalMultiUse. The main program uses the Customer's TheNumber property procedures like this:
+ 
+ 
+ 
+ 
+ 
+ 
+ Private Sub cmdGet_Click()
+ ' Implicit use of:
+ ' GlobalBillingObjects.Customer.TheNumber
+ txtTheNumber.Text = TheNumber
+End Sub
+Private Sub cmdSet_Click()
+ ' Implicit use of:
+ ' GlobalBillingObjects.Customer.TheNumber
+ TheNumber = CInt(txtTheNumber.Text)
+ txtTheNumber.Text = ""
+End Sub
+ 
+ 
+ 
+ 
+ 
+This code simply uses the TheNumber procedures as if they were globally declared. When the program invokes one of the methods using this global syntax, it creates an instance of the class to use its methods. It continues to use that instance whenever it needs to execute a global method.
+If you explicitly create other instances of the class, you get new object not the global one. As far as I know, there is no way to get a direct reference to the global object instance.
+This all seems pretty confusing so I would avoid using GlobalMultiUse and GlobalSingleUse. They let you use a syntax that is more similar to that used by DLLs built in C++ and other languages and that's probably why Microsoft implemented these. They hide the fact that there is an underlying class object, however, so they increase your chances for confusion.
+Test Projects
+The previous sections glossed over a few details dealing with test projects. After you create your ActiveX DLL project, you can add a test application. Open the File menu, select Add Project, and add a Standard EXE. That project can act as the main program to test your DLL. This is handy because it means you don't need to compile the DLL before you can test it. It also means you don't need to jump back and forth between the DLL and test application projects.
+After you have the DLL code working, you can compile it into a DLL file. Then you can create independent applications to use it.
+Binding
+You can bind your DLL or EXE either at runtime (late binding) or at design time (early binding). When you use early binding, you tell the main program all about the DLL. That lets it do things like provide intellisense for the DLL's methods. It is also faster than late binding.
+Early Binding
+To use early binding, load the main program, open the Project menu, and select References. Find your DLL in the list and select it. If the DLL project's name is BillingObjects, then look for an entry named BillingObjects. If you have had a couple versions of the project in different locations, you may see more than one entry. Click on one and look at the location displayed near the bottom of the dialog to see if you have the right one. If you can't figure it out, click the Browse button and find the DLL yourself. When you have selected the DLL, click OK.
+Now the program can explicitly refer to the classes in the DLL. For example, it could declare and create a Customer object like this:
+ Dim customer1 As Customer
+ Set customer1 = New Customer
+If you now type "customer1.", intellisense will be able to list the public methods provided by the Customer class. In this example, this is just the TheNumber property procedure.
+Early binding has the disadvantage that it imposes more restrictions on the DLL's compatibility. If you change the DLL's methods as they are visible to outside code, the main program will no longer have a correct picture of the DLL. For example, if you add a new Public method to a class, the main program will not know about that method. When you try to create an instance of the class, the system will decide that the program is looking for an incompatible DLL version and will display the message:
+Class does not support Automation or does not support expected interface
+To fix this, load the main program, open the Project menu, and select References. Deselect the DLL and click OK. Then open the References dialog again and reselect the DLL. Now the program will work again.
+Depending on your exact arrangement, you may also get the error:
+Type mismatch
+To fix this, recompile the main program.
+Late Binding
+To use late binding, declare references to DLL objects to have type Object. Then use the CreateObject statement to instantiate the objects like this:
+ Dim customer1 As Object
+ Set customer1 = CreateObject("BillingObjects.Customer")
+This code creates an instance of the Customers class that is defined by the DLL project named BillingObjects. After this the program can use the Public properties and methods of the customer1 object just as if it had declared it using early binding.
+Now if you change the DLL's public methods, the compiled executable will still work (if you removed the methods the program uses). The downside with late binding is you don't get intellisense and calling the DLL's methods takes longer than it does with early binding.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

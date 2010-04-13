@@ -1,0 +1,40 @@
+
+Visual Basic Section 3: The Windows API
+The Windows API
+A Basic Introduction
+API is one of those acronyms that is primarily used to intimidate people. It stands for Application Programmer's Interface and is simply a set of programming functions that every PC running Windows 3.1 provides to a programmer. The term API is also more widely used to describe a set of functions that are part of one application, but can be accessed by another application e.g. a VB program can execute an Excel spreadsheet function using Dynamic Data Exchange (DDE is a facility provided by Windows); the VB program is said to be accessing the Excel API.
+So the Windows API is a set of functions that are part of Windowss and are available to any Windows application. These functions are stored in what are called Dynamic Link Libraries. These are libraries of functions that are linked when the a program is run (dynamically) rather than when the program is made (static linking).
+Hint: Search for "API" in the VB Help if you are using the professional version of VB then you'll have access to two further help files; WIN31WH.HLP & WIN31API.HLP. The former provides help topics on many of the commonly used API functions. The later contains declarations, types and constants used with the Windows 3.1 API.
+Most of the major functions provided by Windows are stored in the following files.
+Major Windows DLLs
+DLL Name 
+Description 
+KERNAL.EXE 
+low-level operating functions. Memory management and resource handling 
+USER.EXE 
+Nondisplay functions that control the communications between applications. 
+GDI.EXE 
+Graphics Device Interface library. Includes functions related to device output. 
+Handles for Every Object: the hDC property
+To use an API function that function must have some way of knowing what it is working with. To this end every object in Windows has a name (really a number) called a handle. VB programmers have access to this handle throught the hDC property of Forms, command dialog, picture boxes and the printer object e.g.
+The Device Context
+Actually the handle is part of a link between the VB application and the software that communicates with input/output (IO) devices (monitors, printers, scanners etc.). This link is called the device context and is composed of several other pieces of information
+The DECLARE Statement
+Visual Basic needs to know if the programmer is using API functions and if so where there are and what arguments they require. To do this API functions are declared within the declaration section of a module (*.BAS file). This is based on the same concept as declaring a sub procedure in Quick BASIC. 
+Declarations take the form...
+Declare Sub FloodFill Lib "GDI" (ByVal hDC As Integer, ByVal X As Integer, ByVal Y As Integer, ByVal crColor As Long)
+or...
+Declare Function FloodFill Lib "GDI" (ByVal hDC As Integer, ByVal X As Integer, ByVal Y As Integer, ByVal crColor As Long) as integer
+The first acts as a sub procedure and therefore doesn't return a value. While the second declares the DLL function as a function and therefore returns a value when it finishes. This value has to go somewhere requires that a variable is set to the return value (see below).
+The declare statement itself is composed of four sections...
+- a key word Sub or Function, that dictates whether the DLL function is used as a procedure or a function.
+- the name of the DLL function.
+- the name of the dynamic link library that contains the function. In this case it is the Graphics Device Interface or GDI.
+- Lastly, there is the arguments list which contains a set of variables which determine what should be passed to the function.
+It is very important that the declare statement is correct, especially the arguments list. Many common programming mistakes can often be attributed to the declare statement 
+Forward: 
+Back: Plotting Polygons
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

@@ -1,0 +1,174 @@
+
+7.2) Thread blocking
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+7)Threads 
+Objective 2) 
+Recognize conditions that 
+ might prevent a thread from executing.
+Comment on the objective 
+The expression "prevent a thread from executing" is slightly ambiguous, 
+ does it mean a thread that has been deliberately paused, or does it also include 
+ threads that have died?. A thread that is prevented from executing is said to 
+ be blocked.
+Reasons a thread may be blocked 
+A thread may be blocked because
+ 
+- 
+ 1) It has been put to sleep for a set amount of time 
+ 
+- 
+ 2) It is suspended with a call to suspend() and will be 
+ blocked until a resume() message 
+ 
+- 
+ 3) The thread is suspended by call to wait(), and will become 
+ runnable on a notify or notifyAll message. 
+ For the purposes of the exam sleep(), and wait/notify are probably 
+ the most important of the situations where a thread can be blocked. 
+The sleep method is static and pauses execution for a set number of 
+ milliseconds. There is a version that is supposed to pause for a set number 
+ of nanoseconds, though I find it hard to believe many people will work on a 
+ machine or Java implementation that will work to that level of accuracy. Here 
+ is an example of putting a Thread to sleep, note how the sleep method throws 
+ InterruptedException. The thread
+public class TSleep extends Thread{
+public static void main(String argv[]){
+ TSleep t = new TSleep();
+ t.start();
+ }
+ public void run(){
+ try{
+ while(true){
+ this.sleep(1000);
+ System.out.println("looping while");
+ }
+ }catch(InterruptedException ie){}
+ }
+}
+With the release of the Java2 platform the
+Thread methods stop, suspend and resume have been deprecated (no longer recommended
+for use, and will produce a warning at compile
+time). The JDK notes have the contain the
+following notice
+//Quote
+Deprecated. This method has been deprecated, as it is inherently deadlock-prone. 
+ If the target thread holds a lock on the monitor protecting a critical system 
+ resource when it is suspended, no thread can access this resource until the 
+ target thread is resumed. If the thread that would resume the target thread 
+ attempts to lock this monitor prior to calling resume, deadlock results. Such 
+ deadlocks typically manifest themselves as "frozen" processes. For 
+ more information see Why are Thread.stop, Thread.suspend and Thread.resume Deprecated?.
+//End Quote
+A generally reliable source (Kathy Kozel) has indicated that you may need to 
+ be aware of this for the purpose of the exam. I will assume that you do not 
+ need to know how to actually use them.
+Thread blocking via the wait/notify protocol is covered in the next 
+ topic 7.3. 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+What will happen when you attempt to compile and run this code?
+public class TGo implements Runnable{
+public static void main(String argv[]){
+ TGo tg = new TGo();
+ Thread t = new Thread(tg);
+ t.start();
+ }
+ public void run(){
+ while(true){
+ Thread.currentThread().sleep(1000);
+ System.out.println("looping while");
+ }
+ }
+}
+1) Compilation and no output
+ 2) Compilation and repeated output of "looping while"
+ 3) Compilation and single output of "looping while"
+ 4) Compile time error
+Question 2) 
+Which of the following are recommended ways a Thread may be blocked?
+1) sleep()
+ 2) wait/notify
+ 3) suspend
+ 4) pause
+Question 3) 
+Which of the following statements are true?
+1) The sleep method takes parameters of the Thread and the number of seconds 
+ it should sleep
+ 2) The sleep method takes a single parameter that indicates the number of seconds 
+ it should sleep
+ 3) The sleep method takes a single parameter that indicates the number of milliseconds 
+ it should sleep
+ 4) The sleep method is a static member of the Thread class 
+Answers
+Answer 1)
+4) Compile time error
+ The sleep method throws InterruptedException and thus this code will 
+ not compile until the while loop is surrounded by a try/catch block
+ 
+ Answer 2)
+ 
+ 1) sleep()
+ 2) wait/notify
+ 
+ For the Java2 platform the suspend method has been deprecated and thus 
+ is valid but not recommended
+ 
+ Answer 3)
+ 
+ 3) The sleep method takes a single parameter that indicates the number 
+ of milliseconds it should sleep
+ 4) sleep is a static method of the Thread class
+ 
+ Other sources on this topic
+ 
+ This topic is covered in the Sun Tutorial at
+ http://java.sun.com/docs/books/tutorial/essential/threads/waitAndNotify.html 
+ 
+ 
+ Commentry on deprecated Thread methods at
+ http://java.sun.com/docs/books/tutorial/post1.0/preview/threads.html
+ 
+ Richard Baldwin Covers this topic at
+ http://www.geocities.com/Athens/Acropolis/3797/Java058.htm#the 
+ notify() and wait() methods
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec7.html#obj23 
+ 
+Last updated
+ 19 Jan 2000
+ copyright © Marcus Green 1999
+ 
+ 
+ 
+ 
+ 

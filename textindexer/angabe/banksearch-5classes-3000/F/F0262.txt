@@ -1,0 +1,137 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > ActiveX / COM
+Detecting when the Font is changed in an ActiveX Control
+ID: 654
+Author: Abstractvb
+Date: 3/18/2000 9:30:18 AM
+VB6
+I was asked how to do this by a user of this site, and I noticed that the answer seemed
+ a little more interesting than it did at first.
+ 
+First there are two interesting things to this one:
+ 
+ 
+ 
+ Visual Basic does not expose an event that gets fired when
+ the user changes the font on your ActiveX control. You have to declare the StdFont on your
+ own and use WithEvents so you have access to the FontChanged Event it exposes. 
+ 
+ 
+ 
+ If you assign one StdFont to another it will not assign all
+ the attributes, you will only get the font name, and not the size, or other attributes.
+ That is why it is necessary to assign each in the Set Font Property.
+Dim WithEvents mFont As StdFont
+Private Sub UserControl_Initialize()
+ Set mFont = New StdFont
+ Set UserControl.Font = mFont
+End Sub
+Public Property Get Font() As StdFont
+ Set Font = mFont
+End Property
+Public Property Set Font(mNewFont As StdFont)
+ With mFont
+ .Bold = mNewFont.Bold
+ .Italic = mNewFont.Italic
+ .Name = mNewFont.Name
+ .Size = mNewFont.Size
+ End With
+ 
+ PropertyChanged "Font"
+End Property
+Private Sub mFont_FontChanged(ByVal PropertyName As String)
+ Set UserControl.Font = mFont
+ Refresh
+End Sub
+ Want More Source Code? You May Also Be Interested In This: 
+Determine when a developer makes your Usercontrol the default
+Shows how to determine when a developer sets the default property of your control to true or false so you can draw your control to reflect the change.
+VB6
+Rank:
+Difficulty:
+ 
+Detecting when controls have been added to your Usercontrol.
+Shows how to detect when the user places controls onto your usercontrol.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

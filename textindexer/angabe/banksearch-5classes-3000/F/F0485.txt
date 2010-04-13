@@ -1,0 +1,149 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > ActiveX / COM
+Persistable COM
+ID: 855
+Author: S.S. Ahmed
+Date: 6/14/2001 9:09:16 PM
+VB6
+Private mstrFirstName As String
+Private mstrLastName As String
+Public Property Get LastName() As String
+ LastName = mstrLastName
+End Property
+Public Property Let LastName(strNewName As String)
+ mstrLastName = strNewName
+End Property
+Public Property Get FirstName() As String
+ FirstName = mstrFirstName
+End Property
+Public Property Let FirstName(strNewName As String)
+ mstrFirstName = strNewName
+End Property
+Private Sub Class_ReadProperties(PropBag As PropertyBag)
+ mstrLastName = PropBag.ReadProperty("LastName")
+ mstrFirstName = PropBag.ReadProperty("FirstName")
+End Sub
+Private Sub Class_WriteProperties(PropBag As PropertyBag)
+ PropBag.WriteProperty "LastName", mstrLastName
+ PropBag.WriteProperty "FirstName", mstrFirstName
+End Sub
+Form Code
+Private Sub Command1_Click()
+ Dim objPersist As PersistableCOM.PCOM
+ Dim objQueueInfo As MSMQQueueInfo
+ Dim objQueue As MSMQQueue
+ Dim objMessage As MSMQMessage
+ 
+ On Error GoTo Command1_ClickErr
+ 
+ 'Add some state to the instance of PCOM class
+ Set objPersist = New PersistableCOM.PCOM
+ objPersist.FirstName = txtSendFN.Text
+ objPersist.LastName = txtSendLN.Text
+ 
+ 'Get a reference to the Queue
+ Set objQueueInfo = New MSMQ.MSMQQueueInfo
+ objQueueInfo.PathName = ".\testq"
+ 
+ Set objQueue = objQueueInfo.Open(MQ_SEND_ACCESS, MQ_DENY_NONE)
+ 
+ 'Build the message
+ Set objMessage = New MSMQ.MSMQMessage
+ objMessage.Label = "PCOM Object"
+ objMessage.Body = objPersist
+ objMessage.Send objQueue
+ 
+ 'Close the queue
+ objQueue.Close
+ 
+Exit_handler:
+ 
+ Set objMessage = Nothing
+ Set objQueue = Nothing
+ Set objQueueInfo = Nothing
+ Exit Sub
+ 
+Command1_ClickErr:
+ MsgBox "Error... " & Err.Description, vbCritical, Err.Source & " (" & Err.Number & ")"
+ Resume Exit_handler
+ 
+End Sub
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

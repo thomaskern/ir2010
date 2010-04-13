@@ -1,0 +1,394 @@
+Rationale
+1 Introduction 
+2 Environment 
+3 Language 
+4 Library 
+5 Appendices 
+ 
+ 
+Index
+	
+ Rationale for 
+ American National Standard 
+ 
+ for Information Systems -
+ 
+ Programming Language -
+ C 
+ 
+(This Rationale is not part of American National Standard 
+X3.159-1989, but is included for information only.)
+UNIX is a registered trademark of AT&T.
+DEC and PDP-11 are trademarks of Digital Equipment Corporation.
+POSIX is a trademark of IEEE.
+Contents
+1 Introduction
+1.1 Purpose
+1.2 Scope
+1.3 References
+1.4 Organization of the document
+1.5 Base documents
+1.6 Definitions of terms
+1.7 Compliance
+1.8 Future directions
+2 Environment
+2.1 Conceptual models
+2.1.1 Translation environment
+2.1.1.1 Program structure
+2.1.1.2 Translation phases
+2.1.1.3 Diagnostics
+2.1.2 Execution environments
+2.1.2.1 Freestanding environment
+2.1.2.2 Hosted environment
+2.1.2.3 Program execution
+2.2 Environmental considerations
+2.2.1 Character sets
+2.2.1.1 Trigraph sequences
+2.2.1.2 Multibyte characters
+2.2.2 Character display semantics
+2.2.3 Signals and interrupts
+2.2.4 Environmental limits
+2.2.4.1 Translation limits
+2.2.4.2 Numerical limits
+2.2.4.2.1 Sizes of integral types 
+2.2.4.2.2 Characteristics of floating types 
+3 Language
+3.1 Lexical Elements
+3.1.1 Keywords
+3.1.2 Identifiers
+3.1.2.1 Scopes of identifiers 
+3.1.2.2 Linkages of identifiers
+3.1.2.3 Name spaces of identifiers
+3.1.2.4 Storage durations of objects
+3.1.2.5 Types
+3.1.2.6 Compatible type and composite type
+3.1.3 Constants
+3.1.3.1 Floating constants
+3.1.3.2 Integer constants
+3.1.3.3 Enumeration constants
+3.1.3.4 Character constants
+3.1.4 String literals
+3.1.5 Operators
+3.1.6 Punctuators
+3.1.7 Header names
+3.1.8 Preprocessing numbers
+3.1.9 Comments
+3.2 Conversions
+3.2.1 Arithmetic operands
+3.2.1.1 Characters and integers
+3.2.1.2 Signed and unsigned integers
+3.2.1.3 Floating and integral
+3.2.1.4 Floating types
+3.2.1.5 Usual arithmetic conversions
+3.2.2 Other operands
+3.2.2.1 Lvalues and function designators
+3.2.2.2 void
+3.2.2.3 Pointers
+3.3 Expressions
+3.3.1 Primary expressions
+3.3.2 Postfix operators
+3.3.2.1 Array subscripting
+3.3.2.2 Function calls
+3.3.2.3 Structure and union members
+3.3.2.4 Postfix increment and decrement operators
+3.3.3 Unary operators
+3.3.3.1 Prefix increment and decrement operators
+3.3.3.2 Address and indirection operators
+3.3.3.3 Unary arithmetic operators
+3.3.3.4 The sizeof operator
+3.3.4 Cast operators
+3.3.5 Multiplicative operators
+3.3.6 Additive operators
+3.3.7 Bitwise shift operators
+3.3.8 Relational operators
+3.3.9 Equality operators
+3.3.10 Bitwise AND operator
+3.3.11 Bitwise exclusive OR operator
+3.3.12 Bitwise inclusive OR operator
+3.3.13 Logical AND operator
+3.3.14 Logical OR operator
+3.3.15 Conditional operator
+3.3.16 Assignment operators
+3.3.16.1 Simple assignment
+3.3.16.2 Compound assignment
+3.3.17 Comma operator
+3.4 Constant Expressions
+3.5 Declarations
+3.5.1 Storage-class specifiers
+3.5.2 Type specifiers
+3.5.2.1 Structure and union specifiers
+3.5.2.2 Enumeration specifiers
+3.5.2.3 Tags
+3.5.3 Type qualifiers 
+3.5.4 Declarators
+3.5.4.1 Pointer declarators
+3.5.4.2 Array declarators
+3.5.4.3 Function declarators (including prototypes)
+3.5.5 Type names
+3.5.6 Type definitions
+3.5.7 Initialization
+3.6 Statements
+3.6.1 Labeled statements
+3.6.2 Compound statement, or block
+3.6.3 Expression and null statements
+3.6.4 Selection statements
+3.6.4.1 The if statement
+3.6.4.2 The switch statement
+3.6.5 Iteration statements
+3.6.5.1 The while statement
+3.6.5.2 The do statement
+3.6.5.3 The for statement
+3.6.6 Jump statements
+3.6.6.1 The goto statement
+3.6.6.2 The continue statement
+3.6.6.3 The break statement
+3.6.6.4 The return statement
+3.7 External definitions
+3.7.1 Function definitions
+3.7.2 External object definitions
+3.8 Preprocessing directives
+3.8.1 Conditional inclusion
+3.8.2 Source file inclusion
+3.8.3 Macro replacement
+3.8.3.1 Argument substitution
+3.8.3.2 The # operator
+3.8.3.3 The ## operator
+3.8.3.4 Rescanning and further replacement
+3.8.3.5 Scope of macro definitions
+3.8.4 Line control
+3.8.5 Error directive
+3.8.6 Pragma directive
+3.8.7 Null directive
+3.8.8 Predefined macro names
+3.9 Future language directions
+3.9.1 External names
+3.9.2 Character escape sequences
+3.9.3 Storage-class specifiers
+3.9.4 Function declarators
+3.9.5 Function definitions
+3.9.6 Array parameters
+4 Library
+4.1 Introduction
+4.1.1 Definitions of terms
+4.1.2 Standard headers
+4.1.2.1 Reserved identifiers
+4.1.3 Errors 
+4.1.4 Limits and 
+4.1.5 Common definitions 
+4.1.6 Use of library functions
+4.2 Diagnostics 
+4.2.1 Program diagnostics
+4.2.1.1 The assert macro
+4.3 Character Handling 
+4.3.1 Character testing functions
+4.3.1.1 The isalnum function
+4.3.1.2 The isalpha function
+4.3.1.3 The iscntrl function
+4.3.1.4 The isdigit function
+4.3.1.5 The isgraph function
+4.3.1.6 The islower function
+4.3.1.7 The isprint function
+4.3.1.8 The ispunct function
+4.3.1.9 The isspace function
+4.3.1.10 The isupper function
+4.3.1.11 The isxdigit function
+4.3.2 Character case mapping functions
+4.3.2.1 The tolower function
+4.3.2.2 The toupper function
+4.4 Localization 
+4.4.1 Locale control
+4.4.1.1 The setlocale function
+4.4.2 Numeric formatting convention inquiry
+4.4.2.1 The localeconv function
+4.5 Mathematics 
+4.5.1 Treatment of error conditions 
+4.5.2 Trigonometric functions
+4.5.2.1 The acos function
+4.5.2.2 The asin function
+4.5.2.3 The atan function
+4.5.2.4 The atan2 function
+4.5.2.5 The cos function
+4.5.2.6 The sin function
+4.5.2.7 The tan function
+4.5.3 Hyperbolic functions
+4.5.3.1 The cosh function
+4.5.3.2 The sinh function
+4.5.3.3 The tanh function
+4.5.4 Exponential and logarithmic functions
+4.5.4.1 The exp function
+4.5.4.2 The frexp function
+4.5.4.3 The ldexp function
+4.5.4.4 The log function
+4.5.4.5 The log10 function
+4.5.4.6 The modf function
+4.5.5 Power functions
+4.5.5.1 The pow function
+4.5.5.2 The sqrt function
+4.5.6 Nearest integer, absolute value, and remainder functions
+4.5.6.1 The ceil function
+4.5.6.2 The fabs function
+4.5.6.3 The floor function
+4.5.6.4 The fmod function
+4.6 Nonlocal jumps 
+4.6.1 Save calling environment
+4.6.1.1 The setjmp macro
+4.6.2 Restore calling environment
+4.6.2.1 The longjmp function
+4.7 Signal Handling 
+4.7.1 Specify signal handling
+4.7.1.1 The signal function
+4.7.2 Send signal
+4.7.2.1 The raise function
+4.8 Variable Arguments 
+4.8.1 Variable argument list access macros
+4.8.1.1 The va_start macro
+4.8.1.2 The va_arg macro
+4.8.1.3 The va_end macro
+4.9 Input/Output 
+4.9.1 Introduction
+4.9.2 Streams
+4.9.3 Files
+4.9.4 Operations on files
+4.9.4.1 The remove function
+4.9.4.2 The rename function
+4.9.4.3 The tmpfile function
+4.9.4.4 The tmpnam function
+4.9.5 File access functions
+4.9.5.1 The fclose function
+4.9.5.2 The fflush function
+4.9.5.3 The fopen function
+4.9.5.4 The freopen function
+4.9.5.5 The setbuf function
+4.9.5.6 The setvbuf function
+4.9.6 Formatted input/output functions
+4.9.6.1 The fprintf function
+4.9.6.2 The fscanf function
+4.9.6.3 The printf function
+4.9.6.4 The scanf function
+4.9.6.5 The sprintf function
+4.9.6.6 The sscanf function
+4.9.6.7 The vfprintf function
+4.9.6.8 The vprintf function
+4.9.6.9 The vsprintf function
+4.9.7 Character input/output functions
+4.9.7.1 The fgetc function
+4.9.7.2 The fgets function
+4.9.7.3 The fputc function
+4.9.7.4 The fputs function
+4.9.7.5 The getc function
+4.9.7.6 The getchar function
+4.9.7.7 The gets function
+4.9.7.8 The putc function
+4.9.7.9 The putchar function
+4.9.7.10 The puts function
+4.9.7.11 The ungetc function
+4.9.8 Direct input/output functions
+4.9.8.1 The fread function
+4.9.8.2 The fwrite function
+4.9.9 File positioning functions
+4.9.9.1 The fgetpos function
+4.9.9.2 The fseek function
+4.9.9.3 The fsetpos function
+4.9.9.4 The ftell function
+4.9.9.5 The rewind function
+4.9.10 Error-handling functions
+4.9.10.1 The clearerr function
+4.9.10.2 The feof function
+4.9.10.3 The ferror function
+4.9.10.4 The perror function
+4.10 General Utilities 
+4.10.1 String conversion functions
+4.10.1.1 The atof function
+4.10.1.2 The atoi function
+4.10.1.3 The atol function
+4.10.1.4 The strtod function
+4.10.1.5 The strtol function
+4.10.1.6 The strtoul function
+4.10.2 Pseudo-random sequence generation functions
+4.10.2.1 The rand function
+4.10.2.2 The srand function
+4.10.3 Memory management functions
+4.10.3.1 The calloc function
+4.10.3.2 The free function
+4.10.3.3 The malloc function
+4.10.3.4 The realloc function
+4.10.4 Communication with the environment
+4.10.4.1 The abort function
+4.10.4.2 The atexit function
+4.10.4.3 The exit function
+4.10.4.4 The getenv function
+4.10.4.5 The system function
+4.10.5 Searching and sorting utilities
+4.10.5.2 The bsearch function
+4.10.5.1 The qsort function
+4.10.6 Integer arithmetic functions
+4.10.6.1 The abs function
+4.10.6.2 The div function
+4.10.6.3 The labs function
+4.10.6.4 The ldiv function
+4.10.7 Multibyte character functions
+4.10.7.1 The mblen function
+4.10.7.2 The mbtowc function
+4.10.7.3 The wctomb function
+4.10.8 Multibyte string functions
+4.10.8.1 The mbstowcs function
+4.10.8.2 The wcstombs function
+4.11 String Handling 
+4.11.1 String function conventions
+4.11.2 Copying functions
+4.11.2.1 The memcpy function
+4.11.2.2 The memmove function
+4.11.2.3 The strcpy function
+4.11.2.4 The strncpy function
+4.11.3 Concatenation functions
+4.11.3.1 The strcat function
+4.11.3.2 The strncat function
+4.11.4 Comparison functions
+4.11.4.1 The memcmp function
+4.11.4.2 The strcmp function
+4.11.4.3 The strcoll function
+4.11.4.4 The strncmp function
+4.11.4.5 The strxfrm function
+4.11.5 Search functions
+4.11.5.1 The memchr function
+4.11.5.2 The strchr function
+4.11.5.3 The strcspn function
+4.11.5.4 The strpbrk function
+4.11.5.5 The strrchr function
+4.11.5.6 The strspn function
+4.11.5.7 The strstr function
+4.11.5.8 The strtok function
+4.11.6 Miscellaneous functions
+4.11.6.1 The memset function
+4.11.6.2 The strerror function
+4.11.6.3 The strlen function
+4.12 Date and Time 
+4.12.1 Components of time
+4.12.2 Time manipulation functions
+4.12.2.1 The clock function
+4.12.2.2 The difftime function
+4.12.2.3 The mktime function
+4.12.2.4 The time function
+4.12.3 Time conversion functions
+4.12.3.1 The asctime function
+4.12.3.2 The ctime function
+4.12.3.3 The gmtime function
+4.12.3.4 The localtime function
+4.12.3.5 The strftime function
+4.13 Future library directions
+4.13.1 Errors 
+4.13.2 Character handling 
+4.13.3 Localization 
+4.13.4 Mathematics 
+4.13.5 Signal handling 
+4.13.6 Input/output 
+4.13.7 General utilities 
+4.13.8 String handling 
+5 Appendices
+Programming in C 
+ 
+ 
+ 
+ 
+ 
+Markup by jutta@cs.tu-berlin.de, 1994 

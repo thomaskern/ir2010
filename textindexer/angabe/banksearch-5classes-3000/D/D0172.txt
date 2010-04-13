@@ -1,0 +1,608 @@
+
+Your First Cup of Java (for UNIX)
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Trail: Getting Started
+Lesson: Your First Cup of Java
+Your First Cup of Java (for UNIX)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Detailed 
+ Instructions 
+ for Your 
+ First Program 
+ 
+The following instructions will help you write your first Java 
+ program. These instructions are for users of UNIX-based platforms, 
+ including Linux and Solaris. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1. 
+ A Checklist 
+ 2. 
+ Creating Your First Application 
+ 
+ a. Create a 
+ Java Source File 
+ b. Compile 
+ the Source File 
+ c. Run the 
+ Program 
+ 
+ 
+ 3. 
+ Creating Your First Applet 
+ 4. 
+ Where to Go from Here 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1. 
+ A Checklist 
+ To write your first program, you will need: 
+ 
+ 
+- The JavaTM 2 Platform, Standard 
+ Edition. You can 
+download the Solaris or Linux version. (Make sure you download the SDK, not the JRE.) 
+Consult the 
+Solaris installation instructions or the
+Linux installation instructions.
+For versions you can use on other UNIX-based platforms, 
+ check out this list of 
+JavaTM Platform Ports . 
+- A text editor. In this example, we'll use Pico, an editor 
+ available for many UNIX-based platforms. You can easily adapt these 
+ instructions if you use a different text editor, such as Vi or Emacs.
+ 
+ These two items are all you need to write your first Java program. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 2. 
+ Creating Your First Application
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Why 
+ Bytecodes are Cool 
+ 
+So, you've heard that with the Java programming 
+ language, you can "write once, run anywhere." This means 
+ that when you compile your program, you don't generate instructions 
+ for one specific platform. Instead, you generate Java bytecodes, 
+ which are instructions for the Java Virtual Machine (Java 
+ VM). If your platform--whether it's Windows, UNIX, MacOS, 
+ or an Internet browser--has the Java VM, it can understand 
+ those bytecodes. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Your first application, HelloWorldApp, 
+ will simply display the greeting "Hello world!". To create this 
+ program, you will: 
+ 
+ 
+- Create a Java source file. 
+ A source file contains text, written in the Java programming 
+ language, that you and other programmers can understand. You 
+ can use any text editor to create and edit source files.
+ 
+ 
+ 
+- Compile the source file into a bytecode 
+ file. The Java compiler, javac, 
+ takes your source file and translates its text into instructions 
+ that the Java Virtual Machine (Java VM) can understand. 
+ The compiler puts these instructions into a bytecode file.
+ 
+ 
+ 
+- Run the program contained in the bytecode file. The 
+ Java VM is implemented by a Java interpreter, java. 
+ This interpreter takes your bytecode file and carries out the 
+ instructions by translating them into instructions that your 
+ computer can understand. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+top 
+ 
+ 
+ 
+ a. 
+ Create a Java Source File.
+ 
+ 
+You have two options:
+ 
+ 
+- You can save the file 
+HelloWorldApp.java 
+ on your computer and avoid a lot of typing. Then, you can go straight 
+ to step b.
+ 
+ 
+ 
+- Or, you can follow these (longer) instructions:
+ 
+ 
+1. Bring up a shell (sometimes 
+ called terminal) window. When the window comes up, it should 
+ look like this: 
+ 
+ 
+When you first bring up the prompt, your current directory 
+ will usually be your home directory. You can change your current 
+ directory to your home directory at any time by typing cd 
+ at the prompt and then pressing Return.
+ 
+The Java files you create should be kept in a separate directory. 
+ You can create a directory by using the command mkdir. For 
+ example, to create the directory java in your home directory, 
+ you would first change your current directory to your home directory 
+ by entering the following command:
+ 
+ 
+ 
+ cd 
+ 
+ 
+ 
+ 
+Then, you would enter the following command: 
+ 
+ 
+ mkdir java 
+ 
+ 
+ 
+ 
+To change your current directory to this new directory, you would 
+ then enter: 
+ 
+ 
+ 
+ cd java 
+ 
+ 
+ 
+ 
+Now you can start creating your source file.
+ 
+ 
+ 
+ 
+ 
+ 
+2. Start the Pico editor 
+ by typing pico at the prompt and pressing Return. 
+ If the system responds with the message pico: command 
+ not found, then Pico is most likely unavailable. Consult 
+ your system administrator for more information, or use another 
+ editor. 
+ 
+When you start Pico, it'll display a new, blank buffer. 
+ This is the area in which you will type your code. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Pico? 
+ VI? Emacs? 
+ 
+Pico is probably the easiest of the three 
+ editors to use. If you're curious about how to use the 
+ other editors, however, check out these handy reference 
+ cards for 
+Vi and 
+Emacs . 
+ 
+ 
+ 
+ 
+ 
+ 
+ 3. Type the following code into 
+ the new buffer: 
+ 
+ 
+ 
+ 
+ 
+ /**
+ * The HelloWorldApp class implements an application that
+ * simply displays "Hello World!" to the standard output.
+ */
+class HelloWorldApp {
+ public static void main(String[] args) {
+ System.out.println("Hello World!"); // Display "Hello World!"
+ }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Be 
+ Careful When You Type 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Type all code, commands, and file names exactly 
+ as shown. The Java compiler and interpreter are case-sensitive, 
+ so you must capitalize consistently. 
+ 
+ 
+HelloWorldApp
+ helloworldapp 
+ 
+ 
+ 
+ 
+ 
+ 
+4. Save the code by typing Ctrl-O. 
+ At the bottom, you will see the prompt File Name to write:. 
+ Enter HelloWorldApp.java, preceded by the directory in 
+ which you wish to the create the file. For example, if you wish to 
+ save HelloWorldApp.java in the directory /home/rortigas/java, 
+ then you would type /home/rortigas/java/HelloWorldApp.java 
+ and press Return.
+ 
+You can type Ctrl-X to exit Pico.
+ 
+ top 
+ 
+ 
+ 
+ b. 
+ Compile the Source File.
+ 
+ 
+Bring up another shell window. To compile your source file, change 
+ your current directory to the directory where your file is located. 
+ For example, if your source directory is /home/rortigas/java, 
+ you would type the following command at the prompt and press Return: 
+ 
+ 
+ 
+ 
+ cd /home/rortigas/java 
+ 
+ 
+ 
+ 
+If you enter pwd at the prompt, you should see the current 
+ directory, which in this example has been changed to /home/rortigas/java.
+ 
+If you enter ls at the prompt, you should see your file. 
+ 
+ 
+ 
+ 
+ 
+ 
+ Now you can compile. At the prompt, type the following command and 
+ press Return: 
+ 
+ 
+ 
+ javac HelloWorldApp.java 
+ 
+ 
+ 
+ If your prompt reappears without error messages, congratulations. You 
+ have successfully compiled your program. 
+ 
+ 
+ 
+ Error 
+ Explanation 
+ 
+javac: Command not found 
+ 
+If you receive this error, UNIX cannot find the Java compiler, 
+ javac. 
+ 
+Here's one way to tell UNIX where to find javac. 
+ Suppose you installed the Java 2 Software Development Kit 
+ in /usr/local/jdk1.4. At the prompt you would 
+ type the following command and press Return: 
+ 
+ /usr/local/jdk1.4/javac HelloWorldApp.java
+ 
+ Note: If you choose this option, each time you compile 
+ or run a program, you'll have to precede your javac 
+ and java commands with /usr/local/jdk1.4/. 
+ To avoid this extra typing, consult the installation instructions for
+Solaris or 
+Linux.
+ 
+ 
+ 
+ 
+ The compiler has generated a Java bytecode file, HelloWorldApp.class. 
+ At the prompt, type ls to see the new file that was generated: 
+ 
+ 
+Now that you have a .class file, you can run your program. 
+ 
+ top 
+ 
+ 
+ 
+ c. 
+ Run the Program.
+ In the same directory, enter at the prompt: 
+ 
+ 
+ 
+ java HelloWorldApp 
+ 
+ 
+ 
+ 
+Now you should see:
+ 
+ 
+ 
+ 
+ 
+ Congratulations! Your program works. 
+ 
+ 
+ 
+ 
+ 
+ Error 
+ Explanation 
+ 
+Exception in thread "main" java.lang.NoClassDefFoundError: 
+ HelloWorldApp 
+ 
+If you receive this error, java cannot find 
+ your bytecode file, HelloWorldApp.class. 
+ 
+One of the places java tries to find your bytecode 
+ file is your current directory. So, for example, if your bytecode 
+ file is in /home/rortigas/java, you should change 
+ your current directory to that. To change your directory, 
+ type the following command at the prompt and press Return: 
+ 
+ cd /home/rortigas/java
+ 
+ 
+If you enter pwd at the prompt, you should see 
+ /home/rortigas/java. If you enter ls 
+ at the prompt, you should see your .java and 
+ .class files. Now enter java HelloWorldApp 
+ again. 
+ 
+If you still have problems, you might have to change your 
+ CLASSPATH variable. To see if this is necessary, try "unsetting" 
+ the classpath with the following command: 
+ 
+ unset CLASSPATH
+ 
+ Now enter java HelloWorldApp again. If the program 
+ works now, you'll have to change your CLASSPATH variable. For 
+ more information, consult the section 
+Check the CLASSPATH Variable in the installation instructions. 
+ 
+ 
+ 
+ top 
+ 
+ 
+3. 
+ Creating Your First Applet
+ 
+HelloWorldApp is an example of a Java application, 
+ a standalone program. Now you will create a Java applet called 
+ HelloWorld, which also displays the greeting "Hello world!". 
+ Unlike HelloWorldApp, however, the applet runs in a Java-enabled 
+ Web browser such as HotJava, Netscape Navigator, or Microsoft Internet 
+ Explorer.
+ 
+To create this applet, you'll perform the basic steps as before: create 
+ a Java source file; compile the source file; and run the program.
+ 
+ 
+a. 
+ Create a Java Source File.
+ 
+ 
+Again, you have two options:
+ 
+ 
+- You can save the files 
+HelloWorld.java and Hello.html on 
+ your computer and avoid a lot of typing. Then, you can go straight 
+ to step b.
+ 
+ 
+ 
+- Or, you can follow these instructions: 
+ 
+ 
+1. Start 
+ Pico. Type the following code into a new buffer: 
+ 
+ 
+ 
+ import java.applet.*;
+import java.awt.*;
+ 
+/**
+ * The HelloWorld class implements an applet that
+ * simply displays "Hello World!".
+ */
+public class HelloWorld extends Applet {
+ public void paint(Graphics g) {
+ g.drawString("Hello world!", 50, 25); // Display "Hello world!"
+ }
+}
+ 
+ 
+ 
+ 
+Save this code to a file called HelloWorld.java. Type 
+ Ctrl-X to exit Pico.
+ 
+2. You also need an HTML file 
+ to accompany your applet. Start Pico again and type the following 
+ code into a new buffer:
+ 
+ 
+ 
+ 
+The Hello World Applet
+ 
+ 
+ 
+ 
+Save this code to a file called Hello.html. Type 
+ Ctrl-X to exit Pico.
+ 
+ 
+ 
+b. 
+ Compile the Source File.
+ 
+ 
+At the prompt, type the following command and press Return: 
+ 
+ 
+ 
+ 
+ javac HelloWorld.java 
+ 
+ 
+ 
+ 
+ 
+ The compiler should generate a Java bytecode file, HelloWorld.class. 
+ 
+ 
+ 
+c. 
+ Run the Program.
+ 
+ 
+Although you can view your applets using a Web browser, you may find 
+ it easier to test your applets using the simple appletviewer 
+ application that comes with the JavaTM 
+ Platform. To view the HelloWorld applet using appletviewer, 
+ enter at the prompt: 
+ 
+ 
+ 
+ appletviewer Hello.html 
+ 
+ 
+ 
+ 
+Now you should see:
+ 
+ 
+ 
+ 
+ 
+ Congratulations! Your applet works. 
+ 
+ 
+top 
+ 
+ 
+ 4. 
+ Where to Go from Here
+ To continue your introduction to the Java programming language, check 
+ out these trails: 
+ 
+ 
+ 
+ 
+Getting Started 
+ 
+ 
+ 
+Learning the Java Language 
+ 
+If you have feedback on these instructions --
+whether you love them or had trouble following them --
+please tell us.
+ 
+top 
+ 
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

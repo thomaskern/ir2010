@@ -1,0 +1,35 @@
+
+Header Files
+Useful Header Files
+ Well, with most languges, there are some important library functions 
+written within the compilier code. C is no exception, as it can boast lots and 
+lots of internal functions. Although some are used more than others, some can be 
+very useful when you just want to convert a char to 
+an integer. So, I am going to put up as many header 
+files that I can, but give me some time, I am a busy web guy. 
+Math.h
+ 
+ 
+ sqrt( x ) 
+ square root of x 
+ 
+ pow( x, y ) 
+ x raised to the y power, x^y 
+ 
+ fabs( x ) 
+ absolute value of x 
+ 
+ log( x ) 
+ natural logarithm of x 
+ 
+ log10( x ) 
+ base-10 logarithm of x 
+ 
+ exp( x ) 
+ exponential of x, e^x 
+ 
+ ceil( x ) 
+ nearest whole number >= x 
+ 
+ floor( x ) 
+ nearest whole number 

@@ -1,0 +1,49 @@
+
+ 
+ PHP HOW-TO: Object Oriented Features - public, private, protected 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 12. Object Oriented Features - public, private, protected 
+PHP scripting language provides object oriented features through the 
+class keyword.
+Features like public, private and protected will be supported in the future
+release (they are in TODO list). In the meantime, you can 
+use the following coding conventions to 
+distinguish between private, public and protected variables:
+- All private variables and functions always start with underscore "_"
+followed by lowercase letters 
+like var $_myvar;
+- All Protected variables and functions always start with "_T" followed 
+by lowercase letters
+like var $_Tmyvar;
+- All Public variables and functions do not start with underscore "_"
+like var $myvar;
+- All variables and functions always start with lowercase letter (no uppercase) 
+like var $_myvar; and NOT like var $_Myvar;
+class someabc {
+ var $_conn; // Private variable
+ var $_Tmyvar; // Protected variable
+ var $connMYCONNECTION; // Public variable
+ var $connToDb; // Public variable
+ var $myvar3; // Public variable
+ var $myvarTHISTEST; // Public variable
+ function _foofunction() {} // Private function
+ function _Tfoofunction() {} // Protected function
+ function foofunction() {} // Public function
+}
+The private, protected declarations provide the encapsulation and data-hiding.
+But you must consider the following disadvantages of encapsulation:
+- Encapsulation usually requires more code, hence it
+sacrifices performance especially for scripting languages like PHP 
+- Encapsulation requires lots of Set/Get methods for private/protected properties.
+- Since encapsulation unneccessarily increases the code size, it is 
+not recommended for scripting language like PHP.
+- You can enforce a good degree of encapsulation by using the coding
+convention suggested in this section.
+Next
+Previous
+Contents

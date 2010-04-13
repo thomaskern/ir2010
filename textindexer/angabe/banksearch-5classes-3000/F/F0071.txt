@@ -1,0 +1,183 @@
+
+Listing 2b - DISPWMF.FRM
+ 
+ 
+	 
+	 
+ 
+ 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	
+VERSION 2.00
+Begin Form DispWMF 
+ Caption = "Display WMF"
+ ClientHeight = 3084
+ ClientLeft = 900
+ ClientTop = 2064
+ ClientWidth = 4284
+ Height = 3828
+ Left = 852
+ LinkTopic = "Form2"
+ ScaleHeight = 3084
+ ScaleWidth = 4284
+ Top = 1368
+ Width = 4380
+ Begin CommonDialog Common_Dialog 
+ Left = 120
+ Top = 2640
+ End
+ Begin PictureBox Picture_Box 
+ AutoRedraw = -1 'True
+ Height = 2412
+ Left = 120
+ ScaleHeight = 2388
+ ScaleWidth = 4068
+ TabIndex = 0
+ Top = 120
+ Width = 4092
+ End
+ Begin Menu Menu_File 
+ Caption = "&File"
+ Begin Menu Menu_File_Open 
+ Caption = "&Open ..."
+ End
+ Begin Menu Menu_Bar1 
+ Caption = "-"
+ End
+ Begin Menu Menu_File_Exit 
+ Caption = "E&xit"
+ End
+ End
+End
+Option Explicit
+ 
+' Declare Windows Functions
+Declare Function GetMetaFile Lib "GDI" (ByVal lpFilename As String) As Integer
+Declare Function PlayMetaFile Lib "GDI" (ByVal hDC As Integer, ByVal hMF As Integer) As Integer
+Declare Function DeleteMetaFile Lib "GDI" (ByVal hMF As Integer) As Integer
+ 
+Sub Form_Load ()
+ ' Center the form on the screen
+ Left = Screen.Width / 2 - ScaleWidth / 2
+ Top = Screen.Height / 2 - ScaleHeight / 2
+ 
+ ' Initialize the Common Dialog control
+ Common_Dialog.CancelError = True
+ Common_Dialog.DefaultExt = "WMF"
+ Common_Dialog.Filter = "All Files (*.*)|*.*|Metafiles (*.WMF)|*.WMF"
+ Common_Dialog.FilterIndex = 2
+ Common_Dialog.InitDir = App.Path
+End Sub
+ 
+Sub Form_Resize ()
+ ' Resize the Picture Box
+ Picture_Box.Top = 100
+ Picture_Box.Left = 100
+ Picture_Box.Width = ScaleWidth - 200
+ Picture_Box.Height = ScaleHeight - 200
+End Sub
+ 
+Sub Menu_File_Exit_Click ()
+ ' Exit
+ Hide
+ Unload Me
+End Sub
+ 
+Sub Menu_File_Open_Click ()
+ Dim hMF As Integer
+ Dim Lvar As Long
+ 
+ ' Get Filename
+ Common_Dialog.DialogTitle = "Open Metafile"
+ Common_Dialog.Flags = &H1004&
+ On Local Error GoTo Open_Metafile_Error
+ Common_Dialog.Action = 1
+ 
+ ' Display Picture
+ Picture_Box.Cls
+ 
+ hMF = GetMetaFile(Common_Dialog.Filename)
+ Lvar = PlayMetaFile(Picture_Box.hDC, hMF)
+ Lvar = DeleteMetaFile(hMF)
+ 
+ Exit Sub
+ 
+Open_Metafile_Error:
+ If Err = 32755 Then Exit Sub 'Cancel
+ MsgBox Error$, 48, Common_Dialog.Filename
+ Exit Sub
+End Sub
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 [Home] [Meta Files] [Hardcore VB] [What's Wrong?] [Image Sizes] 
+	 
+ 
+ 
+	 
+ 
+ 
+ 

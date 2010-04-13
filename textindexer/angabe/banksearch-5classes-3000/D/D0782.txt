@@ -1,0 +1,150 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class DBResults
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class DBResults
+java.lang.Object
+ |
+ +--coreservlets.DBResults
+public class DBResultsextends Object
+Class to store completed results of a JDBC Query.
+ Differs from a ResultSet in several ways:
+ 
+ 
+- ResultSet doesn't necessarily have all the data;
+ reconnection to database occurs as you ask for
+ later rows.
+ 
+- This class stores results as strings, in arrays.
+ 
+- This class includes DatabaseMetaData (database product
+ name and version) and ResultSetMetaData
+ (the column names).
+ 
+- This class has a toHTMLTable method that turns
+ the results into a long string corresponding to
+ an HTML table.
+ 
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+Constructor Summary 
+DBResults(Connection connection,
+ String productName,
+ String productVersion,
+ int columnCount,
+ String[] columnNames)
+ 
+ 
+Method Summary 
+ void 
+addRow(String[] row)
+ 
+ int 
+getColumnCount()
+ 
+ String[] 
+getColumnNames()
+ 
+ Connection 
+getConnection()
+ 
+ String 
+getProductName()
+ 
+ String 
+getProductVersion()
+ 
+ String[] 
+getRow(int index)
+ 
+ int 
+getRowCount()
+ 
+ String 
+toHTMLTable(String headingColor)
+ Output the results as an HTML table, with
+ the column names as headings and the rest of
+ the results filling regular data cells. 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+DBResults
+public DBResults(Connection connection,
+ String productName,
+ String productVersion,
+ int columnCount,
+ String[] columnNames)
+Method Detail 
+getConnection
+public Connection getConnection()
+getProductName
+public String getProductName()
+getProductVersion
+public String getProductVersion()
+getColumnCount
+public int getColumnCount()
+getColumnNames
+public String[] getColumnNames()
+getRowCount
+public int getRowCount()
+getRow
+public String[] getRow(int index)
+addRow
+public void addRow(String[] row)
+toHTMLTable
+public String toHTMLTable(String headingColor)
+Output the results as an HTML table, with
+ the column names as headings and the rest of
+ the results filling regular data cells.
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

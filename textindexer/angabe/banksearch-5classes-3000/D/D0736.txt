@@ -1,0 +1,344 @@
+
+ 
+ Reduce EJB network traffic with astral clones
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2000 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reduce EJB network traffic with astral clones
+ 
+ Use the bean implementation outside the container to avoid remote calls
+ 
+ 
+ 
+Summary
+Because of the numerous remote set methods that have to be called when working with EJBs, even the simplest data-entry screens produce performance problems. Working with a client-side astral clone of a bean implementation provides an elegant and nearly transparent approach to resolve these problems. In this article, Martijn Res describes the simple yet powerful technique of using astral clones. (1,800 words)
+ 
+ By Martijn Res
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+he Java 2 Platform, Enterprise Edition specifies the Java community's standard for enterprise distributed computing. Included in this standard are Enterprise JavaBeans (EJB), which provide a set of programming rules and standard interfaces to build business objects. You can deploy these objects in an application server that you don't have to build yourself. The application server provides an environment in which the business objects can run efficiently and reliably, participating in distributed transactions and persisting in a relational database. 
+Although this strong model frees developers to concentrate on the business logic instead of inventing and building transactionality and database mappings themselves, it is too rigid for distributed computing in the real world. The real world's sluggish networks slow the performance of several cooperating business objects running on different machines. Also, simple data entry by a user creating or editing a business object can run too slowly if, for example, a frontend JavaServer Pages (JSP) engine is not running on the same machine as the business object, or if a person is using a Java client on a workstation. 
+In general, if an entity bean is not in the same location as the process performing the task and the network is a bottleneck, either the process must come to the data, or the data must come to the process. An example of the former option is a session bean that performs a certain task on behalf of a remote client. The classic client-server model is an implementation of the latter alternative, but I use another approach that I call astral cloning. 
+In this article, I will explain how to use an entity bean implementation as a client-side cached version of the bean. The implementation runs outside the application server, having an "outer-container" experience, hence the term astral clone. Many developers use some kind of caching to make a distributed system perform. Astral cloning provides a better version of the solution proposed by Thomas Davis in "Direct Network Traffic of EJBs" (JavaWorld, November 1999; see Resources for a direct link) with respect to encapsulation of business logic into one object and transparency to the client-side code. 
+Note: This article presumes that you are familiar with EJB programming. Also, I explain astral cloning and its consequences as it relates to container-managed entity beans only.
+ Astral cloning 
+To explain how to implement astral clones, I will first illustrate how an entity bean typically works. 
+Figure 1. Standard invocation through a stub 
+ 
+Figure 1 shows how a client calls several methods on a generated stub that implements the bean interface. Using RMI, the stub delegates these calls to the container, which is generated to run the bean implementation's instances. Finally, the container calls the bean implementation's right instance. 
+Instead of calling a remote bean, we can create a local copy of this bean -- an astral clone -- using the following steps: 
+ 
+- Declare a method getAstralClone() in the entity bean interface 
+- Let the actual entity bean implement this method by returning a reference to itself (this) 
+- When a client calls getAstralClone() on the remote entity bean, a bean's clone is returned through serialization/deserialization (standard RMI behavior) 
+- The client now has local access to what once were remote methods 
+Figure 2 illustrates how the astral clone operates. 
+Figure 2. Invocation of an astral clone 
+ 
+Working on an astral clone produces the following advantages: 
+ 
+- Better performance results when calling numerous get(), set(), or other methods on the bean. 
+- One object definition (class) guards the consistency of the object's state. This is important, because it means that you can keep all of an object's business logic in one place, including input validation. Input validation normally tends to scatter throughout the system when developers try other approaches to optimize it. 
+- The client code only slightly differs from the code required for calling the original bean through its stub. 
+Let's take a look at a simple container-managed PersonBean example: 
+public interface Person {
+ public String getName() throws RemoteException;
+ public void setName(String aName) throws RemoteException;
+ public int getAge() throws RemoteException;
+ public setBirthDay(Calendar aDate)
+ throws SomeValidationException, RemoteException;
+}
+Note that the Person interface cannot be used as an EJB interface, because it does not extend EJBObject. I have separated the functional requirements of a person from the technical implementation details, like using EJB. The following code fragment declares the bean interface: 
+public interface EJBPerson extends Person, EJBObject {
+ // return an astral clone
+ public Person getAstralClone() throws RemoteException;
+}
+The bean implementation PersonBean defines the getAstralClone() method, in addition to the other Person methods, like so: 
+ // return an astral clone
+ public Person getAstralClone() throws RemoteException {
+ return this;
+ }
+To make this piece of code work, PersonBean has to implement the following two interfaces: 
+ 
+- java.io.Serializable, so that it can return itself as the return value of the RMI call 
+- Person, to (1) compile the previous code fragment and (2) enable the client to talk with PersonBean as an astral clone in the same way that it talks with the EJBPerson stub 
+Figure 3 shows the relationships between the various interfaces and classes. 
+Figure 3. Class diagram of the PersonBean example 
+ 
+My company used the astral cloning technique in a suite of components we developed for a Dutch bank's treasury. For accessing static data -- entity beans that do not change often, like currencies and holiday calendars -- the technique has drastically improved the performance of the trading framework and realtime rates calculation engine, which heavily depend on this data. Using this practical experience, in the sections below I will elaborate on the nuts and bolts of astral cloning, including: 
+ 
+- What to do with the EntityContext 
+- How to ensure that an entity bean, when used as an astral clone, initializes and behaves in the same way that it does when running inside the container 
+- How to handle instance variables that are not part of the bean's persistent state 
+- How to make an astral clone thread safe 
+- How to use an astral clone to update the original bean 
+ EntityContext 
+When working with astral clones, you must first figure out what to do with the EntityContext, as described in the javax.ejb package: 
+ The EntityContext interface provides an instance with access to the container-provided runtime context of an entity enterprise bean instance. The container passes the EntityContext interface to an entity enterprise Bean instance after the instance has been created. 
+(You can find a link to the full javadoc for EntityContext in Resources below.) 
+Every entity bean must have a javax.ejb.EntityContext instance variable. However, the container-provided value this variable holds cannot be expected to function outside the container (or the value might not be serializable, and therefore not transportable using RMI). So you must declare this variable as follows: 
+ private transient EntityContext context;
+Whenever you want to reference context, you must first check if it is null. If the context returns null, you are dealing with an astral clone.
+ Clone initialization 
+After initialization, the astral clone should have the same state as its contained original bean after the container activates and loads the bean; both now are ready to be used by the client. In the case of container-managed entity beans, the container calls the ejbLoad() method immediately after populating the instance variables with values from the database. You might have placed statements in this method to make the instance ready for usage. 
+But nothing calls ejbLoad() automatically on the astral clone after creation by deserialization. Therefore, you must call this method on the clone after retrieving the clone with the getAstralClone() method. However, I prefer to leave the ejbLoad() method empty, and use the lazy initialization programming idiom to execute the omitted statements. 
+For example, if the person table in the database has a field partner_id, then you might want to initialize a partner instance variable in the ejbLoad() method with an EJB reference to the partner bean, and use the partner variable in the rest of the bean. However, it is better to leave ejbLoad() empty, and use a getPartner() method in the rest of the bean, which looks something like this: 
+ private Person getPartner() throws FinderException, RemoteException {
+ if (partner_id == null) {
+ return null;
+ }
+ // only retrieve the partner once, and only if needed
+ if (partner == null) {
+ partner = getPersonHome().findByPK(new PersonPK(partner_id));
+ }
+ return partner;
+ }
+ Nonpersistent fields 
+Instance variables in your entity bean, like the previously mentioned partner variable, are not part of the persistent state, but do contain already calculated results. You should declare such variables either as nontransient, with serializable calculated values, or as transient, with values lazily recalculated when accessed.
+Be aware of variables containing the stubs of other EJBs or EJB homes: the generated stubs are not meant to be portable across the network. They must be replaced with the more robust network references to EJB objects or homes, respectively javax.ejb.Handles and javax.ejb.HomeHandles. But, to reiterate: you can make these variables transient and let the astral clone retrieve the stubs if needed. 
+ Thread safety 
+Calling the bean implementation directly, instead of through a stub and container, might produce threading problems. I suggest the following to solve these issues: 
+ 
+- Don't use the bean from multiple threads, and document that astral usage of the bean as not thread safe. 
+- Synchronize critical methods or code sections. This should not affect the way a bean runs in a container, except for a small performance penalty -- small, that is, relative to the overhead the container adds. 
+- Allow the getAstralClone() to return a synchronized wrapper. 
+- An immutable object is also thread safe, and sometimes the client only wants to use a read-only (or immutable) astral clone. One simple way to obtain a read-only astral clone is to return a wrapper around the astral clone, which blocks all methods that modify the bean. 
+ 
+ State synchronization 
+Now that we have tackled the common problems and issues, we can add a bit more functionality: update the original bean with a modified astral clone. You can declare a state synchronization method in the EJBPerson interface: 
+ // synchronize state with astral clone
+ public void syncAstralClone(PersonBean aClone) throws RemoteException;
+and implement it in the PersonBean like so: 
+ public void syncAstralClone(PersonBean aClone) throws RemoteException {
+ // check if 'this' instance is contained ...
+ if (this.context == null) {
+ throw new RemoteException("'this' must be contained");
+ }
+ // ... and aClone is really astral
+ if (aClone.context != null) {
+ throw new RemoteException("'aClone' must be astral");
+ }
+ // sync the persistent state
+ setName(aClone.name);
+ setBirthDay(aClone.birthDay);
+ }
+Consider completing the following in the syncAstralClone(...) method: 
+ 
+- Check that the primary keys of the original and the astral clone are equal 
+- Call the ejbLoad() method if it contains further initialization of the instance 
+- Implement some kind of protection against the racing condition as described in Thomas Davis's "Direct Network Traffic of EJBs" 
+ Conclusion 
+Astral cloning elegantly optimizes network traffic, while leaving the client-side coding almost unchanged. The client talks to the astral clone through the same interface as it would to a stub. Further, one class definition contains all of a business object's logic, including input validation, which increases the maintainability of your system. 
+Working with astral clones might leave you asking for more: a client-side implementation of the home interface could make working with astral clones even more transparent. Such an astral home could implement the finders by delegating them to the remote home and wrapping the returning iterator in another iterator, which returns an astral clone with every next() call. A contained bean could notify astral homes that its state has changed so that the astral homes could synchronize the state of the astral clone. An astral home could participate in distributed transactions by enlisting itself to these transactions as a javax.transaction.xa.XAResource, and then synchronize states of original beans to those of modified astral clones when a transaction commits. 
+These features would be nice, but the last two look quite difficult to implement. I welcome your ideas and comments for implementing these features. 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+About the author
+Martijn Res works as a system architect at a small and innovative company in the Netherlands called Virgil. He participates in the development of a large online trading system for treasury products using EJB and JSP. Martijn lives in Amsterdam where he spends his free time in front of the computer trying to make groovy tunes.
+ 
+Resources
+- EJB 1.1 specifications from Sun: 
+http://java.sun.com/products/ejb/docs.html
+- EntityContext javadoc: 
+http://java.sun.com/j2ee/j2sdkee/techdocs/api/javax/ejb/EntityContext.html
+- For a J2EE overview: 
+http://www.javasoft.com/j2ee
+- Read Thomas Davis's suggestion for directing network traffic of EJBs in "Direct Network Traffic of EJBs" (JavaWorld, November 1999): 
+http://www.javaworld.com/javaworld/jw-11-1999/jw-11-ejb.html
+- For more JavaWorld stories on EJBs, go to: 
+http://www.javaworld.com/javaworld/topicalindex/jw-ti-ejb.html
+- Sign up for the JavaWorld This Week free weekly email newsletter and keep up with what's new at JavaWorld: 
+http://www.idg.net/jw-subscribe
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

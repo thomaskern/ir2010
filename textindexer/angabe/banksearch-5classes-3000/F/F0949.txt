@@ -1,0 +1,51 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+The test we do internally at TMS to determine whether we’re running in the IDE involves a routine called InDesign. Here’s the code (the explanation follows):
+Public Function InDesign() As Boolean
+ ' ****************************************
+ ' The only thing Debug.Assert is good for!
+ ' ****************************************
+ Static nCallCount As Integer
+ Static bRet As Boolean ' By default this is set to False.
+ nCallCount = nCallCount + 1
+ Select Case nCallCount
+ Case 1: ' First time in
+ Debug.Assert InDesign()
+ Case 2: ' Second time in so we must have executed Debug.Assert...
+ bRet = True
+ End Select
+ ' If Debug.Assert called, we need to return True to prevent the trap.
+ InDesign = bRet
+ ' Reset for future calls.
+ nCallCount = 0
+End Function
+In the earlier versions of Visual Basic (previous to Visual Basic 6), InDesign used API calls to determine whether the Visual Basic IDE was kicking around. The version of InDesign (not shown here) in the first edition of our book evolved from some Visual Basic 4 code and therefore needed to cater to both the 16-bit and 32-bit worlds. We modified this code for the pure 32-bit world and replaced it with what amounts to a call to GetModuleHandle:
+Private Function InDesign() As Boolean
+ InDesign = 0 "mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

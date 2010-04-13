@@ -1,0 +1,192 @@
+
+VB Techniques: Accessing Special Folders
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+Accessing Special Folders
+If you've ever needed to retrieve information about your system, you're faced with a myriad of confusing API calls. If you rely on the VB API Viewer to find some of these API calls, you're going to be missing a number of important ones that are "hidden" in the Windows shell. One of these API calls allows you to retrieve the paths to special folders on your system, such as your Favorites, your Temporary Internet Files, and more. This call is part of the Shell32.DLL library and is conspicuously absent from the API Viewer. In addition, all of the API's constants are missing. 
+However, if you have the Developer Network Library, you can get information about how the call works. The call's name is SHGetSpecialFolderPath and can be found in the library by using the index. The VB declaration for the API is shown here:
+Private Declare Function SHGetSpecialFolderPath _
+ Lib "shell32.dll" _
+ Alias "SHGetSpecialFolderPathA" _
+ (ByVal hWnd As Long, _
+ ByVal lpszPath As String, _
+ ByVal nFolder As Integer, _
+ ByVal fCreate As Boolean) As Boolean
+The arguments are as follows:
+- hWnd - Current window handle to form you're using (accessed with Me.hWnd Property of the form). If you're in a code module, this argument can be zero with no apparent effects. 
+- lpszPath - Buffer for returned string. This buffer should be initialized to at least 255 space characters, as shown in the example that will follow.
+- nFolder - Constant specifying which special folder to return. 
+- fCreate - Boolean value indicating whether or not to create the folder if it doesn't exist. Be careful of this argument if you're testing your function -- you wouldn't want to create extra system folders in case of an error. 
+Finding the constants is tricky, since they are not documented in the MSDN Library. However, if you have Visual C++, you can search for the constants in the include files. Even if you're not a VC++ programmer, it's handy to keep these files around for occasions just like this. The include files are in the VC98\Include directory under the main Visual Studio directory. You can use Explorer's Find File feature to look for text in the files -- it will save you a lot of time. The constants available for the nFolder argument are listed below. Constants marked with Version 5.0 are only available on systems that have Windows 2000 or Internet Explorer 5.0 installed. Also, some of the constants are only available for NT 4.0, so doublecheck the documentation before use. 
+- CSIDL_ADMINTOOLS - 
+Version 5.0. File system directory that is used to store administrative tools for an individual user. The Microsoft Management Console will save customized consoles to this directory and it will roam with the user. 
+- CSIDL_ALTSTARTUP - 
+File system directory that corresponds to the user's nonlocalized Startup program group. 
+- CSIDL_APPDATA - 
+File system directory that serves as a common repository for application-specific data. A common path is C:\WINNT\Profiles\username\Application Data. 
+- CSIDL_BITBUCKET - 
+Virtual folder containing the objects in the user's Recycle Bin. 
+- CSIDL_COMMON_ADMINTOOLS - 
+Version 5.0. File system directory containing containing administrative tools for all users of the computer. 
+- CSIDL_COMMON_ALTSTARTUP - 
+File system directory that corresponds to the nonlocalized Startup program group for all users. Valid only for Windows NT systems. 
+- CSIDL_COMMON_APPDATA - 
+Version 5.0. Application data for all users. A common path is C:\WINNT\Profiles\All Users\Application Data. 
+- CSIDL_COMMON_DESKTOPDIRECTORY - 
+File system directory that contains files and folders that appear on the desktop for all users. A common path is C:\WINNT\Profiles\All Users\Desktop. Valid only for Windows NT systems. 
+- CSIDL_COMMON_DOCUMENTS - 
+File system directory that contains documents that are common to all users. A common path is C:\WINNT\Profiles\All Users\Documents. Valid only for Windows NT systems. 
+- CSIDL_COMMON_FAVORITES - 
+File system directory that serves as a common repository for all users' favorite items. Valid only for Windows NT systems. 
+- CSIDL_COMMON_PROGRAMS - 
+File system directory that contains the directories for the common program groups that appear on the Start menu for all users. A common path is c:\WINNT\Profiles\All Users\Start Menu\Programs. Valid only for Windows NT systems. 
+- CSIDL_COMMON_STARTMENU - 
+File system directory that contains the programs and folders that appear on the Start menu for all users. A common path is C:\WINNT\Profiles\All Users\Start Menu. Valid only for Windows NT systems. 
+- CSIDL_COMMON_STARTUP - 
+File system directory that contains the programs that appear in the Startup folder for all users. A common path is C:\WINNT\Profiles\All Users\Start Menu\Programs\Startup. Valid only for Windows NT systems. 
+- CSIDL_COMMON_TEMPLATES - 
+File system directory that contains the templates that are available to all users. A common path is C:\WINNT\Profiles\All Users\Templates. Valid only for Windows NT systems. 
+- CSIDL_CONTROLS - 
+Virtual folder containing icons for the Control Panel applications. 
+- CSIDL_COOKIES - 
+File system directory that serves as a common repository for Internet cookies. A common path is C:\WINNT\Profiles\username\Cookies. 
+- CSIDL_DESKTOP - 
+Windows Desktop—virtual folder that is the root of the namespace. 
+- CSIDL_DESKTOPDIRECTORY - 
+File system directory used to physically store file objects on the desktop (not to be confused with the desktop folder itself). A common path is C:\WINNT\Profiles\username\Desktop 
+- CSIDL_DRIVES - 
+My Computer—virtual folder containing everything on the local computer: storage devices, printers, and Control Panel. The folder may also contain mapped network drives. 
+- CSIDL_FAVORITES - 
+File system directory that serves as a common repository for the user's favorite items. A common path is C:\WINNT\Profiles\username\Favorites. 
+- CSIDL_FONTS - 
+Virtual folder containing fonts. A common path is C:\WINNT\Fonts. 
+- CSIDL_HISTORY - 
+File system directory that serves as a common repository for Internet history items. 
+- CSIDL_INTERNET - 
+Virtual folder representing the Internet. 
+- CSIDL_INTERNET_CACHE - 
+File system directory that serves as a common repository for temporary Internet files. A common path is C:\WINNT\Profiles\username\Temporary Internet Files. 
+- CSIDL_LOCAL_APPDATA - 
+Version 5.0. File system directory that serves as a data repository for local (non-roaming) applications. A common path is C:\WINNT\Profiles\username\Local Settings\Application Data. 
+- CSIDL_MYPICTURES - 
+Version 5.0. My Pictures folder. A common path is C:\WINNT\Profiles\username\My Documents\My Pictures. 
+- CSIDL_NETHOOD - 
+File system directory containing objects that appear in the network neighborhood. A common path is C:\WINNT\Profiles\username\NetHood. 
+- CSIDL_NETWORK - 
+Network Neighborhood—virtual folder representing the top level of the network hierarchy. 
+- CSIDL_PERSONAL - 
+File system directory that serves as a common repository for documents. A common path is C:\WINNT\Profiles\username\My Documents. 
+- CSIDL_PRINTERS - 
+Virtual folder containing installed printers. 
+- CSIDL_PRINTHOOD - 
+File system directory that serves as a common repository for printer links. A common path is C:\WINNT\Profiles\username\PrintHood. 
+- CSIDL_PROFILE - 
+Version 5.0. User's profile folder. 
+- CSIDL_PROGRAM_FILES - 
+Version 5.0. Program Files folder. A common path is C:\Program Files. 
+- CSIDL_PROGRAM_FILES_COMMON - 
+Version 5.0. A folder for components that are shared across applications. A common path is C:\Program Files\Common. Valid only for Windows NT and Windows® 2000 systems. 
+- CSIDL_PROGRAM_FILES_COMMONX86 - 
+Version 5.0. Program Files folder that is common to all users for x86 applications on RISC systems. A common path is C:\Program Files (x86)\Common. 
+- CSIDL_PROGRAM_FILESX86 - 
+Version 5.0. Program Files folder for x86 applications on RISC systems. Corresponds to the %PROGRAMFILES(X86)% environment variable. A common path is C:\Program Files (x86). 
+- CSIDL_PROGRAMS - 
+File system directory that contains the user's program groups (which are also file system directories). A common path is C:\WINNT\Profiles\username\Start Menu\Programs. 
+- CSIDL_RECENT - 
+File system directory that contains the user's most recently used documents. A common path is C:\WINNT\Profiles\username\Recent. To create a shortcut in this folder, use SHAddToRecentDocs. In addition to creating the shortcut, this function updates the shell's list of recent documents and adds the shortcut to the Documents submenu of the Start menu. 
+- CSIDL_SENDTO - 
+File system directory that contains Send To menu items. A common path is c:\WINNT\Profiles\username\SendTo. 
+- CSIDL_STARTMENU - 
+File system directory containing Start menu items. A common path is c:\WINNT\Profiles\username\Start Menu. 
+- CSIDL_STARTUP - 
+File system directory that corresponds to the user's Startup program group. The system starts these programs whenever any user logs onto Windows NT or starts Windows® 95. A common path is C:\WINNT\Profiles\username\Start Menu\Programs\Startup. 
+- CSIDL_SYSTEM - 
+Version 5.0. System folder. A common path is C:\WINNT\SYSTEM32. 
+- CSIDL_SYSTEMX86 - 
+Version 5.0. System folder for x86 applications on RISC systems. A common path is C:\WINNT\SYS32X86. 
+- CSIDL_TEMPLATES - 
+File system directory that serves as a common repository for document templates. 
+- CSIDL_WINDOWS - 
+Version 5.0. Windows directory or SYSROOT. This corresponds to the %windir% or %SYSTEMROOT% environment variables. A common path is C:\WINNT. 
+The completed code to make this API work is listed below. If you do a View Source on this file, you can copy the code right into your own project. You can also download a ZIP file at the end of this article with the code in it. 
+Option Explicit
+Private Declare Function SHGetSpecialFolderPath _
+ Lib "shell32.dll" _
+ Alias "SHGetSpecialFolderPathA" _
+ (ByVal hWnd As Long, _
+ ByVal lpszPath As String, _
+ ByVal nFolder As Integer, _
+ ByVal fCreate As Boolean) As Boolean
+ 
+Private Const CSIDL_DESKTOP = &H0
+Private Const CSIDL_INTERNET = &H1
+Private Const CSIDL_PROGRAMS = &H2
+Private Const CSIDL_CONTROLS = &H3
+Private Const CSIDL_PRINTERS = &H4
+Private Const CSIDL_PERSONAL = &H5
+Private Const CSIDL_FAVORITES = &H6
+Private Const CSIDL_STARTUP = &H7
+Private Const CSIDL_RECENT = &H8
+Private Const CSIDL_SENDTO = &H9
+Private Const CSIDL_BITBUCKET = &HA
+Private Const CSIDL_STARTMENU = &HB
+Private Const CSIDL_DESKTOPDIRECTORY = &H10
+Private Const CSIDL_DRIVES = &H11
+Private Const CSIDL_NETWORK = &H12
+Private Const CSIDL_NETHOOD = &H13
+Private Const CSIDL_FONTS = &H14
+Private Const CSIDL_TEMPLATES = &H15
+Private Const CSIDL_COMMON_STARTMENU = &H16
+Private Const CSIDL_COMMON_PROGRAMS = &H17
+Private Const CSIDL_COMMON_STARTUP = &H18
+Private Const CSIDL_COMMON_DESKTOPDIRECTORY = &H19
+Private Const CSIDL_APPDATA = &H1A
+Private Const CSIDL_PRINTHOOD = &H1B
+Private Const CSIDL_ALTSTARTUP = &H1D
+Private Const CSIDL_COMMON_ALTSTARTUP = &H1E
+Private Const CSIDL_COMMON_FAVORITES = &H1F
+Private Const CSIDL_INTERNET_CACHE = &H20
+Private Const CSIDL_COOKIES = &H21
+Private Const CSIDL_HISTORY = &H22
+Public Sub Main()
+ Dim blnReturn As Long
+ Dim strBuffer As String
+ strBuffer = Space(255)
+ blnReturn = SHGetSpecialFolderPath(0, _
+ strBuffer, _
+ CSIDL_STARTMENU, _
+ False)
+ 
+ strBuffer = Left(strBuffer, InStr(strBuffer, Chr(0)) - 1)
+ 
+End Sub
+This example returns the directory path of the system Start Menu, which on Windows 9x, is C:\Windows\Start Menu, by default. The buffer is null-terminated, so the last line finds the null terminator and returns everything to the left. 
+Written by Eric Smith on 3/1/2000
+ Click here to download the class module. (2 Kb)
+Categories
+VB Techniques Articles, API Programming Category
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

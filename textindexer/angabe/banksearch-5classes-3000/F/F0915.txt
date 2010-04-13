@@ -1,0 +1,18 @@
+
+ 
+ 
+ Gradient Background
+ 
+Opening
+an URL from VB
+ 
+Most people use the ShellExecute
+API to open a certain page on their default browser, but you can just use
+the following and get the same result: 
+retVal
+= Shell("Start.exe internetaddress", vbHide) 
+or 
+retVal
+= Shell("Start.exe mailto:e-mail", vbHide) 
+ 
+ 

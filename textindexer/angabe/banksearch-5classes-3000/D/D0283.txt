@@ -1,0 +1,27 @@
+
+Simplest Applet
+Painting Applet
+An Applet that paints itself.
+- 
+Clicking repeatedly on a highlighted explanation paragraph takes you through all associated code lines.
+- 
+Double-click takes you to the most important line.
+- 
+Right-click or shift-click takes you to your own scroll position in the source code pane.
+- 
+Right-click in the source code pane to choose line numbers.
+Essence
+***** Simplest.java *******
+public class Simplest
+	extends java.applet.Applet
+{
+	public void paint ( java.awt.Graphics gr )
+	{
+	gr.drawString ( "Seeing is believing", 25, 75 );
+	gr.drawRect ( 0, 0, 299, 199 );
+	}
+}
+********** Simplest.html ***********
+JavaLessons.com
+Copyright © 2000, 2001 System Exclusive & Multi Midi (NL) All rights
+reserved

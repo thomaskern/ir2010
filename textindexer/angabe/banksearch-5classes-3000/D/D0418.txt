@@ -1,0 +1,54 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+ 
+Getting Familiar with your JSP server
+If you do not have a JSP capable web-server (sometimes known as application
+servers for configuration reasons), the first step is to download one. 
+There are many such servers available, most of which can be downloaded
+for free evaluation and/or development. Some of them are:
+Blazix
+from Desiderata Software (1.5 Megabytes, JSP, Servlets and EJBs)
+ServletExec
+from New Atlanta/Unify (3.8 Megabytes, JSP and Servlets)
+JRun from Allaire
+(11 Megabytes, JSP, Servlets and EJBs)
+WebLogic from BEA
+Systems (44 Megabytes, JSP, Servlets and EJBs)
+WebSphere
+from IBM (105 Megabytes, JSP, Servlets and EJBs)
+If you do not already have a server, it is recommended that you download
+Blazix
+because it includes a tag library that is used later in this tutorial in
+the tag library chapter. Blazix is also very small and can be easily
+downloaded even over a modem, will work on all kinds of systems including
+Windows 98, and can be installed in less than ten minutes.
+To truly learn JSP, it is really very important that you try out the
+examples with a real server. This web-site doesn't have running
+examples because running examples really don't do a good teaching job. 
+The best way to learn the technology is to get hands-on experience. 
+If you don't have a server, please go get one and install it now!
+Once you have a web-server, you need to know the following information
+about your web-server:
+- 
+Where to place the files
+- 
+How to access the files from your browser (with an http: prefix,
+not as file:)
+You should be able to create a simple file, such as
+Hello, world
+know where to place this file and how to see it in your browser with an
+http://
+prefix.
+Since this step is different for each web-server, you would need to
+see the web-server documentation to find out how this is done. Once
+you have completed this step, proceed to the next tutorial.
+ 
+Next tutorial: Your first JSP page 
+Contents
+ 
+ 

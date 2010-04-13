@@ -1,0 +1,169 @@
+
+Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+	
+ Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error 
+ 
+I have running Tomcat+Jetspeed,when I connect http://localhost:8080/jetspeed the browser displays:
+Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error
+--------------------------------------------------------------------------------
+type Exception report
+message Internal Server Error
+description The server encountered an internal error (Internal Server Error) that prevented it from fulfilling this request.
+exception 
+javax.servlet.ServletException: sun/tools/javac/Main
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:481)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:243)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:190)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2347)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:170)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:170)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:468)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.connector.http.HttpProcessor.process(HttpProcessor.java:1027)
+	at org.apache.catalina.connector.http.HttpProcessor.run(HttpProcessor.java:1125)
+	at java.lang.Thread.run(Unknown Source)
+root cause 
+java.lang.NoClassDefFoundError: sun/tools/javac/Main
+	at org.apache.jasper.compiler.SunJavaCompiler.compile(SunJavaCompiler.java:136)
+	at org.apache.jasper.compiler.Compiler.compile(Compiler.java:272)
+	at org.apache.jasper.servlet.JspServlet.loadJSP(JspServlet.java:548)
+	at org.apache.jasper.servlet.JspServlet$JspServletWrapper.loadIfNecessary(JspServlet.java:176)
+	at org.apache.jasper.servlet.JspServlet$JspServletWrapper.service(JspServlet.java:188)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:381)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:473)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:247)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:243)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:190)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardContext.invoke(StandardContext.java:2347)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:180)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.valves.ErrorDispatcherValve.invoke(ErrorDispatcherValve.java:170)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:170)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:468)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:564)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:174)
+	at org.apache.catalina.core.StandardPipeline.invokeNext(StandardPipeline.java:566)
+	at org.apache.catalina.core.StandardPipeline.invoke(StandardPipeline.java:472)
+	at org.apache.catalina.core.ContainerBase.invoke(ContainerBase.java:943)
+	at org.apache.catalina.connector.http.HttpProcessor.process(HttpProcessor.java:1027)
+	at org.apache.catalina.connector.http.HttpProcessor.run(HttpProcessor.java:1125)
+	at java.lang.Thread.run(Unknown Source)
+ anybody can help me?
+Submitted by eltabo, 5/20/2002 5:23:52 AM
+Replies:
+- RE: Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error
+, 
+Rembrandt Leliveld, 7/12/2002 6:04:30 AM
+- RE: Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error
+, 
+Pravin Latti, 7/12/2002 6:45:21 AM
+- RE: Apache Tomcat/4.0.4-b3 - HTTP Status 500 - Internal Server Error
+, 
+evelyn ogodo, 7/13/2002 3:58:34 PM
+[ Reply | Return ] 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

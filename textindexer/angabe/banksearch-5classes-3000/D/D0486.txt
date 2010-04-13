@@ -1,0 +1,561 @@
+
+JADCentral : NewsCentral 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	 	 	
+	 	
+	 	 	
+	 	 	 Headline 	 	 Date 	 	 	
+	 	 	 Debate foams over SOAP 1.2	 
+	 As the World Wide Web Consortium (W3C) works to put the finishing touches on SOAP (Simple Object Access Protocol) 1.2, debate is heating up over Web services interoperability and SOAP's future in the Web.	 	 	 May 16, 2002 	 	 	
+	 	 	 Macromedia uses Jini for JRun 4 app server	 
+	 Macromedia Inc. launched an upgrade to its JRun application server this week, complete with a pricing change and new clustering capabilities designed to boost application performance and improve uptime.	 	 	 May 14, 2002 	 	 	
+	 	 	 Integrate Java and C++ with Jace	 
+	 Jace -- a free, open source toolkit -- lets you easily write JNI (Java Native Interface) code. This article analyzes in detail the JNI API's problems and how Jace solves them.	 	 	 May 10, 2002 	 	 	
+	 	 	 IBM details next version of WebSphere app server	 
+	 IBM further deepened its commitment to WebSphere as the center of its software development and integration strategies, formally announcing the next version of the applications server on Wednesday at its developerWorksLive conference.	 	 	 May 9, 2002 	 	 	
+	 	 	 Sun hails open-source meta data repository	 
+	 Sun Microsystems on Tuesday plans to announce that it has contributed meta data repository modules to the NetBeans open-source development project as part of the Object Management Group's MDA (Model Driven Architecture) effort.	 	 	 May 8, 2002 	 	 	
+	 	 	 Jtrix: Web services beyond SOAP	 
+	 This article describes Jtrix, an open source Web services platform for secure, roving applications. It examines the limits of existing standards, Jtrix's core model, and how Jtrix enables you to create Web services in such areas as hosting, disk space, and CPU time.	 	 	 May 6, 2002 	 	 	
+	 	 	 Microsoft reaches out to Java developers	 
+	 Microsoft this week released a JDBC driver enabling Java developers to utilize Microsoft's SQL Sever 2000 database as a data management system for Java applications.	 	 	 May 3, 2002 	 	 	
+	 	 	 Creating JavaScript image swaps	 
+	 The CSS trick we'll learn today looks an awful lot like a JavaScript rollover -- and I think you'll find it's fairly easy to implement as well.	 	 	 May 2, 2002 	 	 	
+	 	 	 Sprint releases enterprise IM	 
+	 Sprint Monday released two enterprise messaging products for wireless access to instant messaging and e-mail.	 	 	 May 1, 2002 	 	 	
+	 	 	 Navigate data with the Mapper framework	 
+	 Developers working for organizations with many business relationships face the daunting task of reading, writing, and manipulating data records to and from their business partners. The Mapper framework is a Java- and XML-based design that seamlessly maps data records to and from any entity. Whether you must read records from a text file and write to a database table, or read from an enterprise information architecture and write to a Web service, information exchange becomes effortless using this simple design pattern.	 	 	 April 30, 2002 	 	 	
+	 	 	 	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 Headline 
+	 
+	 Date 
+	 
+	 
+	
+	
+	
+	
+	 	
+	 
+	 Introduction to Databases for Web Developers
+	 
+	 Once upon a time, in the primitive and
+barbarian days before computers, the amount of
+information shepherded by a group of people could be collected
+in the wisdom and the stories of its older members...
+	 
+	 	
+	 February 6, 2002 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 EJB 2 and J2EE Packaging
+	 
+	 Have you noticed the number of different types of JAR files that you have to deal with lately in J2EE?! JAR files do not just hold EJBs anymore...
+	 
+	 	
+	 November 12, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Dealing with virtual paths when using JSP pages
+	 
+	 When you code server side components, you may need to
+ get the physical path of a file from its virtual path relative to the web site root...
+	 
+	 	
+	 November 8, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Resolving Internet Addresses using Java
+	 
+	 It is easier for us, humans, to remember symbolic
+names rather than a bunch of numbers, for example it is easier to memorize
+the string fundy...
+	 
+	 	
+	 November 2, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 J D B C: A Persistant Storage for Java Objects
+	 
+	 Persistant Storage is a non volatile place for storing the 
+state of objects...
+	 
+	 	
+	 October 29, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 SOAP-less Interplay
+	 
+	 SOAP is currently the centre of attention these days for XML-based, 
+ cross OS, cross platform, cross programming language client and 
+ web service interoperation...
+	 
+	 	
+	 October 26, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Understanding How CLASSPATH Works
+	 
+	 Classpath represents either an environment variable or a Java Virtual Machine (JVM)
+command line option, such as /cp on Microsoft JVM or -classpath on Sun JVM...
+	 
+	 	
+	 October 23, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Dealing with virtual paths when using JSP pages
+	 
+	 When you code server side components, you may need to
+ get the physical path of a file from its virtual path relative to the web site root...
+	 
+	 	
+	 October 22, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Upload / Download and database
+	 
+	 The upload and download of files are very useful
+ processes in the world of the web, and especially for those who want to update a remote
+ site in a very simple way...
+	 
+	 	
+	 October 19, 2001 
+	 
+	 	
+	
+	
+	
+	 	
+	 
+	 Establishing a connection with a DataBase
+	 
+	 Loading the driver
+The first step is to install the driver on your server...
+	 
+	 	
+	 October 18, 2001 
+	 
+	 	
+	
+	
+ 
+	
+	
+	 
+	 
+	
+	
+ 
+	
+ 
+	
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 Headline 
+	 
+	 Date 
+	 
+	 
+	
+	
+	
+	
+ 
+	
+	
+	 
+	 
+	
+	
+ 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	 
+	 
+	 Headline 
+	 
+	 Date 
+	 
+	 
+	
+ 
+	
+	
+ 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 Headline 
+	 
+	 Date 
+	 
+	 
+	
+	
+	
+	
+ 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+	
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

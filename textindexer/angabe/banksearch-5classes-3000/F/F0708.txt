@@ -1,0 +1,378 @@
+
+VB Helper: Bug Proofing Visual Basic: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Part One: Work Environment 
+ 
+ 
+ This may seem like a strange place to begin, but work environment can make a huge difference 
+in the amount and quality of code a developer writes.
+1. Programming Philosophy
+In bug prevention, attitude is everything. This chapter describes the proper mindset 
+for preventing and removing bugs quickly and easily.
+2. Work Habits
+This chapter discusses more specific techniques that can make bug management easier. 
+Little things, like keeping a list of bugs you have encountered, can make identifying and 
+fixing similar bugs easier in the future.
+ 
+ 
+ Part Two: Coding Style 
+ 
+ 
+ This part of the book discusses specific Visual Basic coding style conventions you can use
+to make code easier to read and maintain.
+3. Variables
+This chapter describes methods for declaring and using variables to minimize the chances of introducing bugs.
+4. Constants and Enums
+Constants and enumerated values are important resources for reducing bug counts. 
+This chapter explains how to use them to make code more readable and maintainable.
+5. Exposing Bugs
+Many programming practices considered safe actually hide bugs. This chapter shows how 
+to write code that exposes bugs instead of hiding them.
+6. Being Obvious
+Program code should not be mysterious to programmers who read it. This chapter explains 
+ways you can write code that is obvious to others.
+7. Comments
+Comments help bridge the gap between a program written for a computer to execute and humans 
+trying to understand the code. This chapter shows how to use comments to help readers understand 
+the code so they do not add bugs to it later.
+8. Gotchas
+This chapter describes some bugs that are common in Visual Basic programs and tells how to 
+avoid them. Some are rather subtle and can waste a lot of your time if you have never seen them 
+before. They have certainly wasted a lot of my time.
+ 
+ 
+ Part Three: Development 
+ 
+ 
+ Part Three deals mostly with development issues at a higher level than Part Two does. 
+These include application and subroutine design issues, and optimization.
+9. Design
+Design decisions can have a large impact on the bugginess and maintainability of an 
+application. This chapter gives some tips on designing maintainable applications.
+10. Encapsulation
+This chapter explains how to use variables, classes, subroutines, and other programming 
+devices to encapsulate complex functionality and make it more bugproof.
+11. Optimization
+Optimization and bugproofing are often contradictory goals. Optimizing code often makes 
+it harder to understand. On the other hand, bugproofing requires that the code be as easy to 
+understand as possible. This chapter explains how and when to optimize while keeping the 
+program reasonably bugproof.
+ 
+ 
+ Part Four: Error Handling 
+ 
+ 
+ The chapters in Part 4 explain how to handle unexpected situations such as running out of disk 
+space and the user entering invalid data. They show how to build error handlers that allow a 
+program to continue execution even when the unforeseen occurs.
+12. Error Handling Fundamentals
+This chapter describes Visual Basic's error handling mechanism: the family of 
+On Error statements. A program can use On Error statements to prepare for almost any eventuality.
+ [Note that Visual Basic.NET introduces a new Try Catch Finally error handling
+ syntax that is not covered in this book.]
+13. Standard Error Handlers
+Many programs perform the same sorts of actions when they encounter errors. 
+For example, they might log error information to a file to help developers find the 
+bug later. This chapter describes several standard error handlers you can use to log 
+errors for later analysis.
+ 
+ 
+ Part Five: Post-Coding Activities 
+ 
+ 
+ The chapters in this part of the book discuss some extremely important activities developers 
+should perform after writing code.
+14. Testing
+Many programmers consider testing to be a necessary evil that occurs at the end of a project. 
+In fact, testing must occur during all stages of the project. This chapter describes testing habits 
+and techniques you can use to prevent unwanted surprises from ambushing the project in its final stages.
+15. Profiling
+The code profiler that comes with the Professional and Enterprise editions of Visual Basic allows 
+you to generate coverage and performance statistics for an application. Using these statistics, 
+you can identify code that needs optimization or that may contain bugs. This chapter describes the 
+profiler and explains how to use it to look for bugs.
+16. Debugging Habits
+Just as good habits can make coding and testing easier and more effective, good debugging habits 
+can help you find and fix bugs more effectively. This chapter describes debugging habits that will 
+help you make your debugging sessions more productive.
+ 
+ 
+ Appendices 
+ 
+ 
+ 
+Appendix A
+This appendix contains an explanation of the self-test code presented in each chapter. 
+It describes the bad points demonstrated by example programs and provides an improved implementation. 
+These programs are available electronically
+here.
+Appendix B
+This appendix contains blank header comments you can use as templates in your programs. 
+These templates are described in Chapter 7, "Comments," and are available electronically 
+here.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

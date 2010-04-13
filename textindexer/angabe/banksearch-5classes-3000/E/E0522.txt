@@ -1,0 +1,101 @@
+
+What's Changed?
+The files below have been updated since the 4.1 release.
+To update your installation,
+copy these files to the corresponding locations in your lcc 4.1 directory
+hierarchy and rebuild the lcc programs.
+Alternatively, download all the listed files in a
+compressed tar file.
+Sep 25 2001 The lcc 4.1 Code-Generation Interface 
+May 8 2000 src/expr.c
+ 
+May 8 2000 CPYRIGHT
+ 
+Jan 10 2000 src/dag.c
+ 
+Jan 10 2000 alpha/osf/tst/yacc.2bk
+ 
+Jan 10 2000 alpha/osf/tst/cq.sbk
+ 
+Jan 10 2000 alpha/osf/tst/yacc.sbk
+ 
+Dec 13 1999 x86/linux/tst/switch.sbk
+ 
+Dec 13 1999 x86/linux/tst/wf1.sbk
+ 
+Dec 13 1999 x86/linux/tst/yacc.2bk
+ 
+Dec 13 1999 x86/linux/tst/yacc.sbk
+ 
+Dec 13 1999 x86/linux/tst/stdarg.sbk
+ 
+Dec 13 1999 x86/linux/tst/struct.sbk
+ 
+Dec 13 1999 x86/linux/tst/sort.sbk
+ 
+Dec 13 1999 x86/linux/tst/spill.sbk
+ 
+Dec 13 1999 x86/linux/tst/paranoia.sbk
+ 
+Dec 13 1999 x86/linux/tst/incr.sbk
+ 
+Dec 13 1999 x86/linux/tst/init.sbk
+ 
+Dec 13 1999 x86/linux/tst/limits.sbk
+ 
+Dec 13 1999 x86/linux/tst/cvt.sbk
+ 
+Dec 13 1999 x86/linux/tst/fields.sbk
+ 
+Dec 13 1999 x86/linux/tst/front.sbk
+ 
+Dec 13 1999 x86/linux/tst/cq.sbk
+ 
+Dec 13 1999 x86/linux/tst/cf.sbk
+ 
+Dec 13 1999 x86/linux/tst/8q.sbk
+ 
+Dec 13 1999 x86/linux/tst/array.sbk
+ 
+Dec 13 1999 tst/yacc.c
+ 
+Dec 13 1999 x86/linux/tst/paranoia.1bk
+ 
+Dec 13 1999 osf.mk
+ 
+Dec 13 1999 linux.mk
+ 
+Nov 3 1999 src/simp.c
+ 
+Nov 2 1999 solaris.mk
+ 
+Nov 2 1999 src/prof.c
+ 
+Nov 2 1999 src/decl.c
+ 
+Nov 1 1999 lib/bbexit.c
+ 
+Oct 29 1999 src/tree.c
+ 
+Oct 28 1999 etc/irix.c
+ 
+Oct 27 1999 src/profio.c
+ 
+Oct 27 1999 etc/bprint.c
+ 
+Oct 27 1999 src/stmt.c
+ 
+Jan 12 1999 etc/lcc.c
+ 
+Jan 12 1999 src/c.h
+ 
+Dec 29 1998 Installing lcc 
+Nov 30 1998 src/x86.md
+ 
+Nov 12 1998 src/x86linux.md
+ 
+Oct 15 1998 src/dagcheck.md
+ 
+Oct 15 1998 src/enode.c
+ 
+Fri Jul 12 14:21:44 EDT 2002

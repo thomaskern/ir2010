@@ -1,0 +1,73 @@
+
+ 
+ japhar.org
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A portable interpreter
+ for Java bytecodes
+ 
+ 
+ 
+ 
+	
+	 
+	 Japhar 
+	 Getting it 
+	 Mailing Lists 
+	 Supported Platforms 
+	 Mauve Results 
+	 
+	 Documentation 
+	 JavaSoft Docs 
+	 Japhar Docs 
+	 Japhar/OJI 
+	 Release News 
+	 
+	 Related Projects 
+	 
+	 
+	 
+	 
+ 
+ 
+	mauve testsuite results 
+ 
+ 
+ 
+ 
+ The Mauve Project
+ is a collaborative effort comprised of several groups that
+ seeks to provide a compliance test again the Java specification.
+ 
+ 
+ While at present the mauve testsuite comprises tests of library
+ functionality and not vm behavior, I thought it would be interesting to 
+ run it again japhar, testing both 1.1 and 1.2 JDK classes. Here are the
+ results:
+ 
+ 
+ 
+- Mauve against Japhar/JDK-1.1
+ 
+- Mauve against Japhar/JDK-1.2
+ 
+ 
+ 
+ 	 
+ 
+ 
+ 
+ 	 
+ 
+	 
+ Last modified: Sun Mar 5 17:16:55 PST 2000
+ 
+ 
+ 
+ 

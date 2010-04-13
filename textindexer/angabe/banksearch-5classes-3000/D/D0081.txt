@@ -1,0 +1,213 @@
+
+Optimizing Java for Speed
+Optimizing Java for Speed
+[ index ]
+[ benchmarks
+ | compilers 
+ | maintainability
+ | resources
+ | rules
+ | size
+ | tools ]
+Compiler optimizations:
+When you've finished developing and testing your code, recompile with
+ compiler optimizations turned on (e.g., javac
+ -O). For details on what current Java compilers can do, and how
+ you can help them, see Java compilers. 
+Just-in-time compilers:
+Make sure your users have a just-in-time 
+ compiler instead of a standard interpreted Java VM. JIT compilers
+ typically improve the performance of non-graphical Java primitives by
+ 10-30 times (see Java microbenchmarks).
+ Browsers with JIT compilers include the Win32 and Mac versions of
+ Netscape
+ Navigator 3.0 and Internet
+ Explorer 3.0. Standalone JIT compilers are also available from (at
+ least):
+ 
+ 
+- Asymetrix (commercial: for
+	 Win32).
+ 
+- DEC 
+	 (free: for Digital Unix)
+ 
+- HP (free: for HP-UX).
+ 
+- Kaffe (free: for x86, Sparc,
+	 Alpha, and M68k CPUs).
+ 
+- Microsoft
+	 (free: for Win32).
+ 
+- SGI (commercial:
+	 for 
+	 Irix).
+ 
+- Sun (free: for
+	 Win32 and Solaris).
+ 
+- Symantec (commercial: for
+	 Win32 and MacOS).
+ 
+ 
+Exploiting multiprocessors:
+If you have a multiprocessor and a Java VM that can spread threads across
+ processors (and currently these are big ifs), you can improve performance
+ by multithreading, either manually or through the use of a restructuring
+ compiler such as JAVAR. 
+ 
+Native methods:
+If you're don't care about cross-platform portability, native
+ methods will get you the speed of raw C (or Fortran, or C++, or...).
+ Fallback
+ code lets your program continue even if native methods aren't
+ available. 
+Translation into C:
+There are currently four freely-available tools to translate Java into C:
+ j2c from
+ Japan,
+ JCC from Nik
+ Shaylor,
+ Toba (formerly
+ Juice) from Arizona,
+ and Harissa
+ (formally Salsa) from France. Toba and Harissa are both products of
+ active research groups. 
+ 
+Graphics:
+Use clipping to reduce the amount of work done in repaint(), 
+ double buffering to improve perceived speed, and image strips or
+ compression to speed up downloading times. Animation
+ in Java Applets from JavaWorld and Performing
+ Animation from Sun are two good tutorials. Remember to use
+ high-level primitives; it's much faster to call
+ drawPolygon() on a bunch of points than looping with
+ drawLine() (tip from Jean-Marc
+ Lugrin). And if you have to draw a single pixel drawLine
+ (x,y,x,y) may be faster than fillRect (x,y,1,1) (tip from Wayne Cochran). 
+Input/output:
+Use
+ BufferedInputStream
+ and BufferedOutputStream 
+ or equivalent buffered methods wherever possible; doing I/O a single byte
+ at a time is generally too slow to be practical. Note that the JDK 1.0.2
+ I/O classes use lots of synchronization, so you might get better
+ performance by using a single "bulk" call such as readFully and then
+ interpreting the data yourself (tip and code from Doug Erickson). 
+Synchronization:
+In the JDK interpreter, calling a synchronized method is typically 10
+ times slower than calling an unsynchronized method. With JIT
+ compilers, this performance gap has increased to 50-100 times (see Java microbenchmarks). Avoid synchronized
+ methods if you can -- if you can't, synchronizing on methods rather than
+ on code blocks is slightly faster (tip
+ and benchmarks from Doug
+ Lea). 
+Exceptions:
+You should only use exceptions where you really need them--not only do
+ they have a high basic cost, but their presence can hurt compiler
+ analysis (tip and code
+ from Niklas Gustafsson).
+ 
+ 
+The costs of Strings:
+The String concatenation operator + looks innocent but involves a
+ lot of work: a new StringBuffer is created, the two arguments are added to
+ it with append(), and the final result is converted back with a
+ toString(). This costs both space and time. In particular, if
+ you're appending more than one String, consider using a StringBuffer
+ directly instead (tip from Jason
+ Marshall, see also space aspects in Optimizing for
+ Size). 
+Using API classes:
+Use classes from the 
+ Java API when
+ they offer native machine performance that you can't match using Java.
+ For example, arraycopy()
+ is much faster than using a loop to copy an array of any significant size.
+ 
+Replacing API classes:
+Sometimes API classes do more than you need, with a corresponding increase
+ in execution time; for these you can write specialized versions that do
+ less but run faster. For example, in one application where I needed a
+ container to store lots of arrays I replaced the original 
+ Vector 
+ with a faster dynamic array of objects (see "Java as an
+ Intermediate Language"). As another example, Paule Houle has produced
+ a set of
+ random-number generators that are much faster than
+ Math.random() (and have quality guarantees too). 
+ 
+Overriding API methods:
+If you're using a class from the Java API and are seeing performance
+ problems with one method, try defining a subclass which overrides that
+ method with your own (hopefully more efficient) version. 
+Avoiding expensive constructs:
+Sometimes Java constructs are so expensive that it can be worth making
+ your data structures or code a little more complex to work around the
+ problem. For example, you can add a type id number to objects to avoid
+ paying the cost of an instanceof (this also allows you to use the
+ result in a switch). Similarly, in a long inheritance tree you
+ can avoid casting by including a method that returns a value of the type
+ you would otherwise cast to (both tips from
+ Greg McClement).
+ 
+ 
+Avoiding expensive data structures:
+In a similar manner to the constructs above, expensive Java data
+ structures can be replaced with simpler ones at the cost of some extra
+ code complexity. For example, it can be up to twice as expensive to
+ access a two-dimensional array as a one-dimensional array, due to the
+ extra indirections (tip from Shane
+ Kerr).
+ 
+ 
+ 
+Know your switches: A switch statement is compiled
+ into one of two
+bytecodes,
+ depending on the sparsity of the cases you're switching on. The first,
+ where the numbers are close together, uses a fast direct lookup. The
+ second, where the numbers are further apart, uses a slower search through
+ a table. Look at the bytecode your code is compiled into to find which
+ you're using (tip from Greg McClement). This is
+ particularly important if you're trying to replace a sequence of
+ if statements with a switch (tip from Erik Meade).
+ 
+ 
+Function inlining:
+Java compilers can only inline a method if it is final,
+ private, or static (and Hans Hall has noted that
+ javac will only inline if a method has no local variables). If
+ your code spends lots of time calling a method that has none of these
+ modifiers, consider writing a version that is final. 
+Reusing objects:
+It takes a long time to create an object (see Java microbenchmarks for exactly how long), so
+ it's often worth updating the fields of an old object and reusing it
+ rather than creating a new object. For example, rather than creating a
+ new Font object in your paint method you can declare it
+ as an instance object, initialize it once, and then just update it when
+ necessary in paint (tip from Frederick Myers). Similarly, rather
+ than allowing the garbage collector to deal with objects you've removed
+ from a linked list, you can store them in a free list, to be reused the
+ next time you need to add a new object (tip from Greg McClement). This can
+ be particularly important for graphics objects like Rectangles, Points and
+ Fonts (tip from Alexander Grosse).
+	 
+ See also "Not
+ using garbage collection", from JavaWorld. 
+High-level optimizations:
+For a higher-level approach to optimizing the structure of object-oriented
+ code, the online book
+ "Object-Oriented System
+ Development" has a chapter on 
+ performance 
+ optimization.
+ 
+ http://www.cs.cmu.edu/~jch/java/speed.html 
+ Optimizing Java for Speed 
+ 
+ 
+ Last modified: Wed 18 Mar 1998 
+ Copyright &#169 1996, 1997 Jonathan Hardwick 
+ 

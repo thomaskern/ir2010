@@ -1,0 +1,302 @@
+
+GNU Compiler Collection (GCC) Internals
+GNU Compiler Collection (GCC) Internals
+This file documents the internals of the GNU compilers.
+Published by the Free Software Foundation
+59 Temple Place - Suite 330
+Boston, MA 02111-1307 USA
+Copyright © 1988, 1989, 1992, 1993, 1994, 1995, 1996, 1997, 1998,
+1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License" and "Funding
+Free Software", the Front-Cover texts being (a) (see below), and with
+the Back-Cover Texts being (b) (see below). A copy of the license is
+included in the section entitled "GNU Free Documentation License".
+(a) The FSF's Front-Cover Text is:
+A GNU Manual
+(b) The FSF's Back-Cover Text is:
+You have freedom to copy and modify this GNU Manual, like GNU
+ software. Copies published by the Free Software Foundation raise
+ funds for GNU development.
+Short Contents
+- Introduction
+- Contributing to GCC Development
+- GCC and Portability
+- Interfacing to GCC Output
+- Language Front Ends in GCC
+- Source Tree Structure and Build System
+- Passes and Files of the Compiler
+- Trees: The intermediate representation used by the C and C++ front ends
+- RTL Representation
+- Machine Descriptions
+- Target Description Macros and Functions
+- Host Configuration Headers
+- Makefile Fragments
+- collect2
+- Standard Header File Directories
+- Memory Management and Type Information
+- Funding Free Software
+- The GNU Project and GNU/Linux
+- GNU GENERAL PUBLIC LICENSE
+- GNU Free Documentation License
+- Contributors to GCC
+- Option Index
+- Index
+Table of Contents
+- 
+ Introduction
+- 
+ Contributing to GCC Development
+- 
+ GCC and Portability
+- 
+ Interfacing to GCC Output
+- 
+ Language Front Ends in GCC
+- 
+ Source Tree Structure and Build System
+- Configure Terms and History
+- Top Level Source Directory
+- The gcc Subdirectory
+- Subdirectories of gcc
+- Configuration in the gcc Directory
+- Scripts Used by configure
+- The config.gcc File
+- Files Created by configure
+- Build System in the gcc Directory
+- Makefile Targets
+- Library Source Files and Headers under the gcc Directory
+- Headers Installed by GCC
+- Building Documentation
+- Texinfo Manuals
+- Man Page Generation
+- Miscellaneous Documentation
+- Anatomy of a Language Front End
+- The Front End language Directory
+- The Front End config-lang.in File
+- Anatomy of a Target Back End
+- Test Suites
+- Idioms Used in Test Suite Code
+- C Language Test Suites
+- 
+ Passes and Files of the Compiler
+- 
+ Trees: The intermediate representation used by the C and C++ front ends
+- Deficiencies
+- Overview
+- Trees
+- Identifiers
+- Containers
+- Types
+- Scopes
+- Namespaces
+- Classes
+- Declarations
+- Functions
+- Function Basics
+- Function Bodies
+- Statements
+- Attributes in trees
+- Expressions
+- 
+ RTL Representation
+- RTL Object Types
+- RTL Classes and Formats
+- Access to Operands
+- Flags in an RTL Expression
+- Machine Modes
+- Constant Expression Types
+- Registers and Memory
+- RTL Expressions for Arithmetic
+- Comparison Operations
+- Bit-Fields
+- Vector Operations
+- Conversions
+- Declarations
+- Side Effect Expressions
+- Embedded Side-Effects on Addresses
+- Assembler Instructions as Expressions
+- Insns
+- RTL Representation of Function-Call Insns
+- Structure Sharing Assumptions
+- Reading RTL
+- 
+ Machine Descriptions
+- Overview of How the Machine Description is Used
+- Everything about Instruction Patterns
+- Example of define_insn
+- RTL Template
+- Output Templates and Operand Substitution
+- C Statements for Assembler Output
+- Operand Constraints
+- Simple Constraints
+- Multiple Alternative Constraints
+- Register Class Preferences
+- Constraint Modifier Characters
+- Constraints for Particular Machines
+- Standard Pattern Names For Generation
+- When the Order of Patterns Matters
+- Interdependence of Patterns
+- Defining Jump Instruction Patterns
+- Defining Looping Instruction Patterns
+- Canonicalization of Instructions
+- Defining RTL Sequences for Code Generation
+- Defining How to Split Instructions
+- Including Patterns in Machine Descriptions.
+- RTL Generation Tool Options for Directory Search
+- Machine-Specific Peephole Optimizers
+- RTL to Text Peephole Optimizers
+- RTL to RTL Peephole Optimizers
+- Instruction Attributes
+- Defining Attributes and their Values
+- Attribute Expressions
+- Assigning Attribute Values to Insns
+- Example of Attribute Specifications
+- Computing the Length of an Insn
+- Constant Attributes
+- Delay Slot Scheduling
+- Specifying processor pipeline description
+- Specifying Function Units
+- Describing instruction pipeline characteristics
+- Drawbacks of the old pipeline description
+- Conditional Execution
+- Constant Definitions
+- 
+ Target Description Macros and Functions
+- The Global targetm Variable
+- Controlling the Compilation Driver, gcc
+- Run-time Target Specification
+- Defining data structures for per-function information.
+- Storage Layout
+- Layout of Source Language Data Types
+- Target Character Escape Sequences
+- Register Usage
+- Basic Characteristics of Registers
+- Order of Allocation of Registers
+- How Values Fit in Registers
+- Handling Leaf Functions
+- Registers That Form a Stack
+- Register Classes
+- Stack Layout and Calling Conventions
+- Basic Stack Layout
+- Exception Handling Support
+- Specifying How Stack Checking is Done
+- Registers That Address the Stack Frame
+- Eliminating Frame Pointer and Arg Pointer
+- Passing Function Arguments on the Stack
+- Passing Arguments in Registers
+- How Scalar Function Values Are Returned
+- How Large Values Are Returned
+- Caller-Saves Register Allocation
+- Function Entry and Exit
+- Generating Code for Profiling
+- Permitting tail calls
+- Implementing the Varargs Macros
+- Trampolines for Nested Functions
+- Implicit Calls to Library Routines
+- Addressing Modes
+- Condition Code Status
+- Describing Relative Costs of Operations
+- Adjusting the Instruction Scheduler
+- Dividing the Output into Sections (Texts, Data, ...)
+- Position Independent Code
+- Defining the Output Assembler Language
+- The Overall Framework of an Assembler File
+- Output of Data
+- Output of Uninitialized Variables
+- Output and Generation of Labels
+- How Initialization Functions Are Handled
+- Macros Controlling Initialization Routines
+- Output of Assembler Instructions
+- Output of Dispatch Tables
+- Assembler Commands for Exception Regions
+- Assembler Commands for Alignment
+- Controlling Debugging Information Format
+- Macros Affecting All Debugging Formats
+- Specific Options for DBX Output
+- Open-Ended Hooks for DBX Format
+- File Names in DBX Format
+- Macros for SDB and DWARF Output
+- Macros for VMS Debug Format
+- Cross Compilation and Floating Point
+- Mode Switching Instructions
+- Defining target-specific uses of __attribute__
+- Defining coprocessor specifics for MIPS targets.
+- Miscellaneous Parameters
+- 
+ Host Configuration Headers
+- 
+ Makefile Fragments
+- Target Makefile Fragments
+- Host Makefile Fragments
+- 
+ collect2
+- 
+ Standard Header File Directories
+- 
+ Memory Management and Type Information
+- The Inside of a GTY(())
+- Marking Roots for the Garbage Collector
+- Source Files Containing Type Information
+- 
+ Funding Free Software
+- 
+ The GNU Project and GNU/Linux
+- 
+ GNU GENERAL PUBLIC LICENSE
+- Preamble
+- How to Apply These Terms to Your New Programs
+- 
+ GNU Free Documentation License
+- ADDENDUM: How to use this License for your documents
+- 
+ Contributors to GCC
+- 
+ Option Index
+- 
+ Index
+Node:Top,
+Next:Contributing,
+Up:(DIR)
+Introduction
+This manual documents the internals of the GNU compilers, including
+how to port them to new targets and some information about how to
+write front ends for new languages. It corresponds to GCC version
+3.2. The use of the GNU compilers is documented in a
+separate manual. See Introduction.
+This manual is mainly a reference manual rather than a tutorial. It
+discusses how to contribute to GCC (see Contributing), the
+characteristics of the machines supported by GCC as hosts and targets
+(see Portability), how GCC relates to the ABIs on such systems
+(see Interface), and the characteristics of the languages for
+which GCC front ends are written (see Languages). It then
+describes the GCC source tree structure and build system, some of the
+interfaces to GCC front ends, and how support for a target system is
+implemented in GCC.
+Additional tutorial information is linked to from
+http://gcc.gnu.org/readings.html.
+- Contributing: How to contribute to testing and developing GCC. 
+- Portability: Goals of GCC's portability features. 
+- Interface: Function-call interface of GCC output. 
+- Languages: Languages for which GCC front ends are written. 
+- Source Tree: GCC source tree structure and build system. 
+- Passes: Order of passes, what they do, and what each file is for. 
+- Trees: The source representation used by the C and C++ front ends. 
+- RTL: The intermediate representation that most passes work on. 
+- Machine Desc: How to write machine description instruction patterns. 
+- Target Macros: How to write the machine description C macros and functions. 
+- Host Config: Writing the xm-machine.h file. 
+- Fragments: Writing the t-target and x-host files. 
+- Collect2: How collect2 works; how it finds ld. 
+- Header Dirs: Understanding the standard header file directories. 
+- Type Information: GCC's memory management; generating type information.
+- Funding: How to help assure funding for free software. 
+- GNU Project: The GNU Project and GNU/Linux.
+- Copying: GNU General Public License says
+ how you can copy and share GCC. 
+- GNU Free Documentation License: How you can copy and share this manual. 
+- Contributors: People who have contributed to GCC.
+- Option Index: Index to command line options. 
+- Index: 	 Index of concepts and symbol names. 

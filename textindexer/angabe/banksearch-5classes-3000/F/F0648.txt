@@ -1,0 +1,36 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Writing To Files
+Sooner or later your going to need to save data in Visual Basic. That's where "Writing To Files" comes in. For example you have gathered a list of phone numbers, you can save that data, and then restore it again when your application starts. Read on.
+Before writing to a file your going to have to locate it and open it. The 
+Open statement does just that.
+Opening Files
+Open TheFileYouWantToOpen For SelectedOpenMode As TheFileNumber
+Open Modes: Meaning
+Append - Meaning that you need to write to the end of the file, if it exists, if not VB makes it
+Input - Meaning you need to read from the file
+Output - Meaning you need to OverWrite the file if it exists, if it doesn't exist VB makes it, and then writes to it
+ Open "C:\My.dat" For Append As #1 'Opening the file My.dat
+Closing Files
+Once you open, finish using it you should close it! Here's some code:
+ Close 1 'Closes the file # 1
+Or you might use:
+ Close 'Closes all files
+Deleting Files
+The keyword "Kill" Deletes the file, so your code might look something like this:
+ Kill "C:\my.dat"
+ Note: Kill Permanently deletes the file from your HD
+Writing to Files
+Write FileNumber, Expression
+Your code might look something like this:
+ Write #1, StrUserDescription
+What it stores in the disk might look like this:
+"Tall, long hair, 135 lbs, American"
+Inputting from Files
+Input FileNumber, Expression
+Your code might look something like this;
+ Input #1, StrUserDescription
+ Tip: Write# & Input# work together, for example you would use Input# to read files that were saved w/ Write#
+We ain 't done yet...
+Back
+Next

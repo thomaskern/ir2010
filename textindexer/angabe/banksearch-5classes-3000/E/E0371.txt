@@ -1,0 +1,403 @@
+
+Stroustrup: Errata for 4th printing of The C++ Programming Language
+Errata for 4th printing of The C++ Programming Language
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (3rd edition),
+Addison-Wesley, 1997. ISBN0-201-88954-4.
+Errata for the 4th printing yielding the 5th.
+Errors and Clarifications
+Preface:
+pg v	replace footnote by "ISO/IEC 14882, Standard for the C++ Programming Language."
+	(recent standards change :-)
+Chapter 1:
+pg 18	Add
+	"[Stepanov,1994] Alexander Stepanov and Meng Lee:
+	The Standard Template Library HP Labs Technical Report HPL-94-34 (R. 1).
+	August, 1994."
+Chapter 2:
+Chapter 3:
+pg 56	s/A map in which a value/A map in which a key/
+Chapter 4:
+pg 72	s/cin/std::cin/
+pg 77	s/smaller binary power plus 1/lesser negative binary power/
+Chapter 5:
+pg 94	s/N,/N;/
+pg 100	s/input string cin into buf/input stream cin into the string buf/
+Chapter 6:
+pg 119	s///
+pg 123	replace the last paragraph of 6.2.2 with
+	Parentheses can be used to force grouping. For example, a*b/c means (a*b)/c
+	so parentheses must be used to get a*(b/c); a*(b/c) may be evaluated as
+	(a*b)/c only if the user cannot tell the difference.
+	In particular, for many floating-point computations a*(b/c) and (a*b)/c
+	are significantly different, so a compiler will evaluate such expressions
+	exactly as written.
+pg 124	s/01/1/ s/010/2/ s/0100/4/
+Chapter 7:
+pg 144	replace the last sentence by
+	"An inline specifier does not affect the semantics of a function.
+	In particular, an inline function still has a unique address and
+	so has static variables of an inline function." (recent standard change)
+Chapter 8:
+pg 178	s/string/std::string/ thrice
+pg 178	s/In such cases, we look for the function in the scope of the call (as ever) and
+	in the namespaces of every argument/In such cases, we look for the function in
+	the scope of the call (as ever) and in the namespaces of every argument (including
+	each argument's class and base classes)/
+pg 180	name my_fct()'s argument v
+Chapter 9:
+pg 210	s/// twice
+pg 215	s///
+pg 215	s/10.6[8]/9.6[8]/
+pg 218	s/if (atexit(&my_cleanup))/if (atexit(&my_cleanup)==0)/
+Chapter 10:
+pg 249 replace the middle paragraphs with:
+	"If (and only if) you use an initialized member in a way that requires
+	it to be stored as an object in memory, the member must be (uniquely)
+	defined somewhere. The initializer may not be repeated:
+	const int Curious::c1;	// necessary, but don't repeat initializer here
+	const int* p = &Curious::c1;	// ok: Curious::c1 has been defined
+	Alternatively, you can use an enumerator (4.8,14.4.6,15.3) as a
+	symbolic constant within a class declaration."
+	(recent standard change).
+pg 252	s/The destructors for local static objects are invoked when the program
+	terminates (9.4.1.1). Exactly when is unspecified./
+	The destructors for local static objects are invoked in the reverse order
+	of their construction when the program terminates (9.4.1.1).
+	Exactly when is unspecified./
+pg 254	s/Unless bound to a reference/
+	Unless bound to a reference or used to initialize a named object/
+pg 255	s/an initializer for a const reference/
+	an initializer for a const reference or a named object/
+pg 255	change the second example to:
+	void g(const string&, const string&);
+	void h(string& s1, string& s2)
+	{
+	const string& s = s1+s2;
+	string ss = s1+s2;
+	g(s,ss);	// we can use s and ss here
+	}
+pg 255	s/reference goes out of scope/reference or named object go out of scope/
+pg 257	replace the lastparagraph of 10.4.11 by
+	"There is no special syntax for placement of arrays.
+	Nor need there be, since arbitrary types can be allocated
+	by placement new. However, a special operator new()
+	can be defined for arrays (19.4.5)."
+Chapter 11:
+pg 292	s/13.9[2]/14.12[2]/
+Chapter 12:
+Chapter 13:
+pg 336	s/6.2/6.2.7/
+pg 336	s/sqrt>(/sqrt(/ in comment
+pg 336 The last sentence of [2] should read:
+	"For the call sqrt(z), this means that sqrt(complex)
+	is preferred over sqrt >(complex): any call
+	that matches sqrt(complex) also matches sqrt(T)."
+pg 339	s/str2.length()-str1.length()/str1.length()-str2.length()/
+pg 340	s/str2.length()-str1.length()/str1.length()-str2.length()/
+pg 346	s/container type/container template/
+pg 347	s/compiler-time/compile-time/
+Chapter 14:
+pg 367-368 A recent standards change modified the definition of auto_ptr.
+	Please replace the last paragraph on page 367 and page 368 by:
+To achieve this ownership semantics (also called destructive copy semantics),
+auto_ptrs have a copy semantics that differs radically from that of ordinary
+pointers: When one auto_ptr is copied into another, the source no longer
+points to anything. Because copying an auto_ptr modifies it, a const auto_ptr
+cannot be copied.
+The auto_ptr template is declared in .
+It can be described by an implementation:
+template class std::auto_ptr {
+	template struct auto_ptr_ref { /* ... */ };	// helper class
+	X* ptr;
+public:
+	typedef X element_type;
+	explicit auto_ptr(X* p =0) throw() { ptr=p; } // throw() means "throws nothing;" see 14.6
+	~auto_ptr() throw() { delete ptr; }
+	// note copy constutors and assignments take non-const arguments:
+	auto_ptr(auto_ptr& a) throw();	// copy, then a.ptr=0
+	template auto_ptr(auto_ptr& a) throw();	// copy, then a.ptr=0
+	auto_ptr& operator=(auto_ptr& a) throw();	// copy, then a.ptr=0
+	template auto_ptr& operator=(auto_ptr& a) throw();	// copy, then a.ptr=0
+	X& operator*() const throw() { return *ptr; }
+	X* operator->() const throw() { return ptr; }
+	X* get() const throw() { return ptr; }	// extract pointer
+	X* release() throw() { X* t = ptr; ptr=0; return t; }	// relinquish ownership
+	void reset(X* p =0) throw() { if (p!=ptr) { delete ptr; ptr=p; } }
+	auto_ptr(auto_ptr_ref) throw();	// copy from auto_ptr_ref
+	template operator auto_ptr_ref() throw();	// copy to auto_ptr_ref
+	template operator auto_ptr() throw();	// destructive copy from auto_ptr
+};
+The purpose of auto_ptr_ref is to implement the destructive copy semantics
+for ordinary auto_ptrs while making it impossible to copy a const auto_ptr.
+The template constructor and template assignment ensures that an
+auto_ptr can be implicitly converted to a auto_ptr if a D*
+can be converted to a B*. For example:
+void g(Circle* pc)
+{
+	auto_ptr p2 = pc;	// now p2 is responsible for deletion
+	auto_ptr p3 = p2;	// now p3 is responsible for deletion (and p2 isn't)
+	p2->m = 7;	// programmer error: p2.get()==0
+	Shape* ps = p3.get();	// extract the pointer from an auto_ptr
+	auto_ptr aps = p3;	// transfer of ownership and convert type
+	auto_ptr p4 = pc;	// programmer error: now p4 is also responsible for deletion
+}
+The effect of having more than one auto_ptr own an object is undefined;
+most likely the object will be deleted twice (with bad effects).
+Note that auto_ptr 's
+destructive copy semantics means that it does not meet the requirements
+for elements of a standard container or for standard algorithms such as sort().
+For example:
+void h(vector >& v)	// dangerous: use of auto_ptr in container
+{
+	sort(v.begin(),v.end());	// Don't do this: The sort will probably mess up v
+}
+Clearly auto_ptr isn't a general smart pointer.
+However, it provides the service for which it was designed - exception safety
+for automatic pointers - with essentially no overhead.
+pg 384-385 add a "Header" field to the tables:
+bad_alloc ... 
+bad_cast ... 
+bad_typeid ... 
+bad_exception ... 
+out_of_range ... 
+invalid_argument ... 
+overflow_error ... 
+ios_base::failure ...
+pg 385	s/ presented in /presented in /
+Chapter 15:
+pg 406	s/If B is a public base, its public and protected members can be used by any function./
+	If B is a public base, its public members can be used by any function.
+	In addition, its protected members can be used by members and friends of
+	D and members and friends of classes derived from D./
+pg 421	After the declaration of class Employee add
+	"Member operator new()s and operator delete()s
+	are implicitly static members. Consequently, they don't have a
+	this pointer and do not modify an object. They provide storage
+	that a constructor can initialize and a destructor can clean up."
+Chapter 16:
+pg 432	add " exception class sec14.10" to the Diagnostics table
+pg 434	s/presented in ./presented in , , ,
+	, and ./
+pg 455	add to the comment to reserve(): "throw a length_error if n > max_size()"
+	(recent standard change)
+Chapter 17:
+pg 479	s/Elements with equal priority come to the head of the queue in the order
+	in which they were inserted. That is, for elements of equal priority, a
+	priority_queue is simply a queue./
+	The order in which elements with equal priority come to the head of the queue
+	is not defined./
+pg 479 Replace the second f() and its preceeding paragraph by:
+	"We can supply a comparison criterion without affecting the type of a
+	priority_queue by providing a comparison object of the appropriate type
+	as a constructor argument. For example:
+	struct String_cmp {	// type used to express comparison criteria at run time
+	String_cmp(int n = 0);	// use comparison criteria n
+	// ...
+	};
+	void g(priority_queue& pq)
+	{
+	priority_queue pq2(String_cmp(nocase));
+	pq = pq2;	// ok: pq and pq2 are of the same type, pq now also uses String_cmp(nocase)
+	}
+pg 480	s/= allocator/= allocator >/ (recent standards change)
+pg 481	s/= allocator/= allocator >/ (recent standards change)
+pg 485	s/= allocator/= allocator >/ (recent standards change)
+pg 485	replace the first example by:
+	map m1;
+	map m2;	// specify comparison type (17.1.4.1)
+	map m3;	// specify comparison type (17.1.4.1)
+	map m4(String_cmp(literary));	// pass comparison object
+pg 486	s/= allocator/= allocator >/ (recent standards change)
+pg 487	s/= allocator/= allocator >/ (recent standards change)
+pg 489	s/= allocator/= allocator >/ (recent standards change)
+pg 490	s/= allocator/= allocator >/ (recent standards change)
+pg 491	s/= allocator/= allocator/ twice
+pg 499	s/hash(h)/no_of_erased(0),hash(h)/
+Chapter 18:
+pg 515	s/for_each(ld.begin(),ld.end(),s);/s = for_each(ld.begin(),ld.end(),s);/
+pg 518	add entries to the table
+	mem_fun() const_mem_fun_t	Call 0-argument const member through pointer.
+ 	mem_fun()	const_mem_fun1_t	Call unary const member through pointer.
+	mem_fun_ref()	const_mem_fun_ref_t	Call 0-argument const member through reference.
+ 	mem_fun_ref()	const_mem_fun1_ref_t	Call unary const member through reference.
+(recent standards resolution).
+pg 521	replace the list of mem_fun() declarations by:
+	template mem_fun_t mem_fun(R (T::*f)());
+	// and versions for unary member, for const member, and const unary member (see table in sec 18.4.4)
+	template mem_fun_ref_t mem_fun_ref(R (T::*f)());
+	// and versions for unary member, for const member, and const unary member (see table in sec 18.4.4)
+(recent standards resolution).
+pg 523	s/,li.end()//
+pg 523	s/These algorithms take const-iterators (19.2.1) and should not be
+	used to invoke operations that modify the elements of the sequence./
+	These algorithms can take const-iterators (19.2.1) and - with
+	the exception of for_each() - should not be used to invoke
+	operations that modify the elements of the sequence./
+	(recent standards resolution).
+pg 524	delete the statement beginning "First of all". (recent standards change)
+pg 524	add at the end of the page:
+	"The for_each() algorithm is classified as nonmodifying because it doesn't
+	explicitly modify a sequence. However, if applied to a non-const sequence
+	for_each() may change the elements of the sequence.
+	For an example, see the use of negate() in 11.9."
+	(recent standards resolution).
+pg 540	s/,7) {/,7)) {/
+Chapter 19:
+pg 552	s/For ordinary pointers, the iterator_traits is this specialization
+	(13.5):/ For ordinary pointers, specializations (13.5) for 
+	and are provided. In particular:/
+	(recent standard change)
+pg 554	s/iterator_traits/iterator_traits/ for second dist_helper
+pg 557	add another constructor to reverse_iterator:
+	template reverse_iterator(const reverse_iterator& x) : current(x.base()) { }
+(recent standard change)
+pg 558	s/class Ch,/class Ch = char,/ (recent standards change)
+pg 559	s/class Ch,/class Ch = char,/ (recent standards change)
+Chapter 20:
+pg 603	s/compare_name/complete_name/ twice in [14]
+pg 603	s/>/ in [15]
+Chapter 21:
+pg 612 replace the last paragraph with:
+	However, a programmer sometimes wants to output an object for which only
+	a base class is known. Since the exact type isn't known, correct output
+	cannot be achieved simply by defining a 
+pg 613	A simpler variant of the technique is:
+class My_base {
+public:
+	// ...
+	virtual ostream& put(ostream& s) const = 0;	// write *this to s
+};
+ostream& operator
+pg 615	replace the sentences about integer input by:
+	"Integers must be decimal and floating-point numbers of the form used
+	to write them in a C++ program. By setting basefield (21.4.2),
+	it is possible to read 0123 as an octal number with the decimal value
+	83 and 0xff as a hexadecimal number with the decimal value 255."
+	(recent standard clarification)
+pg 616	s/nonzero if good()/nonzero if !fail()/
+pg 620	add after the read_a_line() example:
+	"Unfortunately, if the maximum number of characters are read there
+	is no way of knowing whether the terminator was found (as the last
+	character)."
+pg 625	add as a last paragraph in 21.3.8:
+	"Naturally, basic_istream has a similar sentry member class."
+pg 633	s/friend ostream/ostream/
+pg 635	s/friend class/friend/
+Chapter 22:
+pg 659	replace the definition of has_denorm by
+	static const float_denorm_style has_denorm = denorm_absent;	// enum from 
+(recent standard change)
+pg 661	swap 'fractional' and 'integral' in the explanation of modf()
+pg 670	s/s(ss)/s(ss), curr(0)/
+pg 670	s/t.curr = s.start() + s.size() * s.stride();/t.curr = s.size();/
+pg 672	add destructor, copy constructor, and assignment operator
+pg 673	s/slice(i,d2,1)/slice(i*d2,d2,1)/ twice
+pg 682	for partial_sum(): s/two sequences/a sequence/
+Chapter 23:
+Chapter 24:
+pg 730	s/A function can accept arguments of two defined types only
+	if the two types have a common supertype./A non-template function
+	can accept arguments of two types only if the two types can be
+	implicitly converted to a common type./
+pg 734	s/Without understanding these concepts and appreciating their
+	relationships, we cannot understand any of them./ Without understanding
+	these relationships, we cannot understand the concepts./
+pg 735	s/, public Emergency/, protected Emergency/ thrice
+pg 736 	s/public: Emergency* eptr;/protected: Emergency* eptr;/
+pg 745	s/such as Window_with_scrollbar/such as Navigation_button/
+pg 748	s/r,Rational(i)/r+Rational(i)/
+pg 748	s/Big_int(r),i/Big_int(r)+i/
+pg 756	s/};/}/ for namespace X_impl
+pg 763	[15] s/Prefer membership to pointers for expressing simple containment;/	Prefer direct membership over a pointer to a separately-allocated
+	object for expressing simple containment;/
+Chapter 25:
+pg 778	s/Consider the list/Consider the Vector/
+pg 779	s/cow_draw(int)/cow_draw()/ and s/cow_draw(i)/cow_draw()/
+Appendix A:
+pg 799 (recent standards change) change nested-name-specifier to
+nested-name-specifier:
+	class-or-namespace-name :: nested-name-specifier(opt)
+	class-or-namespace-name :: template nested-name-specifier
+pg 799 (recent standards change) add to postfix-expression:
+	typename ::(opt) nested-name-specifier identifier ( expression-list(opt) )
+	typename ::(opt) nested-name-specifier template(opt) template-id ( expression-list(opt) )
+pg 799 (recent standards change) add to pseudo-destructor-name:
+	::(opt) nested-name-specifier template template-id :: ~ type-name
+pg 805 (recent standards change) add to simple-type-specifier:
+	::(opt) nested-name-specifier template(opt) template-id
+pg 805 (recent standards change) change last production of elaborated-type-specifier to:
+	typename ::(opt) nested-name-specifier template(opt) template-id
+pg 809 (recent standards change) add production to class-head:
+	class-key nested-name-specifier template template-id base-clause(opt)
+pg 809 (recent standards change) in member-declaration replace
+	qualified-id ;
+by
+	::(opt) nested-name-specifier template(opt) unqualified-id ;
+pg 811	s/template-name /template-name /
+pg 819	move "New cast syntax" to [6] of "Features primarily to strengthen the
+	type system," add "[8] Structure names need not be prefixed by struct
+	(5.7) to "Features primarily for notational convenience, and add
+	"References" as [12] of "facilities for user-defined types."
+Appendix B:
+Appendix C:
+pg 833	remove all mention of floating types from C.6.1
+pg 852	s/p->y/p->x/
+Typos
+Preface:
+pg vi	s/Knutilla/Knuttila/
+Chapter 1:
+Chapter 2:
+Chapter 3:
+pg 60	s/"Hello,"/"Hello, "/
+Chapter 4:
+Chapter 5:
+Chapter 6:
+pg 136	s/can be omitted/can be empty/
+Chapter 7:
+Chapter 8:
+pg 172	s/error's error/Error's error/
+Chapter 9:
+Chapter 10:
+Chapter 11:
+Chapter 12:
+Chapter 13:
+pg 353	s/using a map/using an associative array/ in 9.
+pg 353	s/pp 262/pg 262/ in 11.
+Chapter 14:
+Chapter 15:
+Chapter 16:
+pg 431	s/set of booleans/array of booleans/
+Chapter 17:
+pg 500	s/default: number/default: Number/ twice
+Chapter 18:
+pg 516	s/club/Club/
+pg 530	s/backward_copy/copy_backward/
+pg 541	s/If the element of each species is/If the elements of each species are/
+Chapter 19:
+Chapter 20:
+pg 598	s/lenght_error/length_error/
+Chapter 21:
+pg 634	s/outout/output/
+Chapter 22:
+pg 678	s/(sec22.4)/(sec22.4.2)/
+pg 680	s/and !/and !=/
+Chapter 23:
+Chapter 24:
+pg 733	s/of such relationships/of relationships/
+pg 733	s/(vehicles)/(e.g. vehicles)/
+pg 737	s/it depends on derived/the class depends on derived/
+pg 743	capitalize the types: Horizontal_scrollbar, Vertical_scrollbar,
+	Scrollbar, and Navigation_button
+Chapter 25:
+pg 767	s/loosing/losing/
+pg 782	s/Furthermore, unless one manipulates abstract type objects/
+	Furthermore, unless one manipulates an object implementing an
+	abstract class/
+pg 785	s/13.6.3/13.6.3.1/
+pg 788	s/Handle template from sec25.2.1/Handle template from sec25.7/
+Appendix A:
+Appendix B:
+Appendix C:
+pg 862	s/, is generated/ is generated/

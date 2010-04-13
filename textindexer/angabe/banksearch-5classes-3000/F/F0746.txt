@@ -1,0 +1,34 @@
+
+MenuInfo
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 05/25/97,
+ last update: 05/25/97 
+ 
+Home 
+ 
+ 
+ MenuInfo: Displays
+ application menu structures
+MenuInfo is a
+ another rather simple utility developed to view the entire menu structure of any visible
+ application.
+ 
+ MenuInfo lists an application's current menu structure in a hierarchical format. The list
+ includes submenu handles/menu item Ids, each item's position within it's parent menu, each
+ item's text including it's mnemonic and any access keys associated with the items. An
+ array of pertinent properties for each listed menu item can be selectively displayed. The
+ list can also be saved to file.
+ 
+ MenuInfo will not retrieve an application's Command bar information. First public release.
+ 
+ Download menuinfo.zip (16kb) 
+ 

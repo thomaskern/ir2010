@@ -1,0 +1,50 @@
+
+ strtol()
+ 
+ 
+strtol-Convert a string to a long integer
+Synopsis
+ #include &#060;stdlib.h&#062;
+ r = strtol(p,np,base);
+ long int r; /* result */
+ const char *p; /* string pointer */
+ char **np; /* returns updated string pointer */
+ int base; /* conversion base */
+Description
+ This function converts an ASCII string into a long integer
+ according to the specified base, which can range from 2 to 36.
+ Valid digit characters are 0 to 9, a to z, and A to Z. The highest
+ allowable character is determined by the base. If the base is 0,
+ then the string is analyzed to see if it is base 8, base 10, or
+ base 16. If the string begins with 0x or 0X, it is base 16; if
+ the string begins with 0, it is base 8; if the string begins with
+ a digit from 1 to 9, it is base 10.
+ If the pointer np is not NULL, it specifies an area into which the
+ updated string pointer is placed. That is, the pointer *np points
+ to the first character in string p that is not a valid digit.
+ The function skips blanks before starting the scan.
+Returns
+ This function returns the converted value. If it cannot do the
+ conversion, it returns 0. If the converted value is too large or
+ small to fit in a long integer, it returns LONG_MAX or LONG_MIN
+ and sets the external integer errno to ERANGE.
+Example
+ /*
+ * Input a number from the user
+ */
+ #include &#060;stdio.h&#062;
+ #include &#060;stdlib.h&#062;
+ long age;
+ char buf[256];
+ char *p;
+ void main(void)
+ {
+ printf("Please enter your age, followed by "
+ "your name, on the same linen");
+ fflush(stdout);
+ gets(buf);
+ age = strtol(buf, &p, 10); /* We only use decimal here */
+ printf("%s is %ld years oldn", p, age);
+ }
+See Also
+ strtoul 

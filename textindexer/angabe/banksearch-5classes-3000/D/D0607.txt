@@ -1,0 +1,27 @@
+
+Button in action
+Button action
+A Button and its action.
+Essence
+public class A
+	.....
+	implements ActionListener
+{
+	Button but ;
+	public void actionPerformed ( ActionEvent ev )
+	{
+	}
+	public A ()
+	{
+	but = new Button ( "Press me" ) ;
+	}
+	public void init()
+	{
+	but.addActionListener ( this ) ;
+	add ( but ) ;
+	validate () ;
+	}
+}
+JAVALESSONS.COM
+Copyright © 2000,2001 System Exclusive & Multi Midi (NL) All rights
+reserved

@@ -1,0 +1,212 @@
+
+Free Java Help --- Tutorials --- Compoponents --- Scrollbar
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+ Scrollbar 
+ 
+ One of the most importants Graphical User
+Interface components is the scrollbar. Imagine if you didn't have a scrollbar
+in your web browser! If the page didn't fit on the screen, you wouldn't be able
+to see the rest of it! What this lesson will do is teach you how to use
+scrollbars for user input.
+Scrollbar objectnamehere= new
+Scrollbar(orientation,value,visible,min,max);
+ There are a few constructors, but this one
+is the most useful. Replace orientation with either Scrollbar.HORIZONTAL or
+Scrollbar.VERTICAL . This refers to whether you want the scrollbar to be side
+to side or up and down, respectively. Replace value with the initial value that
+you want your scrollbar to be. For example, if you set the max to 200, and min
+to 0, putting 100 in the place of val would start the slider off in the middle.
+ Replace visible with an integer that will
+determine how wide your slider is. Fiddle around with the number to get the width that is to your
+liking. Replace min with the minimum value you want the Scrollbar to have, and
+replace max with the maximum value you want the Scrollbar to have. 
+ Okay, now you need to know the most
+important methods. They are actually pretty simple:
+objectnamehere.setMaximum(max);
+objectnamehere.setMinimum(min);
+objectnamehere.getValue();
+ Hopefully these make sense to you. The
+first method is used to set the maximum value that the Scrollbar has. Just
+replace max with an integer that you want to be the maximum value. In the
+second method, replace min with an integer that you want to be the minimum
+value of the scrollbar. The third method is used to find the value of the
+scrollbars. The higher the value is, the farther to the right the slider is.
+The following applet makes use of the getValue() method to show the value of
+the Scrollbar in the TextField. Check out the applet! :)
+//-------------------------------//
+//Copyright 2000 FreeJavaHelp.com//
+//-------------------------------//
+//the next line imports the Applet class
+import java.applet.Applet;
+//the next line imports the GUI components
+import java.awt.*;
+//the next line imports the event classes
+import java.awt.event.*;
+//the next line begins the class
+public class scrollbar extends Applet implements AdjustmentListener{
+ //the next line creates the scrollbar used in this applet
+ //with a max value of 50, and a min value of 1
+ Scrollbar horiz=new Scrollbar(Scrollbar.HORIZONTAL,1,20,1,50);
+ //the next line creates a TextField which will hold
+ //the value of the scrollbar
+ TextField num=new TextField(5);
+ //the init method is executed when the applet is initialized
+ public void init(){
+ //the next sets the layout as a BorderLayout
+ setLayout(new BorderLayout());
+ //the next line adds the TextField named num to the north section
+ add("North",num);
+ //the next line adds horiz to South
+ add("South",horiz);
+ //the next line adds an adjusment listener to horiz so it can
+ //have events processed when the scroller is moved
+ horiz.addAdjustmentListener(this);
+ }
+ //adjustmentValueChanged() is the method that handles AdjustmentEvents
+ //which is when the value of a Scrollbar is changed
+ public void adjustmentValueChanged(AdjustmentEvent e){
+ //the next if statement checks to see if the AdjustmentEvent
+ //came from horiz
+ if(e.getAdjustable()==horiz){
+ //sets the text in num to the value of horiz
+ num.setText(" "+(horiz.getValue()));
+ }
+ }
+}
+ One thing that you will notice in the code
+above is the fact that I put the Scrollbar in a BorderLayout. I simply did this
+so it would take up the full width of the applet. If you would like to know
+more about BorderLayout, we have a tutorial on it in the Layouts section of the
+tutorials.
+ Another thing that you will notice is that
+we implemented AdjustmentListener. This means that we are able to have things
+happen when the slider on the Scrollbar is moved. We put the code for what we
+want to happen when the slider in public void
+adjustmentValueChanged(AdjustmentEvent e). We also added an AdjustmentListener
+to horiz to make it able to catch AdjustmentEvents (when the slider moves :) ).
+If this is all jibberish to you, and you haven't worked with events before, we
+suggest you view our Events section before trying to understand this.
+Tutorials Contents
+ 
+ 
+Lessons in the Components Section 
+ 
+Beginning
+Buttons
+Labels
+Checkboxes
+Choice
+Text
+List
+Scrollbar
+Frames
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

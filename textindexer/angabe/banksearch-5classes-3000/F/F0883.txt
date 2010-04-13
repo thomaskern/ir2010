@@ -1,0 +1,93 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Databases
+Function for removing single quotes from fields.
+ID: 747
+Author: Abstractvb
+Date: 5/29/2000 5:53:17 PM
+VB6Just call this function passing in a string and if any single quotes are found they are converted to backquotes. If no single quotes are found then the original string is returned.
+Function CheckSQ(lsInput)
+ Dim llPos
+ Dim lsOutput
+ lsOutput = lsInput
+ 
+ llPos = 1
+ Do While llPos 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

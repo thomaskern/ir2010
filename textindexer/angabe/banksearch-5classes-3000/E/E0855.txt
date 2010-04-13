@@ -1,0 +1,349 @@
+
+GotW #50: Using Standard Containers
+ 
+ 
+ GotW #50 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+ 
+Using Standard Containers 
+ Difficulty: 6 / 10
+Oil and water just don't mix. Do pointers and standard containers mix any
+better?
+Problem
+JG Questions
+Consider the following code:
+ void f( vector& v ) {
+ char* pc = &v[0];
+ // ... later, uses pc ...
+ }
+1. Is this code valid?
+2. Whether it's valid or not, how could it be
+improved?
+Guru Question
+3. Consider the following code:
+ template >
+ void f( T& t ) {
+ typename T::value_type* p1 = &t[0];
+ typename T::value_type* p2 = &*t.begin();
+ // ... later, uses p1 and p2 ...
+ }
+Is this code valid? Discuss.
+Solution
+Consider the following code:
+ void f( vector& v ) {
+ char* pc = &v[0];
+ // ... later, uses pc ...
+ }
+1. Is this code valid?
+Yes, as long as v is nonempty.
+Why is this code legal? The reason comes right out of the standard's
+Container and Sequence requirements: If operator[] is provided for a given kind
+of sequence (which it is in the case of std::vector), it must return
+a "reference". In turn, the "reference" must be an lvalue of
+type T (here char), which can have its address taken.
+Why Take Pointers or References Into Containers?
+Many programmers are surprised by this kind of code the first time they see
+it, but there's nothing wrong with this technique in itself. As long as you
+remain aware of when the pointers might be invalidated, which is pretty much
+whenever iterators would be invalidated, this technique is not evil, it is not
+immoral, and it's not even fattening. On the contrary, it can be quite useful.
+There are cases where it can be legal (and, more to the point, where it makes
+perfect sense) to have pointers or references into containers. A common case is
+when you read a data structure into memory on program startup and then never
+modify it, but you need to access it frequently in different ways. In such cases
+it can make sense to have additional data structures that contain pointers into
+the main container to optimize different access methods. I'll give an example as
+part of the discussion of Question #2.
+2. Whether it's valid or
+not, how could it be improved?
+In general, it's not a bad guideline to prefer to use iterators instead of
+pointers when you want to point at an object that's inside a container. After
+all, iterators are invalidated at mostly the same times and the same ways as
+pointers.
+There are two main potential drawbacks to this method. If either applies in
+your case, continue to use pointers.
+1. You can't always conveniently use an iterator where you can use a pointer.
+(See example below.)
+2. Using iterators might incur extra space and performance overhead, in cases
+where the iterator is an object and not just a bald pointer.
+Example: Say that you have a map that, given a name,
+makes it easy to look up a phone number. What if you need to do the reverse
+lookup too? One solution is to build a second structure, perhaps a
+map that enables the reverse lookup but
+avoids doubling the storage overhead (no need to store each name and phone
+number twice; the second structure simply has pointers into the first).
+Note that, in the above example, it would be difficult to use iterators
+instead of pointers. Why? Because the natural candidate,
+map::iterator, points to a pair,
+and there's no handy way to get an iterator to just the name or phone number
+part individually.
+This brings us to the next (and in my opinion most interesting) point of
+today's lesson:
+When Is a Container Not a Container?
+3. Consider the
+following code:
+ template
+The above line has two problems:
+a) The easy one is that it doesn't make sense to define T in terms of itself.
+That red herring may have successfully tricked you into missing the more
+fundamental problem, namely:
+b) Function templates can't have default arguments.
+Now consider the rest of the function as if it were introduced with
+"template" only:
+ void f( T& t ) {
+ typename T::value_type* p1 = &t[0];
+ typename T::value_type* p2 = &*t.begin();
+ // ... later, uses p1 and p2 ...
+ }
+Is this code valid? Discuss.
+The short answer is: Sometimes.
+One instructive way to look at this problem is to think about what kinds of T
+and t make the code valid. At compile time, what characteristics and abilities
+must T have? At runtime, what characteristics must t have? Let's do some
+detective work.
+At compile time:
+a) To make the expression &t[0] valid, T::operator[] must exist and must
+return something that understands operator&.
+In particular, this is true of containers that meet the standard's Container
+requirements and implement the optional operator[], because that operator must
+return a reference to the contained object. By definition, you can then take the
+contained object's address.
+b) To make the expression &*t.begin() valid, T::begin() must exist, and
+it must return something that understands operator*, which in turn must return
+something that understands operator&.
+In particular, this is true of containers that meet the standard's iterator
+requirements, because the iterator returned by begin() must, when dereferenced
+using operator*, return a reference to the contained object. By definition, you
+can then take the contained object's address.
+Further, at runtime:
+c) To make the expression &t[0] safe, the t object must be in a suitable
+state for calling t[0]. In particular, if T is something like
+std::vector, then the vector must not be empty.
+d) To make the expression &*t.begin() safe, the t object must be in a
+suitable state for calling t.begin() and dereferencing the result. In
+particular, if T is something like std::vector, then the vector must
+be nonempty.
+Which Brings Us to the Embarrassing Part
+The code in Question #3 will work for every container in the standard library
+that supports operator[] -- and, if you take away the line containing
+"&t[0]", it will work for every container in the standard library,
+bar none -- EXCEPT for std::vector. In fact, the following template:
+ template
+ void g( vector& v ) {
+ T* p = &*t.begin();
+ // ... do something with p ...
+ }
+works for every type EXCEPT bool. If this seems a little strange to you,
+you're not alone.
+What About bool?
+Unfortunately, there's something a little embarrassing about the C++ standard
+library: not all of the templates it defines that look like containers actually
+are Containers. In particular,
+ 
+std::vector IS NOT a Container
+because it does not meet the standard library's requirements for Containers.
+It appears in the Containers and Sequences section of the standard without any
+note to indicate that it is neither.
+(If anyone else had written vector, it would have been called
+"nonconforming" and "nonstandard." Well, it's in the
+standard, so that makes it a little bit harder to call it those names at this
+point, but some of us try anyway in the hopes that it will eventually get
+cleaned up. The correct solution is to remove the vector
+specialization requirement so that vector really is a vector of
+plain old bools. Besides, it's mostly redundant: std::bitset was designed for
+this kind of thing.)
+The reason std::vector is nonconforming is that it pulls tricks
+under the covers in an attempt to optimize for space: Instead of storing a full
+char or int for every bool[1] (taking up at
+least 8 times the space, on platforms with 8-bit chars), it packs the bools and
+stores them as individual bits (inside, say, chars) in its internal
+representation. One consequence of this is that it can't just return a normal
+bool& from its operator[] or its dereferenced iterators[2];
+instead, it has to play games with a helper "proxy" class that is
+bool-like but is definitely not a bool. Unfortunately, that also means that
+access into a vector is slower, because we have to deal with proxies
+instead of direct pointers and references.
+All of the above trickery has the following disadvantages:
+1. std::vector is not a Container. 'Nuff said.
+2. std::vector attempts to illustrate how to write proxied
+containers that pull tricks under the covers. Unfortunately, that's not a sound
+idea, because by definition that violates the Container requirements. (See #1.)
+(The Container requirements were never changed to enable proxied containers to
+actually be conforming, and as far as I know that decision was deliberate.)
+3. std::vector's name is misleading because the things inside
+aren't even standard bools. A standard bool is at least as big as a char, so
+that it can be used "normally." So, in fact, std::vector
+does not even store bools, despite the name.
+4. std::vector forces a specific optimization on all users by
+enshrining it in the standard. That's not a good idea; different users have
+different requirements, and now all users of vector must pay the
+performance penalty even if they don't want or need the space savings.
+Bottom line: If you care more about speed than you do about size, you
+shouldn't use std::vector. Instead, you should hack around this
+optimization by using a std::vector or the like instead, which is
+unfortunate but still the best you can do.
+ 
+Notes
+1. sizeof(bool) is implementation-defined, but it must be at
+least 1.
+2. That's because there is not now a standard way to express
+a pointer or a reference to a bit.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

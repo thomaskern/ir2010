@@ -1,0 +1,113 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Tip 13: Use Microsoft System 
+Information (MSINFO32.EXE) when you can.
+When you’re trying to help a user with some problem (especially if you’re in support), you often need to know a lot of technical stuff about the user’s machine, such as what is loaded into memory or how the operating system is configured. Getting this information out of the user, even figuring out where to find it all in the first place, can be time-consuming and difficult. (Asking the user to continually hit Ctrl+Alt+Delete in an attempt to bring up the Task List and "see" what’s running can be a dangerous practice: User: "Oh, my machine’s rebooting." Support: "What did you do?" User: "What you told me to do—hit Ctrl+Alt+Delete again!") Microsoft thought so too, so they provided their users with an application to gather this information automatically: Microsoft System Information (MSINFO32.EXE). The good news is that you can use this application to help your customers.
+Microsoft System Information comes with applications such as Microsoft Word and Microsoft Excel. If you have one of those applications installed, you’re almost certain to have Microsoft System Information installed too. It also ships with Visual Basic 6. If you haven’t seen this applet before, choose About Microsoft Visual Basic from the Help menu and click the System Info button. You’ll see a window similar to Figure 1-5.
+ 
+Figure 1-5
+Running MSINFO32.EXE opens the Microsoft System Information application
+ The bottom line is that if your user is a Microsoft Office user or has an application such as Microsoft Excel installed, Microsoft System Information will be available. All you need to do then to provide the same information on the user’s system is to run the same application!
+To determine whether you’ve got this application to work with, look in the following location in the Registry:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\MSInfo\Path
+In the following example, we use the registration API in ADVAPI32.DLL to retrieve the value of the Registry key. We can then check to see whether the application really exists. If it does, Shell it!
+Declaration Section
+Option Explicit
+Private Const REG_SZ As Long = 1
+Private Const ERROR_SUCCESS As Long = 0
+Private Const HKEY_LOCAL_MACHINE As Long = &H80000002
+Private Const STANDARD_RIGHTS_ALL As Long = &H1F0000
+Private Const KEY_QUERY_VALUE As Long = &H1
+Private Const KEY_ENUMERATE_SUB_KEYS As Long = &H8
+Private Const KEY_NOTIFY As Long = &H10
+Private Const SYNCHRONIZE As Long = &H100000
+Private Const READ_CONTROL As Long = &H20000
+Private Const STANDARD_RIGHTS_READ As Long = (READ_CONTROL)
+Private Const KEY_READ As Long = _
+ ((STANDARD_RIGHTS_READ _
+ Or KEY_QUERY_VALUE _
+ Or KEY_ENUMERATE_SUB_KEYS _
+ Or KEY_NOTIFY) _
+ And (Not SYNCHRONIZE))
+Private Declare Function WinRegOpenKeyEx Lib "advapi32.dll" _
+Alias "RegOpenKeyExA" (ByVal hKey As Long, _
+ ByVal lpSubKey As String, _
+ ByVal ulOptions As Long, _
+ ByVal samDesired As Long, _
+ phkResult As Long) As Long
+ Private Declare Function WinRegQueryValueEx Lib _
+"advapi32.dll" Alias "RegQueryValueExA" _
+ (ByVal hKey As Long, _
+ ByVal lpValueName As String, _
+ ByVal lpReserved As Long, _
+ lpType As Long, lpData As Any, _
+ lpcbData As Long) As Long
+Private Declare Function WinRegCloseKey Lib "advapi32" _
+Alias "RegCloseKey" (ByVal hKey As Long) As Long
+Form Load Event
+Private Sub Form_Load()
+ Dim hKey As Long
+ Dim lType As Long
+ Dim Buffer As String
+ 
+ ' Need some space to write string into - DLL routine 
+ ' expects us to allocate this space before the call.
+ Buffer = Space(255)
+ 
+ ' Always expect failure!
+ cmdSystemInfo.Visible = False
+ 
+ ' This will work if Microsoft System Information is installed.
+ If WinRegOpenKeyEx( _
+ HKEY_LOCAL_MACHINE _
+ , "SOFTWARE\Microsoft\Shared Tools\MSInfo" _
+ , 0 _
+ , KEY_READ _
+ , hKey _
+ ) = ERROR_SUCCESS Then
+ ' Read the Path value - happens to include the filename 
+ ' too, e.g., 
+ ' "C:\Program Files\Common Files\Microsoft Shared\
+ ' MSinfo\msinfo32.exe".
+ If WinRegQueryValueEx( _
+ hKey _
+ , "Path" _
+ , 0 _
+ , lType _
+ , ByVal Buffer _
+ , Len(Buffer) _
+ ) = ERROR_SUCCESS Then
+ ' Make sure we read a string back. If we did...
+ If lType = REG_SZ Then
+ ' Make sure the Registry and reality are in 
+ ' alignment!
+ ' Note: Using FileAttr() means you're 
+ ' suffering from paranoia.
+ If Dir$(Buffer) "mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

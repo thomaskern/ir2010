@@ -1,0 +1,29 @@
+
+ 
+ 
+ Gradient Background
+ 
+Converting
+degrees to radians and vice-versa
+ 
+To
+convert degree values to radians (or vice-versa) use these two functions: 
+Function
+DegToRad (Degrees As Long) As Long 
+'Converts
+degrees to radians 
+DegToRad
+= Degrees * 3.1416 / 180 
+End
+Function 
+ 
+Function
+RadToDeg (Radians As Long) As Long 
+'Converts
+radians to degrees 
+RadToDeg
+= Radians * 180 / 3.1416 
+End
+Function 
+ 
+ 

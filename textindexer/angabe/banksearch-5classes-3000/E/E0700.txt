@@ -1,0 +1,29 @@
+
+: debug immediate 1 5 ! exit
+: r 1 exit
+: ] r @ 1 - r ! _read ]
+: _main immediate r @ 7 ! ]
+_main
+: _x 3 @ exit
+: _y 4 @ exit
+: _x! 3 ! exit
+: _y! 4 ! exit
+: swap _x! _y! _x _y exit
+: + 0 swap - - exit
+: dup _x! _x _x exit
+: inc dup @ 1 + swap ! exit
+: h 0 exit
+: , h @ ! h inc exit
+: ' r @ @ dup 1 + r @ ! @ exit
+: ; immediate ' exit , exit
+: drop 0 * + ;
+: dec dup @ 1 - swap ! ;
+: tor r @ @ swap r @ ! r @ 1 + r ! r @ ! ;
+: fromr r @ @ r @ 1 - r ! r @ @ swap r @ ! ;
+: tail fromr fromr drop tor ;
+: minus 0 swap - ;
+: bnot 1 swap - ;
+: " ;
+: ; immediate ' exit , command exit
+[
+_welcome

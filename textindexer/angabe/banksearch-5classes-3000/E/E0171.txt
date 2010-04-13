@@ -1,0 +1,281 @@
+Slashdot | Interviews | C++ Answers From Bjarne Stroustrup 
+This is an email interview that I did with slashdot.org in the week of
+February 25, 2000. I have edited out the ads and follow up discussion.
+You can find the archive version of this interview and discussion on
+slashdot.org.
+	- Bjarne
+C++ Answers From Bjarne Stroustrup
+ Posted by Roblimo on Friday February 25, @12:00PM
+ from the thoughtful-questions-get-thoughtful-answers dept.
+ Monday we had over 550 assorted questions and comments for and about Bjarne Stroustrup. Excellent moderation (Thanks, Monday Moderators!) helped cull this mass down to 10 extremely high-quality questions Bjarne has kindly answered in amazing depth, for which he deserves a loud round of applause. Update: 02/28 02:12 by R: Bjarne later took the time to dig through all the comments and reply to some of them. The additional material is appended to the end of the original Q&A session. 
+ C++ Answers From Bjarne Stroustrup 
+1) Has OO run out of steam?
+ by rambone 
+ After 20-some years, it's obvious that object-oriented programming is not a panacea. What are your thoughts on the future of the OO paradigm? What other paradigms do you see challenging it? 
+Bjarne:
+ Well. It was obvious to me 20-some years ago that OOP wasn't a panacea. That's the reason C++ supports several design and programming styles. 
+ If you like long words, you can say C++ is a "multi-paradigm language," but simply saying "C++ is an OOPL" is inaccurate. I wrote a paper about that "Why C++ isn't just an Object-Oriented Programming Language" (download from my papers page). I presented that paper at OOPSLA - and survived. 
+ In the first edition of "The C++ Programming Language," I didn't use the phrase "object-oriented programming" because I didn't want to feed the hype. One of the problems with OOP is exactly that unscrupulous people have hyped it as a panacea. Overselling something inevitably leads to disappointments. 
+ That said, OOD/OOP is my favorite way of approaching design and programming. It just isn't the right style for every program and for every detail of a program. Some good abstractions are best represented outside class hierarchies. Trying to force everything into a hierarchy - especially into a single-rooted hierarchy - can give truly contorted programs. 
+ I use a lot of simple data abstraction (classes without inheritance) and generic programming (templates and algorithms parameterized on types). However, I don't see these as "paradigms challenging OOP." Rather, they are complementary techniques. The key is always to find designs that fit the problems and use the language constructs that best represent the designs in the code. 
+ Combinations of style can lead to very elegant code. For example,
+	void draw_all(list& lst)
+	{
+	for_each(lst.begin(),lst.end(),mem_fun(&Shape::draw));
+	}
+Here, list and for_each() are examples of the C++ standard library's generic facilities. What they are used for is to invoke a virtual function of a base in a traditional class hierarchy. 
+ You can even write a version of draw_all() that works for every standard container type with Shape* elements:
+	template
+	void draw_all(Container& c)
+	{
+	for_each(c.begin(),c.end(),mem_fun(&Shape::draw));
+	}
+I chose this example to wake up people who still live in the dark ages and
+think that C++ is C with a few uninteresting additions.
+ Naturally, the code generated for draw_all() is as efficient as list
+traversal code and the polomorphism used to call Shape::draw() boils
+down to a call of a function through an array of pointers to functions. The mechanism has been used to invoke device drivers. 
+ New "paradigms" are touted every year, but most are not fundamental and few are genuinely new. Probably the most interesting are those based on "components" such as COM and CORBA. I'm undecided whether these constitutes a "new paradigm" or simply a new set of systems-level building blocks. Would we talk of Unix processes as a new paradigm? Anyway, my main concern with such components is that they are still less than perfectly integrated with programming languages, such as C++, and with the various "traditional" programming paradigms, such as OOP and generic programming. 
+ 2) C++ for systems programming 
+ by ajs 
+ C has long been the UNIX-world's systems programming language, and still remains that way. I know you don't like to compare languages, so I'll just ask if you feel that there are any core reasons why C++ either does not make a good systems programming language or failed to capture the interest of the systems C programmers. 
+Bjarne:
+ It is hard to teach old dogs new tricks.
+Unix was first written 25+ years ago (I first tried it in 1973).
+All of its interfaces are defined in terms of C function calls, arrays, and structs. By the time C++ became available, there were 10+ years of tradition for almost exclusively using C. 
+ There is no good reason for Unix programmers to avoid C++ and several good reasons to use it. However, there are no end of reasons/excuses offered. Let me list a few: 
+- C++ is slow 
+- C++ generates bloated code 
+- There are no good C++ compilers 
+- C++ is complicated 
+- C++ doesn't offer much to systems programmers 
+- "Advanced" C++ features are unsuitable for systems work 
+- C++ code isn't portable 
+- C++ doesn't have an ABI. These are all either flat wrong or largely irrelevant. Some of these reasons make some sense on other systems (say on a minute embedded system without proper C++ tools), but not on Unix/Linux. Let me briefly try to explain why. Naturally, a complete discussion would take hundreds of pages because it is not possible to prove a negative. That is, it is not possible to prove that there isn't some problem that could be unsolvable for somebody. 
+- C++ generates as good code as C for equivalent programs. Just try it. 
+- C++ was designed to do that and current compilers deliver on that promise. Naturally, you can write poor programs in any language. C++ is a powerful tool and in the wrong hands it can generate code that is *obviously* contorted and bloated. That may be preferable to the traditional spaghetti that poor programmers produce in C. Note that someone who is a good C programmer isn't automatically a good C++ programmer. Many problems have been caused by good C programmers assuming that they could adopt a semi-random collection of C++ language features and then magically become a good C++ programmer in a week. 
+ A C programmer can benefit from C++ in a week, but only by sticking to a subset of C++'s facilities and by using libraries. 
+ C++ supports powerful techniques that are at best weakly supported by C and learning these techniques takes time. C programmers might do well remembering how long it took them to become "master level" C programmers. I see no reason why it would take less time to become a "master level" C++ programmer. 
+ The current generation of C++ compilers is far superior in standards conformance to compilers from a couple of years ago. The optimizers are shared with C. This can be a problem because it precludes some useful optimizations that cannot be done for C, but at least sharing of major compiler parts should convince sceptics that equivalent code it produced. 
+ I'll deal with the roots of language complexity in my answer to question 9. Here, I'll just point out that many of the C++ facilities directly help people who needs to write efficient, reliable, and maintainable code. If you don't use these facilities, you typically end up simulating them with lower-level language constructs. 
+ Even the "new"/"advanced" features of C++, such as templates, exceptions, and run-time type information (RTTI) are designed to meet the 0-overhead rule. If you need such features, it is more efficient (in run-time and memory space) to use them with a modern compiler than to fake their functionality in C. I do not know of a C++ language feature that has not been found useful and affordable by someone in some systems or embedded application. 
+ Naturally, if you don't need a feature (often, RTTI is not needed) or if is unsuitable in a particular context (I can think of programs where exceptions would be unsuitable), you just don't use that feature. The 0-overhead rule is there to allow such decisions. This is not so different from not using a C feature that is unsuitable for a given application (in some embedded systems, malloc() is banned). 
+ C++ is as portable as C. In both cases you need to encapsulate the system dependences to ease portability. Large classes of programs are portable across Unix platforms, and some programs can be made portable across other platforms also. The techniques are well known and when used well, C++ even has an edge when it comes to formalizing the notion of a system to allow trivial portability. For example, see the C++ library that defines the ACE platform (link on my C++ page). 
+ The technical hardest problem is probably the lack of a C++ binary interface (ABI). There is no C ABI either, but on most (all?) Unix platforms there is a dominant compiler and other compilers have had to conform to its calling conventions and structure layout rules - or become unused. In C++ there are more things that can vary - such as the layout of the virtual function table - and no vendor has created a C++ ABI by fiat by eliminating all competitors that did not conform. In the same way as it used to be impossible to link code from two different PC C compilers together, it is generally impossible to link the code from two different Unix C++ compilers together (unless there are compatibility switches). 
+ The current solution is usually a combination of using a single compiler and of providing C-level interfaces. This is not ideal - see also my answer to question 10. 
+ That said, I think the main problem is educational. Many simply have seriously inaccurate ideas of what C++ is and what can be done with it. Often "inaccurate ideas" add up to a strong disincentive to learn. C++ is now very different from Release 1 from 1985. The ISO standard for C++ was ratified in 1998 and current compilers approximate it well enough for me to move programs that stress the newer facilities from compiler to compiler for performance testing on a variety of platforms. The standard library makes a difference here. 
+ 3) What would you do differently?
+ by spiralx 
+ If you could go back to when you designed C++, what would you change and why? 
+Bjarne:
+ You can never go back. However, I think my most obvious mistake was not to introduce templates before multiple inheritance and not to ship a larger library with Release 1 of my C++ compiler. The two mistakes are somewhat related. 
+ The reason I didn't ship a library was that I didn't know how to write one that was good enough. To get efficiency and type safety for containers, you need templates (and I didn't have an implementation supporting templates until 1988 or 1989). However, templates are not enough, you also need a design for containers and uses of containers that can deliver that safety. We didn't have such an architecture until Alex Stepanov came along with the STL. If you want a real firework of interesting opinions and insights, read this interview with Alex. The STL is the nucleus of the C++ standard library, providing the standard containers and algorithms, and the framework for their use and their extension with user-defined containers and algorithms. Naturally, this is extensively discussed in "The C++ Programming Language." 
+ One problem with introducing MI before templates was that it encouraged further overuse of class hierarchies. Templates provide a simple and efficient alternative to some of the more contorted uses of inheritance. 
+ Let me just mention something I wouldn't have done differently: compatibility. Had C not been there to be compatible with, I'd have chosen compatibility with some another language. Innovation should focus on improvements and what works should be left as unchanged as possible. That way, people keep their existing tools and techniques and can develop from a base that is functionally complete. Also it saves the effort to re-invent the wheel and to teach "new" stuff that is equivalent to old stuff. Thus, C++ is as close to C as possible - but no closer. 
+ The flip side of this is that you have to deal with old mistakes and with compatibility problems. For example, I consider the C declarator syntax an experiment that failed. Nevertheless, I adopted it for C++. The alternatives and improvements I considered at the time would not have improved matters. I rate is as a minor problem. The more serious problem is to maintain closeness of language definitions as C evolves. 
+ Also, there is no major language feature, I'd remove for Standard C++ - even in retrospect. New major facilities have to be added with care. Often, a library can provide functionality that people thought required language changes. 
+ I think the C++ standards committee did a good job. It is not easy to create a consensus about a specification. Commercially competing companies have to agree and nations with conflicting traditions of standards work have to be satisfied. However, I think that the the time and effort was well spent. Standard C++ is a better approximation to my ideals than any previous version, and a great standard library to go with it. The time and effort is necessary unless you want to give free reign to "de facto standards" and proprietary languages. My 3rd edition describes ISO standard C++ and current C++ compilers approximate the standard. 
+ 4) Why no templated typedefs?
+ by Venomous Louse 
+ Well, this is weird. Just the guy I wanted to talk to this morning! 
+ It would occasionally be handy to have typedef templates (or template typedefs?! help!), something like this:
+	template typedef bool (* func)( const T &r );
+ . . . but that doesn't seem to be legal. I don't recall seeing anything about this issue in The Design and Evolution of C++. So what's the deal? 
+Bjarne:
+ I, and the standards committee, underestimated the importance of templated typedefs. My guess is that they will be added in the future. 
+ Actually, D&E (pg 357) does discuss templated typedefs and points out a technique that is often an alternative: The extension is technically trivial, but I'm not sure how wise it would be to introduce yet another renaming feature. 
+ Derivation also allows for partial specification of template arguments in the definition of a new type:
+	template class X { /* ... */ };
+	template class XX : public X { };
+I guess that in this case, my reluctance to add new features without a clear practical need caused problems. I'm more often accused of the opposite mistake - to be too aggressive in adding features - but as people learn to use what is available, new requests based on new experience are starting to appear. 
+ Incidentally, your example "function of T returning a bool" is often best represented as a function object. And function objects are natural templates:
+	template
+	struct Predicate {
+	bool operator()(const T &r) { /* ... */ };
+	};
+This way, you don't need a typedef; you can simply say:
+	Predicate* p;
+Function objects also inline better than pointers to functions, so their use leads to faster code as well as cleaner code. 
+ In general, I recommend "The Design and Evolution of C++" for people with "why is/isn't it like that in C++?" questions. 
+ 5) Question...
+ by MrHat 
+ I (and maybe most of "us") know you solely through your creation of the C++ language and your assistance in authoring the ANSI standard for said language. 
+ Aside from this one (albeit major) project, what do you work on from day to day? What projects are you currently involved in? Do you have any more language definitions/standards in the pipeline? 
+Bjarne:
+ C++ related work is a major part of my day. The standard is in "maintenance mode," but it still requires a bit of attention. I do some work related to libraries and programming techniques (I'll have a paper on "wrappers" in "The C++ Report" later this year), and I worry about the poor state of C++ education - and the way C++ is often seriously misused by misguided programmers. Look at me paper "Learning Standard C++ as a New Language" (download from my papers page). As you can see, I write a bit, give talks, and interviews. 
+ In the standards committee, I'm spending most time on the performance working group. This group was created to investigate sources of inefficiency and implementation and programming techniques to deliver "lean and mean" code. Embedded systems is one area where this is needed. The current language allows close-to-optimal solutions, but not every implementation is well tuned for that degree of efficiency, and not every programmer knows the basic techniques for delivering compact and efficient code. 
+ There is - as ever - much talk about extensions and new libraries on the net, but the C++ community still haven't learned to fully utilize the new facilities. My guess is that there is a lot of benefits to be had from better libraries. The Standard library in general and the STL in particular shows some of what could be done. Eventually, some of those new libraries will be standardized. 
+ I'm trying to understand distributed computing better. To that end I read a lot and experiment with computerized gadgets. I worry about mobility, reliability, fault tolerance, and security. These areas of research were among the ones that led me to the design of C++, so in a sense I'm returning to my roots in "systems." Being a manager at AT&T Labs - Research also takes some time, but not as much as you might think, and it doesn't feel like real work: in that capacity, I don't produce code or technical literature. 
+ 6) Multiple inheritance
+ by MosesJones 
+ Three linked questions: 
+ a) Do you think that multiple inheritance is a requirement for a true OO Language? 
+ b) When designing a system with multiple inheritance what do you see as the pitfalls to avoid, especially when it comes to maintainability? 
+ c) Do you know of anyway to simplify the readability of multiple inheritance to enable first time users to do less damage? 
+Bjarne:
+ If you rely on static (compile time) typechecking, you need MI. If you don't have MI, many programs get contorted and you have to use explicit type conversion (casting) far too often. I wouldn't claim to know what - if anything - is "a true OO Language" but if you have to use explicit type inquiry essentially all the time, you don't have one. 
+ I don't see MI as a particularly serious source of pitfalls. The obvious problem - which MI shares with single inheritance and every other powerful language feature - is overuse. I tend to use MI for simple aggregation and for adding implementations to interfaces. For example:
+	class network_file_error : public network_error, public file_error {
+	// ...
+	};
+and
+	class interface { // abstract class
+	// pure virtual functions
+	};
+	class base_implementation { // useful functionality
+	// data, functions, virtual functions
+	};
+	class my_implementation : public interface, protected base_implementation {
+	// data, functions
+	// override some base_implementation functions
+	// override all interface functions
+	};
+In the latter case, you then have the users of my_implementation access it exclusively through pointers or references to interface. That was user code is independent on the implementation class and the system doesn't suffer from the so-called "brittle base class" problem. The implementation class can be exchanged for an improved version without recompilation of user code (except my_implementation itself). 
+ Following those two styles avoids most problems. Naturally, you can find a more extensive discussion in "The C++ Programming Language (3rd Edition)" and in the new "The C++ Programming Language (Special Edition)." (See my home pages for details, sample chapters, reviews, etc.). 
+ Actually, questions about multiple inheritance usually indicate that the questioner has been distracted into technicalities. To almost all programs, questions about use of abstract classes, templates, exceptions, and the standard library would bring far more benefits. MI is necessary in a statically typed language with inheritance, but it is not among the features that should be used most often. 
+ If you focus on defining concrete classes to represent simple types and abstract classes to represent major interfaces, a good design is likely to emerge. Then, MI may or may not be needed to complete the program, but will be pretty obvious where it might be needed. 
+ 7) Questions 
+ by Edward Kmett 
+ Is there any hope for the introduction of constrained templates? Right now using templates is an exercise in willpower for the programmer. I know that constrained genericity went before the committee when templates were first introduced, but has there been any thought to revisiting that decision? 
+ Another item that has gained a lot of momentum in the Eiffel community is Design by Contract, for which I would love to see a standardized approach in C++, but I doubt I'll ever see it. 
+ Lastly, Bjarne, you were quoted once as saying 'When (not if) reference counting becomes available in C++ that it would be optional' (in a book on object oriented programming languages of which I cannot find on Amazon at the moment to post the ISBN). Has much progress been made on the front of making reference counted objects available? Or has your thinking changed since you were quoted? 
+Bjarne:
+ Actually, what I said was something like "When (not if) auotmatic garbage collection becomes part of C++, it will be optional". 
+ Reference counting can be very useful for less frequently used resources, but I'm not advocating it as a general mechanism for keeping track of memory. C++ has good mechanisms for keeping memory management under control (such as constructors and destructors and the standard library containers), but if you need something more automatics, plugging in one of the available garbage collectors is the right answer (see section C.9.1 of "The C++ Programming language", my C++ page, or my FAQ). 
+ Incidentally, the ISBN for the new hardbound "Special Edition" is 0-201-700735 and the ISBN for the softbound "3rd Edition" is 0-201-889544. 
+ "Constraining" templates without taking away their power isn't as easy as it sounds. See D&E for a detailed discussion. One problem is that if you express template argument constraints in terms of base classes, you warp your system design towards a style where every property becomes a base class. This easily becomes a mess of over-used multiple inheritance and indirect expression of things that are better said directly. For example, It's clearer to say that a class must have a 
+Specialization and partial specialization provide much of the expressive power that people want from constraints. For example, if I have a general sort template 
+	template void mysort(Container& c); 
+and I want want special sort algorithms for vectors then I can simply write: 
+	template void mysort(vector& v);
+I'd like much better error messages from templates with type errors. Some of this can be done with better compiler technology (people are working on that) and some will be hard to do without some kind of template argument constraints/checking (but I don't know how to do that). Fortunately, a programmer can help. Consider the example I gave in my answer to question 1:
+	template
+	void draw_all(Container& c)
+	{
+	for_each(c.begin(),c.end(),mem_fun(&Shape::draw));
+	}
+If there is a type error, it will be in the resolution of the fairly complicated for_each() call. For example, if the element type of the container is an int, then we get some kind of obscure error related to the for_each() call (because we can't invoke Shape::draw() for an int). 
+ What I really wrote was:
+	template
+	void draw_all(Container& c)
+	{
+	Shape* p = c.front(); // accept only Shape*s
+	for_each(c.begin(),c.end(),mem_fun(&Shape::draw));
+	}
+The initialization of the spurious variable "p" will trigger a comprehensible error message from most current compilers. Tricks like this are common in all languages and have to be developed for all novel constructs. In production code, I'd probably have written something like:
+	template
+	void draw_all(Container& c)
+	{
+	typedef typename Container::value_type T;
+	assert_equiv(); // accept only Shape*s
+	for_each(c.begin(),c.end(),mem_fun(&Shape::draw));
+	}
+This makes it clear that I'm making an assertion. I leave the definition of assert_equiv() as an exercise to the reader :-) 
+ This leads use to the second part of the question: design by contract. Since "design by contract" is a design style, you can apply it to C++. To do so you need to use asserts systematically. I personally prefer to rely on some specialized assert templates (see my 3rd edition). I agree that some such templates are good candidates for standardization as part of the library. 
+ However, I don't think we'll see direct language support for things such as preconditions and postconditions. I don't think that pre- and postconditions written in essentially the same language as the program itself are a significant improvement on asserts(). Also, I'm not sure that the checking of class hierarchies afforded by language-supported conditions is worth the effort. For starters, people can gain very significant benefits today using current standard C++ simply by using assertions more systematically. 
+ 8) A quick question (ha!)
+ by jd 
+ C++ is an Object-Based, rather than a "pure" (in a Software Engineering sense) Object-Oriented language. However, it's still centered around the notion of objects, rather than procedures. 
+ However, all existing processors are procedural, and there is no real concept of an OO CPU. 
+ Do you feel that OO languages, such as C++, will result in OO systems, at the hardware level, or will it always be easier to confine OO thinking to the abstract, using extremely complex compilers to translate between OO and procedural paradigms? 
+Bjarne:
+ One of the things I worked with before designing C++ was architectures for direct support of "higher level" facilities. I came to the conclusion that as long as hardware were growing cheaper and faster at a rapid pace, sowtware-based approaches would have an advantage over high-level hardware. These advantages are in cost, in flexibility, in the number of potential users, and in the vintage of computers that the software could run on (it takes longer to design and build a high-level machine than a traditional one). 
+ In the forseeable future compilers mapping high-level constructs onto low-level hardware primitives will be the dominant approach. 
+ 9) C++ complexity vs. OOP simplicity 
+ by hanwen 
+ [Sorry for the potential inflammatory matter in this question]. 
+ How do you relate the complexity of current C++ with the much-touted simplicity of Object Oriented Programming? 
+ Longer explanation: 
+ Over the years, the C++ implementation has ballooned; If I recall correctly, your book the C++PL has more than doubled in size. C++ has become a very large and complicated language, and I doubt whether there are any individuals (besides you, that is) that know the entire definition by heart, let alone teams of programmers. 
+ This means that it is not practical to use C++ fully in any project, and one also has to set strict guidelines for a project what features to use and which not. Seen, in this light, it is doubtful whether C++ has made writing software more manageable. So I think, that as tool for writing better software more efficiently, C++ is a failure. 
+ C++'s evolution was motivated by a few mottos (you don't pay for what you don't use, C compatibility, etc.), and seen in this light, C++ is a success. Do you think that these mottos need reconsideration? 
+Bjarne:
+ Inflammatory? I think you are remarkably polite and technical here - and that your "editor/moderator" weeded out the real flames :-) 
+ Complexity has to go somewhere and I think that putting it in the language in the form of direct support of common and powerful techniques is a good idea (or else I wouldn't have done it :-). Have you seen C code that simulates class hierarchies, parameterized types, or exceptions? Such code tend to be a complete mess of pointers, casts, and macros. In C++, such code can be clean and simple. Most importantly, the constructs have well-specified semantics rather than just comments explaining the intent of code fragments. What has happened is that the complexity has been transferred from the code to the language definition (and compiler). 
+ You are right that there is little need to use all of C++ explicitly in every project. However, that doesn't mean that you need to impose restrictive "gudelines". When did you last use all of Unix or all of NT explicitly on a project? Would you like some manager to tell you exactly which OS facilities you could and couldn't use - independently of the nature of a project? 
+ The typical "guideline" is straight out of the dark ages, based on information about the state of the world years ago and on strange assumptions on what is and isn't complicated. In the defense of people issuing such "guidelines," it must be said that the educational establishment has on average done a poor job at focussing students on the key programming techniques that are effective in C++. The results have been much muddled C-style code combined with bloated Smalltalk-style class hierarchies. The common denominator for these sub-optimal uses of C++ is losts of casts and lots of macros. 
+ That said, I have seen many successful C++ projects (many more than failures) and much good C++. By good I mean, elegant, efficient, reliable, and maintainable. So, for many, C++ has delivered exactly what it was designed to deliver. Please remember that I made few, specific, and well-documented promises about C++ (See D&E and "The C++ Programming Language"). I was not a contributor to commercial OO hype. 
+ I think I see a correlation between successful use of C++ and respect for its limitations (the deliberate constraints on its design) and a willingness to adapt design approaches to the facilities offered. For example, if you reject the use of abstract classes and build deep hierarchies with lots of data defined at each level, you really shouldn't be surprised by long compile times, frequent recompilations, and problems understanding what is defined where. Similarly, if you refrain from using C++ facilities and litter your code with C-style strings, arrays, plain structs, and lots of pointers into low-level data structures, you shouldn't really be surprised to get C-style problems rather than the promised benefits from C++. 
+ The main tutorial presentation of the C++ language was 186 in the 1st edition, 282 pages in the 2nd, and 360 pages in the 3rd. Part of that increase is a greater emphasis on programming technique. The rest of the increase in book size (from 327 pages in the 1st edition to 1040 pages of the new special edition) is due to more information on programming and design technique, and the standard library. The "special edition" has 363 pages on the standard library - in addition to the uses of the standard library as examples in other parts of the book. 
+ 10) Questions for Bjarne
+ by scherrey 
+ I was introduced to the C++ language in 1989 on the BIX online service by you and Greg Comeau whereupon the both of you set out to demonstrate (and finally convinced me) that this OO stuff wasn't just a fad and that C++ was a language that could efficiently implement it. This was during the time when Computer Language magazine had there "Language of the Month" feature article so languages had a tendency to come and go quickly back then. 
+ As I recall, the two major goals that you stressed were a) to build a language that could get a handle on these huge projects that C was having difficulties with and b) to provide a balance of features and efficiency so that a developer should have to pay for features he doesn't use. 
+ From my own experience using C++ in an extreme variety of projects (including very cramped embedded systems and large, multi-platform enterprise systems), there's no doubt that the great progress has been made on the first goal and that the second might have been fully achieved. 
+ The biggest disappointment to me, however, has been the lack of ability to fully replace plain-old-C in system level development which is an area that stands to gain the most from the language's abstraction features and your stated goals of the language. I understand that early on, it would have been impossible to define standard ABI's since implementation techniques for things such as virtual method and inheritance resolution were very experimental. Now that a full decade has gone by and a surprisingly strong standard has been produced, these differences in implementations are more contrived than based on architectural considerations. 
+ Presently the Open Source movement is growing wildly in popularity in commercial and non-commercial segments of the industry. Unfortunately, C++ cannot be used to provide linkable API's without either downgrading to severely limiting C-based linkage or forcing everyone to use the same compiler that wants to call your library because of non-standard representations of structures and calling conventions. 
+ Do you think that standardized application binary interfaces should be a priority time now? If so, what should be the mechanism used to define these interfaces (defacto vs. formal standards, etc), who should do it, and what can be done to encourage this development? 
+Bjarne:
+ Hi Ben, 
+ I think I nailed the efficiency, the generality, and to some extent the elegance. However, I underestimated the linker problems. I may also have underestimated the problems stemming from C compatibility. 
+ If I were a platform provider, I would have made a C++ ABI a priority a couple of years ago, so that all vendors on my platform could be ready to provide conforming implementations when the compilers reached a high degree of standards compliance. I know such efforts have been started by Sun for SPARC and by a group of vendors for Intel's upcoming Merced architecture (IA-64, see http://reality.sgi.com/dehnert_engr/cxx/). 
+ I would encourage everyone - and especially people who write software intented as part of a collaborative efforts - to encourage such platform ABI standards. If you are among people who can, lobby for a C++ ABI on your favorite platform. Unfortunately, I don't have specific suggestions on how to do this. 
+ The compatibility with C at the system interface level has encouraged people to use C-style strings, arrays, and structs, where they would have been better off with some higher-level abstractions presented as classes or templates. Instead of leaving the low-level facilities at the system level and within the implementations of classes, people have let the low-level constructs - and pointers to them - permeate their designs. Type errors, wild pointers, array bounds errors, and memory leaks are the obvious results. Lots of macros and casts often adds to the obscurity of the code. It saddens me to see some of the unnecessary messes people get themselves into. 
+ Poor educations is part of the problem and better education must be part of the solution. However, education can only do so much. Libraries and tools must that takes advantage of modern C++ must become ubiquitous before we can expect novice programmers to venture out of the C subset and apply more powerful techniques. 
+ For starters, people ought to realize that starting to learn C++ is easier than starting to learn C. The optimal initial subset of C++ to learn is not "most of C" and C++ can provide a much smoother learning curve than is commonly done. See "Learning Standard C++ as a New Language" (download from my papers page) for a further discussion. 
+ We have always had applications and specialized libraries that used C++ to give programmers a higher-level environment to work in. One significant aspect of the standard library is that it provides an example of that to everybody. Writing code using standard facilities such as string, vector, map, and algorithms really can change the way people program and the way people think about programming. I hope to see the techniques used for defining and implementing the standard library applied in many other areas to yield equivalent benefits in source code size, type safety, code clarity, and run-time efficiency. 
+ I think the time has come to experiment with the more advanced/interesting parts of Standard C++. For example, my new Standard-Library Exception Handling appendix shows a style of programming that departs rather dramatically from "C common wisdom" yet leads to simpler code. This is not written for novices, though, but it gives a peek into the inner workings of the standard library. 
+ Naturally, we must be more cautious in production code and there compatibility concerns with older code weighs stronger. However, we should not be so bound by older styles and compatibility that we never dare try out more modern and more effective styles. There now are native C++ styles, and we should use them. 
+ ----------- 
+ I did take peek at the "raw questions" on slashdot.org. I had to resist the temptation to explain all of C++ here, and explain how to use it, and explain why the facilities are the way they are. For more information, have a look at The C++ Programming Language (Special Edition), The Design and Evolution of C++, and my papers. 
+ It appears that I'll have to update my FAQ with several new questions, but that'll take me a few weeks. 
+ Thanks for asking hard questions. 
+ - Bjarne 
+ 
+ Update: 02/28 02:14 by R: Additional comments... 
+Comment by Anonymous Coward
+ Friday February 25, @12:53PM EST (#44): 
+ Some really, really interesting stuff. I'm going to forward this to everyone at work here. 
+ My only negative question is did he have to plug his books so much?? It seems like he never passed up a chance to "refer to my 3rd edition of C++PL", etc..... I tend not to trust people who plug themselves and their products too much. 
+This, of course, is a minor concern. Thanks to /. for getting this great interview! 
+Bjarne:
+ Imagine a radio interview with a serious painter or sculptor. To such an artist, his/her work is what matters, but there is no way that work can be presented on the radio. You would expect many references to individual works and to museums where people can go to see such work. Descriptive words simply aren't enough. Poor artist can compensate by distracting the discussion away from their work and into their personal lives or politics, but that's not an option for serious ones. 
+ I'm not an artist, but for an interview like this, I have a similar problem. I want to show code and serious discussions of problems, but the Q&A format doesn't allow that. My solution is to refer to my published work and to my homepages. 
+ After all, my published work are the primary sources on C++. So, unabashed, if you want more see my home pages, read TC++PL, D&E, or my papers. 
+ C++ and scientific computing 
+ by J. Chrysostom on Saturday February 26, @12:32AM EST (#308) 
+ As a soon-to-be graduate student in scientific computing, I sit and wonder sometimes why the support for mathematical and scientific computation in C++ is so limited. FORTRAN, the ugly and unmanageable beast that it is, is the only haven for computational mathematics. 
+Bjarne:
+ Have a look at the links to numeric libraries in C++ (such as Blitz++, POOMA, MTL, and ROOT). Maybe also track down some of the numeric C++ pages. 
+ Comment by Davorama 
+ Friday February 25, @12:37PM EST (#22) 
+ These other questions were so great I didn't make the cut but maybe you folks have opinions you'd like to share? 
+ What do you think of template meta programming? Do you consider it a boon, enabling clever programmers to do outrageously cool things like the Blitz project? Or is any benefit derived from it's use washed away by the obscure, nearly unreadable code it takes to implement it? 
+Bjarne:
+ I really like some of the things being done with C++ in numerics. The common thread is that templates are used to eliminate spurious temporaries. The results tend to beat Fortran in its own game while maintaining Math textbook notation. On my homepage you can find links to POOMA from LANL, Blitz++ from Warterloo U., and MTL from Notre dame. TC++PL has an explanation of the basic technique in the Numerics chapter. 
+ I don't mind the obscure code in the implementations. Actually, I find most of that code far less obscure than, say, C kernel code. Where efficiency is paramount, you shouldn't complain too much about obscure optimizations, and anyway if you are a real user, you shouldn't read the implementation code. 
+ Comment by sethg 
+ Friday February 25, @01:12PM EST (#65): 
+ A common theme in the answers seems to be "that complaint is based on outdated information; get a new compiler that follows the standard and use the STL." 
+ For the benefit of us C++ newbies, does anyone maintain a chart showing which currently-available "C++" compilers violate which sections of the C++ standard? 
+Bjarne:
+ A first approximation: Compilers currently shipping from major suppliers are reasonably up to date (I use them). Examples include. Borland, GNU, Metrowerks, Microsoft, and SGI. 
+ For more details see LANL's list (link from the POOMA site, see my C++ page) or a site in NZ that tries to keep track. Some vendors, such as Borland, keep the results of the Plumm Hall validation suiye public on their websites. 
+ And, yes. It is my opinion that a very large proportion of problems reported with C++ can be traced to misunderstandings and misuse. A modern C++ implementation is a prerequisite for trying out some of the techniques that I'm suggesting, but please don't think that a new compiler by itself will help much. You need to actually change the way you work - and unfortunately there are many real-world factors that makes such changes hard (legacy code, lack of time to learn new techniques, co-workers, antique style rules, etc.). I dit not say it would be easy, just that it is possible and that many have succeeded. 
+ Comment by hanwen
+ Friday February 25, @01:25PM EST (#77) 
+ -- much stuff omitted -- 
+ Maybe nowadays some of my gripes may be soothed by the Standard Libraries, but I don't feel like learning yet another big C++ component, all the more because I know that afterwards C++ will still not be good enough (or will it ever have reflection, higher order functions, GC?) 
+ In this light, I find your statement that "starting to learn C++ is easier than starting to learn C" dangerous, as are the examples in your "learning C++ as a new language paper" for they imply that any of these two languages can or should be a "first" language. 
+ Do you really want people grow up with a language that has distinction between non-immediate objects on the heap and stack, no automatic garbage collection, pointers, no initialization, no higher-order anything? 
+ You're educating people about C++: fighting misconception, telling them where it is good for. But you're not telling them what it is bad for. C++ is immensely popular, and people easily get the misconception that this popularity makes it a good language to start programming with, or to write their highly tweakable programs, etc. 
+Bjarne:
+ Actually, yes. I don't feel that it is right to start off people with a language that they don't have a chance using once they graduate. The Lisp and functional language community failed to make automatic garbage collection and higher-order everything mainstream even though they had the enthusiastic backing of the academic and educational establishment for more than two decades. Clearly, I don't feel that leaving people with a lower-level language like C is optimal either. 
+ Given the current miserable state of programming and design education, C++ can be a major advance. Of course, people can also fail to take advantage of C++'s abstraction mechanisms and fall back to writing the equivalent of assembly code in C or C++. Through STL, the C++ community may have introduced more people to functional programming techniques and may have applied such techniques to more real-world problems than all previous languages put together. The fact that function objects are not the most flexible "closures" available doesn't detract from the fact that people understand them, like them, and use them. 
+ The "Learning Standard C++ as a New Language" paper (link on my papers page) clearly states that I think that these approaches scale - and argues why. Looking at C++ as it was in 1988 (no templates, no exceptions, no RTTI, and no standard library) is really to look at a different language - one that simply doesn't support most modern C++ techniques. 
+ If you want garbage collection, then there are excellent free or commercially supported garbage collectors available for C++ (see links from my C++ page). One reason that the C++ garbage collectors are so effcient is exactly that C++ has the distinction between stack-allocated objects and free-store-allocated objects. 
+ Comment by Anonymous Coward 
+ Friday February 25, @02:54PM EST (#118) 
+ Yeah this is the guy who at one time usurped the name "C" for his new language, and was referring to K&R as "old C" around AT&T ... until Dennis Ritchie told him to knock it off :) 
+ I think he does acknowledge that the committees have straightened out a lot of the problems in the earlier versions of the language, and I don't think he would claim current C++ is perfect. 
+ Given his success and recognition, I'd probably be a bit arrogant myself :) 
+Bjarne:
+ I don't actually think that I'm seriously "humility deficient". 
+ Remember, I worked with Dennis (though not closely) and closely with Brian Kernighan for more than a decade. I don't think I "appropriated" the name "C", but if I had, nobody would have had a better claim to it :-) 
+ It was not me who
+referred to C as "Old C." It was me who acted to defuse the confusion
+and the possible slur on Dennis by finding a name for "C with Classes"
+that was less likely to cause confusion: C++.
+Also, I worked hard in the committee (few language designers have bothered
+with such "tedious details"), and I think the committee did a very good job.
+ 

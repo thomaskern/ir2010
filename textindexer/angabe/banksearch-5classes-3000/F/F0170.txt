@@ -1,0 +1,893 @@
+
+Visual Basic and Winsock API - Socket's transport protocol and other options
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Socket's transport protocol and other options 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Socket's transport protocol 
+ and other options
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ 
+ Winsock API Test Bench 3 project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+In the previous article we have learned how to create and close 
+ sockets. All we know about the socket, at this moment, is only its handle 
+ - integer value that is used by the Winsock service and our application 
+ just to recognize it. But the socket is not just an integer value - some 
+ memory, system resources are allocated for it, and many properties of 
+ the socket are initializing with default values as you call the
+ socket 
+ Winsock API function. Since a new socket is created, you can retrieve 
+ and set socket's options using the 
+ getsockopt and
+ 
+ setsockopt Winsock API 
+ functions. 
+ 
+The strange thing is that those functions are not even included in 
+ the modWinsockAPI code module which holds all the API's declarations for 
+ this project. Anyway, we'll use one of them - 
+ getsockopt, in order to 
+ determine which transport protocol is used by a given socket. But before 
+ to go on I advise you to take a look at the article from the MS 
+ Knowledge Base that illustrates how to use those functions:
+ 
+ HOWTO:
+ Using getsockopt() and setsockopt() in Visual Basic
+ 
+That example doesn't show how to retrieve the information about a 
+ transport protocol and I'm going to show you how to do that. Moreover 
+ our sample application needs that info.
+ 
+If you have not read the 
+ Enumerating transport 
+ protocols article from the first part of the tutorial, please do it 
+ before to go ahead, as we'll use here some code from the example that can 
+ be downloaded at that page, and I'm not going to repeat the things I 
+ had already been talking about.
+ 
+ 
+The getsockopt Winsock API 
+ function
+ 
+ 
+The Windows Sockets 
+ setsockopt
+ function retrieves a socket option.
+ 
+Declare Function getsockopt
+ _
+ Lib "ws2_32.dll" (ByVal 
+ s As Long, _
+ 
+ ByVal level As 
+ Long, _
+ 
+ ByVal optname 
+ As Long, _
+ 
+ ByRef optval 
+ As Any, _
+ 
+ ByRef optlen 
+ As Long) As Long
+ 
+For more info about the function see the
+ 
+ Winsock API documentation.
+ 
+In order to retrieve the information about 
+ transport protocol by socket's handle we can use the function as 
+ follows:
+ 
+ 
+ 
+ 
+ '
+ 'the lngSocket variable is a socket handle
+ 'the SOL_SOCKET constant defines the socket option level
+ 'the SO_PROTOCOL_INFO constant force the getsockopt function
+ 'to retrieve the transport protocol information
+ '
+ Dim lngRetValue As Long
+ Dim udtProtocolInfo As WSAPROTOCOL_INFO
+ Dim lngBufferSize As Long
+ '
+ lngBufferSize = LenB(udtProtocolInfo)
+ '
+ lngRetValue = getsockopt(lngSocket, SOL_SOCKET, SO_PROTOCOL_INFO, _
+ udtProtocolInfo, lngBufferSize)
+ '
+ If lngRetValue = 0 Then
+ 'If no error occurs, getsockopt returns zero.
+ 'The udtProtocolInfo structure contains info about the protocol
+ End If
+ 
+ 
+ 
+That's it - nothing special. Now let's enhance the 
+ sample application with a new feature.
+ 
+ 
+Modifying the sample application
+ 
+ 
+The
+ 
+ WSAPROTOCOL_INFO structure holds all the information about a given 
+ transport protocol. Some members of the structure contain single values, 
+ others - multiple values as a combination of bits (bitmask). For 
+ example, the dwServiceFlags1 member handles values for 20 parameters of 
+ the protocol. To ease my life I have decided to create
+ CProtocol class 
+ (see the 
+ Enumerating transport 
+ protocols article) that just holds the same data and is much easer 
+ to use than to deal with the structure members.
+ 
+Add the CProtocol class module into the project. 
+ You may include that file from the TransportProtocols project or create 
+ a new one. And type in the following code that is the 
+ GetBySocketHandle 
+ method which does make a call of the 
+ setsockopt
+ function and initializes 
+ class' properties.
+ 
+ 
+ 
+ Public Function GetBySocketHandle(lngSocket As Long) As Boolean
+ '
+ Dim lngRetValue As Long
+ Dim udtProtocolInfo As WSAPROTOCOL_INFO
+ Dim lngBufferSize As Long
+ '
+ lngBufferSize = LenB(udtProtocolInfo)
+ '
+ lngRetValue = getsockopt(lngSocket, SOL_SOCKET, SO_PROTOCOL_INFO, _
+ udtProtocolInfo, lngBufferSize)
+ '
+ If lngRetValue = 0 Then
+ '
+ With udtProtocolInfo
+ '
+ mvarConnectionless = .dwServiceFlags1 And XP1_CONNECTIONLESS
+ mvarGuaranteedDelivery = .dwServiceFlags1 And XP1_GUARANTEED_DELIVERY
+ mvarGuaranteedOrder = .dwServiceFlags1 And XP1_GUARANTEED_ORDER
+ mvarMessageOriented = .dwServiceFlags1 And XP1_MESSAGE_ORIENTED
+ mvarPseudoStream = .dwServiceFlags1 And XP1_PSEUDO_STREAM
+ mvarGracefulClose = .dwServiceFlags1 And XP1_GRACEFUL_CLOSE
+ mvarExpeditedData = .dwServiceFlags1 And XP1_EXPEDITED_DATA
+ mvarConnectData = .dwServiceFlags1 And XP1_CONNECT_DATA
+ mvarDisconnectData = .dwServiceFlags1 And XP1_DISCONNECT_DATA
+ mvarSupportBroadcast = .dwServiceFlags1 And XP1_SUPPORT_BROADCAST
+ mvarSupportMultipoint = .dwServiceFlags1 And XP1_SUPPORT_MULTIPOINT
+ mvarMultipointControlPlane = .dwServiceFlags1 And XP1_MULTIPOINT_CONTROL_PLANE
+ mvarMultipointDataPlane = .dwServiceFlags1 And XP1_MULTIPOINT_DATA_PLANE
+ mvarQoSSupport = .dwServiceFlags1 And XP1_QOS_SUPPORTED
+ mvarUniSend = .dwServiceFlags1 And XP1_UNI_SEND
+ mvarUniRecv = .dwServiceFlags1 And XP1_UNI_RECV
+ mvarIFSHandles = .dwServiceFlags1 And XP1_IFS_HANDLES
+ mvarPartialMessage = .dwServiceFlags1 And XP1_PARTIAL_MESSAGE
+ mvarMultipleProtoEntries = .dwProviderFlags And PFL_MULTIPLE_PROTO_ENTRIES
+ mvarRecommendedProtoEntry = .dwProviderFlags And PFL_RECOMMENDED_PROTO_ENTRY
+ mvarMatchesProtocolZero = .dwProviderFlags And PFL_MATCHES_PROTOCOL_ZERO
+ mvarProviderId = GuidToString(.ProviderId)
+ mvarCatalogEntryId = .dwCatalogEntryId
+ mvarVersion = .iVersion
+ mvarAddressFamily = .iAddressFamily
+ mvarMaxSockAddr = .iMaxSockAddr
+ mvarMinSockAddr = .iMinSockAddr
+ mvarSocketType = .iSocketType
+ mvarProtocol = .iProtocol
+ mvarProtocolMaxOffset = .iProtocolMaxOffset
+ mvarNetworkByteOrder = .iNetworkByteOrder
+ mvarSecurityScheme = .iSecurityScheme
+ mvarMessageSize = .dwMessageSize
+ mvarProtocolName = .szProtocol
+ '
+ End With
+ '
+ GetBySocketHandle = True
+ '
+ End If
+ '
+End Function
+ 
+ 
+ 
+As you may notice this code does have some 
+ dependencies. We need to include API's declaration for the 
+ 
+ setsockopt
+ function and the constants. Also the 
+ GuidToString 
+ function is used to retrieve the ProviderID value. Insert the following 
+ code into the CProtocol class module as well:
+ 
+ 
+ 
+ Private Const BASE_PROTOCOL = 1
+Private Const LAYERED_PROTOCOL = 0
+'/* Flag bit definitions for dwProviderFlags */
+Private Const PFL_MULTIPLE_PROTO_ENTRIES = &H1
+Private Const PFL_RECOMMENDED_PROTO_ENTRY = &H2
+Private Const PFL_HIDDEN = &H4
+Private Const PFL_MATCHES_PROTOCOL_ZERO = &H8
+'/* Flag bit definitions for dwServiceFlags1 */
+Private Const XP1_CONNECTIONLESS = &H1
+Private Const XP1_GUARANTEED_DELIVERY = &H2
+Private Const XP1_GUARANTEED_ORDER = &H4
+Private Const XP1_MESSAGE_ORIENTED = &H8
+Private Const XP1_PSEUDO_STREAM = &H10
+Private Const XP1_GRACEFUL_CLOSE = &H20
+Private Const XP1_EXPEDITED_DATA = &H40
+Private Const XP1_CONNECT_DATA = &H80
+Private Const XP1_DISCONNECT_DATA = &H100
+Private Const XP1_SUPPORT_BROADCAST = &H200
+Private Const XP1_SUPPORT_MULTIPOINT = &H400
+Private Const XP1_MULTIPOINT_CONTROL_PLANE = &H800
+Private Const XP1_MULTIPOINT_DATA_PLANE = &H1000
+Private Const XP1_QOS_SUPPORTED = &H2000
+Private Const XP1_INTERRUPT = &H4000
+Private Const XP1_UNI_SEND = &H8000
+Private Const XP1_UNI_RECV = &H10000
+Private Const XP1_IFS_HANDLES = &H20000
+Private Const XP1_PARTIAL_MESSAGE = &H40000
+Private Const BIGENDIAN = &H0
+Private Const LITTLEENDIAN = &H1
+Private Const SECURITY_PROTOCOL_NONE = &H0
+Private Const MAX_PROTOCOL_CHAIN = 6
+Private Type WSAPROTOCOLCHAIN
+ ChainLen As Long
+ ChainEntries(MAX_PROTOCOL_CHAIN) As Long
+End Type
+Private Type Guid
+ Data1 As Long
+ Data2 As Integer
+ Data3 As Integer
+ Data4(0 To 7) As Byte
+End Type
+Private Declare Function StringFromGUID2 _
+Lib "ole32.dll" (rguid As Any, _
+ ByVal lpsz As String, _
+ ByVal cchMax As Long) As Long
+Private Const WSAPROTOCOL_LEN = 256
+Private Type WSAPROTOCOL_INFO
+ dwServiceFlags1 As Long
+ dwServiceFlags2 As Long
+ dwServiceFlags3 As Long
+ dwServiceFlags4 As Long
+ dwProviderFlags As Long
+ ProviderId As Guid
+ dwCatalogEntryId As Long
+ ProtocolChain As WSAPROTOCOLCHAIN
+ iVersion As Long
+ iAddressFamily As Long
+ iMaxSockAddr As Long
+ iMinSockAddr As Long
+ iSocketType As Long
+ iProtocol As Long
+ iProtocolMaxOffset As Long
+ iNetworkByteOrder As Long
+ iSecurityScheme As Long
+ dwMessageSize As Long
+ dwProviderReserved As Long
+ szProtocol As String * WSAPROTOCOL_LEN
+End Type
+Private Declare Function WSAEnumProtocols _
+Lib "ws2_32.dll" Alias "WSAEnumProtocolsA" (ByVal lpiProtocols As Long, _
+ lpProtocolBuffer As Any, _
+ lpdwBufferLength As Long) As Long
+Private Const SOL_SOCKET = 65535
+Private Const SO_PROTOCOL_INFO = &H2004
+Private Declare Function getsockopt _
+Lib "ws2_32.dll" (ByVal s As Long, _
+ ByVal level As Long, _
+ ByVal optname As Long, _
+ ByRef optval As Any, _
+ ByRef optlen As Long) As Long
+ Private Function GuidToString(udtGuid As Guid) As String
+ '
+ Dim strGuid As String
+ Dim lngRetVal As Long
+ '
+ strGuid = String(80, Chr(0))
+ '
+ lngRetVal = StringFromGUID2(udtGuid, strGuid, 80&)
+ '
+ If lngRetVal > 0 Then
+ GuidToString = StrConv(strGuid, vbFromUnicode)
+ End If
+ '
+End Function
+ 
+ 
+ 
+It seems that the CProtocol class is able now to 
+ provide us with the objects that can retrieve the transport protocol info 
+ for a particular socket. Let's test the class module. Open the code 
+ editor for the frmMain form and type the following code in the 
+ cmdProtocol_Click event procedure that will print a couple of values of the 
+ object properties.
+ 
+ 
+ 
+ Private Sub cmdProtocol_Click()
+ '
+ Dim objProtocol As CProtocol
+ Dim lngSocket As Long
+ '
+ If Not lvSockets.SelectedItem Is Nothing Then
+ '
+ Set objProtocol = New CProtocol
+ lngSocket = CLng(lvSockets.SelectedItem.Text)
+ '
+ If objProtocol.GetBySocketHandle(lngSocket) Then
+ '
+ Debug.Print objProtocol.ProtocolName
+ Debug.Print objProtocol.ProviderId
+ '
+ End If
+ '
+ Set objProtocol = Nothing
+ '
+ End If
+ '
+End Sub
+ 
+ 
+ 
+Press F5 to run the application. Cerate new socket 
+ with parameters shown in the table below:
+ 
+ 
+ 
+ Combobox control 
+ Item 
+ 
+ 
+ Address family 
+ AF_INET 
+ 
+ 
+ Socket type 
+ SOCK_STREAM 
+ 
+ 
+ Protocol 
+ IPPROTO_TCP 
+ 
+ 
+ 
+ 
+Then click the Protocol Info button. What do you have in the 
+ Immediate window? I have got the following lines as output:
+ 
+MS.w95.spi.tcp 
+ {FF017DE0-CAE9-11CF-8A99-00AA0062C609}
+ 
+It works! But it is not so cool to see how it works only in design 
+ time. We can enhance our sample with a very little effort, so we can see 
+ the protocol info data in run time. Do you still remember the
+ TransportProtocols 
+ project? Let's attach the form used in that project to the current 
+ one.
+ 
+ 
+ 
+ 
+ 
+ 
+It is not so easy as it might be at the first sight. The problem is 
+ that this form, in the TransortProtocols project, has the same name - 
+ frmMain, and the current project doesn't accept that form as we already 
+ have the frmMain form in the project. This is just a disadvantage of writing 
+ of a technical saga for the web. Sometimes I develop a sample and don't know 
+ what I'll do tomorrow. I'm sorry for that. But let's keep it simple, there 
+ is a trick. Just rename the frmMain form to frmMainX, for example, add to 
+ the project another frmMain, name it as frmProtocol. And finally, rename 
+ frmMainX to frmMain. There is another tip! Just download the sample at 
+ this page :).
+ 
+The idea of the reusing of the form is very simple. We'll add new 
+ property to the form - Protocol, which needs to be initialized before 
+ the form will be loaded. Code in the Form_Load event procedure will 
+ check the Protocol property value; if that value is an instance of the
+ CProtocol class, data from that object will be used to display. If the 
+ Protocol property has no any value (object), then the form will work as 
+ supposed to work in the TransportProtocols project. So the things we 
+ need to do are:
+ 
+ 
+- Create a new property.
+ 
+ 
+- Modify the Form_Load event procedure
+ 
+ 
+- Modify the UpdateListViews procedure in the form. That procedure 
+ is responsible for display of the protocol parameters in the listview 
+ controls.
+ 
+ 
+1. Create the Protocol property:
+ 
+ 
+ 
+ 'Private m_colProtocols As CProtocols
+Private m_objProtocol As CProtocol
+'
+Public Property Set Protocol(objProtocol As CProtocol)
+ '
+ If Not objProtocol Is Nothing Then
+ Set m_objProtocol = objProtocol
+ End If
+ '
+End Property
+ 
+ 
+ 
+2. Modify the Load_Form event procedure:
+ 
+ 
+ Private Sub Form_Load()
+ '
+ Dim i As Integer
+ Dim objProtocol As CProtocol
+ '
+ Call InitListViews
+ '
+ With TabStrip1
+ '
+ For i = 0 To 2
+ '
+ ListView1(i).Move .ClientLeft, .ClientTop, .ClientWidth, .ClientHeight
+ '
+ Next i
+ '
+ End With
+ '
+ ListView1(0).ZOrder 0
+ '
+ 
+ 
+ 
+ 
+ If m_objProtocol Is 
+ Nothing Then 
+ 
+ 
+ 
+ '
+ Set m_colProtocols = New CProtocols
+ '
+ If m_colProtocols.Count > 0 Then
+ '
+ For Each objProtocol In m_colProtocols
+ '
+ Combo1.AddItem objProtocol.ProtocolName
+ '
+ Next
+ '
+ Combo1.ListIndex = 0
+ '
+ End If
+ '
+ 
+ 
+ 
+ 
+ Else
+ '
+ Call UpdateListViews(0)
+ '
+ End If
+ 
+ 
+ 
+ 
+ '
+End Sub
+ 
+ 
+ 
+3. Modify the UpdateListViews procedure:
+ 
+ Private Sub 
+ UpdateListViews(Index As Integer) 
+ ' 
+ Dim strTemp 
+ As String 
+ 
+ 
+ 
+ Dim objProtocol As 
+ CProtocol 
+ ' 
+ If m_objProtocol
+ Is Nothing Then 
+ Set 
+ objProtocol = m_colProtocols(Index) 
+ Else 
+ Set 
+ objProtocol = m_objProtocol 
+ Combo1.AddItem 
+ objProtocol.ProtocolName 
+ Combo1.ListIndex = 0 
+ Combo1.Enabled =
+ False 
+ End If 
+ ' 
+ With objProtocol 
+ 
+ 
+ 
+ ' 
+ ListView1(0).ListItems(1).SubItems(1) 
+ = .ProtocolName
+ ...
+ ... 
+ 
+ 
+Now let's change source code of the cmdProtocol_Click event procedure 
+ of the main form.
+ 
+ Private Sub 
+ cmdProtocol_Click() 
+ ' 
+ Dim objProtocol
+ As CProtocol 
+ Dim lngSocket 
+ As Long 
+ 
+ 
+ 
+ Dim frm 
+ As frmProtocol 
+ 
+ 
+ ' 
+ If Not lvSockets.SelectedItem
+ Is Nothing Then 
+ ' 
+ Set 
+ objProtocol = New CProtocol 
+ lngSocket = 
+ CLng(lvSockets.SelectedItem.Text) 
+ ' 
+ If 
+ objProtocol.GetBySocketHandle(lngSocket) Then
+ 
+ ' 
+ 
+ 
+ 
+ Set frm = New 
+ frmProtocol
+ 
+ Set frm.Protocol = objProtocol
+ frm.Show 
+ vbModal 
+ 
+ 
+ 
+ ' 
+ End If 
+ 
+ ' 
+ Set 
+ objProtocol = Nothing 
+ ' 
+ End If 
+ ' 
+ End Sub 
+ 
+ 
+Now is the show time! Press F5 to run the sample, create a new 
+ socket, and click the Protocol Info button. 
+ 
+Cool! Isn't it?
+ 
+ 
+Conclusion
+ 
+ 
+You might expect that I'll explain here the reason 
+ of that we pay attention to the transport protocol stuff at all. But I'm 
+ not going to do that - sorry, you'll see and understand that in the 
+ following articles. Maybe you'll find out that today's work is wasting 
+ of time, it's all about a given program design, and I decided to put 
+ that stuff in my arsenal. The next step is about how to establish 
+ connection to the remote host and you'll see how the 
+ CProtocol class is 
+ used for that operation.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Error
+	Manfred Thursday, December 20, 2001	
+	
+	
+	
+Top banana
+	Mark Saturday, February 02, 2002	
+	
+	
+	
+Error ++
+	Craig Krause Saturday, June 15, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Socket's transport protocol and other options 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

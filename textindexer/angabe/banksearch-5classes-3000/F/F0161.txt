@@ -1,0 +1,240 @@
+
+ 
+ 
+ 
+ Page Title
+VB Banner Exchange
+ 
+ 
+The MS
+Chart Control 
+Index 
+1. Starting Up 
+2. The properties 
+3. The End 
+ 
+ 
+ 
+In this tutorial you will learn
+the basics of the MS Chart Control. It is an .ocx that creates many types
+of graphics, including 3d rotational ones, and supports population via
+data arrays. 
+ 
+1. Starting
+up 
+First, click on your toolbar
+and select components. Then choose the Microsoft Chart Control
+from the list and then click OK. 
+You now see the MS Chart icon
+on your toolbar. Click it once and position it at your form... 
+And it's ready to use! 
+[Back to Top] 
+ 
+2. The properties 
+2.1 - The RowCount
+and ColumnCount properties 
+2.2
+- Modifying your chart data 
+2.3
+- Legends 
+2.4
+- Changing fonts and text locations 
+2.5
+- Populating your chart with a two-dimensional array 
+2.6
+- Changing the type of your graphic 
+2.7
+- Other 
+Ok... So let's take a look on
+the properties of this control... 
+2.1
+- The RowCount and ColumnCount properties 
+These two properties set or
+return the number of rows and columns in your chart. Examine the following
+picture to understand it better: 
+ 
+As you could see, a row contains
+a given number of columns. In the example, we have the RowCount and the
+ColumnCount properties set to 3: 
+MSChart1.RowCount = 3 
+MSChart2.ColumnCount = 3 
+[Back to Top]
+2.2
+- Modifying your chart data 
+You can modify your chart data
+by simply setting the current Row and Column ( Row and Column
+properties), and then using the Data property. For example, to set
+the value of the second column (the green one) of the third row, you can
+use this: 
+MSChart1.Row = 3 
+MSChart1.Column = 2 
+MSChart1.Data = 14 
+Simple, huh? The code sets the
+current row and column, and then uses the Data property to alter
+the graphic. 
+Please note that the Row, Column
+and Data properties can be used to return values too. 
+[Back to Top]
+2.3
+- Legends 
+Well, it's easy to add text
+to identify things in your chart. 
+To change a row label,
+first set the current row and then use the RowLabel property: 
+MSChart1.Row = 1 
+MSChart1.RowLabel = "First
+row" 
+To change a column label
+(that will appear at the legend), set the current column and use the ColumnLabel
+property: 
+MSChart1.Column = 3 
+MSChart1.ColumnLabel = "Blue" 
+You can either add a footnote
+and a title to your chart: 
+MSChart1.FootnoteText = "You
+can add a footnote to your graphic." 
+MSChart1.TitleText = "VB Center
+MS Chart Tutorial" 
+-> You must set the ShowLegend
+property to True, in order to show you legend. 
+[Back to Top]
+2.4
+- Changing fonts and text locations 
+To alter fonts, use the Footnote
+and Title objects contained at your MS Chart control. The purpose
+of this tutorial is to teach you the basics of chart creation, so if you
+want to learn more about this, try reading the VB help. This section will
+only list some possible combinations you may use. 
+For example: 
+MSChart1.Footnote.Font.Bold
+= True 
+MSChart1.Title.Font.Name
+= "Trebuchet MS" 
+MSChart1.Footnote.Location.Rect.Set 
+200,100 
+Footnote
+and Title objects: 
+Backdrop
+object 
+FONT
+object 
+Location
+object 
+Text
+- String 
+TextLayout 
+TextLength
+- Integer 
+ 
+Font object 
+ 
+ 
+Bold - Boolean 
+ 
+Italic - Boolean 
+ 
+Name - String 
+ 
+Size - Integer 
+ 
+StrikeThrough - Boolean 
+ 
+Underline - Boolean 
+ 
+Weight - Integer 
+[Back to Top]
+2.5
+- Populating your chart with a two-dimensional array: 
+You can create a two-dimensional
+array ( a table ) and then use it to populate your graphic. The following
+code fills an array and uses it to draw your chart with random numbers: 
+Dim
+Data(1 To 10, 1 To
+10) As String 
+Private
+Sub Form_Load() 
+For
+i = 1 To 10 'Create
+loop to fill array 
+ For
+o = 1 To 10 
+ 
+ Data(i,
+o) = Rnd * 100 'Assign
+a random value between 0 and 100 
+ 
+ Next
+o 
+ 
+Next
+i 
+MSChart1.ChartData = Data 
+End Sub 
+The ChartData property
+is used to fill you graphic. When you assign an array to this property,
+the RowCount and ColumnCount properties are automatically set to hold it. 
+[Back to Top]
+2.6
+- Changing the type of your graphic 
+The MS Chart control lets you
+alter it's appearance by changing the ChartType property. 
+The ChartType constants are: 
+ 
+VtChChartType3dBar 
+3D Bar 
+VtChChartType2dBar 
+2D Bar 
+VtChChartType3dLine 
+3D Line 
+VtChChartType2dLine 
+2D Line 
+VtChChartType3dArea 
+3D Area 
+VtChChartType2dArea 
+2D Area 
+VtChChartType3dStep 
+3D Step 
+VtChChartType2dStep 
+2D Step 
+VtChChartType3dCombination 
+3D Combination 
+VtChChartType2dCombination 
+2D Combination 
+VtChChartType2dPie 
+2D Pie 
+VtChChartType2dXY 
+2D XY 
+e.g. : MSChart1.ChartType = VtChChartType2dLine
+'Changes the graph to a 2D line 
+[Back to Top]
+2.7
+- Other 
+There are many more things you
+can do with this control. For example, use MSChart1.Stacking to stack your
+series, or change borders, fonts and text orientation with the footnote
+and title objects inside MS Chart. Use the custom dialog to edit
+your chart at design time. Did you know that you can copy your graphic
+to the clipboard with MSChart1.EditCopy ? Well, it's now your part to discover
+other functions! And if you find something interessant, please share
+your code snippet with other programmers! All the credits will be given. 
+[Back to Top]
+ 
+3. The End 
+At this tutorial, you learned
+the basics of the MS Chart control. You now must know how to: 
+- Define the quantity of rows
+and columns of a chart 
+- Add data 
+- Change row and column labels 
+- Create legends 
+- Populate your chart with
+a two-dimensional array 
+- Change your chart appearance 
+If you have any question or
+addition, please e-mail
+me and I'll do my best to answer. 
+[Back to Top] 
+ 
+[Back
+to the main page] 
+ 

@@ -1,0 +1,46 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Arrays
+Arrays are a group of certain things, such as Controls arrays, or Variable arrays. Arrays are identical in type, for example, if you were to use control arrays, they would all be the same type of control (ex. Text Boxes), and if you used variable arrays, they would all be the same data type (ex. Strings).
+Variable Arrays
+Sometimes when programming, your going to be dealing with a lot of values/things, for example say Test Grades. And assume you had 50 different test grades, and had to declare 50 grade integers in code... You could spend half an hour doing this:
+ Dim TestGrade1%
+ Dim TestGrade2%
+ Dim TestGrade3%...
+Or spend 10 seconds typing this:
+ Dim TestGrade(49) As Integer
+As you can see, using variable arrays is much more efficient, and less (much less) time consuming... Notice it says 49 instead of 50. Well that still gives us 50 Test Grade integers... Why? Because they have Index values, and so, by default they start by 0, and increase by one, for each array you have. Count from 0-49 and you will get 50. Now what if you don't want to use 0 as the starting Index value? It's simple, put "Option Base 1" in the general section of your form and your array will start with an Index value of 1. 
+Sometime you will know how many arrays your going to need, and sometimes your not. How would you go about doing this? By using the ReDim Statement:
+ Dim LottoJackpot() As Currency
+ Dim Winners%
+ Winners = Text1.Text
+ ReDim LottoJackpot(Winners)
+It 's also important to know what the lowest and highest Indexes are, you would use the LBound and UBound functions for that. The LBound(YourArray) function returns the smallest Index value (either 0 or 1), and the UBound(YourArray) function returns the largest Index value. This is especially important to know if your dealing with Control Arrays, which are also explained in this tutorial...
+There are more ways than one to declare an array, as you can see below.
+*Straight from VB's Help File
+ Dim MyArray(1 To 10, 5 To 15, 10 To 20)
+ Dim AnyArray(10)
+ Dim Lower
+ Lower = Lbound(MyArray, 1) ' Returns 1.
+ Lower = Lbound(MyArray, 3) ' Returns 10.
+ Lower = Lbound(AnyArray) ' Returns 0 or 1, depending on setting of Option Base.
+Control Arrays
+Control arrays come in handy from time to time, the bigger your programs get and the more vb knowledge you have, the more you will agree with me. We can make control arrays a few ways. In developement time, we can simply copy & paste a control and VB will ask us if we want to make a control array. Another way is to do it in code:
+'Make an Option button, name it "OptButton," and set its index property to 1
+*Straight from VB's Help File
+ Static MaxIdx ' Largest index in array.
+ If MaxIdx = 0 Then MaxIdx = 1 ' Preset MaxIdx.
+ MaxIdx = MaxIdx + 1 ' Increment index.
+ If MaxIdx > 7 Then Exit Sub ' Put eight buttons on form.
+ Load OptButton(MaxIdx) ' Create new item in array.
+ ' Set location of new option button under previous button.
+ OptButton(MaxIdx).Top = OptButton(MaxIdx - 1).Top + 360
+ OptButton(MaxIdx).Visible = True ' Make new button visible.
+We can also use the LBound/UBound functions with control arrays, and here's an example of why you would want to use them:
+ Dim i
+ For i = CommandBtn.LBound To CommandBtn.UBound
+ CommandBtn(i).Enabled = False
+ Next i
+And there you have it, now you should know what an array is, and how to use them efficiently, thanks to me :7
+Back
+Next

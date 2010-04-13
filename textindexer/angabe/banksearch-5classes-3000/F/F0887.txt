@@ -1,0 +1,40 @@
+
+VB Techniques: Visual Basic 6.0 Developer's Workshop
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+Visual Basic 6.0 Developer's Workshop
+Written by John Clark Craig, et al
+Published by Microsoft Press
+If you haven't used Visual Basic 6.0 yet, you're in for a surprise - there aren't that many new features in it. VB is a fairly mature product and VB 6.0 is really more of a set of fixes with a few new features thrown in for good measure. For this reason, many of the books on the short-term horizon will have limited changes over their VB 5.0 predecessors. Last year, I reviewed Microsoft Press' Visual Basic 5.0 Developer's Workshop book and found it to be a very good and well thought-out design for a book. The VB 6.0 version added a total of about 80 pages to the book and revised or added content to cover all the new features in VB 6.0. 
+The first content addition, besides the list of VB 6.0 features at the beginning of the book, is the addition of information about the new language functions that were previously only available in VBScript. As a beta tester, I wasn't even aware of some of these features until the last test version came out with documentation that was complete. These text processing functions provide some built-in functions that most VB programmers have already coded and recoded themselves many times. These functions include the Replace function, a reverse InStr function, a Split function that can do basic parsing of a string, and more. The explanations are clear and the examples show how to make use of these helpful additions to the already comprehensive language. 
+The next major addition is the coverage of all the Internet-related features now in VB 6.0. There are now three chapters devoted to the Internet controls (FTP, Winsock, Internet Explorer), creating ActiveX controls for use in web pages, and creating "full" Internet applications using DHTML, IIS features, and ActiveX Documents. While there is some coverage on these topics, some topics are fairly sparse. Webclasses are one of the most robust features in VB and only three pages are spent talking about them. As I was on the beta program also, I would guess that the feature was not available yet when the author was writing the new chapters. Hopefully there will be an online update site where readers can get more robust information about these and other features mentioned in the book. 
+The other major addition to the book is a revised version of adding help to your application. The book now covers all the steps to building a complete help file. It also shows how to use the WinHelp API to add some of the advanced help features to your application. In addition, the book covers WhatsThisHelp, which allows users to click a question mark icon and click on controls on your form to get information about them. This feature is supported by some commercial help packages but is poorly documented if you want to do it yourself. 
+There are several other minor features added to other chapters, but for the most part, if you already have this book, the new one is not going to get you a lot of new material. If you haven't bought this book yet, however, it's a definite keeper. 
+Written by Eric Smith on 8/24/1998
+Categories
+VB Techniques Reviews, Book Reviews Category
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

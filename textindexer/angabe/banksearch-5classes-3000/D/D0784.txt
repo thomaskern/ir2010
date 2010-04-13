@@ -1,0 +1,311 @@
+
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 4
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ April 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java Developer
+ 
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 4
+ 
+ Build multicast-aware apps with JRMS 
+ 
+ 
+ 
+Summary
+ This fourth installment of Rinaldo Di Giorgio's Brazil technology series introduces you to multicast via JRMS (Java Reliable Multicast Service). Multicast is a protocol that supports simultaneous message transmission to multiple recipients, without having a point-to-point connection with each recipient. In this article, Di Giorgio presents some JRMS examples that you can use in your own network, and provides sample code for a Brazil handler that creates a weather multicast channel. (2,400 words)
+ 
+ By Rinaldo Di Giorgio
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ Page 1 of 2
+ 
+Advertisement 
+ 
+ 
+ 
+o far in this series, I have discussed how to meet client protocol requirements utilizing Brazil technology. You have learned how to use Java applets, JavaScript, BSL, plain text, Palm query applications, and WML (Wireless Markup Language) to deliver data to recipients using any browser or device. In Part 4, I'll introduce the Java Reliable Multicast Service (JRMS) API, which allows you to develop multicast-aware applications. 
+Read the whole series on Brazil technology:
+ 
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols 
+- Part 2: How to support XML applications with the Brazil project 
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project 
+- Part 4: Build multicast-aware apps with JRMS 
+- Part 5: Manage users and content with Brazil 
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil 
+The multicast protocol supports simultaneous message transmission to multiple recipients, without having a point-to-point connection with each recipient. The JRMS from Sun Microsystems provides an implementation for building multicast-aware applications. Multicast decreases bandwidth consumption and, with minimal programming and coordination, allows developers to deploy applications in new ways using channels that have current data. Multicast is particularly valuable for satellite providers that use fast, scarce bandwidth to provide news, stock, video, game, and general replication update feeds over single channels to entire cities.
+Technologies like JRMS offer the basis to achieve multicast-aware applications. In this article, I will introduce some examples of JRMS that you can use in your own network. Then I will provide sample code for a Brazil handler that creates a weather multicast channel; users can tune to it and select different sources of weather information.
+After understanding these small examples, you should be able to develop applications that are multicast-aware -- network topology permitting. 
+ What is multicast? 
+As mentioned above, the multicast protocol sends a message to multiple receivers, but does not establish a point-to-point connection with each receiver. For example, you could multicast n radio stations on n ports for a large population of Internet users. 
+Multicast scales without packed duplication; unicast does not. Net applications are mostly unicast. For example, most audio and video applications open point-to-point connections between the client and the server. So 1 million users employing a unicast approach require 1 million different ports, and each packet must be duplicated 1 million times. Using the multicast approach, 1 million users could receive that data using only a fraction of those ports.
+Some efforts involving multicast protocols have not yet taken off, like Multicast Backbone (MBONE). (See Resources for a link.) Many vendors of applications and services in the video, audio, and generic data feed market do not use multicast. Their applications often establish point-to-point connections between the clients and servers. Multicast is not something you just use in your application; multicast protocols require support at the protocol stack level and in the network infrastructure.
+Multicast is not yet widely available, so the Internet cannot efficiently deliver the same information to many users. As networking technology improves and bandwidth increases, multicast-aware applications may become more common. 
+ What is JRMS? 
+The JRMS developers page states that the JRMS project mission is to: 
+ Create a network service which enables building multicast-aware applications that distribute information over IP networks. 
+Sun Labs technical report #TR-98-68 provides a technical explanation of what multicast is and how it can be used (see Resources for link to report).
+ JRMS examples from Sun JRMS team 
+Download the JRMS API from Sun and try a few of the examples. I suggest testing the examples on two machines, but if you only have one, you can run the code on your computer using two windows. 
+Sun's JRMS team provided the examples in the table below. You can run them from various command line shells, such as Unix terminal windows or DOS windows. It can be instructive to see the packets going out on the network; use your favorite TCP/IP analysis tool to display the packets. Windows developers should consider downloading the Cygwin tools to create a more powerful command window-scripting environment. (See Resources.) 
+The examples in the following table use either lightweight reliable multicast protocol (LRMP) or tree-based reliable multicast protocol (TRAM). LRMP is an implementation that provides multipoint-to-multipoint reliable and ordered delivery for multiple senders. TRAM provides large-scale point-to-multipoint delivery for single senders. Consult the JRMS Website for more details on these protocols (see Resources for a link). 
+ JRMS examples DirectoryDescription
+ stock Source code for the sample stock ticker application, which uses TRAM to periodically send stock information from one sender (StockServer) to multiple receivers (StockViewer). The server requests information from www.yahoo.com and parses it before multicasting to the receivers. 
+ slingerSwing Sample file-transfer application with GUI and command line interfaces. 
+ chat This application uses LRMP in a multisender chat application. 
+ testtools Testing programs -- start with JRMStest. 
+ msendreceive Simple example that provides Sender and Receiver using MulticastSocket and joinGroup. 
+ mctest This application uses reliable multicast to stream data from a sender to multiple receivers. 
+ TreeTest The TreeTest package is a simple GUI application that simulates a set of network nodes building a TRAM repair tree. TreeTest can be invoked with a configuration file as an argument, or the user can manually add nodes. Once the nodes are in place, TRAM may be started. Multicast messages display on the screen as expanding circles. It is recommended that you turn off the display when simulating large numbers of nodes; it takes up extra processing time. 
+ 
+You can find documentation for the JRMS APIs online. (See Resources for a link.) 
+ Next page >
+Page 1 Serve clients' specific protocol requirements with Brazil, Part 4
+Page 2 Brazil technology and JRMS
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- "Serve Clients' Specific Protocol Requirements with Brazil," Rinaldo Di Giorgio (JavaWorld):
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols (August 2000)
+- Part 2: How to support XML applications with the Brazil project (October 2000)
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project (January 2001)
+- Part 4: Build multicast-aware apps with JRMS (April 2001)
+- Part 5: Manage users and content with Brazil (August 2001)
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil (July 2002)
+- The support Website for this series: 
+http://www.brazilhandlers.com:9090/
+- "Restricted-Channel Multicast in Java," Jason Scherer with contribution by Rinaldo Di Giorgio (JavaWorld, September 1998): 
+http://www.javaworld.com/jw-09-1998/jw-09-javadev.html
+- Read more from Java Developer: 
+http://www.javaworld.com/javaworld/topicalindex/jw-ti-javadev.html
+- Sign up for the JavaWorld This Week free weekly email newsletter and keep up with what's new at JavaWorld: 
+http://www.idg.net/jw-subscribe
+- Discuss technical issues in the Java Forum: 
+http://forums.idg.net/webx?14@@.ee6b802
+General multicast information
+- Sun Labs Technical Report on JRMS: 
+http://www.sun.com/research/technical-reports/1998/abstract-68.html 
+- One of the best resources on IP multicast: 
+http://www.ipmulticast.com/
+- Service providers that support IP multicasting: 
+http://www.ipmulticast.com/isplist.htm
+- Tutorial on setting up multicast communication in wide area networks: 
+http://www.cc.gatech.edu/fac/Mostafa.Ammar/tutorial/html/intro/
+- Additional research papers on multicast: 
+http://www.erg.abdn.ac.uk/users/martin/links/links.html
+- FAQ on MBONE: 
+http://www.cs.columbia.edu/~hgs/internet/mbone-faq.html
+Code resources for this article
+ 
+- Documentation for the JRMS APIs: 
+http://www.experimentalstuff.com/Technologies/JRMS/index.html
+- WeatherJRMSServer.java: 
+http://www.brazilhandlers.com:9090/JavaWorld/Brazil/Series4/WeatherJRMSServer.java
+- WeatherJRMSViewer.java: 
+http://www.brazilhandlers.com:9090/JavaWorld/Brazil/Series4/WeatherJRMSViewer.java
+- WeatherHandler.java: 
+http://www.brazilhandlers.com:9090/JavaWorld/Brazil/Series4/WeatherHandler.java
+- WeatherStation.java: 
+http://www.brazilhandlers.com:9090/JavaWorld/Brazil/Series4/WeatherStation.java
+Some general code signing URLs
+ 
+- General introduction to signing: 
+http://java.sun.com/security/signExample12/
+- Plug-in for Netscape: 
+http://java.sun.com/products/plugin/1.3/docs/netscape.html
+- More details on permissions: 
+http://java.sun.com/j2se/1.3/docs/guide/security/permissions.html
+- New and improved strategy and tool for deploying Java applets: 
+http://java.sun.com/products/javawebstart/
+- The following two URLs provide starting points for understanding coordinate systems. Serious developers should consult XML resources in this area before developing ad hoc solutions:
+- Latitude/Longitude and Universal Transverse Mercator: http://www.qldwalking.org.au/bushwalking/utm.htm
+- Conversion program: http://www.igsb.uiowa.edu/gettrs/inputu.htm
+Development tools
+- Make your Windows or NT easier to use for development by downloading the Cygwin tools: 
+http://sources.redhat.com/cygwin/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

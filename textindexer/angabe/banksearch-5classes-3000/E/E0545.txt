@@ -1,0 +1,115 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/dpmi/ch5.n.html 
+ 
+search 
+ 
+DPMI Function by Number 
+ 2f 1680 - Release Current Virtual Machine's Time Slice
+ 2f 1686 - Get CPU Mode
+ 2f 1687 - Obtain Real-to-Protected Mode Switch Entry Point
+ 2f 168a - Get Vendor-Specific API Entry Point
+ 31 0000 - Allocate LDT Descriptors
+ 31 0001 - Free LDT Descriptor
+ 31 0002 - Segment to Descriptor
+ 31 0003 - Get Selector Increment Value
+ 31 0004 - Reserved
+ 31 0005 - Reserved
+ 31 0006 - Get Segment Base Address
+ 31 0007 - Set Segment Base Address
+ 31 0008 - Set Segment Limit
+ 31 0009 - Set Descriptor Access Rights
+ 31 000a - Create Alias Descriptor
+ 31 000b - Get Descriptor
+ 31 000c - Set Descriptor
+ 31 000d - Allocate Specific LDT Descriptor
+ 31 000e - Get Multiple Descriptors
+ 31 000f - Set Multiple Descriptors
+ 31 0100 - Allocate DOS Memory Block
+ 31 0101 - Free DOS Memory Block
+ 31 0102 - Resize DOS Memory Block
+ 31 0200 - Get Real Mode Interrupt Vector
+ 31 0201 - Set Real Mode Interrupt Vector
+ 31 0202 - Get Processor Exception Handler Vector
+ 31 0203 - Set Processor Exception Handler Vector
+ 31 0204 - Get Protected Mode Interrupt Vector
+ 31 0205 - Set Protected Mode Interrupt Vector
+ 31 0210 - Get Extended Processor Exception Handler Vector (Protected Mode)
+ 31 0211 - Get Extended Processor Exception Handler Vector (Real Mode)
+ 31 0212 - Set Extended Processor Exception Handler Vector (Protected Mode)
+ 31 0213 - Set Extended Processor Exception Handler Vector (Real Mode)
+ 31 0300 - Simulate Real Mode Interrupt
+ 31 0301 - Call Real Mode Procedure With Far Return Frame
+ 31 0302 - Call Real Mode Procedure With IRET Frame
+ 31 0303 - Allocate Real Mode Callback Address
+ 31 0304 - Free Real Mode Callback Address
+ 31 0305 - Get State Save/Restore Addresses
+ 31 0306 - Get Raw Mode Switch Addresses
+ 31 0400 - Get Version
+ 31 0401 - Get DPMI Capabilities
+ 31 0500 - Get Free Memory Information
+ 31 0501 - Allocate Memory Block
+ 31 0502 - Free Memory Block
+ 31 0503 - Resize Memory Block
+ 31 0504 - Allocate Linear Memory Block
+ 31 0505 - Resize Linear Memory Block
+ 31 0506 - Get Page Attributes
+ 31 0507 - Set Page Attributes
+ 31 0508 - Map Device in Memory Block
+ 31 0509 - Map Conventional Memory in Memory Block
+ 31 050a - Get Memory Block Size and Base
+ 31 050b - Get Memory Information
+ 31 0600 - Lock Linear Region
+ 31 0601 - Unlock Linear Region
+ 31 0602 - Mark Real Mode Region as Pageable
+ 31 0603 - Relock Real Mode Region
+ 31 0604 - Get Page Size
+ 31 0700 - Reserved
+ 31 0701 - Reserved
+ 31 0702 - Mark Page as Demand Paging Candidate
+ 31 0703 - Discard Page Contents
+ 31 0800 - Physical Address Mapping
+ 31 0801 - Free Physical Address Mapping
+ 31 0900 - Get and Disable Virtual Interrupt State
+ 31 0901 - Get and Enable Virtual Interrupt State
+ 31 0902 - Get Virtual Interrupt State
+ 31 0a00 - Get Vendor-Specific API Entry Point
+ 31 0b00 - Set Debug Watchpoint
+ 31 0b01 - Clear Debug Watchpoint
+ 31 0b02 - Get State of Debug Watchpoint
+ 31 0b03 - Reset Debug Watchpoint
+ 31 0c00 - Install Resident Service Provider Callback
+ 31 0c01 - Terminate and Stay Resident
+ 31 0d00 - Allocate Shared Memory
+ 31 0d01 - Free Shared Memory
+ 31 0d02 - Serialize on Shared Memory
+ 31 0d03 - Free Serialization on Shared Memory
+ 31 0e00 - Get Coprocessor Status
+ 31 0e01 - Set Coprocessor Emulation
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 1996 
+by DJ Delorie 
+ 
+ 
+Updated Apr 1996 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

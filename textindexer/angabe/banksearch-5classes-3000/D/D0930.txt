@@ -1,0 +1,93 @@
+
+JavaBeans(TM)
+The JavaTM Tutorial
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Trail: JavaBeans(TM)
+by Andy Quinn
+JavaBeans brings component technology to the Java
+platform.
+With the JavaBeans API you can
+create reuseable, platform-independent components. Using
+JavaBeans-compliant application builder tools,
+you can combine these components into applets,
+applications, or composite components.
+JavaBean components are known as Beans.
+JavaBeans is a core JDK1.1 capability. Any JDK1.1-compliant
+browser or tool implicitly supports JavaBeans. 
+This document is a hands-on guide to learning JavaBeans and
+the Beans Development Kit (BDK).
+The 
+JavaBeans API Specification provides a complete JavaBeans description.Print out a copy of the JavaBeans specification, and keep it
+handy when going through this document.
+The BDK is available free on the web.
+In addition to the 
+BDK , you will need the 
+Java Development Kit (JDK).
+JavaBeans Concepts and the Beans Development Kit
+describes what makes a Bean, and describes the
+Beans Development Kit (BDK).
+Using the BeanBox describes basic BeanBox
+operation, and explains the BeanBox menus.
+Writing a Simple Bean walks you through creating
+a rudimentary Bean, saving the Bean, adding the Bean to the ToolBox,
+placing the Bean in the BeanBox, inspecting the Bean's properties and
+events, and generating a Bean introspection report.
+Properties explains how to give your Beans properties:
+Bean appearance and behavior characteristics customizable at design time.
+Manipulating Events in the BeanBox describes the
+BeanBox's event manipulating capabilities. If you are not familiar 
+with event handling, you might want to read up on
+Event Handling to prepare for this material.
+The BeanInfo Interface describes how to
+write Bean information classes: Separate classes you can use to explicitly
+advertise your Bean's properties, methods, and events to builder tools.
+Bean Customization introduces you to property
+editors, and the Customizer interface.
+Bean Persistence explains how to save and retore
+your Beans, and their customized state.
+Using the BeanContext API 
+is a NEW
+lesson by
+Scott Hommel
+that covers
+The Extensible Runtime Containment and Services Protocol,
+also known as beancontext.
+New Features lists upcoming BDK and 
+Beans-related features.
+Additional Documentation
+The BDK's beans/docs directory
+contains documentation for
+ 
+- The Beans API
+ 
+- The BeanBox API
+ 
+- The demo Beans
+ 
+- The java.util API
+ 
+- Java Archive (JAR) files and manifests
+ 
+- Makefiles for gnumake (Unix) and nmake (Windows)
+A good starting point is the file beans/README.html.
+The 
+JavaBeans Documentation page contains current JavaBeans API definitions,
+upcoming JavaBeans feature descriptions,
+and related Java documentation such as the
+Java Core Reflection API, Object
+Serialization, Remote Method
+Invocation (RMI), and a 
+third-party JavaBeans book list.
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

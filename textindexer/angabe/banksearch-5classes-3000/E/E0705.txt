@@ -1,0 +1,328 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Intelligent 'enum's in C++ Applications
+This article was contributed by 
+Lloyd Willemsen.
+Environment: C++
+Keywords: Enumerations, strings, integers, automatic defaults.
+On several occasions in the past I have found C++ enumerations lacking.
+Enums need an automatic default and Enums need string functionality along with the integer value, particularily in applications that interact with a user either on a GUI or in an error message.
+I thus concieved the idea to represent Enums as C++ classes which provide all the standard functionality of an enum, by overiding the relevant operators. And then adding the extra functionality desired.
+Rather than writing these classes, a utility which translates standard Enum declerations to such classes would be great. Along with the idea, I have supplied a utility EC (enum compiler) that will do the job on Microsoft platforms.
+In other words if I supply the following:
+ enum EState
+ {
+ Unknown = 0,
+ Solid = 1, // Solid Matter
+ Liquid = 2, // "Liquid Matter "
+ Gas, /* Vapour */
+ };
+One could generate a class as follows:
+ class EState
+ {
+ public:
+ // EState::Unknown,Solid,Liquid,Gas,
+ enum Enum
+ {
+ Unknown = 0,
+ Solid = 1, // "Solid Matter"
+ Liquid = 2, // "Liquid Matter "
+ Gas, // "Vapour"
+ };
+ Enum operator=(int i);
+ operator int () const;
+ Enum operator=(const char* sz);
+ bool operator==(const char* sz);
+ operator const char* () const;
+ ...
+ };
+ EState::Map_t EState::m_Map[] =
+ {
+ {Unknown, "Unknown"},
+ {Solid, "Solid Matter"},
+ {Liquid, "Liquid Matter "},
+ {Gas, "Vapour"}
+ };
+which could then be used as an "intelligent" Enum.
+These "intelligent" Enums can be used as follows:
+ int X;
+ ...
+ EState eState;
+ eState = X;
+ if(eState == EState::Unknown) {...}
+ ...
+ printf("eState is '%s' [%d]", (const char*)eState, eState);
+ ...
+ eState = "Text String";
+ if(eState == EState::Unknown) ...
+ ...
+ 
+making some parts of coding simpler and more understandable.
+Downloads
+Download EnumCompiler utility(Microsoft) and demo project - 16 Kb
+History
+Date Posted: December 6, 2001
+ 
+Comments:
+- have alrady a macro for this purpose - Scherieble (2002/06/24)
+- A better way already exists: the typesafe enum pattern - Andrew Chalk (2002/03/05)
+- Sorry for my Error! This is a great article - EF (2001/12/14)
+- Honest, A good code! Message to EF stupid. - hIMAN (2001/12/14)
+- Enumerated enums - OmegaMan (2001/12/08)
+- Intelligent 'enum's in C++ Applications - Lloyd Willemsen - okocim pilsner (2001/12/07)
+- This is Basic!! Come on!! - EF (2001/12/07)
+- Global Operators - Igor (2001/12/06)
+Add Comment
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Business Search
+Secure Business IM
+Tech Magazines-Free
+EMedia Mag Free Sub
+For CGI Scripts
+Computer Training
+Build Flash Online
+Promote Your Website
+FlashMX Tools/Bundles
+Find a Consultant
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

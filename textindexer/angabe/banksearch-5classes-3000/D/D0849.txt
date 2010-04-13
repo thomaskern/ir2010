@@ -1,0 +1,472 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Working with the RMS - Part II 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+ 	
+	 
+	
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+Working with the RMS - Part II
+	
+	
+	by John W. Muchow -11/15/2001
+	
+	
+Portions of this article are used with permission from the forthcoming book Core J2ME Technology by John W. Muchow, published by Sun Microsystems Press and Prentice Hall. Copyright 2001 Sun Microsystems Inc.
+In the first article of this series, we answered several common questions regarding persistent storage (Record Management System) within MIDP:
+- Can record stores be shared among MIDlets?
+- Can record id's be re-used?
+- How do you use the Enumeration class?
+We concluded the previous article with a MIDlet that showed how one might use the Enumeration class to move through records in persistent storage. As an extension of that example, this article will address how to use an enumeration to sort and search records within the record store.
+Sorting with RecordComparator
+RecordEnumeration is a class that allows forward and backward movement through a record store. Moving through the store requires nothing more than a check to see if there is another record available (in either direction), and if so, requesting its data. 
+RecordStore rs;
+...
+RecordEnumeration re = rs.enumerateRecords(null, null, false);
+while (re.hasNextElement())
+{
+ String str = new String(re.nextRecord());
+ System.out.println("Record: " + str); 
+}
+RecordComparator is a Java interface. You implement this interface when you would like the enumeration to return records in sorted order. There is only one method in the RecordComparator interface, compare(). This method is called by the enumeration to create the (sorted) result set. Here is a simple class that implements the interface. 
+public class Comparator implements RecordComparator
+{
+ public int compare(byte[] rec1, byte[] rec2)
+ {
+ String str1 = new String(rec1), str2 = new String(rec2);
+ 
+ int result = str1.compareTo(str2);
+ if (result == 0)
+ return RecordComparator.EQUIVALENT;
+ else if (result 0)
+ {
+ Comparator comp = new Comparator();
+ 
+ RecordEnumeration re = rs.enumerateRecords(null, comp, false);
+ while (re.hasNextElement())
+ {
+ String str = new String(re.nextRecord());
+ System.out.println(str);
+ System.out.println("------------------------------"); 
+ }
+ }
+ }
+ catch (Exception e)
+ {
+ db(e.toString());
+ }
+ }
+ 
+ /*--------------------------------------------------
+ * Simple message to console for debug/errors
+ *-------------------------------------------------*/
+ private void db(String str)
+ {
+ System.err.println("Msg: " + str);
+ }
+}
+ 
+/*--------------------------------------------------
+| Comparator.java
+|
+| Compares two records to determine sort order
+*-------------------------------------------------*/
+class Comparator implements RecordComparator
+{
+ public int compare(byte[] rec1, byte[] rec2)
+ {
+ String str1 = new String(rec1), str2 = new String(rec2);
+ 
+ int result = str1.compareTo(str2);
+ if (result == 0)
+ return RecordComparator.EQUIVALENT;
+ else if (result ">about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

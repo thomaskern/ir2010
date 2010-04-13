@@ -1,0 +1,37 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Menus
+Menus are very common in applications these days and are very useful, not to mention they organize a program and make it look professional. Making menus is very easy, and they work like so, you click they do. Pretty much like command buttons.
+ 
+In order to start on making a menu, run VB, right click over a form in VB's development environment and click menu editor.
+Here is what you need to know about the menu editor:
+Checked - This shows if the menu item has a check next to it. (Checks will not check and uncheck @ run time if the user clicks on them several times, this has to be done in code)
+HelpContextID - Matches a help file description if you have help files in your program
+Index - This distinguishes menu control arrays
+Shortcut - A keypress that accesses a menu item (for example if you have Quit as one of your menu items you can have the shortcut of F1, and instead of the user having to go and actually click the menu item, they can just press F1 instead)
+Window List - Determines if the menu item applies to an MDI (multiple document interface, such as Microsoft Word)
+ Tip: Control arrays are controls that all have the same name (example, you have 3 text boxes that have the name txt1)
+Lets make a quick menu (well, sorta quick...).
+1) Open menu editor in VB
+2) In the Caption write "&File" (the & underlines the letter coming after it, so we can access it w/ the keyboard)
+3) In the Name write "mnuFile"
+4) Click Next and then click the right arrow button
+5) In Caption write "Example"
+6) In Name write "mnuExample"
+7) Click Next
+8) In Caption write "-"
+9) In Name write "mnuSeperator"
+10) Click Next
+11) In Caption write "Example2"
+12) In Name write "mnuExample2"
+13) Click Next and then click the right arrow button
+14) In Caption write "Example3"
+15) In Name write "mnuExample3"
+16) Click Next and then click the left arrow button
+17) In the Caption write "Example4"
+18) In the Name write "mnuExample4"
+19) Click OK
+20) Run it
+OK so it was a lot of work, but now you know almost everything you need to know to master Menus. in order to put menus to work, click the menu item (in VB's dev. environment) and that's where the codes are going to go.
+Back
+Next

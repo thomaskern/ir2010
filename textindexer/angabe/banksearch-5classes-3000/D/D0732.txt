@@ -1,0 +1,162 @@
+
+Solving Common 2D Graphics Problems
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: 2D Graphics
+Lesson: Solving Common 2D Graphics Problems
+Problem: 
+I can run my Java2D applets with appletviewer, but they do not run 
+in my browser. The Java console of the browser says: 
+defn not found for java/awt/Graphics2D.
+- 
+You need to download Java Plugin 1.2 to run Swing and 2D applets in a browser. 
+You can download the plugin here:
+http://java.sun.com/products/plugin/index.html
+You will need to adjust your HTML files to point to the plugin. Here is a page 
+with several examples, including a 2D sample at the bottom:
+http://java.sun.com/products/plugin/1.2/demos/applets.html
+Problem: 
+How can you write over a previous image? Our problem is that our applet 
+displays an image of a map, but when we draw a line on top of the map, the line
+overwrites the map. 
+- 
+You should try drawing your image into a BufferedImage. 
+Then, draw the BufferedImage into the Graphics2D context 
+and then draw the line to the Graphics2D context. Here's 
+a sample that does this:
+Map_Line.java
+Just substitute the name of your image for images/bld.jpg.
+Problem: 
+How do you create a BufferedImage from a gif or
+jpeg file?
+- 
+To create a BufferedImage from a gif or jpeg, you
+load your gif or jpeg into an Image object and then 
+draw the Image to the BufferedImage object. 
+The following snippet illustrates this:
+Image img = getImage("picture.gif");
+int width = img.getWidth(this);
+int height = img.getHeight(this);
+BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+Graphics2D biContext = bi.createGraphics();
+biContext.drawImage(img, 0, 0, null);
+getImage is an Applet method. If you have 
+an application, you can use:
+Image img = Toolkit.getDefaultToolkit().getImage("picture.gif");
+try {
+ MediaTracker tracker = new MediaTracker(this);
+ tracker.addImage(img, 0);
+ tracker.waitForID(0);
+} catch (Exception e) {}
+int width = img.getWidth(this);
+int height = img.getHeight(this);
+BufferedImage bi = new BufferedImage(width, height,
+BufferedImage.TYPE_INT_RGB);
+Graphics2D biContext = bi.createGraphics();
+biContext.drawImage(img, 0, 0, null);
+BufferedImage.TYPE_INT_RGB is one of many 
+BufferedImage types. For more information, see:
+http://java.sun.com/products/java-media/2D/forDevelopers/2Dapi/java/awt/image/BufferedImage.html
+You need to create a Graphics2D context for the BufferedImage 
+by using the createGraphics method. Then, you can use the 
+drawImage method from the Graphics2D class to draw the 
+image into the buffered image. In the ImageOps sample on the 
+"Filtering a BufferedImage" page, images are drawn into buffered images. 
+You could 
+also look at this page: 
+http://java.sun.com/products/java-media/2D/samples/index.html, which has links to samples that use gifs, jpegs and BufferedImage objects.
+Problem: 
+I can't compile the source code for StrokeAndFill.java 
+and Transform.java with jdk1.2beta4.
+- 
+The TextLayout.getOutline implementation was changed 
+between beta4 and the current JDK. The new implementation takes only 
+an AffineTransform as an 
+argument. You need to download the new JDK to run the sample. 
+Problem: 
+Is there a way to specify a formula 
+for a line and draw a picture according to it?
+- 
+Using line segments would be the easiest way. 
+You can represent the line segments either by filling a 
+GeneralPath with them, or by implementing Shape 
+and PathIterator and reading back 
+the line segments "on demand" to save the intermediate storage of the 
+GeneralPath object.
+Note that you could analyze your formula and determine how to 
+match it with cubic or quadratic bezier curves, but this is 
+probably overkill.
+Problem: 
+How do I add text to a graphic field at a certain location? 
+- 
+A class called Graphics2D was added with JDK 1.2 
+(now called Java 2 SDK). This class extends Graphics. 
+There are drawString methods in Graphics2D 
+that you can use. If you will be rotating the text, you should use 
+Graphics2D rather than Graphics so that you 
+can perform rotations and other transformations on your 
+Graphics2D context.
+The Transform sample in the 2D tutorial doesn't use 
+drawString to render the 
+text. What happens is that a TextLayout is created from 
+the string "Text." The TextLayout allows us to create a 
+Shape object from the String by getting it's 
+outline. We enter this Shape into the shapes array, along 
+with the rectangle 
+and ellipse shapes. When we draw or fill the selected Shape 
+from the shapes array, we call g2.draw(Shape) or 
+g2.fill(Shape).
+You could use drawString to render the text to the 
+Graphics2D context and then 
+call g2.rotate (angle of rotation). This will rotate 
+everything that you've already rendered into the Graphics2D 
+context, however. So, you could reset the 
+g2 context transform each time you want to transform a 
+particular image or piece of text in the context separately from other 
+things that have already been rendered into the g2 context. 
+There are other 2D samples you can look at here:
+http://java.sun.com/products/java-media/2D/samples/index.html 
+They are a little more advanced than the tutorial samples. If you will be 
+transforming text, I would recommend looking at the sample, "Transformation of 
+Characters" from the Fonts group of samples. There is another one in the 
+Transforms group of samples that performs animation of both text and images 
+rotating, scaling and translating. It is the third sample in this group. This 
+sample does use g2.drawString. It uses g2.setTransform to reset the 
+transformation for each object to be transformed. If you will be using Swing 
+components in your interface, keep in mind that these components are affected 
+when you use g2.setTransform. To fix this problem, you can perform all of your 
+drawing in a BufferedImage and then draw this BufferedImage 
+to the g2 context 
+when you are finished drawing. This sample solves the problem in this way.
+Problem: 
+I noticed your comment on the bottom of 
+Creating and Deriving Fonts 
+regarding bug 4155852. This bug has been closed with 
+no action taken. 
+Is it true that you can't apply a style to fonts such as Arial? 
+The problem is that font-to-style matching is not working properly for physical 
+fonts (such as Arial or Palatino). You can only apply styles to logical fonts 
+at this point (such as Dialog or SansSerif).
+As a workaround until the bug is fixed, you could do the following:
+ Font f = new Font("Palatino Bold", Font.PLAIN, 12); 
+ 
+instead of: 
+ 
+ Font f = new Font("Palatino", Font.BOLD, 12);
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

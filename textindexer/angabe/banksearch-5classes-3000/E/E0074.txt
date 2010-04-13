@@ -1,0 +1,569 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Improving C++Builder Build Times With Pre-Compiled Headers.
+C++Builder is one of the fastest C++ compilers around, and probably the fastest Win32 C++ compiler in terms of compilation speed.
+Despite the speed advantage that C++Builder holds over other C++ compilers, many Delphi programmers contort in agony while waiting
+for a C++Builder project to compile. Anyone that has seen Delphi knows that it is blazing fast in comparison to any C++
+compiler. Delphi can compile small example projects in less than a second, and large projects can be built in less than
+five.
+So why does Delphi hold such a speed advantage over C++Builder? Furthermore, is there anything that can be done to
+improve the compilation speed of C++Builder? This article explains why C++ compilers are inherently slow, and
+demonstrates a simple tactic to boost compile times in C++Builder.
+- Why C++ Compilers are Slow
+- How C++Builder Uses Pre-Compiled Headers To Reduce Compile Times
+- Explanation of Pre-Compiled Headers in a VCL GUI Project
+- Optimizing C++Builder's Use of Pre-Compiled Headers
+- Results
+- Notes
+Why C++ Compilers are Slow
+In C++, you cannot call function from a source file unless that function has been previously defined or declared. So
+what does this mean? Consider a simple example where function A() calls function B().
+A() cannot call B() unless a prototype for B(), or the function body for B(),
+resides somewhere above the function body for A(). The code below illustrates this point.:
+// declaration or prototype for B
+void B();
+void A()
+{
+ B();
+}
+// definition, or function body of B
+void B()
+{
+ cout "hello";
+}
+The code will not compile without the prototype for B(), unless the function body for B() is moved up
+above A().
+Function prototypes serve a crucial role to the compiler. Every time you execute a routine, the compiler must insert
+proper code to call the routine. The compiler must know how many parameters to pass the function. The compiler
+must know if the function expects its parameters on the stack or in registers. In short, the compiler needs to know how
+to generate the correct code to call the function, and it can only do this if it has seen a previous declaration or
+definition for the function that is being called.
+To simplify the prototyping of functions and classes, C++ supports a #include statement. The #include
+directive allows a source file to read function prototypes from a header file prior to the location in code where
+the prototyped functions are called. The #include directive plays an important role in Win32 C++ development.
+Function prototypes for C RTL functions are provided in a standard set of header files. The Win32 API is prototyped in
+a set of header files provided by Microsoft, and the classes and functions of the VCL are listed in header files that
+come with C++Builder. You can't create a very useful Windows program without including header files provided by
+Microsoft or Borland.
+Header files help implement C++ type checking in a manner that is easy to manage for the programmer. However, this
+benefit comes at a huge cost. When the compiler runs across a #include directive,
+it literally opens the included file and inserts it into the current file. The compiler then parses the included file
+as if it was part of the file that it was already compiling. So what happens if the first header file includes yet
+another file? The compiler will suck in that file and start parsing it. Imagine what happens when 10, 20, or
+even 100 files are included? While this number of include files may sound large, it isn't unrealistic when you start
+adding up the Windows SDK header files and all of the VCL header files.
+To demonstrate how the compiler branches off and translates included files, consider the following code example. This
+is a simple console mode program that I built using the Console Wizard from the Object Repository. In order to test this
+code, select Options-Project-Compiler and turn off pre-compiled headers.
+// include some standard header files
+#include 
+#include 
+#include 
+#include 
+#pragma hdrstop
+#include 
+//-----------------------------------------------
+int main()
+{
+ printf("Hello from printf.\n");
+ cout "Hello from cout" endl;
+ MessageBeep(0);
+ return 0;
+}
+When I build this project with C++Builder, the build progress dialog reports that the project contains 130,000 lines of
+code. 130 thousand lines! How can that be? The source file only contains about four lines of code. The 130,000 lines
+were contained in STDIO.H, STRING.H, IOSTREAM.H, WINDOWS.H and all of the other header files that are included by
+these four header files. In this example, the compiler spent the vast majority of its time processing header files.
+Now let's investigate what happens when you have multiple CPP files in a project. Building off of the existing
+project, let's add a unit to the console program that we already have. Add a simple function to this
+second unit. Then alter the first CPP file so it will call the new function.
+//-------------------------------------------------------
+// UNIT1.CPP
+#include 
+#include 
+#include 
+#include 
+#include "Unit1.h" // prototype A() in unit1.h
+#pragma hdrstop
+void A()
+{
+ printf("Hello from function A.\n");
+}
+//-------------------------------------------------------
+//-------------------------------------------------------
+// PROJECT1.cpp
+#include 
+#include 
+#include 
+#include 
+#include "Unit1.h"
+#pragma hdrstop
+#include 
+//-------------------------------------------------------
+USEUNIT("Unit1.cpp");
+//-------------------------------------------------------
+int main()
+{
+ printf("Hello from printf.\n");
+ cout "Hello from cout" endl;
+ A();
+ MessageBeep(0);
+ return 0;
+}
+//-------------------------------------------------------
+Now build the project. If you turned off pre-compiled headers before building the project, you will see that the
+compiler progress dialog reports 260,000 lines of code when the build finishes. Notice that the compiler had to
+translate the same set of header files in two different CPP files. We know from the previous example that these header
+files place a burden of 130,000 lines on the compiler. The second CPP file places the same 130,000 line burden on the
+compiler, for a grand total of 260,000 lines of header files. Imagine how this line count would rapidly grow in a large
+project. The burden of processing the same group of header files over and over can greatly increase compile times.
+How C++Builder Uses Pre-Compiled Headers To Reduce Compile Times
+The engineers at Borland realized that they could decrease build times by designing a compiler that did not process the
+same header files over and over during the build. To achieve this goal, Borland C++ 3.0 introduced the concept of
+pre-compiled headers. The idea behind pre-compiled headers is relatively simple. When the compiler processes a set of
+header files for one particular source file, it saves the compiled image of the header files on the hard drive. When
+that set of header files is required by another source file, the compiler loads the compiled image instead of processing
+the header files a second time.
+Let's modify our console mode program to see how pre-compiled headers can impact build times. The code itself should
+already be fine. We just need to turn the project's pre-compiled headers option back on. Select Options-Project-Compiler
+and check the Use pre-compiled headers option or the Cache pre-compiled headers option. Enter PCH.CSM in
+the pre-compiled header filename box. Do a full rebuild of the project once you change the settings.
+During the build, pay special attention to the compiler progress dialog. You should see that the compiler processes
+130,000 lines of code when it compiles PROJECT1.CPP, but when it compiles UNIT1.CPP, it only process 20 lines of code.
+The compiler generates a pre-compiled image when it parses the first source file, and that pre-compiled image is used
+to speed up compilation of the second source file. Imagine the performance boost that you would attain if the project
+contain 50 source files instead of 2.
+Explanation of Pre-Compiled Headers in a VCL GUI Project
+The use of pre-compiled headers in the previous example reduced the build time of the project by almost 50%. But that
+was a simple console mode program that didn't do much. You probably want to know how you can take
+advantage of pre-compiled headers in a full blown VCL GUI program. By default, C++Builder automatically turns on
+pre-compiled headers for you. However, C++Builder does not pre-compile every header file that is used by your program.
+It only pre-compiles the file VCL.H, which you can see by inspecting the top of any form's source file:
+#include 
+#pragma hdrstop
+The #pragma hdrstop directive tells the compiler to stop generating the pre-compiled image. Any
+#include statement located before the hdrstop directive will be pre-compiled, while any
+#include below the directive will not be pre-compiled.
+So how many header files get pre-compiled when VCL.H is pre-compiled? If you look at VCL.H, you will
+see that it includes another file called VCL0.H (assuming you have BCB3). If you don't alter the default
+settings of C++Builder, VCL0.H will include a small set of VCL header files. They are:
+// Core (minimal) VCL headers
+//
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+This is a small cross section of header files, and it probably represents only a subset of the header files that are
+used in a moderate to large sized project. VCL0.H does allow you to pre-compile more header files through the
+use of conditional defines. You can #define a variable called INC_VCLDB_HEADERS to pre-compile the
+VCL database header files. Likewise, you can define INC_VCLEXT_HEADERS to pre-compile header files for the
+extra controls that come with C++Builder. If you define a variable called INC_OLE_HEADERS, C++Builder will
+pre-compile some of the SDK COM header files. These defines should be placed before the #include statement
+for VCL.H.
+#define INC_VCLDB_HEADERS
+#define INC_VCLEXT_HEADERS
+#include 
+#pragma hdrstop
+Note: If you decide to try this technique, make sure you add to the two defines to every CPP file, even if they
+don't use DB classes or extra controls. The reasoning for this will be explained shortly.
+Optimizing C++Builder's Use of Pre-Compiled Headers
+The default pre-compiled header settings do reduce the time it takes to build a project. You can prove this fact by timing
+a full build of a large project when pre-compiled headers are on and by timing the build when pre-compiled headers are off.
+The goal of this article is to tweak the way C++Builder pre-compiles files to reduce build times even more. In this
+section, I have outlined two techniques for improving build times.
+Before we discuss the techniques, it important to realize how C++Builder decides that it can use an existing pre-compiled
+image when compiling a source file. C++Builder generates a unique pre-compiled image for every source file in your project.
+These pre-compiled images are saved in a file on your hard drive. The compiler will re-use an existing pre-compiled image
+when two source files require the same pre-compiled image. This is an important distinction. Two source files will
+require the same pre-compiled image if they include exactly the same files. Furthermore, they must include the
+files in the same order. Simply put, the source files must be identical up until the #pragma hdrstop directive.
+Here are some examples:
+ Example 1: Pre-compiled images don't match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #include #include 
+ #pragma hdrstop #pragma hdrstop
+ Example 2: Pre-compiled images don't match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #include #include 
+ #include #pragma hdrstop
+ #pragma hdrstop
+ Example 3: Pre-compiled images don't match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #include #pragma hdrstop 
+ #pragma hdrstop #include 
+ Example 4: Pre-compiled images match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #include #include 
+ #include #include 
+ #include #include 
+ #include #include 
+ #include "unit1.h" #include "unit1.h"
+ #pragma hdrstop #pragma hdrstop
+ Example 5: Pre-compiled images match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #define INC_VCLDB_HEADERS #define INC_VCLDB_HEADERS
+ #define INC_VCLEXT_HEADERS #define INC_VCLEXT_HEADERS
+ #include #include 
+ #pragma hdrstop #pragma hdrstop
+ #include "unit1.h" #include "unit2.h"
+ Example 6: Pre-compiled images don't match
+ //-------------------- //--------------------
+ // UNIT1.CPP // UNIT2.CPP
+ #define INC_VCLDB_HEADERS #include 
+ #define INC_VCLEXT_HEADERS #pragma hdrstop
+ #include 
+ #pragma hdrstop
+When the compiler processes a source file with a pre-compiled image that does not match an existing image, the
+compiler will produce a completely new image from scratch. Look at Example 2 above. Even though STDIO.H is
+compiled along with UNIT1.CPP, the compiler will translate STDIO.H again when it compiles
+UNIT2.CPP. Pre-compiled headers reduce compile times only when the compiler can re-use an existing
+pre-compiled image across multiple source files.
+This is the foundation for both of the techniques that I list here. Pre-compile as many header files as you can, and
+make sure that you use the same pre-compiled image in every source file.
+Technique 1:
+The first technique is to simply boost the number of files that VCL.H includes by
+adding two conditional defines to every source file. Open every CPP file in the project, including the project source
+file, and change the first two lines of the file so they look like:
+#define INC_VCLDB_HEADERS 
+#define INC_VCLEXT_HEADERS
+#include 
+#pragma hdrstop
+If you don't like the idea of adding these defines to every source file, you can accomplish the same thing by adding
+INC_VCLDB_HEADERS and INC_VCLEXT_HEADERS to the conditional defines line under Project - Options -
+Directories/Conditional.
+You might want to throw in some of the C RTL header files that you commonly use, along with WINDOWS.H. Make
+sure that you add the lines before the hdrstop pragma, and make sure that you list them in the same order in
+every C++ source file.
+#define INC_VCLDB_HEADERS
+#define INC_VCLEXT_HEADERS
+#include 
+#include 
+#include 
+#pragma hdrstop
+Technique 2:
+Technique 1 works fairly well, but it isn't very flexible. If you decide to add a new header file to the list of
+files that get pre-compiled, you need to modify every C++ source file in your project. Furthermore, Technique 1 is
+prone to error. If you mess up the order of your includes, you can actually make your compile times worse, not better.
+Technique 2 addresses some of the downfalls of Technique 1. The strategy here is to create one huge header file that
+includes every header file that is used in your project. This single file will include the VCL files, windows SDK
+header files, and RTL header files. It can also include all of the header files for forms and units that you have
+created, but as we will see later on, you don't want to pre-compile header files that are likely to change (see the
+note entitled Don't pre-compile header files that change).
+Here is an example of what the common header file will look like:
+//---------------------------------------------------------
+// PCH.H: Common header file
+#ifndef PCH_H
+#define PCH_H
+// include every VCL header that we use
+// could include vcl.h instead
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+// include the C RTL headers that we use
+#include 
+#include 
+#include 
+// include headers for the 3rd party controls
+// TurboPower System
+#include "StBase.hpp"
+#include "StVInfo.hpp"
+// Our custom controls
+#include "DBDatePicker.h"
+#include "DBRuleCombo.h"
+#include "DBPhonePanel.h"
+// Object Repository header files
+#include "BaseData.h"
+#include "BASEDLG.h"
+// project include files
+// pre-compile these only if PRECOMPILE_ALL is defined
+#ifdef PRECOMPILE_ALL
+#include "About.h"
+#include "mainform.h"
+...
+... // about 60 more files
+...
+#include "validate.h"
+#endif
+#endif
+Once you have the gigantic common header file ready, change every source file so it includes this file. I have chosen
+to leave the original include statement for VCL.H intact. You might want to move VCL.H to the
+common header file.
+//-----------------------------------------------
+#include 
+#include "pch.h"
+#pragma hdrstop
+Note: After you add the include for PCH.H to every C++ source file, don't insert any more include
+files prior to the #pragma hdrstop. Doing so will cause those C++ files to require a pre-compiled image that
+does not match the pre-compiled image from other files.
+Results:
+I am currently employing Technique 2 without defining PRECOMPILE_ALL on my current project. The project
+is a medium sized client/server database program that consists of 113 C++ source files, most of which are forms or
+datamodules. Using Technique 2, a full build of the project takes only 195 seconds. Of that 195 seconds, 40 seconds
+are spent generating the pre-compiled header, and about 40 seconds are spent linking. In the remaining time, the compiler
+translates 113 C++ source files. That's an average of one file per second. By way of comparison, the project takes
+more than 30 minutes to build when no pre-compiled headers are used, and the project takes 18 minutes to build when
+pre-compiled headers are used but Technique 2 is not utilized.
+Incremental makes with Technique 2 are lightning fast when no header files have changed. The compiler does not bother
+to regenerate the pre-compiled image on disk if no header files have changed. When this condition is met, an incremental
+make takes only 1 or 2 seconds, because only the C++ source files that have changed need to be compiled. The compiler
+spends all of its time compiling those files, instead of wasting its time compiling system header files. When a header
+file does change, the speed of an incremental make depends on whether or not the PRECOMPILE_ALL flag was
+defined.
+Notes:
+Don't pre-compile constant variables: The compiler cannot pre-compile a header file if it contains a constant
+variable that is assigned a value. For example, placing the following line in a header file can interfere with the
+creation of a pre-compiled header image:
+const AnsiString strError = "An Error Occurred!!!!!";
+If you want to place const variables in a header file, create a separate header file to contain the constants and
+don't pre-compile that file. Try to reduce the burden on the compiler by not allowing this header file to include
+other files. Similarly, don't include this file from other header files if you can help it. If this seems like a
+difficult task, you can use the extern keyword. Create a header file that contains extern prototypes
+for your constants. Then create a CPP file that defines the constants (ie gives them a value).
+Note that the problem of const variables only occurs when you do define the PRECOMPILE_ALL flag.
+When you do not define this flag, your own header files are not pre-compiled. If you don't pre-compile a header file,
+then you can add constants to it without any problems. Also, #define's do not present a problem, just const
+variables (although I don't recommend that you switch back to #define's).
+Don't pre-compile template headers: This suggestion is based on empirical evidence. I have a template class with
+several inline functions. The entire template class resides in a header file. The compiler was able to pre-compile this
+header file, but I noticed that the pre-compiled image was always re-generated during an incremental make. I think this
+has to do with the way templates are handled by the compiler. I can pre-compile the STL headers without any problems,
+so I'm not sure what the problem is. I suggest that you go ahead and try to compile template headers, but pay close
+attention to the compiler progress dialog. You may need to stop pre-compiling template headers if they cause problems.
+Keep an eye on the compiler progress dialog: The compiler progress dialog tells you how well your pre-compiled
+headers are working. When you employ Technique 2, you should see that the compiler takes a long time to compile the
+first C++ source file in your project. The compiler generates the pre-compiled header image during compilation of the
+first file in the project. During this time, you should see the line count on the compiler
+progress dialog reach a huge number (100,000-500,000). Once the compiler moves on to other C++ files, the line count
+should probably be between 20 and 1000 lines for each source file if you define the PRECOMPILE_ALL flag.
+If you don't define this flag, the line count should stay under 15000 or so. Once the compiler finishes translating the
+first file in the project, subsequent files should only take a second or two to compile.
+If the compiler gets bogged down on one C++ file for more than 4 seconds, you probably have a source file whose
+pre-compiled image doesn't match the image created by the common header file. The line count is another indicator. If
+you see the line count sail up above 50,000 lines for one source file, it's a good indication that the compiler was
+unable to apply the existing pre-compiled image to that source file.
+Don't pre-compile header files that change: When using Technique 2, realize that any small change to a header
+file will force the compiler to regenerate the pre-compiled image. Based on the test results, this could take from 20
+seconds to a minute. If your header files change frequently, you may want pre-compile only system and VCL header files.
+This is the purpose of the PRECOMPILE_ALL flag. It allows you to easily include or remove your header
+files from the pre-compiled image.
+//---------------------------------------------------------
+// PCH.H: Common header file
+#ifndef PCH_H
+#define PCH_H
+// include every VCL header that we use
+#include 
+#include 
+// include the C RTL headers that we use
+#include 
+#include 
+#include 
+// project include files
+// pre-compile these only if PRECOMPILE_ALL is defined
+#ifdef PRECOMPILE_ALL
+#include "About.h"
+#include "mainform.h"
+...
+... // about 60 more files
+...
+#include "validate.h"
+#endif
+#endif
+To pre-compile your own header files, add PRECOMPILE_ALL to the conditional defines line under
+Project - Options - Directories/Conditional. If your header files change frequently, then don't add this
+conditional define. When you don't pre-compile your own header files, a full build of your project will take a little
+longer. However, when you make a change to one of your header files, an incremental make will be faster because the
+compiler won't waste 20-60 seconds rebuilding the pre-compiled image.
+I do not define PRECOMPILE_ALL for the project that I described in the Results section
+because I found I was still changing my header files frequently, and incremental makes were taking more than 2 minutes.
+The table below illustrates how the PRECOMPILE_ALL directive affects compile time. I timed how long a full
+build took when the PRECOMPILE_ALL was defined. Then I made a small change to the header file for
+my main form and performed an incremental make. Next, I repeated this process with the PRECOMPILE_ALL
+value not defined. Here are the results.
+Not defined (do not pre-compile my headers)
+-------------------------------------------------------------
+Full Build: 195 sec 408887 lines compiled
+Inc Make : 28 sec 7 files affected: 27059 lines compiled
+Defined (pre-compile my headers)
+-------------------------------------------------------------
+Full Build: 179 sec 255689 lines
+Inc Make : 179 sec all files affected: 255689 lines
+Notice that a full build is 16 seconds faster when I pre-compile my own header files, but look what happens when I do
+an incremental make after changing a header file. The incremental make takes just as long as a full build. When you
+pre-compile your own header files, the compiler rebuilds the pre-compiled image every time you change a header file.
+Additionally, when the pre-compiled image changes, every file that depends on that image will be re-compiled as well.
+So if you alter a header file, the entire project essentially gets rebuilt. When I do not pre-compile my own header
+files, the pre-compiled image never gets rebuilt. This keeps the incremental make time down, 28 seconds compared to
+179 seconds.
+Since you probably perform an incremental make 10 times more often than you do a full build, it seems wise to keep the
+incremental make time down, even if it means that a full build will be 10% slower. This is the approach that I take. I
+do not define the PRECOMPILE_ALL value in any of my projects.
+Don't remove existing #include statements: Creating a common header file does not mean that you should remove
+include statements from your header files and C++ source files. Leave those include statements where they are. There are several
+reasons why you should leave existing include statements. First, if you remove include statements from your header files,
+C++Builder will simply add them back again. Second, you may want to stop pre-compiling certain files, which would force to you
+add the include statements back into your source files. Lastly, by leaving include statements intact, you preserve the necessary
+inclusion order between header files. If you remove include statements, you will need to worry about the order that you list include
+statements in your common header.
+The include files prevent against multiple inclusion, so you don't need to worry about including the same file twice. The code
+below is taken from the mainform of the project from the Results section. It shows the include statements that remain in the
+source, even though the common header already includes them.
+//----------------------------------------------------------------------
+// MAINFORM.CPP
+#include 
+#include "pch.h"
+#pragma hdrstop
+#include 
+#include "mainform.h"
+#include "About.h"
+#include "util.h"
+#include "claim.h"
+#include "expert.h"
+#include "vendor.h"
+#include "lawfirm.h"
+#include "registry.h"
+#include "exceptions.h"
+...
+...
+//----------------------------------------------------------------------
+// MAINFORM.H
+#ifndef mainformH
+#define mainformH
+//----------------------------------------------------------------------
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include 
+#include "defs.h"
+//----------------------------------------------------------------------
+class TMDIParent : public TForm
+{
+__published:
+...
+The point of showing this code is to demonstrate that even though I use a common include file called PCH.H,
+I don't remove existing include statements from my source files. When I create a new source file, I add include
+statements so that file compiles without relying on includes from the common header. Once the new source file compiles,
+I insert an include statement for the common header to keep compile times down.
+Observe case sensitivity for include statements: Someone posted a comment on the C++Builder IDE group that the compiler
+observes case sensitity when matching pre-compiled images. If you include the common header with varying case in different units, the
+compiler will regenerate the pre-compiled image for each one. The next code example demonstrates what you should not do.
+//----------------------------------------------------------------------
+// MAINFORM.CPP
+#include 
+#include "pch.h"
+#pragma hdrstop
+...
+//----------------------------------------------------------------------
+// ABOUT.CPP
+#include // OK. same case as mainform.cpp
+#include "pch.h"
+#pragma hdrstop
+...
+//----------------------------------------------------------------------
+// SPLASH.CPP
+#include 
+#include "PCH.H" // WRONG. mismatched case
+#pragma hdrstop
+...
+//----------------------------------------------------------------------
+// LOGON.CPP
+#include // WRONG. mismatched case
+#include "pch.h"
+#pragma hdrstop
+...
+In this example, the compiler will generate and use the same pre-compiled image for MAINFORM.CPP and ABOUT.CPP,
+but SPLASH.CPP and LOGON.CPP will each generate their own pre-compiled image, which will slow down the compile
+time. The rule of thumb is this: every include file listed above the #pragma hdrstop directive should use the same case that
+other files use. Include statements below the #pragma hdrstop directive don't have to match case, because they are not
+pre-compiled.
+Consider adding VCL.H to the common header: The common header that was used in the example code for technique 2
+does not include the file VCL.H. Each CPP source file includes both VCL.H and PCH.H, like
+this.
+//-----------------------------------------------
+#include 
+#include "pch.h"
+#pragma hdrstop
+You may prefer to include VCL.H from within the common header. If you do, then each CPP file can simply
+include the common header.
+//-----------------------------------------------
+#include "pch.h"
+#pragma hdrstop
+This is cleaner, and less prone to error because you don't have to worry about which file should be listed first.
+However, it violates the suggestion from the note don't remove existing #include statements. If you
+ever need to yank out the common header file, you will need to add VCL.H back into every CPP file in your
+project.
+Use a separate CSM file for each project: By default, C++Builder creates a common pre-compiled header file
+called vcl50.csm in the $(BCB)\lib directory (the name of this file is different with each version of
+C++Builder). C++Builder will share this pre-compiled header file among all of your projects. In order to take
+advantage of the techniques in this article, you should configure your projects to create and use their own
+pre-compiled image file.
+You can do tell your project to use its own pre-compiled header file by specifying a file name for the pre-compiled
+image. This option is on the Compiler tab of the Project-Options dialog box. Change this value from
+$(BCB)\lib\vcl50.csm to a filename that won't conflict with other projects, such as pch.csm.
+There are several advantages to using a separate CSM file for each project. First, it allows you to create
+a customize your common header file for each project. Secondly, because the CSM
+file in the lib directory is shared, it tends to grow in size. It is not uncommon to have a shared
+CSM file that is larger than 30 MB. Lastly, some users have reported that sharing the same CSM across
+multiple projects is a source of phantom compiler errors. If you are getting strange compiler errors in
+algorithm.h, you might be able to solve the problem by not sharing your CSM files across multiple
+projects.
+Count the number of #00 files in your project directory: When C++Builder generates a
+pre-compiled header image, it
+saves that image to a file with a .CSM extension. It will also save one or more files with an extension of
+.#?? (ie #00, #01, #02). The number of .#?? files depends on how well you
+have optimized your pre-compiled headers. If you optimize them perfectly, C++Builder will generate a single file with
+an extension of .#00. If you don't optimize your files correctly, you will see other files with similar file
+extenstions (.#01, .#02, etc). The presence of additional #00 files indicates that you
+have not optmized your headers correctly. 
+So what are these files? For each unique pre-compiled image in the .CSM file, C++Builder generates one file
+with a .#?? extension, starting with .#00. These files are usually between 1 and 2 MB's in size. When
+you have optimized your files perfectly, the .CSM file will contain one and only one pre-compiled image. As a
+result, you end up with one .CSM file and one file with a .#00 extension. When you don't
+optimize your projects, the .CSM file may contain many unique pre-compiled images. Each unique image generates
+one additional .#?? file.
+Here are a couple of additional tips regarding these mysterious .#00 files. C++Builder generates these files
+as its needs them, but it never deletes them. Because these files are fairly large, you should delete them every so
+often. Also, because C++Builder never deletes them, you may see .#00 files even after you optimize your
+pre-compiled headers. Third, these files are created in the same directory that the CSM file resides. By default,
+this is the $(BCB)\lib directory. Lastly, you may want to take a look in your $(BCB)\lib and count how many of these files are lying
+around. In the previous note, we talked about how C++Builder generates one common .CSM file in the lib directory
+that all projects use. This shared .CSM file tends to be big, and it also tends to contain many different
+pre-compiled images. Since each unique image generates a separate .#00 file, you end up with tons of
+.#00 files in your lib directory. Currently, my BCB4 lib directory contains five of these files (
+vcl40.#00,vcl40.#01, vcl40.#02, vcl40.#03, and vcl40.#04).
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

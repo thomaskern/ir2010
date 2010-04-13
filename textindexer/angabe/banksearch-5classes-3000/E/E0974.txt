@@ -1,0 +1,132 @@
+
+cplusplus.com forums
+ 
+ 
+ [Back to FORUM section]
+ 
+ 
+ 
+ 
+ 
+ cplusplus forums:
+ General
+ 
+ 
+ 
+ For VC++ 
+ Here is an example that works on MS VC++, if you use another compiler, the code will be a little different. If you use Linux/Unix, the code will be completely different. If this code doesn't work for you, you may need to tell us which compiler you are using.
+ 
+// code to list all of the files in the current working directory
+#include 
+#include 
+#include 
+ 
+void main(void)
+{
+ struct _finddata_t c_file;
+ long hFile;
+ 
+ // Find first .c file in current directory
+ if((hFile = _findfirst("*.*", &c_file)) == -1L)
+ printf("No files to list.\n");
+ else
+ {
+ printf("%-20s %.24s %9ld\n", c_file.name, ctime(&(c_file.time_write)), c_file.size);
+ 
+ while(_findnext(hFile, &c_file) == 0)
+ {
+ printf("%-20s %.24s %9ld\n", c_file.name, ctime(&(c_file.time_write)), c_file.size);
+ }
+ 
+ _findclose(hFile);
+ }
+}
+ 
+Happy Coding,
+Ben
+ 
+ Ben 
+ Name: Ben 
+ Place: Portland, OR 
+ E-mail: Ben70106@yahoo.com 
+ URL: 
+ Date: 12/7/2002 [10:13] 
+ 
+ 
+This message was written as a reply for: 
+i don't understand 12/7/2002 eugi
+ 
+Insert your reply:
+ 
+ 
+ Icon:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Note
+ 
+ 
+ 
+ 
+ Question
+ 
+ 
+ 
+ 
+ Answer
+ 
+ 
+ 
+ 
+ Comment
+ 
+ 
+ 
+ 
+ Warning
+ 
+ 
+ 
+ 
+ 
+ 
+ Topic:
+ 
+ 
+ 
+ Content:
+ 
+ 
+ 
+ 
+ Identification:
+ 
+ 
+ 
+ 
+ 
+ 
+ Nick*: 
+ Name: 
+ Place: 
+ e-mail: 
+ Web: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+cplusplus.com , 2001

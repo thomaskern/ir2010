@@ -1,0 +1,383 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Visual Basic SQL Server 7.0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ 
+ Visual Basic Books 
+ 
+6
+Database
+Connections
+The last five chapters have focused on SQL Server and
+getting you familiar with the environment. We have installed the Desktop
+edition of SQL Server, created our database and logins, and have explored the
+Query Analyzer. We are now 
+ready to get back to familiar
+territory by writing some Visual Basic code.
+<![if !supportEmptyParas]> <![endif]>
+This chapter explores the various methods available to
+establish a connection from your VB client program to a SQL Server database.
+Once you have a connection to the database you can start working with the data
+it contains. There are several methods to connect to SQL Server and we will
+explore just some of the more popular methods here.
+<![if !supportEmptyParas]> <![endif]>
+Before we can jump into writing some code we need to have a
+quick look at the ActiveX
+Data Objects (ADO) object
+model. The release of ADO that we will be working with in this book is version
+2.5. This latest release has introduced some new objects and we just want to
+make you aware of them.
+<![if !supportEmptyParas]> <![endif]>
+So, in this chapter we will:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>q <![endif]>Look
+at the new ADO object model
+<![if !supportLists]>q <![endif]>Discuss
+DSN connections
+<![if !supportLists]>q <![endif]>Discuss
+DSN-less connections
+<![if !supportLists]>q <![endif]>Discuss
+the Microsoft Data Environment Designer
+Overview of the ADO 2.5 Object Model
+As we briefly discussed in
+ Chapter 1, ActiveX Data Objects
+(ADO) is part of the Microsoft Data Access Components (MDAC), 
+which also 
+include Remote Data Services
+(RDS), OLE DB, and Open Database Connectivity
+(ODBC). These components together make up Microsoft's Universal Data Access (UDA) strategy 
+that allows access to
+relational and non-relational data across the enterprise.
+<![if !supportEmptyParas]> <![endif]>
+ADO provides a lightweight object with high-performance
+access to data. Designed to provide access to any type of data store, ADO has
+replaced
+ Data Access Objects (DAO) and Remote Data Objects (RDO) as the
+preferred data access method. ADO was designed to be easy to learn and use, as
+is evident from its programming model. It can be used throughout your n-tier
+and client-server applications, and in your Web applications.
+<![if !supportEmptyParas]> <![endif]>
+As we mentioned above, this release of ADO has introduced
+some new objects into the ADO object model. At the time of writing, ADO 2.5 is
+still in beta but should be released very soon. The object model has also been
+restructured, so let's take a look at the new model:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+ADO Objects and Collections
+If you are already familiar with the ADO object model, at
+first glance you might think that the Properties collection is new. But it has always
+existed - it was just never shown as part of the object model before. 
+<![if !supportEmptyParas]> <![endif]>
+The Properties
+collection is 
+a collection that is applied
+to all ADO objects. Each object has a Properties collection, which is made up of Property objects. Each Property object represents a
+characteristic of an ADO object that is defined by the provider.
+<![if !supportEmptyParas]> <![endif]>
+What are new are the Record and Stream objects. Let's take a look at each of the
+major objects in turn.
+Connection Object
+The Connection
+object
+ is at the very heart of the model and allows you to connect to the
+data store. We'll be studying this object in greater detail in this chapter.
+All other objects in this model are derived from the Connection object. Once a connection is made, it is
+used to execute commands and transactions.
+<![if !supportEmptyParas]> <![endif]>
+The Errors
+collection
+ is derived from the Connection
+object, as all errors are returned from the underlying data store or from OLE
+DB to ADO. This collection contains any errors returned as a result of
+executing a method or setting a property of any of the ADO objects.
+Command Object
+The Command
+object
+ executes stored procedures and in-line SQL statements. We'll see
+much more of this in Chapter 8. The Command object is an optional object in the model as
+not all data sources support command execution. The Command object can execute stored procedures and
+in-line SQL statements that return records and those that do not. Associated
+with the Command object is 
+the Parameters collection, which allows you to add
+parameters that are required for a stored procedure or in-line SQL statements.
+Recordset Object
+The Recordset
+object
+ should be familiar to everyone who has done any database
+programming with ADO before. While the Recordset object represents the entire collection of
+records from a table, or the results of executing a stored procedure or SQL
+statement, you can only access one row of data in the Recordset object at a time. 
+<![if !supportEmptyParas]> <![endif]>
+The Recordset
+object now supports the new Record
+object, which makes programming with the Recordset object easier. The Record object is covered next but basically
+represents a row of data in the Recordset
+object. 
+<![if !supportEmptyParas]> <![endif]>
+The Fields
+collection 
+contains all the information about each field in
+the recordset, such as the field name in the database, the data type,
+attributes, and the actual value of the field. A field in the Recordset object corresponds to
+a column in the database.
+Record Object
+The Record
+object can represent a row 
+of data in a Recordset object, a file, or a
+directory in a file system, or folders and messages in an e-mail system. Using
+the Record object, you can
+represent each directory on your computer as a parent Record and each file within the directories as a
+child Record. You can manage
+files on your computer that are represented by a Record object by using 
+the CopyRecord, MoveRecord, and DeleteRecord methods. As one might imagine, this can
+be a powerful tool when working with the VB TreeView control, which provides
+parent and child nodes. 
+Stream Object
+The Stream
+object represents 
+a stream of text or binary
+data. When used in conjunction with the Record object, the Stream object can be used to open a file, read and
+write data to and from the file, and close the file represented by the Record object.
+<![if !supportEmptyParas]> <![endif]>
+The complete ADO object model is listed in Appendix B, along
+with the methods and properties of each object.
+Connection Object
+Now that we have 
+had a
+ quick
+look at the objects in the ADO object model, let's turn our attention to the
+one that is the focus of this chapter - the Connection object. The Connection object establishes a connection to the
+database so that we can access and manipulate data using the other objects in
+ADO.
+<![if !supportEmptyParas]> <![endif]>
+We use the Open method
+ of
+the Connection object to actually
+ establish and open the connection to SQL Server. The Open method has the following syntax:
+<![if !supportEmptyParas]> <![endif]>
+objConn.Open
+(ConnectString, UserID, Password, Options)
+<![if !supportEmptyParas]> <![endif]>
+The objConn in the syntax represents a valid Connection object defined by you, using this code:
+<![if !supportEmptyParas]> <![endif]>
+Dim objConn as
+New ADODB.Connection
+<![if !supportEmptyParas]> <![endif]>
+The ConnectString parameter
+ contains the information that is used to establish a connection
+with the database. It can contain information such as the ODBC driver, OLE DB
+provider, or the Data Source Name being
+used (which will be covered shortly).
+UserID and Password are self-explanatory
+and contain your logon to SQL Server and your password. Options specifies whether the Connection should be returned 
+asynchronously or synchronously. 
+<![if !supportEmptyParas]> <![endif]>
+A synchronous
+connection is when the method being executed must complete before the next
+method can be executed. Asynchronous connections allows your code to perform
+other tasks while a method is executing. When this parameter is not specified,
+a synchronous connection is established by default.
+<![if !supportEmptyParas]> <![endif]>
+Once all processing
+has been completed, we close the database connection using the Close method of the Connection object:
+<![if !supportEmptyParas]> <![endif]>
+objConn.Close
+Setting Up a Data Source Name
+A Data
+Source Name (DSN) provides
+ all the information
+needed for the Connection object to establish a
+connection with the database. The DSN provides information such as what type of
+ODBC driver should be used, what the name of the database is, where the
+database resides, and various other information which will be covered shortly.
+<![if !supportEmptyParas]> <![endif]>
+A DSN can be set up
+to be 
+either a User type,
+System
+type, or File type. A User DSN is specific
+to the user who created it and cannot be shared. The System DSN can be created
+on a machine and all users can access it. A File DSN is similar to the System
+DSN, except that it is stored by default as a text file in the $\Program Files\Common Files\ODBC\Data Sources directory, whereas the
+User and System DSN are stored in the registry. A File DSN is easier to port to
+other machines; thus it can be created and moved with your programs that use
+the DSN.
+<![if !supportEmptyParas]> <![endif]>
+Try It Out - Create a DSN
+We
+will create a System DSN
+ called Wrox Auto Works that will allow us to access our database.
+We will be using a login that was created in Chapter 4 that uses SQL Server
+authentication. 
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>1. 
+<![endif]>We start by opening the Control Panel (from the Settings
+sub-menu in the Windows Start menu), and
+double clicking on the ODBC Data Sources (32bit) icon to invoke 
+the
+ODBC Data Source Administrator,
+as shown in the figure below. 
+Click on the System DSN
+tab, as this is the type of DSN that we want
+to create. Click the Add button to start the series of dialogs that walks you
+through setting up a DSN:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>2. 
+<![endif]>The first dialog you see prompts you to select the ODBC driver you 
+want to use to access your
+database. Since we are dealing with SQL Server, our driver is going to be SQL Server.
+Select this and then click the Finish button to start the wizard for setting up a SQL Server DSN:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>3. 
+<![endif]>The first dialog prompts you to enter a Name for
+your DSN and a Description.
+Enter the name shown in the next figure and any description you want. If you
+installed the Desktop edition of SQL Server on your workstation, then your
+server should appear in the drop down list as (local). If
+you are using a SQL Server installed on your network, select or enter the
+appropriate server name where SQL Server is installed. Click Next to
+advance to the next dialog:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>4. 
+<![endif]>Experience has shown that the best method to use
+for authentication is SQL Server authentication. This provides the most secure DSN connections. If you use NT authentication and
+your login ID is set up for NT authentication
+in SQL Server, then anyone using your machine while you are logged on can
+access SQL Server with your permissions. Even if the user specifies another login ID and password, NT authentication will
+override it. For this reason and to provide a more 
+secure DSN, use SQL Server authentication.
+You will need to select the With SQL Server
+authentication radio button and then enter a Login ID and
+Password
+that uses SQL Server authentication. If you used NT authentication to setup
+your own login ID, then enter one of the two
+users that were set up for the Sales Staff and
+Management roles in Chapter 4. Clicking on the Client Configuration
+button lets you define the connection protocol, although this is outside the
+realms of this book. Click Next to continue on to the next step:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>5. 
+<![endif]>Check the Change the default database to:
+checkbox and select the Wrox_Auto_Works database. Accept all other defaults on
+this dialog, as shown below, and click Next to proceed:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>6. 
+<![endif]>Unless you want to change your default language or
+turn on logging, click the Finish button to proceed to the next dialog:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>7. 
+<![endif]>It is always a good idea to test your DSN at this point and you can do so by clicking on
+the Test Data Source button:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>8. 
+<![endif]>If your tests were successful you will see the next
+dialog:
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+If they were not, go back and repeat the steps
+above, verifying that the information you have entered is correct. Click the OK button to dismiss the dialog and you
+will be returned back to the previous dialog.
+<![if !supportLists]>9. 
+<![endif]>This is the last step in creating your DSN, and
+clicking the OK button will finalize the DSN and write it to the
+registry. You will be returned to the original screen seen at the beginning of
+this example, but this time the Wrox_Auto_Works DSN will appear. You can now close the
+Data
+Source Administrator dialog.
+<![if !supportEmptyParas]> <![endif]>
+At this point our DSN is ready for use. For
+those of you who are security conscious, don't worry. As we stated earlier,
+anyone who can log on to this machine can access and use this DSN, however
+there is one small catch - they will need a valid login ID and password in SQL
+Server before they can use it. While creating the DSN, you supplied a login ID
+and password, but only so that the dialog could establish a connection with SQL
+Server to gather some information and to validate the DSN. Your password is not
+stored as part of the DSN.
+<![if !supportEmptyParas]> <![endif]>
+The registry entries defining this DSN are shown
+in the next figure. If you want to view the information for the DSN that you
+have just set up, start the Registry Editor by clicking on the Start button and choosing Run. Enter RegEdit and click OK. Once the Registry Editor is open,
+expand the HKEY_LOCAL_MACHINE
+hive and then expand the Software
+folder. Find ODBC and
+expand that, then expand odbc.ini.
+Click on the Wrox Auto Works
+folder to display the information:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Should you ever want to remove the 
+DSN that you have just
+created from your system, you need to click on the ODBC Data Sources (32bit) icon in the Control Panel to invoke the ODBC Data Source Administrator. Then
+highlight the DSN to be deleted and click on the Remove button:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Should you ever need to
+reconfigure the DSN to point it to a SQL Server on another machine, you would
+click the Configure
+button in the dialog above. This would take you to the dialog shown in step 3
+above, and you would repeat the same steps described above to reconfigure the
+DSN.
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+ ©1999-2000 Visual Basic Books. All rights reserved.

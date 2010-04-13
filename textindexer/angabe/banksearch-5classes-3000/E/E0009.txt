@@ -1,0 +1,455 @@
+
+DevX: C++ Zone
+	
+	
+	
+ 
+ DevX Home 
+ 
+ Premier Club 
+ Search 
+ RFP Exchange 
+ eLearning 
+ Code Library 
+ Help 
+ Locator+ 
+Shop DevX 
+ 
+ 
+	 
+	
+ 
+ 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	
+	 
+	
+ 	
+	
+	 
+	 
+	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ Search DevX Search WWW Search Project Cool Search VB2TheMax 
+ 
+Discussion Highlights Featured Specials
+ 
+ 
+	
+	 Make Time to Refactor
+Somewhere between bare minimal code maintenance and total system reengineering lies refactoring. It can be very difficult to get the organization behind refactoring, but if you pair refactoring efforts with new feature implementations, you can improve code extensibility and reliability without holding up progress. (from the Enterprise Zone) 
+	
+	 
+	Template Specialization
+The fact that templates are type-unaware is what makes them so useful. But what happens when you need a class or function to be type-aware in order to function properly? In these special cases, template specializations and partial specializations can be used to override the default behavior of a primary template. Danny Kalev explains. &#40;from Get Help with C++&#41;
+	 
+	
+	
+	VC++ to Aim at Full ANSI/ISO Compliance?
+C++ luminary Herb Sutter has joined Microsoft's Developer Platform and Evangelism Division as liaison to the C++ developer community. What does he plan do for you? What does he plan to do for C++? Our C++ Pro, Danny Kalev, interviewed Herb Sutter about his new job, the role of C++ in the .NET framework, and the current state of C++. 
+	 
+	
+	
+More Articles ... 
+	
+	 
+	
+	
+	 Managing C# Objects
+Managing objects takes more than conserving memory. Take better advantage of the .NET garbage collector for efficient object management and increased performance. Bill Wagner explains.
+ 
+	
+	Past C# Explorer Columns... 
+	
+	 
+	 
+	 
+	Follow along with .NET in the .NET Zone
+	 
+	
+	
+	
+ 
+	
+	
+	 
+	
+	C++ 10-Minute Solution 
+	 
+	
+	Exception Handling
+	 
+	
+	
+	 View All C++ Solutions
+	
+	
+	 
+	
+	Tip of the Day 
+	 
+	
+	Setting Breakpoints Programmatically
+	 
+	
+	
+ View All C++ Tips
+	
+ 
+	
+	
+	
+	Here are some of the recent answers to technical questions being posted in our C++ community: 
+	
+	
+	
+Recently Answered Questions
+ 
+ 
+Don’t Use the Win32 API PostThreadMessage() to Post Messages to UI Threads 
+ 
+Why can''t I call a random non-start rule in my grammar, such as
+expression, and have the parser match an isolated subphrase of my
+language? 
+ 
+How do I make ANTLR generate c++ code in a (nested) namespace? 
+ 
+	
+	
+	Visit Get Help with C++ to read more answers, to ask your own question, or you can answer a question and get paid. 
+	
+ 
+	
+	 
+	
+	
+ 
+ If you liked the original DevX Source Code Library, then check out our latest addition, Sourcebank. Sourcebank has 27,000 new records, ready for you to download. Bookmark the source code home page for ready access to both our source code repositories and watch them grow as we add new records. 
+	 
+	
+	
+	 
+	
+	 
+	Over a month ago, Jey asked whether the XP kernel was built in Java or C++. This sparked a discussion over Java merits in relation to those of C++ that still hasn't dies down. Read what all the fuss is about in our c++.general discussion group. 
+ 
+	
+	 
+	More Highlights 
+	
+	
+	Can There Be Virtual Constructors or Virtual Destructors in a Class?
+How Do I Convert a Unicode 2 Byte to a 1 Byte ASCII String?
+Problem with LPTHREAD_START_ROUTINE
+ 
+	
+	 
+	C++ Related Groups 
+	
+	
+	
+	
+	c.general
+	c.announcements
+	 
+	
+	c.getting.started
+	c.windows.development 
+	
+Go to the live groups 
+c++.announcements
+c++.general
+c++.getting.started
+c++.windows.development
+careers.advice
+careers.announcements
+csharp.general
+database.db2.general
+database.Informix.general
+database.oracle.general
+database.sqlserver.general
+design.architecture
+design.ui
+dotnet.announcements
+dotnet.clr.general
+dotnet.security
+dotnet.web.services
+enterprise.announcements
+enterprise.client.server
+enterprise.collaboration
+enterprise.dcom
+enterprise.exchange
+enterprise.general
+enterprise.internet.intranet
+enterprise.management
+enterprise.message-queue
+enterprise.sql
+enterprise.transaction-servers
+enterprise.windowsnt.backoffice
+java.announcements
+java.awt
+java.beans
+java.enterprise
+java.general
+java.getting.started
+java.jdk
+java.web.services
+linux.general
+opensource.general
+oracle.tools
+security.bugs
+security.infrastructure
+security.internet
+talk.editors
+talk.editors.devx
+vb.announcements
+vb.api
+vb.control.creation.dcom
+vb.database.ado
+vb.database.design
+vb.database.general
+vb.dotnet.discussion
+vb.dotnet.technical
+vb.general
+vb.getting.started
+vb.multimedia_graphics
+vb.oop
+vb.vba
+vfp.general
+web.announcements
+web.asp
+web.asp.plus
+web.design
+web.dhtml.general
+web.dhtml.scripting
+web.ecommerce
+web.gettingstarted
+web.html
+web.server.general
+web.server.scripting
+wireless.devices
+wireless.general
+wireless.wap.general
+wireless.wap.tools
+wireless.wml
+xml.announcements
+xml.general
+ 
+ 
+	
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	RadVC
+Get the power of C++ with the Rapid App Development features of VB.
+Buy Now!
+ 
+	
+	
+	Crystal Reports
+Integrate robust reporting into your applications. 
+Buy Now!
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	COM Explorer
+Explore, manage, and repair ActiveX components.
+Buy Now!
+ 
+	
+	
+	PointBase Mobile Edition
+Enable local data access for mobile users. 
+Buy Now!
+ 
+	
+	
+	 
+	
+	 
+	
+ 
+	
+	
+	
+	
+	
+ 
+ 
+ 
+	 
+	
+	
+	
+	
+	
+ 
+ 
+ 
+	 
+	
+	
+	
+	Download of the Week
+Xceed Winsock Library 1.2
+Featured Symbian Downloads from the Nokia Developer Channel:
+ Nokia Testing Suite
+ Nokia Series 60 SDK (Symbian OS)
+ 
+	
+	 
+	
+	
+	Newsletters
+Sign up for free news, tips, and article updates
+ C++ Update
+ .NET Update
+ HotLinks
+ MarketPlace Specials
+	 
+	
+ 
+	
+See All Newsletters 
+	 
+ 
+	
+	 
+	
+Sponsored Links 
+Click here for a free FREE iSeminar and Oracle9i Application Server software!
+ 
+SPECIAL REPORT: Winning with Web Services
+ 
+You Don't Believe These Myths of Software Optimization--Do You?
+ 
+How do Drivers Access UNICODE? Get the Scoop Here...
+ 
+Need Enterprise Security in Web Services? Download this FREE White Paper!
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	DevX Home | 
+	.NET Zone | 
+	Java Zone | 
+	Get Help |
+	CoDe Magazine
+	
+	VB Zone |
+	C++ Zone |
+	XML Zone |
+	Enterprise Zone |
+	Database Dev Zone 
+	
+	Wireless Zone| 
+	Security Zone | 
+	ASP Zone | 
+	DHTML Zone |
+	UML Zone 
+	
+	MarketPlace | 
+	RFP Exchange |
+	Discussions |
+	Newsletters |
+	Tech Tips | 
+	Sourcebank
+	
+	Advertise |
+	Help |
+	Copyright |
+	Privacy Statement
+	 
+	
+ 
+Copyright Information/Privacy Statement 
+	 
+	

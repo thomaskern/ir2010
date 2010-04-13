@@ -1,0 +1,297 @@
+
+GotW #48: Switching Streams
+ 
+ 
+ GotW #48 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+Switching Streams
+ Difficulty: 2 / 10
+What's the best way to switch between different stream sources and
+targets, including the standard console streams and files?
+Problem
+JG Question
+1. What are the types of std::cin and
+std::cout?
+Guru Question
+2. Write an ECHO program that simply echoes
+its input and that can be invoked equivalently in two ways:
+ ECHO outfile
+ ECHO infile outfile
+In most popular command-line environments, the first command assumes that the
+program takes input from std::cin and sends output to std::cout. The second
+command tells the program to take its input from the file named
+"infile" and to produce output in the file named "outfile".
+The program should be able to support all of the above input/output options.
+Solution
+1. What are the types of
+std::cin and std::cout?
+Short answer is that cin is:
+ std::basic_istream >
+and cout is:
+ std::basic_ostream >
+Longer answer: std::cin and std::cout have type std::istream and
+std::ostream, respectively. In turn, those are typdef'd as
+std::basic_istream and std::basic_ostream. Finally,
+after accounting for the default template arguments, we get the above.
+Note: If you are using an older implementation of the iostreams subsystem,
+you might still see intermediate classes like istream_with_assign. Those classes
+do not appear in the final standard, and your implementation should eliminate
+them soon as it catches up, if it hasn't already.
+2. Write an ECHO program
+that simply echoes its input and that can be invoked equivalently in two ways:
+ ECHO outfile
+ ECHO infile outfile
+In most popular command-line environments, the first
+command assumes that the program takes input from std::cin and sends output to
+std::cout. The second command tells the program to take its input from the file
+named "infile" and to produce output in the file named
+"outfile". The program should be able to support all of the above
+input/output options.
+Method 0: The Tersest Solution
+The tersest solution is a single statement:
+ #include 
+ #include 
+ using namespace std;
+ int main( int argc, char* argv[] ) {
+ (argc>2
+ ? ofstream(argv[2], ios::out | ios::binary)
+ : cout)
+ 1
+ ? ifstream(argv[1], ios::in | ios::binary)
+ : cin)
+ .rdbuf();
+ }
+This works because basic_ios provides a convenient rdbuf() member function
+that returns the streambuf used inside a given stream object. Pretty much
+everything in the iostreams subsystem is derived from the basic_ios class
+template. In particular, that includes cin, cout, and the ifstream and ofstream
+templates.
+More Flexible Solutions
+Method 0 has two major drawbacks: First, the terseness is borderline, and
+extreme terseness is not suitable for production code. From the GotW coding
+standards:
+- programming style:
+ 
+- prefer readability:
+ 
+- avoid writing terse (brief but difficult to understand and maintain) code;
+eschew obfuscation (Sutter97b)
+ 
+ 
+Second, although Method 0 answers the immediate question, it's only good for
+when you want to copy the input verbatim. That may be enough today, but what if
+tomorrow you need to do other processing on the input, like converting it to
+upper case or calculating a total or removing every third character? That may
+well be a reasonable thing to want to do in the future, so it would be better
+right now to encapsulate the processing work in a separate function that can use
+the right kind of input or output object polymorphically:
+ #include 
+ #include 
+ using namespace std;
+ int main( int argc, char* argv[] ) {
+ Process(
+ (argc>1
+ ? ifstream(argv[1], ios::in | ios::binary)
+ : cin ),
+ (argc>2
+ ? ofstream(argv[2], ios::out | ios::binary)
+ : cout)
+ );
+ }
+But how do we implement Process()? In C++, there are two useful ways to
+express polymorphism:
+Method 1: Templates (Compile-Time Polymorphism)
+The first way is to use compile-time polymorphism using templates, which
+merely requires the passed objects to have a suitable interface (such as a
+member function named rdbuf):
+ template
+ void Process( In& in, Out& out ) {
+ // ... do something more sophisticated,
+ // or just plain "out " as far as they go, but in this
+situation I personally tend to prefer Method 1. This is because of two valuable
+guidelines:
+ 
+Guideline: Prefer extensibility.
+Avoid writing code that only solves the immediate problem. Writing an
+extensible solution is almost always far better (just don't go overboard).
+Balanced judgment is one hallmark of the experienced programmer. In
+particular, experienced programmers understand how to strike the right balance
+between writing special-purpose code that solves only the immediate problem
+(shortsighted, hard to extend) and writing a gradiose general framework to solve
+what should be a simple problem (rabid overdesign).
+Method 1 is only slightly more complex than Method 0, but that extra
+complexity buys you better extensibility. It is at once both simpler and more
+flexible than Method 2; it is more adaptable to new situations because it avoids
+being hardwired to work with the iostreams hierarchy only.
+So, prefer extensibility. Note that this is NOT an open license to go
+overboard and overdesign what ought to be a simple system. It is, however,
+encouragement to do more than just solve the immediate problem, when a little
+thought lets you discover that the problem you're solving is a special case of a
+more general problem. This is especially true because designing for
+extensibility often implicitly means designing for encapsulation:
+ 
+Guideline: Prefer encapsulation. Separate concerns.
+As far as possible, one piece of code -- function, or class -- should know
+about and be responsible for one thing.
+Arguably best of all, Method 1 exhibits good separation of concerns: The code
+that knows about the possible differences in input/output sources and sinks is
+separated from the code that knows how to actually do the work. This is a second
+hallmark of sound engineering. 
+Copyright ©
+2002 Herb Sutter
+ 

@@ -1,0 +1,377 @@
+
+GotW #54: Using Vector and Deque
+ 
+ 
+ GotW #54 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+ 
+Using Vector and Deque 
+ Difficulty: 8 / 10
+What is the difference between vector and deque? When should you use each
+one? And how can you properly shrink such containers when you no longer need
+their full capacity? These answers and more, as we consider news updates from
+the standards front.
+Problem
+JG Question
+1. In the standard library, vector and deque
+provide similar services. Which should you typically use? Why? Under what
+circumstances would you use the other?
+Guru Questions
+2. What does the following code do?
+ vector c( 10000 );
+ c.erase( c.begin()+10, c.end() );
+ c.reserve( 10 );
+3. A vector or deque typically reserves extra
+internal storage as a hedge against future growth, to prevent too-frequent
+reallocation as new elements are added. Is it possible to completely clear a
+vector or deque (that is, remove all contained elements AND free all internally
+reserved storage)? Demonstrate why or why not.
+Warning: Answers 2 and 3 may be subtle. Each has a facile answer, but don't
+stop at the surface; try to be as detailed as possible.
+Solution
+In Most Cases, Prefer Using deque (Controversial)
+1. In the standard
+library, vector and deque provide similar services. Which should you typically
+use? Why? Under what circumstances would you use the other?
+The C++ Standard, in section 23.1.1, offers some advice on which containers
+to prefer. It says:
+ 
+vector is the type of sequence that should be used by default... deque
+ is the data structure of choice when most insertions and deletions take place
+ at the beginning or at the end of the sequence.
+I'd like to present an amiably dissenting point of view: I recommend that you
+consider preferring deque by default instead of vector, especially when the
+contained type is a class or struct and not a builtin type, unless you really
+need the container's memory to be contiguous.
+vector and deque offer nearly identical interfaces and are generally
+interchangeable. deque also offers push_front() and pop_front(), which vector
+does not. (True, vector offers capacity() and reserve(), which deque does not,
+but that's no loss -- those functions are actually a weakness of vector, as I'll
+demonstrate in a moment.)
+The main structural difference between vector and deque lies in the way the
+two containers organize their internal storage: Under the covers, a deque
+allocates its storage in pages, or "chunks," with a fixed number of
+contained elements in each page; this why a deque is often compared to (and
+pronounced as) a "deck" of cards, although its name originally came
+from "double-ended queue" because of is ability to insert elements
+efficiently at either end of the sequence. On the other hand, a vector allocates
+a contiguous block of memory, and can only insert elements efficiently at the
+end of the sequence.
+The paged organization of a deque offers significant benefits:
+1. A deque offers constant-time insert() and erase() operations at the front
+of the container, whereas a vector does not -- hence the note in the Standard
+about using a deque if you need to insert or erase at both ends of the sequence.
+2. A deque uses memory in a more operating system-friendly way, particularly
+on systems without virtual memory. For example, a 10-megabyte vector uses a
+single 10-megabyte block of memory, which is usually less efficient in practice
+than a 10-megabyte deque that can fit in a series of smaller blocks of memory.
+3. A deque is easier to use, and inherently more efficient for growth, than a
+vector. The only operations supplied by vector that deque doesn't have are
+capacity() and reserve() -- and that's because deque doesn't need them! For
+vector, calling reserve() before a large number of push_back()s can eliminate
+reallocating ever-larger versions of the same buffer every time it finds out
+that the current one isn't big enough after all. A deque has no such problem,
+and having a deque::reserve() before a large number of push_back()s would not
+eliminate any allocations (or any other work) because none of the allocations
+are redundant; the deque has to allocate the same number of extra pages whether
+it does it all at once or as elements are actually appended.
+Interestingly, the Standard stack adapter, which can only grow in one
+direction and so never needs insertion in the middle or at the other end, has
+its default implementation as a deque:
+ template >
+ class stack {
+ // ...
+ };
+Aside: For Those Concerned About the Above
+Some readers are going to be concerned about my advice to prefer deque,
+saying perhaps: "But deque is a more complex container than vector, and so
+deque must be very inefficient compared to vector, right?" As always,
+beware premature optimization before you actually measure: I have found the
+"deque must be inefficient" assumption to be generally untrue on
+popular implementations. Using MSVC 5.0 SP3 with the current patches for its
+bundled Dinkumware C++ Standard Library implementation (probably by far the most
+widely-used compiler and library configuration), I tested the performance of the
+following operations, in order:
+ Operation Description
+ ----------- -------------------------------------------
+ grow first, perform 1,000,000 push_back()s
+ traverse then traverse, simply incrementing
+ iterators, from begin() to end()
+ at then access each element in turn using at()
+ shuffle then random_shuffle() the entire container
+ sort then sort() the entire container (for list,
+ uses list::sort())
+I tested each operation against several standard containers including deque.
+I expected vector to outperform deque in "traverse" and
+"at", and deque to win in "grow" for reason #3 above. In
+fact, note that deque did outperform vector on the "grow" test even
+though in fairness I gave vector special treatment by calling
+vector::reserve(1000000) first to avoid any reallocations. All timings varied
+less than 5% across multiple runs, and all runs executed fully in-memory without
+paging or other disk accesses.
+First, consider what happened for containers of a simple builtin type, int:
+ Times in ms grow traverse at shuffle sort
+ ------------ ------- -------- ------- -------- -------
+ vector 1015 55 219 621 3624
+ deque 761 265 605 1370 7820
+ list 1595 420 n/a n/a 16070
+Here list was always the slowest, and the difference between vector and deque
+wasn't as great as several people had led me to expect. Of course, the
+performance differences between the containers will fade when you use a
+contained type that is more expensive to manipulate. What's interesting is that
+most of the differences go away even when the contained type is as simple (and
+common) as a struct E { int i; char buf[100]; };:
+ Times in ms grow traverse at shuffle sort
+ ------------ ------- -------- ------- -------- -------
+ vector 3253 60 519 3825 17546
+ deque 3471 274 876 4950 21766
+ list 3740 497 n/a n/a 15134
+Now deque's performance disadvantage for even an intensive operation like
+sort is less than 25%.
+Finally, note that the popular library implementation that I tested has since
+been revised and now includes a streamlined version of deque with simplified
+iterators. I do not yet have a copy of that library, but it will be interesting
+to see how much of the deque disadvantage in even the raw iterator
+"traverse" and element-accessing "at" tests will remain
+compared to vector.
+So, for the three reasons cited earlier: Consider preferring deque by default
+in your programs, especially when the contained type is a class or struct and
+not a builtin type, unless the actual performance difference in your situation
+is known to be important or you specifically require the contained elements to
+be contiguous in memory (which typically means that you intend to pass the
+contents to a function that expects an array).
+NOTE: If you think that relying on vector storage to be contiguous is a Bad
+Thing, in light of recent newsgroup discussions, see my upcoming
+article in the July/August 1999 C++ Report... I give reasons why doing so is
+arguably okay, safe, and even portable.
+The Incredible Shrinking vector
+One of std::vector's most endearing features, at least compared to C-style
+arrays, is its encapsulated storage management. As we push elements onto a
+vector it just grows its storage automatically, and we can even give the vector
+hints about how much capacity to keep ready under the covers as it grows (by
+first calling reserve()) and only incur at most a single reallocation hit. This
+allows optimally efficient growth.
+But what if we're doing the opposite? What if we're using a vector that's
+pretty big, and then we remove elements that we no longer need and want the
+vector to shrink to fit; that is, we want it to get rid of the now-unneeded
+extra capacity? You might think that the following would work:
+2. What does the
+following code do?
+ vector c( 10000 );
+Line 1 creates a vector object named c that initially contains
+10,000 default-constructed C objects. At this point, we know that c.capacity()
+>= 10,000.
+ c.erase( c.begin()+10, c.end() );
+Line 2 erases all but the first 10 elements in c. At this point, c's capacity
+is probably unchanged.
+ c.reserve( 10 );
+Alas, line 3 does NOT shrink c's internal buffer to fit! Now c.capacity() is
+still >= 10000 as before.
+This example doesn't do what you might expect because calling reserve() will
+never shrink the vector's capacity; it can only increase the capacity, or do
+nothing if the capacity is already sufficient.
+The Right Way To "Shrink-To-Fit" a vector or deque
+So, can we write code that does shrink a vector "to fit" so that
+its capacity is just enough to hold the contained elements? Obviously reserve()
+can't do the job, but fortunately there is indeed a way:
+ vector( c ).swap( c ); // ...now c.capacity() == c.size(), or
+ // perhaps a little more than c.size()
+Do you see how the shrink-to-fit statement works? It's a little subtle:
+1. First, we create a temporary (unnamed) vector and
+initialize it to hold the same contents as c. The salient difference between the
+temporary vector and c is that, while c still carries around a lot of extra
+capacity in its oversize internal buffer, the temporary vector has just enough
+capacity to hold its copy of c's contents. (Some implementations may choose to
+round up the capacity slightly to their next larger internal "chunk
+size," with the result that the capacity actually ends up being slightly
+larger than the size.)
+2. Next, we call swap() to exchange the internals of c with the temporary
+vector. Now the temporary vector owns the oversize buffer with the extra
+capacity that we're trying to get rid of, and c owns the "rightsized"
+buffer with the just-enough capacity.
+3. Finally, the temporary vector goes out of scope, carrying away the old
+oversize buffer with it; the old buffer is deleted when the temporary vector is
+destroyed. Now all we're left with is c itself, but now c has a
+"rightsized" capacity.
+Note that this procedure is not needlessly inefficient. Even if vector had a
+special-purpose shrink_to_fit() member function, it would have to do pretty much
+all of the same work just described above.
+The Right Way To Completely Clear a vector or deque
+3. A vector or deque
+typically reserves extra internal storage as a hedge against future growth, to
+prevent too-frequent reallocation as new elements are added. Is it possible to
+completely clear a vector or deque (that is, remove all contained elements AND
+free all internally reserved storage)? Demonstrate why or why not.
+Again, the answer is Yes, it is possible. If you want to completely clear a
+vector, so that it has no contents and no extra capacity at all, the code is
+nearly identical to the shrink-to-fit code... you just initialize the temporary
+vector to be empty instead of making it a copy of c:
+ vector().swap( c ); // ...now c.capacity() == 0, unless the
+ // implementation happens to enforce a
+ // minimum size even for empty vectors
+Again, note that the vector implementation you're using may choose to make
+even empty vectors have some slight capacity, but now you're guaranteed that c's
+capacity will be the smallest possible allowed by your implementation: it will
+be the same as the capacity of an empty vector.
+These techniques work for deque, too, but you don't need to do this kind of
+thing for list, set, map, multiset, or multimap because they allocate storage on
+an "exactly-as-needed" basis and so should never have excess capacity
+lying around. 
+Copyright ©
+2002 Herb Sutter
+ 

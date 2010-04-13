@@ -1,0 +1,170 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class CatalogPage
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class CatalogPage
+java.lang.Object
+ |
+ +--javax.servlet.GenericServlet
+ |
+ +--javax.servlet.http.HttpServlet
+ |
+ +--coreservlets.CatalogPage
+Direct Known Subclasses: KidsBooksPage, TechBooksPage
+public abstract class CatalogPageextends HttpServlet
+Base class for pages showing catalog entries.
+ Servlets that extend this class must specify
+ the catalog entries that they are selling and the page
+ title before the servlet is ever accessed. This
+ is done by putting calls to setItems and setTitle
+ in init.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Constructor Summary 
+CatalogPage()
+ 
+ 
+Method Summary 
+ void 
+doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ First display title, then, for each catalog item,
+ put its short description in a level-two (H2) heading
+ with the price in parentheses and long description
+ below. 
+ void 
+doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ POST and GET requests handled identically. 
+protected void 
+setItems(String[] itemIDs)
+ Given an array of item IDs, look them up in the
+ Catalog and put their corresponding Item entry
+ into the items array. 
+protected void 
+setTitle(String title)
+ Sets the page title, which is displayed in
+ an H1 heading in resultant page. 
+ 
+Methods inherited from class javax.servlet.http.HttpServlet 
+doDelete, 
+doOptions, 
+doPut, 
+doTrace, 
+getLastModified, 
+service, 
+service 
+ 
+Methods inherited from class javax.servlet.GenericServlet 
+destroy, 
+getInitParameter, 
+getInitParameterNames, 
+getServletConfig, 
+getServletContext, 
+getServletInfo, 
+getServletName, 
+init, 
+init, 
+log, 
+log 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+CatalogPage
+public CatalogPage()
+Method Detail 
+setItems
+protected void setItems(String[] itemIDs)
+Given an array of item IDs, look them up in the
+ Catalog and put their corresponding Item entry
+ into the items array. The Item contains a short
+ description, a long description, and a price,
+ using the item ID as the unique key.
+ 
+ Servlets that extend CatalogPage must call
+ this method (usually from init) before the servlet
+ is accessed.
+setTitle
+protected void setTitle(String title)
+Sets the page title, which is displayed in
+ an H1 heading in resultant page.
+ 
+ Servlets that extend CatalogPage must call
+ this method (usually from init) before the servlet
+ is accessed.
+doGet
+public void doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+First display title, then, for each catalog item,
+ put its short description in a level-two (H2) heading
+ with the price in parentheses and long description
+ below. Below each entry, put an order button
+ that submits info to the OrderPage servlet for
+ the associated catalog entry.
+ 
+ To see the HTML that results from this method, do
+ "View Source" on KidsBooksPage or TechBooksPage, two
+ concrete classes that extend this abstract class.
+Overrides:doGet in class HttpServlet
+doPost
+public void doPost(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+POST and GET requests handled identically.
+Overrides:doPost in class HttpServlet
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

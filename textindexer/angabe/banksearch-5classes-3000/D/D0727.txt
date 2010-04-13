@@ -1,0 +1,608 @@
+
+JADCentral : CodeCentral : Games and Entertainment
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+	
+	
+	
+	 
+	 
+	
+ Applets 
+ 
+ 
+ Utilities 
+ 
+ 
+ Multimedia 
+ 
+ 
+ Security 
+ 
+ 
+ Database 
+ 
+ 
+ Servlets/JSP 
+ 
+ 
+ XML 
+ 
+ 
+ Wireless Java 
+ 
+ 
+ JUG Utilities 
+ 
+ 
+ JavaBeans 
+ 
+ 
+ Reference and Tutorials 
+ 
+ 
+ Games and Entertainment 
+ 
+ 
+ Techshowcase Downloads 
+ 
+ 
+ Business Code 
+ 
+ 
+ Unsorted Code 
+ 
+ 
+	 
+	 
+ 
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 	
+	 	
+	 	 Games and Entertainment 
+	 	 
+	 	 
+	 	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	
+	 
+	
+	 	
+	 
+	 Date 
+	 	
+	 Description 
+	 
+	 Downloads 
+	 
+	 	
+	
+	
+	
+	
+	 	
+	 
+	 7-03-2002 
+	 	
+	 Checkmate Chess ver 1.0
+	 In CheckMate two human players can play the Chess in the same computer or over an intranet. Changes and moves made by one will be reflected in the other player's computer. 
+Featues: 
+* Can be played in local machine or over the network by two players 
+* Cool Graphics 
+* Drag and drop pieces to make moves with the mouse 
+* Move validation-only valid moves are allowed. You cannot cheat!!!! 
+* Castling and promotion allowed 
+* Check warning provided 
+* Replay Option: Previous game can be replayed for analysis 
+* Network players can chat while playing 
+* Game time provided 
+* Help tips pop up when required 
+* Help files provided
+	 
+	 
+	 31 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 6-25-2002 
+	 	
+	 Key boxing!
+	 A simple, but addictive, game in which two players try to press keys as quickly as possible.
+	 
+	 
+	 7 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-26-2002 
+	 	
+	 mikroDaleks
+	 The original Daleks game ported over to the J2ME(CLDC && MIDP) platform for use on UR favorite mobile devices!=) It's actually serving as a special release for the prerelease of our J2SE debut title - Xkape. Xkape will B a 3D Applet version of Daleks with a few new features and the such. Check back at www.ikrisis.com regularly for more info on this and upcoming projects!=)
+	 
+	 
+	 22 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-15-2002 
+	 	
+	 CalendarBean, Version 1.1
+	 IMPORTANT FEATURES
+===================
+All Java Programmers are aware that neither the Java AWT nor the Java Swing classes provide a Date Selection Java Component and we all have to code this feature all by ourselves or if we can afford than purchase a 3rd party Java Bean. But things will be different henceforth. This Calendar is absolutely Free. It has been developed with the sole intention to help Java Developers.
+CalendarBean is a useful Java bean that helps you to Choose a Date from an On-Screen Calendar.
+- A very small jar file (just 40-kb) can be easily ported on the net.
+- This bean is made out of Java Awt classes and does not use swings
+Thus it works well with both, Applets and Applications.
+- You can customize many attributes of this bean by modifying its properties either through an IDE or through the methods provided.
+- A range of constructors and set methods which can take 
+java.util.GregorianCalendar/java.sql.Date object as well as int ( yyyy mm dd ) so that you can easily assign dates to the bean. Corresponding get methods are also provided.
+- Setting Range: Min and Max Dates.
+- Customise colors of various parts, to suit your Container.
+- Add a Calendar Listener to get notification of Date Changes.
+- A rich set of Date Formats.
+- A rich set of other Date related functions and features.
+	 
+	 
+	 85 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 3-27-2002 
+	 	
+	 Jigsaw Puzzle Applets 1.1
+	 These Java jigsaw puzzle applets differ in functionality regarding control over the number of pieces a given JPEG picture should be cut into, the manipulation of the background, the playing area colors, and the addition of sounds to successfull placement of jigsaw pieces. Also, in the StrategicBusiness version, you can forward a player to any programmable URL when they have finished the game successfully. All the versions have four message lines placed in the outermost corners of the playing area. When registered, customers receive puzPatch.exe, which allows them to replace the messages with their own text.
+	 
+	 
+	 106 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 3-07-2002 
+	 	
+	 Java Diet
+	 Count your calories consumption and loose weight.
+J2ME MIDP App!!!
+	 
+	 
+	 88 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-07-2002 
+	 	
+	 Blokoks 1.01
+	 This breakout style game was written only as a quick
+demonstration. It was my first Java game and took about 20
+hours to code in total. It was never meant to be anything
+amazing. However the game is very small to download and without
+the graphics could be even smaller so one day it may become a
+loading game. Full Source, Gfx and Sfx are included in the zip
+file.
+	 
+	 
+	 165 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-02-2002 
+	 	
+	 Simon Says
+	 The classic game of Simon Says has come to your MIDP device. Simply repeat Simon's moves to advance; each round becomes progressively more difficult. See if you've got what it takes to go the distance with Simon!
+	 
+	 
+	 56 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-02-2002 
+	 	
+	 LasDamas v.1.1.7
+	 A checkers game for your MIDP device. Can you beat the computer?
+	 
+	 
+	 56 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-26-2001 
+	 	
+	 Online Euro Calculator.
+	 countries into one and each other, as well as into the Euro-value. It's
+small, accurate and easy to use.
+	 
+	 
+	 52 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-19-2001 
+	 	
+	 Jtetris
+	 A java applet .
+	 
+	 
+	 154 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 9-07-2001 
+	 	
+	 JavaMATHs
+	 Plotter function. Good accurracy Simply use
+	 
+	 
+	 103 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 9-04-2001 
+	 	
+	 Quiz game w/ editor + applet
+	 edit and maintain your own questionnaires, play with them (the computer
+asks questions and the user answers), and make possibly progressive
+programs of questionnaires for pupils in a classroom. Now provided with
+a java applet that allows you to put your questionnaires on the web.
+Special requirements: A web browser (only to run the applet).
+Changes: Additional features added, java applet added.
+	 
+	 
+	 185 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 8-30-2001 
+	 	
+	 Amiglobe
+	 Amiglobe is a world atlas and database with information about every country in the world.
+You can choose from four map projections including flat, Peter's, Mercator's
+or spherical. You can easily zoom in on any area to display cities, rivers,
+and main peaks. You can scroll around the map with keys, mouse and/or mouse
+wheel. You can also display the night and day areas, locate a city or country on the map using a drop down list. The map can be printed or exported to other softwares. Some cities have links on photos on the Web.
+	 
+	 
+	 337 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+ 
+ 
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

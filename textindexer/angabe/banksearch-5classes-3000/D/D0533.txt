@@ -1,0 +1,50 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+	
+ 
+JSP Declarations
+The JSP you write turns into a class definition. All the scriptlets
+you write are placed inside a single method of this class.
+You can also add variable and method declarations to this class. 
+You can then use these variables and methods from your scriptlets and expressions.
+To add a declaration, you must use the 
+sequences to enclose your declarations, as shown below.
+Hello! The time is now 
+The example has been created a little contrived, to show variable and method
+declarations.
+Here we are declaring a Date variable theDate, and the method
+getDate. 
+Both of these are available now in our scriptlets and expressions.
+But this example no longer works! The date will be the same, no
+matter how often you reload the page. This is because these are declarations,
+and will only be evaluated once when the page is loaded! (Just as
+if you were creating a class and had variable initialization declared in
+it.)
+Exercise: Modify the above example to add another function
+computeDate
+which re-initializes theDate. Add a scriptlet that calls
+computeDate
+each time.
+Note: Now that you know how to do this -- it is in general not a good idea to use variables as shown
+here. The JSP usually will run as multiple threads of
+one single instance. Different threads would interfere with
+variable access, because it will be the same variable for all of
+them. If you do have to use variables in JSP, you should use
+synchronized access, but that hurts the performance.
+In general, any data you need should go either in the session
+objet or the request objectc (these are introduced a little
+later) if passing data between
+different JSP pages. Variables you declare inside scriptlets
+are fine, e.g. because these are declared
+inside the local scope and are not shared.
+ 
+Next tutorial: JSP Tags 
+Contents
+ 
+ 
+ 

@@ -1,0 +1,137 @@
+
+ 
+ C++ Programming HOW-TO: Memory Allocation in C++ 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 9. Memory Allocation in C++ 
+In C, you use malloc(), free() and variants of malloc() to allocate and free
+memory, but these functions have their pitfalls. Therefore C++ introduced
+operators for handling memory, these operators are called new and
+delete. These operators allocates and frees memory from the heap (or
+sometimes called the free store) at runtime.
+In C++, you should always use new and delete unless
+you're really forced to use malloc() and free(). But be aware that you
+cannot mix the two. You cannot malloc() memory, and then delete it
+afterwards, likewise you can't "new" memory, and then free it with free().
+ 9.1 C++ Zap (Delete) function 
+The delete and new operators in C++ are much better than
+the malloc and free functions of C. Consider using new and zap (delete
+function) instead of malloc and free as much as possible.
+To make 
+delete 
+operators even more cleaner, make a Zap() inline function. Define 
+a zap() function like this: 
+// Put an assert to check if x is NULL, this is to catch
+// program "logic" errors early. Even though delete works 
+// fine with NULL by using assert you are actually catching 
+// "bad code" very early
+// Defining Zap using templates
+// Use zap instead of delete as this will be very clean
+template 
+inline void zap(T & x)
+{
+ {assert(x != NULL);}
+ delete x;
+ x = NULL;
+}
+// In C++ the reason there are 2 forms of the delete operator is - because
+// there is no way for C++ to tell the difference between a pointer to
+// an object and a pointer to an array of objects. The delete operator
+// relies on the programmer using "[]" to tell the two apart.
+// Hence, we need to define zaparr function below.
+// To delete array of pointers
+template 
+inline void zaparr(T & x)
+{
+ {assert(x != NULL);}
+ delete [] x;
+ x = NULL;
+}
+The zap() function will delete the pointer and set it NULL.
+This will ensure that even if multiple zap()'s are called on the
+same deleted pointer then the
+program will not crash. Please see the function zap_example() in 
+example_String.cpp
+click on 'Source code of C++'.
+ // See zap_example() in example_String.cpp
+ zap(pFirstname);
+ //zap(pFirstname); // no core dumps. Because pFirstname is NULL now
+ //zap(pFirstname); // no core dumps. Because pFirstname is NULL now
+ zap(pLastname);
+ zap(pJobDescription);
+ int *iiarray = new int[10];
+ zaparr(iiarray);
+There is nothing magical about this, it just saves 
+repetetive code, saves typing time and makes programs more readable. The
+C++ programmers often forget to reset the deleted pointer
+to NULL, and this causes annoying
+problems causing core dumps and crashes. The zap() takes care of 
+this automatically.
+Do not stick a typecast in the zap() function -- if something errors out on the 
+above zap() function it likely has another error somewhere.
+Also 
+my_malloc()
+, my_realloc() and my_free() should be used 
+instead of malloc(), realloc() and free(), as they
+are much cleaner and have additional checks. 
+For an example, see the file "String.h" which is using 
+the 
+my_malloc()
+and my_free() functions.
+WARNING : Do not use free() to free memory allocated with 'new'
+or 'delete' to free memory allocated with malloc. If you do, then
+results will be unpredictable.
+See the zap examples in
+example_String.cpp
+click on 'Source code of C++'.
+ 9.2 Usage of my_malloc and my_free 
+Try to avoid using malloc and realloc as much as possible and use new
+and 
+zap(delete). But sometimes you may need to 
+use the C style memory allocations in C++. Use the functions 
+my_malloc() ,
+my_realloc() and
+my_free(). 
+These functions do proper allocations and initialisations and try to prevent 
+memory problems. Also these functions (in DEBUG mode) can keep track 
+of memory allocated and print total memory usage before and after the program
+is run. This tells you if there are any memory leaks.
+The my_malloc and my_realloc is defined as below. It allocates little more memory
+(SAFE_MEM = 5) and initializes the space and if it cannot allocate it exits the
+program. The 'call_check(), remove_ptr()' functions are active only 
+when DEBUG_MEM is defined in 
+makefile and are assigned to 
+((void)0) i.e. NULL
+for non-debug production release. They enable the total-memory used tracing.
+void *local_my_malloc(size_t size, char fname[], int lineno) 
+{
+ size_t tmpii = size + SAFE_MEM;
+ void *aa = NULL;
+ aa = (void *) malloc(tmpii);
+ if (aa == NULL)
+ raise_error_exit(MALLOC, VOID_TYPE, fname, lineno);
+ memset(aa, 0, tmpii);
+ call_check(aa, tmpii, fname, lineno);
+ return aa;
+}
+char *local_my_realloc(char *aa, size_t size, char fname[], int lineno)
+{
+ remove_ptr(aa, fname, lineno);
+ unsigned long tmpjj = 0;
+ if (aa) // aa != NULL
+ tmpjj = strlen(aa);
+ unsigned long tmpqq = size + SAFE_MEM;
+ size_t tmpii = sizeof (char) * (tmpqq);
+ aa = (char *) realloc(aa, tmpii);
+ if (aa == NULL)
+ raise_error_exit(REALLOC, CHAR_TYPE, fname, lineno);
+ // do not memset memset(aa, 0, tmpii);
+ aa[tmpqq-1] = 0;
+ unsigned long kk = tmpjj;
+ if (tmpjj > tmpqq)
+ kk = tmpqq;
+ for ( ; kk 

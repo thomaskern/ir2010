@@ -1,0 +1,280 @@
+
+VB Helper: Tutorial: Twos Complement Numbers
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Tutorial: Twos Complement Numbers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This tutorial describes sign-magnitude, ones complement and twos complement representations for integers.
+- Positive Numbers
+- Sign Magnitude
+- Ones Complement
+- Twos Complement
+ 
+- Sign Extension
+ 
+- Two Weird Cases
+ 
+- Hex
+- Summary
+Positive Numbers
+A computer represents positive integers in binary. A binary number is a series of zeros and ones called bits. The bits in a number represent powers of 2. The lowest-order bit (on the right) represents 2^0 = 1. The next bits represent 2^1 = 2, 2^2 = 4, 2^3 = 8, and so forth. For example, the 1s in the binary value 1001101 correspond to the bits representing 2^0 = 1, 2^2 = 4, 2^3 = 8, and 2^6 = 32 so the number equals 1 + 4 + 8 + 32.
+This is pretty similar to the way decimal integers works if you think about it. The decimal digits represent 10^0, 10^1, 10^2, and so forth.
+This works well for positive integers but it doesn't address the issue of negative numbers. Three methods for representing negative numbers are Sign-Magnitude, Ones Complement, and Twos Complement.
+Sign Magnitude
+As its name implies, a sign-magnitude representation records the number's sign and magnitude. The most significant bit is 0 for positive numbers and 1 for negative numbers. The rest of the bits are set as usual. For instance, suppose you are working with 8-bit values. Then 01000000 is +2^6 = 64 and 11000000 is -2^6 = -64.
+The sign-magnitude representation has the property that it contains values for both +0 and -0. In an 8-bit representation, those values are 00000000 and 10000000.
+Sign-magnitude is very easy for humans to understand but it requires some special logic for adding, subtracting, multiplying, and dividing numbers. For example, you cannot add two positive numbers in the saem way you add a positive number to a negative number.
+Ones Complement
+In ones complement, the negative of a number is represented by flipping the number's bits one at a time. For example, the value 01001001 becomes 10110110. Again the leftmost bit gives the sign of the number. If the leftmost bit is 0, the number is positive. If the leftmost bit is 1, the number is negative. Like the sign-magnitude system, the ones complement system has distinct values for +0 and -0: 10000000 and 00000000.
+In practice, a computer calculates the ones complement value of a number by inverting the number's digits. There is another way to calculate ones complement that is more theoretically useful. Suppose you are working with B-bit numbers. Then the ones complement for the number N is (2^B - 1) - N. For example, if B is 8 then this is (2^8 - 1) - N = 255 - N. In binary 255 is 11111111. Now consider the previous example 01001001. Subtracting this bitwise from 11111111 gives 10110110 which is the bitwise complement of the original number. Similarly 11111111 - 10110110 gives the original value 01001001.
+Ones complement has some useful properties. First, if you negate the negative of a number, you get the original number. This follows immediately if you assume the ones complement is a bitwise flipping of a number's bits but it's also easy to prove using the second definition.
+ -(-N) = (2^B - 1) - ((2^B - 1) - N) =
+ (2^B - 1) - (2^B - 1) + N = N
+Even more interestingly, you can add ones complement numbers without worrying about whether the numbers are positive or negative. To do so, add the numbers. Then if there is a carry out of the most significant bit, carry it back to the least significant bit and add it in.
+For example, consider 103 + -97. In ones complement these numbers are:
+ 01100111 + -01100001 = 01100111 + 10011110
+Adding these last two numbers bitwise gives 100000101. This result has 9 bits. You remove the 9th bit and add it back at the least significant bit giving:
+ 00000101 + 1 = 00000110
+The result is 00000110, which is the representation for 6. That is the result of 103 - 97. Amazing!
+Here's another example: 113 - 42. In ones complement these numbers are:
+ 01110001 + -00101010 = 01110001 + 11010101
+Adding these last two numbers bitwise gives 101000110. We add the 9th bit back at the least significant bit giving:
+ 01000110 + 1 = 01000111
+This represents the value 71 which is the result of 113 - 42.
+Now consider an example where the result should be negative: -75 + 13. In ones complement we have:
+ -01001011 + 00001101 = 10110100 + 00001101
+Adding these bitwise gives 11000001. This is an 8-bit value so we don't need to move the carry bit to the beginning. The value represents -00111110 or -(2 + 4 + 8 + 16 + 32) = -62. Lo and behold, -75 + 13 = -62!
+Believe it or not, adding ones complement numbers like this is simpler than adding sign magnitude numbers. It also allows you to convert subtraction into an addition problem. To subtract Y from X, you can take the ones complement of Y (by inverting the bits--a very fast operation on the chip), add X and -Y, and possibly add in the 9th bit.
+Unfortunately ones complement doesn't help a whole lot with multiplication. To multiply X and Y, you would test X and Y to see which are negative. You would complement the negative numbers, multiply the positive values, and then set the sign of the result depending on whether X or Y or both was negative.
+Twos Complement
+The twos complement of a number N in a B-bit system is 2^B - N. Like ones complement, twos complement makes addition and subtraction simple. For example, suppose X and Y are positive and consider the value X + -Y.
+ X + -Y = X + (2^B - Y) = 2^B - (Y - X) = -(Y - X) = X - Y
+As is the case for ones complement, there is a relatively simple way to calculate a twos complement value: invert the number's bits and then add 1. In fact, this result follows from the definition of the ones complement. Recall that inverting the bits of the number X gave you the value (2^B - 1) - X. Adding 1 to this gives 2^B - X which is the twos complement of X.
+For a concrete example, consider the value 17 which is 00010001 in binary. Inverting gives 11101110. Adding one makes this 11101111. This is the twos complement representation of -17. Don't worry if you can't see this intuitively. You really need to take the twos complement again to see what value this is.
+Inverting the bits gives 00010000. Adding 1 gives 00010001, the representation for 17. All this shows that -(-17) = 17.
+As with ones complement, you can add twos complement numbers without worrying about their signs. For example, X + -Y = X + (2^B - Y) = 2^B - (Y - X) = X - Y.
+For a concrete example, consider again -75 + 13. In twos complement we have:
+ -01001011 + 00001101 = 10110101 + 00001101
+Adding these bitwise gives 11000010. The leftmost bit is 1 so you know this is a negative number. To find its value, take the twos complement: 00111110 = 2 + 4 + 8 + 16 + 32 = 62 so the value 11000010 represents -62, which is the result of -75 + 13.
+Amazingly multiplication also works with twos complement in a straightforward manner. Consider -12 * 8. The binary representation of 12 is 00001100. Inverting this and adding 1 gives 11110011 + 1 = 11110100. Multiplying this bitwise with the binary representation of 8 = 00001000 gives:
+ -12: 11110100
+ 8: 00001000
+ -------------------
+ Result: 11110100000
+We are working with 8-bit numbers here so we drop bits 9 and beyond leaving 10100000. The leftmost bit is 1 so we know this is a negative value. Inverting this and adding 1 gives 01011111 + 1 = 01100000. This value is 32 + 64 = 96 so the value 10100000 represents -96. Happily that's what you should get when you multiply -12 and 8.
+So why does this work? Recall that the definition of the twos complement of N is 2^B - N. Suppose X and Y are positive. Then
+ -X * Y = (2^B - X) * Y = 2^B * Y - (X * Y)
+The value 2^B is represented by bit B + 1 so the value 2^B * Y is represented in bits to the left of bit number B. Because we are working with B-bit numbers, we drop those bits so the value 2^B * Y - (X * Y) has the same representation as the value -(X * Y). That means -X * Y = -(X * Y). In other words, multiplying the twos complement of X with Y gives the same value as multiplying X with Y and then taking the twos complement.
+Sign Extension
+Computers often need to promote a value from one data type to another. For example, if you try to multiply an Integer value by a Long value, the computer promotes the Integer into a Long before performing the multiplication and the result is a Long.
+You can increase the number of digits in a twos complement number by simply repeating its sign bit on the left. This is called sign extension because you are extending the number by repeating the sign bit.
+For example, to increase the value 00100110 to 16 bits, you would repeat the leftmost 0 bit to get 0000000000100110. Similarly sign extending the negative value 10101010 to 16 bits gives 1111111110101010.
+Note that these operations don't change the number's value. For positive numbers, adding a bunch of zeros to the left obviously doesn't change the number's value so 00100110 and 0000000000100110 both represent 2 + 4 + 32 = 38.
+To see why this works with negative numbers, consider the value 10101010. Inverting and adding 1 gives 01010101 + 1 = 01010110 = 2 + 4 + 16 + 64 = 86 so the value 10101010 represents -86. Now sign extend the value to 1111111110101010. Inverting this value and adding 1 gives 0000000001010101 + 1 = 0000000001010110. This value also represents 2 + 4 + 16 + 64 = 86 so the original value is -86.
+Intuitively, all the ones you added on the left to perform the sign extension turn into zeros when you invert the value to see what number it represents. Adding zeros to the left doesn't change the positive number's value so it hasn't changed the original number's value.
+Two Weird Cases
+There are two weird cases that arise with twos complement. First, the value 10...00 has no inverse. In 8 bits, for example, you cannot find the negative of 10000000. If you invert this and add 1, you get 01111111 + 1 = 10000000, which is what you started with.
+Because the leftmost bit in 10000000 is 1, the value is negative. When you invert it and add 1, you get 10000000 which is the binary representation of 128 so the original value must represent -128. If you perform some calculations with this value, you will see that it works out properly. For example, -128 + 8 = 10000000 + 00001000 = 10001000. Inverting this and adding 1 gives 01110111 + 1 = 01111000 which represents 8 + 16 + 32 + 64 = 120 so -128 + 8 = -120 as desired.
+The fact that this number has no negative value makes the allowed values in twos complement asymetrical. In 8 bits, the values range from -128 to +127. In 16 bits, values range from -32,768 to +32,767. In 32 bits, values range from -2,147,483,648 to +2,147,483,647. If you've ever wondered why Integer and Long values have these range restrictions, now you know why.
+The second weird case is zero. The twos complement of 00...00 is 11...11 + 1 = 100..00. When you drop the leftmost bit (which extends past the bit number B), you get 00...00, which is what you started with. This is kind of nice because it means -0 = 0. It also means there is only one value of 0 in twos complement (recall that sign-magnitude and ones complement have two values for 0).
+Hex
+Working with bits in Visual Basic can be difficult. It's not obvious what the bit representation of a number like 12,127 is. Usually it is easier to use hexadecimal representations of numbers to manipulate the bits. Each hexadecimal digit represents four binary bits.
+For example, &H8421 has the binary representation 1000 0100 0010 0001 (spaces added to show the hexadecimal groupings). If you execute the statement Debug.Print &H8421, your program will display the value -31,711. If you invert the value 1000 0100 0010 0001 and add 1, you get 0111 1011 1101 1110 + 1 = 0111 1011 1101 1111. This value represents 1 + 2 + 4 + 8 + 16 + 64 + 128 + 256 + 512 + 2,048 + 4,096 + 8,192 + 16,384 = 31,711. Therefore the original value &H8421 = 1000 0100 0010 0001 represents the value -31,711. You can verify this by making your program execute the statement Debug.Print &H8421.
+Summary
+Visual Basic uses twos complement representations of numbers. Understanding twos complement isn't strictly necessary for most applications but it sometimes comes in handy. With a little thought, you can discover the value of every bit in a number whether it is positive or negative.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

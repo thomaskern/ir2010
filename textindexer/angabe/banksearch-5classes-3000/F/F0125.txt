@@ -1,0 +1,238 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Visual Basic SQL Server 7.0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ 
+ Visual Basic Books 
+ 
+DSN-Less Connections
+Using a DSN connection in your code
+requires 
+that a DSN
+ be set up on the server or computer that your
+program or server component is running on. SQL Server can be on the same
+computer or on some other computer on the network. This scenario, while good in
+some circumstances, restricts where your code can run. Because a DSN-less connection
+specifies all of the parameters necessary to connect to SQL Server, using a
+DSN-less connection allows your program to be run on different machines without
+having to set up a new DSN.
+<![if !supportEmptyParas]> <![endif]>
+This section explores
+the DSN-less
+connection. A DSN-less connection, as its names implies, uses no
+DSN. What it does use is the required parameters that will 
+let the Connection object know how to
+establish a connection to SQL Server. Using a DSN-less connection in your
+server components helps to make your applications n-tier scalable, because your
+server components are not restricted to running on one server. As your
+components use a DSN-less connection, they can be moved from a server running
+with your database, or from the computer running your program, to a server that
+runs just the components. This spreads the workload among different servers and
+your application has scaled from 2-tier to n-tier.
+<![if !supportEmptyParas]> <![endif]>
+Let's take a look at
+some of the required parameters for a DSN-less connection. If you remember, in
+the first step of setting up a DSN we specified what type of ODBC driver we
+wanted to use. A DSN-less connection is no different and we must
+ specify the ODBC driver to
+be used, in our case SQL Server. This is specified as Driver = SQL
+Server.
+<![if !supportEmptyParas]> <![endif]>
+The next step when we
+set up our DSN was to select the server where SQL Server was running - in our
+case it was Local. Local will not work here, so we
+need to specify the actual name of our computer. For our DSN-less connection we
+specify Server = WSDevelopment,
+where WSDevelopment is my computer's name.
+<![if !supportEmptyParas]> <![endif]>
+Once we have specified
+the server where SQL Server is running, we need to let our DSN-less connection
+know which database in SQL Server we want to access, and we do so by specifying
+Database = Wrox_Auto_Works.
+<![if !supportEmptyParas]> <![endif]>
+The following code
+fragment is what our Connection object looks like at
+this point:
+<![if !supportEmptyParas]> <![endif]>
+objConn.Open
+"Driver=SQL Server;Server=WSDevelopment;Database=Wrox_Auto_Works"
+<![if !supportEmptyParas]> <![endif]>
+If you are using a
+Windows NT authentication login in SQL Server, then this is all the information
+you need. You would be able to establish a connection at this point. For those
+readers who are using a SQL Server authentication login you must also specify a
+user ID and password, as shown in the next
+code fragment:
+<![if !supportEmptyParas]> <![endif]>
+objConn.Open
+"Driver=SQL Server;Server=WSDevelopment;Database=Wrox_Auto_Works;"
+& _
+      UID=margie;PWD=margie"
+<![if !supportEmptyParas]> <![endif]>
+Now that we know how to
+create a DSN-less connection, let's put this information to use in a hands-on
+example.
+<![if !supportEmptyParas]> <![endif]>
+Try It Out - Using a DSN-Less
+Connection
+We will create a
+program similar
+ to the
+last one, using a simple form to display the state name. This program should
+use a DSN-less connection and select all data from the State_T
+table. We will display only the first state on the form.
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>1. 
+<![endif]>You will need to open a new Standard EXE project and set a reference to the Microsoft ActiveX Data Objects Library, as described in
+the previous example. 
+<![if !supportLists]>2. 
+<![endif]>Change the name of the form to frmTryItOut3 and change the form caption to Try It Out #3 - DSN-less Connection if you
+want to.
+<![if !supportLists]>3. 
+<![endif]>Place a label control on the form and use the
+default name of Label1. The Caption property of the label can be left as
+it is, or you can remove the text in the Caption property.
+<![if !supportLists]>4. 
+<![endif]>Enter the following code, which can be found in frmTryItOut3.frm. (Note that if you are
+using SQL Server authentication you will need to add your user ID and password
+details to the connection string - refer to the How It Works section
+below for more help with this.)
+<![if !supportEmptyParas]> <![endif]>
+Private Sub
+Form_Load()
+   'Use the standard Windows icon
+   Me.Icon = Nothing
+<![if !supportEmptyParas]> <![endif]>
+   'Declare database objects
+   Dim objConn As New ADODB.Connection
+   Dim objRS As New ADODB.Recordset
+   Dim objErr As ADODB.Error
+   
+   'Establish a database connection using NT
+Authentication
+   objConn.Open "Driver=SQL
+Server;Server=WSDevelopment;Database=Wrox_Auto_Works"
+   
+   'Check the state of the connection to
+ensure we are connected
+   If objConn.State = adStateOpen Then
+   
+      'Open a recordset
+      objRS.Open "SELECT * FROM
+State_T", objConn, adOpenForwardOnly, adLockReadOnly, adCmdText
+      If Not objRS.EOF And Not objRS.BOF Then
+         Label1.Caption = objRS!State_Name_VC
+      End If
+      objRS.Close
+      
+   Else
+      
+      'Display all errors
+      For Each objErr In objConn.Errors
+         Debug.Print objErr.Description
+      Next
+      
+   End If
+   
+   'De-reference the database objects
+   Set objRS = Nothing
+   objConn.Close
+   Set objConn = Nothing
+End Sub
+<![if !supportEmptyParas]> <![endif]>
+Run the program
+and you should see something like the following:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+How It Works - Using a
+DSN-Less Connection
+The first part of the
+code in this example is the same as the last one. The difference comes when we
+open our database connection using the Connection object. Here we are
+using a DSN-less connection as we discussed above, and are using a SQL Server
+login that uses NT authentication:
+<![if !supportEmptyParas]> <![endif]>
+   'Establish a database connection using NT
+Authentication
+   objConn.Open "Driver=SQL
+Server;Server=WSDevelopment;Database=Wrox_Auto_Works"
+<![if !supportEmptyParas]> <![endif]>
+For those readers whose
+SQL Server login uses SQL Server authentication, substitute one of the
+following code fragments to connect. Don't forget to substitute your login ID
+and password. The first code fragment uses one ConnectString that
+specifies the user ID and password.
+The second code fragment is an alternative that uses a ConnectString,
+with the user ID and password specified as separate
+parameters:
+<![if !supportEmptyParas]> <![endif]>
+   'Establish a database connection using SQL
+Server Authentication
+   objConn.Open "Driver=SQL
+Server;Server=WSDevelopment;" & _
+     
+"Database=Wrox_Auto_Works;UID=margie;PWD=margie"
+<![if !supportEmptyParas]> <![endif]>
+   'Establish a database connection using SQL
+Server Authentication
+   objConn.Open "Driver=SQL
+Server;Server=WSDevelopment;" & _
+      "Database=Wrox_Auto_Works",
+"margie", "margie"
+<![if !supportEmptyParas]> <![endif]>
+This next part of code
+is a little different from our last example, and shows an alternative way to
+select data from the State_T table. While this change
+is not necessary in your code, it does demonstrate another method of selecting
+the same data. We are using an actual SQL statement instead of the table name
+to select the state names. The rest of the parameters of the Open
+method are the same, except the last parameter. Since we are using a SQL
+statement, we must specify the adCmdText constant from the CommandTypeEnum
+enumeration for the Options parameter:
+<![if !supportEmptyParas]> <![endif]>
+      'Open a recordset
+      objRS.Open "SELECT * FROM
+State_T", objConn, adOpenForwardOnly, adLockReadOnly, adCmdText
+      If Not objRS.EOF And Not objRS.BOF Then
+         Label1.Caption = objRS!State_Name_VC
+      End If
+      objRS.Close
+<![if !supportEmptyParas]> <![endif]>
+As you can see, using a
+DSN or DSN-less connection is very easy and very straightforward. These types
+of connections are usually reserved for server components, but are often found
+in front-end programs also.
+<![if !supportEmptyParas]> <![endif]>
+Either way, these types
+of connections are quick to set up, and you can prompt the user for their user ID
+and password before establishing a connection to the
+database, instead of including them as part of the ConnectString.
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+ ©1999-2000 Visual Basic Books. All rights reserved.

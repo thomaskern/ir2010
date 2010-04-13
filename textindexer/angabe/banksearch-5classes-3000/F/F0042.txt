@@ -1,0 +1,233 @@
+
+Listing 4b - METADEMO.FRM
+ 
+ 
+	 
+	 
+ 
+ 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	
+VERSION 2.00
+Begin Form MetaDemo 
+ Caption = "Metafile Demo"
+ ClientHeight = 3084
+ ClientLeft = 888
+ ClientTop = 2052
+ ClientWidth = 4284
+ Height = 3828
+ Left = 840
+ LinkTopic = "Form2"
+ ScaleHeight = 3084
+ ScaleWidth = 4284
+ Top = 1356
+ Width = 4380
+ Begin CommonDialog Common_Dialog 
+ Left = 120
+ Top = 2640
+ End
+ Begin PictureBox Picture_Box 
+ Height = 2412
+ Left = 120
+ ScaleHeight = 2388
+ ScaleWidth = 4068
+ TabIndex = 0
+ Top = 120
+ Width = 4092
+ End
+ Begin Menu Menu_File 
+ Caption = "&File"
+ Begin Menu Menu_File_Create 
+ Caption = "&Create ..."
+ End
+ Begin Menu Menu_File_Open 
+ Caption = "&Open ..."
+ End
+ Begin Menu Menu_Bar1 
+ Caption = "-"
+ End
+ Begin Menu Menu_File_Exit 
+ Caption = "E&xit"
+ End
+ End
+End
+' METADEMO.FRM
+Option Explicit
+ 
+Sub Form_Load ()
+ ' Center the form on the screen
+ Left = Screen.Width / 2 - ScaleWidth / 2
+ Top = Screen.Height / 2 - ScaleHeight / 2
+ 
+ ' Initialize the Common Dialog control
+ Common_Dialog.CancelError = True
+ Common_Dialog.DefaultExt = "WMF"
+ Common_Dialog.Filter = "All Files (*.*)|*.*|Metafiles (*.WMF)|*.WMF"
+ Common_Dialog.FilterIndex = 2
+ Common_Dialog.InitDir = App.Path
+End Sub
+ 
+Sub Form_Resize ()
+ Picture_Box.Top = 100
+ Picture_Box.Left = 100
+ Picture_Box.Width = ScaleWidth - 200
+ Picture_Box.Height = ScaleHeight - 200
+End Sub
+ 
+Sub Menu_File_Create_Click ()
+ Dim metafile As Integer
+ Dim ivar As Integer
+ Dim lvar As Long
+ Dim lb As LOGBRUSH
+ Dim brush As Integer
+ Dim oldbrush As Integer
+ Dim i As Integer
+ Dim x As Integer
+ Dim y As Integer
+ 
+ ' Get a filename
+ Common_Dialog.DialogTitle = "Create Metafile"
+ Common_Dialog.Flags = &H802&
+ On Local Error GoTo Create_Metafile_Error
+ Common_Dialog.Action = 2
+ 
+ Screen.MousePointer = 11
+ 
+ ' Open the metafile
+ metafile = Meta_File_Create((Common_Dialog.Filename), -500, 499, -500, 499, 1000)
+ 
+ ' Set mapping
+ ivar = Meta_SetWindowOrg(metafile, -500, 499)
+ ivar = Meta_SetWindowExt(metafile, 1000, -1000)
+ ivar = Meta_SetMapMode(metafile, MM_ANISOTROPIC)
+ 
+ ' Draw lines
+ ivar = Meta_MoveTo(metafile, 300, 0)
+ For i = 0 To 6283 Step 118
+ x = Cos(i / 100#) * 300
+ y = Sin(i / 100#) * 300
+ ivar = Meta_LineTo(metafile, x, y)
+ Next
+ 
+ ' Set fill style and color
+ lb.lbStyle = BS_HATCHED
+ lb.lbColor = QBColor(5)
+ lb.lbHatch = HS_DIAGCROSS
+ brush = Meta_CreateBrushIndirect(metafile, lb)
+ oldbrush = Meta_SelectObject(metafile, brush)
+ 
+ ' Draw an ellipse
+ ivar = Meta_Ellipse(metafile, -100, -100, 100, 100)
+ 
+ ' Free the brush
+ oldbrush = Meta_SelectObject(metafile, oldbrush)
+ ivar = Meta_DeleteObject(metafile, brush)
+ 
+ ' Close the metafile
+ Meta_File_Close (metafile)
+ 
+ Screen.MousePointer = 0
+ 
+ MsgBox Common_Dialog.Filename, 48, "Created"
+ Exit Sub
+ 
+Create_Metafile_Error:
+ If Err = 32755 Then Exit Sub 'Cancel
+ MsgBox Error$, 48, Common_Dialog.Filename
+ Exit Sub
+End Sub
+ 
+Sub Menu_File_Exit_Click ()
+ Hide
+ Unload Me
+End Sub
+ 
+Sub Menu_File_Open_Click ()
+ ' Get filename
+ Common_Dialog.DialogTitle = "Open Metafile"
+ Common_Dialog.Flags = &H1004&
+ On Local Error GoTo Open_Metafile_Error
+ Common_Dialog.Action = 1
+ 
+ ' Display Picture
+ Picture_Box.Cls
+ Picture_Box.Picture = LoadPicture(Common_Dialog.Filename)
+ 
+ Exit Sub
+Open_Metafile_Error:
+ If Err = 32755 Then Exit Sub 'Cancel
+ MsgBox Error$, 48, Common_Dialog.Filename
+ Exit Sub
+End Sub 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 [Home] [Meta Files] [Hardcore VB] [What's Wrong?] [Image Sizes] 
+	 
+ 
+ 
+	 
+ 
+ 
+ 

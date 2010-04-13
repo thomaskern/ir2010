@@ -1,0 +1,46 @@
+
+General Rules for Optimization
+General Rules for Optimization
+[ index ]
+[ benchmarks
+ | compilers 
+ | maintainability
+ | resources
+ | size
+ | speed
+ | tools ]
+There are certain principles that apply to optimization in any 
+computer language, and Java is no exception.
+Don't optimize as you go:
+Write your program without regard to possible optimizations,
+ concentrating instead on making sure that the code is clean, correct, 
+ and understandable. If it's too big or too slow when you've finished, 
+ then you can consider optimizing it.
+ 
+Remember the 80/20 rule:
+In many fields you can get 80% of the result with 20% of the effort (also
+ called the 90/10 rule - it depends on who you talk to). Whenever you're
+ about to optimize code, use profiling 
+ to find out where that 80% of execution time is going, so you know where
+ to concentrate your effort. 
+ 
+Always run "before" and "after" benchmarks:
+How else will you know that your optimizations actually made a difference?
+ If your optimized code turns out to be only slightly faster
+ or smaller than the original version, undo your changes and go back to 
+ the original, clear code.
+ 
+Use the right algorithms and data structures:
+Don't use an O(n2) bubblesort algorithm to sort a
+ thousand elements when there's an O(n log n) quicksort available.
+ Similarly, don't store a thousand items in an array that requires an
+ O(n) search when you could use an O(log n) binary tree, or
+ an O(1) Java hash table.
+ 
+ http://www.cs.cmu.edu/~jch/java/rules.html 
+ General Rules for Optimization 
+ 
+ 
+ Last modified: Wed 21 May 1997 
+ Copyright &#169 1996 Jonathan Hardwick 
+ 

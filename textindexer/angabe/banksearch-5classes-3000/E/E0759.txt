@@ -1,0 +1,21 @@
+
+Computer Centre: Introduction to C Programming
+ 
+ C - Keywords
+Keywords
+C is a relatively small language which uses only 32 keywords. Many of these will be covered in the course but for reference purposes the list of keywords is as follow:
+auto	double	int	struct
+break	else	long	switch
+case	enum	register	typedef
+char	extern	return	union
+const	float	short	unsigned
+continue	for	signed	void
+default	goto	sizeof	volatile
+do	if	static	while
+Many of the keywords listed above will be covered on this course. However,
+some have either limited use or are only used in advanced programming. Such keywords
+are highlighted above where a brief desciption of their use is offered.
+ Computer Centre 
+Information Suppliers: Richard Mobbs, Head of Information Services, Leicester University Computer
+ Centre and Marina Carter, Postgraduate Student, Leicester University Computer Centre.
+Last Updated: August 1995

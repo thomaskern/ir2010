@@ -1,0 +1,222 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Visual Basic SQL Server 7.0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ 
+ Visual Basic Books 
+ 
+Summary
+This chapter has taken a look at the steps required to set
+up a DSN. You should now be familiar with setting up a DSN, know what types are
+available, and which type to use for your own particular situation. You should
+also understand the difference between NT authentication and SQL Server
+authentication, which method to use in your DSN, and why.
+<![if !supportEmptyParas]> <![endif]>
+We have covered three methods of establishing a connection
+with the database to provide data access in our programs. Each has its own
+merits and its own method of use; the choice of method depends on what
+functions your program or server component needs to perform. You should be
+comfortable using all three methods, as the examples we have provided
+demonstrate establishing a basic connection by each method in turn. Once you
+have experimented with these examples on your own, you will discover the power
+of these connections, and how you can pass the parameters as variables that you
+retrieve from the user or registry settings, to control who is able to log on.
+<![if !supportEmptyParas]> <![endif]>
+In summary, we have:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>q 
+<![endif]>Highlighted the objects of the ADO object model
+<![if !supportLists]>q 
+<![endif]>Walked through the steps of setting up a DSN
+<![if !supportLists]>q 
+<![endif]>Explored the DSN connection
+<![if !supportLists]>q 
+<![endif]>Explored the DSN-less connection
+<![if !supportLists]>q 
+<![endif]>Explored using the Data Designer Environment to
+add a connection
+<![if !supportLists]>q 
+<![endif]>Taken a look at the different authentication
+methods that can be used with the different connections that we have
+demonstrated
+<![if !supportEmptyParas]> <![endif]>
+So far we have covered all of the necessary steps to set up
+a database, grant users access to its objects, and connect to the database from
+VB. We are now going to look at how we can communicate with the database, to
+make use of the data contained within it.
+A
+ActiveConnection parameter
+Recordset object, 19
+adLockReadOnly, 20
+ADO, 1
+Command object, 3
+Connection object, 2, 4-14
+object model, 1
+Record object, 3
+Recordset object, 3
+Stream object, 3
+adOpenForwardOnly, 20
+adStateOpen constant
+State property, 19
+asynchronous connections, 4
+C
+Command object, ADO, 3
+Data Environment Designer,
+adding to, 27
+Parameters collection, 3
+Connection object, 2, 4-14
+connections, verifying, 15
+ConnectString parameter, 4
+DSN-less
+connections, 21
+   using, 22
+DSNs,
+4
+   creating, 5-14
+Errors collection, 3
+Open method, 4
+Options parameter, 4
+Properties collection, 3
+SQL Server, connecting to, 4
+State property, 15
+synchronous/asynchronous
+connections, 4
+ConnectString parameter
+Connection object, 4
+CopyRecord method
+Record object, 3
+cursors
+adOpenForwardOnly, 20
+CursorType parameter
+Recordset object, 19
+D
+DAO, 2
+data aware controls, 24
+Data Environment Designer,
+24-30
+Command object, adding, 27
+database connections, 24-30
+ using, 25
+Data Source Names. See DSNs,
+4
+databases
+Connecting, 1
+   Connection object, 4-14
+   Data Environment Designer connections,
+24-30
+   DSN connections, 14-21
+   DSN-less connections, 21
+DeleteRecord method
+Record object, 3
+DSN-less connections, 21
+using, 22
+DSNs, 4
+connections, 14-21
+creating, 5-14
+passwords, 18
+removing, 13
+SQL Server authentication, 8
+user IDs, 18
+using, 15
+E
+Errors collection
+Connection object, 3
+F
+File DSNs, 5
+L
+LockType parameter
+Recordset object, 19
+M
+MDAC, 1
+Me keyword, 17
+Microsoft Data Access
+Components. See MDAC, 1
+MoveRecord method
+Record object, 3
+O
+object model
+ADO, 1
+ODBC, 1
+Data Source Administrator, 5
+driver, specifying, 21
+    for DSN connections, 6
+    for DSN-less connections, 21
+OLE DB, 1
+Open method
+Connection object, 4
+Recordset object
+    parameters, 19
+Options parameter
+Connection object, 4
+Recordset object, 19
+P
+Parameters collection
+Command object, 3
+passwords
+DSN connections, 18
+Properties collection
+Connection object, 3
+R
+RDO, 2
+RDS, 1
+Record object, 3
+Recordset object, 3
+Fields collection, 3
+Open method
+parameters, 19
+Remote Data Services. See
+RDS, 1
+S
+server components
+DSNs, 14
+Source parameter
+Recordset object, 19
+SQL Server
+connecting to, 4
+security
+    DSN connections, 8
+State property
+adStateOpen constant, 19
+connections, verifying, 15
+Stream object, 3
+synchronous connections, 4
+System DSNs, 5
+creating, 5-14
+removing, 13
+SQL Server authentication, 8
+U
+Universal Data Access, 1
+Used IDs
+DSN connections, 18
+User DSNs, 5
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Order from Amazon and get a 20% discount!
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+ ©1999-2000 Visual Basic Books. All rights reserved.

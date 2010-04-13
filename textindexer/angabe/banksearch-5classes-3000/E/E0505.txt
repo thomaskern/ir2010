@@ -1,0 +1,88 @@
+
+ A Few Other Handy Snippets
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+and Code Corner Present
+Steve Litt's PERLs of Wisdom:
+A Few Other Handy Snippets
+Copyright (C) 1998 by Steve Litt
+Contents
+- Converting a string to upper case
+- Reporting the Time as a String
+- Appending to a Log File
+- Using Command Line Arguments
+- Converting a File to a List
+- Looping Through a File
+Converting a string to upper case
+ $string =~ tr/[a-z]/[A-Z]/;
+Reporting the Time as a String
+This subroutine reports the time as YYYY-MM-DD @ HH:MM:SS format.
+sub timestamp
+ {
+ my($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst);
+ ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) =
+ localtime(time);
+ my($string);
+ $string = sprintf("%04d-%02d-%02d @ %02d:%02d:%02d",
+ 1900 + $year, $mon+1, $mday, $hour, $min, $sec);
+ return($string);
+ }
+Appending to a Log File
+open(LOGFILE, ">>batch.log");
+#**Note a dot between strings concatenates them. \t is tab, \n is newline
+print LOGFILE &timestamp() . "\tSecond process started\n";
+close(LOGFILE);
+Using Command Line Arguments
+#******* MAIN ROUTINE *********
+print "First arg (not program name as in C): $ARGV[0]\n;
+print "Second arg: $ARGV[1]\n;
+print "Third arg: $ARGV[2]\n;
+print "\n";
+Converting a File to a List
+Note that because of memory limitations, this should be done only on
+small to medium sized files. For large files or files whose length is unknown
+at design time, loop through the file instead.
+open(PROFILE, ".profile");
+@profile = ;
+close(PROFILE);
+Looping Through a File
+This opens autoexec.bat for input, autoexec.rem for output, and copies
+only the lines that aren't remmed out.
+open(INPUT, "autoexec.bat");
+open(OUTPUT, ">autoexec.rem"); # The > means open for write, 
+ # over original if existed.
+while ()
+ {
+ my($line) = $_; #preserve $1, the line just read, nomatter what
+ chomp $line; #blow off trailing newline
+ unless($line =~ /^\s*rem/i) #click word or symbol for explanation
+ {
+ print OUTPUT "$line\n"; #write the non-remmed autoexec command
+ }
+ }
+close(INPUT);
+close(OUTPUT);
+# often easier to use unless() than if(!())
+# =~ means "compare to regular expression on right"
+# the forward slashes delimit the regular expression
+# a pipe (|) pair can be used instead, but then must be preceeded with
+# m before the first pipe. You can also put the m before the first slash
+# on a slash pair.
+# ^ means "start of line
+# \s means "whitespace"
+# * means 0 or more of the preceeding (in this case 0 or more whitespace)
+# rem or REM is what you're actually looking for
+# The i after the last slash means case independent compare.
+ [ Troubleshooters.com
+| Code Corner | Email
+Steve Litt ] 
+Copyright (C)1998 by Steve Litt --
+Legal
+ 

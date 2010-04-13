@@ -1,0 +1,41 @@
+
+ Pure ASP .NET: A Code-Intensive Premium Reference 
+By: Robert Lair and Jason Lefebvre 
+ISBN: 067232069X 
+Publisher: Sams Publishing 
+ 
+ 
+Easy Transition 
+Reviewed By: Moklesur Rahman 
+As the name suggests it is a reference book, for intermediate to advanced ASP developers who wants to migrate to ASP.Net. As with any book about .Net technology, it also covers the some aspects of .Net framework and CLR.
+This book has three parts:
+Part 
+I: Overview of ASP.Net
+ 
+This part discusses the .Net framework, CLR and different aspects of ASP.Net. Not much code here but a lot of discussion. Compared to classic ASP, ASP.Net has a whole new breed of controls to ease the development process, such as HTML controls, Web controls, Validation controls, List controls. You will find overview of those controls here. Also discussed are Web Services and database access with ADO.Net.
+Part II: Developing with ASP.Net
+This is the code intensive part of the book. This part elaborates the topics discussed in Part I with examples and shows how to use them.
+ 
+Here you will find: 
+- How to use different ASP.Net controls such as: Html 
+ and Web controls, List controls, Validation controls, User controls. 
+ 
+- How to access data with ADO.Net. 
+ 
+- How to build Web services and consume them. 
+ 
+- How to build Components for the ASP.Net 
+ 
+- Configuring, optimizing, securing and deploying of ASP.Net application.
+Part III: 
+Microsoft .Net Reference by namespace
+ 
+Detailed references for most commonly used .Net namespaces, namely System.Collections, System.Data.SqlClient and System.Web.UI.Webcontrols. All the Properties and methods of all the classes in these namespaces are explained with examples. 
+I believe you will be referencing this part while you make yourself familiar with different classes of ASP.Net.
+ 
+All the examples in this book are given in both VB and C# language. So, it can be read by both the VB and C# group. Many developers are deciding which of those two languages to go for. It could be added benefit for them as they can compare the two languages. But it essentially consumes space and wastes resources.
+It is a ‘Code-Intensive’ book. Well, you have to type intensively to test the examples. The book does not come with any CD, nor could I find any information about downloading the code samples from Internet.
+ 
+In summary, it is a good reference book that covers the core technologies of ASP.Net and will be beneficial to developers with previous ASP development experience moving to ASP.Net. I believe I will be referencing it from time to time.
+ 
+	

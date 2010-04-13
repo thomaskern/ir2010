@@ -1,0 +1,900 @@
+
+Javalobby Forums - The Day Java Opened Up?
+ 
+ 
+ 75052 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ The Day Java Opened Up?
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 39 replies on
+ 4 pages.
+ Most recent reply:
+ Mar 24, 2002 11:36 AM
+ by
+ 
+ Alex Boisvert
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: 1 2 3 4 » ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Alex Boisvert
+ 
+ 
+ 
+ Posts: 1
+ 
+ 
+ Registered: Dec, 2001
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The Day Java Opened Up?
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 24, 2002 11:36 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Here's a blog article, posted on Servlets.com, detailing the progress made by the Apache Software Foundation and Sun about the opening up of the Java platform (JCP) to Open-Source implementations.Nice to see an agreement has been reached and that Sun publicly posted a letter of intent.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Osvaldo Doederlein
+ 
+ 
+ 
+ Posts: 171
+ 
+ 
+ From: Curitiba, PR / Brazil
+ 
+ Registered: Sep, 1997
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Excellent news
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 12:43 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The Apache people makes so much great Java software that we're becoming dependant on them for most projects here. I believe this agreement is more important than anything coming out of JavaOne/2002!Now, people who don't like/afford commercialware and don't feel comfortable with Sun's SCSL or something else, can now rely on "pure" free/open source projects instead, without worrying that Sun could eventually pull the rug from OSS groups. The JCP will be more respected with these guarantess for the free software world.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mark J
+ 
+ 
+ 
+ Posts: 160
+ 
+ 
+ Registered: Jan, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I don't see much progress
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 2:58 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ As far as I can tell, Sun never had the legal means to keep independent third parties from implementing Java specifications; beyond patents, there seems to be little little protection for published APIs. Sun may have tried to impose contractual obligations on participants as part of the JCP, but that's a separate issue.The intended changes to the JCP do make it easier for Apache to work with Sun. Sun absolutely had to do these because angering the Apache folks and potentially losing them would have been a very serious blow for Sun and Java. And note that, so far, this isn't even legally binding, it's just a letter of intent.However, I don't foresee that it will change the lack of availability of open source (or any kind of independent third party) Java2 implementations. As far as I know, GNU Classpath, Intel OPR, Kaffe, and others, were never obstructed by Sun legal threats. Instead, they have simply been unable to replicate something as big and ever-changing as "Java2".
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hardball, nice, hardball, nice...
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 3:39 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ISO? Fail. Ecma? Fail. Apache? Fail... oops...sorry, we can't afford to loose this one, let's backtrack and be nice.I get the feeling that there a people working for Sun who should loosen their ties once in a while. I wish Sun would make more money out of Java. I really wish so. But I don't want them to be choosing between an open process for Java and their bottom line. It is not Java's fault if Sun failed with many of its commercial attemps... Java Workshop (or whatever it was called)? Total failure. Their web browser (can't even remember the name), total failure... Forte? Not bad, but how are they making money with it? And so on. I think they had a Java web server, probably still do... where did that go? And so on... They just don't build good commercial software... I get the feeling that some managers feel that if the playing field was a bit less open, they might have a better chance... but that's just not true... it would only hurt Java and not profit Sun... Sun has probably some of the best Java engineers in the market, if they can't build good commercial software out of all this talent... a tilted playing field won't help!At some point, I thought that Sun was playing hardball because they were pressured to do so by BEA and IBM. I was sooo wrong!Clearly, Sun plays hardball because some people *inside* Sun believe that's what must be done. Then, it really feels like somebody else steps in and say "no, that's not possible", and then ooops... we change route...I just wish some of Sun's stockholders start asking serious questions about all this bad, bad, bad PR.How did all of this ugliness helped Sun??? It didn't. Sun looked foolish. That can't be good when you are selling *serious* machines to serious people.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I agree, but let me point out that...
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 3:54 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Superwaba (waba and others) is a true JVM fully open source (LGPL). The trick is that Superwaba is not Java2. But it solves a given problem perfectly.The reason there isn't a full Java2 open source implementation is due to many factors, but you are right, but it is not true that none of them are "legal" per se:1) There is something free$$$ available and not only from Sun, but from other vendors. Under Linux, you have Blackdown, IBM, and Sun. That's 3 different vendors all releasing free$$$ versions.2) Sun releases the source code and makes it easy for you to read through it.This one is a legal reason. Sun made it clear that if you ever looked at their source code, then you can't reasonably a clean room implementation. This is a lot more serious than it looks. I've surfed through Sun's source code. That means I can't safely contribute to a clean room implementation.That's why open source doesn't work well here for Java2. That's not so bad though... as long as Sun remains reasonable... the question we might ask though is whether it would be better of Sun to truly open source Java. I think that Sun would save a lot of money by releasing Java as true open source software. People would just fix the bugs themselves and Java would be a lot better. Plus, Java would automatically gain a "+1" in geek factor thus attracting many people who would have gone with the other camp.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mark J
+ 
+ 
+ 
+ Posts: 160
+ 
+ 
+ Registered: Jan, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: I agree, but let me point out that...
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 5:23 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Superwaba (waba and others) is a true JVM fully open source (LGPL). The trick is that Superwaba is not Java2.Yes, there are quite a number of third party JVMs, not just open source ones. The primary problem is the lack of a fully compliant set of libraries. Another problem is the lack of some important functionality in the JVM needed for high performance computing and integration with legacy code.My assessment is that most of the server-side APIs people really use are available in open implementations. The main headache in producing a Java2 implementation is Sun's massive (and IMO not so well thought out) client, gaming, and media libraries.So, maybe the thing to do is first to identify what freely available libraries constitute core server functionality and define an open platform in terms of those. Sun's client side libraries can then be replaced with native bindings to open, cross-platform toolkits (which would also address Swing's performance problems).Furthermore, a Java-to-CLR compiler is pretty simple and would allow people to freely recompile their code for either platform. If there is a well-defined set of open Java libraries, the same libraries could be available both on the JVM and on the CLR. And if you run on the CLR, you additionally get access to value classes and simpler binding to native code if you like.Of course, this would never appeal to the crowds who like to seek salvation in pledging undying loyalty to a single vendor, be it Sun or Microsoft (the mentality is the same). Sun would doubtlessly also not like it one bit, but as long as you don't call the result "Java", there isn't much they could do about it.I think this could be a viable path for the open source community, as well as some of the smarter commercial software developers, to achieve independence from Sun corporate politics and to make sure that the efforts of both Java and C# developers benefit each other.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	mohammed firdaus
+ 
+ 
+ 
+ Posts: 98
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Just one more thing
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 8:38 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Very nice to read.I hope that SUN would not allow Apache-license open source software. And instead force all open source implementations to use the GPL. IMHO they should not allow BSD, Apache and LGPL licensed implementations.Mohammed Firdaus
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Rich Persaud
+ 
+ 
+ 
+ Posts: 2
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ More news coverage ...
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 8:39 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ... of this announcement at http://javaindex.org/#newsRich
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mark J
+ 
+ 
+ 
+ Posts: 160
+ 
+ 
+ Registered: Jan, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: Just one more thing
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 26, 2002 10:08 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ And what would the point of that be?
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	mohammed firdaus
+ 
+ 
+ 
+ Posts: 98
+ 
+ 
+ Registered: Sep, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Keep Open Source Code Open
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 4:06 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ As you all know the Apache license allows proprietary extensions. Why should non-open source software be allowed to benefit from SUN's willingness to allow open source implementations of standards?They should prevent this by allowing only GPL-licensed implementations.Mohammed Firdaus
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 39 replies
+ on 4 pages
+ [
+ 1
+ 2
+ 3
+ 4
+	 |
+ »
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

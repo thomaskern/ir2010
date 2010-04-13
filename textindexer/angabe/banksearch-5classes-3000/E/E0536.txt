@@ -1,0 +1,572 @@
+
+ 
+C >> Bitwise Operators 1 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Binary Numbers 
+ Main Menu 
+ Bitwise Operators 2 
+ 
+ 
+ 
+ 
+Bitwise Operators 1
+ 
+ 
+ 
+ 
+ 
+ 
+What Are They?
+ 
+ 
+ 
+ 
+ 
+As the name suggests, bitwise operators are used to perform calculations using binary digits (this is why I had to write a section 
+ about binary numbers). 
+ 
+In the C source code, you'd have to use bitwise operators with decimal numbers. 
+ 
+ 
+ 
+First of all, to understand the logic behind these operators, you need to know to convert to and from decimal and binary. Secondly, 
+ don't confuse the bitwise operators with the logical and relation ones!
+ 
+I will run through the six operators...
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+& - Bitwise AND
+ 
+ 
+ 
+ 
+ 
+Bitwise AND requires two operands - just like logical AND. However, bitwise operators return a variety of numbers - not just 1 
+ or 0. 
+ 
+So how does bitwise AND work? The easiest way is to look at an example: 9 & 23
+ 
+First, you must convert decimal into binary: 
+ 
+9 = 01001
+ 23 = 10111
+ 
+- Notice how I've added an extra zero for the binary representation of 9, simply to match the number of bits of 23. 
+ 
+Now align the right most bits: 
+ 
+01001
+ 10111
+ 
+Starting from the right, if BOTH numbers are 1, write a 1 underneath: 
+ 
+01001
+ 10111
+ ____1 
+ 
+Remember that x && y returns 1 if x and y are both non zero. 
+ 
+Then work your way to the left: 
+ 
+01001
+ 10111
+ 00001
+ 
+ 
+ 
+- Now you'll see why I've added that extra zero! So now we have the return value of 9 & 23 - it is simply 1. 
+ 
+ 
+ More examples: 
+ 
+1000 & 1101 = 1000
+ 00100 & 10111 = 00100
+ 01111 & 11100 = 01100
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ & 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+It's not easy doing these calculations in your head. You can type your working here if you want - 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+| 
+ - Bitwise OR
+ 
+ 
+ 
+ 
+ 
+Bitwise OR also requires two operands, and works in a similar fashion as bitwise AND. Let's look at the previous example but with bitwise 
+ OR: 9 | 23 
+ 
+You follow the same steps, up until the point where you compare bits: 
+ 
+01001
+ 10111
+ 
+Starting from the right, if BOTH numbers are 0, write a 0 underneath, else write a 1: 
+ 
+01001
+ 10111
+ ____1 
+ 
+Remember that x || y returns 0 if both x or y are zero, else it returns 1. 
+ 
+Then work your way to the left: 
+ 
+01001
+ 10111
+ 11111
+ 
+So 9 | 23 returns 31. 
+ 
+ 
+ 
+More examples: 
+ 
+1000 | 1101 = 1101
+ 00100 | 10111 = 10111
+ 01111 | 11100 = 11111
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ | 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+More space for calculations: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+^ 
+ - Bitwise XOR
+ 
+ 
+ 
+ 
+ 
+Bitwise XOR also requires two operands, and works in a similar fashion as the bitwise AND and OR. XOR is an abbreviation of eXclusive 
+ OR. 
+ 
+If there was a logical operator called XOR, x XOR y will return 1 if EITHER x or y return non zero 
+ values. If x and y are BOTH non zero, x XOR y would return 0. If x and y are both 
+ zero, x XOR y would again, return 0. 
+ 
+ 
+ 
+You follow the same steps, up until the point where you compare bits: 
+ 
+So what's 9 ^ 23 ? Using the same routine and applying the logic behind XOR: 
+ 
+01001
+ 10111
+ 11110
+ 
+So 9 | 23 returns 30. 
+ 
+ 
+ 
+ 
+ 
+More examples: 
+ 
+1000 ^ 1101 = 0101
+ 00100 ^ 10111 = 10011
+ 01111 ^ 11100 = 10011
+ 
+ 
+ 
+ 
+ 
+ 
+ ^ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Even more space: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A 
+ Little Note on Bitwise XOR...
+ 
+ 
+ 
+ 
+ 
+If you wanted to know what is bitwise XOR in terms on NOT, AND and OR, here's your answer: 
+ 1 AND 1 = 1 1 OR 1 = 1 NOT 1 = 0
+1 AND 0 = 0 1 OR 0 = 1 NOT 0 = 1
+0 AND 1 = 0 0 OR 1 = 1
+0 AND 0 = 0 0 OR 0 = 0
+NOT (1 AND 1) = 0
+NOT (1 AND 0) = 1
+NOT (0 AND 1) = 1
+NOT (0 AND 0) = 1
+(1 OR 1) AND ( NOT (1 AND 1)) = 1 AND 0 = 0
+(1 OR 0) AND ( NOT (1 AND 0)) = 1 AND 1 = 1
+(0 OR 1) AND ( NOT (0 AND 1)) = 1 AND 1 = 1
+(0 OR 0) AND ( NOT (0 AND 0)) = 0 AND 1 = 0
+1 XOR 1 = 0
+1 XOR 0 = 1
+0 XOR 1 = 1
+0 XOR 0 = 0
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Binary Numbers 
+ Main Menu 
+ Bitwise Operators 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,484 @@
+
+Visual Basic and Winsock API - Receiving Data
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API -
+ Receiving Data 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Receiving Data
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ 
+ Winsock API Test Bench 8 project 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+At this stage, the sockets created with the Test 
+ Bench sample application already received some data from the other side 
+ of the connection, but we were not able to see that data as we had no 
+ means to retrieve the data arrived at the Winsock buffer of the local 
+ system. Here is just an example to prove it. In the 
+ previous article we 
+ tested the application's feature to track sockets' status. When we had 
+ established connection with the Microsoft FTP server we saw that the 
+ socket was in readable state. That means that some data has arrived at 
+ the local machine; in this particular case, the socket received a 
+ welcome message from the FTP server. Today we'll learn how to use the
+ 
+ recv Winsock API function in Visual Basic in order to read data from the 
+ Winsock buffer that collects all the bytes arrived through the network 
+ for our application.
+ 
+ 
+The recv Winsock API function
+ 
+ 
+The first thing you have learned today is that the 
+ 
+ recv function doesn't force the connection peer to send data to your 
+ socket. The function just reads already arrived data. In the Winsock 
+ documentation the 
+ recv function is defined as follows:
+ 
+ 
+The Windows Sockets recv function receives data from a connected 
+ socket.
+ 
+ 
+Declare Function recv Lib "ws2_32.dll" (ByVal s As Long, _
+ 
+ ByRef buf As Any, _
+ 
+ ByVal buflen As Long, _
+ 
+ ByVal flags As Long) As Long 
+ 
+ 
+While we are working only with blocking sockets in 
+ the sample application, we have to know that the function returns number 
+ of bytes retrieved from the buffer, if no error occurs. Otherwise, it 
+ returns a value of SOCKET_ERROR that is equal to -1. 
+ 
+Now let's talk about the arguments. Below is a 
+ description of the function arguments as it stated in the documentation:
+ 
+ 
+- s 
+ Descriptor identifying a 
+ connected socket. 
+ 
+- buf 
+ Buffer for the incoming data. 
+ 
+- len 
+ Length of buf. 
+ 
+- flags Flag specifying the way in 
+ which the call is made.
+ 
+ 
+The first argument is a socket handle - value 
+ returned by the 
+ socket function. It's obvious that we need to tell the
+ 
+ recv function which socket we call the function for.
+ 
+The second argument is a buffer that should 
+ contain some data after the function execution. It has not to have 
+ enough length to receive all the data from the Winsock buffer. Moreover 
+ size of the buffer is limited by value of 8192 bytes (8 Kbytes). So if 
+ size of data stored in the Winsock buffer is more than size of the 
+ buffer passed with 
+ recv function, you need to call the function several 
+ times until all the data will be retrieved.
+ 
+If length of the buffer is defined by an 
+ application, the 
+ recv function have to know that value in order to know 
+ how many bytes it can put in the buffer. The third argument is just for 
+ that.
+ 
+The last argument is an optional one and we are 
+ not going to use it today. It allows us to change behavior of the 
+ function by providing the function with two optional flags: 
+ MSG_PEEK and 
+ MSG_OOB. 
+ 
+ 
+ MSG_PEEK 
+ Peeks at the incoming data. The data is 
+ copied into the buffer but is not removed from the input queue. The 
+ function then returns the number of bytes currently pending to 
+ receive.
+ 
+ 
+ 
+ MSG_OOB 
+ Processes OOB 
+ (Out-of-band) data. There are two types of 
+ the data packets flying on the net: ordinary packets and harrying 
+ ones. The last ones can be determined by checking a special flag in 
+ the TCP/IP header of a packet... Let's don't talk about it today 
+ because it is really an "out-of-band" stuff for this article. 
+ 
+ 
+ 
+ 
+The vbRecv function
+ 
+ 
+The vbRecv function is a wrapper function for the 
+ 
+ recv one from the Winsock API. The Test Bench sample application will 
+ call this function in order to read incoming data and convert it to the 
+ String data type.
+ 
+ 
+ 
+ 
+Public Function vbRecv(ByVal lngSocket As Long, strBuffer As String) As Long 
+'******************************************************************************** 
+'Purpose :Retrieves data from the Winsock buffer. 
+'Returns :Number of bytes received. 
+'Arguments :lngSocket - the socket connected to the remote host 
+' strBuffer - buffer to read data to 
+'******************************************************************************** 
+ ' 
+ Const MAX_BUFFER_LENGTH As Long = 8192 
+ ' 
+ Dim arrBuffer(1 To MAX_BUFFER_LENGTH) As Byte 
+ Dim lngBytesReceived As Long 
+ Dim strTempBuffer As String 
+ ' 
+ 'Check the socket for readability with 
+ 'the IsDataAvailable function 
+ If IsDataAvailable(lngSocket) Then 
+ ' 
+ 'Call the recv Winsock API function in order to read data from the buffer 
+ lngBytesReceived = recv(lngSocket, arrBuffer(1), MAX_BUFFER_LENGTH, 0&) 
+ ' 
+ If lngBytesReceived > 0 Then 
+ ' 
+ 'If we have received some data, convert it to the Unicode 
+ 'string that is suitable for the Visual Basic String data type 
+ strTempBuffer = StrConv(arrBuffer, vbUnicode) 
+ ' 
+ 'Remove unused bytes 
+ strBuffer = Left$(strTempBuffer, lngBytesReceived) 
+ ' 
+ End If 
+ ' 
+ 'If lngBytesReceived is equal to 0 or -1, we have nothing to do with that 
+ ' 
+ vbRecv = lngBytesReceived 
+ ' 
+ Else 
+ ' 
+ 'Something wrong with the socket. 
+ 'Maybe the lngSocket argument is not a valid socket handle at all 
+ vbRecv = SOCKET_ERROR 
+ ' 
+ End If 
+ ' 
+End Function
+ 
+ 
+ 
+As you see a new helper function is used - 
+ IsDataAvailable. This function is just to check the socket for 
+ readability.
+ 
+ 
+ 
+ 
+Public Function IsDataAvailable(ByVal lngSocket As Long) As Boolean 
+ ' 
+ Dim udtRead_fd As fd_set 
+ Dim udtWrite_fd As fd_set 
+ Dim udtError_fd As fd_set 
+ Dim lngSocketCount As Long 
+ ' 
+ udtRead_fd.fd_count = 1 
+ udtRead_fd.fd_array(1) = lngSocket 
+ ' 
+ lngSocketCount = vbselect(0&, udtRead_fd, udtWrite_fd, udtError_fd, 0&) 
+ ' 
+ IsDataAvailable = CBool(lngSocketCount) 
+ ' 
+End Function
+ 
+ 
+ 
+ 
+If you don't understand how the 
+ IsDataAvailable 
+ function does work, read the 
+ previous article to learn how to find out 
+ state of a socket with the select Winsock API function.
+ 
+ 
+Read the next page
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next
+ Page > 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - Receiving Data 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

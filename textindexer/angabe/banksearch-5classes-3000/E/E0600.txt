@@ -1,0 +1,50 @@
+
+ assert()
+ 
+ 
+assert-Assert program validity
+Synopsis
+ #include &#060;assert.h&#062;
+ assert(x);
+ __assert(x,xs,file,line);
+ int x; /* expression to check for nonzero value */
+ const char *xs; /* assertion in text form */
+ const char *file; /* source file name */
+ int *line; /* source line number */
+Description
+ The assert macro tests an expression x for validity (nonzero
+ value). If a condition in your program is false (0), the assert
+ macro is a quick way to abort the program and print an error
+ message to stderr. If the expression is false, then the macro
+ calls the __assert function with the expression in text form plus
+ the source filename (as defined in the __FILE__ macro) and line
+ number (as defined in the __LINE__ macro), also as text strings.
+ The default version of the __assert function prints a message to
+ stderr and aborts with an exit code of 1.
+ NOTE: You cannot call assert or __assert from a shared library.
+ To define the macro, include the assert.h header file in your
+ program. The assert.h file contains two versions of the macro, a
+ null version and the normal code-generating version. Using the
+ null version allows you to strip the assertion code from your
+ program without removing the assert calls. To use the null
+ version, define the symbol NDEBUG in one of your header files.
+If
+ you define NDEBUG in one of your header files, the header file
+ containing the NDEBUG definition must be included before the
+ assert.h file. If the symbol NDEBUG is defined, the null
+version
+ of the macro is used. If the symbol NDEBUG is not defined, the
+ normal code-generating version applies.
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;assert.h&#062;
+ /* Make sure integer x is positive */
+ void postest(int x)
+ {
+ assert(x &#062;= 0);
+ }
+ void main(void)
+ {
+ postest(5);
+ printf("5 is a positive integern");
+ }

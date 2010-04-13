@@ -1,0 +1,730 @@
+
+Designing Relational Databases for Objects
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login: 
+ 
+ 
+ 
+ 
+ 
+ 
+ password: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ Resources
+ Code & Tip Library
+ Message Board
+ Articles
+ News
+ LearnVB
+ Tutorials
+ Vendors
+ Job Market
+ Advertising
+ About Us
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Designing Relational Databases for Object Hierarchies Using .NET
+By Stephen Hopkins
+Pre-requisites: A knowledge of SQL,
+object-oriented terms and some VB experience.
+ 
+ 
+ 
+ 
+ Current Rating:
+ with 1 votes.
+ 
+ 
+	
+	Please sign in to VBWM.COM to place your vote above. New users can 
+	create a login with just their email address.
+	
+	
+ 
+ 
+	
+	
+ 
+ 
+The First Step
+Let’s face it. It’s not easy using relational
+databases with objects. One solution is to move to Object databases or
+Object/Relational databases. However, these have their limitations.
+Alternatively, we can review how we design our relational databases to make
+them more object-oriented friendly. 
+For our examples, we’ll use a simple class
+defined in VB.NET. Its definition is below:
+ 
+ 
+ 
+ 
+Public Class CPerson    Private msLastName As String = ""    Private msFirstName As String = ""    Public Property FirstName() As String        Get            FirstName = msFirstName        End Get        Set(ByVal Value As String)            msFirstName = Value            IsDirty() = True        End Set    End Property    Public Property LastName() As String        Get            LastName = msLastName        End Get        Set(ByVal Value As String)            msLastName = Value            IsDirty() = True        End Set    End PropertyEnd Class
+ 
+ 
+This class declares two properties, FirstName
+and LastName, and represents a person. Lets consider how we’ll store this class
+in a relational database. The initial starting point is to map the class to a
+table. So in the above case, the initial table definition would be:
+ 
+ 
+ 
+ 
+exec sp_addtype FirstName    , "Char(30)"exec sp_addtype LastName     , "Char(30)"goCREATE TABLE Person   (    FirstName      FirstName      NOT NULL,    LastName       LastName       NOT NULL )
+ 
+ 
+ 
+Object Identity
+Obviously the above table definition has a
+few problems. One is that each row may not be unique. For example, we may have
+two instances of CPerson, representing two different people, who both
+have the same first and last name. In object-oriented terms this is not a
+problem, as each instance of CPerson will have its own object identity. We test
+this identity in VB.NET (and VB6) by using the Is keyword as shown below:
+ 
+ 
+ 
+ 
+        Dim c1 As CPerson        Dim c2 As CPerson        Dim c3 As CPerson        c1 = New Class1()        c2 = New Class1()        c3 = c1 
+ 
+ 
+The following piece of code would display
+false:
+        MsgBox(c1 Is c2)
+ 
+while this piece of code would display true:
+        MsgBox(c1 Is c3)
+ 
+Variable C1 actually refers to a piece of
+memory containing the state of an instance of CPerson. This is what is meant by
+"By Reference". The variable contains a reference to a piece of
+memory. The variable C2 refers to a different piece of memory containing the
+state of another instance of CPerson. When executing the code, C1 is C2, the
+compiler merely checks if the two variables are referring to the same piece of
+memory. If they don’t, then false is returned indicating that the variables are
+referring to two different instances. The code c3 = c1 sets variable c3 to
+refer to the same piece of memory as c1, and therefore the same instance of
+class1. Executing, c1 is c3, will return true.
+Going back to our table definition, Person,
+if we have two instances of CPerson which represent two different people who
+both have the name "John Smith" , we’re in trouble. We won’t be able
+to tell which row contains which instances state. If we save the objects to a
+relational database, we need some way of also saving the fact that they are
+different instances or in human speak, two different people. 
+To deal with this problem, we can add an ID.
+This ID is known as the Object Identifier. 
+This object identifier should fulfill the
+same purpose as the Is keyword. That is, it should be able to differentiate
+instances of objects created from the same class, as well as differentiating
+instances created from different classes. It will also be used to represent relationships
+between objects, as we’ll see later.
+As well, the solution shouldn’t create a
+dependency on a relational database. For example, an object hierarchy should be
+able to be saved to a file on the users C drive as well as to a relational
+database. Sounds difficult....
+Generating IDs is not a simple task. We could
+make a call to a central database, increment a counter using the databases
+transaction properties, and return a unique ID. The problem is that this will
+create a "Hotspot" on the database, with new IDs constantly being
+generated and returned to clients. A Hotspot causes pending requests to queue
+up, which in turn can lead to failures due to timeouts etc. We also need to
+consider that our design should be flexible enough so that we are not dependent
+on any particular storage media. That is, we should be able to write the state
+of our object to a message queue, relational database or a flat file. 
+As well, many objects may be created that
+will never be saved to the database. If we are generating object Ids from a
+central database, this would lead to many unnecessary calls over the network. 
+An alternative is to come up with an
+algorithm that uses information on the machine that creates the object to
+generate a unique ID. One way to do this is to use Globally unique Identifiers
+(GUID). 
+ 
+Use GUIDS to represent Object Identity
+The term GUID is used by Microsoft, but such
+IDs are also known as Universally Unique Identifier, or UUIDs. GUIDs are IDs
+that are guaranteed to be unique in space and time. Although theoretically it
+is possible to generate the same GUID on two different machines, the chances of
+doing so are so remote that you are more likely to die from getting struck by
+an asteroid (well at least until 3400 A.D. when the chance of generating
+duplicate GUIDs will increase....as if we’re going to be around to worry about
+it!). A GUID is generated using various information, including:
+ 
+- A clock value 
+ 
+- A time sequence 
+ 
+- An identifier gathered from the network card [Leach,1998]
+If no network card is installed in the
+machine, a pseudo-id is generated. A GUID itself is 128-bits (16 bytes) in
+length, and is supported by most of the major database vendors. In .NET, GUID’s
+are particularly easy to generate, as shown below.
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]>    Private moGuid As Guid    Public Sub New()        moGuid = New Guid().NewGuid    End Sub
+ 
+ 
+The above code defines a variable moGUID to
+hold an instance of the class Guid. We then initialize the variable in the
+default constructor. The remaining task is to provide access to the ID. It’s
+important however that the ID cannot be changed. To ensure this, we’ll add a
+ReadOnly ID property.
+ 
+ 
+ 
+ 
+    Public ReadOnly Property ID() As Guid        Get            ID = moGuid        End Get    End Property
+ 
+ 
+ 
+In SQL Server, GUIDs are called unique
+identifiers. So, our table definition (in SQL Server) would be changed to:
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]>exec sp_addtype ObjectID     , UniqueIdentifierexec sp_addtype FirstName    , "Char(30)"exec sp_addtype LastName     , "Char(30)"goCREATE TABLE Person   (    ID             ObjectID       NOT NULL,    FirstName      FirstName      NOT NULL,    LastName       LastName       NOT NULL     CONSTRAINT PK_Person          PRIMARY KEY CLUSTERED (ID),   )
+ 
+ 
+We’ve also added a primary key to the table
+using the ID, which is possible due to the guarantee of uniqueness for GUIDs. 
+This provides a very elegant solution in many
+ways.
+ 
+- We can create and throw away as many IDs as we want.
+ 
+- The generation of IDs is carried out on the client machine,
+ ensuring a scalable application.
+ 
+- The IDs are architecturally neutral, allowing the state of our
+ objects to be stored on relational databases, message queues, files etc.
+The down side is that the GUIDs require 16
+bytes of storage, which may lead to a slight performance disadvantage and will
+make our indexes larger than if we were to use integers etc.
+ 
+Surrogate Keys
+In relational database terms, we have
+introduced a surrogate key. That is, we have put a key in the table that has no
+business meaning. Surrogate keys provide a number of advantages. The most
+significant one is that the key will never have to change. This is a common
+problem for many applications. Often an abbreviation is used as the key, and
+invariably a decision is made sometime in the future to change the
+abbreviation. For example, a table may contain the countries of the world, with
+two columns, the countries abbreviation and full name. So for the United
+States, the abbreviation could be "US" and the description would be
+"United States of America". What would happen if we were to change
+the abbreviation to "USA"? We would have to track down all references
+to the abbreviation "US", and change it to "USA". This
+could potentially be a very expensive and tedious task. If we had used
+surrogate keys, we can change the abbreviation at any time with no impact. This
+is a rule I always follow when designing databases:
+                Always
+use surrogate keys.
+This fits in neatly when developing
+object-oriented applications, as the surrogate key is simply the ID of the
+object. 
+Referencing Other Objects
+Any reasonably sized object oriented
+application will be comprised of a network of objects, linked by references. In
+code, a reference can be stored in an instance variable and retrieved and set
+through a property. For example, the following code adds a reference to an
+instance of Caddress (which represents the address of the person) to our
+CPerson class.
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]>Private moAddress As CAddressPublic Property Address() As CAddress    Get        Address = moAddress    End Get    Set(ByVal Value As CAddress)        moAddress = Value        IsDirty() = True    End SetEnd Property
+ 
+ 
+                This
+reference needs to be reflected in our tables that store the state of our
+objects in the relational database. Often the solution is to create an address
+table that contains the ID of the instance of CPerson and the ID of the
+instance of CAddress, and use this to form the primary key of the CAddress
+table. For example:
+ 
+ 
+ 
+ 
+CREATE TABLE Address(    PersonID   ObjectID   NOT NULL,    ID         ObjectID   NOT NULL,    StreetName StreetName NOT NULL,    Suburb     Suburb     NOT NULL,    City       City       NOT NULL,    ZipCode    ZipCode    NOT NULL,    CONSTRAINT PK_Address    PRIMARY KEY CLUSTERED (PersonID, ID),)
+ 
+ 
+The column PersonID will contain the ID of
+the person object that references this particular address object. The problem
+is that by placing the id of the referencing object in the referenced object,
+we are severely hampering the flexibility of our address object. For example,
+if two people live at the same address, why can’t they both reference the same
+object? With the above table definition this is not possible. More importantly,
+we want to be able to use our CAddress objects in other classes without making
+any database changes. For example, a CCompany class may want to reference a
+CAddress object to store its mailing address.
+To provide the flexibility we need, we simply
+place the ID representing the reference in the referencing objects table as
+shown below:
+ 
+ 
+ 
+ 
+CREATE TABLE Person(    ID         ObjectID  NOT NULL,    AddressID  ObjectID  NOT NULL,    FirstName  FirstName NOT NULL,    LastName   LastName  NOT NULL     CONSTRAINT PK_Person    PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_Person_Address FOREIGN KEY          (        AddressID        ) REFERENCES     Address     (        ID    ))CREATE TABLE Address(    ID         ObjectID   NOT NULL,    StreetName StreetName NOT NULL,    Suburb     Suburb     NOT NULL,    City       City       NOT NULL,    ZipCode    ZipCode    NOT NULL,    CONSTRAINT PK_Address    PRIMARY KEY CLUSTERED (ID),)
+ 
+ 
+The AddressID column in the Person table now
+represents the reference and the PersonID column in table Address has been
+removed. We can now use CAddress objects independently of CPerson objects. In
+fact, we can add a reference to an instance of CAddress anywhere we need it as
+long as we store its ID in the referencing object. So we need to update our
+code in CPerson to store the ID.
+ 
+ 
+ 
+ 
+Private moAddress As CAddressPrivate moAddressId As GuidPublic Property Address() As CAddress    Get       Address = moAddress    End Get    Set(ByVal Value As CAddress)        moAddress = Value        moAddressId = moAddress.ID    End SetEnd Property
+ 
+ 
+In the above code an instance variable,
+moAddressID, has been added to store the ID of the address object. As well, the
+code to store the ID of an address object, moAddressID = moAddress.ID, has been added. This will ensure that the latest ID
+is stored in the instance variable moAddressID. 
+ 
+Referencing Many Objects
+What about the situation where we want to
+reference many objects? For example, lets assume that we want to capture the
+friends and relatives of a person. That is, we want to store the relationship
+between an instance of CPerson and zero or more instances of CPerson. If we are
+using GUIDs, this is actually very straightforward. We will need two tables, a
+Collection table and a CollectionMember table. The collection table represents
+a collection object. An entry in this table indicates the existence of a
+collection containing zero or more members. For example, a row in the
+collection table with no matching rows in the CollectionMember table would
+indicate the existence of a collection with zero members. The DefaultID column
+can be used to store the default member, useful for drop-down lists.
+The CollectionMember table contains the IDs
+of all objects that are members of the collection in column MemberID. The
+advantage of this definition is that we can build a generalized collection
+class that allows us to collect up instances of any objects that support our
+own user defined collection interface. To retrieve the members of the
+collection, we join the MemberID column of CollectionMember to the table
+containing the state of the members (for example to the ID column of Person).
+The OrderNbr column can be used to provide a sorted collection, that is to
+return the rows in a particular order, a very useful feature. To do this,
+whenever we perform the join between yje CollectionMember table and another
+table, we need to sort by the OrderNbr column.
+Unfortunately the code required for this
+collection class is beyond the scope of this article, but rest assured it can
+be achieved with not too many lines of code.
+ 
+ 
+ 
+ 
+CREATE TABLE Collection(    ID        ObjectID NOT NULL,    DefaultID ObjectID NULL    CONSTRAINT PK_Collection    PRIMARY KEY CLUSTERED (ID),)<![if !supportEmptyParas]> <![endif]>CREATE TABLE CollectionMember(    ID       ObjectID NOT NULL,    MemberID ObjectID NULL,    OrderNbr Integer  NOT NULL     CONSTRAINT PK_CollectionMember    PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_CollectionMember_Collection FOREIGN KEY          (            ID        )     REFERENCES         Collection         (            ID        ))
+ 
+ 
+ 
+The other thing we need to do is add a foreign
+key to our Person table as shown below:
+ 
+ 
+ 
+ 
+CREATE TABLE Person(    ID           ObjectID  NOT NULL,    AddressID    ObjectID  NOT NULL,    FirstName    FirstName NOT NULL,    LastName     LastName  NOT NULL,    CollectionID ObjectID  NOT NULL     CONSTRAINT PK_Person    PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_Person_Address FOREIGN KEY          (             AddressID        )     REFERENCES         Address         (            ID         )    CONSTRAINT FK_Person_Collection FOREIGN KEY          (            CollectionID        )     REFERENCES         Collection             (                ID            ))
+ 
+ 
+ 
+Logical Deletes
+Having a network of objects means that many
+of the tables defined to store the state of objects will have columns that
+represent references. So what do we do when a reference is no longer needed?
+That is, what do we do when a row is no longer needed?
+The obvious solution is to delete the row.
+When we issue an SQL delete statement, it is termed a physical delete.
+Unfortunately, for heavily referenced rows deleting the row also requires
+changing or deleting all the rows containing a reference to it. In extreme
+cases, to carry out such a delete requires downtime for the application.
+An alternative is to use logical deletes.
+Logical deletes are where we mark the row as deleted, without physically
+deleting it.
+For heavily referenced rows, an effective way
+of implementing logical deletes is to add start and end dates to each row.
+Between these two dates, the row is active. Outside of the dates, the row is
+inactive. An example would be for tax scales which typically last for 12
+months. To get the tax rates effective at a particular point in time, we would
+simply select all rows where the start and end dates encompass the effective
+date. This technique also allows us to maintain historical accuracy, as
+references to old tax scales can remain in place indefinitely.
+For less referenced rows, a column can be
+added to mark the row as being deleted. This column can simply contain a
+"Y" to indicate that the row has been logically deleted. 
+The final method is to simply remove the
+references to a row, without physically deleting it. For example, if we change
+the address object referenced by an instance of the CPerson class, there is no
+need to delete the row representing the state of the previously referenced
+address object.
+An advantage of designing applications to use
+logical deletes is that it significantly reduces the error code needed. There
+is no need to check that a row that once existed is still in the database. As
+an exercise, revisit some of your applications code and see how much deals with
+physical deletes. I think you’ll be surprised. 
+Of course, there is a downside. The tables in
+the database will contain information that is not in use, which in turn means
+that the amount of storage required for the tables is larger than necessary.
+The question that needs to be asked is when the amount of wasted storage
+becomes significant. Then a periodical clean up the database can be carried out
+to remove rows that have been logically deleted.
+ 
+Hidden Updates
+Another perennial problem faced by developers
+is the problem of hidden updates. Hidden updates occur because we have to make
+choices on locking information when building an enterprise application. Lets
+assume that the user wants to change the details of a person represented by the
+CPerson class previously defined. To maximize the number of users that can use
+our application concurrently, we would read the state of the CPerson object and
+display it to the user. The user could then make any changes to the person’s
+details, and our application would send the revised state of the object to the
+database where an update statement would be executed.
+This all sounds pretty straightforward. Of
+course, if we are developing for the enterprise then other users would be
+interacting with the application at the same time. One of these users may get
+the person’s details just after the previous user has retrieved them, make some
+changes and update the details before the other users update. 
+What then occurs is called a hidden update.
+The update performed by the second user is effectively completely lost. In
+certain situations this is okay, but in most we would want to inform the first
+user that details have been changed since they were retrieved from the database
+when they try and update those details.
+One option is to exclusively lock the row
+when it is read from the table stopping anyone else from updating. The
+exclusive lock can then be released when the row is updated. This approach is
+called pessimistic locking and is unacceptable for any application supporting a
+number of users. Locking rows for extended periods severely restricts the
+number of concurrent users an application can support and can also lead to
+deadlocks. 
+There are a number of alternatives to locking
+the row for long periods. One is to add a counter to each row in the table,
+When the row is read, the counter is stored. When the subsequent update is
+executed, the counter is used on the SQL where clause to select the row and
+incremented. For example:
+ 
+ 
+ 
+ 
+Create Procedure sp_UpdatePerson(    @pID        ObjectID ,    @pFirstName FirstName ,    @pLastName  LastName ,    @pCounter   Counter )as    Update Person       set FirstName = @pFirstName,           LastName  = @pLastName ,           Counter   = Counter + 1     where ID        = @pID       and Counter   = @pCounter 
+ 
+ 
+The names beginning with @ are stored
+procedure parameters. By passing in the counter from when the row was read, any
+hidden updates will cause the above update statement to not find the row, as
+the counter will have been incremented. The problem is that all updates should
+be performed through the stored procedure, as we are relying on the counter to
+be incremented whenever an update is carried out. 
+A better alternative is to use a timestamp. A
+timestamp is guaranteed by the database management system (DBMS), such as SQL
+Server, to be discrete enough so that whenever a row is updated, the new
+timestamp will differ from the existing one. (NOTE: This is different from
+using datetime types, where we could potentially update a row and generate an
+identical value). The other advantage is that the DBMS automatically updates
+the timestamp whenever the row is updated. So our SQL changes to:
+ 
+ 
+ 
+ 
+Create Procedure sp_UpdatePerson(    @pID        ObjectID ,    @pFirstName FirstName ,    @pLastName  LastName ,    @pTimestamp Timestamp )as    Update Person       set FirstName = @pFirstName,           LastName = @pLastName      where ID = @pID       and Timestamp = @pTimestamp
+ 
+ 
+The above stored procedure will ensure a
+hidden update does not occur. However, there are two extra things we need to
+do. One is to somehow determine when a hidden update has occurred, so we can
+notify the user. The other is to return the timestamp when an update is
+successful to the object, so that subsequent updates by the same user aren’t
+mistaken for hidden updates.
+To determine if a hidden update has occurred,
+we simply check the number of rows updated.
+If the row count is zero after executing the
+above stored procedure, we can assume that a hidden update has occurred (This
+assumes we are using logical deletes). 
+To return the timestamp, we need to make two
+changes. The first is to add the keyword output to the timestamp parameter.
+This will ensure that the timestamp is returned after executing the stored
+procedure. The second is to select the new timestamp value after a successful
+update.
+ 
+ 
+ 
+ 
+Create Procedure sp_UpdatePerson(    @pID        ObjectID ,    @pFirstName FirstName ,    @pLastName  LastName ,    @pTimestamp Timestamp output)as    Update Person       set FirstName = @pFirstName,           LastName = @pLastName      where ID = @pID       and Timestamp = @pTimestamp<![if !supportEmptyParas]> <![endif]>    if @@rowcount = 1         select @pTimestamp = Timestamp          from Person         where ID = @pID
+ 
+ 
+If the timestamp has changed due to a hidden
+update, @@rowcount will have a value of zero. If there is no hidden update,
+@@rowcount will have a value of one, so the subsequent select statement will be
+executed which will retrieve the latest timestamp for the row.
+To support timestamps, we need to add an
+instance variable and associated property statements to our CPerson class as
+follows:
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>Private mbytTimestamp As Byte()Private Property Timestamp() As Byte() Get            Timestamp = mbytTimestamp        End Get Set(ByVal Value AsByte())            mbytTimestamp = Value        End SetEnd Property
+ 
+ 
+ 
+What about Inheritance?
+Of course, we need to also consider
+inheritance. How can we reflect inheritance in our tables? First let’s consider
+a class, CEmployee, that inherits from CPerson. This class includes an
+eight-character Employee number. In relational terms, we have two options. One
+is to collapse all the definitions into one table as shown below.
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>CREATE TABLE Employee   (    ID             ObjectID       NOT NULL,    EmployeeNbr    EmployeeNbr    NOT NULL,    AddressID      ObjectID       NOT NULL,    FirstName      FirstName      NOT NULL,    LastName       LastName       NOT NULL     CONSTRAINT PK_Employee          PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_Employee_Address FOREIGN KEY                        (                               AddressID                       ) REFERENCES Address (                                      ID                       )   )
+ 
+ 
+The above table definition contains the state
+of an Employee, which is the state of a Person plus an Employee number. This
+will give us good performance when retrieving, inserting and updating employee
+details. On the other hand, it complicates issues when we want to cast our
+CEmployee object to a CPerson object. We can create a view on the Employee
+table that will return the state of our CPerson class. This view, shown below,
+will also allow us to update (and insert if we change the EmployeeNbr column to
+allow nulls ) when dealing with a CPerson object.
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>CREATE VIEW dbo.VPersonAS    SELECT     ID, AddressID, FirstName, LastName    FROM       dbo.Employee
+ 
+ 
+As soon as we have another class inheriting
+from CPerson, the situation becomes more complicated and restrictive. Assume we
+have also created a CCustomer class, which inherits from the CPerson class. Now
+our view is changed to:
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>CREATE VIEW dbo.VPersonAS    SELECT     ID, AddressID, FirstName, LastName      FROM     dbo.EmployeeUNION    SELECT     ID, AddressID, FirstName, LastName      FROM     dbo.Customer
+ 
+ 
+This view definition will allow us to
+retrieve CPerson objects, but not insert/update them.
+An alternative solution is to have separate
+tables for each level of inheritance. 
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>CREATE TABLE Person   (    ID             ObjectID       NOT NULL,    AddressID      ObjectID       NOT NULL,    FirstName      FirstName      NOT NULL,    LastName       LastName       NOT NULL     CONSTRAINT PK_Person          PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_Person_Address FOREIGN KEY               (                         AddressID              )     REFERENCES           Address               (                  ID              )   )<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>CREATE TABLE Employee   (    ID             ObjectID       NOT NULL,    EmployeeNbr    EmployeeNbr    NOT NULL,    CONSTRAINT PK_Employee          PRIMARY KEY CLUSTERED (ID),    CONSTRAINT FK_Employee_Person FOREIGN KEY                        (                               ID                       ) REFERENCES Person (                                      ID                       )   )
+ 
+ 
+Note that the Employee table definition has a
+foreign key definition to the Person table. To return the state of an Employee,
+a join must be made with all the tables that store the state of objects further
+up the inheritance hierarchy. For example, the following SQL will return the
+state of an Employee object, and does a join between the Person and Employee
+tables:
+ 
+ 
+ 
+ 
+<![if !supportEmptyParas]> <![endif]><![if !supportEmptyParas]> <![endif]>select E.ID ,       E.EmployeeNbr,        P.AddressID,       P.FirstName,       P.LastName  from Employee E,       Person P where E.ID = P.ID
+ 
+ 
+This table structure allows casting to any
+level of the inheritance hierarchy, and is more flexible when changes need to
+be made to the hierarchy. The downside is that a join is required for each
+level of the inheritance hierarchy. So if we want to retrieve the state of an
+object nine levels down the hierarchy we will need to join nine tables. In this
+situation, the question to ask is why we have nine levels in our inheritance
+hierarchy!
+So which one to use? Generally shallow
+inheritance hierarchies are seen as one aspect of a well designed application.
+This in turn means that the potential number of tables that need to be joined
+should be limited in a well designed application. In this case, the second
+option is superior as it far more forgiving when we move into our maintenance
+cycles for our application.
+Summary
+This article has hopefully given some insight
+into techniques that can be used when designing relational tables to store the
+state of an object hierarchy. Once we have our table definitions, we still have
+to use another set of techniques to ensure that we retrieve and insert/update
+in the most effective manner. But that’s for another article....
+About the Author
+Stephen Hopkins has a Masters of Science degree from the University
+of Technology, Sydney and is currently writing a book on Universal Business
+Objects in VB.NET.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+summary
+ 
+ 
+ 
+ 
+The problem of
+placing an object’s state into a relational database is a problem of such
+significance that it has been given its own name, "impedance
+mismatch". There are a number of techniques that can be used to overcome
+the problems, and this article outlines some of them. In particular it deals
+with object identity, logical deletes, hidden updates and inheritance.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+links
+ 
+ 
+ 
+ 
+Paul J. Leach, Microsoft, UUIDs and GUIDs , February
+4, 1998
+Scott Ambler, Mapping objects to relational databases, 2001
+Ted Pattison, Using Inheritance in the .NET World
+Ted Pattison, Using Inheritance in the .NET World,
+Part 2
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

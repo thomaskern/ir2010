@@ -1,0 +1,605 @@
+
+ 
+C >> Main Menu ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home 
+ 
+ 
+ 
+ 
+ 
+C Tutorials
+ 
+ 
+If you're a lecturer and would like to use my tutorials for teaching purposes, feel free to link to this site. 
+ 
+Links to printer friendly versions are found at the bottom of each tutorial, but you can now print the lessons in color. 
+ 
+ 
+ 
+ Introduction on C 
+ 
+ 
+A very brief one...
+ 
+ 
+ 
+ The Basics 
+ 
+ 
+Some rules you must follow
+ 
+ 
+ 
+ Hello World 
+ 
+ 
+Writing your first program 
+ 
+ 
+ 
+ Constants and Variables (+Quiz) 
+ 
+ 
+Naming conventions discussed
+ 
+ 
+ 
+ The 4 Data Types 
+ 
+ 
+char, int, float and double
+ 
+ 
+ 
+ Type Modifiers 
+ 
+ 
+The different types of integers
+ 
+ 
+ 
+ Arithmetic Operators (+Quiz) 
+ 
+ 
++ - * / and %
+ 
+ 
+ 
+ Standard Input and Output 
+ 
+ 
+An introduction to streams
+ 
+ 
+ 
+ printf and scanf 
+ 
+ 
+Displaying output and obtaining input
+ 
+ 
+ 
+ More on Format Specifiers 
+ 
+ 
+Control the display of output
+ 
+ 
+ 
+ Comparison and Logical Operators 
+ 
+ 
+Mostly used for comparing 2 expressions
+ 
+ 
+ 
+ Conditional Branching 1 and 2 
+ 
+ 
+Using if, else, switch and goto statements
+ 
+ 
+ 
+ Looping 
+ 
+ 
+for, while and do-while loops
+ 
+ 
+ 
+ Hexadecimal Numbers 
+ 
+ 
+A different numbering system
+ 
+ 
+ 
+ Binary Numbers 
+ 
+ 
+Ones and zeros
+ 
+ 
+ 
+ Bitwise Operators 1 and 2 (+ Quiz) 
+ 
+ 
+Bitwise AND, OR, XOR, Left and Right shifts 
+ 
+ 
+ 
+ Bitwise Operators 3 
+ 
+ 
+Bitwise NOT and negative binary numbers
+ 
+ 
+ 
+ Functions 
+ 
+ 
+Declaring and calling
+ 
+ 
+ 
+ Arrays 1 and 2 
+ 
+ 
+Single and multidimensional
+ 
+ 
+ 
+ Passing Arrays to Functions 
+ 
+ 
+Doing it without pointers... 
+ 
+ 
+ 
+ 
+ 
+Pointers 1 and 2 
+ 
+ 
+ 
+An introduction, and pointer arithmetic
+ 
+ 
+ 
+ Pointers 3 
+ 
+ 
+Arrays of pointers and pointing to functions
+ 
+ 
+ 
+ Strings 1 and 2 
+ 
+ 
+Declaring, reading and printing
+ 
+ 
+ 
+ 
+ 
+atoi, itoa, sprintf and sscanf
+ 
+ 
+ 
+String / number conversion
+ 
+ 
+ 
+ strcpy, strncpy and strcmp 
+ Functions for copying and comparing strings. 
+ 
+ 
+ strstr, strchr and strrchr 
+ Functions for finding substrings and characters. 
+ 
+ 
+ 
+ 
+Scope and Storage Specifiers 
+ 
+ 
+ 
+Knowing when variables are accessible
+ 
+ 
+ 
+ 
+ 
+enum and typedef 
+ 
+ 
+ 
+Enumerated constants and type definitions
+ 
+ 
+ 
+ 
+ 
+Structs 1 and 2 
+ 
+ 
+ 
+Collections of variables of different types
+ 
+ 
+ 
+ 
+ 
+Structs 3 
+ 
+ 
+ 
+Passing pointers to functions, nested structs
+ 
+ 
+ 
+ 
+ 
+Unions 
+ 
+ 
+ 
+Similar to structs...
+ 
+ 
+ 
+ 
+ 
+File Input and Output 1 and 2 
+ 
+ 
+ 
+Reading from external files
+ 
+ 
+ 
+ 
+ 
+File Input and Output 3 and 4 
+ 
+ 
+ 
+Writing to external files
+ 
+ 
+ 
+ 
+ 
+The C Preprocessor 
+ 
+ 
+ 
+More preprocessor commands
+ 
+ 
+ 
+ 
+ 
+Memory Allocation 
+ 
+ 
+ 
+Memory management in your programs 
+ 
+ 
+ 
+ strcat and strncat 
+ Functions for string concatenation. 
+ 
+ 
+ 
+ 
+Creating Header Files and Library Functions 
+ 
+ 
+ 
+Reusing your own custom functions
+ 
+ 
+ 
+ 
+ 
+The Process of Linking 
+ 
+ 
+ 
+Putting it all together...
+ 
+ 
+ 
+ 
+ 
+The End ? 
+ 
+ 
+ 
+Where to go from here
+ 
+ 
+ 
+ Books on C / C++ 
+ If you require more information... 
+ 
+ 
+ C / C++ Forum 
+ Feel free to interact with fellow programmers! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Latest C Forum Entry: Posted on 7/12/2002 by Nick 
+ 
+ 
+ 
+ 
+ 
+passing 2d array as parameter into OpenGl
+ 
+ 
+ Basically, I have a 2d array of values that I want to pass into a function which will output the points as a 2d matrix in OpenGl. 
+As I am still very much in the learning phase, this is proving more difficult than perhaps it should be!
+Does anyone have any hints/or know of any useful URL's.
+Many thanks.
+Nick.
+ 
+ 
+ 
+ 
+ .. Read .. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

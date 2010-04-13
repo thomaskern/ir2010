@@ -1,0 +1,544 @@
+
+GotW #83: Style Case Study #2: Generic Callbacks
+ 
+ 
+ GotW #83 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+Style Case Study #2: Generic Callbacks
+ Difficulty: 5 / 10
+Part of the allure of generic code is its usability and
+reusability in as many kinds of situations as reasonably possible. How can the
+simple facility presented in the cited article be stylistically improved, and how can
+it be made more useful than it is and really qualify as generic and
+widely-usable code?
+Problem
+JG Question
+1. What
+qualities are desirable in designing and writing generic facilities? Explain.
+Guru Question
+2. The
+following code presents an interesting and genuinely useful idiom for wrapping
+callback functions. For a more detailed explanation, see the original article.[1]
+Critique this code and identify:
+a) Stylistic choices that could be
+improved to make the design better for more idiomatic C++ usage.
+b) Mechanical limitations that
+restrict the usefulness of the facility.
+template
+class callback
+{
+public:
+ callback(T& t) : object(t) {} // assign actual object to T
+ void execute() {(object.*F)();}// launch callback function
+private:
+ T& object;
+};
+(For an idea of the kinds of things I'm looking for, see also Style
+Case Study #1.)
+Solution
+JG Question
+1. What
+qualities are desirable in designing and writing generic facilities? Explain.
+Generic code should above all be
+usable. That doesn't mean it has to include all options up to and including the
+kitchen sink. What it does mean is that generic code ought to make a reasonable
+and balanced effort to avoid at least three things:
+a) Avoid undue type restrictions.
+For example, are you writing a
+generic container? Then it's perfectly reasonable to require that the contained
+type have, say, a copy constructor and a nonthrowing destructor. But what about
+a default constructor, or an assignment operator? Many useful types that users
+might want to put into our container don't have a default constructor, and if
+our container uses it then we've eliminated such a type from being used with our
+container. That's not very generic. (For a complete example, see Item 15 of Exceptional
+C++. [2])
+b) Avoid undue functional
+restrictions.
+If you're writing a facility that
+does X and Y, then what if some user wants to do Z, and Z isn't so much
+different from Y? Sometimes you'll want to make your facility flexible enough to
+support Z; sometimes you won't. Part of good generic design is choosing the ways
+and means by which your facility can be customized or extended. That this is
+important in generic design should hardly be a surprise, though, because the
+same principle applies to object-oriented class design.
+Policy-based design is one of several
+important techniques that allow "pluggable" behavior with generic
+code. For examples of policy-based design, see any of several chapters in
+Alexandrescu's Modern C++ Design [3]; the SmartPtr and Singleton chapters
+are a good place to start. 
+This leads to a related issue:
+c) Avoid unduly monolithic designs.
+I'll break out discussion of this
+third item to a separate GotW #84. The issue of "unduly monolithic
+designs" doesn't arise as directly in our style example under consideration
+below, and it deserves some dedicated consideration in its own right, hence it
+gets its own article.
+Above, you'll note the recurring word
+"undue." That means just what it says: Good judgment is needed when
+deciding where to draw the line between failing to be sufficiently generic (the
+"I'm sure nobody would want to use it with anything but char"
+syndrome) on the one hand, and overengineering (the "what if someday some
+wants to use this toaster-oven LED display routine to control the booster cutoff
+on an interplanetary spacecraft?" misguided fantasy) on the other.
+Guru Question
+2. The
+following code presents an interesting and genuinely useful idiom for wrapping
+callback functions. For a more detailed explanation, see the original article.[1]
+Here again is the code:
+template
+class callback
+{
+public:
+ callback(T& t) : object(t) {} // assign actual object to T
+ void execute() {(object.*F)();}// launch callback function
+private:
+ T& object;
+};
+Now, really, how many ways are there
+to go wrong in a simple class with just two one-liner member functions? Well, as
+it turns out, its extreme simplicity is part of the problem. This class template
+doesn't need to be heavyweight, not at all, but it could stand to be a little
+less lightweight.
+ 
+Critique this code and identify:
+a) Stylistic choices that could be
+improved to make the design better for more idiomatic C++ usage.
+How many did you spot? Here's what I
+came up with:
+ 
+The constructor should be explicit.
+The author probably didn't mean to
+provide an implicit conversion from T to callback. Well-behaved classes
+avoid creating the potential for such problems for their users. So what we
+really want is more like this:
+ explicit
+callback(T& t) : object(t) {}
+ 
+// assign actual object to T
+While we're already looking at this
+particular line, there's another stylistic issue that's not about the design per
+se, but about the description:
+ 
+(Nit) The comment is wrong.
+The word "assign" in the
+comment is incorrect and so somewhat misleading. More correctly, in the
+constructor we're "binding" a T object to the reference, and by
+extension to the callback object. Also, after many rereadings I'm still not sure
+what the "to T" part means. So better still would be "bind actual
+object."
+ 
+ explicit callback(T& t) : object(t) {} // bind
+ actual object
+But then all that comment is saying
+is what the code already says, which is faintly ridiculous and a stellar example
+of a useless comment, so best of all would be:
+ 
+ explicit callback(T& t) : object(t) {}
+ 
+The execute() function should be
+const.
+The execute() function isn't doing
+anything to the callback object's state, after all! This is a
+"back to basics" issue: Const-correctness may be an oldie, but it's a
+goodie. The value of const-correctness has been known in C and C++ since at
+least the early 1980s, and that value didn't just evaporate when we clicked over
+to the new millennium and started writing lots of templates.
+ 
+ void execute() {(object.*F)();} const
+ 
+ // launch callback function
+ 
+While we're already beating on the
+poor execute() function, there's an arguably more serious idiomatic problem:
+ 
+(Idiom) And t
+In C++, it's idiomatic to use the
+function-call operator for executing a function-style operation. Indeed, then
+the comment, already somewhat redundant, becomes completely so and can be
+removed without harm because now our code is already idiomatically commenting
+itself. To wit:
+ 
+ void operator()() const
+ {(object.*F)();}
+"But," you might be
+wondering, "if we provide the function-call operator, then isn't this some
+kind of function object?" That's an excellent point, which leads us to
+observe that, as a function object, maybe callback instances ought to be
+adaptable too:
+ 
+Pitfall: (Idiom) Should this
+callback should be derived from std::unary_function?
+See Item 40 in Meyers' Effective
+STL [4] for a more detailed discussion about adaptability and why it's a
+Good Thing in general. Alas, here, there are two excellent reasons why callback
+should not be derived from std::unary_function, at least not yet:
+ 
+ 
+It's not a unary function.
+ It takes no parameter, and unary functions take a parameter. (No,
+ "void" doesn't count.) 
+ 
+ 
+Deriving from
+ std::unary_function isn't Later
+ on, we're going to see that callback perhaps ought to work with other kinds
+ of function signatures too, and depending on the number of parameters
+ involved, there may well be no standard base class to derive from. For
+ example, if we supported callback functions with three parameters, we have
+ no std::ternary_function to derive from. 
+Deriving from std::unary_function or
+std::binary_function is a convenient way to give callback a handful of important
+typedefs that binders and similar facilities often rely upon, but it only
+matters if you're going to use the function objects with those facilities.
+Because of the nature of these callbacks and how they're intended to be used,
+it's unlikely that this will be needed. (If in the future it turns out that they
+ought to be usable this way for the common one- and two-parameter cases, then
+the one- and two-parameter versions we'll mention later can be derived from
+std::unary_function and std::binary_function, respectively.)
+ 
+b) Mechanical limitations that
+restrict the usefulness of the facility.
+Consider making the callback
+function a normal parameter, not a template parameter.
+Non-type template parameters are rare
+in part because there's rarely much benefit in so strictly fixing a type at
+compile time. That is, we could instead have:
+ 
+template 
+ class callback
+ {
+ public:
+ typedef void (T::*Func)();
+ 
+ callback( T& t, Func func ) : object(t),
+ f(func) { }
+ void operator()() { (object.*f)(); }
+ 
+ private:
+ T& object;
+ Func f;
+ };
+Now the function to be used can vary
+at runtime, and it would be simple to add a member function that allowed the
+user to change the function that an existing callback object was bound to,
+something not possible in previous versions of the code.
+ 
+Guideline:
+ 
+ It's usually a good idea to prefer making non-type parameters into normal
+ function parameters, unless they really need to be template parameters.
+ 
+Containerization
+If a program wants to keep one
+callback object for later use, it's likely to want to keep more of them. What if
+it wants to put the callback objects into a container, like a vector or a list?
+Currently that's not possible, because callback objects aren't assignable --
+they don't support operator=(). Why not? Because they contain a reference, and
+once that reference is bound during construction it can never be rebound to
+something else.
+Pointers, however, have no such
+compunction, and are quite happy to point at whatever you'd ask them to. In this
+case it's perfectly safe for callback instead to store a pointer, not a
+reference, to the object it's to be called on, and then to use the default
+compiler-generated copy constructor and copy assignment operator:
+template 
+class callback
+{
+public:
+ typedef void (T::*Func)();
+ callback( T& t, Func func ) : object(&t),
+f(func) { }
+ void operator()() { (object->*f)(); }
+private:
+ T* object;
+ Func f;
+};
+Now it's possible to have, for
+example, a list >.
+"But wait," you might
+wonder at this point, "if I could have that kind of a list, why couldn't I
+have a list of arbitrary kinds of callbacks of various types, so that I can
+remember them all, and go execute them all when I want to?" Indeed, you
+can, if you add a base class:
+ 
+Provide a common base class for
+callback types.
+If we want to let users have a
+list, we can do it by providing just such a base class,
+which by default happens to do nothing in its operator()():
+class
+callbackbase
+{
+public:
+ virtual void operator()() const { };
+ virtual ~callbackbase() = 0;
+};
+callbackbase::~callbackbase() { }
+template 
+class callback :
+public callbackbase
+{
+public:
+ typedef void (T::*Func)();
+ callback( T& t, Func func ) : object(&t), f(func) { }
+ void operator()() const { (object->*f)(); }
+private:
+ T* object;
+ Func f;
+};
+Now anyone who wants to can keep a
+list and polymorphically invoke operator()() on its
+elements. Of course, a list > would be
+even better.
+Note that adding a base class is a
+tradeoff, but only a small one: We've added the overhead of a second
+indirection, namely a virtual function call, when the callback is triggered
+through the base interface. But that overhead only actually manifests when
+you use the base interface. Code that doesn't need the base interface
+doesn't pay for it.
+ 
+(Idiom, Tradeoff) There could be a
+helper make_callback function to aid in type deduction.
+After a while, users may get tired of
+explicitly specifying template parameters for temporary objects:
+ 
+ list >
+ l;
+ l.push_back( callback( w,
+ &Widget::SomeFunc ) );
+Why write Widget twice? Doesn't the
+compiler know? Well, no, it doesn't, but we can help it to know. in contexts
+where only a temporary object like this is needed. Instead, we could provide a
+helper so that they need only type:
+ 
+ list >
+ l;
+ l.push_back( make_callback( w, &Widget::SomeFunc ) );
+This make_callback works just like
+the standard make_pair(). The missing make_callback() helper should be a function
+template, because that's the only kind of template for which compiler can deduce
+types. Here's what the helper looks like:
+ 
+template
+ callback make_callback( T& t, void (T::*f) () )
+ {
+ return callback( t, f );
+ }
+ 
+(Tradeoff) Add support for other
+callback signatures.
+I've left the biggest job for last.
+As the Bard might have put it, "There are more function signatures in
+heaven and earth, Horatio, than are dreamt of in your void (T::*F) ()!"
+If enforcing that signature for
+callback functions is sufficient, then by all means stop right there. There's no
+sense in complicating a design if we don't need to -- for complicate it we
+will, if we want to allow for more function signatures!
+I won't write out all the code,
+because it's significantly tedious. (If you really want to see code this
+repetitive, or are having trouble with insomnia, see books and articles like [3]
+for similar examples.) What I will do is briefly sketch the main things you'd
+have to support, and how you'd have to support them:
+First, what about const member
+functions? The easiest way to deal with this one is to provide a parallel
+callback that uses the const signature type, and in that version remember to
+take and hold the T by reference or pointer to const.
+Second, what about non-void return
+types? The simplest way to allow the return type to vary is by adding another
+template parameter.
+Third, what about callback functions
+that take parameters? Again, add template parameters, remember to add parallel
+function parameters to operator()(), and stir well. Remember to add a new
+template to handle each potential number of callback arguments.
+Alas, the code explodes, and you have
+to do things like set artificial limits on the number of function parameters
+that callback supports. Perhaps in a future C++0x language we'll have features
+like template "varargs" that will help to deal with this, but not
+today.
+ 
+Summary
+Putting it all together, and making
+some purely stylistic adjustments like using "typename" consistently
+and naming conventions and whitespace conventions that I happen to like better,
+here's what we get:
+class
+CallbackBase
+{
+public:
+ virtual void operator()() const { };
+ virtual ~CallbackBase() = 0;
+};
+CallbackBase::~CallbackBase() { }
+template
+class Callback : public CallbackBase
+{
+public:
+ typedef void (T::*F)();
+ Callback( T& t, F f ) : t_(&t), f_(f) { }
+ void operator()() const { (t_->*f_)(); }
+private:
+ T* t_;
+ F f_;
+};
+template
+Callback make_callback( T& t, void (T::*f) () )
+{
+ return Callback( t, f );
+}
+ 
+References
+[1] D. Kalev. "Designing
+a Generic Callback Dispatcher" (DevX).
+[2]
+H. Sutter, Exceptional C++
+(Addison-Wesley, 2000).
+[3] A.
+Alexandrescu. Modern C++ Design (Addison-Wesley, 2001).
+[4]
+S. Meyers. Effective STL (Addison-Wesley, 2001). 
+Copyright ©
+2002 Herb Sutter
+ 

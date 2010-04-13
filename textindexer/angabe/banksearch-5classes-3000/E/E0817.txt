@@ -1,0 +1,182 @@
+
+ BCBDEV.COM: Downloads
+ 
+ 
+ 
+ 
+ Articles
+ 
+ 
+ 
+ Bookstore
+ 
+ 
+ 
+ Download
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Offline Viewing
+ 
+ 
+ 
+ 
+ 
+ 
+ Components
+ 
+ 
+ 
+ 
+ 
+ 
+ Utilities
+ 
+ 
+ 
+ 
+ 
+ 
+ FAQ's
+ 
+ 
+ 
+ IDE Tips
+ 
+ 
+ 
+ Links
+ 
+ 
+ 
+ Search
+ 
+ 
+ 
+Download
+This page contains components, sample programs, and utility programs that you
+can download and use for free. You can also download the entire website for
+offline viewing. You can unzip the ZIP files with either Winzip or PKUnzip for
+Windows 95. All of the components and programs are freeware, and come with
+source code.
+File
+Description
+faqs.zip (600 k) 
+ 
+Download the entire website for offline viewing.
+Faqs.zip contains
+all of the faqs, articles, and IDE tips that appear on the BCBDEV.COM website.
+To conserve space, the zip file does not contain the bookstore, nor does it
+contain all of the other ZIP files that you can download from the website.
+Note: The search page does not function in offline mode. If you have
+any ideas about how to make offline searching work,
+email me. A simple way to search is to
+use use the Borland grep utility.
+ 
+ 
+Component
+Description
+ TTrayIcon 
+control 
+demo 
+demo w/ EXE (200 k) 
+ 
+Version 1.03. Displays icons in the system tray.
+Note: Now free!
+ 
+TxGauge
+ 
+Horizontal gauge control that provides more flexibility than the VCL gauge control.
+ 
+TxTrackBar 
+ 
+TrackBar control that allows you to select whether you want a thin background or
+a wide background. This is something the VCL control ought to do, but does not.
+ 
+TAppControl
+ 
+Allows you to write application handlers such as OnIdle and OnMessage at design time. Includes
+a Visible property for hiding the application.
+ 
+PORTS
+ 
+A 32-bit replacement for inp and outp. Allows you to perform port I/O from your BCB programs
+on Windows 95 and Windows 98.
+ 
+TCommPort
+TCommPort
+Demo app 
+Demo w/exe (283 k)
+ 
+Version 1.00. TCommPort is a simple class that encapsulates the serial communication API calls.
+Note that this is not a visual component. It is just a simple class.
+ 
+ 
+Utilities
+Description
+BBE
+BCB3
+BCB4
+ 
+Version 1.02. The Background Build Expert, or BBE, allows you to compile your C++Builder projects
+in the background. With the BBE, you can continue to view and edit your source code
+while the BBE builds your project.
+ 
+PCH.PY
+ 
+Version 1.01. PCH.PY is a python script that automatically generates an optimized pre-compiled
+header file, pch.h, from your source files. You will need to download and install python
+for windows before using (www.python.org).
+Version 1.01 enhancements submitted by Chris Uzdavinis. See readme.txt for details.
+ 
+COUNTLINES.PY
+ 
+COUNTLINES.PY is a python script that counts the number of lines of code in a source
+file. The script ignores blank lines, but all other lines are counted (including commments).
+You will need to download and install python for windows before using (www.python.org).
+ 
+MAKEGEN.PY
+ 
+MAKEGEN.PY is a utility script that generates makefiles. The zip file includes
+a README.TXT file that describes how to use it. You will need to download and
+install python for windows before using (www.python.org).
+ 
+TLIBALL.PY
+ 
+TLIBALL.PY generates a library listing file for every LIB and BPI file in the
+current directory. This is equivalent to running
+ >tlib foo.lib, foo.lib.lst
+for every LIB and BPI file. This is only really useful in the $(BCB)\lib
+subdirectory.
+ 
+FILESUM.PY
+ 
+FILESUM.PY generates a report that lists the files on your hard drive. Its main
+purpose is to locate large files that eat up valuable disk space. The report is
+saved to a tab delimited file file called summary.txt. Open the file in Excel
+and sort the data by size to find the largest files.
+ You will need
+to download and install python for windows before using
+(www.python.org).
+ 
+PCREMAKE.ZIP
+ 
+PCREMAKE.ZIP contains a Borland makefile for compiling the PCRE regular
+expression library available from www.pcre.org.
+The makefile provided with the PCRE library is not Borland compatible.
+If you want to compile the PCRE library, download the PCRE source from
+www.pcre.org, download
+PCREMAKE.ZIP, and
+build the PCRE library using borland.makefile.
+The makefile works with BCB and the BC55 command line compiler.
+ 
+SQL7-DFMClean
+ 
+Version 1.0. SQL7-DFMClean cleans up your DFM files for use with MS SQL Server 7
+and the BDE with SQL Links. An extensive readme is included with the download.
+ 
+ 

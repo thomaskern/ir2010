@@ -1,0 +1,42 @@
+
+SHChangeNotify
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 08/19/98,
+ last update: 03/17/99 
+ 
+Home 
+ 
+ 
+ SHChangeNotify: An
+ example of how to *receive* shell change notifications
+ 
+ We have the FindFirst/NextChangeNotification APIs that tell us when something changes in
+ the physical file system. But what about the changes that happen in virtual folders
+ implemented by namespace extension that aren't part of the physical file system? How does
+ an Explorer window get updated when a new printer is added in the Printers folder, or a
+ connection is deleted in the Dial-Up Networking folder?
+ 
+ Enter the undocumented API functions SHChangeNotifyRegister and SHChangeNotifyDeregister.
+ This demo shows how an application can use these functions to register itself with the
+ shell, allowing the application to be notified of any specified changes that were made in
+ any specified part of the namespace, from the desktop folder on down. The demo also
+ provides a rather interesting study of what is actually happening in the namespace as
+ well...
+ 
+ Please note, use undocumented functions with care. There's no telling when they won't work
+ anymore...
+ 
+ 03/17/99 update (v1.10)
+ - Added handling for SHCNE_EXTENDED_EVENT, occurs when shell menu items are repositioned.
+ 
+ Download shnotify11.zip (23kb) 
+ 

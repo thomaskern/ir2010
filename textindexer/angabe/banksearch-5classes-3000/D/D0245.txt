@@ -1,0 +1,137 @@
+
+Absolute Java - Preventing Multiple Instances of a Java Program from Running Simultaneously
+Preventing Multiple Instances of a Java
+	Program from Running Simultaneously
+There is no Java-provided mechanism to ensure only one instance of a Java
+application is running at any one time. From the operating system's perspective,
+a Java application is simply another process&#151;the fact that this process happens
+to be a Java VM which in turn runs your Java application is entirely irrelevant to the operating system.
+If you're running two instances of the same Java application, you're simply running two instances of the Java VM.
+To ensure only one instance of your application is running at a time, you must
+establish some communication mechanism whereby a running instance of the
+application can inform other instances that they should not run. When an instance
+of the application starts, it first checks some condition that indicates whether
+or not another instance is already running.
+A simple way to accomplish this is with Java's file locking mechanism.
+The idea here is pretty simple: We create a file and acquire an exclusive lock on the file. The fact that the file is locked is a signal to other instances of the program that a previous instance is already executing. So long as the first instance maintains the file lock other instances do not run. The code here is pretty simple:
+1 import java.io.*; 
+2 import java.nio.channels.*; 
+3 
+4 public class OneInstance1 { 
+5 public static void main(String[] args) throws Exception { 
+6 
+	 FileLock lck = new FileOutputStream("C:\\temp\\flagFile").getChannel().tryLock(); 
+	
+7 
+	 if(lck == null) { 
+	
+8 System.out.println("A previous instance is already running...."); 
+9 
+	 System.exit(1); 
+	
+10 } 
+11 
+12 System.out.println("This is the first instance of this program..."); 
+13 
+14 // Do some work here..... 
+15 
+16 } // main() 
+17 } // OneInstance1 
+As an aside, you should note that the file does not necessarily have to be locked for the duration of the program's execution. Just as Java's synchronized blocks are used to control access to code on a thread by thread basis, so too can file locking be used to control access to code on a program by program basis. A program, P1, for example, could acquire a lock on a file (or even a portion of a file). When a second program, P2, tries to acquire a lock on the same file it will not be able to until P1 releases the lock.
+ An Alternative Approach
+An alternative to the above approach is to create a java.net.ServerSocket. When the program below starts,
+it tries to create a java.net.ServerSocket on a predefined port
+(port 1942, in this example). Because only one ServerSocket can listen
+on a given port at any one time, any attempt by another application to listen
+on the same port will generate a java.net.BindException.
+	
+ 
+ 
+	
+	1 
+	 import java.io.*; 
+	
+	
+	2 
+	 import java.net.*; 
+	
+	
+	3 
+	 
+	
+	
+	4 
+	 public class OneInstance2{ 
+	
+	
+	5 
+	 private static ServerSocket listenerSocket; 
+	
+	
+	6 
+	 
+	
+	
+	7 
+	 public static void main(String[] args) { 
+	
+	
+	8 
+	 try { 
+	
+	
+	9 
+	 listenerSocket = new ServerSocket(1942); 
+	
+	
+	10 
+	 // At this point, no other socket may listen on port 1942. 
+	
+	
+	12 
+	 } catch(java.net.BindException e) { 
+	
+	
+	13 
+	 System.err.println("A previous instance is already running....); 
+	
+	
+	14 
+	 System.exit(1); 
+	
+	
+	15 
+	 } catch(final IOException e) { // an unexpected exception occurred 
+	
+	
+	16 
+	 System.exit(1); 
+	
+	
+	17 
+	 } 
+	
+	
+	18 
+	 
+	
+	
+	19 
+	 // Do some work here..... 
+	
+	
+	20 
+	 
+	
+	21 
+	 } // main() 
+	
+	
+	22 
+	 } // OneInstance2 
+	
+OneInstance2 does not rely on file locking. Instead, it relies on the fact that only one server socket can be opened on a port at one time. 
+If you have strong (technical) opinions as to which of the above two approaches is better, I would like to hear from you. Feel free to send your comments to absolutejava@absolutejava.com.
+ 
+Copyright © 1999-2002, Tony LaPaso
+	All Rights Reserved.

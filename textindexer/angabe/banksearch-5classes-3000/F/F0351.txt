@@ -1,0 +1,241 @@
+
+VB Square - ActiveX Development - Floating toolbar
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+ActiveX Development > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Floating toolbar
+Tip by Sam Huggill
+ 
+Tip description 
+ 
+Create a floating toolbar. 
+ 
+Tip Code 
+ 
+Option Explicit
+'These variables save the toolbar location while unloaded
+Public g_xToolbarPos As Integer
+Public g_yToolbarPos As Integer
+'Toolbar visible state
+Public g_bToolbarVisible As Boolean
+Option Explicit
+'Set values for Image1 bitmap
+Private Const IMAGE_COLS = 15
+Private Const IMAGE_ROWS = 2
+Private Const STATE_UNSELECTED = 0
+Private Const STATE_SELECTED = 1
+Private m_ImageWidth As Long
+Private m_ImageHeight As Long
+Private m_xSpacer As Long
+Private m_ySpacer As Long
+'Indicates which tool is currently selected
+Private m_nCurrTool As Integer
+'Tracks parent form
+Private m_frmParent As Form
+'Windows API declarations
+Private Declare Function SetWindowWord Lib "user32" (ByVal hwnd _
+As Long, ByVal nIndex As Long, ByVal wNewWord As Long) As Long
+Private Const SWW_HPARENT = -8
+Public Sub LoadToolbar(frm As Form)
+'Save reference to parent form
+Set m_frmParent = frm
+'Display toolbar
+Show
+'Make toolbar a child window of the main window so that
+'it always remains on top of the main window, but not
+'other windows
+Call SetWindowWord(hwnd, SWW_HPARENT, m_frmParent.hwnd)
+End Sub
+Public Sub UnloadToolbar()
+'Note: Unload event performs clean up
+Unload Me
+End Sub
+Public Property Get Tool() As Integer
+Tool = m_nCurrTool
+End Property
+'Public property to set selected tool
+Public Property Let Tool(nTool As Integer)
+SetCurrentTool nTool
+End Property
+Private Sub SetCurrentTool(nNewTool As Integer)
+If nNewTool Then
+ 'Unselect old tool
+ PaintTool m_nCurrTool, STATE_UNSELECTED
+ 'Set new tool number
+ m_nCurrTool = nNewTool
+ 'Select new tool
+ PaintTool m_nCurrTool, STATE_SELECTED
+End If
+End Sub
+Private Sub PaintTool(nTool As Integer, nState As Integer)
+'Paint specified cell to form
+PaintPicture Image1, _
+m_xSpacer + ((nTool Mod 2) * m_ImageWidth), _
+m_ySpacer + ((nTool \ 2) * m_ImageHeight), _
+m_ImageWidth, m_ImageHeight, _
+nTool * m_ImageWidth, nState * m_ImageHeight, _
+m_ImageWidth, m_ImageHeight
+End Sub
+Private Sub Form_Load()
+m nWidth As Long, nHeight As Long
+'Cache image cell size for speed
+m_ImageWidth = Image1.Width \ IMAGE_COLS
+m_ImageHeight = Image1.Height \ IMAGE_ROWS
+'Create spacer around toolbar buttons
+m_xSpacer = (3 * Screen.TwipsPerPixelX)
+m_ySpacer = (3 * Screen.TwipsPerPixelY)
+'Size form to fit buttons
+nWidth = (m_ImageWidth * 2) + (m_xSpacer * 2)
+nHeight = (m_ImageWidth * ((IMAGE_COLS + 1) \ 2)) + (m_ySpacer * 2)
+Width = nWidth + (Width - ScaleWidth)
+Height = nHeight + (Height - ScaleHeight)
+'Position toolbar at remembered location
+Left = g_xToolbarPos: Top = g_yToolbarPos
+'Indicate toolbar is visible
+g_bToolbarVisible = True
+'Indicate which tool is selected
+Call SetCurrentTool(0)
+End Sub
+Private Sub Form_Paint()
+Dim i As Integer, nState As Integer
+For i = 0 To (IMAGE_COLS - 1)
+If i = m_nCurrTool Then
+ nState = STATE_SELECTED
+Else
+ nState = STATE_UNSELECTED
+End If
+PaintTool i, nState
+Next i
+End Sub
+Private Sub Form_MouseDown(button As Integer, Shift As _
+Integer, X As Single, Y As Single)
+Dim nTool As Integer
+If button = vbLeftButton Then
+ 
+ 'Adjust for border around buttons
+ X = X - m_xSpacer
+ Y = Y - m_ySpacer
+ 'Prevent false hits
+ If X >= 0 And X And _
+ Y >= 0 And Y Then
+ nTool = ((Y \ m_ImageHeight) * 2) + (X \ m_ImageWidth)
+ 
+ 'Set new toolnumber if valid
+ If nTool Then
+ SetCurrentTool nTool
+ End If
+ End If
+End If
+End Sub 
+ 
+Question, Query, Criticism?
+Post your feedback now! 0 comments. 
+ 
+ 
+Related
+ 
+- 
+OLE Automation Servers 
+- 
+Beginning Objects in VB: Part 3 
+- 
+Top tips for developing components for ASP 
+- 
+Beginning Objects in VB: Part 1 
+- 
+Beginning Objects in VB: Part 2 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

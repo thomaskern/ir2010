@@ -1,0 +1,115 @@
+
+ Testing With a Fibonacci Object
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+Presents
+Testing With a Fibonacci Object
+Copyright (C) 1997 by Steve Litt
+[ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]
+Have you needed a way to test with varied integers over a wide range?
+Maybe a bottleneck analysis, or maybe a resource allocation problem. I
+use the Fibonacci numbers for this type of testing. The Fibonacci numbers
+are a series whereby each number is the sum of the last two, as shown below:
+ 1 2 3 5 8
+ 13 21 34 55 89 
+ 144 233 377 610 987 
+ 1597 2584 4181 6765 
+ 10946 17711 28657 46368 75025 
+ 121393 196418 317811 514229 832040 
+ 1346269 2178309 3524578 5702887 9227465 
+ 14930352 24157817 39088169 63245986 
+Note that the series approximates a geometric progression, yielding
+approximately five values per decade. This is perfect for many kinds of
+testing:
+C++ Source Code, Fibonaci.h
+/************************************************
+Fibonaci.h, By Steve Litt. I hereby place this in the public domain,
+so you can use it any way you want.
+Class FIBONACCI completely defines a Fibonacci number generator.
+************************************************/
+#ifndef _FIBONACCI_
+#define _FIBONACCI_
+class FIBONACCI
+ {
+ private:
+ unsigned long L1;
+ unsigned long L2; // always the value returned
+ public:
+ FIBONACCI() : L1(1), L2(1){};
+ unsigned long value(){return(L2);};
+ unsigned long next()
+ {
+ unsigned long LTemp = L1 + L2;
+ L1 = L2;
+ L2 = LTemp;
+ return(value());
+ };
+ unsigned long previous()
+ {
+ if (L2 LA) previous();
+ while(L2 LA) previous();
+ return(value());
+ }
+ };
+#endif //ifndef _FIBONACCI_
+ 
+Examples of Use
+Bottleneck Analysis:
+Find "point of diminishing returns, where increasing the resource
+by approx 20% increases the performance by less than 1%. Assume resource
+quantity must be at least 200, and stop when it hits 10000 if there hasn't
+been a diminishing return. These numbers would be typical for a file buffering,
+where diminishing returns occur around 1000 to 2000.
+Note I do this with a generic function called DiminishingReturns, whose
+first argument is a pointer to a void-returning function taking a single
+int, the resource amount, as an argument. You can engineer that function
+so that it tests what you want.
+#include "fibonaci.h"
+/**************************************************************
+Function DiminishingReturns, By Steve Litt. I hereby place this 
+in the public domain, so you can use it any way you want.
+The first argument is a pointer to a function returning void,
+which takes a single long integer argument. That argument is 
+the resource quantity on which to do the diminishing return
+analysis. This function's run time is measured.
+DesiredImprovement is a decimal number like 0.05, not a percentage
+ like 5%.
+Iterations is the number of times to run the function pointed to
+ by the first argument. Increasing this number makes the test
+ more accurate by decreasing the "jitter" and whole second
+ roundoff, but makes the test take longer.
+StartFrom is the smallest resource allocation you wish to test,
+ and should be obviously before the point of diminishing returns.
+StopAt is the figure above which the test should stop. This prevents
+ an infinite loop. This number should be above the suspected
+ point of diminishing returns.
+I'd recommend you start with a small value of iterations,
+a large StartFrom-StopAt range, and a small DesiredImprovement
+(like 0.01) to give a general idea. Then get a more accurate 
+picture using a smaller StartFrom-StopAt range, a larger Iterations
+to minimize second roundoff and jitter, and possibly a larger
+value of DesiredImprovement (0.05 at the most).
+**************************************************************/
+long DiminishingReturns(
+ void (*fcn)(const long), //pointer to function to test
+ const float DesiredImprovement, //minimum improvement expected
+ const int Iterations, //times to perform each exercise
+ const long StartFrom, //resource level definitely too low
+ const long StopAt //level too high, prevent infinite loop
+ )
+ {
+ time_t PreviousElapsed = 100000000L; //mark as first time
+ FIBONACCI fib;
+ fib.lteq(StartFrom);
+ long ResourceAmount;
+ while((ResourceAmount = fib.next()) 
+Copyright (C)1997 by Steve Litt. -- Legal
+ 

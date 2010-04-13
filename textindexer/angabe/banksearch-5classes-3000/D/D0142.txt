@@ -1,0 +1,63 @@
+
+ 
+ 
+ 
+ 
+ 
+ EJB Tutorial
+ 
+EJB Tutorial
+ 
+Tutorial Index Page
+EJB Handles
+In everything we have done so far, we have followed the standard model
+of locating a "home" object, and then using it to create or find the EJB. 
+Also, since there are no finders in the case of session beans, once the
+program using a session bean exits, the bean is gone in our model.
+There is another model provided for getting to EJBs. This method
+uses "handles".
+Each home or bean object has a handle. You can ask for this handle
+from the home or bean object. Later on, you can get back to the object
+by using the handle.
+The handle doesn't just work during the running program, it even works
+if your program exits and is restarted, or if the handle is used from another
+program. The handle itself is like a permanent object. Of course,
+if your program exits, it has to have a way to save the handle. This
+can be done simply by writing the handle to a file (or any another such
+method of passing or preserving bytes.) The handle derives from java.io.Serializable,
+so it can be written to files.
+The code to obtain a handle from an EJB object and to get an EJB object
+back from a handle is fairly straightforward. The following code
+fragment shows how to obtain a handle from a bean object called "stock"
+and to write it into a file:
+Handle handle = stock.getHandle();
+ObjectOutputStream p = new ObjectOutputStream(
+ new FileOutputStream("C:\\SaveHandle.dat"));
+p.writeObject( handle );
+p.close();
+Once the handle has been saved, it can be read back from the file and
+object created from it:
+ObjectInputStream p = new ObjectInputStream(
+ new FileInputStream(
+"C:\\SaveHandle.dat"));
+Handle handle = (Handle) p.readObject();
+StockQuotes stock = (StockQuotes) handle.getEJBObject();
+// Use PortableRemoteObject in 1.3 or when available.
+Note that the object returned by getEJBObject() has to be cast into
+the correct type.
+An important item to remember about handles is that session beans are
+discarded after a certain timeout. Therefore, if you use a session
+bean's handle after that certain timeout, you will not get the bean back. 
+Instead, an exception will be thrown. (The timeout value can usually
+be changed, see server documentation for this.)
+Exercise: Modify your session bean client to save a handle
+to the (stateful) StockQuotes bean. Write another program that retrieves
+the handle and gets the bean. Confirm that the "stock" member variable
+of the bean is the same as when saved. Obtain the price from this
+"recovered" bean. Try using your second bean within the timeout period,
+and after the timeout period.
+ 
+Next tutorial: Deployment Descriptor 
+Contents
+ 
+ 

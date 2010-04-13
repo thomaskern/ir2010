@@ -1,0 +1,285 @@
+
+ 
+C >> Arrays 1 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Functions 
+ Main Menu 
+ Arrays 2 
+ 
+ 
+ 
+ 
+Arrays 1
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+Arrays allow you to store a sequence of variables of the same data type. You can picture an array in the computer's memory as a row 
+ of consecutive spaces, each of which can store a data item, known as an ELEMENT. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Declaring Arrays
+ 
+ 
+ 
+ 
+ 
+You need to make a declaration before using an array. To declare an array, you need to specify its data type, its name and, in most 
+ cases, its size. Make sure the array has a valid name. Here's an example: 
+ int arrayOfInts[5]; 
+ 
+ 
+This reserves memory for an array that to hold five integer values. The number of elements should be enclosed in the square brackets. 
+ If you don't specify the number of elements during the declaration, you have declared an UNSIZED array - the 
+ size will be calculated when you insert values into it. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initializing 
+ Arrays
+ 
+ 
+ 
+ 
+ 
+You can assign values to the array in several ways. For example, if I wanted an array to hold the numbers 1 through to 10, I could 
+ do this in several ways, as this example demonstrates: 
+ 
+ 
+ 
+ 
+ int main() {
+ int arrayOfInts1[10] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 };
+ int arrayOfInts2[10];
+ int arrayOfInts3[] = {1,2,3,4,5,
+ 6,7,8,9,10}; /* an unsized array */
+ int arrayOfInts4[10];
+ int i;
+ arrayOfInts2[0] = 1;
+ arrayOfInts2[1] = 2;
+ arrayOfInts2[2] = 3;
+ arrayOfInts2[3] = 4;
+ arrayOfInts2[4] = 5;
+ arrayOfInts2[5] = 6;
+ arrayOfInts2[6] = 7;
+ arrayOfInts2[7] = 8;
+ arrayOfInts2[8] = 9;
+ arrayOfInts2[9] = 10;
+ for(i=0 ; iPrinting 
+ Out Arrays
+ 
+ 
+ 
+ 
+ 
+One of the commonest ways to print out the contents of the array is to use a loop. I personally prefer using a for loop, like this: 
+ 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int anotherIntArray[5] = {1,2,3,4,5};
+ int i;
+ for(i=0 ; i
+int main() {
+ int anotherIntArray[5];
+ int i;
+ printf("Enter 5 integers one by one, pressing return after each one:\n");
+ for(i=0 ; iCharacter 
+ Arrays
+ 
+ 
+ 
+ 
+ 
+So far I've used arrays of integers in my examples - probably the type I've been using the most. You can use arrays for floats 
+ and doubles as well as chars. 
+ 
+Character arrays have a special property... 
+ 
+ 
+ 
+Each element of the array can hold one character. But if you end the array with the NULL CHARACTER, denoted 
+ by \0 (that is, backslash and zero), you'll have what is known as a STRING CONSTANT. The null character 
+ marks the end of a string - useful for functions like printf. Time for an example..... 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char charArray[8] = {'F','r','i','e','n','d','s','\0'};
+ int i;
+ for(i=0 ; i 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

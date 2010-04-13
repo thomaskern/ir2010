@@ -1,0 +1,292 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq12_2.html 
+ 
+search 
+ 
+Node:Crash dump,
+Next:Debug graphics,
+Previous:How to debug,
+Up:Debugging
+12.2 How to begin debugging using the crash dump info
+Q: My program crashed with SIGSEGV, but I'm unsure how to begin
+debugging it....
+Q: Can you help me figure out all those funny numbers printed when
+my program crashes?
+A: Debugging should always begin with examining the message printed
+when the program crashes. That message includes crucial information
+which usually proves invaluable during debugging. So the first thing
+you should do is carefully save the entire message. On plain DOS, use
+the key to get a hard copy of the message. On
+Windows, use the clipboard to copy the message to a text editor or the
+Notepad, and save it to a file. If you can easily reproduce the crash,
+try running the program after redirecting the standard error stream,
+where the crash dump is printed, to a file, e.g. like this:
+ redir -e crash.txt myprog [arguments to the program go here]
+(here I used the redir program supplied with DJGPP; the -e
+switch tells it to redirect the standard error stream to the named
+file). 
+Redirecting the standard error stream to a file has an
+additional advantage of printing the entire call frame traceback, even
+if it is very long, whereas when writing to the screen, the DJGPP exit
+code limits the number of printed stack frames so that the crash message
+won't scroll off the screen.
+After you've saved the crash message, look at the name of the crashed
+program, usually printed on the 4th line. Knowing which program crashed
+is important when one program calls another, like if you run a program
+from RHIDE. Without this step, you might erroneously try to debug
+the wrong program. (If the program name is garbled, or if
+ is printed in its stead, it means the program
+crashed inside the startup code.)
+The next step in the debugging is to find out where in the code did the
+program crash. The SYMIFY program will help you translate the
+call frame traceback, which is the last portion of the crash message,
+into a list of function names, source files and line numbers which
+describe the sequence of function calls that led to the crash. The
+top-most line in the call frame traceback is the place where the program
+crashed, the one below it is the place that called the function which
+crashed, etc. The last line will usually be in the startup code, in a
+function called __crt1_startup, but if the screen is too small to
+print the entire traceback without scrolling, the traceback will be
+truncated before it gets to the startup. See how to use SYMIFY, for more details about the
+call frame traceback and SYMIFY usage.
+If you compiled your program without the -g switch, or if you
+stripped the debugging symbols (e.g., using the -s linker
+switch), running SYMIFY will just repeat the addresses instead of
+translating them to function names and source file info. You will have
+to rebuild the program with -g and without -s, before you
+continue.
+Next, you need to get an idea about the cause of the crash. To this
+end, look at the first two lines of the crash message. There you will
+find a description of the type of the crash, like this:
+ Exiting due to signal SIGSEGV
+ Page Fault at eip=00008e89, error=0004
+(the actual text in your case will be different). The following table
+lists common causes for each type of crash:
+Page Fault
+This usually means the program tried to access some data via a NULL or
+an uninitialized pointer. A NULL pointer is a pointer which holds an
+address that is zero; it can come from a failed call to malloc
+(did your code check for that?). An uninitialized pointer holds some
+random garbage value; it can come from a missing call to malloc.
+The error code (error=0004 in the example above) will usually be
+either 4 or 6. The former means that the program tried to read (take
+a value from) the invalid address, the latter means the program tried to
+write (change the stored value) there.
+Sometimes, you might see a somehwat different format of a Page
+Fault message:
+ Page Fault cr2=10000000 at eip e75; flags=6
+ eax=00000030 ebx=00000000 ecx=0000000c edx=00000000
+ esi=0001a44a edi=00000000 ebp=00000000 esp=00002672
+ cs=18 ds=38 es=af fs=0 gs=0 ss=20 error=0002
+This message comes from CWSDPMI, which could happen when some crucial
+data structure in the low-level library code becomes trashed. The value
+in cr2 is the address which caused the Page Fault
+exception. In the example above, this address is 0x10000000, and since
+this is exactly the base address of the DJGPP program under CWSDPMI, it
+means the program dereferenced a NULL pointer.
+If the message says Page Fault in RMCB, then it usually means
+that the program installed an interrupt handler or a real-mode callback
+(a.k.a. RMCB), but failed to lock all the memory accessed by the
+handler or functions it calls. See installing hardware interrupt handlers, for more about this. It also might mean that a program
+failed to unhook some interrupt before it exited.
+General Protection Fault
+This can be caused by a variety of reasons:
+- use of an uninitialized or a garbled pointer (beyond the limit of the DS
+segment printed at the time of crash);
+- attempt to access memory using an invalid selector, e.g., a selector
+whose privilege level is zero from a DJGPP program which runs at
+privilege level 3. (The lower 2 bits of a slector are its privilege
+level.)
+In this case, the GPF will be accompanied by an error code, like this:
+ General Protection Fault at eip=000020bc, error=0104
+The error code is actually the selector that the program tried to use,
+in this case 104h; its low 2 bits are 00, so this is a ring-0 selector.
+- overwriting the stack, e.g. by writing (assigning values) to array
+elements beyond the array limits, or due to incorrect argument list
+passed to a function, like passing a pointer to an int to a
+function that expects a pointer to an double, or passing buffers
+to a library function without sufficient space to hold the results;
+- stack overflow. 
+Overwriting the stack frame can usually be detected by looking at the
+values of the EBP and ESP registers, printed right below the
+first two lines. Normally, ESP is slightly smaller than
+EBP, smaller than the limit of the SS segment, and usually
+larger than EIP21; anything else is a clear sign of a stack being overrun or
+overwritten. In particular, if ESP is valid, but EBP is not,
+it usually means that the stack was overwritten. In some cases,
+EBP's value might look like a chunk of text, like 0x33313331 (the
+string 1313, after swapping the bytes due to the fact that x86 is
+a little-endian machine).
+How do you know whether the values of ESP and EBP are valid? 
+To help you, DJGPP v2.02 and later prints the valid limits of the
+application stack, like this:
+App stack: [000afb50..0002fb50] Exceptn stack: [0002fa2c..0002daec]
+(The second range of values, for the "Exceptn stack", shows the
+8KB-long stack used by the library for processing hardware exceptions,
+because the normal application stack might be invalid when an exception
+happens.)
+Another tell-tale sign of an overrun stack frame is that the symified
+traceback points to a line where the function returns, or to its closing
+brace. That's because, when a program overruns the stack, the return
+address saved there gets overwritten by a random value, and the program
+crashes when the offending function tries to return to an invalid
+address.
+Suspect a stack overflow if the EBP and ESP values are close
+to one another, but both very low (the stack grows downwards) and
+outside the valid stack limits printed below the registers' dump, or
+if the call frame traceback includes many levels, which is a sign of a
+deep recursion.
+Another sign of a stack overflow is when the traceback points to some
+internal library structure, like __djgpp_exception_table, or if
+the SS selector is marked as invalid in the crash message.
+Stubediting the program to enlarge its stack size might solve problems
+with stack overflow (but not when the stack is being
+overwritten as described above). See changing stack size, for a description of how
+to enlarge the stack. If you use large automatic arrays, an alternative
+to stubediting is to make the array dimensions smaller, or make the
+array global, or allocate it at run time using malloc.
+Note that, unlike in the cases, described above, where the stack was
+overwritten, stack overflow usually manifests itself by both
+ESP and EBP being invalid (outside the valid limits printed by
+the crashed program).
+Stack Fault
+Usually means a stack overflow, but can also happen if your code
+overruns the stack frame (see above).
+Floating Point exception
+Coprocessor overrun
+Overflow
+Division by Zero
+These (and some additional) messages, printed when the program crashes
+due to signal SIGFPE, mean some error in floating-point
+computations, like division by zero or overflow. Sometimes such errors
+happen when an int is passed to a function that expects a
+float or a double.
+Cannot continue from exception, exiting due to signal 0123
+Cannot continue from exception, exiting due to signal SIGSEGV
+This message is printed if your program installed a handler for a fatal
+signal such as SIGSEGV (0123 in hex is the numeric code of
+SIGSEGV; see the header signal.h for the other codes), and
+that handler attempted to return. This is not allowed, since returning
+to the locus of the exception will just trigger the same exception again
+and again, so the DJGPP signal-handling machinery aborts the program
+after printing this message.
+If you indeed wanted SIGSEGV to be generated in that case, the
+way to solve such problems is to modify your signal handler so that it
+calls either exit or longjmp. If SIGSEGV should
+not have been triggered, debug this as described below.
+Invalid TSS in RMCB
+This usually means that a program failed to uninstall its interrupt
+handler or RMCB when it exited. If you are using DJGPP v2.0, one case
+where this happens is when a nested program exits by calling
+abort: v2.0 had a bug in its library whereby calling abort
+would bypass the cleanup code that restored the keyboard interrupt
+hooked by the DJGPP startup code; v2.01 solves this bug.
+Using the itimer facility in v2.01 programs can also cause such
+crashes if the program exits abnormally, or doesn't disable the timer
+before it exits. The exit code in DJGPP v2.02 and later makes sure the
+original timer interrupt is always restored.
+Double Fault
+If this message appears when you run your program under CWSDPR0 and
+press the Interrupt key (Ctrl- or Ctrl-)
+or the QUIT key (Ctrl-), then this is expected behavior
+(the SIGINT generation works by invalidating the DS/SS
+selector, but since CWSDPR0 doesn't switch stacks on exceptions, there's
+no place to put the exception frame for the exception this triggers, so
+the program double faults and bails out). Otherwise, treat this as
+Page Fault.
+Control-Break Pressed
+Control-C Pressed
+INTR key Pressed
+QUIT key Pressed
+These are not real crashes, but are listed here for completeness. They
+are printed when Ctrl- or the Interrupt key (by
+default, Ctrl-) is pressed, which by default abort the
+program due to signal SIGINT. The QUIT key (by default,
+Ctrl-) generates the SIGQUIT signal which by
+default is ignored, but some programs set it to abort the program as
+well. 
+If you are lucky, and the crash happened inside your function (as
+opposed to some library function), then the above info and the symified
+call frame traceback should almost immediately suggest where's the bug. 
+You need to analyze the source line corresponding to the top-most
+EIP in the call frame traceback, and look for the variable(s) that
+could provide one of the reasons listed above. If you cannot figure it
+out by looking at the source code, run the program under a debugger
+until it gets to the point of the crash, then examine the variables
+involved in the crashed computation, to find those which trigger the
+problem. Finally, use the debugger to find out how did those variables
+come to get those buggy values.
+People which are less lucky have their programs crash inside library
+functions for which SYMIFY will only print their names, since the
+libraries are usually compiled without the -g switch. You have
+several possible ways to debug these cases:
+- Begin with the last call frame that SYMIFY succeeded to convert
+to a pointer to a line number in a source file. This line should be a
+call to some function in some library you used to link your program. 
+Re-read the docs for that function and examine all the arguments you are
+passing to it under a debugger, looking for variables that could cause
+the particular type of crash you have on your hands, as described above.
+- Link your program against a version of the library that includes the
+debug info. For example, you can get the sources of the library and
+recompile it with the -g compiler switch. After re-linking the
+program, cause it to crash and run SYMIFY to get a full
+description of the place where it dies.
+- A variation of the previous technique is to paste into your program the
+source of the library function(s) whose names you see in the symified
+traceback, and recompile your program with -g switch. Then run
+your program again, and when it crashes, SYMIFY should be able to
+find the line number info for the entire traceback.
+- If you cannot get hold of the sources for the library, you could still
+use assembly-level commands of the debugger to find out the reason for
+the crash. Here's how:
+- Load the program into a debugger.
+- Display the instruction at EIP whose value is printed on the second
+line of the crash message. For example, with GDB, use the x/i
+eip-value command.
+- Find out which registers are relevant to the crash. For example, if the
+instruction dereferences a pointer, the register that holds that pointer
+is one possible candidate for scrutiny.
+- Look at the values for the relevant registers as printed in the crash
+message, and find the register(s) which hold abnormal values. Common
+cases include:
+- A pointer whose value is below 4096 (1000 hex), or above the limit of
+the DS segment. (The limit is printed as part of the crash
+message.)
+- An index of an array element or an offset into a struct whose value is
+negative, or beyond the last array element, or more than the offset of
+the last struct member.
+- A linear address of a buffer in conventional memory whose value is more
+than 10FFFFh, or an offset into the transfer buffer which is larger than
+the transfer buffer size (16K by default).
+- Once you've found the register whose value is abnormal, find out what
+variables in your program caused that abnormal value, e.g. by stepping
+through the machine code from the point where your code called the
+library function. 
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

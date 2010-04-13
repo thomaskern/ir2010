@@ -1,0 +1,575 @@
+
+Visual Basic and Winsock API - Improved TCP Table sample application
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Improved TCP Table sample application
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Improved TCP Table sample 
+ application
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download 
+ TcpTable sample project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+In the IP Helper API 
+ section of the website you can find the
+ TCP Table sample application 
+ that demonstrates how to use the GetTcpTable function of the 
+ IP Helper API in order to retrieve information on all the TCP 
+ connections of the local system. Since we have got some knowledge of the 
+ Winsock API that can be used to modify this app, I decided to create 
+ another version of the example to demonstrate how the Winsock API 
+ functions (which we already know) work in action.
+ 
+ 
+The information, retrieved by the GetTcpTable 
+ function, is presented as an array 
+ of the MIB_TCPROW structure:
+ 
+Type 
+ MIB_TCPROW
+ dwState 
+ As Long
+ dwLocalAddr As Long
+ dwLocalPort As Long
+ dwRemoteAddr As Long
+ dwRemotePort As Long
+ End Type
+ 
+The members of the structure, which contain host 
+ addresses, store an address as a Long value. Each part of the address is 
+ stored in a byte of the 4-bytes Long value.
+ 
+ 
+ 
+In the
+ "How to get host name 
+ by IP address" tutorial we learned how to use the inet_addr 
+ Winsock API function to convert an IP address, presented in dotted 
+ notation, into a Long (4-bytes) value. 
+ As you can expect, the Winsock API provides us with the function that 
+ allows to do a reverse operation. The inet_ntoa function receives 
+ the internet address as a Long value and returns a pointer to the string 
+ that contains an IP address in dotted notation.
+ 
+Declare 
+ Function inet_ntoa Lib "ws2_32.dll" 
+ (ByVal inn As Long)
+ As Long
+ 
+Now using the 
+ StringFromPointer function, created in the 
+ first tutorial, we can 
+ create a very simple function that retrieves IP address from a
+ Long value:
+ 
+ 
+ 
+ 
+Private Function 
+ GetIpFromLong(lngIPAddress As Long)
+ As String
+ '
+ GetIpFromLong = 
+ StringFromPointer(inet_ntoa(lngIPAddress))
+ '
+ End Function
+ 
+ 
+ 
+To get a host name by that 
+ Long value we must use 
+ the gethostbyaddr function. See the
+ "How to get host name 
+ by IP address" for more info. For the TCP Table example we are using 
+ the HostNameFromLong custom function:
+ 
+ 
+ 
+ 
+Private Function 
+ HostNameFromLong(lngInetAdr As Long)
+ As String
+ '
+ Dim 
+ lngPtrHostEnt As 
+ Long
+ Dim 
+ lngPtrHostName As Long
+ Dim 
+ strHostName 
+ As String
+ Dim 
+ udtHostEnt 
+ As HOSTENT
+ '
+ 'Get the pointer to the 
+ HostEnt structure
+ lngPtrHostEnt = 
+ gethostbyaddr(lngInetAdr, 4, 1)
+ '
+ 'Copy data into the HostEnt 
+ structure
+ RtlMoveMemory udtHostEnt,
+ ByVal lngPtrHostEnt, LenB(udtHostEnt)
+ '
+ 'Prepare the buffer to 
+ receive a string
+ strHostName = String(256, 0)
+ '
+ 'Copy the host name into the 
+ strHostName variable
+ RtlMoveMemory ByVal 
+ strHostName, ByVal udtHostEnt.hName, 256
+ '
+ 'Cut received string by first 
+ chr(0) character
+ strHostName = 
+ Left(strHostName, InStr(1, strHostName, Chr(0)) - 1)
+ '
+ 'Return the found value
+ HostNameFromLong = 
+ strHostName
+ '
+ End Function
+ 
+ 
+ 
+The port numbers, returned by the GetTcpTable 
+ function in the MIB_TCPROW structure, are in the network byte 
+ order. So we need to convert them into the host byte order to get real 
+ values. Look at the 
+ "Changing the byte order" article to get more on using the special 
+ function for changing the byte ordering.
+ 
+ 
+ 
+ 
+Private Function 
+ GetPortNumber(lngPort As Long)
+ As Long
+ '
+ GetPortNumber = 
+ IntegerToUnsigned(ntohs(UnsignedToInteger(lngPort)))
+ '
+ End Function
+ 
+ 
+ 
+Some port numbers can say more then just a numeric 
+ value. If that value is in the range of well-known port numbers, we can 
+ find out what service is used by the giving connection. We have already 
+ examined the 
+ retrieving service information. 
+ 
+ 
+ 
+ 
+Private Function 
+ GetServiceByPort(lngPortNumber As Long)
+ As String
+ '
+ Dim 
+ lngRetValue As Long
+ Dim 
+ udt_servent As servent
+ '
+ If 
+ GetPortNumber(lngPortNumber) = 80 Then
+ 
+ '
+ 
+ GetServiceByPort = "http"
+ 
+ Exit Function
+ 
+ '
+ ElseIf 
+ GetPortNumber(lngPortNumber) = 443 Then
+ 
+ '
+ 
+ GetServiceByPort = "https"
+ 
+ Exit Function
+ 
+ '
+ End If
+ '
+ lngRetValue = 
+ getservbyport(UnsignedToInteger(lngPortNumber), 0&)
+ '
+ If 
+ lngRetValue 0
+ Then
+ 
+ GetServiceByPort = StringFromPointer(udt_servent.s_name)
+ 
+ End If
+ 
+ '
+ End If
+ '
+ End Function
+ 
+ 
+ 
+And, finally, a new feature is added to the 
+ application. Now you can delete any TCP connection. It has nothing to do 
+ with the Winsock API since the SetTcpEntry function is used, 
+ which is from the IP Helper API.
+ 
+ 
+ 
+ 
+Private Sub cmdKill_Click()
+ '
+ Dim 
+ TcpTableRow As MIB_TCPROW
+ Dim 
+ lngRetValue As Long
+ '
+ If Not 
+ ListView1.SelectedItem Is Nothing Then
+ 
+ '
+ 
+ TcpTableRow = arrTcpTableRows(ListView1.SelectedItem.Index)
+ 
+ '
+ 
+ TcpTableRow.dwState = MIB_TCP_STATE_DELETE_TCB
+ 
+ '
+ 
+ lngRetValue = SetTcpEntry(TcpTableRow)
+ 
+ '
+ 
+ If lngRetValue = 0 Then
+ 
+ MsgBox "The connection was deleted successfully.", vbInformation
+ 
+ Else
+ 
+ MsgBox "Cannot delete the connection.", vbExclamation
+ 
+ End If
+ 
+ '
+ End If
+ '
+ End Sub
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+HostNameFromLong gives null ptr for 0.0.0.0
+	Henri Friday, June 01, 2001	
+	
+	
+	
+get name from IP-address
+	HappyRick Wednesday, June 27, 2001	
+	
+	
+	
+Program crashes...
+	Kashbi Sunday, October 14, 2001	
+	
+	
+	
+Crashes for me too...
+	Mikey Tuesday, October 16, 2001	
+	
+	
+	
+Windows 2000 Server Error
+	r-22 Wednesday, October 17, 2001	
+	
+	
+	
+Crash resolution
+	Laurent Chesnais Saturday, December 01, 2001	
+	
+	
+	
+getting error.. WSAEINTR is undefined 
+	thirumal Wednesday, December 19, 2001	
+	
+	
+	
+RE: getting error.. WSAEINTR is undefined 
+	cormer Saturday, December 29, 2001	
+	
+	
+	
+Crash on win2K server
+	itay Saturday, February 23, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Winsock API - 
+ Improved TCP Table sample application
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

@@ -1,0 +1,138 @@
+
+The lcc 4.1 Code-Generation Interface
+The lcc 4.1 Code-Generation Interface
+Christopher
+W. Fraser and David R. Hanson, Microsoft Research
+Contents
+ 
+- Introduction 
+ 
+- 5.1 Type Metrics
+ 
+- 5.3 Symbols 
+ 
+- 5.5 Dag Operators
+ 
+- 5.6 Interface Flags
+ 
+- 5.8 Definitions
+ 
+- 5.9 Constants
+ 
+- 5.12 Upcalls
+Introduction
+Version 4.1 is the latest release of lcc, the ANSI C compiler described in
+our book A Retargetable C Compiler: Design and Implementation
+(Addison-Wesley, 1995, ISBN 0-8053-1670-1). This document summarizes the differences
+between the 4.1 code-generation interface and the 3.x interface described in Chap. 5 of A
+Retargetable C Compiler.
+Previous versions of lcc supported only three sizes of integers, two sizes of floats,
+and insisted that pointers fit in unsigned integers (see Sec. 5.1 of A Retargetable
+C Compiler). These assumptions simplified the compiler, and were suitable for
+32-bit architectures. But on 64-bit architectures, such as the DEC ALPHA, it's natural to
+have four sizes of integers and perhaps three sizes of floats, and on 16-bit
+architectures, 32-bit pointers don't fit in unsigned integers. Also, the 3.x
+constraints
+limited the use of lcc's back ends for other languages, such as Java.
+Version 4.x removes all of these restrictions: It supports any number of sizes for
+integers and floats, and the size of pointers need not be related to the size of any of
+the integer types. The major changes in the code-generation interface are: 
+ 
+- The number of type suffixes has been reduced to 6.
+ 
+- Dag operators are composed of a generic operator, a type suffix, and a size.
+ 
+- Unsigned variants of several operators have been added.
+ 
+- Several interface functions have new signatures.
+In addition, version 4.x is written in ANSI C and uses the standard I/O library and
+other standard C functions.
+The sections below parallel the subsections of Chap. 5 of A Retargetable C
+Compiler and summarize the differences between the 3.x and 4.x code-generation
+interface. Unaffected subsections are omitted. Page citations refer to pages in A
+Retargetable C Compiler.
+5.1 Type Metrics
+There are now 10 metrics in an interface record:
+Metrics charmetric;
+Metrics shortmetric;
+Metrics intmetric;
+Metrics longmetric;
+Metrics longlongmetric;
+Metrics floatmetric;
+Metrics doublemetric;
+Metrics longdoublemetric;
+Metrics ptrmetric;
+Metrics structmetric;
+Each of these specifies the size and alignment of the corresponding type. ptrmetric
+describes all pointers.
+5.3 Symbols
+The actual value of a constant is stored in the u.c.v field of a symbol,
+which holds a Value:
+typedef union value {
+	long i;
+	unsigned long u;
+	long double d;
+	void *p;
+	void (*g)(void);
+} Value;
+The value is stored in the appropriate field according to its type, which is given by
+the symbol's type field.
+5.5 Dag Operators
+The op field a of node structure holds a dag operator, which
+consists of a generic operator, a type suffix, and a size indicator. The type suffixes
+are:
+enum {
+	F=FLOAT,
+	I=INT,
+	U=UNSIGNED,
+	P=POINTER,
+	V=VOID,
+	B=STRUCT
+};
+#define sizeop(n) ((n)ops.c is
+a program that, given a set of sizes, prints the required operators and their values,
+e.g.,
+ % ops c=1 s=2 i=4 l=4 h=4 f=4 d=8 x=8 p=4
+...
+ CVIF4=4225 CVIF8=8321
+ CVII1=1157 CVII2=2181 CVII4=4229
+ CVIU1=1158 CVIU2=2182 CVIU4=4230
+...
+ MULF4=4561 MULF8=8657
+ MULI4=4565
+ MULU4=4566
+...
+131 operators
+The type suffix for a conversion operator denotes the type of the result and the size
+indicator gives the size of the result. For example, CVUI4 converts an
+unsigned (U) to a 4-byte signed integer (I4). The syms[0]
+field points to a symbol-table entry for a integer constant that gives the size of the
+source operand. For example, if syms[0] in a CVUI4 points to a
+symbol-table entry for 2, the conversion widens a 2-byte unsigned integer to a 4-byte
+signed integer. Conversions that widen unsigned integers zero-extend; those that widen
+signed integers sign-extend.
+The front end composes conversions between types T1 and T2
+by widening T1 to it's "supertype", if necessary, converting
+that result to T2's supertype, then narrowing the result to T2,
+if necessary. The following table lists the supertypes; omitted entries are their own
+supertypes.
+ 
+ 
+ Type 
+ 
+ Supertype 
+ 
+ 
+ signed char 
+ 
+ int 
+ 
+ 
+ signed short 
+ 
+ int 
+ 
+ 
+ unsigned char 
+ 
+ int, if sizeof (char) 

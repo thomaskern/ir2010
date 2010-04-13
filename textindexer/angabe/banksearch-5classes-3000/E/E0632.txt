@@ -1,0 +1,501 @@
+
+ 
+C >> More on Format Specifiers ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ printf and scanf 
+ Main Menu 
+ Comparison and
+ Logical Operators 
+ 
+ 
+ 
+ 
+More on Format Specifiers
+ 
+ 
+ 
+ 
+ 
+Minimum Field Width
+ 
+ 
+ 
+ 
+ 
+Suppose you want the program to display output that occupies a minimum number of spaces on the screen. You can achieve this by adding 
+ an integer value after the percent sign of a format specifier. 
+ 
+ 
+ 
+ 
+For example, if you want to display an integer using a minimum of 8 spaces, you'd write %8d in your printf statement. 
+ 
+ 
+This example gives a demonstration: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+#include 
+int main() {
+ int x = 123;
+	
+ printf("Printing 123 using %%0d displays %0d\n", x);
+ printf("Printing 123 using %%1d displays %1d\n", x);
+ printf("Printing 123 using %%2d displays %2d\n", x);
+ printf("Printing 123 using %%3d displays %3d\n", x);
+ printf("Printing 123 using %%4d displays %4d\n", x);
+ printf("Printing 123 using %%5d displays %5d\n", x);
+ printf("Printing 123 using %%6d displays %6d\n", x);
+ printf("Printing 123 using %%7d displays %7d\n", x);
+ printf("Printing 123 using %%8d displays %8d\n", x);
+ printf("Printing 123 using %%9d displays %9d\n", x);
+	
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ Printing 123 using %0d displays 123
+ Printing 123 using %1d displays 123
+ Printing 123 using %2d displays 123
+ Printing 123 using %3d displays 123
+ Printing 123 using %4d displays 123
+ Printing 123 using %5d displays 123
+ Printing 123 using %6d displays 123
+ Printing 123 using %7d displays 123
+ Printing 123 using %8d displays 123
+ Printing 123 using %9d displays 123 
+ 
+ 
+ 
+ 
+ 
+ 
+Notice that in the first 4 cases, 123 is displayed in the same way as when you normally use %d. Why? 
+ Simple - the number of spaces on the screen that 123 can be displayed is greater than or equal to 3. 
+ 
+But also, if you write %09d, the program will display zeros before the number itself. In the above example, 
+ it will display: 
+ 
+Printing 123 using %09d displays 000000123 
+ 
+ 
+ An advantage of using this, is that you can count the minimum field of the number!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Making 
+ It Look Neater
+ 
+ 
+ 
+ 
+ 
+The output from the example above doesn't look very neat does it?! That's because the numbers are aligned to the right of the minimum 
+ field. In other words, 1,2 and 3 are the digits in the furthest 3 spaces of the minimum field. 
+ 
+ 
+ 
+ 
+ 
+To align your output on the left, you insert a minus sign before the number in the format specifier. But if you do this to the previous 
+ example, all the output lines will be the same. 
+ 
+A better example: 
+ 
+ 
+ 
+ 
+ 
+#include 
+int main() {
+ int x = 12;
+ int y = 123;
+ int z = 12345;
+ 
+ printf("Printing 12 using %%9d \t\t displays %9d\n", x);
+ printf("Printing 12 using %%09d \t\t displays %09d\n", x);
+ printf("Printing 12 using %%-9d \t\t displays %-9d\n", x);
+ printf("Printing 12 using %%-09d \t displays %-09d\n", x);
+ 
+ printf("Printing 123 using %%9d \t\t displays %9d\n", y);
+ printf("Printing 123 using %%09d \t displays %09d\n", y);
+ printf("Printing 123 using %%-9d \t displays %-9d\n", y);
+ printf("Printing 123 using %%-09d \t displays %-09d\n", y);
+ 
+ printf("Printing 12345 using %%9d \t displays %9d\n", z);
+ printf("Printing 12345 using %%09d \t displays %09d\n", z);
+ printf("Printing 12345 using %%-9d \t displays %-9d\n", z);
+ printf("Printing 12345 using %%-09d \t displays %-09d\n", z);
+ 
+ return 0;
+}
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ Printing 12 using %9d displays 
+ 12
+Printing 12 using %09d displays 000000012
+Printing 12 using %-9d displays 12
+Printing 12 using %-09d displays 12
+Printing 123 using %9d displays 123
+Printing 123 using %09d displays 000000123
+Printing 123 using %-9d displays 123
+Printing 123 using %-09d displays 123
+Printing 12345 using %9d displays 12345
+Printing 12345 using %09d displays 000012345
+Printing 12345 using %-9d displays 12345
+Printing 12345 using %-09d displays 12345
+ 
+ 
+ 
+\t acts like a standard tab. Notice how it begins with a backslash, \ 
+ - just like the newline character. 
+ 
+ 
+ 
+ 
+ 
+More 
+ Precision
+ 
+ 
+ 
+ 
+ 
+You can gain more control with the displaying of integers by placing a dot, followed by an integer, after the minimum field specifier. 
+ The dot and this integer is known as a PRECISION SPECIFIER. 
+ 
+The integer you add specifies the maximum field width when displaying an integer or string. 
+ 
+ 
+ 
+If you're using %f, the format specifier for floating point numbers, you can control the number of decimal places that is 
+ displayed (which is 6 by default). How? By using the precision specifier. This time, the number after the dot is the number of decimal 
+ places. The number before the dot is still the minimum field width. 
+ 
+This example should help clarify things: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+#include 
+int main() {
+ float x = 3.141592;
+ 
+ printf("Printing 3.141592 using %%f \t displays %f\n", x);
+ printf("Printing 3.141592 using %%1.1f \t displays %1.1f\n", x);
+ printf("Printing 3.141592 using %%1.2f \t displays %1.2f\n", x);
+ printf("Printing 3.141592 using %%3.3f \t displays %3.3f\n", x);
+ printf("Printing 3.141592 using %%4.4f \t displays %4.4f\n", x);
+ printf("Printing 3.141592 using %%4.5f \t displays %4.5f\n", x);
+ printf("Printing 3.141592 using %%09.3f displays %09.3f\n", x);
+ printf("Printing 3.141592 using %%-09.3f displays %-09.3f\n", x);
+ printf("Printing 3.141592 using %%9.3f displays %9.3f\n", x);
+ printf("Printing 3.141592 using %%-9.3f displays %-9.3f\n", x);
+ 
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ Printing 3.141592 using %f displays 3.141592
+ Printing 3.141592 using %1.1f displays 3.1
+ Printing 3.141592 using %1.2f displays 3.14
+ Printing 3.141592 using %3.3f displays 3.142
+ Printing 3.141592 using %4.4f displays 3.1416
+ Printing 3.141592 using %4.5f displays 3.14159
+ Printing 3.141592 using %09.3f displays 00003.142
+ Printing 3.141592 using %-09.3f displays 3.142
+ Printing 3.141592 using %9.3f displays 3.142
+ Printing 3.141592 using %-9.3f displays 3.142
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You may have noticed that if you use a negative value for the minimum width specifier, the output will not be affected 
+ by a zero after the minus sign. 
+ 
+ Also, in the case for decimal numbers, the decimal point occupies a character space on the screen. 
+ 
+ 
+ 
+ 
+Printer 
+ Friendly Version
+ 
+ 
+ 
+ printf and scanf 
+ Main Menu 
+ Comparison and
+ Logical Operators 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

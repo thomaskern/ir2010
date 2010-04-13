@@ -1,0 +1,17 @@
+
+ Microsoft SQL Server 2000: A Guide to Enhancements and New Features 
+By: Rahul Sharma 
+ISBN: 0201752832 
+Publisher: Addison-Wesley 
+ 
+ 
+Quality information but is not a smooth read 
+Reviewed By: Dave Latimer 
+ This book is true to its name. It speaks, almost exclusively, about the new features of SQL Server 2000. In fact, though the author appears very knowledgeable on his subject, it can be a difficult read at points. Many features are dealt with quickly in bulleted points which can make it choppy and hard to digest. The book is definitely not intended for a cover-to-cover read, but is more of a reference. Even some more advanced topics are given relatively short shrift; which is probably ideal for a relatively experienced DBA, but sometimes frustrating for a developer (e.g. me).
+ The book is at its best when it looks at an area in depth. In these areas, Debugging Database Performance Issues (ch. 23) for example, the author's experienced voice and brevity make for incisive commentary — not spending too much time rehashing 101-level ideas, rather making informative comments on performance tradeoffs and common errors.
+ Another useful aspect of the book is the many SQL scripts, VB scripts and DTS packages for common tasks that come on the CD. These are also printed in the book. Here you feel you’re given some real nuggets and gems gleaned from the hard-won experience of an expert on the subject.
+ One section that does seem a little off topic, if still helpful, is the section on migrating from Oracle to SQL Server 2000. The section has many useful bits of information, including quite a comprehensive comparison of T-SQL and PL/SQL. However, it is not something you'd expect in a "new features of SQL Server 2000” book.
+ All in all, the book is filled with quality information but is not a smooth read and it's more intended for a DBA with a strong knowledge of SQL Server 7.0 than a VB/ADO developer. Use it for the very specific purpose of updating your SQL Server 7.0 knowledge and/or getting a high-level view of the issues involved in moving from Oracle to SQL Server 2000.
+ 
+ 
+	

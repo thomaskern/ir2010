@@ -1,0 +1,53 @@
+
+C++ Tutorial: 1.1, Structure of a program
+ Section 1.1 
+ Structure of a C++ program 
+ 
+ 
+ 
+ 
+Probably the best way to start learning a programming language is with a program.
+So here is our first program:
+// my first program in C++
+#include 
+int main ()
+{
+ cout 
+Sentences that begin with a pound sign (#) are directives for the preprocessor.
+They are not executable code lines but indications for the compiler.
+In this case the sentence #include tells the compiler's
+preprocessor to include the iostream standard header file.
+This specific file includes the declarations of the basic standard
+input-output library in C++, and it is included because its functionality is used later
+in the program.
+int main ()
+This line corresponds to the beginning of the main function
+declaration. The main function
+is the point by where all C++ programs begin their execution.
+It is independent from whether it is at the beginning, at the end or by the middle of the
+code - its content is always the first to be executed when a program starts.
+In addition, for that same reason, it is essential that all C++ programs have a
+main function.
+main goes followed by a pair of parenthesis ()
+because it is a function. In C++ all functions are followed by a pair of parenthesis
+() that, optionally, can include arguments within them. The content of the
+main function follows immediately to its formal declaration enclosed
+between curly brackets ({}), as in our example.
+cout 
+int main ()
+{
+ cout 
+int main ()
+{
+ cout 
+ Previous:
+Main Menu 
+ 
+ index 
+ 
+ Next:
+1-2. Variables. Data types. Constants.
+ 
+Additional readings:
+ 
+ANSI-C++: Standard Header Files.

@@ -1,0 +1,298 @@
+
+Stroustrup: Errata for 9th and 10th printings of The C++ Programming Language
+Errata for 9th and 10th printings of The C++ Programming Language
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (3rd edition),
+Addison-Wesley, 1997. ISBN0-201-88954-4.
+Errata for the 9th and 10th printings.
+Errors and Clarifications
+Preface:
+Chapter 1:
+pg 10	s/C is retained as a subset./Except for closing a few
+	serious loopholes in the type system (see Appendix B),
+	C is retained as a subset./
+pg 11	s/A formally approved international C++ standard is expected in 1998./
+	The ISO C++ standard (ISO/IEC 14882) was ratified in 1998./
+Chapter 2:
+Chapter 3:
+pg 61	s/!is.eof() &&/!is.eof() ||/
+Chapter 4:
+pg 74	Clarification: Replace the last paragraph of 4.5 by:
+	"If you want a floating-point literal of type float,
+	you can define one using the suffix f or F:
+	3.14159265f 2.0f 2.997925F 2.9e-3f
+	If you want a floating-point literal of type long double,
+	you can define one using the suffix l or L:
+	3.14159265L 2.0L 2.997925L 2.9e-3L
+Chapter 5:
+pg 90	s/character literals/string literals/
+Chapter 6:
+pg 124:	Replace the first paragraph of 6.2.4 by:
+	"The bitwise logical operators &, |, ^, ~, >>, and 
+	complex z = 2;	// initialize z with complex(2)
+	In other cases, the implicit conversion is undesirable and
+	error-prone. For example, if we could initialize a string
+	with an int size someone could write:
+	string s = 'a';	// make s a string with int('a') elements
+	It is quite unlikely that this was what the person defining s
+	meant."
+pg 286	s/const string&/string&/ twice
+pg 286	s/const_iterator/iterator/
+pg 288	s/Iter for_each(/Fct for_each(/
+pg 290	s/24.2.4/24.3.6/
+pg 300	s/as if y and p/as if x and p/
+Chapter 12:
+Chapter 13:
+pg 333	s/a pointer T*/a pointer Link*/
+pg 342	s/interface to void*/interface to Vector/
+pg 347	s/13.2.3/C.13.3/
+Chapter 14:
+pg 365	s/{ fclose(p); }/{ if (p) fclose(p); }/
+pg 387 s/[9] Avoid throwing exceptions from copy constructors; 14.4.6.1/
+	/[9] Leave operands in valid states before throwing an exception
+	from an assignment; 14.4.6.1./
+Chapter 15:
+pg 395	simpler first code fragment:
+	p->Task::next = 0;	// ok
+	p->Displayed::next = 0;	// ok
+pg 395	the destructor should be plain:
+	virtual ~Storable() { }
+pg 416:	s/hash_map
+pg 423	s/,size_t)/)/
+Chapter 16:
+pg 432	s///
+Chapter 17:
+pg 474	s/16.3.6)/16.3.6) except capacity() and reserve()/
+pg 482:	a better illustration:
+	pair f(char c, int i)
+	{
+	pair x(c,i);
+	// ...
+	return x;	// pair to pair conversion required
+	}
+pg 489	replace "Erasing end() is harmless." by
+	"A call m.erase(b,e) where e is m.end() is harmless (provided
+	b refers to an element of m or is m.end()). However, a call
+	m.erase(p) where p is m.end()
+	is a serious error that could corrupt the container."
+pg 492	s/pow(i,2)/pow(2,i)
+pg 501	s/(b.size()*max_load 
+pg 500	s/hash_map::/hash_map::/
+pg 502	s/hash_map::/hash_map::/ twice
+pg 502	s/b.clear()/fill(b.begin(),b.end(),(Entry*)0);/
+pg 503	better:
+typedef char* Pchar;
+template size_t Hash::operator()(const Pchar& key) const
+{
+	size_t res = 0;
+	const char* p = key;
+	while (*p) res = (res
+Chapter 18:
+pg 513	s/iterator_type/iterator/ twice
+pg 519	s/first_argument_type& x/argument_type& x/
+pg 520	better:
+template struct less_than : public binder2nd > {
+	explicit less_than(const T& x) : binder2nd >(less(),x) { }
+};
+pg 528	better:
+bool in_quote(const string& s)
+{
+	typedef string::const_iterator I;
+	I p = search(quote.begin(),quote.end(),s.begin(),s.end());	// find s in quote
+	return p!=quote.end();	
+}
+pg 530	s/output_iterator/ostream_iterator/
+pg 531	replace identity example by:
+template T identity(const T& x) { return x; }
+template Out ccopy(In first, In last, Out res)
+{
+	return transform(first,last,res,identity::value_type>);	// see sec19.2.2
+}
+The the explicit qualification of identity
+is needed to get a specific function from the function template.
+The iterator_traits template (19.2.2) is used to get In's element type.
+pg 531	replace the delete_ptr example by
+struct Delete_ptr {	// use function object to get inlining
+	template T* operator()(T* p) { delete p; return 0; }
+};
+void purge(deque& s)
+{
+	transform(s.begin(),s.end(),s.begin(),Delete_ptr());
+}
+pg 537	s/generate(v2,&v2[900],Randint)/generate(v2,&v2[900],Randint())/
+pg 545	s/ lexicographical_compare(s1.begin(),s1.end(),v1,v1+strlen(v1),Nocase)/
+	lexicographical_compare(s1.begin(),s1.end(),v1,v1+strlen(v1),Nocase())/
+Chapter 19:
+pg 551	s/void advance(In i, Dist n)/void advance(In& i, Dist n)/
+pg 556	s/vi+vi.size()/vi.begin()+vi.size()/
+pg 563	s/c->begin()-curr/curr-c->begin()/ twice
+pg 565	s/typename C::// five times
+pg 565	s/,lst.end()//
+pg 566	Improved version of g():
+	void g(vector& vi)
+	{
+	Checked_iter > p(vi,vi.begin());
+	// ..
+	int i = p.index();	// get current position
+	vi.resize(100);	// p becomes invalid
+	p = Checked_iter >(vi,vi.begin()+i);	// restore current position
+	}
+pg 568	s/is const void* for all standard allocators./is void* for all standard allocators./
+pg 569	s/typename A::template rebind/typename A::rebind/
+pg 570	A better Chunk:
+	struct Chunk {
+	enum { size = 8*1024-16 };	// slightly less than 8K so that a chunk will fit in 8K
+	char mem[size];	// allocation area first to get stringent alignment
+	Chunk* next;
+	};
+Chapter 20:
+pg 595	s/range_error/out_of_range/
+pg 597	s/range_error/out_of_range/
+pg 601	s///
+pg 601	s///
+pg 602	s/range_error/length_error/
+Chapter 21:
+pg 609	After the first code segment, add:
+	"Class basic_ios prohibits copy construction and assignment (11.2.2).
+	This implies that ostreams and istreams cannot be copied.
+	Therefore, if you need to change the target of a stream you must
+	either change stream buffers (21.6.4) or indirect through a pointer
+	(11.2.2)."
+pg 610	s/cerr.operator
+pg 617	s/a null operation./a null operation as far as the variable being read into is concerned./
+pg 622	s/ios_base::clear()/clear()/
+pg 622	/ios_base member exceptions()/basic_ios member exceptions()/
+pg 626	s/floatfield;/floatfield,/
+pg 626	s/fmtflags unitbuf;/unitbuf;/
+pg 626	replace the definition of the two-argument version of fmtflags with
+	// clear and set flags in mask:
+	fmtflags setf(fmtflags f, fmtflags mask) { return flags((flags()&~mask)|(f&mask)); }
+pg 630	s/bitfield/bitset/
+pg 633	s/cout::setprecision(n)/cout.precision(n)/
+pg 633	s/s.setprecision(n)/s.precision(n)/
+pg 634	s/put '\0' and flush/put '\0'/
+pg 634	s/n digits after decimal point/n digits (21.4.3)/
+pg 636	/Bound_form Form::operator()(double d)/Bound_form Form::operator()(double d) const /
+pg 644	s/charT,traits/Ch,Tr/ twice
+pg 646	Move "basic_streambuf();" to the protected interface on page 647
+pg 650	s/cin.imbue(std::locale::global())/cin.imbue(std::locale())/
+Chapter 22:
+pg 671	s/v_even = d[slice(0,d.size()/2+d.size()%2,2)]/v_even = d[slice(0,d.size()/2,2)]/
+pg 673	s/slice(i,d1,d2)/slice(i,d2,d1)/ thrice
+pg 674	s/mul(const valarray/mul(Cslice_iter/
+pg 674	s/res(i)] = mul(m.row(i),v)/res[i] = mul(m.row(i),v)/
+pg 685	the correct declaration of srand is():
+void srand(unsigned int i);	// seed random number generator by i
+Chapter 23:
+Chapter 24:
+pg 757	s/Iter_for_T> print_all(Iter_for_T/Iter_for_T> void print_all(Iter_for_T/
+Chapter 25:
+pg 772	s/virtual add_fuel/virtual void add_fuel/
+pg 773	s/virtual dispatch_to/virtual void dispatch_to/
+pg 777	add a constructor to Error_response:
+	Error_response(const string& s) :message(s) { }
+Appendix A:
+Appendix B:
+pg 825	/enumeration values to ints/ints to enumerations/
+Appendix C:
+pg 829	s/??? ?//
+pg 832	s/undefined/implementation defined/ 4 times in comments
+pg 834	s/Plausible results are 255 and -1/Plausible results are 127 and -1/
+pg 855	Add to friend names:
+.P1
+template class Basic_ops {	// basic operators on containers
+	friend bool operator==
+pg 856	s/Like a member, a friend declared within a template is itself a
+	template and is defined using the template parameters of its class./
+	The 
+pg 863	replace the bottom example by
+template void sort(vector& v)
+{
+	sort(v.begin(),v.end());	// use standard library sort() (without explicitly saying std::)
+}
+class Container {
+	vector v;	// elements
+public:
+	void sort()	// sort elements
+	{
+	::sort(v);	// sort(vector&) which calls std::sort() rather than Container::sort()
+	}	
+	// ...
+};
+Had sort(vector&) called sort() using the std::sort()
+notation, the result would have been the same and the code would
+have been clearer.
+pg 867	advice [5]:
+	Use keywords and digraphs to represent programs on systems where
+	{, }, [, ], |, or ! are missing and trigraphs if \ is missing; C.3.1.
+Typos
+Preface:
+Chapter 1:
+pg 2	s/Isac/Isak/
+pg 17	s/Eric/Erich/
+Chapter 2:
+Chapter 3:
+Chapter 4:
+Chapter 5:
+pg 100	s/A pointer of any type/A pointer to any type/
+Chapter 6:
+Chapter 7:
+pg 214	s/#include statements for/#include directive for/
+Chapter 8:
+pg 187	s/Range_Error/Range_error/
+Chapter 9:
+pg 202	s/compliers/compilers/
+Chapter 10:
+pg 255 s/``its'' reference or named object go out/``its'' reference or named object goes out/
+Chapter 11:
+pg 298	s/operator+(int)/X operator+(int)/
+pg 298	s/operator+(X)/Y operator+(X)/
+Chapter 12:
+pg 318	s/Data is better kept private/Data members are better kept private/
+pg 325	s/of a of a/of a/ in 12.7[2]
+Chapter 13:
+Chapter 14:
+Chapter 15:
+pg 409	s/A dynamic_cast requires a pointer or reference to a
+ 	polymorphic type to do a downcast or a crosscast./
+	A dynamic_cast requires a pointer or reference to a
+ 	polymorphic type in order to do a downcast or a crosscast./
+pg 426	s/keywords you can/keywords as you can/ in 15.8[7]
+pg 426	s/overwrite a Base*/override a Base*/
+Chapter 16:
+pg 460	s/(3)/(c) in 16.5[10]
+Chapter 17:
+Chapter 18:
+pg 516 s/Alternatively, we could pesent/Alternatively, we could present/
+pg 526	s/int*::/const char*::/
+Chapter 19:
+pg 561	s/3.7.1/3.7.2/
+pg 572	s/rebind()/rebind/
+Chapter 20:
+pg 598	s/expanding string as needed/expanding the string as needed/
+pg 602	s/to localize values in a string/to locate values in a string/
+pg 602	s/(possibly empty) parenthesized sequences/(possibly empty)
+	parenthesized sequence/
+Chapter 21:
+pg 618	s/at at/at/
+pg 622	s/so an input operation didn't return a value from the stream./
+	so that an input operation wouldn't return a value from the stream./
+pg 627	s/mystream/myostream/
+pg 634	s/n digits after decimal point/n digits (21.4.3, 21.4.6.1)/
+pg 635	s/std::// and add "using namespace std;"
+pg 643	s/are created/is created/
+pg 651	s/When the the state/When the state/
+pg 654	s/textural/textual/
+Chapter 22:
+pg 686	s/10,000/100,000/
+Chapter 23:
+pg 700	s/indeed a to be desirable aim/indeed to be a desirable aim/
+Chapter 24:
+pg733	s/24.2.4/24.3.6/
+Chapter 25:
+Appendix A:
+pg 810	in base-specifier: "virtual" is in the wrong font twice
+Appendix B:
+Appendix C:
+pg 866	s/vector::sort()/List::sort()/

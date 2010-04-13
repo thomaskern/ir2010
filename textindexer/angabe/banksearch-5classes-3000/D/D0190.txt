@@ -1,0 +1,205 @@
+	
+	 WDVL: Structure
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+Free Barter Account
+Internet Jobs
+Find a Web Host
+USA Mailing Address
+Software Store
+Anti-Virus Software
+Free DNS Offer
+Web Design
+EMedia Mag Free Sub
+Register Domains
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Structure	
+What is the structure of an applet program?
+An applet consists of the import statements, class statement, member variable declarations and the class methods. Using the Contact class we will learn about each of these components. To easily follow this discussion you may want to print the Contact applet's source code. The first four statements in the Contact applet are the import statements, which reference Java packages and classes that are used by the Contact applet.
+import statements
+import java.awt.*;
+This is a package of classes for building a graphical user interface.
+import java.applet.*;
+This is a package of classes including the Applet class that the Contact class is extending.
+import java.util.StringTokenizer;
+This is a class that provides string parsing capabilities.
+import java.net.URL;
+This class is used to invoke the client browser's Email program.
+class statement
+public class Contact extends Applet {
+This class statement defines the Contact class as a public subclass of the Applet class. The keyword class is the statement identifier. Contact is the name of this new class. The keyword extends causes the new class Contact to be created as a copy of the class Applet. This creation process is referred to as "extending a class" and as "subclassing a class".
+ All applets must be a subclass of the Applet class. A subclass is just a way of using the code already available for a class and adding more code to it. When a class is extended from another class it inherits all data and methods of the class it extends.
+The modifier public indicates that the Contact class can be extended. To prevent a class from being subclassed the modifier would be final instead of public.
+The Applet class is itself a subclass of the Panel class. The Panel class is a subclass of another class, and so on. Here is the hierarchy of the
+ Applet class.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

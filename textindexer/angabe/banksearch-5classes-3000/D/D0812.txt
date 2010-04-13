@@ -1,0 +1,219 @@
+
+ 
+ 
+ 
+ 
+5.3) Operators and Assignments, Bitwise and Logical operators
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+5) Operators and Assignments
+Objective
+3)
+In an expression
+involving the operators & | && || and variables of known values
+state which operands are evaluated and the value of the expression.
+It is easy to forget which of the symbols mean logical operator and which
+mean bitwise operations, make sure you can tell the difference for the
+exam. If you are new to these operators it might be worth trying to come
+up with some sort of memory jogger so you do not get confused between the
+bitwise and the logical operators. You might like to remember the expression
+"Double Logic" as a memory jerker.
+The short circuit
+effect with logical operators
+The logical operators (&& ||) have a slightly peculiar effect
+in that they perform "short-circuited" logical AND and logical OR
+operations as in C/C++. This may come as a surprise if you are a from a Visual
+Basic background as Visual Basic will evaluate all of the operands. The Java
+approach makes sense if you consider that for an AND, if the first operand is
+false it doesn't matter what the second operand evaluates to, the overall
+result will be false. Also for a logical OR, if the first operand has turned
+out true, the overall calculation will show up as true because only one
+evaluation must return true to return an overall true. This can have an effect
+with those clever compressed calculations that depend on side effects. Take the
+following example.
+public class MyClass1{
+ public static void main(String argv[]){
+ int Output=10;
+ boolean b1 = false;
+ if((b1==true) && ((Output+=10)==20))
+ {
+ System.out.println("We are equal "+Output);
+ }else
+ {
+ System.out.println("Not equal! "+Output);
+ }
+ }
+}
+The output will be "Not equal 10". This illustrates that the
+Output +=10 calculation was never performed because processing stopped after
+the first operand was evaluated to be false. If you change the value of b1 to
+true processing occurs as you would expect and the output is "We are equal
+20";.
+This may be handy sometimes when you really don't want to process the other
+operations if any of them return false, but it can be an unexpected side effect
+if you are not completely familiar with it. 
+The bitwise
+operators
+The & and | operators when applied to integral bitwise AND and OR
+operations. You can expect to come across questions in the exam that give
+numbers in decimal and ask you to perform bitwise AND or OR operations. To do
+this you need to be familiar with converting from decimal to binary and learn
+what happens with the bit patterns. Here is a typical example 
+What is the result of the following operation 
+3 | 4 
+The binary bit pattern for 3 is 
+11 
+The binary bit pattern for 4 is 
+100 
+For performing a binary OR, each bit is compared with the bit in the same
+position in the other number. If either bit contains a 1 the bit in the
+resulting number is set to one. Thus for this operation the result will be
+binary 
+111 
+Which is decimal 7. 
+The objectives do not specifically ask for knowledge of the bitwise XOR
+operation, performed with ^
+Thinking in
+binary
+If you do not feel comfortable thinking in binary (I am much more comfortable 
+ in decimal), you may want to do some exercises to help master this topic and 
+ also the bitwise shift operators topic. If you are running windows you may find 
+ it helpful to use the windows calculator in scientific mode. To do this choose 
+ View and switch from the default standard to scientific mode. In Scientific 
+ mode you can switch between viewing numbers ad decimal and binary, this displays 
+ the bit pattern of numbers. Here is another handy trick I wish I had known before 
+ I wrote my BitShift applet (see the applets menu from the front of this site), 
+ is how to use the Integer to display bit patterns. Here is a little program 
+ to demonstrate this.
+public class BinDec{
+public static void main(String argv[]){
+ System.out.println(Integer.parseInt("11",2));
+ System.out.println(Integer.toString(64,2));
+ }
+}
+If you compile and run this program the output will be
+3
+1000000
+Note how the program converts the bit pattern 11 into the decimal equivalent 
+ of the number 3 and the decimal number 64 into its equivalent bit pattern. The 
+ second parameter to each method is the "radix" or counting base. Thus 
+ in this case it is dealing with numbers to the base 2 whereas we normally deal 
+ with numbers to the base 10.
+ 
+ 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+What will happen when you attempt to compile and run the following code?
+int Output=10;
+boolean b1 = false;
+if((b1==true) && ((Output+=10)==20)){
+ System.out.println("We are equal "+Output);
+ }else
+ {
+ System.out.println("Not equal! "+Output);
+}
+1) Compile error, attempting to peform binary comparison on logical data type
+ 2) Compilation and output of "We are equal 10"
+ 3) Compilation and output of "Not equal! 20"
+ 4) Compilation and output of "Not equal! 10"
+ 
+ 
+Question 2)
+What will be output by the following line of code?
+System.out.println(010|4);
+1) 14
+2) 0
+3) 6
+4) 12
+ 
+ 
+Question 3)
+Which of the following will compile without error?
+1)
+int i=10;
+int j = 4;
+System.out.println(i||j);
+2)
+int i=10;
+int j = 4;
+System.out.println(i|j);
+3)
+boolean b1=true;
+boolean b2=true;
+System.out.println(b1|b2);
+4)
+boolean b1=true;
+boolean b2=true;
+System.out.println(b1||b2);
+ 
+Answers
+Answer 1)
+ 
+4) Compilation and output of "Not equal! 10"
+The output will be "Not equal 10". This illustrates that
+the Output +=10 calculation was never performed because processing stopped
+after the first operand was evaluated to be false. If you change the value of
+b1 to true processing occurs as you would expect and the output is "We are
+equal 20";.
+Answer 2)
+4) 12
+As well as the binary OR objective this questions requires you to understand
+the octal notation which means that the leading zero not means that the first 1
+indicates the number contains one eight and nothing else. Thus this calculation
+in decimal means
+8|0
+To convert this to binary means
+1000
+0100
+----
+1100
+----
+The | bitwise operator means that each position where there is a 1, results
+in a 1 in the same position in the answer.
+Answer 3)
+2,3,4
+Option 1 will not compile because it is an attempt to perform a logical OR
+operation on a an integral types. A logical or can only be performed with
+boolean arguments.
+ Other sources on this topic
+ 
+ The Sun Tutorial
+ http://java.sun.com/docs/books/tutorial/java/nutsandbolts/operators.html
+ 
+ Richard Baldwin 
+ http://home.att.net/~baldwin.dick/Intro/Java022f.htm 
+ 
+ 
+Last updated
+ 10 Jan 2000
+ copyright © Marcus Green 2000
+ 

@@ -1,0 +1,303 @@
+
+DevX: C++ Zone: The Top 20 C++ Tips of All Time
+ 
+ 
+ DevX Home 
+ 
+ Premier Club 
+ Search 
+ RFP Exchange 
+ eLearning 
+ Code Library 
+ Help 
+ Locator+ 
+Shop DevX 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+	
+	 
+	
+ 
+	 
+	 
+	The Top 20 C++ Tips of All Time
+Memory Management
+by Danny Kalev
+	
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	
+Tip 5: Hiding the Cumbersome Syntax of Pointers to Functions
+	Tip 6: All About Pointers to Members
+	Tip 7: Avoiding Memory Fragmentation
+	Tip 8: Don't Confuse Delete with Delete []
+ndoubtedly, memory management is one of the most intricate and bug-prone issues in C++ programming. The power of accessing raw memory directly, the ability to allocate storage dynamically, and the utmost efficiency of C++ dictate very strict rules that you must follow in order to avoid memory-related bugs and runtime crashes. 
+Pointers are the primary means of accessing memory. C++ has two major categories of them: pointers to data and pointers to function. The second category is further divided into two subcategories: ordinary function pointers and pointers to members. In the following tips, we will explore these issues in depth and learn some technique to streamline the use of pointers while hiding their unwieldy syntax. 
+Pointers to functions are probably one of the least readable syntactic constructs of C++. The only less readable construct seems to be pointers to members. The first tip will teach you how to improve the readability of ordinary pointers to functions. This serves as the prerequisite for dealing with C++ pointers to members. 
+Next, we learn how to avoid memory fragmentation and its woeful consequences. Finally, we discuss the proper use of delete and delete[] operators&#151;still, a fertile source of bugs and misconceptions.
+Tip 5: Hiding the Cumbersome Syntax of Pointers to Functions
+Can you tell what the following declaration means?
+void (*p[10]) (void (*)());
+p is an "array of 10 pointers to a function returning void and taking a pointer to another function that returns void and takes no arguments." The cumbersome syntax is nearly indecipherable, isn't it? You can simplify this declaration considerably by using typedefs. First, declare a typedef for "pointer to a function returning void and taking no arguments" as follows:
+typedef void (*pfv)();
+Next, declare another typedef for "pointer to a function returning void and taking a pfv":
+typedef void (*pf_taking_pfv) (pfv);
+Now declaring an array of 10 such pointers is a breeze:
+pf_taking_pfv p[10]; /*equivalent to 
+void (*p[10]) (void (*)()); but much more readable*/
+Tip 6: All About Pointers to Members
+A class can have two general categories of members: function members and data members. Likewise, there are two categories of pointers to members: pointers to member functions and pointers to data members. The latter are less common because in general, classes do not have public data members. However, when using legacy C code that contains structs or classes that happen to have public data members, pointers to data members are useful.
+Pointers to members are one of the most intricate syntactic constructs in C++, and yet, they are a very powerful feature too. They enable you to invoke a member function of an object without having to know the name of that function. This is very handy implementing callbacks. Similarly, you can use a pointer to data member to examine and alter the value of a data member without knowing its name.
+Pointers to Data Members
+Although the syntax of pointers to members may seem a bit confusing at first, it's consistent and resembles the form of ordinary pointers, with the addition of the class name followed by the operator :: before the asterisk. For example, if an ordinary pointer to int looks as follows:
+int * pi; 
+You define a pointer to an int member of class A as follows:
+int A::*pmi; /* pmi is a pointer to an int member of A*/
+You initialize a pointer to member like this:
+class A
+{
+public:
+ int num;
+ int x;
+};
+int A::*pmi = & A::num; /* 1 */
+The statement numbered 1 declares a pointer to an int member of class A and initializes it with the address of the member num. Using pmi and the built-in operator .* you can examine and modify the value of num in any object of class A:
+A a1, a2;
+int n=a1.*pmi; /* copy a1.num to n */
+a1.*pmi=5; /* assign the value 5 to a1.num */
+a2.*pmi=6; /* assign the value 6 to a2.num */
+If you have a pointer to A, you need to use the built-in operator ->* instead:
+A * pa=new A;
+int n=pa->*pmi; 
+pa->*pmi=5; 
+Pointers To Member Functions
+These consist of the member function's return type, the class name followed by ::, the pointer's name, and the function's parameter list. For example, a pointer to a member function of class A that returns an int and takes no arguments is defined as follows (note that both pairs of parentheses are mandatory):
+class A 
+{
+public:
+ int func (); 
+};
+int (A::*pmf) (); 
+In other words, pmf is a pointer to a member function of class A that returns int and takes no arguments. In fact, a pointer to a member functions looks as an ordinary pointer to function, except that it also contains the class's name immediately followed by the :: operator. You can invoke the member function to which pmf points using operator .*:
+pmf=&A::func;
+A a;
+(a.*pmf)(); /* invoke a.func() */
+If you have a pointer to an object, you use the operator ->* instead:
+A *pa=&a;
+(pa->*pmf)(); /*calls pa->func() */
+Pointers to member functions respect polymorphism. Thus, if you call a virtual member function through such a pointer, the call will be resolved dynamically. 
+Note, however, that you can't take the address of a class's constructor and destructor. 
+Tip 7: Avoiding Memory Fragmentation
+Often, applications that are free from memory leaks but frequently allocate and deallocate dynamic memory show gradual performance degradation if they are kept running for long periods. Finally, they crash. Why is this? Recurrent allocation and deallocation of dynamic memory causes heap fragmentation, especially if the application allocates small memory chunks. A fragmented heap might have many free blocks, but these blocks are small and non-contiguous. To demonstrate this, look at the following scheme that represents the system's heap. Zeros indicate free memory blocks and ones indicate memory blocks that are in use:
+100101010000101010110
+The above heap is highly fragmented. Allocating a memory block that contains five units (i.e., five zeros) will fail, although the systems has 12 free units in total. This is because the free memory isn't contiguous. On the other hand, the following heap has less free memory but it's not fragmented:
+1111111111000000
+What can you do to avoid heap fragmentation? First, use dynamic memory as little as possible. In most cases, you can use static or automatic storage or use STL containers. Secondly, try to allocate and de-allocate large chunks rather than small ones. For example, instead of allocating a single object, allocate an array of objects at once. As a last resort, use a custom memory pool.
+Tip 8: Don't Confuse Delete with Delete []
+There's a common myth among programmers that it's OK to use delete instead of delete [] to release arrays built-in types. For example,
+int *p=new int[10];
+delete p; /*bad; should be: delete[] p*/
+This is totally wrong. The C++ standard specifically says that using delete to release dynamically allocated arrays of any type yields undefined behavior. The fact that on some platforms, applications that use delete instead of delete [] don't crash can be attributed to sheer luck: Visual C++, for example, implements both delete[] and delete for built-in types by calling free(). However, there is no guarantee that future releases of Visual C++ will adhere to this convention. Furthermore, there's no guarantees that this code will work on other compilers. To conclude, using delete instead of delete[] and vice versa is hazardous and should be avoided.
+	
+	
+ 
+ Guidelines for Better Coding Style 
+ Performance Enhancements 
+ 
+ 
+ 
+ 
+ 	Introduction 
+ 	Performance Enhancements 
+ 
+	
+ 
+ 
+ 	Guidelines for Better Coding Style 
+ 
+ 	Object Oriented Design 
+ 
+ 
+ 
+ 	Memory Management 
+ 
+ 	STL and Generic Programming 
+ 
+	
+ 
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+ 
+ 
+ 
+	 
+	 
+	 
+	
+	
+ 
+	
+	
+	
+	
+	FEATURE SOFTWARE:
+	RadVC
+Get the power of C++ with the Rapid App Development features of VB.
+Buy Now!
+	
+	
+	Crystal Reports
+Integrate robust reporting into your applications. 
+Buy Now!
+	
+	
+	FEATURE BOOK:
+	COM Explorer
+Explore, manage, and repair ActiveX components.
+Buy Now!
+	 
+	 
+	
+	
+	
+	
+	 Product Review of the Week
+C++Test
+ Site of the Week 
+ Book Review of the Week 
+Standard C++ Bible
+ Tip of the Day 
+Setting Breakpoints Programmatically
+ Download of the Week 
+Xceed Winsock Library 1.2
+ 
+ 
+	
+	 
+ 
+ 
+	
+	 
+	
+Sponsored Links 
+Click here for a free FREE iSeminar and Oracle9i Application Server software!
+ 
+SPECIAL REPORT: Winning with Web Services
+ 
+Reduce line-by-line headaches with this "code review in a box."
+ 
+How do Drivers Access UNICODE? Get the Scoop Here...
+ 
+Need a Hand with that First Cup of Java? Get FREE Downloadable Courses!
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	DevX Home | 
+	.NET Zone | 
+	Java Zone | 
+	Get Help |
+	CoDe Magazine
+	
+	VB Zone |
+	C++ Zone |
+	XML Zone |
+	Enterprise Zone |
+	Database Dev Zone 
+	
+	Wireless Zone| 
+	Security Zone | 
+	ASP Zone | 
+	DHTML Zone |
+	UML Zone 
+	
+	MarketPlace | 
+	RFP Exchange |
+	Discussions |
+	Newsletters |
+	Tech Tips | 
+	Sourcebank
+	
+	Advertise |
+	Help |
+	Copyright |
+	Privacy Statement
+	 
+	
+ 
+Copyright Information/Privacy Statement 
+	 
+	

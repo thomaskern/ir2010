@@ -1,0 +1,40 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Menus II
+On to some more things on menus such as Pop-Up menus and how to use the checked/unchecked property for menus...
+Pop-Up Menus
+Used as often as anything, Pop-Up menus are important to know. You would create a popup menu as you would make a normal menu, through the menu editor, the only difference is where the menu will appear which is determined by the codes you will write.
+Steps for creating a Pop-Up menu that will be activated by right-clicking the form
+1) Create a menu that you want to use as your popup
+2) Set the menu's visible property to false
+3) In that form's code window, select Form, then select MouseDown to the right of it
+4) Use the codes below to make your menu work, also modify the menu name as I used the name mnuFile
+ If Button = vbRightButton Then
+ Form1.PopupMenu mnuFile
+ End If
+ If mnuFile.Visible = True Then
+ mnuFile.Visible = False
+ End If
+Steps for creating a Pop-Up menu that will be activated by clicking on a control and will not be movable
+1) Create a menu that you want to use as your popup
+2) Set the menu's visible property to false
+3) In the code window, find the control you want to use (Label1/Command1 etc...)
+4) Use the codes below to make your menu work by clicking on a control. Changing the X & Y coordinates will change where your menu will appear
+ Form1.PopupMenu mnuFile, 0, 480, 680
+ If mnuFile.Visible = True Then
+ mnuFile.Visible = False
+ End If
+ Note:You should put the X coordinate's value in the code the same your controls X coordinate value. The Y should be a little bit higher then what the control's is so the menu wont cover it when it appears.
+Checking & UnChecking
+Using checks in menus is very common, and simple to do as you can see the codes shown below:
+ Private Sub MenuItem_Click()
+ If MenuItem.Checked = False Then
+ 'Your codes
+ MenuItem.Checked = True
+ Else
+ 'Your codes
+ MenuItem.Checked = False
+ End If
+ End Sub
+Back
+Next

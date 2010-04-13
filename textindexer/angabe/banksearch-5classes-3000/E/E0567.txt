@@ -1,0 +1,512 @@
+
+Creating the Project and Adding Components
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Tour
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Creating the Project and Adding Components
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Read Document 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6GuidedTour.exe 
+ 
+ 
+	 
+ 780 KB Microsoft Word file 
+	
+	
+ 
+	 
+ 4 min @ 28.8 Kbps 
+	
+	
+	 
+	
+	
+	
+	 
+ Get Office file viewers 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Getting Started 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Setup Instructions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating the Project and Adding Components 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Linking and Implementing Controls 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Running and Testing the Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Building the MFC Application 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Debugging 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Taking it to the Web 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creating a Workspace to Contain Two Projects
+Visual C++ provides excellent project management in an intuitive and flexible Integrated Development Environment (IDE). Here, you will take advantage of this support to combine Component Object Model (COM) components in an ATL project with an MFC application in a separate project. 
+- Start Visual C++ 6.0. You can find Visual C++ 6.0 in Start menu by clicking on Programs and then selecting Microsoft Visual Studio 6.0. 
+- From the File menu, choose New. When the New window appears, click the Workspaces tab and select Blank Workspace. 
+- Enter FM_NewTraining and click OK. Visual C++ will create the workspace.
+- Now you&#146;ll add an ATL project to this workspace. Right-click on the Workspace you just created in the FileView on the left side of the screen. Choose Add New Project to Workspace from the Pop-up menu.
+- The New window should be showing the Projects tab and ATL COM AppWizard should be selected. This is what you want to create, so simply give this project a name by entering CourseIntro into the Project Name box. Click OK.
+- Visual C++ will display the ATL COM AppWizard. Since you are going to create a DLL you can leave the default selections alone and click Finish. Visual C++ will confirm your actions in a New Project Information window. Click OK.
+- After the wizard has generated the project for you, you will see the CourseIntro files below your Workspace in the FileView. Select your new project in FileView.
+Adding COM Objects to a Project with the ATL Object Wizard
+Now you&#146;ll add specific components to the project you just created using the ATL Object wizard. 
+- From the Insert menu, select New ATL Object.
+- When the ATL Object wizard appears, there will be several different categories on the left-hand side of the window and icons on the right side. These icons represent the vast array of COM components that can be created with Visual C++ through ATL. Many of these wizards are new in Visual C++ 6.0. Choose the Controls category on the left side of this window and select Composite Control. 
+The Composite Control, a new feature in Visual C++ 6.0, allows for multiple controls to be combined to form a single new ActiveX® control. Visual C++ Composite Controls include the benefits of C++ templates: they are highly optimized for speed and size.
+- Click Next. The wizard will take you to a Properties page where you can input the desired characteristics for this control. Type CourseCtl into the Short Name box under C++. You will notice that the other boxes are populated for you by Visual C++ (see Figure 2). You are not done setting properties, so do not click OK.
+Figure 2: Enter CourseCtl in the Short Name box.
+- Click on the Attributes tab and add a check to the Support Connection Points checkbox (see Figure 3). Adding connection points allows this COM component to fire events to the container application, so that the application and the COM component can be more easily linked together. Click OK. If you receive a message asking you whether or not you want to reload the ".rc" file, click Yes (you should do so whenever you see this message).
+Figure 3: Make sure to check Support Connection Points
+- Now that you&#146;ve generated your Composite Control, Visual C++ has added a dialog resource to your project. On the left hand side of the screen, choose the ResourceView tab to display the resources in your application. The Composite Control you added can be found under CourseIntro resources under Dialog and will be called IDD_COURSECTL. Double-click on IDD_COURSECTL.
+You will see that a large gray area has filled the right window of Visual C++. You will place controls onto this dialog and resize. 
+- You should see a floating Controls Palette. (If you don&#146;t, right-click in any empty gray area near the toolbars at the top of the screen and make sure Controls has a check next to it in the Pop-up menu that appears.) Find the List Box control by slowly moving the mouse over the controls to see ToolTips. Drag-and-drop the List Box control on the left side of the dialog box and resize it so that it looks like the list box in Figure 4.
+- Right-click on the list box you added. Select Properties from the Pop-up menu. Change the ID to IDC_COURSES. 
+- On the Styles tab of the List Box properties, uncheck the Sort checkbox. The courses need to appear in the order they&#146;re listed in the database so that they are associated with the correct multimedia. Hit Enter or click the Close button in the upper right corner to close the Properties window.
+- Right-click in the gray area of the dialog box and choose Insert ActiveX Control from the Pop-up menu. From the list that appears, choose ActiveMovieControl Object and click OK.
+- Position this control by clicking its border and dragging it to the right of the list box as in Figure 4.
+Figure 4: Example of size and location of list box and movie control in the Composite Control.
+- Right-click on the ActiveMovieControl and select Properties. Change the ID to IDC_MOVIE. Under the All tab, set the ShowDisplay property to False (see Figure 5). Hit Enter or click the icon in the upper right corner to close the Properties window.
+Figure 5: Changing the Show Display property of the movie control.
+- Click in a gray area of the dialog box to select it (a border will appear around the dialog box). Scroll in the dialog window and find the blue square at the bottom right corner of the dialog box and position the mouse so that a resize arrow appears. Click and drag the mouse up and to the left to resize the dialog box. Resize the dialog box so that only a narrow gray area is visible around the ActiveMovieControl (see Figure 4).
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,350 @@
+
+ 
+Gillius's Programming
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Welcome to Gillius's Programming. You can use the URL 
+ http://come.to/gillius to reach this 
+ site, or use http://www.rit.edu/~jpw9607/ if 
+ you bookmark or wish to skip the ads.
+ 
+Latest News
+ The latest news about GNE is located on the GNE 
+ SourceForge Site
+ 
+ 
+ 6/30/02 
+ -- Oops 
+ 
+ 
+ 
+ 
+Boy that was a little dumb. I messed up the poll. I changed the 
+ answers but forgot to update the question. Anyways the new poll 
+ has been correctly. I always find the locale diversity of the internet 
+ very interesting. Now that the internet has moved mostly out of 
+ the US I notice now most of my e-mail from this site comes from 
+ outside the US.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 6/23/02 
+ -- Site Updates 
+ 
+ 
+ 
+ 
+I've been needing to edit some things on my site for a long time. 
+ I did some cleanup work on e-mail adresses. I also temporarily took 
+ my resume down as I now have a job and there is not a reason to 
+ keep it up (but I was still getting offers). Thankfully, I have 
+ finally changed the poll. That poll had been up how long? I don't 
+ know a year or more. Some of you also may have noticed that some 
+ time ago I took down the Java stuff because of certain issues with 
+ people using my code inappropriately. Hopefully someday I will have 
+ some Java stuff for you -- I still do lots of Java programming, 
+ but only for work, so that is why you see no Java projects. All 
+ of my personal projects I do in C++.
+ 
+As for GNE, I really need to get started working on that again. 
+ I just started a new job and before was home for a few weeks. I 
+ think right before then I had a completed version of GNE on my disk! 
+ This was a month ago, and I've yet to work on it. Looking at it 
+ the last day and through my journal I don't see anything else I 
+ needed to do before it came out (actually I did want to redo some 
+ documentation). I'm surprised I stopped when I was so close, so 
+ I will be testing GNE and checking everything out, and if it all 
+ looks good there will be a 0.55 release very soon.
+ 
+Needless to say, I'm still very alive despite the stagnation of 
+ my site.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 3/26/02 
+ -- The Resurrection (and GNE 0.49a) 
+ 
+ 
+ I have finally gotten a working computer after 
+ my last one was destroyed during shipping. I managed to release GNE 
+ 0.49a which had the code before my old computer was destroyed. I have 
+ not lost any data, so fear not, GNE is not dead, although I still 
+ have much work to catch up on, plus I have just started back up at 
+ college, so it may be quite some time before GNE goes back to full-swing. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 2/16/02 
+ -- GNE Beginner's Guide 
+ 
+ 
+ I've updloaded the latest version of the GNE documentation 
+ on the GNE page. It applies to the CVS version of GNE which has changes 
+ over the latest public version, but I included it because it has the 
+ new beginner's guide. Please read it and let me know what you think 
+ of it, and if it was useful for you. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1/24/02 
+ -- GNE Protocol Version 1 Second Draft 
+ 
+ 
+ The second GNE protocol draft is completed. The 
+ main change is that I forgot to specify bandwith throttling in the 
+ first draft. This adds that, several packets, and throughout the documentation 
+ are significant clairifications and fixes. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1/24/02 
+ -- GNE Protocol Version 1 Draft 
+ 
+ 
+ The first draft for the GNE protocol has been completed. 
+ Everything in the document is tenatively completed except that some 
+ higher-level packet types will be created but the high-level packets 
+ don't affect the actual workings of the protocol but rater are more 
+ like "GNE official extensions." Check out the GNE 
+ page for more info. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1/24/02 
+ -- Site Design Updates 
+ 
+ 
+ I've been doing a lot of work on the implementation 
+ of this site's code. I have converted almost all of the old HTML formatting 
+ that was used in the very old pages that had not been updated since 
+ the last redesign. The fonts and their sizes have been changed as 
+ well. There are definitely some spots I have missed and due to search/replaces 
+ I've done there may be some formatting lost too. There have also been 
+ lots of minor little changes everywhere. Let me know if you see anything 
+ that has gone wrong. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 1/17/02 
+ -- GNE 0.45 alpha 
+ 
+ 
+ The new version of GNE is out. This is almost as 
+ big of a release as the last GNE release, so check it out. Find out 
+ more of what's changed on the GNE page 
+ and on the GNE SourceForge site. 
+ 
+ 
+ 
+ 
+ 
+ 
+Old News Archives
+ 
+ 
+ Allegro's 
+ WebRing 
+ Previous Site Ring's Home Next Site 
+ 
+ 
+ Random Site Skip Next Site List Next 5 
+ 
+ 
+ 
+ 
+ 
+ 
+ DJGPP's 
+ WebRing 
+ Previous Site Ring's Home Next Site 
+ 
+ 
+ Random Site Skip Next Site List Next 5 
+ 
+ 
+ 
+ 

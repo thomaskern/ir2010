@@ -1,0 +1,234 @@
+
+ 
+Really Old News Page 2
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+This is some REALLY 
+ old Stuff!
+ Site news from 9/30/99 to 6/30/99
+ 
+Back to main 
+ page
+ 
+9/30 -- Some good news! PV2143 has been brought back (more alive)! I had 
+ been waiting for libsocket to get worked on more before I worked on it 
+ again (to add mutli), so I didn't work on it as much in single player, 
+ which was also due to the fact that I have no support for this game whatsoever, 
+ and it's becoming too big for just myself to handle. If anyone wants to 
+ help with the project, let 
+ me know please. Either ways, I have livened 
+ it up a bit and made a few changes, reflected in the PV2143 readme, and after some more work, build 15 will be released.
+ 9/28 -- I finally got around to changing the poll to something new.
+ 9/27 -- I've put up part of the OOP tutorial I have started working on again, 
+ which is about half, or a little more than half, of Chapter V of the OOP 
+ tutorial (and a new appendix, F, to go along with this). Also a "tutorial" 
+ of sorts on setting up the SB Live! card to work properly in DOS applications 
+ is on the site as well.
+ 9/23 -- I've reorganized and polished the files for PV2143 
+ as well as providing a one-part mirror. The maps.dat was left out of the 
+ update but I don't remember if it needed it, either ways it is in there 
+ now, and should update the maps. Also since I got a SBLive! card, I was 
+ able to confirm the rumors that Allegro (a library I use in PV2143 for 
+ the multimedia) does not work with this card, as well as many other applications 
+ in DOS on some setups. This is a very easy fix, and I will write the guide 
+ soon, but for those who know how to change settings, try putting the IRQ 
+ on 5 NOT 7, the PRINTER port (as it is by default???)!!!
+ 9/22 -- Well I finally got my network connection up, as well 
+ as some webspace too, which means I may have a one-part download very 
+ soon! I am still exploring this new connection. I don't even know my new 
+ address quite yet for my webspace. Also a new version of libsocket came 
+ out recently which is more stable under 98 but still unusable. This could 
+ still work! I'm still working with the author of the library and if results 
+ are good, a new MUUDPIC will be released with the new library, and hopefully 
+ will work under Win98!
+ 9/9 -- Well I'm at college but my network is broken so I am writing this 
+ manually into my webpage (as opposed to my editor) through this spiffy 
+ UNIX SunOS workstation I'm on. I will be awhile until I can get a network 
+ connection, for now I don't even have a computer I can program on yet 
+ (since I can't download winzip to unzip my compiler!)!!! Needless to say 
+ that I am NOT GONE and am still as active as before, 
+ so as soon as I get the equipment up I can work on the page and my programs 
+ again. . .
+ 8/28 -- Source code for PV2143 is now freely available to download. I was 
+ also notified of an error that maps.dat was missing. Sorry for that folks, 
+ the file is available for download on the PV2143 
+ page. If anyone has more problems please email me or fill out my contact 
+ form because sometimes while it works on mine I'll leave things out that 
+ makes it work for others, and I never see the problem.
+ 8/26 -- Released a new MUUDPIC version. Check its news and/or readme for 
+ more details.
+ 8/20 -- I finnally found the libjpeg, thanks to an email I recieved awhile 
+ ago. Actaully he found it awhile ago but I was just too lazy and forgot 
+ about it. I finally remember so it's up now. MUUDPIC news has been updated. In the next day or two I am releasing my source 
+ code for PV2143 openly, and I will be putting an all-in-one download on 
+ my AOL mirror, which does not have FC's lame 1 meg file limit. An AOL 
+ account I have access to has 2 megs, enough to hold my game files.
+ 8/16 -- Preview of MUUDPIC is now RELEASED. The "bugless" 
+ beta (meaning the program works and has been successfully tested but not 
+ for a long time) of TextGUI is out as well. Keep tuned for a lot of MUUDPIC news in the next few 
+ days. More detailed news on its page.
+ 8/12 -- Fixed doublespacing in Allegro tutorial. I also released the JetFight full source code on the Files and Programming Page. The windowing library that is part of the MUUDPIC is now finished, 
+ and within a few days I will release this library separately. It makes 
+ text windows, and has the options of border color, text color, and background 
+ color, as well as changing the border (so you can make the window "inactive") 
+ color without destroying the text inside of it (which is displayed using 
+ the Back to main 
+ page
+ 
+ 
+ 
+ 

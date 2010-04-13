@@ -1,0 +1,57 @@
+
+ 
+ 
+ Gradient Background
+ 
+Gradient
+Background
+ 
+Ever wonder how the SETUP.EXE
+screen gets its cool shaded background coloring? This color shading is
+called dithering, and you can easily incorporate it into your forms. Add
+the following routine to a form:
+Sub
+Dither(vForm As Form)
+Dim
+intLoop As Integer
+vForm.DrawStyle
+= vbInsideSolid
+vForm.DrawMode
+= vbCopyPen
+vForm.ScaleMode
+= vbPixels
+vForm.DrawWidth
+= 2
+vForm.ScaleHeight
+= 256
+For
+intLoop = 0 To 255
+vForm.Line
+(0, intLoop)-(Screen.Width, intLoop - 1), RGB(0, 0, 255 -intLoop), B
+Next
+intLoop
+End
+Sub
+Now, add to the Form_Activate
+event the line 
+Dither
+ME
+This version creates a fading
+blue background by adjusting the blue value
+in the RGB function. (RGB
+stands for Red-Green-Blue.) You can create gradients of other colors instead
+of blue by changing the RGB call:
+Red:
+RGB(255 - intLoop, 0, 0)
+Green:
+RGB(0, 255 - intLoop, 0)
+Yellow:
+RGB(255 - intLoop, 255 -
+intLoop, 0)
+Purple:
+RGB(255 - intLoop, 0, 255
+- intLoop)
+And so on :)
+This tip from VB Land
+ 
+ 

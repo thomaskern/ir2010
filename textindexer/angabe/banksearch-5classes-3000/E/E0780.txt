@@ -1,0 +1,21 @@
+
+Computer Centre: Introduction to C Programming
+ 
+ C Keywords - goto
+goto
+As in all high-level programming languages the goto statement causes immediate branching to a new location back up in the code structure
+(bad!) or further down the code structure. Branching can only occur
+within the current function and not between functions.
+For example
+ start: if (i==0) goto finish;
+ more lines of bad coding
+ --a;
+ goto start;
+ finish:
+As can easily be seen in the above example the use of the goto statement
+can be avoided by using other block structure constructs, for example the while loop. The goto statement
+should only be used in the last resort!
+ Computer Centre 
+Information Suppliers: Richard Mobbs, Head of Information Services, Leicester University Computer
+ Centre and Marina Carter, Postgraduate Student, Leicester University Computer Centre.
+Last Updated: August 1995

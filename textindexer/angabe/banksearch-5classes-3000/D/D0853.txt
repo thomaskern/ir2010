@@ -1,0 +1,292 @@
+
+	
+	The Java.io package
+	
+	
+	
+	
+	
+ 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	
+Java2 Certification 
+Tutorial
+	 
+	
+	
+ 
+	 
+	
+You can discuss this topic with others at
+http://www.jchq.net/discus
+Read
+reviews and buy a Java Certification book at
+http://www.jchq.net/bookreviews/jcertbooks.htm
+11) The java.io package 
+Objective 4)
+Select valid constructor
+arguments for subclasses from a list of classes in the
+java.io.package. 
+The emphasis on this objective is to know that constructors are
+valid. The most obvious break in the possible constructors is that
+the RandomFile class does not take a Stream constructor, for more
+information on RandomAccessFile see the next section. 
+These children of classes take instances of other streams as
+constructors. Thus the exam might ask you if they could take an
+instance of file, a string file, a writer or a path to see if you
+understand the valid constructors. A valid constructor will be some
+kind of stream plus possible other parameters.
+The Filtering in these classes allow you to access information
+more usefully than a stream of bytes. It might be useful not to worry
+about the names FilterInputStream and FilterOutputStream as it is the
+Subclasses that contain the useful methods. These main subclasses are
+FileInputStream and OutputStream
+The FileInputStream and FileOutputStream take some kind of File as
+a constructor. This can be a String containing the file name, and
+instance of the File class or a File descriptor. These classes are
+often used to construct the first step in a chain of Stream classes.
+Typically an FileInputStream will be connected to a File and that
+will be connected to an instance of InputStreamReader to read text
+characters. Here is an example of chaining the FileInputStream to the
+InputStream reader. This program will print out its own source code.
+import java.io.*;
+public class Fis{
+public static void main(String argv[]){
+ try{
+ FileInputStream in = new FileInputStream("Fis.java");
+ InputStreamReader isr = new InputStreamReader(in);
+ int ch=0;
+ while((ch = in.read())> -1){
+ StringBuffer buf = new StringBuffer(); 
+ buf.append((char)ch);
+ System.out.print(buf.toString());
+ }
+ } catch (IOException e){System.out.println(e.getMessage());} 
+ }
+}
+It is probably advisable when programming in the "real
+world" to use the InputStreamReader class in this type of
+situation to allow for easy of internationalisation.. See the
+GreekReader example in section 11.01 for an example of this.
+BufferedInputStream and BufferedOutputStream
+The Buffered streams are direct descendents of the Filter streams.
+They read in more information than is immediately needed into a
+buffer. This increases efficiency as when a read occurs it is more
+likely to be from memory (fast) than from disk (slow). This buffering
+means they are particularly useful if you are reading in large
+amounts of data. An example might be where you are processing several
+tens of megabytes of text data. The BufferedInputStream and
+BufferedOutputStream take an instance of a stream class as a
+constructor but may take a size parameter so you can tune the size of
+the buffer used.
+Here is an example of using the
+BufferedInputStream, note how similar it is the the previous example
+with InputStreamReader replaced by BufferedInputStream
+import java.io.*;
+public class BufIn{
+public static void main(String argv[]){
+ try{
+ FileInputStream fin = new FileInputStream("BufIn.java");
+ BufferedInputStream bin = new BufferedInputStream(fin);
+ int ch=0;
+ while((ch=bin.read())> -1){
+ StringBuffer buf = new StringBuffer();
+ buf.append((char)ch);
+ System.out.print(buf.toString());
+ }
+ 
+ }catch(IOException e){System.out.println(e.getMessage());};
+ }
+}
+DataInputStream and DataOutputStream
+The DataInputStream and OutputStream are used to read binary
+representations of Java primitives in a portable way. It gives you
+access to a range of methods such as readDoble, readIn that will work
+the same on different platforms. In JDK1.0 this was one of the main
+ways to access unicode text, but has been superceeded by the Reader
+classes since JDK 1.1. These classes take an instance of a Stream as
+a constructor
+The following examples write a single character
+to the file system and then read it back and print it to the console.
+//Write the file
+import java.io.*;
+ public class Dos{
+ public static void main(String argv[]){
+ try{ 
+ FileOutputStream fos = new FileOutputStream("fos.dat");
+ DataOutputStream dos = new DataOutputStream(fos); 
+ dos.writeChar('J'); 
+ }catch(IOException e){System.out.println(e.getMessage());}
+ }
+}
+//Read the file
+import java.io.*;
+public class Dis{
+public static void main(String argv[]){
+ try{ 
+ FileInputStream fis= new FileInputStream("fos.dat");
+ DataInputStream dis = new DataInputStream(fis);
+ System.out.println(dis.readChar());
+ }catch(IOException e){System.out.println(e.getMessage());}
+ }
+}
+The File class 
+The File class has three constructor versions. These
+are
+File(String path);
+File(String path, String name)
+File
+(File dir, String name);
+The three are very similar and
+perform effectivly the same function. The simple simple String
+constructor takes the name of the file in a single sting. This can be
+either an absolute or relative path to the file. The second version
+takes the path and file name as separate Strings and the third option
+is very similar to the first except that the first parameter for the
+directory has the File type instead of String.
+RandomAccessFile
+The important thing to be aware of with the constructors for
+RandomAccessFile is that it takes two constructor parameters and the
+second parameter is a String containing the file mode. See the next
+section for details of how to use RandomAccessFile.
+Questions 
+Question 1)
+Which of the following are valid constructors for the
+FileInputStream class?
+1) File
+2) String
+3) File descriptor
+4) RadomAccessFile
+Question 2)
+Which of the following are valid constructors for the
+BufferedInputStream class?
+1) BufferedInputStream(FileInputStream in, int size)
+2)
+BufferedInputStream(FileInputStream in)
+3)
+BufferedInputStream(FileOutputStream fos)
+4)
+BufferedInputStream(RandomAccessFile ram)
+Question 3
+ Which of the following are valid constructors for the
+DataInputStream class
+1) DataInputStream(FileInputStream in, int size)
+2)
+DataInputStream(FileInputStream in)
+3) DataInputStream(File f)
+4)
+DataInputStream(String s)
+Question 4
+Given the following code which of the following statements are
+true?
+import java.io.*;
+public class Dos{
+public static void main(String argv[]){
+ FileOutputStream fos = new FileOutputStream("fos.dat");
+ DataOutputStream dos = new DataOutputStream(fos);
+ BufferedOutputStream bos = new BufferedOutputStream(dos); 
+ dos.write('8');
+ }
+}
+1) The code will not compile
+2) No compilation because
+BufferedOutputStream cannot have a DataOutputStream 
+constructor
+3) The code will compile and write the byte 8 to the
+file
+4) The code will compile and write the string "8"
+to the file
+Question 5)
+Which of the following are valid constructor parameters?
+1)
+File (String path);
+2) File(String path, String name)
+3)
+RandomAccessFile(File)
+4) File(RandomAccesFile name)
+Question 6)
+Given the following code
+import java.io.*;
+public class Ppvg{
+public static void main(String argv[]){
+ Ppvg p = new Ppvg(); 
+ p.go();
+ }
+public void go(){
+ try{
+ DataInputStream dis = new DataInputStream(System.in);
+ dis.read();
+ }catch(Exception e){}
+ System.out.println("Continuing");
+ }
+}
+Which of the following statements are true?
+1) The code
+will compile and pause untill a key is hit
+2) The code will not
+compile because System.in is a static class
+3) The code will
+compile and run to completion without output
+4) The code will not
+compile because System.in is not a valid constructor for
+DataInputStream
+Answers
+Answer to question 1)
+1) File
+2) String
+3) File descriptor
+Answer to Question 2
+1) BufferedInputStream(FileInputStream in, int size)
+2)
+BufferedInputStream(FileInputStream in)
+It should be fairly obvious that an InputStream would not take an
+instance of an outputstream (option 3) and the RandomAccesFile is not
+a stream class (option 4)
+Answer to Question 3 
+2) DataInputStream(FileInputStream in)
+Answer to Question 4)
+1) The code will not compile
+The code will not compile because there is no try/catch block. A
+BufferedOutputStream may take a DataOutputStream as a constructor.
+Answer to Question 5
+Which of the following are valid constructor parameters?
+1) File (String path);
+2) File(String path, String
+name)
+RandomAccessFile must take a mode parameter (see the next
+section for details of the RandomAccessFile class).
+Answer to Question 6)
+1) The code will compile and pause untill a key is hit
+ 
+Other sources on this topic
+The Sun API docs
+Buffered
+I/O
+http://java.sun.com/products/jdk/1.2/docs/api/java/io/BufferedInputStream.html
+http://java.sun.com/products/jdk/1.2/docs/api/java/io/BufferedOutputStream.html
+Data
+I/O
+streams
+http://java.sun.com/products/jdk/1.2/docs/api/java/io/DataInputStream.html
+http://java.sun.com/products/jdk/1.2/docs/api/java/io/DataOutputStream.html
+Last updated
+6 Nov 2000
+copyright © Marcus Green
+2000
+most recent version at www.jchq.net 
+ 
+ 
+ 
+ 
+ 

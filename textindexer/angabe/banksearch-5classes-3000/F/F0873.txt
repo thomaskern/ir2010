@@ -1,0 +1,31 @@
+
+Making a Form stay on Top
+ 
+Rolling a Form Up and Down
+These two subs can be used to roll a form up and down.
+Sub RollFormUp(frm As Form, up As Integer)
+'Rolls a form up. Pay attention to the form's scalemode
+'property. If it's set to pixels and you use a twip value,
+'for example, your form will roll during an eternity!
+'up - the amount you want the form to be rolled up
+Dim UntilCond
+UntilCond = frm.Height - up
+If UntilCond Then Exit Sub
+If up Exit Sub
+Do
+frm.Height = frm.Height - 1
+DoEvents
+Loop Until frm.Height 
+End Sub
+Sub RollFormDown(frm As Form, down As Integer)
+'Rolls a form down. Again, pay attention to the scalemode!
+'down is the amount you may want your form to be rolled down
+Dim UntilCond
+UntilCond = frm.Height + down
+If down Then Exit Sub
+Do
+frm.Height = frm.Height + 1
+DoEvents
+Loop Until frm.Height >= UntilCond
+End Sub
+ 

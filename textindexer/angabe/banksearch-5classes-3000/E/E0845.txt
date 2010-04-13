@@ -1,0 +1,437 @@
+
+ 
+C >> Pointers 3 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Pointers 2 
+ Main Menu 
+ Strings 1 
+ 
+ 
+ 
+ 
+Pointers 3
+ 
+ 
+ 
+ 
+ 
+ 
+Arrays of int Pointers
+ 
+ 
+ 
+ 
+ 
+Definition: a pointer is a variable that stores the memory address of another variable. 
+ 
+So it's possible to have an array of pointers. In other words, an array of memory addresses: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int int_array[3] = {1,2,3}; /* an array of ints */
+ 
+ int *ptr1 = &int_array[0]; /* ptr1 stores address of int_array[0] */
+ int *ptr2 = &int_array[1]; /* ptr2 stores address of int_array[1] */
+ int *ptrs[3] = {ptr1, ptr2, &int_array[2]};
+ /* ptr_array is an array that stores the addresses of 
+ int_array[0], int_array[1] and int_array[2] respectively 
+ - notice the type of ptr_array is int * */
+ printf("The value of variable stored at 0x%p is %d\n", ptrs[0], *ptrs[0]);
+ printf("The value of variable stored at 0x%p is %d\n", ptrs[1], *ptrs[1]);
+ printf("The value of variable stored at 0x%p is %d\n", ptrs[2], *ptrs[2]);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The value of variable stored at 0x0065FDF4 is 1 
+ The value of variable stored at 0x0065FDF0 is 2 
+ The value of variable stored at 0x0065FDEC is 3 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I could've used a loop for the 3 printf statements, but since there are only 3, a loop is unnecessary. 
+ 
+Notice that ptr_array[0] returns 0x0065FDF4 - the address of int_array[0], and so *ptr_array[0] 
+ returns the value of int_array[0] i.e. 1. The same applies to the other 2 addresses. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Arrays 
+ of char Pointers (AKA Strings)
+ 
+ 
+ 
+ 
+ 
+The above example will work for floats and doubles - just replace int with float or double, and also, the 
+ %d with %f - the float format specifier. 
+ 
+I previously mentioned that char * pointers can be assigned with a string constant - this is because a char array 
+ with a null character, \0, as the last el ement is a string constant, and the name of the array is also a pointer to the first 
+ element. 
+ 
+So in theory, we can have an array of strings: 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+void printStrings(char *ptr[]); /* declare function */
+int main() {
+ char *strings[4] = { "Monday morning" , "6AM" ,
+ "Sunrise" , "www.iota-six.co.uk"};
+ printStrings(strings);
+ return 0;
+}
+void printStrings(char *ptr[]) { /* function definition */
+ int i;
+ for(i=0 ; iAlternatively... 
+ 
+ 
+ 
+ 
+ 
+ 
+But instead, if you pass a char pointer (in other words, an array element) as your argument..... 
+ 
+ 
+ 
+ 
+ #include 
+void printStrings2(char *ptr); /* declare function */
+int main() {
+ char *pointerArray[4] = { "Monday morning" , "6AM" ,
+ "ZZZ" , "www.iota-six.co.uk"};
+ printStrings2(pointerArray[0]);
+ printStrings2(pointerArray[1]);
+ printStrings2(pointerArray[2]);
+ printStrings2(pointerArray[3]);
+ return 0;
+}
+void printStrings2(char *ptr) { /* function definition */
+ printf("%s\n", ptr);
+}
+ 
+ 
+ 
+ 
+ 
+The output remains the same. This time you're passing an array element to the printStrings2 function, i.e. a char *, 
+ hence the char *ptr in the argument section. Notice I had to call my function 4 times to print out all the words. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Pointing 
+ to Functions
+ 
+ 
+ 
+ 
+ 
+This is probably beyond the basic stage, but I've added this bit in for completeness... I came across pointers to functions when I 
+ (briefly) looked at Windows Programming. 
+ 
+ 
+ 
+ 
+ #include 
+int add(int x, int y); /* declare function */
+int main() {
+ int x=6, y=9;
+ int (*ptr)(int, int); /* declare pointer to function*/
+ ptr = add; /* set pointer to point to "add" function */
+ printf("%d plus %d equals %d.\n", x, y, (*ptr)(x,y));
+ /* call function using pointer */ 
+ return 0;
+}
+int add(int x, int y) { /* function definition */
+ return x+y;
+}
+ 
+ 
+ 
+ 
+ 
+Just remember to enclose the function pointer with brackets when declaring it. Notice that I only included the arguments' types in 
+ the parameters in the pointer declaration. I think adding variable names in there is optional, so this would still compile: 
+ 
+int (*ptr)(int x, int y); 
+ 
+Or even this:
+ 
+int (*ptr)(int a, int b); 
+ 
+Also, the type of the pointer has to match that of the function it's pointing to. 
+ 
+ 
+ 
+ 
+ Printer Friendly Version 
+ 
+ 
+ Pointers 2 
+ Main Menu 
+ Strings 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

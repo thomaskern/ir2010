@@ -1,0 +1,110 @@
+
+ 
+ 
+ 
+ Visual Basic Tutorial Lesson 8
+Lesson 8 : More On Program Control
+8.1 Select Case
+If you have a lot of conditional statements, using
+If..Then..Else could be very messy. For multiple conditional statements,
+it is better to use Select Case
+The format is :
+Select Case expression
+ Case
+value1
+ Block
+of one or more VB statements
+ Case
+value2
+ Block
+of one or more VB Statements
+ Case
+value3
+ Block
+of one or more VB statements
+ Case
+value4
+ .
+ .
+ .
+ Case
+Else
+ Block
+of one or more VB Statements
+End Select
+* The data type specified in expression must match
+that of Case values.
+ 
+8.2 Examples
+Example 8.1
+' Examination Grades
+Dim grade As String
+Private Sub Compute_Click( )
+grade=txtgrade.Text
+Select Case grade
+ Case "A"
+ result.Caption="High
+Distinction"
+ Case "A-"
+ result.Caption="Distinction"
+ Case "B"
+ result.Caption="Credit"
+ Case "C"
+ result.Caption="Pass"
+ Case Else
+ result.Caption="Fail"
+ End Select
+*Please note that grade is a string, so all the
+case values such as "A" are of String data type.
+ 
+Example 8.2
+Dim mark As Single
+Private Sub Compute_Click()
+'Examination Marks
+ mark = mrk.Text
+ 
+Select Case mark
+ Case Is >= 85
+ 
+ comment.Caption = "Excellence"
+Case Is >= 70
+ 
+ comment.Caption = "Good"
+Case Is >= 60
+ comment.Caption = "Above Average"
+Case Is >= 50
+comment.Caption = "Average"
+Case Else
+comment.Caption = "Need to work harder"
+End Select
+End Sub
+* Note we use the keyword Is here to impose the
+conditions. This is generally used for numeric data.
+ 
+Example 8.3
+Example 8.2 could be rewritten as follows:
+Dim mark As Single
+Private Sub Compute_Click()
+'Examination Marks
+ mark = mrk.Text
+ 
+Select Case mark
+ Case 0 to 49
+ 
+ comment.Caption = "Need
+to work harder"
+ 
+Case 50 to 59
+ 
+ comment.Caption = "Average"
+ 
+Case 60 to 69
+ comment.Caption = "Above Average"
+Case 70 to 84
+comment.Caption = "Good"
+Case Else
+comment.Caption = "Excellence"
+End Select
+End Sub
+ 
+[Back to contents page]

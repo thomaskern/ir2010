@@ -1,0 +1,128 @@
+
+ 
+ 
+ 
+ 
+ 
+ Associating File Extensions with your Application
+Tutorial:
+Associating a File Extension with your Application
+Well ok. Let's suppose that
+you've created an application that saves lists of names in data files with
+an .lst extension. But when you try to open an .lst file, Windows shows
+the "Open With" dialog box. Don't you hate it? It would be much nicer if
+when you double-clicked the file, it was open directly with your application.
+Of course, the program must support command line arguments to know you
+want to open the file. But that's content for another tutorial.
+In this example we'll create
+a function to associate a file type with its program. Insert the code below
+in a VB module:
+ 
+Declare
+Function RegCreateKey Lib "advapi32.dll" Alias "RegCreateKeyA" _
+(ByVal
+hKey As Long, ByVal lpSubKey As String, phkResult As Long) As Long
+Declare
+Function RegSetValue Lib "advapi32.dll" Alias "RegSetValueA" _
+(ByVal
+hKey As Long, ByVal lpSubKey As String, ByVal dwType As Long, _
+ByVal
+lpData As String, ByVal cbData As Long) As Long
+' Return
+codes from Registration functions.
+Private
+Const ERROR_SUCCESS = 0&
+Private
+Const ERROR_BADDB = 1&
+Private
+Const ERROR_BADKEY = 2&
+Private
+Const ERROR_CANTOPEN = 3&
+Private
+Const ERROR_CANTREAD = 4&
+Private
+Const ERROR_CANTWRITE = 5&
+Private
+Const ERROR_OUTOFMEMORY = 6&
+Private
+Const ERROR_INVALID_PARAMETER = 7&
+Private
+Const ERROR_ACCESS_DENIED = 8&
+Private
+Const HKEY_CLASSES_ROOT = &H80000000
+Private
+Const MAX_PATH = 260&
+Private
+Const REG_SZ = 1
+Public
+Sub AssociateFile ( flExtension As String, appName As String, appPath As
+String, appDesc As String)
+' This
+sub creates and sets the necessary keys in the registry
+' Arguments:
+'
+flExtension = the file extension to be associated.
+'
+appName = your application's name
+'
+appPath = the path for the app's executable
+'
+appDesc = a simple description of your program
+ 
+Dim sKeyName As String 'Holds Key Name in registry.
+ 
+Dim sKeyValue As String 'Holds Key Value in registry.
+ 
+Dim ret& 
+'Holds error status if any from API calls.
+ 
+Dim lphKey& 'Holds created
+key handle from RegCreateKey.
+ 
+'This creates a Root entry for the app's name.
+ 
+sKeyName = appName
+ 
+sKeyValue = appDesc ' The application's description
+ 
+ret& = RegCreateKey (HKEY_CLASSES_ROOT, sKeyName, lphKey&)
+ 
+ret& = RegSetValue (lphKey&, "", REG_SZ, sKeyValue, 0&)
+ 
+'This creates a Root entry with the name of flExtension associated with
+appName
+ 
+sKeyName = flExtension
+ 
+sKeyValue = appName
+ 
+ret& = RegCreateKey (HKEY_CLASSES_ROOT, sKeyName, lphKey&)
+ 
+ret& = RegSetValue (lphKey&, "", REG_SZ, sKeyValue, 0&)
+ 
+'This sets the command line for the application
+ 
+sKeyName = appName
+ 
+sKeyValue = appPath & " %1"
+ 
+ret& = RegCreateKey&(HKEY_CLASSES_ROOT, sKeyName, lphKey&)
+ 
+ret& = RegSetValue&(lphKey&, "shell\open\command", REG_SZ,
+_
+ 
+sKeyValue, MAX_PATH)
+End
+Sub
+And that's it! Use the AssociateFile
+function to associate any sort of file extension with your application.
+For example, to associate files
+with an extension ".lst" with a program called ListViewer, simply use the
+code below:
+Call AssociateFile
+( ".lst", "ListViewer", "c:\ListViewer\LViewer.exe", "List Viewer Application"
+)
+This information was taken
+in part from Microsoft's Knowledge Base.
+Back
+to VB Center

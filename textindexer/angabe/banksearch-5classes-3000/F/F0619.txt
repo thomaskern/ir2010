@@ -1,0 +1,198 @@
+
+VB Square - ActiveX Development - Placing a progress bar in a status bar panel
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+ActiveX Development > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Placing a progress bar in a status bar panel
+Tip by Sam Huggill
+ 
+Tip description 
+ 
+ 
+ 
+Tip Code 
+ 
+This tip was written by Chris Eastwood (www.codeguru.com/vb/) To use this tip add a form with a progress bar, a status bar and a command button on. Copy the following code into the form's General Declarations procedure:
+'Declarations
+'
+' API Declarations
+'
+Private Declare Function SetParent Lib "user32" (ByVal hWndChild As _
+Long, ByVal hWndNewParent As Long) As Long
+Private Declare Function SendMessageAny Lib "user32" Alias "SendMessageA" _
+(ByVal hwnd As Long, ByVal msg As Long, ByVal wParam As Long, lParam _
+As Any) As Long
+'
+' API Types
+'
+' RECT is used to get the size of the panel we're inserting into
+'
+Private Type RECT
+ Left As Long
+ Top As Long
+ Right As Long
+ Bottom As Long
+End Type
+'
+' API Messages
+'
+Private Const WM_USER As Long = &H400
+Private Const SB_GETRECT As Long = (WM_USER + 10)
+Private Sub ShowProgressInStatusBar(ByVal bShowProgressBar As Boolean) 
+ Dim tRC As RECT
+ If bShowProgressBar Then
+ '
+ ' Get the size of the Panel (2) Rectangle from the status bar
+ ' remember that Indexes in the API are always 0 based (well,
+ ' nearly always) - therefore Panel(2) = Panel(1) to the api
+ '
+ '
+ SendMessageAny StatusBar1.hwnd, SB_GETRECT, 1, tRC
+ '
+ ' and convert it to twips....
+ '
+ With tRC
+ .Top = (.Top * Screen.TwipsPerPixelY)
+ .Left = (.Left * Screen.TwipsPerPixelX)
+ .Bottom = (.Bottom * Screen.TwipsPerPixelY) - .Top
+ .Right = (.Right * Screen.TwipsPerPixelX) - .Left
+ End With
+ '
+ ' Now Reparent the ProgressBar to the statusbar
+ '
+ With ProgressBar1
+ SetParent .hwnd, StatusBar1.hwnd
+ .Move tRC.Left, tRC.Top, tRC.Right, tRC.Bottom
+ .Visible = True
+ .Value = 0
+ End With
+ Else
+ '
+ ' Reparent the progress bar back to the form and hide it
+ '
+ SetParent ProgressBar1.hwnd, Me.hwnd
+ ProgressBar1.Visible = False
+ End If
+End Sub
+Private Sub Command1_Click()
+ 'Call the function
+ Call ShowProgressInStatusBar(True)
+ 
+ 'Do something in the progress bar
+ For i = 1 To ProgressBar1.Max
+ ProgressBar1.Value = i
+ Next i
+End Sub
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 1 comments. 
+ 
+ 
+Related
+ 
+- 
+OLE Automation Servers 
+- 
+Beginning Objects in VB: Part 3 
+- 
+Top tips for developing components for ASP 
+- 
+Beginning Objects in VB: Part 1 
+- 
+Beginning Objects in VB: Part 2 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

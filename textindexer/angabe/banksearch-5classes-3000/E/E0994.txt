@@ -1,0 +1,430 @@
+
+Microsoft Visual C++ 6.0 Datasheet
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Microsoft Visual C++ 6.0 Datasheet
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	Related Links 
+ 
+	
+	
+	
+	 
+	
+	
+	
+ 	
+	
+	
+	
+	
+	 
+	Product Highlights 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Features by Edition 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	System Requirements 
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Microsoft® Visual C++ is the most productive C++ tool for creating the highest-performance applications for Windows® and the Web. Nearly all world-class software, ranging from the leading Web browsers to mission-critical corporate applications, is built using the Microsoft Visual C++ development system. Visual C++ 6.0 brings a new level of productivity to C++, without compromising flexibility, performance, 
+or control.
+Get ready for Windows 2000
+- Get a head start with the Windows® 2000 Developer's Readiness Kit, including essential developer resources and training.
+- Simplify programming with COM+ and build distributed applications with built-in load balancing, transaction support, message queuing, object pooling, security, and integrated component management services.
+- Build highly reliable, self-repairing applications using the new Visual Studio® Installer.
+- Develop a breadth of solutions from full data warehouses using Microsoft SQL Server&#153; 7.0 to freely redistributable mobile database applications using the new SQL Server-compatible Microsoft Data Engine (MSDE).
+- Take advantage of the new Windows 2000 Web Services, Active Directory&#153; Service, Core Services, Microsoft Management Console, and much more.
+Auto List Members is one example of IntelliSense Technology in Visual C++ 6.0. Here the user is provided with a context-sensitive drop-down menu of methods and variables
+Maximize your programming productivity
+- Increase development speed and greatly simplify coding with IntelliSense® Technology. On-the-fly syntax and programming assistance eliminate the need to memorize complex syntax, parameters, and object properties.
+- Get faster turnaround with new Edit and Continue in the debugger. Edit code while debugging without having to quit the debugging session, rebuild, restart the debugger, and return the application to the state where the problem occurred.
+- Save development time with Dynamic ClassView updating. When new classes, variables, and member functions are added, ClassView and WizardBar are updated immediately. 
+- Easily and seamlessly integrate the functionality of Microsoft Word, Microsoft Excel, and other applications with Active Document Containment. Users get the features and richness they are accustomed to while the developer writes less code.
+- Quickly generate functional, full-featured applications automatically. New and enhanced wizards make developers productive at completing the widest range of tasks, including support for many new technologies.
+Take advantage of the newest Internet technologies
+- Develop scalable, Web-based applications with new support for Microsoft Transaction Server (MTS) and the Internet Information Server (IIS).
+- Easily customize your Web servers with the ISAPI Extension Wizard and the WinInet classes in MFC.
+- Maximize code reuse by easily combining and extending existing ActiveX® and Windows controls. Now developers can visually create Composite Controls through the Active Template Library (ATL) by simply dragging and dropping existing controls.
+- Integrate the Web into your MFC applications by building Web browsers into MFC front ends. Use Dynamic HTML in your custom browsers to add richness, manipulate data on-the-fly, and reduce server roundtrips.
+- Easily give your application the compelling look and feel of Microsoft Internet Explorer 4.0 with MFC support for the Common Controls. Drag and drop any of these controls to create intuitive and flexible user interfaces.
+Create the highest-performance applications
+- Compile more rapidly than ever. Compile time on large projects has been reduced by up to 30 percent, without sacrificing any optimizations.
+- Improve application performance with more control over DLL loading. The Delay Load Imports linker option allows applications to load DLLs only when and if they are needed to continue execution reducing startup times and memory usage.
+- Improve load time with less code overhead. Compiled code has a smaller footprint due to the increased granularity of the Microsoft Foundation Classes (MFC).
+- Executables now run faster. New optimizing keywords have been added to those already recognized by the compiler to ensure that applications access the optimizations they need, given their target platform and systems.
+- Support for the ANSI/ISO C++ specification includes support for the newest keywords and types, including bool, explicit, false, mutable, true, and typename. Array new and delete have also been added.
+Get the latest platform and component development support
+- Create the leanest, most robust ActiveX Controls and COM+ objects with comprehensive native COM compiler support and write less code to do it.
+- Develop the smallest, most scalable server-side components rapidly with the Active Template Library (ATL). Use wizards to easily create COM+ components and automatically register them in Microsoft Transaction Server.
+- Effectively reuse code and components. Find, track, catalog, and share components within your development team and across your organization with the integrated Visual Component Manager and Microsoft Repository.
+- Build world-class applications with industry-standard MFC, the most robust, productive, and widely used application framework available for Windows.
+Visual C++ 6.0 contains many new and enhanced wizards, including project wizards for creating applications and wizards for creating specific types of COM components and ActiveX Controls.
+- Simplify development for the latest Microsoft platform technologies. Use wizards to create projects for Microsoft Cluster Server and snap-ins for Microsoft Management Console.
+Access data flexibility with the highest performance
+- Use the comprehensive, integrated Visual Database Tools to visually design and modify database schema, view tables, modify data, and create reusable queries and stored procedures for Microsoft SQL Server 6.5+ and Oracle 7.3.3+ databases. 
+- Greatly simplify high-performance access to any data source relational or non-relational, e-mail and file systems, text and graphics, custom business objects, and more with new OLE DB wizards. 
+- Interactively debug SQL Server stored procedures and triggers from within the IDE using remote SQL debugging.
+- Develop high-performance customizations for SQL Server. Wizard support for creating Extended Stored Procedures gives you the performance of natively compiled code and the flexibility of the entire Win32® API.
+Achieve scalable enterprise development
+- Collaborate, share, and secure source code on large projects with integrated Visual SourceSafe® 6.0 version control system.
+- Take advantage of legacy support provided by Microsoft SNA Server 4.0 to access data and integrate code with mainframe systems and transaction services. Includes comprehensive mainframe connectivity options for databases running on AS/400 and IBM mainframes.
+- Design application architectures and component interfaces to organize team development with Visual Modeler, an easy-to-use modeling tool.
+Visual C++ 6.0 contains many new and enhanced wizards, including project wizards for creating applications and wizards for creating specific types of COM components and ActiveX Controls.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

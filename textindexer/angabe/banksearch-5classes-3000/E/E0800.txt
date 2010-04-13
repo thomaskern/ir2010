@@ -1,0 +1,25 @@
+
+ 
+ PHP HOW-TO: A Simple Example
+ 
+ 
+ 
+Next
+Previous
+Contents
+7. A Simple Example
+Suppose you have a form:
+ 
+ 
+ 
+ 
+ 
+Your display.html file could then contain something like:
+It's that simple! PHP automatically creates a variable for each form
+input field in your form. You can then use these variables in the ACTION
+URL file.
+The next step once you have figured out how to use variables is to start
+playing with some logical flow tags in your pages. For example, if you
+wanted to display different messages based on something the user inputs,
+you would use if/else logic. In our above example, we can display different
+things based on the age the user entered by changing our display.html to:

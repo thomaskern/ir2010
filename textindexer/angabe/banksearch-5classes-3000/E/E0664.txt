@@ -1,0 +1,75 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/ug/graphics/vga.html/vga.html.en 
+ 
+search 
+ 
+Guide: VGA mode 13h graphics 
+One of the most widely used PC graphics modes, and certainly the
+easiest to program, is the VGA mode 13h. This is sized 320x200, can
+display up to 256 colors at any one time, and will work on any VGA
+compatible graphics card (it isn't supported by the EGA or CGA boards,
+but very few people are running djgpp on such old hardware :-)
+ The first step is to select this mode, which is done by calling
+the VGA BIOS interrupt 0x10, eg:
+ #include 
+ void set_mode_13h()
+ {
+ __dpmi_regs r;
+ r.x.ax = 0x13;
+ __dpmi_int(0x10, &r);
+ }
+The important thing here is the number 0x13, which is put into the
+AX register before calling the BIOS function. This value specifies
+want mode you want to set: no prizes for guessing where the name "mode
+13h" came from!
+Before quitting from your program, you should of course switch back
+into the normal DOS text mode, which can be done in exactly the same
+way as above but substituting 3 as the mode number, for example:
+ void return_to_text_mode()
+ {
+ __dpmi_regs r;
+ r.x.ax = 3;
+ __dpmi_int(0x10, &r);
+ }
+After setting the video mode, the next step is to draw something
+onto the screen. The VGA memory is located at physical address
+0xA0000, so you will need to use the or
+dosmemput() functions to access it: see the DPMI chapter for
+details of this. At the most basic level, a single pixel can be drawn
+onto the screen with the code:
+ #include 
+ #include 
+ void putpixel_13h(int x, int y, int color)
+ {
+ _farpokeb(_dos_ds, 0xA0000+y*320+x, color);
+ }
+Displaying graphics as a sequence of single pixels tends to be very
+slow, but the same principle can be applied to more complex and useful
+shapes such as lines, rectangles, and circles. One useful optimization
+is to only call the _farsetsel(_dos_ds) function once at the
+start of your routine, and then use the faster _farns*()
+functions for the rest of the drawing. Using this method, a rectangle
+fill could be implemented as:
+ void rectangle_13h(int x, int y, int w, int h, int color)
+ {
+ int i, j;
+ _farsetsel(_dos_ds);
+ for (j=y; j
+ char framebuffer[320*200];
+ int i;
+ /* clear the framebuffer */
+ memset(framebuffer, 0, sizeof(framebuffer));
+ /* draw some diagonal lines */
+ for (i=0; i
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

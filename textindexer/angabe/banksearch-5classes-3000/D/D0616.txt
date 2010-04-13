@@ -1,0 +1,234 @@
+
+Manipulating Events in the BeanBox
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: JavaBeans(TM)
+Lesson: Manipulating Events in the BeanBox
+You'll need a good understanding of the JDK 1.1 event
+mechanism before reading this section. Here's the list
+of recommended readings:
+ 
+- Event Handling 
+ 
+- Chapter 6 of the
+ 
+JavaBeans API Specification 
+- Section 8.4, Design Patterns for Events of
+ the JavaBeans API Specification.
+Beans use the new event mechanism implemented in JDK 1.1, so
+implementing Bean events is the same as implementing
+events in any JDK 1.1 component. This section describes
+how this event mechanism is used by Beans and the
+BeanBox.
+How the BeanBox Discovers a Beans Event Capabilities
+The BeanBox uses either design pattern introspection
+or a 
+BeanInfo
+class to discover what events a Bean can fire.
+Using Introspection to Discover the Events A Bean Fires
+JavaBeans provides event-oriented design patterns
+to give introspecting tools the ability to discover
+what events a Bean can fire. 
+For a Bean to be the source of an event, it must
+implement methods that add and remove listener objects for
+that type of event. The design patterns for
+these methods are
+public void add( a)
+public void remove( a)
+These methods let a source Bean know where to fire events.
+The source Bean then fires events at those listener Beans using
+the methods for those particular interfaces. For example,
+if a source Bean registers ActionListener objects,
+it will fire events at those objects by calling the
+actionPerformed method on those listeners.
+To see events discovered using design patterns, drop
+an instance of OurButton into the BeanBox and
+pull down the Edit|Events menu. This displays a list of
+event interfaces to which OurButton can fire
+events. Note that OurButton itself only adds
+and removes two of these interfaces; the rest are 
+inherited from the base class.
+Using BeanInfo to Define the Events a Bean Fires
+You can explicitly "publish" the events a Bean fires
+by using a class that implements the BeanInfo interface.
+The ExplicitButton demo Bean subclasses
+OurButton, and provides an associated
+ExplicitButtonBeanInfo
+class. ExplicitButtonBeanInfo implements
+the following method to explicitly define
+interfaces to which ExplicitButton fires events.
+public EventSetDescriptor[] getEventSetDescriptors() {
+ try {
+ EventSetDescriptor push = new EventSetDescriptor(beanClass,
+ "actionPerformed",
+ java.awt.event.ActionListener.class,
+ "actionPerformed");
+ 
+ EventSetDescriptor changed = new EventSetDescriptor(beanClass,
+ "propertyChange",
+ java.beans.PropertyChangeListener.class,
+ "propertyChange");
+ 
+ push.setDisplayName("button push");
+ changed.setDisplayName("bound property change");
+ 
+ EventSetDescriptor[] rv = { push, changed};
+ return rv;
+ } catch (IntrospectionException e) {
+ throw new Error(e.toString());
+ }
+}
+Drop an ExplicitButton instance in the BeanBox,
+and pull down the Edit|Events menu. Notice that only those
+interfaces explicitly exposed in the
+ExplicitButtonBeanInfo class are listed. No
+inherited capabilities are exposed.
+See The BeanInfo Interface
+section for more information on the BeanInfo interface.
+Viewing a Bean's Events in the BeanBox
+If you select an OurButton Bean
+in the BeanBox, then pull down the Edit|Events menu,
+you will see a list of interfaces that OurButton
+can fire events at. Each interface item will, when selected,
+display the methods that fire different events at those
+interfaces. These correspond to all the events that
+OurButton can fire.
+Hooking Up Events in the BeanBox
+In this example you will use two OurButton
+Bean instances to stop and start an instance of the animated
+Juggler Bean.
+You will label the buttons "start" and "stop"; make the
+start button, when pressed, invoke the Juggler Bean's 
+startJuggling method;
+and make the stop button, when pressed, invoke
+the Juggler Bean's stopJuggling method.
+ 
+- Start the BeanBox. 
+ 
+- Drop a Juggler Bean and two
+ OurButton bean instances into the BeanBox.
+ 
+- Select an OurButton instance. In the Properties
+ sheet, change the label property to "start". 
+ Select the second OurButton instance and change
+ its label to "stop".
+ 
+- Select the start button. Choose the
+ Edit|Events|action|actionPerformed menu item.
+ This causes a rubber band line to track between
+ the start button and the cursor. Click on the
+ Juggler
+ instance. This brings up the
+ EventTargetDialog:
+ This list contains Juggler methods
+ that take no arguments, or
+ arguments of type actionPerformed.
+ 
+- Select the startJuggling method and press OK.
+ You will see
+ a message that the BeanBox is generating adapter classes.
+ 
+- Do the above two steps on the stop button, except choose
+ the stopJuggling method in the
+ EventTargetDialog.
+Clicking on the start and stop buttons will now start and
+stop the Juggler. Here is a general description of what
+happened:
+ 
+- The start and stop buttons, are
+ event sources. Event sources fire events
+ at event targets. In this example the Juggler Bean is the
+ event target.
+ 
+- When you select the start button and choose an event method
+ (via the Edit|Event menu item), you are choosing the type of
+ event the event source will fire.
+ 
+- When you connect the rubber band line to another Bean, you are 
+ selecting the event target Bean.
+ 
+- The EventTargetDialog
+ lists methods that can accept that type of event or that take no
+ parameters. When you choose a method in
+ the EventTargetDialog, you are specifying the
+ method that will receive the fired event, and act on it.
+Use the File|Save menu item to save this example to a
+file of your choice.
+Event Adapter Classes
+The BeanBox generates an adapter class that interposes
+between the event source and target. The adapter class
+implements the appropriate event listener interface
+(and so is the actual listener),
+catches the event fired by the button, and then calls the
+selected target Bean method. Here is the BeanBox-generated
+adapter class that interposes between the start
+button and the JugglerBean:
+// Automatically generated event hookup file.
+package tmp.sunw.beanbox;
+import sunw.demo.juggler.Juggler;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+public class ___Hookup_1474c0159e implements
+ java.awt.event.ActionListener, java.io.Serializable {
+ public void setTarget(sunw.demo.juggler.Juggler t) {
+ target = t;
+ }
+ public void actionPerformed(java.awt.event.ActionEvent arg0) {
+ target.startJuggling(arg0);
+ }
+ private sunw.demo.juggler.Juggler target;
+}
+The adapter implements the ActionListener interface
+that you selected in the BeanBox's Edit|Events menu.
+ActionListener declares one method,
+actionPerformed(), which is implemented by the adapter
+to call the target Bean method (startJuggling())
+that you selected. The adapter's setTarget() method
+is called by the BeanBox to set the actual target Bean, in
+this case Juggler. See section 6.7 of the
+JavaBeans specification for a complete discussion of event
+adapters.
+The EventMonitor Demo Bean
+The EventMonitor Bean
+(beans/demo/sunw/demo/encapsulatedEvents) prints
+out source Bean event reports, as they occur, in a scrolling listbox.
+To see how this works, take the following steps:
+ 
+- Drop OurButton and EventMonitor
+ instances in the BeanBox. You might want to resize the
+ EventMonitor (and the BeanBox) to accommodate
+ viewing the event reports.
+ 
+- Select the OurButton instance, and choose any
+ event method in the Edit|Events menu.
+ 
+- Connect the rubber band line to the EventMonitor,
+ and choose its initiateEventSourcMonitoring
+ in the EventTargetDialog.
+ 
+- Select the OurButton Bean. You will begin seeing
+ event reports in the EventMonitor.
+When the first event is delivered, EventMonitor
+analyzes the source Bean to discover all the events it fires,
+creates and registers an event listener for each event type, and
+then reports whenever any event is fired. This is useful
+for debugging.
+Try connecting other demo Beans to EventMonitor
+to observer their events.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

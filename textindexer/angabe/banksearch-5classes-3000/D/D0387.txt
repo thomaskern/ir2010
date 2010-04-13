@@ -1,0 +1,103 @@
+
+2.2) Flow Control and Exception Handling
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+2) Flow Control and Exception Handling
+Objective 2)
+Write code using all forms 
+ of loops including labeled and unlabeled use of break and continue and state 
+ the values taken by loop counter variables during and after loop execution.
+The for statement
+The most common method of looping is to use the for statement. Like 
+ C++ and unlike C, the variable that controls the looping can be created and 
+ initialised from within the for statement. Thus 
+public class MyLoop{
+ public static void main(String argv[]){
+ MyLoop ml = new MyLoop();
+ ml.amethod();
+ }
+ public void amethod(){
+ for(int K=0;K"\n");
+ outer://2){
+ break outer;//1)
+ break mainmethod;
+ System.out.println("i "+ i + " j "+j);
+ }
+ }//End of outer for
+ }
+}
+1)
+i 0 j 0
+i 0 j 1
+Continuing
+2)
+i 0 j 0
+i 0 j 1
+i 1 j 0
+i 1 j 1
+Continuing
+3) 
+Compile time error
+4)
+i 0 j 0
+i 0 j 1
+i 1 j 0
+i 1 j 1
+i 2 j 1
+Continuing
+Question 3) 
+What will happen when you attempt to compile and run the following code?
+public void amethod(){
+ outer:
+ for(int i=0;i0)
+ break outer;
+ }
+ }
+ System.out.println("Continuing with i set to ="+i);
+ }
+1) Compile time error
+2)
+i=0 j= 0
+i=0 j= 1
+i=1 j= 0
+3)
+i=0 j= 0
+i=0 j= 1
+i=1 j= 0
+i=2 j= 0
+4)
+i=0 j= 0
+i=0 j= 1
+Question 4)
+What will happen when you attempt to compile and run the following code?
+ int i=0;
+ while(i>0){
+ System.out.println("Value of i: "+i);
+ }
+ do{
+ System.out.println(i);
+ } while (i 

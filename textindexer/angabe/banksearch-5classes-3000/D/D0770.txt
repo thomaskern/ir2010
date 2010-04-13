@@ -1,0 +1,129 @@
+
+	
+	The Java.io package
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+Java2 Certification 
+Tutorial 
+	
+	 
+	
+	
+ 
+	 
+	
+You can discuss this topic with others at
+http://www.jchq.net/discus
+Read
+reviews and buy a Java Certification book at
+http://www.jchq.net/bookreviews/jcertbooks.htm
+The Rusty Harold/O'Reilly Java I/O book
+O'Reilly have published a book specifically about Java I/O It get
+very good reviews at amazon. If you buy it from the following links I
+will get a small commission on the purchase
+Buy from Amazon.com
+or from Amazon.co.uk
+11) The java.io package 
+Objective 1) 
+Write code that uses
+objects of the file class to navigate a file system. 
+In his excellent book Just Java and Beyond Peter van der Linden
+starts his chapter on File I/O by saying 
+"It is not
+completely fair to remark, as some have, that support for I/O in java
+is "bone headed".
+I think he was implying that it is not the perfect system, and so
+it is an area worthy of double checking your knowledge of before you
+go for the exam. When you are learning it you have the compensation
+that at least it is a useful area of the language to understand.
+The java.io package is concerned with input and output. Any non
+trivial program will require I/O. Anything from reading a plain comma
+delimeted text file, a XML data file or something more exotic such as
+a network stream. The good news is that the Programmer Certification
+Exam only expects you to understand the basics of I/O, you do not
+have to know about Networking or the more exotic aspects of I/O.
+Java I/O is based on the concept of streams. The computer term
+streams was first popularised with the Unix operating system and you
+may like to consider it as being an analogy with a stream of water.
+You have a stream of bits coming in at one end, you apply certain
+filter to process the stream. Out the other end of the pipe you send
+a modified version of the stream which your program can process..
+The names of the I/O Stream classes are not intuitive and things
+do not always work as you might guess. 
+The File Class
+The File class is not entirely descriptive as an instance of the
+File class represents a file or directory name rather than a file
+itself.
+My first assumption when asked about navigating a file system
+would be to look for a method to change directory. Unfortunately the
+File class does not have such a method and it seems that you simply
+have to create a new File object with a different directory for the
+constructor.
+Also the exam may ask you questions about the ability to make and
+delete files and directories which may be considered to come under
+the heading of navigating the file system. 
+ 
+	
+	
+	 
+	
+	
+ 
+Creating an instance of the File 
+ class does not create a file in the underlying operating system
+	 
+	
+The file class offers
+delete()
+To delete a file or directory
+mkdir() and mkdirs()
+To create directories.
+The File class contains the list() which returns a string array
+containing all of the files in a directory. This is very handy for
+checking to see if a file is available before attempting to open it.
+An example of using list.
+import java.io.*;
+public class FileNav{
+public static void main(String argv[]){
+ String[] filenames;
+ File f = new File(".");
+ filenames = f.list();
+ for(int i=0; i" ",iRootElement);
+ return;
+ }else{
+ File fparent = new File(sparent);
+ listDirectory(fparent);
+ }
+ }
+ public void listDirectory(File dir){ 
+ String sCurPath = dir.getAbsolutePath()+File.separator ;
+ //Get the directorie entries
+ safiles = dir.list();
+ //remove the previous lis and add in the entry
+ //for moving up a directory
+ lstFiles.removeAll();
+ lstFiles.addItem("[ .. ]");
+ String sFileName = new String();
+ //loop through the file names and 
+ //add them to the list control
+ for(int i=0; i

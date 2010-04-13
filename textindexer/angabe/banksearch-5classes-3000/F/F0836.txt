@@ -1,0 +1,467 @@
+
+Winsock API (Windows Sockets API) with Visual Basic
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Windows Sockets API (Winsock API) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Winsock Resources
+ 
+Microsoft
+ Winsock Resources
+ Probably the first must to visit source of the Winsock information.
+ Links to the documentation, magazines and MSDN articles.
+ 
+Articles
+ and Tutorials
+ Links to publications available on the Net.
+ 
+Winsock
+ Developer's Books
+ Books on Winsock and network development topics.
+ 
+ Review of "Network Programming 
+ for Microsoft® Windows®”
+ from the Visual Basic programmer's perspective
+ If you are, as I was, looking for the book that covers the Winsock API 
+ and gives examples of how to use it with Visual Basic, you have found 
+ what you were looking for. That is, this title is a single one on the 
+ market today that keeps in mind that there are thousands of the Visual 
+ Basic programmers who want to know but have almost no information on how 
+ to utilize the Winsock API in order to develop network applications...
+ (Book review. Published: February 12, 
+ 2002)
+ 
+ 
+Winsock API and VB - step by 
+ step tutorial for
+ the Visual Basic developers
+ 
+Part I - The Basics
+ 
+Creating
+ the Visual Basic project template
+ The following tutorials are going to use the same API declarations and
+ some common subroutines. To save our time lets create the project
+ template that contains the WinSock and Windows API declarations, some
+ custom VB functions and the Form with common code for all the
+ samples. 
+ (Tutorial + Source code. Published: May 09, 
+ 2001)
+ 
+Starting
+ up the Windows Sockets service
+ With this tutorial we'll learn the WSAStartup and WSACleanup functions. We'll building the sample application that will start up and 
+ shut down the Windows Sockets service for a particular application (process). The sample also
+ will retrieve the basic information about Windows Sockets service: the
+ library description, highest version of the Winsock service supported by
+ the library and maximum quantity of the sockets supported by the system.
+ (Tutorial + Source code. Published: May 09, 
+ 2001)
+ 
+ Changing the byte ordering
+ Since there are differences between the byte ordering used by Intel®
+ architecture and the byte ordering used on the wire by individual
+ transport protocols. Any reference to an address or port number passed
+ to or from a Windows Sockets routine must be in the network order for
+ the protocol being utilized. In this tutorial we will learn how to use
+ several Winsock API function in order to change the byte order of the
+ numbers.
+ (Tutorial + Source code. Published: May 09, 
+ 2001)
+ 
+ 
+ How to get an IP address of
+ the remote host
+ In this tutorial we'll learn how to use the gethostbyname 
+ Winsock API function in order to retrieve all the IP addresses of the 
+ remote host. We'll create a sample application based on the Basic 
+ Winsock API project template.
+ (Tutorial + Source code. Published: May 16, 
+ 2001)
+ 
+ 
+ How to get name and IP address 
+ of the local system
+ The Winsock API provides us with the 
+ function which just does what we need - gethostname. This 
+ function retrieves the local host name and we can use that name in order 
+ to get all the IP addresses of the local system...
+ (Tutorial + Source code. Published: May 16, 
+ 2001)
+ 
+ 
+ How to get 
+ host name by IP 
+ address
+ In this tutorial we'll learn how to use the gethostbyaddr
+ and inet_addr Winsock API functions 
+ in order to retrieve a host name by known IP address.
+ (Tutorial + Source code. Published: May 16, 
+ 2001)
+ 
+ How to retrieve the 
+ service information
+ In terms of the Winsock API a service is an Internet application 
+ protocol such as SMTP, FTP, NNTP, HTTP, telnet, finger, POP3 and so 
+ forth. To get the basic information on such a service, the Winsock API 
+ provide us with two functions: getservbyport and getservbyname...
+ (Tutorial + Source code. Published: May 30, 
+ 2001)
+ 
+ Improved TCP Table sample application
+ The TCP Table sample application displays information about all the TCP 
+ connections of the local system. Now we have got the following 
+ parameters: local IP, local host name, local port, remote IP, remote 
+ host name, remote port, name of the service used by any connection and 
+ the connection state. The sample allows to delete any active TCP 
+ connection.
+ (Tutorial + Source code. Published: May 30, 
+ 2001)
+ 
+ Enumerating transport 
+ protocols
+ This sample application demonstrates how to use the WSAEnumProtocols 
+ Winsock API function in order to retrieve information about all the 
+ transport protocols installed on the local system.
+ (Tutorial + Source code. Published: May 30, 
+ 2001)
+ 
+ 
+Part II - Handling Sockets
+ 
+ Introduction to the Winsock API Test Bench 
+ sample application
+ The second part of the Winsock API tutorial is to introduce the 
+ following functions: accept, bind, closesocket, connect, getpeername, 
+ getsockname, getsockopt, listen, recv, select, send, setsockopt, socket. 
+ We'll learn these functions by creating the Winsock API Test Bench 
+ sample application.
+ (Tutorial + Source code. Published: September 
+ 18, 
+ 2001)
+ 
+ Creating and closing a socket
+ In this article you'll find out how to use the socket and closesocket 
+ Winsock API functions in order to create and close sockets. 
+ 
+ (Tutorial + Source code. Published: September 
+ 25, 
+ 2001)
+ 
+ Socket's 
+ transport protocol and other options
+ In the previous article we have learned how to create and close sockets. 
+ All we know about the socket, at this moment, is only its handle - 
+ integer value that is used by the Winsock service and our application 
+ just to recognize it. But the socket is not just an integer value - some 
+ memory, system resources are allocated for it, and many properties of 
+ the socket are initializing with default values as you call the socket 
+ Winsock API function. Since a new socket is created, you can retrieve 
+ and set socket's options using the getsockopt and setsockopt Winsock API 
+ functions...
+ 
+ (Tutorial + Source code. Published: October 03, 
+ 2001)
+ 
+Connecting to the remote host
+ Most of the Internet application protocols used today (HTTP, FTP, SMTP, 
+ POP3, NNTP and so on) use connection oriented sockets in order to 
+ exchange data. That means that two hosts must establish connection 
+ before any chunk of data will be sent. As a rule, the initiator of the 
+ establishing of the connection is a client application that creates a 
+ connection oriented socket and then call the connect Winsock API 
+ function on that socket. Today we will explore the connect function, in 
+ particular, how to call that function in your Visual Basic application.
+ (Tutorial + Source code. Published: October 11, 
+ 2001)
+ 
+ End points of the connection
+ This part of the tutorial series is about how to use the getpeername and 
+ getsockname Winsock API functions in Visual Basic in order to determine 
+ parameters of the TCP connection's end-points.
+ (Tutorial + Source code. Published: October 29, 
+ 2001)
+ 
+ Binding a socket
+ Today we will learn how to use the bind Winsock API function that allows 
+ to associate a local address with a socket. We'll modify the Winsock API 
+ TestBench sample application in order to give the user of the program to 
+ specify local host address and port number for a socket.
+ (Tutorial + Source code. Published: November 12, 
+ 2001)
+ 
+ Retrieving socket's status 
+ - Part I - The select Winsock API function
+ Before to dive into the most interesting thing - sending and receiving 
+ data through a socket, we have to know how to determine status of a 
+ socket. In other words, we should know when a socket is ready to receive 
+ or send any data. The select function from the Winsock API can provide 
+ us with basic information about socket's status, but using this function 
+ we can't get comprehensive info about how the socket is doing at any 
+ moment of its life. That is the reason of why this article is just the 
+ first part of the Socket's Status Saga.
+ (Tutorial + Source code. Published: November 16, 
+ 2001)
+ 
+ Receiving Data
+ Today we'll learn how to use the recv Winsock API function with Visual 
+ Basic in order to read data from the Winsock buffer that collects all 
+ the bytes arrived through the network for our application.
+ (Tutorial + Source code. Published: December 04, 
+ 2001)
+ 
+ Sending Data
+ In the previous article we learned the recv Winsock API function which 
+ is used to read incoming data from the Winsock buffer. Today we'll see 
+ how to write data to the Winsock buffer for sending that data to a 
+ remote host. That is, actually, the send Winsock API function is not to 
+ send data. It just writes data to the buffer, and then the transport 
+ service retrieves that data, split it up to packets and sends those 
+ packets to the peer...
+ (Tutorial + Source code. Published: December 12, 
+ 2001)
+ 
+ 
+ Listening for and accepting connection 
+ requests
+ What the title of this article is talking about? Who is listening? Why 
+ should it accept any requests? To answer these questions just imagine 
+ that you are going to develop a server application that servers one or 
+ many client applications via a network. You'll find out that you know 
+ nothing about how to create "a server side socket" and how it works at 
+ all. Let's try to discover what is going on behind the scene when the 
+ client application is trying to establish a connection, and see the 
+ server behavior...
+ (Tutorial + Source code. Published: December 28, 
+ 2001)
+ 
+ 
+ CSocket class - replacement 
+ for the MS Winsock Control
+ This is an attempt to simulate functionality and behavior of the MS 
+ Winsock ActiveX Control. Why do I call it "an attempt"? Because I don't 
+ know what exactly is going on inside that control. I can suppose which 
+ Winsock API functions are called by the control's methods but I don't 
+ know a lot of other things in the control implementation. Anyway the 
+ class does work. To prove it, I just have ported the existing project - 
+ FTP Client Sample Application. Download and see it yourself.
+ (Source code. Published: February 08, 2002)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ Windows Sockets API (Winsock API)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

@@ -1,0 +1,204 @@
+
+Home - About - Assembly - DirectX - OpenGL - .NET - Platform SDK - Downloads - Links 
+October 3, 1999 
+privacy
+ 
+Introduction to Space Partitioning > Pixel Format 
+DirectDraw Essentials
+Note that DirectDraw is no more part of DirectX 8. DirectDraw specific hardware capabilities such as overlays should be included back in DirectX 9. Other calls, if they ever show up again in DirectX 9 are likely to result as a call in the Direct3D layer, the current direction for 2D graphics being to be a special case for 3D (to take full benefit of the 3D hardware capabilities)
+The DirectDraw API is the part of DirectX that handles 2D graphics. It provides capabilities such as :
+- querying underlying hardware capabilities
+- emulation for some missing capabilities
+- memory management for graphics content either in video memory or system memory
+- color management through palettes, color control or gamma control
+Additionaly DirectDraw is used by the Direct3D Immediate Mode API (that is itself used by the Direct3D Retained Mode API).
+DirectDraw Class
+As usual, we create the DirectDraw class object, that is at the root of the DirectDraw API, from a newly created DirectX7 class object :
+Option Explicit
+Private DirectX As DirectX7
+Private DirectDraw As DirectDraw7
+Private Sub Form_Load()
+ Set DirectX = New DirectX7
+ Set DirectDraw = DirectX.DirectDrawCreate("")
+End Sub
+Private Sub Form_Unload()
+ Set DirectDraw = Nothing
+ Set DirectX = Nothing
+End Sub
+ 
+The string argument used in the DirectX7.DirectDrawCreate call is a GUID (Globally Unique IDentifier) that identifies the needed display driver. An empty string indicates the default display.
+Enumeration
+Though in most cases, using the default device is fine, by using DirectX7.GetDDEnum, you could enumerate available drivers :
+Private DirectX As New DirectX7
+Private Sub Main()
+ Dim i As Long
+ With DirectX.GetDDEnum
+ For i = 1 To .GetCount
+ Debug.Print .GetDescription(i)
+ Debug.Print .GetGuid(i)
+ Debug.Print .GetMonitorHandle(i)
+ Debug.Print .GetName(i)
+ Next
+ End With
+End Sub 
+This way you can create a DirectDraw object for another card. You could have also to use this sequence to retrieve 3D accelerator cards such as Voodoo 2 that are a complement not a replacement for your 3D card (we'll see that 3D mode is initialized through a DirectDraw object).
+Hardware Capabilities
+If you are new to DirectX, you should note that DirectX does not insulate you from the underlying hardware. Instead it exposes hardware capabilities to your application. By using the DirectDraw7.GetCaps method, you can retrieve both hardware and software capabilities. DirectDraw :
+- uses automatically hardware capabilities (though basic capabilities are common, support is likely to differ much for more advanced capabilities)
+- if a capability is not implemented in hardware, will emulate this capability in software (if available). Software capabilities are of course part of the DirectX runtime and are the same for each PC (at least for a given release of DirectX)
+- as this is exposed to your application, you are still free to provide an alternate solution if a given capability is not implemented in both hardware and software. This solution could even be to just suppress an effect (rather than just not running at all)
+Capabilities are retrieved using :
+Private DirectX As DirectX7
+Private DirectDraw As DirectDraw7
+Private hwCaps As DDCAPS
+Private swCaps As DDCAPS
+Private Sub Form_Load()
+ Set DirectX = New DirectX7
+ Set DirectDraw = DirectX.DirectDrawCreate("")
+ DirectDraw.GetCaps hwCaps, swCaps
+ ' hwCaps, swCaps structures filled with capabilities
+End Sub 
+Primary Surface
+"Surfaces" are the core concept of DirectDraw. They are nothing else than a memory area that holds graphics data that can be handled using a number of methods. These surfaces are specialized depending upon their usage.
+The primary surface is the DirectDraw surface that is visible on screen at any one time.
+Option Explicit
+Private DirectX As DirectX7
+Private DirectDraw As DirectDraw7
+Private SurfaceDesc As DDSURFACEDESC2
+Private PrimarySurface As DirectDrawSurface7
+Private EmptyRect As RECT
+Private Sub Main()
+ Set DirectX = New DirectX7
+ Set DirectDraw = DirectX.DirectDrawCreate("")
+ DirectDraw.SetCooperativeLevel 0, DDSCL_NORMAL
+ With SurfaceDesc
+ .lFlags = DDSD_CAPS
+ .ddsCaps.lCaps = DDSCAPS_PRIMARYSURFACE
+ End With
+ Set PrimarySurface = DirectDraw.CreateSurface(SurfaceDesc)
+ PrimarySurface.BltColorFill EmptyRect, Rnd*&h7FFFFF
+ Set PrimarySurface = Nothing
+ Set DirectDraw = Nothing
+ Set DirectX = Nothing
+End Sub
+ 
+A surface is created from a description. The lFlags member of this structure allows to specify what are the members that the creation method should take into account. Here, the DDSD_CAPS constant indicates that only the member describing the surface capabilities, ddsCaps will be valid. This member is itself a structure. The lCaps member indicates the main capabilities of the surface.
+The use of the DDSCAPS_PRIMARYSURFACE flag indicates that the surface to create is a "primary surface", that is the DirectDraw surface that gives access to whatever is displayed on the screen at any one time.
+As we'll see at a later time, other flags allows to create much other types of DirectDraw surfaces such as "offscreen", "overlays" or even "texture" surfaces.
+Once this description is filled, the call of the CreateSurface creates the appropriate surface. We can then handle this surface and especially :
+- draw text and graphics using the DrawBox, DrawCircle, DrawEllipse, DrawLine, DrawRoundedBox, DrawText methods
+- copy rectangular areas from other surfaces using the Blt, BltFast or BltFx method or filling such an area with a color using the BltColorFill.
+- ... and much other things
+Full Screen mode
+Using full screen mode enables some more possibilities. Especially both the primary surface and the back buffer are using the current resolution previously set with a DirectDraw7.SetDisplayMode call. Instead of copying the back buffer surface content to the primary surface, most cards are able to swap pointers to the primary surface and the back buffer memory, method being known as "page flipping". Once this is done :
+- The graphic card uses now the memory area that was handled through the back buffer surface to display the image. The old back buffer is now nothing else than the current primary surface.
+- The memory area that was previously used for the primary surface is now used by the back buffer.
+- This is transparent to your application. You just create the scene to the back buffer and once DirectDrawSurface7.Flip is called, the back buffer you just constructed is revealed to the screen as the new primary.
+When using this scheme, the primary surface and the back buffer are created with a single call :
+With SurfaceDesc
+ .lFlags = DDSD_CAPS Or DDSD_BACKBUFFERCOUNT
+ .ddsCaps.lCaps = DDSCAPS_PRIMARYSURFACE Or DDSCAPS_COMPLEX Or DDSCAPS_FLIP
+ .lBackBufferCount = 1
+End With
+Set PrimarySurface = DirectDraw.CreateSurface(SurfaceDesc)
+ 
+Back Buffer
+In most cases, you won't write directly to the primary surface. Instead you'll use a back buffer that allows to compose a scene offscreen and reveal this scene quickly by copying its content to the primary surface.
+Windowed mode
+In windowed mode the back buffer is created as a separate offscreen surface
+ScaleMode = vbPixels
+With SurfaceDesc
+ .lFlags = DDSD_CAPS Or DDSD_WIDTH Or DDSD_HEIGHT
+ .ddsCaps = DDSCAPS_OFFSCREENPLAIN
+ .lWidth = ScaleWidth
+ .lHeight = ScaleHeight
+End With
+Set BackBuffer = DirectDraw.CreateSurface(SurfaceDesc)
+ 
+We first make sure we're working using pixel dimensions. The surface is created, much like what we saw for the primary surface. lFlags indicates that ddsCaps is used but we added DDSD_WIDTH and DDSD_HEIGHT to indicate we are also indicating the surface size.
+ddsCaps indicates an offscreen surface and we then fill lWidth and lHeight with the size of the form.
+The only thing left is to call DirectDraw7.CreateSurface with this description to return our newly created BackBuffer.
+Full screen mode
+In full screen mode we are using a slightly different scheme. As we are using the whole screen, the back surface uses the same size as the primary surface that uses always the full size of the screen. Additionaly when using full screen mode, the primary surface and the back buffer are often tied one with the other. A graphic card takes data from a given memory location. These data indicates the color of each pixel for the full screen. In full screen mode, instead of copying a new screen of data to this location, the card can just take its data from another memory location by swapping pointers to the primary surface and the back buffer. It allows to change the display without having to move data in memory. For this reason, the primary surface and the back buffer are created with the same call as a "chain".
+With SurfaceDesc
+ .lFlags = DDSD_CAPS Or DDSD_BACKBUFFERCOUNT
+ .ddsCaps.lCaps = DDSCAPS_PRIMARYSURFACE Or DDSCAPS_COMPLEX Or DDSCAPS_FLIP
+ .lBackBufferCount = 1
+End With
+Set PrimarySurface = DirectDraw.CreateSurface(SurfaceDesc)
+SurfaceDesc.ddsCaps.lCaps = DDSCAPS_BACKBUFFER
+Set BackBuffer = PrimarySurface.GetAttachedSurface(SurfaceDesc.ddsCaps)
+ 
+As usual, we'll use the ddsCaps and this time we added the DDSD_BACKBUFFERCOUNT flag so that lBackBufferCount is used also in this creation process.
+Our surface is a primary surface, a complex surface (a "chain" of surfaces) and those surfaces are flippable (that is each surface may be pointed). We then specify the number of back buffers we need. The DirectDraw7.CreateSurface method returns the newly created primary surface. A back buffer has been also created. To retrieve this surface we are filling a DDSCAPS structure with its description and we then call DirectDrawSurface7.GetAttachedSurface to retrieve this surface. Here we just reused the DDSCAPS structure included in DDSURFACEDESC2
+At this point
+Wether we're using windowed or full screen mode, we have now a primary surface and a back buffer.
+DirectDrawClipper
+We saw that to render the back buffer to the primary surface in windowed mode we need to blit the back buffer to the primary. However is the area we are blitting to, if partially or totally obscured, this place is overidden by the content of our back buffer and this results in seeing always the back buffer. A DirectDrawClipper class object will take care of that for us and is quite simple to use. We'll only need :
+- to create a DirectDrawClipper object by calling DirectDraw7.CreateClipper
+- the clipper is then binded to the Window using its hWnd property
+- and binded to the destination surface for which we need to protect some area, this is in most cases the primary surface
+Then when the Blit method is called against this surface, the areas of the Window currently obscured by other windows, will not be blitted. As a result our window appears to match usual Windows criteria regarding windowing.
+The source code below shows what happens when using - or not - a clipper. Run this code and place another window so that it overlaps the first. Though active, this second window is still erased when the back buffer is erased. By pressing the "C" key, a clipper is created. You'll see then that obscured area are no more blitted to.
+Notice also that when a part of the destination window is out of the screen limits, blitting doesn't work any more when no clipper is in use. When the clipper is enabled, the Blit method works again even if the window is partially out of the screen limits.
+Option Explicit
+Private DirectX As DirectX7
+Private DirectDraw As DirectDraw7
+Private SurfaceDesc As DDSURFACEDESC2
+Private PrimarySurface As DirectDrawSurface7
+Private BackBuffer As DirectDrawSurface7
+Private EmptyRect As RECT
+Private WindowRect As RECT
+Private Clipper As DirectDrawClipper
+' System events
+Private Sub Form_Load()
+ ' Initiliaze DirectDraw
+ Set DirectX = New DirectX7
+ Set DirectDraw = DirectX.DirectDrawCreate("")
+ DirectDraw.SetCooperativeLevel 0, DDSCL_NORMAL
+ ' Create primary surface
+ With SurfaceDesc
+ .lFlags = DDSD_CAPS
+ .ddsCaps.lCaps = DDSCAPS_PRIMARYSURFACE
+ End With
+ Set PrimarySurface = DirectDraw.CreateSurface(SurfaceDesc)
+ ' Create back buffer
+ ScaleMode = vbPixels
+ With SurfaceDesc
+ .lFlags = DDSD_CAPS Or DDSD_WIDTH Or DDSD_HEIGHT
+ .ddsCaps.lCaps = DDSCAPS_OFFSCREENPLAIN
+ .lWidth = ScaleWidth
+ .lHeight = ScaleHeight
+ End With
+ Set BackBuffer = DirectDraw.CreateSurface(SurfaceDesc)
+End Sub
+Public Sub Run()
+ Do
+ BackBuffer.BltColorFill EmptyRect, Rnd * &H7FFFFFFF
+ 'WindowRect.Top = Top + ScaleTop
+ 'WindowRect.Left = Left + ScaleLeft
+ 'WindowRect.Right = WindowRect.Left + ScaleWidth
+ 'WindowRect.Bottom = WindowRect.Top + ScaleHeight
+ DirectX.GetWindowRect Picture1.hWnd, WindowRect
+ PrimarySurface.Blt WindowRect, BackBuffer, EmptyRect, DDBLT_WAIT
+ Loop While DoEvents
+End Sub
+' User events
+Private Sub Form_KeyPress(KeyAscii As Integer)
+ If Chr$(KeyAscii) = "c" Then
+ If Clipper Is Nothing Then
+ Set Clipper = DirectDraw.CreateClipper(0)
+ Clipper.SetHWnd hWnd
+ PrimarySurface.SetClipper Clipper
+ Else
+ PrimarySurface.SetClipper Nothing
+ Set Clipper = Nothing
+ End If
+ End If
+End Sub
+Private Sub Form_Resize()
+ Picture1.Move 0, 0, ScaleWidth, ScaleHeight
+End Sub
+ 
+Patrice Scribe
+Patrice Scribe

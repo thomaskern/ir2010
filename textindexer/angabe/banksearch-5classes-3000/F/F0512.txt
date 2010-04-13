@@ -1,0 +1,104 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > ActiveX / COM
+How to create an AboutBox for your Usercontrol
+ID: 748
+Author: Abstractvb
+Date: 6/9/2000 11:19:00 PM
+VB6
+To add an About Box to your UserControl first create a new form called frmAbout. Then
+in your UserControl create a new Procedure:
+Public Sub ShowAboutBox()
+ frmAbout.Show
+End Sub
+Now in the UserControl goto the Tools -> Procedure Attributes Menu. In the Name
+Combo select ShowAboutBox and then click on the Advanced button. Set the Procedure ID
+ComboBox to AboutBox and then click ok.
+Now when your UserControl is hosted on a form one of the Properties in the properties
+window will be named About and have the button with the three ellipses. When clicked the
+button will open frmAbout. 
+ Want More Source Code? You May Also Be Interested In This: 
+Setting the Default Event for your control.
+Ever notice how when you click a button your are always taken to the Click Event? This is the default event for that control. This code shows how to specify which event will be the default for your UserControl.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

@@ -1,0 +1,571 @@
+
+ 
+ Unix
+ 
+ 
+ 
+ 
+ Categories
+ 
+Overview
+ 
+ 
+ 
+ Short cuts within page:-
+ Applications,
+ Distributions,
+ Discussion,
+ Documentation,
+ e-zines,
+ Suppliers.
+ 
+ Relevant links on other pages:-
+ C/C++,
+ Development,
+ OS,NOS,
+ Paradigms.
+ 
+ 
+ 
+Linux
+ 
+ 
+- Linux.org
+ (UK)
+ Linux.com
+ @ Imperial College
+ LPI - Linux Professional Institute
+ 
+ 
+- Clustering
+ Beowulf
+ (underground),
+ MOSIX
+ Extreme Linux (Supercomputing)
+ 
+- PDA
+ www.handhelds.org
+ links
+ ARM Linux
+ 
+- Kernel
+ 
+ 
+- News
+ kernel notes
+ UK
+ US
+ Kernel-traffic latest
+ kerneltrap.com
+ 
+- Explanation
+ 
+ 
+- kernel internals Details booting process, init, processes &amp interrupts, virtual file system.
+ 
+- kernel newbies Place to ask Frequently Asked Questions
+ 
+- Linux Kernel Memory Management
+ 
+ 
+- Reference
+ 
+ 
+- lxr - Kernel source cross reference
+ 
+- See also /usr/src/linux/Documentation/DocBook/kernel-api.*
+ 
+ 
+- Distribution
+ 
+ 
+- The Linux Kernel Archives
+ (official distribution point for the Linux Kernel (&amp more),
+ 
+- Patch Archive
+ 
+ 
+- Tools
+ kdb - debugger
+ Lilo - Linux Loader
+ 
+- Bios
+ LinixBIOS (
+ on sourceforge )
+ 
+ 
+- Software development
+ 
+ 
+- See also 
+ Development,
+ Languages,
+ Paradigms,
+ Source &amp links,
+ OS/NOS.
+ 
+- Advanced Linux Programming (open source book).
+ 
+- linuxassembly.org - assembly language &amp Linux
+ Kickers of ELF
+ 
+- linuxprogramming.com
+ 
+- IBM developerWorks
+ 
+ 
+- Linux games Development Center
+ Development links
+ libraries Penguin Play
+ 
+- Crystal Space (3d engine)
+ 
+ 
+- Red Hat
+ 
+ 
+- Insight GUI for Gnu Debugger (GDB)
+ 
+- Inti C++ Integrated Foundation Libraries
+ 
+- Source Navigator source code browser
+ 
+ 
+ 
+- (user interface/desktop)
+ 
+ 
+- Berlin - another windowing system.
+ 
+- GNOME
+ developer
+ www.pango.org (open-source framework for the layout and rendering of internationalized text).
+ 
+- KDE
+ KDevelop (C/C++ IDE)
+ bugs.kde.org (bug tracking) News:-
+ dot.kde.org,
+ freekde.org,
+ kde-look.org.
+ 
+- themes.org
+ 
+- X Windows
+ 
+- XFree86
+ 
+ 
+- X Windows Toolkits/Frameworks
+ 
+ 
+- GTK+
+ documentation
+ Win32 port.
+ 
+- QT - trolltech
+ 
+- wxWindows cross-platform programming : Unix (Motif, XView, Xt, GTK).
+ 
+ 
+- (configuration)
+ LinuXconf
+ (Finland)
+ 
+- (printing)Linux Printing
+ 
+- Linux on a laptop
+ 
+- LinuxHQ, technical information
+ about recent Linux kernels, including patches, descriptions of changes,
+ and mailing list archives.
+ 
+ 
+- Linux User groups (LUG)
+ LUG list project,
+ LUG registry.
+ 
+- See also 
+ C and Linux
+ e-zines
+ 
+ 
+- Yahoo UK : Linux
+ 
+ 
+ 
+Documentation
+ 
+ 
+- Linux Care : Linux v2 Information HQ
+ 
+- The Linux Documentation Project
+ 
+ 
+- Guides (longer, more in-depth books)
+ 
+- HOWTOs (subject-specific help)
+ 
+- FAQs
+ 
+- man pages (help on individual commands)
+ 
+- Linux Gazette (e-zine)
+ 
+ 
+- Unix FAQs
+ BOOK : Advanced Programming in the UNIX Environment by W Richard Stevens
+ Unix Programer's FAQ,
+ Unix Socket FAQ.
+ 
+- Open Source Writers Group website.
+ 
+- Linux Newbie
+ 
+- linuxhardware.net - info on specific hardware installations
+ 
+- RPM - software packaging
+ Maximum RPM
+ 
+- www.openhardware.org
+ 
+- Unix Reference Desk
+ 
+- History
+ 
+ Early history of unix
+ 
+ 
+ 
+Books
+ 
+ 
+- O'Reilly
+ Linux Pages
+ Open source books
+ 
+- C/C++ books
+ 
+- Programming Languages
+ 
+ 
+System enhancements
+ 
+ 
+ 
+- Security
+ 
+ 
+- Bastille Linux hardening/tightening a Linux system
+ 
+- chkrootkit - check your system for the presence of rootkits
+ 
+- kernel-panic.org security
+ 
+- Linux Intrusion Detection System
+ 
+- Rule Set Based Access Control (RSBAC)
+ 
+- Linux Security Audit Project
+ 
+- openssh.com - open version of ssh
+ 
+- Open Wall
+ 
+- Trip Wire - security tool
+ 
+- See also Security links
+ 
+ <li>Secure distributions
+ <ul>
+ <li><a href="http://www.nsa.gov/selinux/">NSA security-enhanced Linux
+ 
+ 
+ 
+- WINE - Provide Win32 API on Linux
+ Tools
+ References
+ comp.emulators.ms-windows.wine
+ 
+ 
+ <h2>Applications</h2>
+ <ul>
+ <li>Browsers
+ <ul>
+ <li><a href="http://www.mozilla.org">mozilla
+ mozillazine
+ 
+ 
+- GRASS - free G.I.S.
+ 
+- GIMP - GNU Image Manipulation Program.
+ 
+- OpenSales e-commerce
+ source
+ 
+ <li>Database Servers (SQL)
+ <ul>
+ <li><a href="http://www.interbase.com/">Interbase
+ 
+- MySQL
+ 
+- PostgreSQL
+ 
+- See also Databases (SQL)
+ 
+ 
+- Editors (HTML)
+ Bluefish
+ 
+ <li>Emulators
+ <ul>
+ <li> <a href="qdos.htm">Sinclair QL
+ UQLX
+ Links
+ 
+ 
+- Office applications
+ 
+ 
+- abisource.com - abiword
+ 
+- Corel Word Perfect, Corel Draw
+ 
+- koffice.kde.org
+ 
+- Linux spreadsheets links
+ 
+- Star Office openoffice.org
+ 
+- vistasource.com
+ 
+ 
+- Servers
+ 
+ 
+- HTTP
+ 
+ 
+- apache, configure with
+ comanche.
+ jakarta.apache.org
+ XML
+ apacheweek
+ 
+- PHP (server side scripting language)
+ 
+- Zope (open source web application server)
+ 
+ 
+- Mail
+ 
+ 
+- qmail.org
+ 
+- sendmail.org,
+ sendmail.com,
+ sendmail.net
+ 
+ 
+- SMB - Samba
+ 
+ 
+- Finding applications
+ www.linuxapps.com,
+ www.gnomeapps.com,
+ www.kdeapps.com,
+ Linux Applications Directory.
+ 
+- Finding games Happy Penguin
+ 
+- Finding scientific applications SAL - Scientific Applications on Linux
+ 
+- Finding packages tuxfinder.com,
+ filewatcher.org,
+ Fresh Meat,
+ whichrpm.com.
+ 
+- GNU utilities -
+ applications
+ manuals
+ 
+- Free Software Foundation (GNU)
+ 
+- www.opensource.org
+ 
+- SourceForge
+ 
+ 
+ <h2>Distributions</h2>
+ <ul>
+ <li><a href="http://www.linuxcare.com/bootable_cd/">Bootable Business Card (Debian variant, for trouble shooting PCs)
+ 
+- Caldera home page Debian deriviative
+ 
+- Debian,
+ Debian Documentation Project,
+ Debian Weekly News.
+ 
+- Gentus
+ 
+- Laser Moon
+ 
+- Linux for Kids (education &amp entertainment)
+ 
+- Red Hat home page
+ Developer Network
+ labs
+ Mirrors
+ uk-mirror.ftp.ainet.net
+ unix.hensa.ac.uk
+ sunsite.doc.ic.ac.uk
+ 
+ 
+- Mandrake Red Hat deriviative
+ 
+- SuSE
+ GmBH
+ LDP search
+ USA
+ 
+ 
+ <h2>Suppliers</h2>
+ <ul>
+ <li>Distributions
+ <ul>
+ <LI><a href="http://www.linuxemporium.co.uk/">Linux Buyers Emporium
+ 
+- InfoMagic home page (Linux CDs, Developer's Resource CDs)
+ 
+ 
+- Hardware suppliers supporting Linux
+ 
+ 
+- Atipa
+ 
+- Linux for IA-64
+ 
+ 
+- See also Secure distributions
+ 
+ 
+ <h2>Linux Discussion</h2>
+ <ul>
+ <a name="e-zines_Unix">
+ <li><h3>e-zines</h3>
+ <UL>
+ <LI>Linux
+ <ul>
+ <li><a href="http://aboutlinux.com/">AboutLinux
+ News
+ 
+- Freshmeat, up-to-the-second news on the latest software releases in the Linux world.
+ 
+- linuxdevices.com - embedded Linux, Linux BIOS
+ 
+- Linux Power
+ 
+- Linux Weekly News, Linux News, updated every Thursday (includes good URLs).
+ 
+- Linux Web Watcher, keeps track of recent changes to Linux-related web pages.
+ 
+- www.linuxmall.com.
+ 
+- linuxtoday.com
+ 
+- www.linuxworld.com.
+ 
+- Mobile Linux
+ 
+- www.LinuxUK.co.uk
+ 
+- Wide Open News
+ 
+ 
+- Unix
+ 
+ 
+- Performance Computing (was Unix review)
+ 
+- SunWorld Online - (e-zine for Sun users)
+ 
+ 
+ 
+- 
+Magazines
+ 
+ 
+- Linux Journal, a monthly magazine about Linux.
+ 
+- Linux-mag with online articles
+ 
+- UK : Linux Format (previously Linux Answers)
+ Linux Magazine
+ 
+ 
+ <li><h3>Usenet news-groups</h3>
+ <ul>
+ <li>The<a href="http://www.iki.fi/mjr/linux/cola.html">
+ comp.os.linux.announce archives; look here for announcements of
+ all sorts of software, user group meetings, and other things related to Linux.
+ 
+- comp.os.linux.advocacy
+ 
+- comp.os.linux.answers
+ 
+- comp.os.linux.development.apps
+ 
+- comp.os.linux.development.system
+ 
+- comp.os.linux.hardware
+ 
+ 
+- 
+Mailing lists
+ 
+ 
+- Kernel Traffic
+ 
+- Kernel Cousins WINE
+ 
+- Kernel Cousins Debian HURD
+ 
+- Kernel Cousins Debian KDE
+ 
+ 
+ 
+ <h2>Java and Linux</h2>
+ <UL>
+ <li><a href="http://www.sun.com/linux">Sun's Linux page
+ 
+- kaffe.org open source JVM
+ 
+- www.blackdown.org - ports Solaris JDK to Linux.
+ 
+- Java Linux news
+ 
+ 
+ <h2>Solaris</h2>
+ <UL>
+ <li><a href="http://www.sun.com/developers/solarispromo.html">Free Solaris for non-commercial use
+ 
+- Freeware for Solaris
+ 
+- Sun developer connection
+ 
+ 
+ <h2>Unix (others)</h2>
+ <UL>
+ <LI><a href="http://www.freebsd.org/">Free BSD
+ 
+- SCO Unix home page
+ 
+- Solaris for x86 home page
+ 
+- Plan 9
+ Distribution
+ Manuals
+ Papers
+ 
+- Unix Guru Universe
+ 
+ 

@@ -1,0 +1,82 @@
+ 
+ 
+Yet Another Code Site - Printing and Previewing Rich
+Edit Controls Part 1
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ Yet Another Code
+	 Site
+ 
+ 
+Printing and Previewing Rich Edit
+Controls 
+Part 1: About TRichEdit::Print()
+Rich Edit controls are very flexible &#150; you can
+ insert text of different formats, embed objects such as
+ bitmaps and other graphics, have them wrap text to match
+ the controls&#146; windows or the target printer,
+ etc. Depending upon your point of view, printing a
+ Rich Edit control is both simple and complicated. 
+ 
+First, let's look at the TRichEdit class's Print()
+ method. On the surface, this looks like a great way
+ to get the contents of a Rich Edit control onto
+ paper. Add a print button or menu item and add the
+ following line to the OnClick handler: 
+ RichEdit1->Print("");
+ Click on the button/menu and the text from the control
+ is printed. What could be simpler? 
+ 
+After the initial excitement subsides, you realize that
+ there is no obvious way to control the margins on the
+ printed page. Even if you solve that problem, there
+ are several other limitations: 
+ 
+- You can only print to the global TPrinter device (the
+TPrinter that is automatically created by the VCL and
+available to your program through the global Printer()
+function). If you want to implement a print preview
+feature for your program, TRichEdit::Print() will not help
+you. 
+- There is no way to print a single page of a multi-page
+document. TRichEdit::Print() prints the entire document
+every time. 
+- TRichEdit::Print() does a BeginDoc() before printing
+and an EndDoc() after printing. This means that you
+cannot print anything else on the page. You cannot,
+for example, print two TRichEdits on the same page. 
+There must be a better way, you think. There is,
+ but it is not pretty&#133;. 
+ 
+On to Part 2:
+ Printing Rich Edit Controls 
+ 
+ 
+ 
+	 
+Home | Top Of Page |
+	Code |
+	Papers |
+	FAQs |
+	Links |
+	Search
+	| Feedback 
+	 
+ 
+ 
+	 
+Page updated 
+	
+ 
+	 
+ 
+ 
+Copyright ©
+ 1998-2001 Thin Air Enterprises and Robert Dunn. All
+ rights reserved. 
+ 

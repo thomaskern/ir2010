@@ -1,0 +1,395 @@
+
+ 
+ Java Product News (updated December 21, 2001)
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java Product News (updated December 21, 2001)
+ 
+ Borland introduces Web services toolkit; Innoopract launches W4 Toolkit; Thought Inc. adds Ant to CocoBase; and more
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+Index
+- Borland introduces Web services toolkit
+- Innoopract launches W4 Toolkit 
+- Java XML Pack now available
+- X-Hive releases upgraded XML database
+- Softera updates UML modeling tool
+- Thought Inc. adds Ant to CocoBase
+- Saffeine protects code with JCE
+- XMetaL 3 now supports XML Schema
+- SpiritCache 1.2 now shipping
+- Flashline and TogetherSoft form partnership
+- Jcorporate updates eContent 
+- LogicLibrary and TogetherSoft integrate products
+- iBus//Mobile now supports IBM's J9 VM
+- Espial releases TV application suite
+- NeuArchitect applications now deploy on HP app server
+- WebGain updates TopLink with EJB 2.0
+- LynuxWorks to license Apogee's Aphelion IDE 
+- Oracle adds CapeStudio support to its app server
+- MKS provides SCM support to WebSphere developers
+- John Wiley & Sons releases J2ME guide
+- PsiNaptic launches Jini-based software
+- JBuilder 6 now available
+- UDDI project enhances Business Registry
+- SoftQuad and Interwoven form alliance
+- Small Worlds provides visual map of Java software
+- Anest Software releases Jini toolkit
+- JCP wraps up a successful year
+- Trigent and realMethods partner for J2EE development
+- Espial releases Escape browser as downloadable Xlet
+- Chutney updates PreLoader to 4.0
+- Faceless.org releases report generator
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+Borland introduces Web services toolkit 
+December 21 -- The Borland Web Services Kit for Java allows enterprises to create and deploy Web services with the Borland JBuilder IDE. The kit is a collection of APIs, architectures, and additional standards developed by the Java community. Available as a plug-in with JBuilder, the kit handles the SOAP (Simple Object Access Protocol), UDDI (Universal Description Discovery and Integration), and WSDL (Web Services Description Language) implementations, allowing developers to focus on their Java development
+http://www.borland.com/jbuilder/webservices/ 
+Back to index
+Innoopract launches W4 Toolkit 
+December 21 -- The Framework W4 Toolkit is an object-oriented Java component model with graphical objects such as panels, input fields, and tables. It also includes an event controller as well as layout managers similar to those of AWT/Swing.
+http://w4toolkit.com/index.php?bsID=2 
+Back to index
+Java XML Pack now available 
+December 21 -- Sun Microsystems has released the Java XML Pack, a collection of XML and Web services technologies for the Java platform. The package includes the Java API for XML Messaging (JAXM) 1.0.1, Java API for XML Processing (JAXP) 1.2, Java API for XML Registries (JAXR) 1.0, and Java API for XML-based RPC (JAX-RPC) 1.0. 
+http://java.sun.com/xml/downloads/javaxmlpack.html 
+Back to index
+X-Hive releases upgraded XML database 
+December 21 -- X-Hive/DB 2.0 is the latest version of the X-Hive Corporation's native XML database. New features include document versioning, binary object support, and full text searching. 
+http://www.x-hive.com/products/ 
+Back to index
+Softera updates UML modeling tool 
+December 21 -- Softera has released SoftModeler 3.5, its UML modeling tool. Version 3.5 features customization of generated Java code, grid background in diagrams, improved sequence diagrams, relative source files location, and online tutorials. 
+http://www.softera.com/products.htm 
+Back to index
+Thought Inc. adds Ant to CocoBase 
+December 21 -- Thought Inc.'s CocoBase Enterprise O/R, Dynamic Mapping for the Enterprise now supports Apache Ant. Ant scripts allow developers to standardize build files across servers or platforms; its integration with CocoBase was designed to reduce the cost of building and deploying applications, and increase flexibility. 
+http://www.thoughtinc.com/cber_index.html 
+Back to index
+Saffeine protects code with JCE 
+December 21 -- Saffeine Research has launched Saffeine 1.0, a framework that uses Java Cryptography Extension (JCE) to provide feature-driven license management and code protection. The framework enables the creation of protected application storage, with different groups of classes or resources encrypted with different keys. The Saffeine runtime environment only loads those application parts if the customer has a license with the appropriate decryption keys.
+http://www.saffeine.com/index.jsp 
+Back to index
+XMetaL 3 now supports XML Schema 
+December 14 -- SoftQuad Software has upgraded XMetaL, an XML content creation software, to version 3. This latest version offers collaboration capabilities for content authors and provides developers with a development environment that supports the W3C (Worldwide Web Consortium) XML Schema.
+http://www.softquad.com/top_frame.sq 
+Back to index
+ SpiritCache 1.2 now shipping 
+December 14 -- SpiritSoft has released SpiritCache 1.2, a Java caching framework that increases a distributed system's performance. The product consists of a Java API for handling cached data and objects, and a framework for pluggable implementations, strategies, and tools. To boost performance, SpiritCache eliminates bottlenecks by storing frequently used data locally. 
+http://www.spirit-soft.com/products/cache/overview.html 
+Back to index
+Flashline and TogetherSoft form partnership 
+December 14 -- Flashline has integrated its enterprise reuse solution, Flashline Component Manager, Enterprise Edition 3 (CMEE) with TogetherSoft's Together ControlCenter 5.5. The combined solution allows developers to search for, submit, and extract software assets stored in CMEE from Together ControlCenter. 
+http://www.flashline.com/ 
+http://www.togethersoft.com/products/controlcenter/index.jsp;jsessionid=3qrme5lc81.www6 
+Back to index
+Jcorporate updates eContent 
+December 14 -- The latest version of eContent, a Java-based Web application development environment, features an improved Web browser-based user interface that allows users and developers to develop and maintain Web content from anywhere. Developed by Jcorporate, eContent 2.0 also includes enhanced workflow management, XML content management, Struts integration, and template-based content deployment. 
+http://www.jcorporate.com/econtent/Content.do?state=resource&resource=732 
+Back to index
+LogicLibrary and TogetherSoft integrate products 
+December 14 -- Logidex 2.0, a model-based asset management system from LogicLibrary, will support the Together ControlCenter development platform. Logidex customers will be able to launch Logidex directly from Together ControlCenter during Web-based application design and development. A later release will enable related asset data to be automatically captured and stored in Logidex from Together ControlCenter. 
+http://www.logiclibrary.com/ 
+http://www.togethersoft.com/products/controlcenter/index.jsp;jsessionid=3qrme5lc81.www6 
+Back to index
+iBus//Mobile now supports IBM's J9 VM 
+December 14 -- Softwired AG has added the J9 Virtual Machine from IBM to its Java Message Service iBus//Mobile middleware platform. The iBus//Mobile platform enables the development of wireless, interactive client/server applications deployable on Java-enabled devices.
+http://www.softwired-inc.com/products/products.html 
+Back to index
+Espial releases TV application suite 
+December 7 -- The Espial Suite for TV is an integrated suite of Java applications from Espial and complements established TV middleware platforms. The suite is a 100 percent Java application layer that sits independently from the operating system, JVM, and middleware on the upper layer of a set-top box stack. It includes a graphical operating environment, a Java browser, a Java e-mail client, and a GUI development toolkit.
+http://www.espial.com/main/page?view=f-home 
+Back to index
+NeuArchitect applications now deploy on HP app server 
+December 7 -- NeuVis Software will add HP Application Server 8.0 support to NeuArchitect, its RAD (rapid application development) platform. NeuArchitect offers a model-driven development environment for creating Web, wireless, XML, and Web services applications. From these models, NeuArchitect's code construction system automatically creates e-business applications for deployment on the HP Application Server.
+http://developer.neuvis.com/neudev/devindexhtml 
+http://www.hp.com/ 
+Back to index
+WebGain updates TopLink with EJB 2.0 
+December 7 -- The next version of WebGain TopLink, a persistence solution that facilitates the development of enterprise Java applications that integrate with databases, will support Enterprise JavaBeans (EJB) 2.0. TopLink 4.0, which will be available at year's end, will allow non-EJB architectures to take advantage of EJB 2.0 features such as EJBQL, the EJB query language. 
+http://www.webgain.com/products/toplink/ 
+Back to index
+LynuxWorks to license Apogee's Aphelion IDE 
+December 7 -- LynuxWorks will offer Apogee Software's Aphelion IDE to LynuxWorks customers deploying Java applications on the LynxOS real-time or BlueCat Linux operating systems. Aphelion develops high-performance embedded Java applications for deployment on Sun's Connected Device Configuration (CDC) and Connected Limited Device Configuration (CLDC) Java 2 Platform, Micro Edition (J2ME) virtual machines. 
+http://www.apogee.com/apogeejde.html 
+http://www.lynuxworks.com/ 
+Back to index
+Oracle adds CapeStudio support to its app server 
+December 7 -- CapeStudio, Cape Clear Software's Web services development tool, now supports the Oracle9i Application Server. This support allows developers to automatically build Web services for the Oracle9i Application Server within the CapeStudio environment. 
+http://capeclear.com/products/capestudio/index.shtml 
+http://www.oracle.com/ip/index.html?content.html 
+Back to index
+MKS provides SCM support to WebSphere developers 
+December 7 -- MKS will integrate its MKS Source Integrity Enterprise Edition software configuration management (SCM) product with IBM's WebSphere Studio Application Developer, a Java development environment for J2EE (Java 2 Platform, Enterprise Edition) application developers. IBM's WebSphere Studio Site Developer, an environment for Website developers, will also feature the MKS SCM product suite. The incorporated product offerings will provide WebSphere developers access to advanced software configuration management functionality, such as file check in/out, create project, create sandbox (private developer workspace), and file merge/compare.
+http://www.mks.com/ 
+http://www-3.ibm.com/software/info1/websphere/index.jsp 
+Back to index
+John Wiley & Sons releases J2ME guide 
+December 7 -- In Mobile Information Device Profile for Java 2 Micro Edition: Professional Developer's Guide, Enrique Ortiz and Eric Giguere explain how to write Java applications with the J2ME Mobile Information Device Profile (MIDP). The authors cover the MIDlet lifecycle, user interface basics and examples, network communication, security, how to use XML in an application, and techniques for writing better MIDP applications.
+http://www.j2medeveloper.com/midpbook/index.html 
+Back to index
+PsiNaptic launches Jini-based software 
+December 7 -- PsiNaptic has released JMatos, Jini-based software for embedded processors with a JVM. JMatos enables Jini technology to be deployed on resource-constrained devices such as mobile phones, PDAs, automobile subsystems, and medical monitoring equipment.
+http://www.psinaptic.com 
+Back to index
+JBuilder 6 now available 
+November 30 -- Borland has released JBuilder 6, the latest version of its Java development environment. New features include visual EJB design capabilities, UML code visualization, and expanded application server support.
+http://www.borland.com/jbuilder/ 
+Back to index
+UDDI project enhances Business Registry 
+November 30 -- The Universal Description, Discovery, and Integration (UDDI) project has released the second beta version of the UDDI Business Registry. This specification expands UDDI functionality to deploy public and private Web service registries. Other new features and improvements include: improved programmatic access to UDDI data, stronger business relationship modeling, and enhanced availability of UDDI information to user. 
+http://www.uddi.org/ 
+Back to index
+SoftQuad and Interwoven form alliance 
+November 30 -- SoftQuad Software will integrate XMetaL, its XML content authoring solution, with Interwoven's XML content infrastructure system comprised of TeamXML and TeamSite 5.5 software. Scheduled for release in December, the combined solution streamlines the creation, management, and delivery of content in different formats to a variety of media.
+http://www.softquad.com/top_frame.sq 
+http://www.interwoven.com/ 
+Back to index
+Small Worlds provides visual map of Java software 
+November 30 -- Information Laboratory has released Small Worlds, an application for analyzing and visualizing large-scale software. The application provides users with a visual map of any software written in Java or C++. It performs a structural analysis of these applications, evaluates the overall stability, and points out potentially problematic areas.
+http://www.thesmallworlds.com 
+Back to index
+Anest Software releases Jini toolkit 
+November 30 -- The Jini edition of the Anest Developer's Tool is the first of several products being released by Anest Software that are aimed at the Jini technology developer. The Jini toolkit includes full ServiceUI support, service and admin Reflection support for testing services visually without building a UI, and support for UIDescriptor.
+http://www.anestsoftware.com/devTool/index.html 
+Back to index
+JCP wraps up a successful year 
+November 30 -- During this past year, 63 Java specification requests (JSRs) have been submitted into the Java Community Process (JCP), bringing the total number of JSRs to 157. Since November 2000, 11 Java specifications have reached final release status. Also this year, 190 new members joined the JCP, and currently over 400 companies and individuals participate in the JCP. 
+http://jcp.org 
+Back to index
+Trigent and realMethods partner for J2EE development 
+November 30 -- The realMethods Framework provides a set of core J2EE (Java 2 Platform, Enterprise Edition) services and components that developers can use to build J2EE-compliant applications. Trigent, a provider of software development and maintenance services, has agreed to offer product support, consulting, integration, and application development services for realMethods customers. 
+http://www.realmethods.com/framework.html 
+http://www.trigent.com/ 
+Back to index
+Espial releases Escape browser as downloadable Xlet 
+November 30 -- The Java browser Espial Escape is now available as a downloadable Xlet that is compliant with the Digital Video Broadcasting-Multimedia Home Platform (DVB-MHP) environment. The Xlet Espial Escape 4.8 allows set-top box manufacturers and satellite, cable, and digital TV service providers to offer full Internet access to DVB-MHP 1.01 platforms with minimal integration effort. With the Xlet, set-top box manufacturers and service providers no longer need to include a browser as part of their software stack to render Webpages.
+http://www.espial.com/main/page?view=f-home 
+Back to index
+Chutney updates PreLoader to 4.0 
+November 30 -- Chutney Technologies is now shipping the Chutney PreLoader 4.0, an application optimization software product. Built to function on J2EE (Java 2 Platform, Enterprise Edition) environments, the Chutney PreLoader attacks bottlenecks in multitier Web application architectures by enabling the reuse of application code output.
+http://www.chutneytech.com/products/index.cfm 
+Back to index
+Faceless.org releases report generator 
+November 30 -- The Big Faceless Report Generator is a Java component that creates PDF reports from XML using JavaServer Pages, Active Server Pages, or Extensible Stylesheet Language. Requiring JDK 1.2, the generator includes Unicode support, CSS2 stylesheets, HTML style syntax, TrueType and Type1 fonts, encryption/password protection, and OCR support.
+http://big.faceless.org/products/report 
+Back to index
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- Submit your Java industry and product news here: 
+http://www.javaworld.com/feedback
+- Send in your nominations for the JavaWorld Editors' Choice Awards now (deadline is January 15, 2002): 
+http://www.javaworld.com/javaworld/ecawards02/jw-ecawards-submission.html
+- Catch up on recent news from JavaWorld:
+- "Sun Adds Web Services to J2EE," Matt Berger (December 2001) 
+- "Sun, Microsoft Offer Fertile Ground for Handheld Apps," Tom Sullivan, Cathleen Moore, Dan Neel (November 2001)
+- Check out JavaWorld's Product News Index for more product news: 
+http://www.javaworld.com/news-reviews/jw-nr-products.shtml
+- Browse JavaWorld's Product Reviews Index for information on specific products: 
+http://www.javaworld.com/news-reviews/jw-nr-product-reviews.shtml
+- JavaWorld's Developer Tools Guide features over 1,000 Java tools: 
+http://www.javaworld.com/javaworld/tools/jw-tools-index.html
+- Sign up for JavaWorld's free Java Industry News newsletter: 
+http://www.javaworld.com/subscribe
+- Speak out in our Java Forum: 
+http://forums.idg.net/webx?13@@.ee6b802 
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

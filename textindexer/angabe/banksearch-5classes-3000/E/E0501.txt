@@ -1,0 +1,135 @@
+ 
+ 
+Yet Another Code Site - MEd - A Rich Edit 2.0 Sample
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ Yet Another Code
+	 Site 
+ 
+ 
+MEd 3.0 - A TaeRichEdit Component
+Demonstration 
+MEd started out as a simple replacement for
+ WordPad. It turned into a monster.... 
+ There were no complete RichEdit 2.0 components when I began
+ the project and precious little information beyond
+ Microsoft sample programs. Eventually, the code
+ developed for MEd became the basis of the TaeRichEdit
+ Component. And a while after that, the Component
+ became the basis for a new version of MEd. 
+ 
+I originally wrote MEd
+ because I wanted WordPad to do a few more things, or do
+ them differently &#150; things like: 
+ 
+- Support multiple undo/redo and other Rich Edit 2.0+
+features. 
+- Open multiple documents using a tab control document
+interface. 
+- Recognize binary files and display them as hexadecimal
+file dumps. 
+- Be able to switch between Rich Text, Plain Text, and a
+file dump view. 
+- Remember more than four files in the "most
+recently used" file list. 
+- Support custom filters in the open dialog. 
+- Preview and print documents with headers and footers,
+borders, and codes for user names, dates, filenames, etc. 
+- Support "page styles" that would make it
+easier to select user-defined headers, footers, borders,
+and so on. 
+- Open up a new document when a file is dropped on the
+application (instead of inserting the dropped file into the
+current document). 
+These were some of the features that I wanted, but many
+ more were added along the way.... 
+ 
+I am posting this unfinished work for those curious
+ about what can be done with the bits and pieces of code
+ from this site. Be warned that MEd is really,
+ really unfinished. There are unimplemented menu
+ items (although the related toolbar buttons may work),
+ features that are only partially implemented, and the first
+ time that you run it, it will complain that the
+ configuration was lost (just ignore the warning).
+ However, I am already finding it to be a very useful
+ tool and thought that you might want to see the Rich Edit
+ 2.0 control in action. 
+ 
+ MEd Screen Shot 
+ 
+You may download the executable for this
+ work-in-progress by clicking on the link below. Since
+ this is an unfinished work, you are welcome to report bugs,
+ but please do not expect fixes. In fact, you probably
+ should not expect a reply, as I may be overwhelmed with bug
+ reports and, hey, this is just an example of
+ what can be done.
+ 
+Before downloading MEd, please read the
+ following notes: 
+ 
+- MEd uses Rich Edit 2.0 (or 3.0 if installed). 
+RICHED20.DLL must already be installed on your machine for
+this program to operate. RICHED20.DLL is normally
+installed in C:\Windows\System or C:\WinNT\System32, but
+search your entire drive if you do not find it there. 
+- The first time that you run MEd, it will complain that
+the configuration information in the Registry is not
+valid. This is because coding the program to properly
+check for prior installation has been a very low
+priority. You may safely ignore this warning. 
+- There is no help file. However, the status line
+shows a brief description of each menu item and button.
+ Hopefully, most of the menus and buttons will operate
+in a familiar way. 
+- There is no pretty install program &#150; just extract
+the program from the distribution file into a folder and
+execute it. 
+- Likewise, there is no pretty uninstall program. 
+To uninstall the program simply delete it. You may
+also delete all of the Registry entries which are located
+under \\HKEY_CURRENT_USER\Software\Thin Air Enterprises\MEd
+if you wish to eliminate all traces of MEd. 
+- You are not permitted to distribute this
+program. This download is available only to satisfy
+your curiosity, not for further sharing or use. 
+Finally, and most importantly, you use this program
+ at your own risk. Absolutely and without
+ exception. Period. 
+ 
+Download MEd30.zip
+ (MEd executable only) 
+ Last updated 04-29-2001, 560KB 
+ 
+ 
+ 
+ 
+ 
+	 
+Home |
+	Top Of Page |
+	Code |
+	Papers |
+	FAQs |
+	Links |
+	Search
+	| Feedback
+	 
+ 
+ 
+	 
+Page updated 
+	
+ 
+	 
+ 
+ 
+Copyright © 1999-2001 Thin Air
+ Enterprises and Robert Dunn. All rights reserved. 
+ 

@@ -1,0 +1,33 @@
+
+UndocShell APIs
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 07/30/97,
+ last update: 07/30/97 
+ 
+Home 
+ 
+ 
+ UndocShell: A demo of a
+ dozen undocumented Shell32.dll functions
+ 
+ This example provides names, descriptions and VB calling syntax for 12 functions found in
+ the Shell32.dll dynamic link library which are undocumented by Microsoft. These functions
+ are exported only by ordinal number and are not directly callable by name. As a result,
+ they have been labeled in their DLL declare statements to accurately depict the respective
+ operations performed. 
+ 
+ Included are four system dialog functions: SHRestartSystemMB, SHShutDownDialog,
+ SHRunDialog, SHChangeIconDialog; and various file system related functions including
+ SHFileExists and SHGetShortPathName.
+ 
+ Download undocsh.zip (19kb) 
+ 

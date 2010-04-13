@@ -1,0 +1,69 @@
+
+User Interfaces that Swing: A Quick Start Guide
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+Examples Index
+ 
+Trail: Creating a GUI with JFC/Swing
+Lesson: User Interfaces that Swing: A Quick Start Guide
+This lesson is a quick start guide to using
+Swing components to build user interfaces. This lesson is built 
+around several progressively complicated examples. 
+ 
+Note: This material is covered in depth in the full Swing trail: 
+Creating a GUI with JFC/Swing. This lesson is designed for readers who want to learn
+the basics quickly by examining some simple examples. 
+We cover many standard graphical user interface (GUI) components that 
+the JavaTM 2 platform 
+provides, such as buttons, labels, 
+and text areas. The handling of events is also discussed, 
+as are layout management and accessibility. 
+Note: You can download all the examples (including images) used in this trail 
+from the 
+Example Index.
+Overview of the Swing API
+This page gives a quick overview of the history of the Swing 
+package and how to compile and run Swing programs. 
+Your First Swing Program
+This small example has all the code that every Swing application 
+must have.
+Example Two: SwingApplication
+This section takes you through the code for a small Swing application.
+The topics covered include: look and feel, setting up buttons and labels, 
+handling events, and adding borders. 
+Example Three: CelsiusConverter
+The third example, a program that converts a given temperature 
+from Celsius to Fahrenheit, illustrates how to add HTML and icons
+to components.
+Example Four: LunarPhases
+The fourth example covers how to set up multiple panels, 
+compound borders, combo boxes, and how to load multiple images.
+Example Five: VoteDialog
+You can vote for your favorite political candidate in the final example,
+VoteDialog. This application illustrates the use of radio 
+buttons and dialogs.
+Layout Management
+This section discusses how to position the components in a container.
+Threads and Swing
+Thread issues are discussed in this section, including the "Single-Thread Rule."
+Summary
+A summary of important concepts covered in this section. 
+Questions and Exercises
+Try these questions and exercises to test what you've learned in this lesson.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+Examples Index
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

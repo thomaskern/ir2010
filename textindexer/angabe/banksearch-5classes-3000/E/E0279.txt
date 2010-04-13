@@ -1,0 +1,629 @@
+
+	
+	Yet Another Code Site - TaeRichEdit Component Information
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Yet
+	Another Code Site
+	 
+	
+TaeRichEdit
+Component Information
+Open Beta Test
+After two years of trying to work
+with the Borland VCL TRichEdit class, I finally gave up. There
+were too many obstacles that Delphi could easily overcome but BCB
+could not -- mostly because Delphi
+does not honor the strict object-oriented rules that C++ imposes. 
+I will not bore you with the details since they would require at
+least a page or two to describe. I will, however, tell you what
+is available in this new component....
+The TaeRichEdit Component is a set of
+roughly twenty classes designed to replace the TRichEdit component. 
+The main component class, TTaeRichEdit, completely mimics the VCL
+TRichEdit class and adds support for Rich Edit 2.0 and 3.0. 
+Unlike similar components, it is derived from neither TRichEdit nor
+TCustomRichEdit. Instead, the component is derived directly
+from the VCL TCustomMemo class (as is the VCL TRichEdit component)
+and written entirely in BCB C++.
+TaeRichEdit
+Component Features
+TaeRichEdit
+Component Classes
+The
+TaeRichEdit To Do List
+The TaeRichEdit
+Component Vision
+Download
+The TaeRichEdit Component
+TaeRichEdit Component Bugs
+TaeRichEdit
+Component Features
+The TaeRichEdit Component:
+	
+- 
+Completely replaces the Delphi
+	Pascal TRichEdit class and is entirely BCB C++ source (except for a
+	bit of well-commented assembler).
+	
+- 
+Supports Rich Edit versions 2.0
+	and 3.0. New classes are included to support Rich Edit 2.0/3.0
+	font characteristics and paragraph formatting as well as automatic
+	URL recognition, multi-level undo and redo capabilities, and a host
+	of other new features.
+	
+- 
+Provides OLE support by default. This means that users
+	can paste bitmaps and other objects directly into the control, view
+	and print the bitmaps and objects as they should be displayed or
+	printed, and edit the objects using the program that created them.
+	
+- 
+Makes previewing and printing the contents of the control
+	easy using default print, preview, print abort dialogs and windows. 
+	If you need to change them, the dialogs and windows are easily
+	changed (hey, the source code is included). But you should not
+	really need to modify the source code since events are provided to
+	trap before-page, after-page, before-print-job, and after-print-job
+	control. Using these events, you should be able to modify the
+	rendered output easily.
+	
+- 
+Includes page headers and footers with substitutable values. 
+	That is, you can easily specify headers and footers that print the
+	current page number, the number of pages in the document, the
+	document file creation and/or modification dates, the document file
+	size, the document file name, etc. New properties are included
+	to make setting the values a cinch.
+	
+- 
+Provides properties for setting margins and drawing borders
+	around headers, footers, and body text. You can specify which
+	borders are drawn (left, top, right, bottom) for each of the
+	sections (header, footer, and body) and the width of the margins and
+	lines.
+	
+- 
+Includes support classes to simplify saving/retrieving
+	information to/from the Registry and to simplify getting file
+	information (the creation date, long file name, short file name,
+	etc.). There are even functions to test whether a file is
+	probably simple text, RTF, or binary so that you can open the file
+	in the best format.
+	
+- 
+Includes a Page Setup Dialog component to allow users to set
+	page margins and orientation.
+TaeRichEdit Component
+Classes
+The following table lists most of the new TaeRichEdit component
+classes.
+	
+	
+	
+	
+	
+	
+	
+	
+ 
+	 
+	
+	
+Class
+	 
+	
+	
+Immediate
+	Ancestor
+	 
+	
+	
+Description
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+TFont2
+	 
+	
+	
+TFont (VCL)
+	 
+	
+	
+Extends TFont to include
+	font attributes added in Rich Edit 2.0 and 3.0.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TIRichEditOle
+	 
+	
+	
+(none)
+	 
+	
+	
+Manages the OLE interface
+	for TTaeRichEdit controls.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TIRichEditOleCallback
+	 
+	
+	
+IRichEditOleCallback
+	(VCL)
+	 
+	
+	
+OLE callback functions
+	for TTaeRichEdit controls. Generally, you do not use this class
+	directly.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeHeaderText
+	 
+	
+	
+TPersistent (VCL)
+	 
+	
+	
+Container for left-,
+	centered-, and right-aligned header and footer text. Specifies
+	header/footer font.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaePageStyle
+	 
+	
+	
+(none)
+	 
+	
+	
+Container for first and
+	second page headers and footers, borders, margins, etc.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaePageStyleList
+	 
+	
+	
+(none)
+	 
+	
+	
+Maintains a list of named
+	TTaePageStyles. Includes routines for storing the list to the
+	Registry. Not directly used by the TaeRichEditComponent.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeParaAttributes
+	 
+	
+	
+TPersistent (VCL)
+	 
+	
+	
+Largely a translation of
+	the VCL TParaAttributes class. See the VCL TParaAttributes class
+	for some of the functionality.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeParaAttributes2
+	 
+	
+	
+TTaeParaAttributes
+	 
+	
+	
+Extends
+	TTaeParaAttributes to support new paragraph styles and attributes
+	for Rich Edit 2.0 and 3.0.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeParser
+	 
+	
+	
+TTaeParserBase
+	 
+	
+	
+Utiility class for simple
+	text substitution. Used to substitute page numbers, file names,
+	etc., in headers and footers.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeParserBase
+	 
+	
+	
+(none)
+	 
+	
+	
+Basic text substitution
+	parser.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaePrintCancelDialog
+	 
+	
+	
+TForm (VCL)
+	 
+	
+	
+Print Cancel Dialog for
+	TTaeRichEditPrint class.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaePrintDialog
+	 
+	
+	
+TPrintDialog (VCL)
+	 
+	
+	
+Extends TPrintDialog to
+	automatically insert valid page range.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeRichEdit
+	 
+	
+	
+TCustomMemo (VCL)
+	 
+	
+	
+The main Rich Edit class.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeRichEditAdvPrint
+	 
+	
+	
+TTaeRichEditPrint
+	 
+	
+	
+Extends TTaeRichEditPrint
+	to support page headers, footers, borders, margins, etc.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeRichEditPrint
+	 
+	
+	
+TPersistent (VCL)
+	 
+	
+	
+Class for basic
+	TTaeRichEdit print and print preview functions.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeRichEditStrings
+	 
+	
+	
+TStrings (VCL)
+	 
+	
+	
+Primarily a translation
+	of the undocumented and inaccessible VCL TRichEditStrings class.
+	Used by the TTaeRichEdit::Lines property. See the VCL TStrings
+	class for some of the functionality.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeTextAttributes
+	 
+	
+	
+TPersistent (VCL)
+	 
+	
+	
+Largely a translation of
+	the VCL TTextAttributes class. See the VCL TTextAttributes class
+	for some of the functionality.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TTaeTextAttributes2
+	 
+	
+	
+TTaeTextAttributes
+	 
+	
+	
+Extends
+	TTaeTextAttributes to support new character styles and attributes
+	for Rich Edit 2.0 and 3.0.
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+TW95FileData
+	 
+	
+	
+(none)
+	 
+	
+	
+Utility class for getting
+	and setting file information and attributes.
+	 
+	
+	
+The TaeRichEdit To Do List
+Naturally, there are a few things in
+my "to-do" list:
+	
+- 
+Create a TaeRichEdit FAQs page to
+	answer common questions, a Bugs page to list problems and
+	work-arounds, and a Programs page to link to sites with programs
+	that use the component. (Please see also below.)
+	
+- 
+Extend the OLE support to provide
+	in-place activation of objects. (The current implementation
+	opens the server program in a separate window when the object is
+	opened for editing.) I could use some help here. Any
+	volunteers?
+	
+- 
+I have already been asked if
+	there will be a database version of the TaeRichEdit Component. 
+	I am only beginning to think about it but, yeah, it should not be
+	too hard. But it will have to wait until we find out how many
+	bugs are in the current version. (Note: Other
+	programmers have contributed database extensions that are included
+	in the distribution file.)
+	
+- 
+Improve the documentation. It is currently rather
+	sparse and requires reading a lot of source code to use effectively.
+	
+- 
+Modify the component to support BCB5. 
+	Done!
+Finally, I fully expect that a few bugs will be discovered and
+these become a top priority.
+The TaeRichEdit Component Vision
+If you read the TaeRichEdit Component license agreement (and you
+should), you might think that I am trying to get rich with this
+component. Not bloody likely, in my opinion. I have no
+delusions that this component will make me rich, solve world hunger,
+or supplant the basic mousetrap. Instead, I would prefer that
+the TaeRichEdit Component become an "open source" effort. 
+To get there, I need your help. Ultimately, I would like to:
+	
+- 
+Write an "open source" version of the Rich Edit
+	control. This is not as far-fetched as it sounds. To
+	develop the TaeRichEdit Component, I translated the Delphi Pascal
+	VCL TRichEdit, TRichEditStrings, TFont, TConsistentAttributes,
+	TCharAttributes, and TParaAttributes classes to Borland C++
+	Builder. We *can* reproduce the Rich Edit control in open
+	source, but we *must* do it before HTML (or some other technology)
+	renders the Rich Edit control obsolete.
+	
+- 
+Develop an "open source" C/C++ replacement for the
+	Borland Delphi VCL. Ok, this is a bit more far-fetched. 
+	Or maybe not. Hey, I translated and enhanced the TRichEdit
+	component (and the aforementioned related classes) in about a
+	month.. If enough of us get motivated, we could replace the
+	Delphi VCL in a matter of months.
+	
+- 
+Have a team of experts to answer Rich Edit control or
+	TaeRichEdit Component questions. To this end, I plan to create
+	an "Experts Page" that lists sites or e-mail addresses of
+	those that contribute and/or are willing to answer Rich Edit and
+	TaeRichEdit Component questions. If you think that you might
+	be able to help others solve problems with the component, please let
+	me know.
+Clearly, this vision is a group effort. If enough of us get
+behind this, it can happen. Let me know if you are interested.
+Download The
+TaeRichEdit Component
+Please see the TaeRichEdit Component Bugs page for current information about bugs, fixes,
+and enhancements.
+Note: To get the most out of this component, you will need
+the Rich Edit 2.0 or 3.0 DLL (riched20.dll, both versions). 
+This package does not include them because Microsoft told me "no"
+when I asked to distribute Rich Edit 2.0. See other pages on
+this site for locations where you might find the DLL.
+Download
+the BCB4 version of the TaeRichEdit Component Open Beta (version
+1.0.0.9, 06-07-2000, ~298KB).
+Download
+the BCB5 version of the TaeRichEdit Component Open Beta (version
+1.0.0.9, 06-07-2000, ~299KB).
+Download
+the currently incomplete component help (last updated 02-13-2000,
+~191KB).
+(Thanks to Pete Fraser for sharing his great GenHelp program
+without which the help file would probably never get this far. 
+See the Links page for more information on GenHelp.)
+For the truly brave, or truly desperate, here are fixes for
+certain printer problems, STL compatibility issues, and a couple of
+other changes. See the TaeRichEdit Component Bugs page for details. Be sure to read the
+documentation files before installing the changes, especially if you
+are using BCB4.
+Download
+the interim fixes (last updated 09-09-2000, ~27KB).
+ 
+	
+	
+	
+	
+	
+Home
+	| Top
+	Of Page |
+	Code
+	| Papers
+	| FAQs
+	| Links | Search
+	| Feedback
+	 
+	
+	
+Page updated September 9, 2000
+	 
+	
+Copyright
+© 1999, 2000 Thin Air Enterprises and Robert Dunn. All
+rights reserved.

@@ -1,0 +1,34 @@
+
+NTEventLog
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 05/15/00,
+ last update: 12/14/99 
+ 
+Home 
+ 
+ 
+ NTEventLog: Windows
+ NT/2K event log viewer
+ 
+ Demonstrates the intricacies of extracting every bit of information from the WinNT and
+ Win2K event logs, while presenting the results in a series of columns in a VB ListView.
+ The code also shows how to convert a binary SID (Security IDentifier) returned in the
+ EVENTLOGRECORD UserSid member to its textural representation, see "Q131320 - How
+ to Convert a Binary SID to Textual Form"
+ 
+ Note that though this example retrieves Application and System event log entries, it will
+ not retrieve Security event log entries without the logged on user having the proper
+ security access rights or privileges, see the "Event Logging Security" topic in
+ the Platform SDK for more information.
+ 
+ Download nteventlogview.zip (14kb) 
+ 

@@ -1,0 +1,48 @@
+
+ 
+ C++ Programming HOW-TO: Debugging
+ 
+ 
+ 
+Next
+Previous
+Contents
+11. Debugging
+Finding the exact source to a bug can be a troublesome process, however
+there is several techniques used for debugging:
+- Printing to standard out - for simple cases, print the values of
+several variables, see what they contain - and find out where exactly your
+program crashes
+- Using a debugger, a debugger lets you set breakpoints, and make
+backtraces in your code, while it's running. Most IDEs come with a debugger,
+for GNU systems there is gdb.
+- Use compiler features, on most compilers you can enable more warnings,
+for example on g++, use -Wall
+Sites to help debugging:
+- Debugging C and C++ in a UNIX enironment: 
+http://www.liacs.nl/~jdassen/onderwijs/stuva/debug/debug.html
+- MPatrol - a useful memory debugging tool: 
+http://www.cbmamiga.demon.co.uk/mpatrol
+- NJAMD - another useful memory debugging tool: 
+http://sourceforge.net/projects/njamd/
+- LeakTracer - a simple yet powerful tool to find memory leaks: 
+http://www.andreasen.org/LeakTracer/
+11.1 Debug files
+To debug any C++ or C programs include the file 
+debug.h and in your 'Makefile' define DEBUG_STR, DEBUG_PRT,
+DEBUG_MEM to turn on the traces from the debug.h functions. When you remove
+the '-DDEBUG_STR' etc.. then the debug function calls are set to ((void)0)
+i.e. NULL, hence it has no impact on final production release version of
+project. You can generously use the debug functions in your programs and it
+will not increase the size of production executable.
+See the file 
+debug.cpp for implementation of
+debug routines.
+And see the file 
+my_malloc.cpp for a sample
+which uses debug.h and debug functions.
+See the sample 
+Makefile .
+Next
+Previous
+Contents

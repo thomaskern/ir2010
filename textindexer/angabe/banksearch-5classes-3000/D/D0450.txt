@@ -1,0 +1,132 @@
+
+java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+	
+ java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator 
+ 
+Hi, 
+When trying the jcs sample from book ProJavaServer J2EE. Everything works fine, until the jcs with XSLT part.
+I got the following error message.
+I had searched the xalan.jar and xerces.jar, can not find the subject class.
+Please help !
+Thanks, David Chou
+http://localhost:8080/jcs/samples/guestbook/guestbook_xsl.jsp
+Error: 500
+Location: /jcs/samples/guestbook/guestbook_xsl.jsp
+Internal Servlet Error:
+javax.servlet.ServletException: org/apache/xerces/validators/schema/XSchemaValidator
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:399)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.tomcat.core.ServletWrapper.doService(ServletWrapper.java:404)
+	at org.apache.tomcat.core.Handler.service(Handler.java:286)
+	at org.apache.tomcat.core.ServletWrapper.service(ServletWrapper.java:372)
+	at org.apache.tomcat.core.ContextManager.internalService(ContextManager.java:797)
+	at org.apache.tomcat.core.ContextManager.service(ContextManager.java:743)
+	at org.apache.tomcat.service.http.HttpConnectionHandler.processConnection(HttpConnectionHandler.java:210)
+	at org.apache.tomcat.service.TcpWorkerThread.runIt(PoolTcpEndpoint.java:416)
+	at org.apache.tomcat.util.ThreadPool$ControlRunnable.run(ThreadPool.java:498)
+	at java.lang.Thread.run(Thread.java:484)
+Root cause: 
+java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+	at org.apache.xalan.xpath.dtm.DTMLiaison.parse(DTMLiaison.java:196)
+	at org.apache.xalan.xslt.XSLTEngineImpl.getSourceTreeFromInput(XSLTEngineImpl.java:817)
+	at org.apache.xalan.xslt.XSLTEngineImpl.process(XSLTEngineImpl.java:531)
+	at samples.guestbook._0002fsamples_0002fguestbook_0002fguestbook_0005fxsl_0002ejspguestbook_0005fxsl_jsp_0._jspService(_0002fsamples_0002fguestbook_0002fguestbook_0005fxsl_0002ejspguestbook_0005fxsl_jsp_0.java:104)
+	at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:119)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.jasper.servlet.JspServlet$JspServletWrapper.service(JspServlet.java:177)
+	at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:318)
+	at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:391)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:853)
+	at org.apache.tomcat.core.ServletWrapper.doService(ServletWrapper.java:404)
+	at org.apache.tomcat.core.Handler.service(Handler.java:286)
+	at org.apache.tomcat.core.ServletWrapper.service(ServletWrapper.java:372)
+	at org.apache.tomcat.core.ContextManager.internalService(ContextManager.java:797)
+	at org.apache.tomcat.core.ContextManager.service(ContextManager.java:743)
+	at org.apache.tomcat.service.http.HttpConnectionHandler.processConnection(HttpConnectionHandler.java:210)
+	at org.apache.tomcat.service.TcpWorkerThread.runIt(PoolTcpEndpoint.java:416)
+	at org.apache.tomcat.util.ThreadPool$ControlRunnable.run(ThreadPool.java:498)
+	at java.lang.Thread.run(Thread.java:484)
+Submitted by David Chou, 1/30/2001 12:57:16 AM
+Replies:
+- RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator (2 replies) 
+, 
+Andy Hoskinson, 1/30/2001 12:51:42 PM
+- RE: java.lang.NoClassDefFoundError: org/apache/xerces/validators/schema/XSchemaValidator
+, 
+Chris Zanelli, 6/7/2002 1:10:53 PM
+[ Reply | Return ] 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

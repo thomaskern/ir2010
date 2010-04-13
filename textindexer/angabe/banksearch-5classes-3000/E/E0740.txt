@@ -1,0 +1,335 @@
+
+Cprogramming.com: Code Journal
+ 
+ 
+ 
+- Home
+ 
+ 
+- Tutorials
+- Source
+- Books
+- Directory
+- Quiz
+ 
+ 
+- Borland
+- DJGPP
+- Other
+ 
+ 
+- C board
+- Functions
+- Email
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Click Here!
+ 
+ 
+ 
+ 
+Code Journal
+ 
+Code Journal is a free, biweekly newsletter on programming 
+ and computer science provided jointly by Cprogramming.com 
+ and AI Horizon. There is also an archive 
+ of all past issues on both websites. 
+ 
+This is the January 8th Issue
+ CODE JOURNAL: 
+ Your Guide to Programming
+ 
+ January 8, 2001
+ 
+ In This Edition:
+ - Welcome to the Code Journal
+ - XOR Encryption
+ - Hashed Browns and Smiths (On a Table, Of Course)
+ - Questions and Answers
+ - Programming Challenge
+ 
+ Welcome to the Code Journal, a joint 
+ venture between Cprogramming.com 
+ and AI Horizon that aims to 
+ provide insightful articles on both C++ and algorithmic programming. 
+ Code Journal is helpware: in return for reading it, you are asked 
+ to help someone else out with their own programming problems. Good 
+ luck, and quick compiling.
+ 
+ ---------------------------------------------------------
+ C/C++ Programming by Alex Allain
+ ---------------------------------------------------------
+ XOR Encryption
+ 
+ This is my first article for Code Journal, so I should introduce myself. 
+ I am the webmaster and content editor for Cprogramming.com; 
+ I've been writing tutorials and book reviews for Cprogramming.com 
+ for over four years.
+ 
+ Exclusive-OR Encryption, while not a 
+ public-key system such as RSA, is almost unbreakable through brute 
+ force methods. It is susceptible to patterns, but this weakness can 
+ be avoided through first compressing the file (so as to remove patterns). 
+ Exclusive-OR Encrytion requires that both encryptor and decryptor 
+ have access to the encryption key, but the encryption algorithm, while 
+ extremely simple, is nearly unbreakable.
+ 
+ Exclusive-OR Encrytion works by using the boolean algebra function 
+ Exclusive-OR (XOR). XOR is a binary operator 
+ (meaning that it takes two arguments - similar to the addition sign, 
+ for example). By its name, Exclusive-OR, it is easy to infer (correctly, 
+ no less) that it will return true if one, and only one, of the two 
+ operators is true. The truth table is as follows:
+ 
+ A B | A XOR B
+ --------------- 
+ T T | F
+ T F | T
+ F T | T
+ F F | F
+ 
+ (A truth table works like a multiplication 
+ or addition table: the top row is one list of possible inputs, the 
+ side column is one list of possible inputs. The intersection of the 
+ rows and columns contains the result of the operation when done performed 
+ with the inputs from each row and column.)
+ 
+ The idea behind Exclusive-OR Encryption is that it is impossible to 
+ reverse the operation without knowing the initial value of one of 
+ the two arguments. For example, if you XOR two variables of unknown 
+ values, you cannot tell from the output what the values of those variables 
+ are. For example, if you take the operation A XOR B, and it returns 
+ TRUE, you cannot know whether A is FALSE and B is TRUE, or whether 
+ B is FALSE and A is TRUE. Furthermore, even if it returns FALSE, you 
+ cannot be certain if both were TRUE or if both were FALSE.
+ 
+ If, however, you know either A or B it is entirely reversible, unlike 
+ Logical-AND and Logical-OR. For Exclusive-OR, if you perform the operation 
+ A XOR TRUE and it returns a value of TRUE you know A is FALSE, and 
+ if it returns FALSE, you know A is true. Exclusive-OR Encryption works 
+ on the principle that if you have the encrypted string and the encryption 
+ key you can always decrypt correctly. If you don't have the key, it 
+ is impossible to decrypt it without making entirely random keys and 
+ attempting each one of them until the decryption program's output 
+ is something akin to readable text. The longer you make the encryption 
+ key, the more difficult it becomes to break it.
+ 
+ The actual way Exclusive-OR Encryption is used is to take the key 
+ and encrypt a file by repeatedly applying the key to successive segments 
+ of the file and storing the output. The output will be the equivalent 
+ of an entirely random program, as the key is generated randomly. Once 
+ a second person has access to the key, that person is able to decrypt 
+ the files, but without it, decryption is almost impossible. For every 
+ bit added to the length of the key, you double the number of tries 
+ it will take to break the encryption through brute force.
+ 
+ C++ does not have a built-in Exclusive-OR function, however. It is 
+ necessary to write your own. Fortunately, it is not difficult. XOR 
+ is the equivalent of (A OR B) AND NOT(A AND B) 
+ (Try using the truth table's values to test this expression), so a 
+ function that will quickly act as an Exclusive-OR need only test that 
+ condition. 
+ For example:
+ 
+ int XOR(int a, int b)
+ {
+ return (A || B) && !(A && B);
+ }
+ 
+ Writing a program to encrypt a file using this scheme is relatively 
+ simple, and it is the programming challenge for you over the next 
+ two weeks. The winners will be selected based on efficiency, elegance, 
+ and rapidity of response. For the specific requirements take a look 
+ at the programming contest section of this email.
+ 
+ ---------------------------------------------------------
+ Algorithms and Programming by Eric Suh
+ ---------------------------------------------------------
+ Hashed Browns and Smiths (On a Table, Of Course)
+ 
+ Keyed Arrays vs. Indexed Arrays
+ ------------------------------------
+ One of the biggest drawbacks to a language like C++ is that there 
+ are no KEYED-ARRAYS. In a normal C++ 
+ array (also called an INDEXED ARRAY), 
+ the only way to access an element would be through its index number. 
+ To find element 50 of an array named "employees" you have to access 
+ it like this:
+ 
+ employees[50];
+ 
+ In a keyed-array, however, you would be able to associate each element 
+ with a "key," which can be anything from a name to a product model 
+ number. So, if you have a keyed-array of employee records, you could 
+ access the record of employee "John Brown" like this:
+ 
+ employees["Brown, John"];
+ 
+ One basic form of a keyed-array is called the HASH 
+ TABLE. In a hash table, a key is used to find an element instead 
+ of an index number. Since the hash table has to be coded using an 
+ indexed array, there has to be some way of transforming a key to an 
+ index number. That way is called the HASHING 
+ FUNCTION.
+ 
+ Hashing Functions
+ ------------------------------------
+ A hashing function can be just about anything. How the hashing function 
+ is actually coded depends on the situation, but generally the hashing 
+ function should return a value based on a key and the size of the 
+ array the hashing table is built on. Also, one important thing that 
+ is sometimes overlooked is that a hashing function has to return the 
+ same value every time it is given the same key!!! (This is really 
+ important...)
+ 
+ Let's say you wanted to organize a list of about 200 addresses by 
+ people's last names. A hash table would be ideal for this sort of 
+ thing, so that you can access the records with the people's last names 
+ as the keys.
+ 
+ First, we have to determine the size of the array we're using. Let's 
+ use a 260 element array so that there can be an average of about 10 
+ element spaces per letter of the alphabet.
+ 
+ Now, we have to make a hashing function. First, let's create a relationship 
+ between letters and numbers:
+ 
+ A --> 0
+ B --> 1
+ C --> 2
+ D --> 3
+ ...
+ and so on until Z --> 25.
+ 
+ The easiest way to organize the hash table would be based on the first 
+ letter of the last name.
+ 
+ Since we have 260 elements, we can multiply the first letter of the 
+ last name by 10. So, when a key like "Smith" is given, the key would 
+ be transformed to the index 180 (S is the 19 letter of the alphabet, 
+ so S --> 18, and 18 * 10 = 180).
+ 
+ Since we use a simple function to generate an index number quickly, 
+ and we use the fact that the index number can be used to access an 
+ element directly, a hash table's access time is quite small. A linked 
+ list of keys and elements wouldn't be nearly as fast, since you would 
+ have to search through every single key-element pair.
+ 
+ Collisions and Collision Handling
+ ------------------------------------
+ Problems, of course, arise when we have last names with the same first 
+ letter. So "Webster" and "Whitney" would correspond to the same index 
+ number, 22. A situation like this when two keys get sent to the same 
+ location in the array is called a COLLISION. 
+ If you're trying to insert an element, you might find that the space 
+ is already filled by a different one.
+ 
+ Of course, you might try to just make a huge array and thus make it 
+ almost impossible for collisions to happen, but then that defeats 
+ the purpose of using a hash table. One of the advantages of the hash 
+ table is that it is both fast AND small.
+ 
+ There are many algorithms to handle collisions, but I will cover only 
+ the simplest.
+ 
+ The simplest algorithm is called the LINEAR 
+ handling method. When you are adding an element, say "Whitney," and 
+ you find that another element is already there ("Webster," for instance) 
+ then you would just proceed to the next element space (the one after 
+ "Webster"). If that is filled, you go on to the next one, and so on, 
+ until you find an empty space to insert the new element (all those 
+ extra elements came in handy after all!!).
+ 
+ ...
+ 220 "White" | <-- ### 
+ COLLISION ### : Gotta move on to the next.
+ 221 "Webster" | <-- ### 
+ COLLISION ### : Next one.
+ 222 | 
+ <-- Ahhh, perfect. Insert Here.
+ 223 |
+ ...
+ 
+ Since we modified the insertion algorithm, we also have to change 
+ the function that finds the element. You have to have some way of 
+ verifying that you've found the element you want, and not some other 
+ element. The simplest way is to just compare keys. (Does this record 
+ have the last name "Whitney"? Does this one?) If the element you find 
+ is not one of them, just move on to the next element until you reach 
+ the one you want or you find an empty space (which means the element 
+ is not in the table).
+ 
+ Sounds simple, right? Well, it gets more complicated. What if you 
+ have so many collisions that you run off the end of the array?
+ 
+ If you're trying to insert "Zorba" and all the elements are filled 
+ because of the collision handling, then what? Look at the example:
+ 
+ ...
+ 258 "Whitney" | <-- Nope, 
+ not Empty
+ 259 "Zeno" | 
+ <-- Nope, not Empty
+ ---------------- <-- Ummm, what 
+ now?
+ 
+ The easiest thing to do is to just wrap around to the beginning again. 
+ If there are still no empty spaces, then we have to issue an error, 
+ since there isn't enough space in the Hash table for all of the elements.
+ 
+ Now you're ready to implement your first hash table! Give it a try. 
+ It isn't too hard, but the end result is quite useful!!
+ 
+ ---------------------------------------------------------
+ Questions and Answers on Programming
+ ---------------------------------------------------------
+ In future newsletters, we will answer several programming questions 
+ emailed to Cprogramming.com and AI Horizon. 
+ 
+ If you have a question on programming, send it in to either Cprogramming.com 
+ or AI Horizon and your question 
+ may be answered here.
+ 
+ ---------------------------------------------------------
+ Code Challenge
+ ---------------------------------------------------------
+ Every issue, we will issue a programming challenge and ask people 
+ to submit their solutions within two weeks. A few of the best solutions 
+ will be published the next issue, along with a new challenge.
+ 
+ Write an Exclusive-OR encryption program. The program should take 
+ as input a filename that is then encrypted by the program. The program 
+ should ask the user to input an encryption key, which should be used 
+ to encrypt the file. The output of the program should go into a file 
+ with the same filename but a .ENC extension (for simplicity sake). 
+ All programs should run under DOS.
+ 
+ Send your solutions to solutions@cprogramming.com 
+ as source code files, and you may find it published. Please include 
+ either your name or an identifying username so that we may attribute 
+ the solution to you in the next newsletter. If you wish, you may ask 
+ us to withhold your name.
+ 
+ ---------------------------------------------------------
+ Suggestions and comments on this newsletter should be sent to codejournal@cprogramming.com 
+ or codejournal@aihorizon.com.
+ 
+ Editors:
+ Eric Suh, webmaster@aihorizon.com
+ Alexander Allain, webmaster@cprogramming.com
+ 
+ To unsubscribe from this journal, send a blank email to codejournal-unsubscribe@mlm.cprogramming.com. 
+ 
+ 
+ 
+ 
+	
+	

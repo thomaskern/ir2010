@@ -1,0 +1,1544 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Steve's Shellscript Subset
+ 
+ 
+ 
+ 
+ Troubleshooters.Com and 
+ Code Corner Present
+ 
+ 
+ 
+ Steve's Shellscript Subset
+ The 10% you need -- for 90% of your work
+ 
+ 
+ 
+ Copyright (C) 2000-2002
+ by Steve Litt
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Introduction
+ 
+- Acknowledgements
+ 
+- Hello World
+ 
+- Some Syntax Gotchas
+ 
+- Outputting to Stdout
+ 
+- Outputting to Stderr
+ 
+- Arguments, 
+ Environment Variables
+ 
+ and Return Values 
+- Branching
+ 
+- User Input
+ 
+- Looping
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Subroutines
+ 
+- File I/O
+ 
+- Regular Expressions
+ 
+- String Manipulation
+ 
+- Quasi Object Programming
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Introduction
+ Shell scripting is among the most hated of programming languages. The 
+syntax can be quirky, and the anemic DOS batch file scripting language has 
+given it a black eye. Great scripting languages like Perl and Python are 
+certainly easier to use, and a little more powerful (you'd be surprised at
+how powerful Unix shellscripts are). Due to all this, I long ago made a
+policy decision to use Perl instead of shellscripts. I later had to eat my
+words, for the following reasons: 
+ 
+- Perl/Python may not be available on the machine.
+ 
+- Boot init code may not be able to access Perl or Python
+ 
+- Many existing scripts are shellscripts
+ 
+ Shellscripts may be necessary, but you don't need to put up with their
+ quirky syntax. By using a subset, and staying away from confusing features,
+ you can easily write shellscripts. 
+This document covers only the sh/bash shells, although others are somewhat 
+ similar. I had only Linux bash (Mandrake 7.0) available for testing, but 
+my memory of HP UX tells me that it's pretty applicable across Unices. 
+ 
+ 
+Note: Some nice sed one liners can be had at 
+ http://www-h.eng.cam.ac.uk/help/tpl/unix/sed.html. 
+ 
+ Acknowledgments
+ A big shout out to my buddies at Linux Enthusiasts and Professionals
+of Central Florida (LEAP-CF). With mailing list and meetings, they (we)
+form a 70 brain parallel supercomputer. 
+Special thanks go out to 3 LEAPsters. Tony Becker gave an incredible bash
+presentation at LEAP. It was Tony's presentation that illuminated the fact
+that the left bracket character is really a symbolic link to /usr/bin/test
+ command. After seeing Tony's presentation, I decided to start using more
+ shellscripts and to write this web page. Mark Alexander and Nickolai Zeldovich
+ helped me with shellscript file I/O. 
+ 
+And of course, thanks to the help and support of Troubleshooters.Com's
+ visitors. 
+ 
+ Hello World
+ Make the following file, called hello.sh: 
+ 
+ 
+ 
+ 
+ echo "Hello World"
+ 
+ 
+ 
+ 
+ Set it executable with the following command: 
+chmod a+x hello.sh
+ Finally, run it as follows: 
+./hello.sh
+ In the tradition of hello world programs since K&R, it prints out 
+the words "Hello World". This is the simplest possible shellscript.
+ 
+Some Syntax Gotchas
+ Be careful of spacing. For instance, the equal sign you use for assignment 
+must NOT be surrounded by spaces. But the equal sign used for comparison MUST
+be surrounded by spaces:
+ 
+ 
+ 
+ 
+ currdir=`pwd`
+ 
+ RIGHT
+ 
+ 
+ 
+ currdir = `pwd`
+ 
+ WRONG
+ 
+ 
+ 
+ if test "$currdir" = "/home/john"; then
+ 
+ RIGHT
+ 
+ 
+ 
+ if test "$currdir"="/home/john"; then
+ 
+ WRONG
+ 
+ 
+ 
+ 
+Another gotcha is the bracket syntax:
+if [ "currdir" = "/home/john" ]; then
+Notice the spaces on the inside of the brackets? They're manditory. To anyone
+knowing any other language, this is totally inobvious and will be skipped.
+This syntax is really just a substitute for the test command, as
+in:
+if test "$currdir" = "/home/john"; then
+If that sounds unbelievable, try doing an ls command on an opening
+square bracket in the /usr/bin directory:
+[slitt@mydesk bin]$ ls -l [
+lrwxrwxrwx 1 root root 4 Apr 25 17:01 [ -> test*
+[slitt@mydesk bin]$
+That's the proof. [ is a symbolic link to the test executable. So
+use the test command whenever possible, and when you must maintain code with
+the bracket construct, remember that [ is a link to test
+, and you would certainly put a space after test, so put a space
+after the opening square bracket.
+Another gotcha is the relational operators. As in many other languages, relational
+operators for strings are different than for numbers. But shellscripts are
+the reverse of what you'd expect. The equal sign (=) is used for
+strings, while -eq is used for numbers. The relational operators
+are listed later in this document.
+One more thing. In certain situations it might be necessary to escape parentheses
+with backslashes.
+So when you have a shellscript that just won't behave, review these gotchas
+and see if you've inadvertently violated one. It's often much quicker than
+troubleshooting.
+ 
+ Outputting to Stdout
+ The simplest way to output to stdout is the echo command, as shown in 
+the preceding "Hello World" example. However, you can also get formatted 
+output via the printf command: 
+ 
+ 
+ 
+ 
+ aname="Florida"
+let adollars=3290
+bname="Utah"
+let bdollars=817
+printf "%10s budget is %06d\n" $aname $adollars
+printf "%10s budget is %06d\n" $bname $bdollars
+ 
+ 
+ 
+ 
+ 
+The preceding code prints the following: 
+ 
+ 
+ 
+ 
+ [slitt@mydesk slitt]$ ./myscript
+ Florida budget is 003290
+ Utah budget is 000817
+[slitt@mydesk slitt]$
+ 
+ 
+ 
+ 
+ 
+ 
+As you can see, fields are properly padded. This is very similar to the 
+C printf command. 
+ 
+ Outputting to Stderr
+ As seen in the previous "Hello World" program, you use the echo
+ command or printf command to output to stdout. But you don't 
+echo error messages and syntax reminders to stdout, you echo them to stderr.
+ The following echos "Hello World" to stdout, and "This is an error" to stderr:
+ 
+ 
+ 
+ 
+ echo "Hello World"
+echo 1>&2 "This is an error"
+ 
+ 
+ 
+ 
+ 
+Running this script you'll see both lines. But if you do the following:
+ 
+ 
+./hello.sh | less
+ and then refresh with Ctrl-L, you'll see only the "Hello World". 
+ 
+You can observe stderr in isolation with the following command, which
+ diverts stdout from the screen: 
+ 
+./hello.sh > /dev/null
+ The preceding command prints only "This is an error" on the screen. 
+ 
+ Arguments, 
+ Environment Variables and Return Values
+ Programs need to access command line arguments and environment variables.
+ They may need to return a numeric value. This section explains how to do
+ all these things. 
+ 
+ 
+ 
+ $0 
+ The name of the script file (like argv[0] in C) 
+ 
+ 
+ $1, $2, ... 
+ The positional arguments (like argv[1], argv[2]... in C) 
+ 
+ 
+ $@ 
+ Expands to a string containing all positional arguments (but not 
+$0), separated by spaces. 
+ 
+ 
+ $# 
+ The number of arguments (not counting $0). Similar to argc in C. 
+ 
+ 
+ $$ 
+ The process ID of the running script (not of the calling process). 
+ 
+ 
+ $? 
+ The exit status (return value) of the last foreground process. This
+ is used to test the return value of programs run from the script. 
+ 
+ 
+ $(command) 
+ Expands to the stdout output by the command in the parens. Note
+that the same effect can be produced by surrounding the command with backticks,
+ but that syntax is becoming depreciated. 
+ 
+ 
+ 
+ 
+There is other info that can be accessed from inside the script. For complete
+info, search the string Special Parameters in the bash man
+page. For another interesting topic, search Brace Expansion
+ . 
+ 
+ Saving PID of Spawned Binary Executable
+ This is slick, and you can do it for any binary executable in which you
+ can use the shellscript's process ID as an argument. In this example we'll
+ use the command open less jj, which opens a less session for file jj on
+the next available console. 
+Any running program appears in a ps ax command, and you can certainly
+ grep for the executable. The problem is you don't know which process is
+the one spawned by a particular invocation of your shellscript. But if you
+can use the shellscript's process id (PID) as an argument to the binary executable, 
+ you can uniquely "brand" the executable, thus grep for the one and only one
+ copy run from the particular shellscript. 
+ 
+Check out this code: 
+ 
+ 
+ 
+ 
+ 
+ open less jj $$ #run job with script pid as arg
+## Find job non-grep job with command and script pid ##
+jobline=`ps ax | grep -v grep | grep "less jj $$"`
+job=${jobline%% *} #spawned pid is everything before 1st space
+echo $job
+ 
+ 
+ 
+ 
+ 
+ 
+The preceding prints the binary executable's PID to stdout. It could also
+be redirected to a file for safe keeping. The first stsep is to run the command
+with the shellscript's PID ($$) as an argument. This is safe if the command
+ignores extraneous arguments. The next step is to find the job in a ps
+ax listing. Assuming $$ expands to 43210, you can grep for "less jj
+43210 to find the executable. Except the grep will also return the grep command
+itself. So you filter out any commands containing the word "grep" with 
+grep -v grep. This yields the single line containing the spawned binary
+executable's process. The number at the start of the line is the spawned executable's
+PID, and everything right of that point is extraneous. So you blow it off
+with the ${jobline%% *} construct (explained in the section on 
+string manipulation). What's left is the PID of the spawned binary executable.
+I like it. 
+ 
+ Environment Variables
+ It's easy to read an environment variable. Simply precede the variable's
+ name with a dollar sign. For instance, the following script outputs the
+current directory, and then outputs the executable path: 
+ 
+ 
+ 
+ 
+ echo $PWD
+echo $PATH
+ 
+ 
+ 
+ 
+ 
+You use the dollar sign to *read* an environment variable, but not to 
+write one. The dollar sign can be though of as a "what is the value of" operation. 
+ 
+ 
+To write an environment variable, simply use the name of the variable
+ on the left side of an equal sign (no spaces please). For instance, the
+following script creates an environment variable called SHELLSCRIPTS and
+sets it to the string "are cool" 
+ 
+ 
+ 
+ 
+ echo \>$@\set by parentset by parentset by parentset by parentset by parentchanged by childset by parentset by parentset by parentchanged by childchanged by child" and returns 0 if that statement is true. 
+ 
+Shellscripts give you full "if, else if, else" capabilities without obnoxious 
+nesting. The following example tests arg1 for either s, t, or something else: 
+ 
+ 
+ 
+ 
+ 
+ if test "$1" = "s"; then
+ echo "Arg 1 was s."
+elif test "$1" = "t"; then
+ echo "Arg 1 was t."
+else
+ echo "Arg 1 was neither s nor t."
+fi
+ 
+ 
+ 
+ 
+ 
+ 
+In the preceding, note that there is only one fi keyword. That 
+ fi keyword ends the entire if elif else statement. There's 
+no necessity for nesting in an if elif else construct. However, 
+note that the elif statement requires a command, semicolon, and then
+keyword just like if. It does not require its own fi 
+terminator. 
+ 
+Although nesting isn't necessary for if elif else constructs,
+ in some cases it's desirable. That's not a problem -- it is done with 
+ fi keywords. The following evaluates arg2 if arg1 is "s", otherwise 
+ not. It nests an if elif else inside the first if statement:
+ 
+ 
+ 
+ 
+ if test "$1" = "s"; then
+ echo "Arg 1 was s."
+ if test "$2" = "1"; then
+ echo "arg2 was 1"
+ elif test "$2" = "2"; then
+ echo "arg2 was 2"
+ else
+ echo "arg2 was neither 1 nor 2"
+ fi
+elif test "$1" = "t"; then
+ echo "Arg 1 was t."
+else
+ echo "Arg 1 was neither s nor t."
+fi
+ 
+ 
+ 
+ 
+ 
+ 
+In the preceding, notice the fi keyword at the end of the nested 
+ if elif else, just before the unindented elif . It's 
+that fi that does the nesting.
+ 
+The Test Command
+The test executable resides in /usr/bin.
+As mentioned previously, the if command does nothing but evaluate the return
+code of an executable, executing the enclosed code if the return is 0
+, and not executing it (or skipping to an else or elif)
+if the executable returns non-zero. This precludes directly evaluating expressions.
+So there's an executable called test that evaluates expressions,
+returning 0 if the expression is true and non-zero if it's false.
+Besides making expression evaluation possible, this double negation makes
+the if statement intuitive, because if the expression is true the
+enclosed statements are executed.
+Boolean and, or, and not are supported by -a, -o and 
+! respectively.
+Besides evaluating expressions, the test executable also evaluates
+many properties of a file. This is all explained in this section.
+ 
+Relational Operators for test command
+ 
+if test "$1" = "mystring"; then
+ mycommand
+fi
+ Important note: All relational operators must be surrounded on both sides
+ with whitespace.
+ 
+ 
+ 
+ Relation
+ 
+ Arithmetic
+ 
+ Text
+ 
+ 
+ 
+ Equal
+ 
+ -eq
+ 
+ =
+ 
+ 
+ 
+ Not equal
+ 
+ -ne
+ 
+ !=
+ 
+ 
+ 
+ Less than
+ 
+ -lt
+ 
+ 
+ 
+ 
+ 
+ Greater than
+ 
+ -gt 
+ 
+ 
+ 
+ 
+ Less than or equal
+ 
+ -le
+ 
+ 
+ 
+ 
+ 
+ Greater than or equal
+ 
+ -ge 
+ 
+ 
+ 
+ 
+ Zero length string
+ 
+ 
+ 
+ -z STRING
+ 
+ 
+ 
+ Non-sero length string
+ 
+ 
+ 
+ [-n] STRING
+ 
+ 
+ 
+ 
+ 
+ 
+Boolean Operators for test command
+ 
+if test "$1" = "one" -a "$2" = "two"; then
+ echo "TRUE"
+fi
+ Important Note: All boolean operators must be surrounded on both sides
+with whitespace. That includes the Not operator.
+ 
+ 
+ 
+ 
+ Boolean
+ 
+ Operator
+ 
+ Example
+ 
+ 
+ 
+ Not
+ 
+ !
+ 
+ ! EXPRESSION
+ 
+ 
+ 
+ And
+ 
+ -a
+ 
+ EXPRESSION1 -a EXPRESSION2
+ 
+ 
+ 
+ Or
+ 
+ -o
+ 
+ EXPRESSION1 -o EXPRESSION2
+ 
+ 
+ 
+ 
+ 
+ 
+File Operators for test command
+ 
+if test -d /home/slitt/umenu; then
+ echo DIRECTORY
+fi
+ Entries with leading asterisks are most common.
+ Important Note: All file test operators must be surrounded on both sides
+ with whitespace.
+ 
+ 
+ 
+ 
+ 
+ 
+ Operator
+ 
+ Explanation
+ 
+ 
+ 
+ 
+ 
+ FILE1 -ef FILE2
+ 
+ FILE1 and FILE2 have the same device and inode
+ num-bers
+ 
+ 
+ 
+ *
+ 
+ FILE1 -nt FILE2
+ 
+ FILE1 is newer (modification date) than FILE2
+ 
+ 
+ 
+ *
+ 
+ FILE1 -ot FILE2
+ 
+ FILE1 is older than FILE2 
+ 
+ 
+ 
+ 
+ 
+ 
+ -b FILE
+ 
+ FILE exists and is block special
+ 
+ 
+ 
+ 
+ 
+ -c FILE
+ 
+ FILE exists and is character special
+ 
+ 
+ 
+ *
+ 
+ -d FILE
+ 
+ FILE exists and is a directory
+ 
+ 
+ 
+ *
+ 
+ -e FILE
+ 
+ FILE exists
+ 
+ 
+ 
+ 
+ 
+ -f FILE 
+ FILE exists and is a regular file
+ 
+ 
+ 
+ 
+ 
+ -g FILE
+ 
+ FILE exists and is set-group-ID
+ 
+ 
+ 
+ 
+ 
+ -G FILE
+ 
+ FILE exists and is owned by the effective group
+ ID 
+ 
+ 
+ 
+ 
+ -k FILE
+ 
+ FILE exists and has its sticky bit set
+ 
+ 
+ 
+ *
+ 
+ -L FILE
+ 
+ FILE exists and is a symbolic link
+ 
+ 
+ 
+ 
+ 
+ -O FILE
+ 
+ FILE exists and is owned by the effective user
+ ID
+ 
+ 
+ 
+ 
+ 
+ -p FILE
+ 
+ FILE exists and is a named pipe
+ 
+ 
+ 
+ *
+ 
+ -r FILE
+ 
+ FILE exists and is readable
+ 
+ 
+ 
+ *
+ 
+ -s FILE
+ 
+ FILE exists and has a size greater than zero
+ 
+ 
+ 
+ 
+ 
+ -S FILE
+ 
+ FILE exists and is a socket 
+ 
+ 
+ 
+ 
+ -t [FD] 
+ file descriptor FD (stdout by default) is opened
+ on a terminal
+ 
+ 
+ 
+ 
+ 
+ -u FILE
+ 
+ FILE exists and its set-user-ID bit is set
+ 
+ 
+ 
+ *
+ 
+ -w FILE
+ 
+ FILE exists and is writable
+ 
+ 
+ 
+ *
+ 
+ -x FILE 
+ FILE exists and is executable
+ 
+ 
+ 
+ 
+ 
+ 
+ Case Statements
+ Case statements do what the if elif else constructs do, but they do not
+ rely on a command. Instead, they rely on pattern matching. The following
+simple script outputs "YES" if the first argument is anything typically used
+to mean yes, "NO" if the first argument is anything typically used to mean
+no, and "Maybe" otherwise. 
+ 
+ 
+ 
+ 
+ case "$1" in
+ (y|Y|1|yes|Yes|YES)
+ echo YES
+ ;;
+ (n|N|0|no|No|NO)
+ echo NO
+ ;;
+ (*)
+ echo Maybe
+ ;;
+esac
+ 
+ 
+ 
+ 
+ 
+The variable or expression to be matched appears immediately to the right 
+of the case keyword. Each list of matches is in parentheses. Between 
+the closing paren and a line with a double semicolon are all the statements 
+to be executed if there's a match between the expression on the case line 
+and any of the items in the parentheses. The equivalent of "default" in a 
+C switch statement is achieved by making the last choice be an asterisk, 
+which matches anything. The entire case structure is bottom delineated by 
+ keyword esac, which is case spelled backwards. 
+ 
+Note that case statements are often used with just one choice.
+ That's because they directly evaluate a match without using the test command
+ or other commands, and because they can match against a list of possibilities.
+ If you've ever wished if statements could be tested against a
+list of strings, use case. 
+ 
+While maintaining code, you may find that the opening parentheses are 
+omitted. That works, but the bash man page says to use opening and closing
+ parentheses. Also, I think it looks more satisfying than having unmatched
+ parens. 
+ 
+ Short Circuit Logic
+ When evaluating and and or logic, shellscripts quit 
+once the result is known. This is called short circuit logic, and is handy 
+for writing readable, compact code. The following code prints a message if
+the command has any arguments: 
+ 
+ 
+ 
+ 
+ test $# -eq 0 || echo 1>&2 Information: Command takes no arguments
+ 
+ 
+ 
+ 
+ 
+The preceding is an example of short circuit logic. If the first part
+ is true, there's no need to "evaluate" the second part, so it's not done.
+ If the first part is false, the truth of the entire statement depends on
+ the truth of the second part, so it's "evaluated", which in this case prints
+ an informational message. Note that the same effect can be had with negative
+ logic: 
+ 
+ 
+ 
+ test $# -ne 0 && echo 1>&2 Information: Command takes no arguments
+ 
+ 
+ 
+ 
+ 
+ 
+In the preceding, the first clause produces a true, but to make the entire 
+statement true requires truth in both clauses, so the second clause is "evaluated", 
+printing the message. 
+ 
+Short circuit logic is a great shorthand notation when there's exactly
+ one statement to be done upon satisfaction of the condition. Typically,
+that single statement is a function call (shellscript subroutines are discussed
+ later in this document). However, the ease and conciseness of this form
+breaks down rapidly when more than one statements must be done if the condition
+is satisfied. For instance, suppose that you want to print a message AND
+exit if there are command line arguments. Here's the syntax: 
+ 
+ 
+ 
+ 
+ test $# -eq 0 || { echo 1>&2 "Error: Command takes no arguments";exit; }
+ 
+ 
+ 
+ 
+ 
+ 
+Notice that braces are used to make both the echo command and 
+ the exit command into a single command that is the second clause
+ of the or statement. Without the braces, the exit command would
+ be done regardless of the condition. Notice that the braces must be separated
+ from the commands by a space. That non-obvious shellscriptism is truly
+ugly, and very hard to troubleshoot when neglected. For all these reasons,
+short circuit logic is best employed only when there's a single statement
+to be executed on satisfaction. Otherwise, it's best to use the standard
+if elif else, or possibly the case statements. 
+ 
+Bracket notation is often used on the condition in short circuit logic.
+ Always remember that the brackets are shorthand for the test executable,
+ and therefore must be separated from the text by space. I recommend that
+ on new code you write, you simply use the test executable. 
+ 
+ User Input
+ What language is complete without user input? The simplest way to get 
+input from the user is the read statement, as follows: 
+ 
+ 
+ 
+ 
+ echo -n "Please type your name==>"
+read namevar
+echo "Your name is $namevar!"
+ 
+ 
+ 
+ 
+ 
+This has no input validation. Validation can be had by placing the preceding 
+ in a loop that exits on valid input, and re-enquires on bad input. Also, 
+the preceding snippet can be a security hazzard. The most obvious case is 
+if the user is allowed to type in a command (typically in a CGI shellscript).
+ 
+ 
+To restrict the user to a set of choices, use the select keyword, 
+ which constructs a sort of poor man's menu. The following is an incredibly 
+ simple example which gives the user three choices -- a directory listing 
+of *.sh, a directory listing of *.c, or terminate the select statement by 
+executing a break statement: 
+ 
+ 
+ 
+ 
+ select choice in "ls *.sh" "ls *.c" "break";do
+ test "$choice" = "" || $choice;
+done
+echo "Dropped through loop" 
+ 
+ 
+ 
+ 
+ 
+ 
+The test for a blank $choice variable prevents execution of an invalid
+ user choice. Invalid choices assign a NULL to the select variable ($choice
+ in this case). 
+ 
+The preceding throws up a menu that looks like this: 
+ 
+ 
+ 
+ 
+ [slitt@mydesk slitt]$ ./jj
+1) ls *.sh
+2) ls *.c
+3) break
+#?
+ 
+ 
+ 
+ 
+ 
+ 
+Each number corresponds in to a list element after the in keyword. 
+ Note that the $choice variable is filled by the string corresponding 
+ to the choice, not the number the user typed. Note also that if the user 
+types anything not corresponding to one of the choices, the $choice
+ variable is NULL. 
+ 
+Most real world menus with error messages and the like include a case
+ statement inside the select construct. This is also vital if the
+ choices are not commands. 
+ 
+ Looping
+ Looping is the basis of computer power. Computers gain their power through
+ quickly and repeatedly performing small tasks. Shellscripts yield many,
+many methods of looping. Only a small subset are discussed here, but the
+simple methods discussed here should be sufficient for 90% of your shellscript
+needs. 
+ Looping Through Lists
+ Lists (and here I mean lists of strings, not lists of commands as per 
+the bash man page), can be constructed through filename wildcards, or explicitly
+ with space delimited characters or words: 
+ 
+ 
+ 
+ 
+ for i in *.sh; do
+ echo "Shellscript $i"
+done 
+ 
+ 
+ 
+ 
+ 
+The preceding code lists all files in the current directory ending in 
+.sh, and assigns variable i to each one sequentially. Have you ever wondered
+ how to do a wildcard rename in UNIX? You do it with a script like the preceding.
+ Of course the script would have a mv statement instead of an 
+ echo. 
+ 
+This gets really handy when you need a multiple file "rename" command.
+ UNIX has no "rename" command, because any "rename" command at best guess
+ what you meant. The following is a one liner to rename files starting with
+ a yymmdd date format in the 90's, and prepending 19 onto the front to make
+ them accurate yyyymmdd: 
+ 
+ 
+ 
+ 
+ $ for i in 9*.html; do mv $i 19$i; done
+ 
+ 
+ 
+ 
+ 
+ 
+Lists needn't be just filenames. Any space delimited sequence of strings
+ will do. The following makes a list of all the vowels, and echos them:
+ 
+ 
+ 
+ 
+ for i in a e i o u; do
+ echo "Vowel $i"
+done
+ 
+ 
+ 
+ 
+ 
+ 
+Whole words can be used as a list and looped through, as shown in the 
+presidential lister that follows: 
+ 
+ 
+ 
+ 
+ for i in Reagan Bush Clinton; do
+ echo "President $i"
+done
+ 
+ 
+ 
+ 
+ 
+ 
+Any space delimited string can be used as a list. Not only that, the list
+can be modified by changing the space delimited string. The following code
+snippet places Carter, Reagan, Bush and Clinton in a list of presidents,
+ and then belatedly adds Ford to the front of the list. Then a for statement
+ loops through the presidents: 
+ 
+ 
+ 
+ 
+ presidents="Carter Reagan Bush Clinton"
+presidents="Ford $presidents"
+for i in $presidents; do
+ echo "President $i"
+done
+ 
+ 
+ 
+ 
+ 
+ 
+The following is a recursive directory lister that loops through all the
+file objects in a directory, and calls other invocations of itself for subdirectories.
+The result is a list of all regular files in a tree: 
+ 
+ 
+ 
+ 
+ directory=$1
+for filename in $directory/*; do
+ if test -d $filename; then ### -d in test command returns 0 on directory file objects
+ ./showfiles.sh $filename ###Recurse into another showfiles.sh
+ elif test -f $filename; then ### -f in test command returns 0 on regular files
+ echo $filename
+ fi
+done
+ 
+ 
+ 
+ 
+ 
+ 
+Life's not always that simple. Sometimes there's no list to conveniently
+ loop through. In such a case you use a while loop. The following
+ while loop prints numbers from 1 to 4: 
+ 
+ 
+ 
+ 
+ let repeats=4
+let iteration=1
+while test $iteration -le $repeats; do
+ echo "Iteration number $iteration"
+ let iteration+=1
+done 
+ 
+ 
+ 
+ 
+ 
+ 
+Note that once again, the while loop operates on a commmand,
+ not a condition. Therefore you must use the test executable to
+convert the condition into a return value. 
+ 
+Generally speaking, you use the let keyword when you want to 
+make the variable a number rather than a string, and/or when you want to do
+arithmetic on the number. 
+ 
+There's also an until keyword that's identical to while
+ except that it reverses the sense of the condition. In other words, it
+ repeats UNTIL the command being tested returns 0. The following produces
+output identical to the preceding code snippet, but it uses until
+ instead of while: 
+ 
+ 
+ 
+ 
+ let repeats=4
+let iteration=1
+until test $iteration -gt $repeats; do
+ echo "Iteration number $iteration"
+ let iteration+=1
+done
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ WARNING! 
+ Shellscript loops do not yield good performance 
+ when looping numerous times. This is because each iteration requires a call
+ to the test executable to test the condition. Additionally, many other
+actions must spawn programs, including echo. Replace tight loops with C,
+Perl or Python, and watch your performance skyrocket, possibly 100 fold or
+more. Use shellscripts as the glue, and do the heavy lifting with languages
+designed to do the work from within a single session.
+ 
+ 
+ 
+ 
+ 
+ 
+ Subroutines
+ The industry learned in the 1960's and early 1970's that you can't write
+ very complex or readable programs without using subroutines. Shellscripts
+ include facilities for subroutines (functions). There are all sorts of
+syntax variations, but the syntax used here is one easily readable and likely
+to succeed in a variety of situations. The following example illustrates
+most of the principles of subroutines by creating and printing Fibonacci
+numbers. The Fibonacci numbers are a series whose each number is the sum
+of the previous two. In other words, 1,1,2,3,5,8,13, etc. Function fibonacci
+creates and prints the next Fibonacci number, assuming its two arguments
+are the previous two Fibonacci numbers: 
+ 
+ 
+ 
+ 
+ function fibonacci()
+ {
+ local newnumber
+ let newnumber=$1+$2
+ echo $newnumber
+ return $newnumber
+ }
+let maximum=100
+let n1=0
+let n2=1
+while test $n2 -le $maximum; do
+ fibonacci $n1 $n2
+ let temp=$?
+ let n1=$n2
+ let n2=$temp
+done 
+ 
+ 
+ 
+ 
+ 
+In the preceding example, notice that the function is declared with the 
+word function, the name, and a set of *empty* parentheses. Unlike C and the 
+new Perl syntax, subroutine arguments are accessed as $1, $2... and the number 
+of arguments as $#. The statements of the function are between braces. Because 
+braces in shellscripts are space dependent, I believe the best syntax is to
+have each brace on its own line. Other syntaxes work -- you can experiment. 
+ Notice the keyword local. That declares variable newnumber
+ as local to function fibonacci in scope. Otherwise it would
+be a global variable, even though it's declared inside the function. Global 
+variables are the kiss of death for modularity. 
+ 
+Notice that the function uses its return statement to return
+ a value. If you do not have a return statement, the return value is the
+return value of the last executable statement executed in the function. That
+being somewhat arbitrary, it's a good idea to explicitly specify a return
+value in any function whose return value is important. 
+ 
+Unlike C, Perl and the like, the return value cannot immediately be assigned 
+to a variable. In other words, the following is a no-no: 
+ 
+temp=fibonacci $n1 $n2
+ Instead the function must be run without assignment, and then the return
+ value deduced on the next line from the $? special parameter.
+You can see how that's done in the main routine of the code snippet above.
+The inability to directly assign function returns is unfortunate, because
+if there were a way to make a direct assignment, the call to the subroutine 
+could have been moved to the while loop test, and the entire routine 
+would have been much simpler and more readable. If you run across a way to 
+execute, test and assign a subroutine from within the test of a while
+ loop, please let me know. 
+ File I/O
+ The simplest method of file output is the echo statement: 
+ 
+echo $mystring > myfile.txt
+ You should use that syntax for programs with trivial file output. Unfortunately,
+ that syntax requires the opening and closing of the file for each write
+-- mucho inefficient if file output is the bottleneck of the process. 
+ 
+You can get better performance out of the echo statement by collecting
+large amounts of text in the variable (including newline characters), and
+then writing the huge text collection to the bottom of the file. Unfortunately,
+ that takes lots of memory, probably coming off the stack. 
+ 
+Of course, you can simply echo to stdout (echo statement without redirection),
+ and then have the calling process redirect your script's stdout to a file.
+ That's a great alternative if practical. But sometimes you just have to
+byte the bullet and have your script write directly to a file. Here's what
+you do: 
+ 
+ 
+ 
+ 
+ exec 44>test.txt
+let index=0
+while test $index -lt 10; do
+ echo "This is line $index" >&44
+ let index+=1
+done
+exec 44>-
+ 
+ 
+ 
+ 
+ 
+ 
+The first exec statement opens a file on file descriptor 44. The echo
+ statement in the loop writes to that continously open file descriptor. The 
+ exec at the end closes the file descriptor. 
+ 
+The problem is that often you need to use a variable for the file descriptor 
+ number, and doing so totally messes up the preceding syntax (trust me on 
+this, I tried everything). So to use variables instead of hard coded numbers 
+and strings, you use the eval command as follows: 
+ 
+ 
+ 
+ 
+ filename=test.txt
+let filedescriptor=44
+let maxindex=10
+eval "exec $filedescriptor>$filename"
+let index=0
+while test $index -lt $maxindex; do
+ echo "This is line $index" >&$filedescriptor
+ let index+=1
+done
+eval "exec $filedescriptor>-"
+ 
+ 
+ 
+ 
+ 
+ 
+Even this does not yield good performance, because every call to echo
+ and every call to test must spawn a program, a very slow task. As a result,
+ the same algorithm in C is over 100 times faster. 
+ 
+ Regular Expressions
+ Regular expressions are not available in shellscripts (at least in sh/bash
+ type shellscripts). However, shellscripts can call programs like awk,
+ sed, ex and egrep to do regular expressions for them. That's
+ probably your best bet. 
+Shellscripts have filename type wildcards * and ?, which expand the same 
+as in filenames. It is possible to use those as a "poor man's regular expression". 
+ 
+ 
+ String Manipulation
+ Be forewarned -- string manipulation in shellscripts is often awkward.
+ Many people choose to do their string manipulation with tools like awk
+ , sed, ex, grep/egrep and the like,
+ retrieving the processed string with the $(command) construct. In addition,
+ shellscript string processing uses file-expansion like wildcards (*, ?)
+rather than the more powerful regular expressions available with awk,
+sed, ex, grep, the cut command etc. But if you're willing
+to put up with some ugly constructs, shellscripts do have quite a bit of
+string processing power. 
+The following shows a code snippit to indent relative to arg1. The second 
+ statement creates the longest possible indent. The third line prints a substring 
+of $indents*2 spaces, without printing a newline (the -n suppresses the newline). 
+ 
+ 
+ 
+ 
+ indents=$1
+indentstring=" "
+echo -n "${indentstring:0:$indents*2}"
+echo "Hello" 
+ 
+ 
+ 
+ 
+ 
+ 
+The syntax ${stringvar:offset:length} is a "substring" type function that
+works very well. To prepend a string to a string variable, simply put both
+inside a single set of doublequotes as follows: 
+ 
+ 
+ 
+ 
+ mystring=xyz
+newstring="abc$mystring"
+###Following line prints "abcxyz"###
+echo "$newstring"
+ 
+ 
+ 
+ 
+ 
+ 
+However, if you append literal "abc" to the variable, the shell will interpret
+it as a variable called $mystringabc, clearly not what you want.
+So you place braces around the variable name (but not the dollar sign),
+to isolate the variable name: 
+ 
+ 
+ 
+ 
+ mystring=xyz
+newstring="${mystring}abc"
+###Following line prints "xyzabc"###
+echo "$newstring"
+ 
+ 
+ 
+ 
+ 
+ 
+You can get the length of a string variable with the ${#parameter} syntax: 
+ 
+ 
+ 
+ 
+ 
+ mystring="1234"
+let stringlength=${#mystring}
+echo "String is $mystring, whose length is $stringlength"
+ 
+ 
+ 
+ 
+ 
+ 
+A string variable can be subjected to search and replace with the following 
+ syntax: 
+ 
+ 
+ 
+ 
+ mystring="I say replace me before it's too late to replace me!"
+mystring=${mystring//replace me/replaced}
+echo $mystring
+ 
+ 
+ 
+ 
+ 
+ 
+A couple facts about the preceding syntax. The ${parameter//pattern/replacement}
+ syntax does not, in and of itself, change the parameter string. The reason
+ $mystring changed is because I assigned the value of ${mystring//replace 
+ me/replaced} back to $mystring. It could have just as easily 
+ been assigned to something else, leaving $mystring untouched. Also, 
+ note that the preceding syntax replaces all instances of the pattern text. 
+ To replace just the first instance, use a single slash instead of the double 
+ slash. 
+ 
+Sometimes you need to walk through a string finding occurrences of a word.
+Check out this script, which uses the word "delimit" to delimit parts of
+the string: 
+ 
+ 
+ 
+ 
+ mystring="ReagandelimitBush SeniordelimitClinton"
+name="primingvalue"
+while test ${#name} -gt 0; do
+ xstring=${mystring#*delimit} # Take shortest *delimit off front of $mystring
+ name=${mystring%$xstring} # Take shortest $xstring off back of $mystring
+ name=${name%delimit} # Take shortest delimit off back of $name
+ if test ${#name} -gt 0; then
+ echo $name
+ else
+ echo $mystring
+ fi
+ mystring=$xstring
+done
+ 
+ 
+ 
+ 
+ 
+ 
+If this script is called walkthrough.sh, here is the result: 
+ 
+ 
+ 
+ 
+ [slitt@mydesk slitt]$ ./walkthrough.sh
+Reagan
+Bush Senior
+Clinton
+[slitt@mydesk slitt]$
+ 
+ 
+ 
+ 
+ 
+ 
+Here's a statement by statement description: 
+ 
+ mystring="ReagandelimitBush SeniordelimitClinton"
+ This initializes the string to be walked through, to include the last 
+three presidents (as of 9/12/2000). Just for fun we put a space in George 
+Bush Sr.'s name. 
+ name="primingvalue"
+ Because the loop will test for a zero length $name variable, 
+it must be initialized to a string in order to assure the first pass through
+ the loop. 
+ while test ${#name} -gt 0; do
+ Continue looping until the $name variable is zero length. 
+ 
+ xstring=${mystring#*delimit}
+ This construct returns a string consisting of $mystring minus
+ the front of the string through the first occurrance of the string "delimit".
+ It subtracts the first name and the "delimit" behind it. 
+"*delimit" means any string followed by string "delimit". The fact that 
+ there is only a single pound sign (hash mark) means expand the search text 
+ to the shortest such possible string. If there had been two pound signs
+it would have expanded the search text to include everything up to the final 
+ "delimit" string, which is not what we want. The pound sign operator used 
+ in this way returns a substring, to variable $xstring, of the contents 
+ of $mystring *after* the end of the first "delimit" string. In other
+ words, on the first loop through, it removes "Reagandelimit" and returns 
+the rest. Because we will later be assigning $xstring to $mystring
+ , we will iteratively walk through the string. 
+ 
+Notice that this basically returns *everything but* what we really want, 
+ which is the name at the front of the string. The next few statements take 
+ care of that. 
+ 
+ name=${mystring%$xstring}
+ This returns $mystring up to the beginning of the first occurrance
+ of $xstring. In other words, it returns the name we want with
+string "delimit" appended on. This is because the percent sign returns the
+parameter ($mystring) up to the final occurrance of the pattern
+($xstring ). 
+So after the execution of this statement, $name contains the 
+name we want with a trailing "delimit" string, which must be gotten rid of.
+Note, however, that if no more "delimit" strings exist, this construct returns
+an empty string (or NULL, or whatever) to the $name variable. That
+is how the loop is exited. 
+ 
+ name=${name%delimit}
+ Same syntax, this simply deletes the trailing "delimit" string from the
+ name to yield exactly what we want. Once again, the last time through the
+ loop there is no trailing "delimit", so $name is zero length. 
+ 
+ if test ${#name} -gt 0; then
+ echo $name
+ else
+ echo $mystring
+ fi
+ The entire preceding construct is due to the fact that there's no trailing
+ "delimit" string, so the last time through the desired name is in $mystring
+ , not in $name (which is empty and will subsquently cause exit
+ from the loop). 
+ mystring=$xstring
+ This is the loop's method of iteration. It assigns the new, shortened 
+string to $mystring, thus enabling the next iteration to operate 
+on a different name. 
+ done
+ This indicates the end of the loop. 
+The preceding example is pretty ugly, and one excellent example why Perl 
+and Python (and C and Java) are often chosen over shellscripts. Nevertheless,
+ it goes to show that if you're willing to get down and dirty, shellscripts
+ often have the power you need. 
+ 
+The next sample is the walkthrough.sh shellscript rewritten. It directly
+ grabs the first name on the list using %% to delete all before the first
+ delimit, thus eliminating the extra step to remove delimit from the end
+of the name. It also detects the last record directly by comparing the length
+ of $mystring to its length on the previous iteration, thereby removing the
+ need for the if statement. 
+ 
+ 
+ 
+ 
+ mystring="ReagandelimitBush SeniordelimitClinton"
+name="primingvalue"
+let lastlength=99999 # Longer than any anticipated $mystring
+while test ${#mystring} -lt $lastlength; do
+ let lastlength=${#mystring} # Prepare break logic
+ name=${mystring%%delimit*} # Get everything before first delimit
+ echo $name # Output this name
+ mystring=${mystring#*delimit} # Take shortest *delimit off front of $mystring
+done
+ 
+ 
+ 
+ 
+ 
+ 
+ Quasi Object Programming
+ There's no object orientation in shellscripts. But you can do a remarkable
+ job of OOP-like encapsulation, and maybe even inheritance, by making a
+new script for each "class". Run the script, with args telling it what behavior 
+ to exhibit. Each script can give the capability of storing information in 
+ files. The filename can be returned to the caller so that multiple "objects"
+ can be made from each "class" script. To subclass a script, write another
+ script that gives it additional capabilities. Not perfect, but... 
+ 
+ 
+ [ Troubleshooters.com
+ | Code Corner
+ | Email Steve Litt ] 
+ 
+ Copyright (C)2000-2002
+ by Steve Litt -- 
+ Legal 
+ 
+ 
+ 

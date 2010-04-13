@@ -1,0 +1,208 @@
+
+GNE::CustomPacket class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::CustomPacket Class Reference
+Many times, espically during connection, you want to send some more "free-form" data that may or may not all be related and will only be sent once. 
+More...
+#include 
+Inheritance diagram for GNE::CustomPacket::
+List of all members.
+Public Methods
+ 
+ CustomPacket () 
+virtual ~CustomPacket () 
+RawPacket & getData () 
+ Returns the RawPacket for reading or writing. More...
+ 
+void reset () 
+ This method resets the underlying data, and prepares it for write access. More...
+ 
+virtual Packet * makeClone () const 
+ Returns a newly allocated exact copy of this packet. More...
+ 
+virtual int getSize () const 
+virtual void writePacket (RawPacket &raw) const 
+ Writes the packet to the given RawPacket. More...
+ 
+virtual void readPacket (RawPacket &raw) 
+ Reads this packet from the given RawPacket. More...
+ 
+Static Public Methods
+ 
+int getMaxUserDataSize () 
+ Returns the maximum possible size of the user's data in this packet. More...
+ 
+Packet * create () 
+ Returns a new instance of this class.
+ 
+Static Public Attributes
+ 
+const int ID = 1 
+ The ID for this type of packet.
+ 
+Detailed Description
+Many times, espically during connection, you want to send some more "free-form" data that may or may not all be related and will only be sent once.
+It may not make sense to create a completely new packet type just to send a few things one time. This packet type will allow you to send whatever you want. Basically, CustomPacket is just a packet that contains a RawPacket. You can use the RawPacket to put in data and pull it out. Remember RawPacket does endian and processor-type conversions for you.
+ See the documentation for Packet for more info on some of these functions. 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ RawPacket & GNE::CustomPacket::getData 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the RawPacket for reading or writing.
+If a RawPacket already exists through a call to getData or by a readPacket call, this method will create a new RawPacket ready for writing.
+ This RawPacket will last until this object is destroyed or readPacket is called. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::CustomPacket::getMaxUserDataSize 
+ ( 
+ 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the maximum possible size of the user's data in this packet.
+Use this value rather than RawPacket::RAW_PACKET_LEN. The value returned is the maximum size the hosted RawPacket can be. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::CustomPacket::getSize 
+ ( 
+ 
+ ) 
+ const [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+See also: 
+Packet::getSize() 
+Reimplemented from GNE::Packet. 
+ 
+ 
+ 
+ 
+ 
+ Packet * GNE::CustomPacket::makeClone 
+ ( 
+ 
+ ) 
+ const [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns a newly allocated exact copy of this packet.
+Due to the nature of RawPacket not knowing its size on reading (this should be inferred by the packet types in it), this only copies the data up to the current position. So makeClone works perfectly on packets that are being used for writing, but only clones the data read so far on packets that are being used for reading.
+ Since makeClone is used by GNE when sending packets, the RawPackets were just used for writing this function works acceptably. 
+Reimplemented from GNE::Packet. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::CustomPacket::readPacket 
+ ( 
+ RawPacket & 
+ raw 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Reads this packet from the given RawPacket.
+The data in this packet will be destroyed and replaced by the new data. 
+Reimplemented from GNE::Packet. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::CustomPacket::reset 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This method resets the underlying data, and prepares it for write access.
+Essentially, this method "recreates" the CustomPacket instance. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::CustomPacket::writePacket 
+ ( 
+ RawPacket & 
+ raw 
+ ) 
+ const [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Writes the packet to the given RawPacket.
+The RawPacket data should only have been used for writing since its creation or its last reset, since the length of the RawPacket is needed, and this is only known to RawPackets used for writing only. 
+Reimplemented from GNE::Packet. 
+ 
+The documentation for this class was generated from the following files:
+- CustomPacket.h
+- CustomPacket.cpp
+Generated on Fri Mar 8 03:03:22 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

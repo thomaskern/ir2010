@@ -1,0 +1,215 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Create forms that miminize or close to the system tray
+Answer
+Programs don't actually minimize to the system tray. They simply hide their normal
+taskbar icon and add an icon to the system tray. You insert an icon in the system
+tray by calling the Shell_NotifyIcon API function, or by using any one of
+the third party tray controls that are out there. You can hide your program's taskbar
+icon by calling the ShowWindow API function.
+If you want your program to minimize to the system tray, create an OnMinimize
+event for the global TApplication object that hides the mainform of the
+program and hides that program's taskbar icon if it hasn't already been hidden.
+If you want your program to close to the system tray, then move the code into an
+OnClose handler.
+The code example shown below demonstrates a system tray program that closes to the system tray. The program normally
+remains hidden until the user double clicks the tray icon. At that point, the main form appears. You may prefer to have
+a tray program that minimizes to the tray instead of closing to the system tray. The downloads section at the bottom
+of this FAQ contains a project that shows how to make the program minimize to the tray instead of closing to
+the tray.
+Note: In the project example below, the mainform of the program contains a button and a popup menu. The
+popup menu has a single item called unload. The push button and the unload item share the same OnClick
+handler.
+//-------------------------------------------------------
+// MAINFORM.H
+//-------------------------------------------------------
+#ifndef mainformH
+#define mainformH
+//-------------------------------------------------------
+#include 
+#include 
+#include 
+#include 
+#include 
+//-------------------------------------------------------
+#define WM_TRAYNOTIFY (WM_USER + 1001)
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+ TPopupMenu *PopupMenu1;
+ TMenuItem *Unload1;
+ TButton *UnloadBtn;
+ void __fastcall UnloadBtnClick(TObject *Sender);
+ void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+private:	// User declarations
+ Graphics::TIcon *TrayIcon;
+ void __fastcall WMTrayNotify(TMessage &Msg);
+ void __fastcall RemoveIcon();
+ void __fastcall AddIcon();
+public:	// User declarations
+ __fastcall TForm1(TComponent* Owner);
+ __fastcall ~TForm1();
+BEGIN_MESSAGE_MAP
+ MESSAGE_HANDLER(WM_TRAYNOTIFY,TMessage,WMTrayNotify)
+END_MESSAGE_MAP(TForm)
+};
+//-------------------------------------------------------
+extern PACKAGE TForm1 *Form1;
+//-------------------------------------------------------
+#endif
+//-------------------------------------------------------
+// MAINFORM.CPP
+//-------------------------------------------------------
+#include 
+#pragma hdrstop
+// The first constant is the ID of the trayicon. The value
+// is arbitrary. If your program displays more than one tray
+// icon at a time, choose a unique ID for each icon.
+// The char * constant is the hint text for the tray icon.
+// The last constant is a user defined message that the tray
+// will send to our window handle for tray mouse events.
+const int IDC_TRAY1 = 1005;
+const char *HINT_MESSAGE = "Tray Hint Message";
+#include 
+#include "mainform.h"
+//-------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//-------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ // Load the icon from the EXE's resources
+ TrayIcon = new Graphics::TIcon;
+ TrayIcon->Handle=LoadImage(HInstance,
+ "LITTLEICON",
+ IMAGE_ICON,
+ 0,0,
+ 0);
+ // Add the icon to the taskbar
+ AddIcon();
+}
+//-------------------------------------------------------
+__fastcall TForm1::~TForm1()
+{
+ // Remove the icon from the tray, and delete
+ // the TIcon pointer that we initially created.
+ RemoveIcon();
+ delete TrayIcon;
+}
+//-------------------------------------------------------
+void __fastcall TForm1::WMTrayNotify(TMessage &Msg)
+{
+ // The LPARAM of the message identifies the type of mouse message.
+ // When they right click, show the popup menu. When they double
+ // click with the left mouse, show the form.
+ switch(Msg.LParam)
+ {
+ case WM_RBUTTONUP:
+ // Find the mouse cursor and popup the popupmenu at that
+ // location. The SetForegroundWindow and PostMessage calls
+ // fix an OS bug that prevents the menu from closing when
+ // the user clicks outside the menu. KB article Q135788
+ POINT WinPoint;
+ GetCursorPos(&WinPoint);
+ SetForegroundWindow(Handle);
+ PopupMenu1->Popup(WinPoint.x,WinPoint.y);
+ PostMessage(Handle, WM_NULL, 0,0);
+ break;
+ case WM_LBUTTONDBLCLK:
+ Visible = true;
+ ShowWindow(Application->Handle, SW_SHOW);
+ break;
+ }
+}
+//-------------------------------------------------------
+void __fastcall TForm1::UnloadBtnClick(TObject *Sender)
+{
+ // Terminate the app when they choose the upload option
+ Application->Terminate();
+}
+//-------------------------------------------------------
+void __fastcall TForm1::AddIcon()
+{
+ // Use the Shell_NotifyIcon API function to
+ // add the icon to the tray.
+ NOTIFYICONDATA IconData;
+ IconData.cbSize = sizeof(NOTIFYICONDATA);
+ IconData.uID = IDC_TRAY1;
+ IconData.hWnd = Handle;
+ IconData.uFlags = NIF_MESSAGE|NIF_ICON|NIF_TIP;
+ IconData.uCallbackMessage = WM_TRAYNOTIFY;
+ lstrcpy(IconData.szTip, HINT_MESSAGE);
+ IconData.hIcon = TrayIcon->Handle;
+ Shell_NotifyIcon(NIM_ADD,&IconData);
+}
+//-------------------------------------------------------
+void __fastcall TForm1::RemoveIcon()
+{
+ NOTIFYICONDATA IconData;
+ IconData.cbSize = sizeof(NOTIFYICONDATA);
+ IconData.uID = IDC_TRAY1;
+ IconData.hWnd = Handle;
+ IconData.hIcon = TrayIcon->Handle;
+ Shell_NotifyIcon(NIM_DELETE,&IconData);
+}
+//-------------------------------------------------------
+void __fastcall TForm1::FormClose(TObject *Sender, TCloseAction &Action)
+{
+ // This application closes to the system tray. When they push
+ // close, hide the app, but don't let the program close.
+ if(!Application->Terminated)
+ {
+ ShowWindow(Application->Handle, SW_HIDE);
+ Visible = false;
+ Action = caNone;
+ }
+}
+//-------------------------------------------------------
+//-------------------------------------------------------
+// TRAY.CPP Project Source
+//-------------------------------------------------------
+#include 
+#pragma hdrstop
+USERES("tray.res");
+USEFORM("mainform.cpp", Form1);
+// TrayIcons.res contains the icon resource for the tray.
+USERES("TRAYICONS.res");
+//-------------------------------------------------------
+WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
+{
+ try
+ {
+ Application->Initialize();
+ Application->CreateForm(__classid(TForm1), &Form1);
+ // don't show the app's taskbar icon or the main form
+ ShowWindow(Application->Handle,SW_HIDE);
+ Application->ShowMainForm = false;
+ Application->Run();
+ }
+ catch (Exception &exception)
+ {
+ Application->ShowException(&exception);
+ }
+ return 0;
+}
+ Downloads for this FAQ 
+ tray1src.zip Systray project that closes to the system tray. Source code only. 
+ tray1exe.zip Systray project that closes to the system tray. Includes EXE. 
+ tray2src.zip Systray project that minimizes to the system tray. Source code only. 
+ tray2exe.zip Systray project that minimizes to the system tray. Includes EXE. 
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

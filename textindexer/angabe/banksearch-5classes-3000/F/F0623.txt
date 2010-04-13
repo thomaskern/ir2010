@@ -1,0 +1,54 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Tip 12: Check DLL version errors.
+Debugging and defensive programming techniques can be used even in postimplementation. We always protect our applications against bad dynamic links (with DLLs and with ActiveX components such as OCXs) by using another internal tool. For a great example of why you should do this, see Chapter 8, Steve Overall’s chapter about the Year 2000.
+One of the really great things about Windows is that the dynamic linking mechanism, which links one module into another at run time, is not defined as part of some vendor’s object file format but is instead part of the operating system itself. This means, for example, that it’s really easy to do mixed language programming (whereas with static linking it’s really hard because you’re at the mercy of some vendor’s linker—you just have to hope that it will understand). Unfortunately, this same mechanism can also get you into trouble because it’s not until run time that you can resolve a link. Who knows what you’ll end up linking to in the end—perhaps to an old and buggy version of some OCX. Oops!
+By the way, don’t use a GUID (explained below) to determine the version of any component. The GUID will almost always stay the same unless the object’s interface has changed; it doesn’t change for a bug fix or an upgrade. On the other hand, the object’s version number should change whenever the binary image changes; that is, it should change whenever you build something (such as a bug fix or an interface change) that differs in any way from some previous version. The version number, not the GUID, tells you whether you’re using the latest incarnation of an object or application.
+Because it affects your application externally, this kind of versioning problem can be extremely hard to diagnose from afar (or for that matter, from anear).
+So how do you check DLL version numbers? There are two ways of doing this since the underlying VERSIONINFO resource (which contains the version information) usually contains the information twice. A VERSIONINFO resource contains the version number both as a string and as a binary value. The latter is the most accurate, although the former is the one shown to you by applications like Microsoft Windows Explorer.
+ Here’s an example. On my machine, OLEAUT32.DLL has a version number reported by Windows Explorer of 2.30.4261, whereas Microsoft System Information (MSINFO32.EXE version 2.51) shows the same file having a version number of 2.30.4261.1. Is Windows Explorer missing a .1 for some reason? Let’s experiment further to find out. Here’s another one—OPENGL32.DLL. (You can follow along if you have the file on your hard disk.) Windows Explorer reports this DLL as being version 4.00, yet Microsoft System Information says it’s version 4.0.1379.1. Which is right? They both are, sort of. One version number is the string (4.00); the other is the binary (4.0.1379.1). As I mentioned earlier, the binary version number is more accurate, which is why it’s used by the Windows’ versioning API, Microsoft System Information, and of course all good installation program generators like InstallShield. 
+Globally Unique Identifiers (GUIDs)
+A GUID (Globally Unique Identifier) is a 128-bit integer that can be used by COM (Component Object Model) to identify ActiveX components. Each GUID is guaranteed to be unique in the world. GUIDs are actually UUIDs (Universally Unique Identifiers) as defined by the Open Software Foundation’s Distributed Computing Environment. GUIDs are used in Visual Basic mainly to identify the components you use in your projects (referenced under the References and Components items of the Project menu) and to help ensure that COM components do not accidentally connect to the "wrong" component, interface, or method even in networks with millions of component objects. The GUID is the actual name of a component, not the string you and I use to name it, or its filename. For example, a component we’ve probably all used before is F9043C88-F6F2-101A-A3C9-08002B2F49FB. You and I most likely refer to this component as the "Microsoft Common Dialog Control," or more simply, COMDLG32.OCX. (I have two of these on my machine, both with the same GUID. Their versions are different, however. One is 5.00.3112, and the other is 6.00.8169. Which do you link with?)
+To determine a component’s GUID, look in your project’s VBP file. You’ll see something like this if you use the Common Dialog control:
+Object={F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0; COMDLG32.OCX
+Visual Basic creates GUIDs for you automatically (for every ActiveX control you build). If you want to create them externally to Visual Basic, you can use either GUIDGEN.EXE or UUIDGEN.EXE, Microsoft utilities that come with the Visual C++ compiler, the ActiveX SDK, and on the Visual Basic 6 CD. You’ll also find a Visual Basic program to generate GUIDs (in Chapter 7, my chapter on type libraries).
+To see some sample code that determines a file’s real version number, refer to the VB98\WIZARDS\PDWIZARD\SETUP1 source code. Everything you need is in there and ready for you to borrow!
+By the way, when you compile your project, Visual Basic sets the string and binary version numbers to the number you enter on the Make tab of the Project Properties dialog box. For example, if you set your version number to, say, 1.2.3 in the Project Properties dialog box and build the EXE (or whatever) and then examine its version number using Windows Explorer and Microsoft System Information, you’ll find that Windows Explorer reports the version number as 1.02.0003 while Microsoft System Information reports it as 1.2.0.3.
+Backward Compatibility
+Once you’ve got your version-checking code in place should you assume backward compatibility?
+I’d say you should normally assume that 1.2.3 is simply a "better" 1.2.2 and so forth, although again I urge you to see Chapter 8 to find out what Steve has to say about OLEAUT32.DLL and to see a DLL that changed its functionality, not just its version number.
+Normally a version number increment shows that the disk image has been altered, maybe with a bug fix. Bottom line: whenever the binary image changes, the version number should change also. An interface GUID change means that some interface has changed. Bottom line: whenever the interface changes, the GUID (and of course the version number) must change. If you don’t have an interface, you’re probably working with a DLL; in addition to being a binary file, this DLL has both entry points and behavior. Bottom line: if the behavior of a DLL changes or an entry point in it is modified, you must also change the filename.
+To make the version numbers of your software even more accessible to your consumers, you might want to build an interface into your components, maybe called VERSIONINFO, that returns the version number of the EXE or DLL. All it would take is one Property Get:
+Public Property Get VersionNumber() As String
+ VersionNumber = App.Major & "." & App.Minor & "." & App.Revision
+End Property
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

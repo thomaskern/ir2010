@@ -1,0 +1,310 @@
+
+VB Helper: Bug Proofing Visual Basic: Discussion: "About Face"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Discussion: "About Face" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Naming Conventions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About Face: The Essentials of User Interface Design
+ $29.99, 400 pages, paperback.
+ 
+ 
+ An interesting book that raises many issues for you to think about. Some of the arguments are contradictory, however, so this book may be a little confusing for a beginning designer.
+[Amazon.com - Amazon.co.uk]
+ 
+ 
+12/29/98
+Scott Carpenter started this discussion
+with a question:
+...I'm curious to know if you've read Alan Cooper's "About Face" and what you
+think about it. Your advice both supports and goes against Cooper with respect
+to error handling. I do think he is a little extreme about some of his
+positions, i.e. that we can totally eliminate error messages.
+12/30/98 My response:
+I was a bit annoyed by that book. A lot of what he says is contradictory and I often found his tone annoying (for example, he uses insluting terms like "elephant" to describe some users).
+I particularly HATE his idea that a program should do what it thinks is right and then appologize later if it is wrong. The latest editions of Microsoft Word do this and they are never right. Instead of me explicitly telling it to do something, it just does it and then I have to waste time undoing its damage and then doing it again correctly (cursing to myself all the while ;-). At this point I have turned off almost everything it does automatically.
+I agree it would be nice if the program could fix everything itself, but it has been my experience that this rarely works perfectly. If it is not absolutely perfect, it becomes annoying.
+The systems I have worked on in the past are generally decision support systems or office automation systems. They perform very complex functions like dispatching repair people with complex sets of skills to fix things that require special skills and equipment. These systems work well a large part of the time (80-90 percent). Rather than taking blind guesses about the others and possibly automatically dispatching people to the wrong jobs, they put these exceptional cases in a queue for an expert to review.
+Sorry, I'm rambling. But I think most programs are best thought of as tools that help the user perform a task rather than as things that do the job themselves. Of course, if you really can handle all errors, that's great! I would still have the error handlers present, but the user would never see them.
+1/8/98 
+Wallace Foulkes adds:
+I read his book about a year ago. I agree he is heavy handed and in your
+face a lot. Looking past this he does make some valid points. In my 30+
+years of dealing with software and writing programs, I found many poorly
+designed and caused the user to spend more time dealing with the program at
+the expense of the task at hand.
+I believe everything goes back to the design process. The more time spent
+in this phase usually results in a better product. The design team needs a
+cross section of managers, programmers and end users. Most programmers,
+myself included, want to jump into coding and they invest a lot of time
+finding that their premises were wrong in the end.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Discussion: "About Face" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,710 @@
+
+Binary download with the Internet transfer control
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies -
+ ITC - 
+ HTTP Transfer Component
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Binary download with the Internet transfer 
+ control
+ 
+ 
+ 
+ Using Internet Transfer Control in ASP and VB 
+ 
+ 
+ Written By Mikael Oestberg 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download
+ ITC Binary sample project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+Have you ever wanted to retrieve information 
+ automatically from another web page and display it on your own web page? 
+ There are a couple of ways to do this. One way, which I am going to show 
+ you in this article, is using the Microsoft Internet Transfer Control, 
+ also known as the Inet Control. It is extremely easy to use and if you 
+ want to retrieve textual data only, you do not even need any compiled 
+ component, you could use this directly in your ASP application.
+ 
+ 
+Requirements
+ 
+ 
+You do not need any special software to follow the enclosed examples. 
+ The required software is:
+ 
+ 
+- Windows 9x/2000, any version 
+ 
+- A web server such as PWS(personal web server) or IIS(Internet 
+ information server) 
+ 
+- TCP/IP protocol 
+ 
+- Visual Studio with Visual Basic, version 5 or higher. Version 6 
+ is recommended, since version 5 of Internet transfer control has a 
+ couple of known bugs. 
+ 
+ 
+ 
+What is the Internet transfer control?
+ 
+ 
+When Microsoft released Visual Basic 5 they included 
+ an ActiveX control that made communication with Internet servers in 
+ applications a fairly easy task. The Internet transfer control. It is 
+ actually an OLE interface to an underlying dynamic link library (dll) 
+ named wininet.dll. This dll is a part of the Win32 Application 
+ Programming Interface (API). This makes the Internet transfer control an 
+ interface to a core part of Windows. Before the release of Visual Basic 
+ 5 and the introduction of this ActiveX control, Microsoft platform 
+ developers had to dig in deep in the complex world of TCP/IP, Windows 
+ sockets and C source code. Fortunately Microsoft gave us the Internet 
+ transfer control which made communication with Internet in our 
+ applications really easy. It supports both the http and the ftp 
+ protocol, but in this article we will only talk about http 
+ communication.
+ 
+ 
+Why Internet transfer control?
+ 
+ 
+Why did I choose the Internet Transfer Control to 
+ do this? First of all, it is really easy to use. In the most simple 
+ example there are only two lines of code which actually let you 
+ download the source code of almost any web page. You can also, with 
+ the use of some nice compiled Visual Basic code, retrieve binary data 
+ such as images or other documents that you might find in a web page.
+ 
+ 
+There are some commercial components that do this 
+ as well, but as you know, they are not free and sometimes there is not 
+ even any possibility to register any third part components on the 
+ server, then in that case, this is the solution. 
+ 
+ 
+Possible uses
+ 
+ 
+This sounds excellent, but what can I use this for?
+ 
+ 
+As mentioned, you can retrieve the source code of 
+ almost any web page. This gives you many possibilities right there. 
+ Download the code and then do some string handling and you have 
+ whatever you want. 
+ 
+Another really interesting thing with the Internet 
+ Transfer Control is that you can retrieve binary data, if you use it 
+ in a Visual Basic component. Imagine that you search your downloaded 
+ source code for image tags and store those image links in an array. 
+ Then run a function that downloads all images as well. You have built 
+ an application that is capable of downloading an entire page with 
+ images and other documents with it. 
+ 
+The ultimate application using this technology 
+ would be one that automatically contacts a remote system to check for 
+ updates and then downloads all the new content or what ever updates 
+ there might be. In such a solution it would be excellent to use the 
+ FTP capabilities of the Internet transfer control. Follow the 
+ reference links for more information on programming with the FTP 
+ protocol. 
+ 
+ 
+Proxy
+ 
+ 
+If you are behind a proxy server, you have to set the 
+ proxy property of the Internet transfer control to make it able to 
+ communicate with the Internet. You have to follow two simple steps to 
+ make it use the proxy property. First of all you have to set the 
+ AccessType property to use proxy. 
+ There are three different options on the 
+ AccessType property. The first one, which is also the default 
+ value, icUseDefault(0), does 
+ exactly what it sounds like. It uses the default settings found in the 
+ registry on your computer to access the Internet. The second one, 
+ icDirect(1), means that the control 
+ has direct connection to the Internet. The third and last one, 
+ icNamedProxy, is the one you have to 
+ use if you are using a specific proxy server.
+ 
+ObjInet.AccesType = icNamedProxy
+ 
+If you are using the 
+ AccessType property with the 
+ icNamedProxy value, you indicate that you will provide the 
+ name of the proxy server. Set the proxy property to the name of the 
+ server to use.
+ 
+ObjInet.Proxy = "Proxy1”
+ 
+In this case the name of the proxy server would be 
+ "Proxy1”.
+ 
+ 
+Using the Internet transfer control 
+ in pure ASP
+ 
+ 
+Before we start I suggest you to download the file 
+ package attached to this article and put the files on your web server. 
+ That will give you a great advantage when you read the following 
+ examples. You might have to change some paths in the files, since I 
+ wanted to keep the code as clean as possible, without any 
+ server.mappath() or equivalent. 
+ Everything is designed to be located in a root folder. Well, let us 
+ get started! 
+ 
+The following example let you download the source 
+ code of any valid URL, but in this example you will only be able to 
+ download textual data. The binary download will be described later in 
+ the article. The source code of this example can be found in 
+ example01.asp 
+ 
+The first thing you should do is to create an 
+ instance of the Internet Transfer Control Object. 
+ 
+Set objInet = 
+ Server.CreateObject("InetCtls.Inet") 
+ 
+Let us download the source code of the sample page 
+ that is included in the file package (test.html). The file is stored 
+ locally, but we are getting it through the http protocol from your web 
+ server, so it will work as the real thing. To do this we are using the
+ OpenURL method. This method 
+ takes one parameter, a valid URL of subtype string. It also has an 
+ optional parameter, data type, which sets which datatype we want as 
+ return value. The default value is 0(icString), 
+ which means that we are getting a string as the return value. The 
+ other possible value is 1(icByteArray), 
+ which makes the OpenURL method 
+ return a byte array, which I will describe what to do with later in 
+ the article. Let us take a look at the code that downloads the remote 
+ source code: 
+ 
+strDownloadedCode = 
+ objInet.OpenURL("http://localhost/test.html") 
+ 
+What happens now is that the Internet Transfer 
+ Control is sending a request to your web server and asks for the test 
+ file (test.html). Like your browser it receives the code, but unlike 
+ your browser it does not do anything more with it. The downloaded code 
+ remains in the variable and we can do whatever we want with it. To 
+ display it, we could either use the 
+ Server.HTMLEncode() or as in the example, use a textarea. 
+ The result should look like this: 
+ 
+ 
+ 
+ 
+ 
+Doing this in Visual Basic
+ 
+ 
+To do this in Visual Basic is more or less the same 
+ thing. I have enclosed a Visual Basic project with a single form that 
+ does exactly the same thing as the ASP application described above. To 
+ try this out, just open the project (Vbexample01.vbp) in Visual Basic 
+ and run it. It is made as a standard exe, to make things easier for 
+ you. The only thing you should know is that there is no 
+ CreateObject() as we saw in the 
+ ASP version. The object is drawn in Visual Basic style and is ready to 
+ use. The object appears in your toolbox because I have added the 
+ Microsoft Internet Transfer Control 6.0 control component. To check or 
+ alter the included control components in Visual Basic, go to the 
+ project menu and then choose components. This opens the components 
+ dialog and will display a list with all the possible control 
+ components you can choose to include. Make sure the Microsoft Internet 
+ Transfer Control 6.0 checkbox is checked. This should already have 
+ been done in the projects in the enclosed file package, but if you 
+ encounter any problems, this should be the first thing to check. 
+ 
+I will not describe it more than this, the comments 
+ in the code will describe what is happening. You find the project 
+ files for this example in the file package (VBexample01.vbp). 
+ 
+ 
+The binary download
+ 
+ 
+To complete the task of downloading an entire web 
+ page, we have to be able to download images and other documents, 
+ binary data. I prefer to do this in Visual Basic, since it is very 
+ easy to use all the powerful built-in functionality in Visual Basic. 
+ To do this we need a byte array and an integer for storing the 
+ FreeFile() number. 
+ 
+ 
+ 
+ 
+Dim byteData() As Byte 
+Dim intFile As Integer 
+ 
+ 
+ 
+ 
+Choose a valid url. In this example we are using the image included 
+ in the file package, 
+ 
+ 
+ 
+ 
+strUrl = "http://localhost/Image01.jpg” 
+ 
+ 
+ 
+ 
+Using the FreeFile() 
+ function gives us the first available file. 
+ 
+ 
+ 
+ 
+intFile = FreeFile() 
+ 
+ 
+ 
+ 
+We are still using the 
+ OpenURL method, but since we are using the constant 
+ icByteArray it will return a byte 
+ array. This ensures that no binary information is lost, which is 
+ particularly important when we are dealing with binary files, such as 
+ images or other documents. The binary data is streamed into the byte 
+ array. 
+ 
+ 
+ 
+ 
+byteData() = ObjInet.OpenURL(strUrl, icByteArray)
+ 
+ 
+ 
+When the data is received we have to open a local file for binary 
+ access, write the content of the byte array and then close it. 
+ 
+ 
+ 
+ 
+Open "c:\temp\newFile.jpg” For Binary Access Write As #intFile 
+Put #intFile, , byteData() 
+Close #intFileb 
+ 
+ 
+ 
+ 
+The file is now written to the path specified, in this case 
+ c:\temp. Try this example on your own with any binary file on the 
+ Internet. You find the project files for this example in the file 
+ package (VBexample02.vbp). 
+ 
+ 
+Sample application called from ASP
+ 
+ 
+To show you how you can combine the two previous 
+ methods of downloading data I have enclosed a Visual Basic example 
+ (Vbexample03.vbp). This example is a very simple application that 
+ downloads the source code of the second html file, test2.html, and 
+ searches the code for image tags. When it finds an image tag it 
+ resolves the filename and downloads the image binary. To make this 
+ application accessible from an ASP page it is made as an ActiveX dll 
+ and not as a standard exe, as the two previous Visual Basic examples. 
+ This class has only one method, which is the 
+ GetWebPage method. It takes two 
+ parameters, the url to download and the target path on your machine, 
+ both as string. 
+ 
+This sample application is just a small example of 
+ how you can combine the two ways of downloading data. It has some 
+ limitations in the search function. I you are planning to use this 
+ technology you have to improve that search function. 
+ 
+ 
+Execute method and asynchronous 
+ transmission
+ 
+ 
+One major drawback with the 
+ OpenURL method is that it results 
+ in synchronous transmission of data. This means that the transfer 
+ operation occurs before any other procedures are executed. The result 
+ of this is that all data transfer has to be completed before any other 
+ code can be executed. That causes no problem when we are downloading 
+ source code from one single page, but if we want to download a 2Mb 
+ binary file, this would cause problems. Everything would work, but we 
+ all know how a User reacts when an application is "stuck” for more 
+ than 10 seconds, or even worse, 2 minutes. The User is sure something 
+ is wrong and will probably try to "solve” the problem by closing the 
+ application. What we have to do is to give some kind of output of the 
+ progress. If no other code can be executed while downloading, what 
+ shall we do? Fortunately, there is a solution to this, the Internet 
+ transfer controls Execute 
+ method. When this method is invoked it results in an asynchronous 
+ transmission and the transfer operation occurs independently of other 
+ procedures. This means that other code can be executed while data is 
+ received in the background. 
+ 
+What does this mean to us, the developers? The 
+ OpenURL resulted a direct stream 
+ of data that we could save to disk or view directly in a textarea or 
+ TextBox, if it was textual data. With the 
+ Execute method, on the other hand, we have to monitor the 
+ control’s connection state using the 
+ stateChange event. When a certain state is reached, we have 
+ to invoke the getChunk method 
+ to retrieve the data from the control’s buffer. 
+ 
+I have enclosed an example (Vbexample04.vbp) that 
+ will show you how to use the Execute method. The example will also 
+ show that you can execute other code while downloading the data. The 
+ code and the comments will describe how it works. 
+ 
+ 
+Summary 
+ 
+ 
+In this article we saw how to use the Internet transfer control to 
+ download textual data like remote source code from a very simple ASP 
+ application. We also saw how to download binary data using Visual 
+ Basic. Hopefully trough this article, you have learned how easy it is 
+ to reuse information on remote server in your applications. Of course, 
+ if you are planning to use this technology to grab anything, make sure 
+ you have the author’s permission to do this. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Use ServerXMLHTTP instead
+	Renato Takashi Tuesday, February 19, 2002	
+	
+	
+	
+Comment om 
+	Mark Dalsaso Thursday, March 14, 2002	
+	
+	
+	
+Very useful article
+	Koroush Wednesday, May 08, 2002	
+	
+	
+	
+Who can i resume a broken download
+	Nuno Moreira Friday, May 10, 2002	
+	
+	
+	
+Internet Transfer control
+	Nitin Sunday, April 14, 2002	
+	
+	
+	
+POST/GET/HEAD links?
+	Richard Alford Thursday, April 18, 2002	
+	
+	
+	
+This example only for local web page ??
+	Pasquale Wednesday, May 15, 2002	
+	
+	
+	
+ITC & Proxy Authorization
+	Ciro Verde Friday, May 17, 2002	
+	
+	
+	
+An another way instead of ASP..
+	Pete Monday, May 20, 2002	
+	
+	
+	
+The Execute method
+	Sebastien Nadeau Friday, May 31, 2002	
+	
+	
+	
+Authenticating
+	KDX Saturday, June 15, 2002	
+	
+	
+	
+VB6 Inet Control to VB.NET
+	TL Saturday, June 22, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies -
+ ITC - 
+ HTTP Transfer Component
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

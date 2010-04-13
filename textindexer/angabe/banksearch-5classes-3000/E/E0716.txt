@@ -1,0 +1,17 @@
+
+Computer Centre: Introduction to C Programming
+ 
+ C Keywords - auto
+auto
+auto is used to create a variable, usually a temporary variable, within a block of code. The variable is only available to the block of code it has been defined within and cannot be referenced outside of the block of code in which it is being used.
+For example:
+ for(;;) {
+ if getchar() == 'a') {
+ auto int i;
+ for (i=0; i
+In the example above, i is only defined if the if condition is true
+and only has value within the if block of code.
+ Computer Centre 
+Information Suppliers: Richard Mobbs, Head of Information Services, Leicester University Computer
+ Centre and Marina Carter, Postgraduate Student, Leicester University Computer Centre.
+Last Updated: August 1995

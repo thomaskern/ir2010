@@ -1,0 +1,87 @@
+
+ 
+ PHP HOW-TO: Appendix C - Debug tool phpcodesite 
+ 
+ 
+Next
+Previous
+Contents
+ 30. Appendix C - Debug tool phpcodesite 
+* @licence GNU Public Licence
+* Main site : http://phpcodesite.phpedit.com
+*/
+/*
+** How does it work ?
+ Place a CS_EnterMethod() at the beginning of each method/function 
+ Place a CS_ExitMethod() at the beginning of each method/function 
+ Use CS_SendError() to log an error message 
+ Use CS_SendNote() to log a simple note message 
+ Use CS_SendMessage() to log a message 
+ To log variables: CS_SendVar & CS_SendArray() 
+ To see input data (global PHP variables) use CS_SendInputData()
+*/
+if(defined("FLAG_PHPCODESITE_PHP")) return FALSE;
+ define("FLAG_PHPCODESITE_PHP", 1);
+// Start without increment
+$CS_Step = 0;
+CS_SetEnabled(TRUE);
+// CS_SetEnabled(FALSE);
+// Switch between Enable/Disable mode
+function CS_SetEnabled($state){
+ global $CS_Enabled;
+ $CS_Enabled = $state;
+ CS_Write($CS_Enabled?"":"");
+}
+// Add a level to the reported items
+function CS_IncStep(){
+ global $CS_Step;
+ $CS_Step++;
+}
+// Remove a level to the reported items
+function CS_DecStep(){
+ global $CS_Step;
+ $CS_Step--;
+ if($CS_Step "\n");
+ }
+}
+// Write all global variables to the report
+function CS_SendInputData(){
+ global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_COOKIE_VARS,
+ $HTTP_SERVER_VARS, $HTTP_ENV_VARS, $HTTP_SESSION_VARS;
+ CS_Write("----------------------------------------------------------\n");
+ CS_SendArray($HTTP_GET_VARS, "HTTP_GET_VARS");
+ CS_SendArray($HTTP_POST_VARS, "HTTP_POST_VARS");
+ CS_SendArray($HTTP_COOKIE_VARS, "HTTP_COOKIE_VARS");
+ CS_SendArray($HTTP_SERVER_VARS, "HTTP_SERVER_VARS");
+ CS_SendArray($HTTP_ENV_VARS, "HTTP_ENV_VARS");
+ CS_SendArray($HTTP_SESSION_VARS, "HTTP_SESSION_VARS");
+ CS_Write("----------------------------------------------------------\n");
+}
+// Log an array
+function CS_SendArray($array, $arrayStr = ""){
+ if(!empty($arrayStr))
+ CS_Log("\$$arrayStr");
+ if(count($array) == 0){
+ CS_Log(" = Array()\n");
+ }else{
+ CS_Write(" = Array(\n");
+ while(list($key2, $value2) = each($array)){
+ CS_WriteIndent();
+ if(empty($arrayStr))
+ CS_WriteIndent();
+ CS_Log("$key2");
+ if(!is_array($value2))
+ CS_Write(" => ".htmlentities($value2)."\n");
+ else 
+ CS_SendArray($value2);
+ }
+ CS_WriteIndent();
+ if(empty($arrayStr))
+ CS_WriteIndent();
+ CS_Log(")\n");
+ }
+}
+?>
+Next
+Previous
+Contents

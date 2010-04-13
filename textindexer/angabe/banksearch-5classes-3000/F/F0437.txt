@@ -1,0 +1,50 @@
+
+Home - About - Assembly - DirectX - OpenGL - .NET - Platform SDK - Downloads - Links 
+February 5, 2001 
+privacy
+ 
+- > Garbarge Collection: Automatic Memory Management in .NET 
+.NET
+What is .NET ?
+Though it is likely that you'll see most Microsoft Products stamped with the ".NET" label in the near future, what does this actually means to developers ?
+.NET is the next step in providing services for coding, compiling, executing and debugging applications.
+In particular :
+- The Common Language Runtime (CLR) provides to all .NET based languages a single execution environment, including a common data type representation.
+- The Common Language Specification (CLS) is a subset of the CLR that ensures compatibility between components written using .NET languages.
+- The Framework Class Library (FCL) covers most aspects of application development exposed as classes, allowing to abstract Operating System capabilities. As the FCL is CLS compliant, these classes are usable by all .NET based languages.
+- Command line compilers for C#, JScript.NET and Visual Basic.NET are also provided, allowing to execute compiled code even when using script based environment (such as ASP.NET and probably JavaScript client side or Windows Scripting).
+It is interesting to note that .NET services are so pervasive that even compiler vendors are able to take advantage of the .NET Framework. AFAIK a .NET based compiler parses a source code file to create an abstract representation of the source code throught .NET classes (System.CodeDom). This representation is then used to create intermediate code without any further work from the compiler vendor. For this reason, several vendors are expected to provide soon support for other popular languages.
+Source code files are compiled to Microsoft Intermediate Language (MSIL). When this file is launched, it is just-in-time (JIT) compiled to produce the actual machine code that is then executed. It opens the door to cross platform compatibility.
+Among .NET based languages, the Visual Basic.NET upgrade seems to raise much more concerns as it has been both updated to better fit this new platform, but was already providing some similar capabilities, for example such as the form package now superseded by the System.Windows.Forms namespace.
+Visual Basic.NET
+Changes are usually classified in the following categories :
+- Architectural, in particular caused by the .NET Framework
+- Consistency
+- "Gratuitous"
+- Obsolete constructs
+- ...
+You'll find probably that the category for a particular change is not necessarily the same for each developer. As taking advantage of the .NET Framework is likely a time consuming task, Microsoft choice was to *not* provide "excessive" backward compatibility. For example providing a VB6 compatible form package would probably not worth as .NET Framework replaces the form package with the System.Windows.Forms namespace for all .NET based language.
+To help in this transition, you can also consume VB6 COM objects from Visual Basic.NET or use .NET classes from Visual Basic 6,n though it is probably better to keep this period as short as possible.
+.NET based languages
+[Top]
+C#
+using System.Windows.Forms;
+class Hello
+{
+ static void Main()
+ {
+ MessageBox.Show("Hello World !");
+ }
+}
+JScript.NET
+import System.Windows.Forms;
+MessageBox.Show("Hello World !");
+Visual Basic.NET
+Imports System.Windows.Forms
+Module Hello
+ Sub Main()
+ MessageBox.Show("Hello World !")
+ End Sub
+End Module
+Patrice Scribe
+Patrice Scribe

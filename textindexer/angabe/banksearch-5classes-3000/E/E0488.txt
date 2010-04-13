@@ -1,0 +1,559 @@
+
+ 
+C >> Functions ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bitwise Operators 3 
+ Main Menu 
+ Arrays 1 
+ 
+ 
+ 
+ 
+Functions
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+A function can be thought of as a mini-program, where a group of statements are executed when the function is called. 
+ 
+A function is CALLED (or INVOKED) when you need to branch off from the program flow 
+ and execute the group of statements within that function. Once the statements in the function are executed, program flow resumes from 
+ the place where you called your function. 
+ 
+ 
+ 
+You've already encountered a few functions: main, printf and scanf. 
+ 
+The main function is special, in the way that it's called automatically when the program starts. 
+ 
+In C, and other programming languages, you can create your own functions. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A Typical Function
+ 
+ 
+ 
+ 
+ 
+Functions have 5 main features: 
+ 
+ 
+ 
+ 
+1. 
+ 
+ 
+ 
+The RETURN TYPE is the data type of the RETURN VALUE of the function. 
+ 
+ 
+ 
+ 
+ 
+ 
+2. 
+ 
+ 
+ 
+The NAME is required as an identifier to the function, so that the computer knows which function is 
+ called. Naming of functions follows the same set of rules as the naming of variables. 
+ 
+ 
+ 
+ 
+ 
+ 
+3. 
+ 
+ 
+ 
+Functions can take ARGUMENTS - a function might need extra information for it to work. Arguments are 
+ optional. 
+ 
+ 
+ 
+ 
+ 
+ 
+4. 
+ 
+ 
+ 
+The function BODY is surrounded by curly brackets and contains the statements of the function. 
+ 
+ 
+ 
+ 
+ 
+ 
+5. 
+ 
+ 
+ 
+The RETURN VALUE is the value that is passed back to the main program. Functions exit whenever you return 
+ a value. 
+ 
+ 
+ 
+ 
+This is what a function definition might look like: 
+ int squareNumber(int a) {
+ int b = a*a;
+ return b;
+}
+ 
+squareNumber is the name of this function. Because an integer is returned, the int keyword must be 
+ placed before the function name. 
+ 
+ 
+ 
+If the function does not return a value, we put the void keyword before the function name. 
+ 
+This function has one argument, which is of the type int. If you have arguments, you must put variable declarations in the 
+ round brackets. 
+ 
+The function body consists of 2 statements. The first, sees an int variable b declared and assigned a*a, 
+ i.e. a squared. The second statement uses the return keyword to pass the value of b back into the main program, hence exiting 
+ the function. 
+ 
+ 
+ 
+Within the program, one might write: 
+ 
+x = squareNumber(5); 
+ 
+This would assign 25 to x. We say that 5 is passed as an argument to the function squareNumber. 
+ 
+The variables within the squareNumber function are LOCAL VARIABLES - when the function exits, variables 
+ a and b are deleted from memory. 
+ 
+int squareNumber(int a) is also known as the FUNCTION HEADER. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Example
+ 
+ 
+ 
+ 
+ #include 
+void printAverage(int x, int y, int z); /* the function declaration */
+int main() {
+ int a, b, c;
+ printf("Enter 3 integers separated by spaces: ");
+ scanf("%d %d %d", &a, &b, &c);
+ printAverage(a, b, c); /* the function call */
+ return 0; /* exit main function */
+}
+void printAverage(int x, int y, int z) { /* the function definition */
+ float average = (float) (x + y + z) / 3; /* coersion in practice! */
+ printf("The average value of %d, %d and %d is %f\n", x, y, z, average);
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+It's common practice to place the function definition underneath main - if you're editing main most of the time, 
+ you wouldn't want to scroll too far down the page to get to it! 
+ 
+You can put the function definition above it if you wanted. But if you place it underneath main, make sure you put the function 
+ declaration above main - see the example. This is because the computer won't know if the function exists if you call it without 
+ it being declared in the first place. It's the same with variables: you can assign anything to x unless you've declared x 
+ beforehand. 
+ 
+ 
+ 
+The function declaration is a single statement consisting of the function header - don't forget the semi colon at the end! 
+ 
+Notice that in the function call I had to pass three arguments to match the three arguments in the function definition. And the variable 
+ names in the function's argument section didn't have to match the variable names in the function call. The most important thing is that 
+ the data types had to match. 
+ 
+And notice my use of the void keyword for the printAverage function, since no value is returned. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Functions 
+ That Call Other Functions
+ 
+ 
+ 
+ 
+ #include 
+int triangular(int x);
+int main() {
+ int x;
+ printf("Enter an integer: ");
+ scanf("%d", &x);
+ if(x%10>3 || x==11 || x==12 || x==13) {
+ printf("\n%d is the %dth triangular number\n", triangular(x), x);
+ }
+ else {
+ switch(x%10) {
+ case 1:
+ printf("\n%d is the %dst triangular number\n", triangular(x), x);
+ break;
+ case 2:
+ printf("\n%d is the %dnd triangular number\n", triangular(x), x);
+ break;
+ case 3:
+ printf("\n%d is the %drd triangular number\n", triangular(x), x);
+ break;
+ }
+ }
+ printf("You entered: %d\n", x);
+ return 0;
+}
+int triangular(int a) { /* the nth triangular number is 1+2+3+ ... +n */
+ int x = (a * (a + 1)) / 2;
+ return x;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Above main, we see the function declaration. The triangular function takes an integer argument, and returns an integer. 
+ 
+ 
+Below main, we have the function definition - it works out and returns the triangular number of the number passed to the function. 
+ 
+ 
+Inside main, observe that inside printf, we call the triangular function. 
+ 
+ 
+ 
+The if, else and switch blocks determine how to display the result. 
+ 
+One important thing to remember is that the x in main is totally different to the x in triangular. 
+ 
+ 
+You see that the value of x in main remains unchanged after calling triangular. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Functions 
+ That Call Themselves
+ 
+ 
+ 
+ 
+ #include 
+int factorial(int x);
+int main() {
+ int a, b=1, temp;
+ printf("Enter an integer: ");
+ scanf("%d", &a);
+ printf("\n%d factorial is %d\n\n", a, factorial(a));
+ printf("Enter another integer: ");
+ scanf("%d", &a);
+ temp = a;
+ for( ; a>0 ; a--) {
+ b*=a;
+ }
+ printf("\n%d factorial is %d\n", temp, b);
+ return 0;
+}
+int factorial(int x) { /* n factorial, (or n!) is 1*2*3* ... *n */
+ if(x!=0) {
+ return (x*factorial(x-1));
+ }
+ else {
+ return 1;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A function that calls itself is said to be a RECURSIVE function. 
+ 
+Recursive function calls can be less efficient than a loop, and I don't personally use them. 
+ 
+ 
+ 
+There's nothing new in the last example for me to explain. Later, I will show you how to define your functions in file different to 
+ the one where main sits. 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Bitwise Operators 3 
+ Main Menu 
+ Arrays 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

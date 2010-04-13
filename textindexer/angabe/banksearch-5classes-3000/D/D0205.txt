@@ -1,0 +1,69 @@
+
+ 
+ 
+ 
+ 
+ 
+ EJB Tutorial
+ 
+EJB Tutorial
+ 
+Tutorial Overview
+This tutorial teaches the EJB (Enterprise Java Beans) technology.
+Prerequisites: The tutorial requires a good knowledge of
+Java. The more advanced topics also require knowledge of JDBC. 
+Access to a database is also required for many of the exercises (though
+even without a database, the first few tutorial steps may be covered by
+using the included MS/Acces file.)
+Approach: This tutorial is meant for developers and is
+completely designed to be "hands-on". The assumption is that
+you will learn most by doing, not by reading. The tutorial is a guided
+approach to doing things in a manner that will lead you into learning the
+EJB concepts very quickly. For best progress, it is recommended that
+you actually get all the examples working. By doing this, you will
+gain familiarity with the actual practical issues. Also spend some
+time on the exercises, these are designed to solidify your grasp of the
+material.
+Tutorial Steps: The steps in the
+tutorial are outlined below:
+- 
+An overview of EJBs
+- 
+Creating an Entity EJB
+- 
+Deploying your Entity Bean
+- 
+Using your Entity Bean
+- 
+Entity Bean Finder methods
+- 
+Building EJBs from scratch
+- 
+Creating a Session EJB
+- 
+Deploying your Session Bean
+- 
+Using your Session Bean
+- 
+A "Stateless" Session Bean
+- 
+Using EJB Handles
+- 
+The Deployment Descriptor
+- 
+Linked EJBs
+- 
+Accessing JDBC from EJBs
+- 
+Transactions
+- 
+Bean-managed persistence
+- 
+Security
+- 
+Further learning
+If you are already familiar with some of the material, you might want to
+just complete any exercise(s) in that section and proceed to the next one.
+First step: An overview of EJBs
+ 
+ 

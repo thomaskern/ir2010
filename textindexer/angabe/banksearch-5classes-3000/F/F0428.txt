@@ -1,0 +1,409 @@
+
+VB Helper: Custom Control Library: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Custom Control Library: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Sample Text 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Custom Controls Library is organized into two main parts. Part I explains the process of 
+custom control creation. Part II, which includes most of the book, describes the 101 custom controls 
+provided on the CD-ROM. Each control is described in a chapter that explains the key techniques
+demonstrated by the control. The chapters group similar controls.
+ 
+ 
+ Part I. Getting Started 
+ 
+ 
+ This part explains the custom control creation process.
+1. Installing Custom Controls
+Explains how to install and use custom controls in Visual Basic, Delphi, Visual C++, 
+C++ Builder, HTML, VBScript, JavaScript, JScript, Java, and J++.
+2. Visual Basic Basics
+A whirlwind tour of Visual Basic for non-Visual Basic programmers. If you are experienced 
+with another programming language, this chapter will get you up to speed quickly.
+3. Using CCE
+Describes the CCE programming environment. If you are an experienced Visual Basic programmer 
+much of this will be familiar.
+4. Control Creation Fundamentals
+Explains the basic steps needed to create custom controls. 
+ 
+ 
+ Part II. The Control Library 
+ 
+ 
+ Part II, which includes most of the book, describes the 101 custom controls provided on the CD-ROM. 
+Each control is described in a section that explains the key techniques demonstrated by the control.
+The chapters group similar controls. One, two, or three asterisks indicate whether a control is 
+straightforward, somewhat involved, or extremely complex.
+In the following table, the links show images of the controls in action. Note that some of 
+these look grainy on browsers.
+Chapter 5. Labels 
+1. AliasLabel *** A label with antialiasing (show me) 
+2. BlinkLabel * Blinks with specified speed and colors 
+3. ColumnLabel ** Multi-column (newspaper style) label 
+4. DocumentLabel * Automatically displays the contents of a file 
+5. EmbossLabel *** Uses image processing to make an embossed label (show me) 
+6. FlowLabel *** Multi-column label that flows around pictures, etc. (show me) 
+7. Label3D * A simple 3-D label 
+8. PathLabel *** A label that follows a path 
+9. StretchLabel ** Allows you to specify the font's height and width independently (show me) 
+10. Ticker * Displays a scrolling message 
+11. TiltHeader ** Multiple tilted labels suitable for a grid header 
+12. TiltLabel ** A rotated label 
+Chapter 6. TextBoxes 
+13. CaseText *** Automatically converts text to upper or lower case without context menu problems 
+14. DocumentText * Automatically displays a file for editing 
+15. PreviewText *** Lets a program preview a change and accept or reject it 
+16. RightText * Right-justified single line text 
+17. TouchText * Flags fields as touched by the user 
+18. TypeoverText ** Lets the user switch to typeover mode 
+19. UndoText * Provides levels of undo/redo 
+Chapter 7. Data Fields 
+20. DblText ** A field for entering doubles 
+21. IntText ** A field for entering integers 
+22. LikeText ** A field for entering text matching a pattern 
+23. LngText ** A field for entering long integers 
+24. SngText ** A field for entering singles 
+Chapter 8. Shapes 
+25. Diamond3D * 3-D diamond 
+26. Ellipse3D * 3-D ellipse 
+27. Pgon ** General polygons 
+28. Pgon3D ** 3-D general polygons (show me) 
+29. Rectangle3D * 3-D rectangle 
+30. RegularPolygon ** Regular polygons (pentagon, hexagon, etc.) 
+Chapter 9. Decoration 
+31. Hilbert * Draws Hilbert curves (fractals) (show me) 
+32. JuliaSet *** Draws Julia sets (fractals) (show me) 
+33. MandelbrotSet *** Draws Mandelbrot sets (fractals) (show me) 
+34. Shader ** Draws smooth color gradients 
+35. Sierpinski ** Draws Sierpinski curves (fractals) 
+Chapter 10. Buttons 
+36. BeveledButton *** Creates a beveled button from a picture (show me) 
+37. PgonButton *** Polygonal button 
+38. PictureButton * Lets you specify up, down, and disabled pictures 
+39. PictureCheckBox * A CheckBox where you specify the pictures 
+40. PictureOption * An OptionButton where you specify the pictures 
+41. SpinButton * Lets the user increment/decrement a value 
+Chapter 11. Lists 
+42. IndentList * The user adjusts the indentation of the items 
+43. OrderList * The user reorders the items 
+44. SplitList * The user moves items from one side of the list to the other (show me) 
+Chapter 12. Pictures 
+45. BlendedPicture *** Overlays one picture on another smoothly (show me) 
+46. EllipticalPicture * Gives a picture an elliptical border (show me) 
+47. ImageSelector ** Lets the user select an image file 
+48. MaskedPicture *** Overlays one picture on another 
+49. PicturePopper *** Switches images in an interesting way 
+50. ShapedPicture ** Clips a picture to a polygon 
+51. ThumbnailSelector ** Lets the user select an image file quickly 
+52. TiledPicture * Tiles an area with a picture (show me) 
+Chapter 13. Image Processing 
+53. CountFilterPicture ** Uses count filtering to produce interesting images 
+54. EmbossPicture ** Creates embossed images (show me) 
+55. FilterPicture ** Applies various filters to an image (show me) 
+56. FlappingFlag ** A flapping flag animation (show me) 
+57. PictureSizer *** Resizes images without aliasing 
+58. PictureWarper *** Warps images (show me) 
+59. RankFilterPicture *** Uses rank filtering to produce interesting images 
+60. RotatedPicture *** Rotates images 
+61. SpinPicture *** Spinning picture animation 
+62. UnsharpMask *** Sharpens an image 
+Chapter 14. Data Display and Manipulation 
+63. Calendar *** Calendar (show me) 
+64. CheckGrid *** A grid of boxes the user can check 
+65. Gauge *** Various gauge styles 
+66. Graph *** Simple graphs with statistical functions (show me) 
+67. LabelTree *** A tree with labeled nodes 
+68. Surface *** 3-D surfaces 
+69. View3D *** 3-D viewing 
+Chapter 15. Containers 
+70. AttachmentWindow *** Keeps contents fixed in relationahip to each other 
+71. Packer ** Packs contents tightly 
+72. PanedWindow ** (Splitter) Allows the user to resize areas (show me) 
+73. RowColumn ** Arranges contents in rows and columns 
+74. ScrolledWindow ** Scrolls contents 
+75. Stretchable * Stretches its contents 
+76. Toolbox *** A toolbox 
+Chapter 16. Forms 
+77. FlashBar * Flashes the form's title bar and icon 
+78. FormPlacer * Restores a form to its previous position 
+79. OnTop * Keeps the form on top of others 
+80. ShapedForm *** Polygonal form 
+81. Sticky ** Sticky notes 
+Chapter 17. Sizing and Positioning 
+82. DraggableAny ** Container the user can drag and resize 
+83. DraggableLabel ** Label the user can drag and resize 
+84. DraggableText ** TextBox the user can drag and resize 
+Chapter 18. Hints and Help 
+85. PopupHelp ** Tooltip-like popup 
+86. StatusLabel * Automatically clearing status label 
+87. TipLabel * Displays tips 
+88. ToolTips ** Tooltips 
+89. WormHole ** Hidden detail text (show me) 
+Chapter 19. Time 
+90. Alarm * Triggers an alarm far in the future 
+91. AnalogClock * Analog clock (show me) 
+92. DigitalClock * Digital clock 
+93. DigitalDate * Digital calender 
+94. EventScheduler ** Schedules many events far in the future 
+Chapter 20. System 
+95. AnimatedTray **** Places animated icons in the system tray 
+96. DevCaps * Gives access to device capabilities 
+97. FileUpdater * Automatically keeps files synchronized 
+98. SystemColors * Gives access to system colors 
+99. SystemMetrics * Gives access to system metrics 
+100. SystemParams * Gives access to system parameters 
+101. Tray **** Places an icon in the system tray (show me) Look for the little red book) 
+Appendix A. Using the CD-ROM
+Appendix B. API Functions (used in the book)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Custom Control Library: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Sample Text 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

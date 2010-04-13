@@ -1,0 +1,453 @@
+
+Java(TM) Boutique - 
+Java and JDOM: the perfect couple 
+" CONTENT="
+2002-03-18
+">
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+Tech Magazines-Free
+Software Store
+EMedia Mag Free Sub
+Free Barter Account
+Freelance Projects
+Internet Jobs
+Computer Training
+Register Domains
+Anti-Virus Software
+Business Search
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+Tutorials :
+Java and JDOM: the perfect couple :
+	
+Contents 
+Introducing JDOM 
+	The Element Class 
+	The XML file containing the DVD library 
+	A web application to handle the DVD library 
+Java and JDOM: the perfect couple 
+by Keld H. Hansen
+Introducing JDOM
+	JDOM is a very user-friendly 
+ Java API for handling XML documents. 
+ JDOM builds a tree structure of an XML document in memory, and 
+ therefore resembles the 
+ DOM API. 
+ This is quite a different approach than the one used by the 
+ SAX API which doesn't 
+ build anything, but fires off a set of events when it reads an 
+ XML file. The events may then be caught by your program for
+ extracting the data in the XML file. You may read 
+ more about SAX 
+ in my previous article at javaboutique.com.
+ 
+	Now I've mentioned 3 API's (and there are actually more), so 
+ which one should you choose? 
+ 
+	Well, JDOM and DOM are the obvious candidates if you need the 
+ whole tree structure available to your program. 
+ DOM is a language (and platform) neutral API defined by the W3C, 
+ which allows you to define and manipulate a document - 
+ not only an XML document - from a program. JDOM is made 
+ specifically for Java and XML, and is therefore much simpler to 
+ use for a Java programmer. So in most situations I'd recommend 
+ JDOM, but you should note, that JDOM is not (yet) a standard, 
+ so the API may still change. JDOM has however been accepted as a 
+ Java Specification Request 
+ (JSR102). 
+ 
+	SAX could be the best choice if your program reads an XML-file 
+ and you only need to use parts of it, or if the 
+ XML-file is very large so it can't be held in memory. But you 
+ could also use SAX to build your own favorite Document Model. 
+ 
+	This article is about JDOM. It's easy to read, edit and write 
+ XML documents with JDOM, since it has been designed 
+ and implemented with the Java programmer in mind. I have an idea 
+ about how JDOM was conceived. Maybe the authors thought: 
+ "How easily can we implement an XML tree structure in Java, using 
+ standard Java classes and features? Well, an XML tree 
+ consists of elements with certain properties, and every element 
+ can have a number of child elements. So let's start by 
+ creating an Element class with the necessary properties. Since 
+ the Collection interfaces from the java.util package are
+ well-known let's use a List of Elements to represent the children. 
+ Now, let's see how far we can go with this approach". 
+ 
+	In this article I'll show you what the authors ended up with. 
+ I'll briefly show you how to read and write an XML file, 
+ but the focus will be on how you edit the document tree: add, 
+ change, or delete the elements. If you hang on until the end 
+ of the article you'll be rewarded with a complete web application 
+ to manage your DVD library. 
+ 
+	By the way: When reading an XML file JDOM actually uses SAX to 
+ build the document tree! 
+ 
+ 
+ 
+A one-liner
+	How difficult would you think it is to read an XML-file, build 
+ a JDOM document, and finally write the document (in XML-format) 
+ to System.out? Well I'll show you: 
+ 
+new XMLOutputter().output(new SAXBuilder().build("d:\\ex1.xml"), System.out);
+ 
+	OK, I'd never put such a one-liner into one of my own programs, 
+ I'd use four lines (maybe with some comments):
+SAXBuilder builder = new SAXBuilder(); // Build a document ... 
+Document doc = builder.build("d:\\ex1.xml"); // ... from a file
+XMLOutputter output = new XMLOutputter(); // And output the document ... 
+output.output(doc, System.out); // ... unchanged to System.out
+ 
+	Even on four lines it's still simple. The document is kept in the 
+ "Document" class, which is a JDOM class that contains 
+ a variety of information about the document. To work with the 
+ document we need two other classes: "Element" and "Attribute", 
+ which contain--you guessed it: the elements and their attributes. 
+ "Document" contains a method, getRootElement(), which gives 
+ us the root "Element"--you know: every XML document must contain 
+ one and only one root element. 
+ 
+	
+ 
+	First we'll look into the properties of the Element class.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+ 

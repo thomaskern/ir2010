@@ -1,0 +1,475 @@
+
+Java(TM) Boutique - Java Books - Professional Java SOAP - Page 18
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+Search the Web
+Search Marketplace
+Software Store
+Free Barter Account
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Web Design
+EMedia Mag Free Sub
+Computer Training
+Business Search
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+Reviews :
+Java Books :
+Professional Java SOAP :
+Buy this book
+Title:
+Professional Java SOAP
+ISBN: 1861006101
+Price: $49.99 
+£36.99 
+C$74.95 
+© Wrox Press, Ltd.
+ 
+ 
+	
+	
+SOAP Server
+ 
+	
+	In this chapter, we will concentrate on the server for the sample application. We will start by discussing the architecture of the sample application in a little more detail. Then we will write the four components 
+	of the SOAP server: 
+	
+- 	 A cached router 
+	
+- 	 A un-cached router 
+	
+- 	 The RemoteOrder interface and its implementation, the OrderService class 
+	
+- 	 The RemoteAdmin interface and its implementation, the AdminService class 
+	
+	
+	The cached router, referred to as the router from now on, improves the responsiveness of the application by caching responses for a given period of time, expiring them as required, and storing new request 
+	responses in the cache. It does this by calling the un-cached router, or ncrouter, which forwards the call 
+	to the implementing service, the OrderService class. 
+	
+	
+	We will also take a closer look at deploying and un-deploying SOAP services (registration) in a secure 
+	environment. Finally, we will conclude the chapter with a look at custom serialization and good 
+	practices for SOAP service design. We will test the service with a minimal command line client. 
+	
+	You might be wondering where the Graphical User Interface (GUI) clients are in this picture. The GUI 
+	clients are not part of the SOAP server (they are not Web services) and will be discussed as part of the 
+	clients. Per our requirements, which we discussed in the previous chapter, the GUI is browser-based and 
+	as such contains two tiers: a server tier that generates the pages and a client tier that displays the pages. In practice, the server tier of the GUI can run on the same server as the SOAP server. The design of the 
+	sample application will make switching back and forth between the two solutions a trivial task. 
+	
+	
+	We begin our description of the SOAP server with the architecture of LeSavon.com. 
+	
+	
+	
+LeSavon.com Architecture
+ 
+	We took some liberties with the Unified Modeling Language (UML) since we need to represent calls over HTTP in addition to straight method calls. The entry points to the sample application are two 
+	servlets: router and ncrouter. The servlets implementing these functions route SOAP traffic. 
+	
+	
+	The com.lesavon.service.Serveur class implements the function of the router. It will check if a 
+	response to a request is stored in the cache, and will return it if so. Otherwise, it calls the ncrouter, which will forward the call to the relevant service. 
+	
+	
+	The org.apache.soap.server.http. RPCRouterServlet class provides the function of the 
+	ncrouter. We used this class in Chapter 3 with the HelloWorld example. We don't need to amend the implementation provided by apache for this part of the application; it will suffice for our purposes. 
+	
+	
+	The ncrouter will also field administration calls; a client can administer the cache by flushing or refreshing it. 
+	In reality, the entry point to LeSavon.com is the Web server that handles authentication. The figure below shows the collaboration diagram between the classes on the server-side for a call to 
+	com.lesavon.RemoteOrder.getOrderList(). 
+	
+	
+	
+	
+	The signature of the RemoteOrder.getOrderList() method that returns the list of orders for a given user: 
+public Order[] getOrderList(String userName) throws SavonException;
+	
+	There are two different flows suggested by the diagram above. Let's review the steps for the first flow 
+	described by the previous figure: 
+	
+	
+	1. getOrderList() 
+	The client calls getOrderList() using SOAP over HTTP. The target URL for the client 
+	in this diagram is the Serveur class. 
+	
+	
+	2. getCacheData() 
+	On receiving the request, the router forwards the request to the SOAPCache class that, as 
+	its name suggests, implements a cache for SOAP requests. If the cache has the response, 
+	then that response can be returned and the client has the list of orders from getOrderList(). 
+	If it does not, then it calls the ncrouter class, RPCRouterServlet. 
+	3. getOrderList() 
+	For this call, the SOAP cache is a client of the ncrouter. When a client does not want to 
+	use the cache, it should send requests directly to the ncrouter. We will see how this works 
+	in a few moments. 
+	
+	
+	To process the request, RPCRouterServlet parses and validates the SOAP request. The 
+	ncrouter goes through its list of registered services to find the target class for the getOrderList() method. In this case, the target is OrderService, which implements 
+	
+	
+	the RemoteService interface. The OrderService then makes JDBC calls to access the 
+	data for the list of services. 
+	
+	
+	4. getOrderList() 
+	The call to OrderService. getOrderList() is handled as in-process Java, as we saw in 
+	Chapter 3 with the HelloWorld service. 
+	The call from the cache to the router servlet is made over SOAP. Using SOAP gives us flexibility during 
+	deployment: we can deploy the SOAP service on the same machine as the cache or on another 
+	machine. However, with flexibility usually comes a trade-off with performance: a call made over SOAP is going to be slower than an in-process call. When the call makes it back to the SOAPCache, the 
+	
+	
+	resulting SOAP response is saved to the cache. Finally, the SOAP response is sent back to the client. 
+	A call to a non-cached method is slightly different since it is made directly to the ncrouter servlet, 
+	completely bypassing the router servlet. 
+	
+	
+	The calls labeled getCacheDirectory() and getUpdateInterval() are not part of this flow and 
+	require some explanation. The SOAP cache runs a background thread designed to refresh and clean up 
+	SOAP responses. The thread will query a directory service (in this diagram, LDAP) to get the value of 
+	parameters such as the path for the cache on disk, how often responses should be updated, etc. In other 
+	words, calls from the SOAP cache to the directory service will happen asynchronously. 
+	
+	
+	We will ignore the issues internal to the development of the SOAP cache in this chapter, and instead 
+	focus on the implications of SOAPCache to the design and development of the SOAP server. 
+	
+	
+ 
+ 
+ 
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+ 

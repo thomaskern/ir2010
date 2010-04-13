@@ -1,0 +1,312 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Automatic Deallocation of Unwanted Memory
+This article was contributed by 
+Niraj Kedar.
+Environment: C
+Introduction
+The most common yet repeated mistake that programmers make occurs while using system memory. Two most obvious situations in which this mistake occurs are:
+- When memory is allocated but not released when not needed. This commonly occurs when some function allocates memory and calls other functions that also allocate memory. In such successive function calls, if one of the functions down the sequence returns failure, all previously allocated memories need to be explicitly released. This requires the programmer to write code for releasing memory. This step is often forgotten.
+- When memory is allocated for sending across task or process boundaries but isn't returned to the system. A contiguous chunk of memory is needed when data is to be sent (as a message) to another task or process. This mechanism is such that the data in this contiguous chunk is first copied by the operating system in its own buffers and then passed to the destination task or process. Thus, as soon as the message is sent, the memory that was allocated for its data needs to be released.
+If allocated memory is not returned to the system, soon the system will run out of its memory resource and all subsequent allocation requests will fail. This may not be such a critical problem in normal, non-real-time environments, but in real-time systems, such as telecommunication switches, routers, aircraft systems, and so forth, such runaway memory can wreck havoc.
+The Recycle program has been designed to automate the release of system memory, as allocated in the previously listed situations. The programmer is saved the job of writing any code for releasing unwanted memory. But all this comes at the cost of a little system overhead. The details will be explained as I describe the exact functionality of the Recycle program.
+I designed the program for a real-time environment that I work in. Real-time systems still predominantly use C and that's the reason why the code is in C and not C++. There is no MFC in use but the code can be plugged into almost any system with little or no customization.
+Recycle consists of two files, recycle.h and recycle.c, and a test file entitled testmain.c. The files contain comments at the appropriate places. 
+Operational Description
+Recycle automates the release of unwanted memory, thus eliminating the need for writing special code to explicitly free it. Recycle uses a stack that stores the information necessary to keep track of the memory to be released.
+The memory allocation function provided by the operating system has been encapsulated by the function Allocate(). Any application that needs to use the services of Recycle will use the macro DECL_STACK_HANDLE globally and thus declare a global object of the stack handle. The application must also initialize this object by using the macro MEMSET_STACK_HANDLE in its entry point or a (similar) suitable function. After the handle is initialized, Recycle is ready for use.
+A function that needs system memory will first use the macro SET_FN_SCOPE. This macro declares a void* variable and assigns the "pointer to this function" to it. 
+Example:
+ 
+void Trial1()
+ {
+ SET_FN_SCOPE(Trial1);
+ //
+The user can now use the function Allocate(). Before calling Allocate(), the user must look at the macro ALLOC_MEM(). This may need to be modified, depending on the type of memory allocation system call that the target operating system provides. The user will simply replace the "malloc" with any other similar function (identical prototype) that the OS provides.
+A call to Allocate() will construct the stack and store the function scope, the pointer to allocated memory, the size of the memory, and the purpose for which the memory was allocated. The stack will grow each time Allocate() is called. This is done internally by the function PUSH() that pushes these parameters on the stack.
+The scope of a function is stored as a function pointer to that function. It's required to keep track of all the memory that is allocated by a function and later freeing it if needed. Memory allocated by a function will be freed only by that function. A stack was used for this job as this mechanism is analogous to that used by the operating system.
+The stack will unwind in the cases described in the first section. The RETURN() macro, called by each function, will in turn call the function POP() for popping the stack. POP first checks the function scope of the existing function with that stored in the stack, starting from the top. If the scope matches, it checks the allocation status (MALLOC_SUCCESS, OUT_OF_SCOPE). If it's MALLOC_SUCCESS, it means that memory is persistent and doesn't need to be freed. Thus, only the stack node is popped and memory is left intact. POP() will loop over all the stack nodes that have the same function scope. This ensures that the entire function scope is covered and treated appropriately. In case a MALLOC_FAIL is returned, the stack will free the memory, as well as the stack node, for the complete function scope. The operation for OUT_OF_SCOPE is similar.
+Freed memory is also set to zero, by POP(). Note here that MALLOC_FAIL is used to represent all conditions other than SUCCESS and OUT_OF_SCOPE.
+Guidelines for Use
+- All functions that need to allocate memory must have enumerated return values. The enum indicating success should have the same value as MALLOC_SUCCESS. This is demonstrated in file testmain.c.
+- Users should appropriately use all the macros as instructed earlier and in file testmain.c. Before using the stack, a user should be aware of the type of the application - single-threaded or multi-threaded. A multi-threaded application will require some form of mutual exclusion mechanism. No such mechanism has been described here as the calls differ from OS to OS.
+Overhead on the System
+ 
+Using the stack, and if needed, the mutual exclusion methods, induces an overhead on the system. It's up to the user to exactly evaluate this overhead. In a normal single-threaded system, the size of the stack doesn't normally go above 4-5 nodes at a time, unless a long link-list is being constructed in a single function. And the lifetime of the stack too is only as much as that of the function call. So this code doesn't have any significant effect on such systems. The performance could be an issue in very time-critical, real-time systems. Typical problems could be in situations where tasks context switch if they have to wait for the stack semaphore to be released, or when the system has to work in very limited memory and the stack could be a memory overhead. But most systems would work fine with this program.
+This code has not been extensively tested with a real-time system. A user is advised to test this code in the target environment thoroughly, before finally integrating it with the application. This program is in for use in our future projects.
+Downloads
+Download demo application -- 4 KB
+This file demonstrates the use of the Recycle interfaces. The file is self-explanatory and is complete with comments wherever necessary. A user can enable or disable printf statements by defining or un-defining the ENABLE_PRINT directive. It's enabled by default. A counter could be used to test the count of memory allocation and de-allocation. The counter will increment each time memory is allocated and decrement when memory is released.
+Any comments, questions or corrections in this code are of great value to me and are most welcome.
+Niraj Kedar
+Systems Engineer
+L&T Infotech Ltd
+Bangalore, India
+History
+Date Posted: May 9, 2002
+Comments:
+- I find it nice - Niko (2002/06/03)
+- To all the guys telling him that he should have used a C++ feature: - PaulWendt (2002/05/13)
+- A somewhat simpler approach - Muhammad Kamran Shakil (2002/05/13)
+- auto_ptr - Tomaz Stih (2002/05/12)
+- Or just write clean code! - Gerard J. Nicol (2002/05/11)
+- Use Managed C++ - Kaushik (2002/05/11)
+- Smart pointers - a cleaner solution for C++ - Alok Govil (2002/05/10)
+- I like your idea ... - PaulWendt (2002/05/10)
+- Write code in C++ and VC project - sikander Rafiq (2002/05/10)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Find Annual Reports
+Search Marketplace
+Internet Jobs
+Anti-Virus Software
+Find A Web Developer
+Free Barter Account
+Web Design
+Software Store
+Search the Web
+USA Mailing Address
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

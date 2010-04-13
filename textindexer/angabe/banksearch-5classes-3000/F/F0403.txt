@@ -1,0 +1,106 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Databases
+Creating a DNSless Microsoft Access Connection
+ID: 734
+Author: Abstractvb
+Date: 5/16/2000 10:00:14 PM
+VB6To use this you will need to add a reference to Microsoft ActiveX Data Objects 2.0 Library.
+Dim con As New ADODB.Connection
+Dim lsDSN As String
+ 
+lsDSN = "Driver={Microsoft Access Driver (*.mdb)};" & _
+ "Dbq=c:\program files\devstudio\vb\biblio.mdb;" & _
+ "Uid=Admin; Pwd="
+con.Open lsDSN
+ Want More Source Code? You May Also Be Interested In This: 
+Creating a DNSless Oracle Connection.
+Shows how to create an ODBC connection that does not require a DSN, using ADO.
+VB6
+Rank:
+Difficulty:
+ 
+Creating a DNSless SQL Server Connection
+Shows how to create an ODBC connection that does not require a DSN, using ADO.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

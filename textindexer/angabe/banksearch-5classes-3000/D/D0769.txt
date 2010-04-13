@@ -1,0 +1,531 @@
+
+JADCentral : CodeCentral : Unsorted Code
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+	
+	
+	
+	 
+	 
+	
+ Applets 
+ 
+ 
+ Utilities 
+ 
+ 
+ Multimedia 
+ 
+ 
+ Security 
+ 
+ 
+ Database 
+ 
+ 
+ Servlets/JSP 
+ 
+ 
+ XML 
+ 
+ 
+ Wireless Java 
+ 
+ 
+ JUG Utilities 
+ 
+ 
+ JavaBeans 
+ 
+ 
+ Reference and Tutorials 
+ 
+ 
+ Games and Entertainment 
+ 
+ 
+ Techshowcase Downloads 
+ 
+ 
+ Business Code 
+ 
+ 
+ Unsorted Code 
+ 
+ 
+	 
+	 
+ 
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	 	
+	 	
+	 	 Unsorted Code 
+	 	 
+	 	 
+	 	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	
+	 
+	 
+	
+	
+	 
+	
+	 	
+	 
+	 Date 
+	 	
+	 Description 
+	 
+	 Downloads 
+	 
+	 	
+	
+	
+	
+	
+	 	
+	 
+	 5-30-2002 
+	 	
+	 Useful extensions/implementations (Mostly JTable)
+	 I have zipped up a bunch of code I've developed that seems untilitarian enough to be useful to the community. 
+It includes
+1) Various editors with a common interface, so you can use polymorphism to get and set values the same way.
+2) Extensions to the AbstractTableModel interface that allows row headers, sorting, and row insertions/deletions 
+3) A DebugSettings class to globally set a debug levels for your entire application. 
+4) An extension to JTable with some nice work-saving methods. 
+5) Implementations of the TableCell Editor and Renderer interfaces based on the EditingComponent interface. Useful for easily setting up editors for your JTable on a cell by cell basis.
+5) A few more useful classes you can explore. 
+Some of these classes are in well tested/well documented state, some are not. I think all of them will be useful as a reference, particularly if you are using JTables in a sophisticated manner.
+If you make any improvements please contact me at miteke@yahoo.com
+	 
+	 
+	 39 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-23-2002 
+	 	
+	 Little Java program for performance measuring
+	 Little Java program for performance measuring
+	 
+	 
+	 63 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 4-01-2002 
+	 	
+	 XProcs for Delphi, Converted To JAVA
+	 FREE JAVA version of XProcs. XProcs, is a popular free function library for Delphi, that features functions for strings, dates and times, and even bit manipulations. It includes: - bit manipulation routines - string routines - date/time routines - encryption routines - math routines - rectangle routines
+	 
+	 
+	 29 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 3-25-2002 
+	 	
+	 JConfig - Advanced file/file-type/process handling
+	 JConfig is a Java library that provides advanced file, file-type, and process handling. It fills in the gaps in the core Java API. It runs on Windows, Mac, Linux, Unix, and most other platforms, and it includes the complete source code (Java and C++.) For instance, you can enumerate the user's hard drives, launch processes, get the file type of a file, launch the user's default web browser, and perform many other functions which are difficult or impossible using just the built-in Java libraries. See http://www.tolstoy.com/corejava.html for a comparison between JConfig and Java's built-in class libraries.
+	 
+	 
+	 69 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-13-2002 
+	 	
+	 JCombi
+	 JCombi is basic java class for COMBINATORICS
+	 
+	 
+	 35 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-07-2002 
+	 	
+	 JavaSQZ
+	 JavaSQZ - a Data Compression Class for JAVA developers
+	 
+	 
+	 59 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 1-03-2002 
+	 	
+	 Passwords
+	 Encrypt and store your internet usernames and passwords on to your device for easy access.
+	 
+	 
+	 155 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-26-2001 
+	 	
+	 Optimizes Java class files
+	 methods, strings, constants, attributes; optimizes constant pool and
+byte code; removes the debug information. The size of files can be
+reduced up to 50%. Yours applets will be smaller and faster.
+	 
+	 
+	 133 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 12-20-2001 
+	 	
+	 Blazix Java Web and Application Server 1.1
+	 From the developer: "High-performance Java Server, supports J2EE technologies of EJB, Servlets, JSP and JMS. It includes an EJB wizard, JSP debugging support and a JSP tag library to make development easy. Full clustering support for enterprise applications. Live updates of web applications and EJBs. Release 1.1 also includes ION ((Interfaces Over the Network), a very simple and direct way of doing distributed computing in Java."
+	 
+	 
+	 58 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 11-13-2001 
+	 	
+	 Connection Pool
+	 This is a generic Connection Pool implementation.
+	 
+	 
+	 468 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	 
+	 9-20-2001 
+	 	
+	 Three basic network programs
+	 This file contains three programs. IpDns takes either the IP Address or
+DNS name of a machine and returns the other. PortScan takes a host name
+and scans for open ports on ports 0-65536. UrlRead takes a URL and
+returns its contents in text form to the standard out.
+	 
+	 
+	 278 
+	 
+	 	
+	
+	
+	
+	
+	
+	 	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+ 
+ 
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

@@ -1,0 +1,567 @@
+
+Linking and Implementing the Controls
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Tour
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Linking and Implementing the Controls
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Read Document 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6GuidedTour.exe 
+ 
+ 
+	 
+ 780 KB Microsoft Word file 
+	
+	
+ 
+	 
+ 4 min @ 28.8 Kbps 
+	
+	
+	 
+	
+	
+	
+	 
+ Get Office file viewers 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Getting Started 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Setup Instructions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating the Project and Adding Components 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Linking and Implementing Controls 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Running and Testing the Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Building the MFC Application 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Debugging 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Taking it to the Web 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Wiring up the Controls
+Now you&#146;ll use some of the new features in Visual C++ 6.0 that make linking up these controls more straightforward than ever before. The controls have already been placed on the same dialog and will thus appear together graphically when the host control is instantiated.
+- Right click in a gray area of the dialog and select Events from the Pop-up menu. Select the WM_INITDIALOG event and click Add Handler. This adds the OnInitDialog function to the CCourseCtl class. Click OK.
+When you added support for connection points to the Composite Control, the wizard in Visual C++ 6.0 added a default event interface for you. In Visual C++ 5.0 developers were required to do this operation manually for each step, from generating a GUID to editing the IDL file. 
+- The interface added by Visual C++ 6.0 is _ICourseCtlEvents. View this interface by switching to the ClassView tab on the left side of the screen (make sure that CourseIntro is fully expanded). Add a method to _ICourseCtlEvents by right-clicking on it and selecting Add Method.
+- When the Add Method to Interface window appears, enter CourseSelected as the Method Name and click OK. You&#146;ll see that a plus sign immediately appears next to _ICourseCtlEvents in ClassView. 
+Adding Data Support to the Control
+Since all of the Fitch & Mather educational information is accessed via a database, you need to add data support to populate the List Box control with information on courses. To ensure high performance and to add data support easily, you&#146;ll use the OLE DB support that&#146;s new to Visual C++ 6.0. In this case, you want to add OLE DB consumer templates to your Composite Control, using the ATL Object Wizard again as you did to create the Composite Control.
+- From the Insert menu, select New ATL Object.
+- Choose the Data Access category on the left side of the window and select Consumer. Click Next.
+- Click Select Datasource.
+- From the list of OLE DB Providers, choose Microsoft OLE DB Provider for ODBC Drivers and click Next. The consumer code you add will communicate with this provider to retrieve records from the database. 
+- On the Connection tab, choose the Training database that you set up previously by clicking on the drop-down menu under Use data source name and select Training. Click OK once you have selected the data source. (You can click Test Connection to ensure that the database was set up properly. If you are unable to connect, repeat the database connection steps from above.)
+- Select the Courses table from the Select Database Table window and click OK (see Figure 6). The information you want to place in the list box is in this table.
+Figure 6: Select the Courses table of the database.
+- Back at the ATL Object Wizard Properties window (notice that the wizard has populated the dialog for you), select Table under Type and click OK. 
+This ensures that your OLE DB code is as lean as possible, optimized for non-parameterized queries from database tables. Later on you&#146;ll use the Command option to return information from a parameterized query. Also, this OLE DB consumer will not be updating data in any way, so the checkboxes at the bottom of the window can remain unchecked.
+- The ATL Object Wizard generated two classes for you, visible in ClassView. They are CCourses and CCoursesAccessor. 
+Using the COM Compiler Support to Generate C++ Interface Definitions
+You can use the COM compiler support in Visual C++ 6.0 to generate the C++ interface definitions from the imported COM because you&#146;re using the ActiveMovieControl. This makes native C++ usage of the COM control simple.
+- First of all, you need to import the COM component. Using ClassView, locate and double-click on CCourseCtl class. This will take you to the CCourseCtl header file (CourseCtl.h).
+- At the top of this header file, beneath the other #includes, add the following lines of code:
+#import no_namespace
+#include "Courses.h"
+Note: If you experience build or compile issues with the #import statement above, you can try including the path along with the filename. For example:
+#import no_namespace
+- In the ClassView, expand CCourseCtl and double-click on the OnInitDialog function.
+Now you will add variables to your code to store important control values. In the steps below, as you type CSimpleArray. This is one example of IntelliSense at work in Visual C++ 6.0. 
+If you have the ClassView visible while adding these variables, you will see an example of Dynamic ClassView updating, which displays the added variables immediately, eliminating the need for a build. This makes navigation efficient for developers since there&#146;s no waiting for the IDE to be updated.
+- Beneath the closing curly brace of the OnInitDialog function and above the closing curly brace for the CCourseCtl class, add the following member variables:
+IMediaPlayerPtr	m_spPlayer;
+CWindow	m_ctlList;
+CAxWindow	m_ctlMovie;
+CSimpleArray	m_rgCourse;
+CSimpleArray is used to store all retrieved records in memory for the highest performance. There is no need to repeatedly access the database unless data is updated.
+The variables have been added and you can now move on to adding the OnInitDialog implementation code. When you type course in as shown in the code below and then a period "." to access the methods and properties of the course object, you see another example of IntelliSense. The List Members functionality analyzes the object and displays the appropriate methods and properties, which spares developers from having to remember or look up object properties.
+Parameter Info on the MoveNext method supplies information for the overloaded forms of MoveNext.
+- Select the green TODO text in the OnInitDialog method directly above the variables you just added. In it&#146;s place, add the following code:
+CCourses course;
+LONG	 nIndex;
+HRESULT hr;
+m_ctlList.Attach(GetDlgItem(IDC_COURSES));
+m_ctlMovie.Attach(GetDlgItem(IDC_MOVIE));
+m_ctlMovie.QueryControl(&m_spPlayer);
+hr = course.Open();
+if (FAILED(hr))
+{
+ATLTRACE("Couldn't open Course table\n");
+return 0;
+}
+while (course.MoveNext() == S_OK)
+{
+m_rgCourse.Add(course);
+nIndex = m_ctlList.SendMessage(LB_ADDSTRING, 0,
+ (LPARAM)course.m_Title);
+}
+The code above creates a course object that contains data from the Courses table in the database. This data is then iterated through with the MoveNext() command and the course titles from each record are added as strings to the list box.
+Keeping Track of the User&#146;s Selection
+The list box is populated with course titles from the database and you need to keep track of which title the user has selected so that you can play the corresponding multimedia file. Update the movie control to show the appropriate first frame (assuming the multimedia includes video) as the user navigates through list box.
+- Right-click on CCourseCtl in ClassView and choose Add Windows Message Handler. 
+- Select IDC_COURSES from Class or Object to Handle and LBN_SELCHANGE from New Windows messages/events. Click Add and Edit and accept the default name OnSelchangeCourses by clicking OK.
+- In the OnSelchangeCourses method, add some code to set the filename of multimedia you want to play. Select the green TODO comment and overtype this code:
+LONG	nIndex = m_ctlList.SendMessage(LB_GETCURSEL, 0, 0);
+// Set the filename of the multimedia file to play
+m_spPlayer->FileName = m_rgCourse[nIndex].m_Video;
+Fire_CourseSelected();
+The above code sets the filename of the file to be played based on the current selection in the list box and fires CourseSelected to begin the process of displaying the appropriate PowerPoint slides.
+- Since you&#146;ve made changes to the COM code in the project, compiling the IDL file will ensure that the project is up-to-date. From the FileView, navigate into the CourseIntro project source files and right-click on CourseIntro.idl. Select Compile CourseIntro.idl from the Pop-up menu. The Build Status window near the bottom of the development environment shows the status of the compilation.
+- When you have compiled the IDL file, right click on the CCourseCtl class in ClassView and select Implement Connection Point. Place a check in the box next to _ICourseControlEvents and click OK. 
+- In ClassView, double-click on the CCourseCtl class and scroll down in the CoursesCtl.h file to the CONNECTION_POINT_MAP. Add a capital D before IID in the second connection point entry so that it reads: 
+CONNECTION_POINT_ENTRY(DIID__ICourseCtlEvents)
+This ensures that this connection point supports dispatch.
+Making Sure the Slides Load
+The slides displayed by your application are PowerPoint presentations stored in C:\Visual C++ 6.0 Guided Tour. Your application is able to locate and load them because these locations are also stored in the database.
+- Right-click on ICourseCtl in ClassView (right above the Globals) and select Add Property from the menu. 
+- In the Add Property to Interface window, select BSTR as the Property Type since you want to handle a string. The Property Name is Slides. Uncheck Put Function under Function Type as this function is read-only (see Figure 7). Click OK.
+Figure 7: Setting the properties for the ICourseCtl interface.
+As you type the two colons before SysAllocString in the step below, IntelliSense provides the most comprehensive list it can. The menu includes the Win32 API, MFC, ATL, custom classes, libraries, and more. This list gives an idea of how comprehensive IntelliSense is in Visual C++ 6.0. Developers have the productivity of IntelliSense on their side for the widest array of programming challenges.
+- In ClassView, navigate to the CCourseCtl class and expand ICourseCtl. Double-click on get_slides and add the following code above return S_OK, replacing the TODO line:
+ USES_CONVERSION;
+ // Get current selection in the list box
+ LONG nIndex = m_ctlList.SendMessage(LB_GETCURSEL, 0, 0);
+ *pVal = ::SysAllocString(T2OLE(m_rgCourse[nIndex].m_Slides));
+Based on the selection in the list box, this code passes the file system location for the PowerPoint slides to the Slides property added above.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

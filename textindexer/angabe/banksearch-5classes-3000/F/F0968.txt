@@ -1,0 +1,60 @@
+
+Learn to Program with Visual Basic 6- Chapter 4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+Learn to Program with Visual Basic 6
+Chapter 4
+Summary
+In this chapter, you followed my class on a tour of Visual Basic properties and methods. You had your first look at the exercises that will guide you through the China Shop Project.
+Along the way, we discussed the default behavior of the Visual Basic form, and at the end of the class, you had a chance to see a Visual Basic method in action.
+There are two basic stages to creating a program: designing the user interface, which involves placing controls onto your form and modifying their properties; and writing and checking the code.
+Forms and controls are types of object. Objects have properties, which are characteristics that we can modify, such as their name, or their appearance.
+Objects also have methods, which are actions that we can perform on them. Methods differ from events, which are occurrences that the object will respond to. An event handler is a section of code that is executed when an event happens.
+When saving a project you first save the forms (using extension .frm), then the project (using the extension .vbp). It's important to remember that forms and projects have two names associated with them; one of these is the name used to refer to it in code (set in Properties), while the other is its saved name. Don't try to refer to the saved name in code, as it won't be recognized!
+The Name property should use Hungarian notation (three letters to indicate the control) and no spaces. Make a habit of this right from the start, because otherwise you'll either have to work with a mix of conventions, or go through and change all your names halfway through (which is dangerous, as it can lead to orphaned code).
+Quiz
+1. What is a Visual Basic property?
+2. What is the List Box at the top of the Properties window and what is it for?
+3. The Properties window has two tabs that affect the order in which the properties are displayed. What are they called?
+4. What property of the form designates a graphic file to display as background for the form?
+5. What is the name of the directory in which we save the China Shop Project?
+6. Can you name two properties of the form that affect its location within the Screen object?
+7. Can you name two properties that affect the dimensions of the form?
+8. Different objects in Visual Basic share common properties. Can you name one property that every object possesses?
+9. What property of the form affects what is displayed in its title bar?
+10. What is the property of the form that prevents its Control Box from appearing in the upper left-hand corner of the form?
+11. ___________ are actions that you can perform on Visual Basic objects.
+12. The Visual Basic Code window contains two List Boxes at the top. Can you name them?
+13. Can you name one property that can never be changed at run time?
+14. How is the Name property of a form different than the name specified when the form is saved to disk?
+15. Why did we set the BorderStyle of the form in the China Shop Project to 1 - Fixed Single?
+16. What function key can be used to bring up the Properties window?
+17. How do you turn 'on' the SDI Interface in the IDE?
+Extra Credit - How far can a dog run into the woods?
+Click here to get more info or to order from Amazon and get a 20% discount!
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

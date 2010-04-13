@@ -1,0 +1,954 @@
+ 
+ 
+Gamasutra - The Art & Science of Making Games
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ |||| 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Graphics accelerators are beginning to include support for 
+ curved surfaces as basic primitives, including N-patches. 
+ In this excerpt from the upcoming second edition of Real-Time 
+ Rendering, see how N-patches can replace triangles to make 
+ low-polygon models more convincing and realistic. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[07.08.02] 
+ New "Event Calendar" On Gama
+ We launched a new event 
+ calendar on the site which lists upcoming conferences, 
+ contests, tradeshows, product launches, SIG meetings, 
+ and so on. It's free to post non-enhanced events, 
+ and $350 to post enhanced events. The closest upcoming 
+ events get posted here on the homepage (scroll down 
+ this column). 
+ [View Calendar...] [Post 
+ Event...]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest 
+ Profile:
+ Danny 
+ Pelfrey, Composer
+ 
+ For 
+ Award winning composer and multi-instrumentalist Danny 
+ Pelfrey, music has been an inspiring journey from 
+ his roots in West Virginia to the magnetic world of 
+ Hollywood film and television. Games are yet another 
+ new adventure: "Composing music for games has provided 
+ me with a whole new world for freedom of expression. 
+ No restrictions are placed on your imagination,"
+ 
+ 
+ 
+Previous 
+ Profile:
+ Phelan 
+ Sykes, Art Director
+ 
+ 
+ 
+ 
+Browse 
+ Galleries:
+ [Game 
+ Audio Gallery] 
+ [Visual Artists Gallery]
+ [Student Gallery] 
+ 
+ 
+ 
+Let's 
+ see what you've got!
+ [Submit Work To Artist/Audio Gallery]
+ 
+New: 
+ Student Gallery! 
+ Tomorrow's game developers on parade. 
+ [Submit Work 
+ To The Student Gallery]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Upcoming Events:
+SIGGRAPH
+ San Antonio, United States 
+ 07.21.02 - 07.26.02
+Kaydara MOTIONBUILDER Training
+ San Antonio, United States 
+ 07.22.02 - 07.22.02
+IEMA Executive Summit
+ Dana Point, United States 
+ 07.23.02 - 07.25.02
+3rd International Conference on Computers and Games
+ Edmonton, Canada 
+ 07.25.02 - 07.27.02
+AAAI 2002
+ Edmonton, Canada 
+ 07.28.02 - 08.01.02
+ 
+[Submit 
+ Event] [View 
+ All]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Latest Letters to the Editor:
+Which Games Were Used In The Japanese Study? by Lalena [07.12.2002]
+A Comment on "Social Activities" by Evans by Josh Giesbrecht [07.05.2002]
+Comment on: Social Activities: Implementing Wittgenstein by Tobias Karlsson [06.25.2002]
+ 
+[Submit 
+ Letter] [View 
+ All]
+ 
+ 
+ 
+[Enter 
+ Discussion Forums]
+ 
+Note: 
+ Discussion forums for Gamasutra 
+ are hosted by the IGDA, which is free to join.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ "top" height="551" width="558"> 
+ 
+ 
+ 
+ 
+ 
+Latest News:
+3DO Relocates Headquarters, Announces Reverse Stock Split [07.12.02]
+New Company Targets In-Game Product Placements [07.11.02]
+Romero, Hall Teaching College Courses [07.11.02]
+Brian O'Hara, Veteran 3D Artist, Dies Of Cancer [07.10.02]
+Top-Selling PC Games For Week Ending June 29 [07.10.02]
+Electronic Arts Moving Into S&P 500 Stock Index [07.10.02]
+Sega States Intention To Acquire Publishing Competitors [07.09.02]
+New Tool Generates Facial Animation From Audio Files [07.09.02]
+Terraplay Releases PS2 Networking SDK [07.09.02]
+Japanese Study Finds Negative Correlation Between Playing Games, Brain Activity [07.09.02]
+ [More News...]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest Articles:
+ 
+ Bezier 
+ Triangles and N-Patches by Tomas Akenine-Moeller 
+ and Eric Haines [07.15.02] 
+ A 
+ Real-Time Procedural Universe, Part Three by Sean 
+ O'Neil [07.12.02] 
+ Postmortem: 
+ Naughtly Dog's Jak and Daxter by Stephen White [07.10.02]
+ Product 
+ Review: A Tale of Two Workstations by David Stripinis 
+ [07.02.02] 
+ Tool 
+ Postmortem: Climax Brighton's Supertools by Shawn 
+ Hargreaves [06.26.02] 
+ Web 
+ Lecture: Building a Data-Driven Game Engine for Age 
+ of Mythology by Rob Fermier [06.19.02]
+ Web 
+ Lecture: Systemic Level Design for Emergent Gameplay 
+ by Harvey Smith [06.12.02]
+ From 
+ Casual to Core: A Statistical Mechanism for Studying 
+ Gamer Dedication by Barry Ip with Ernest Adams [06.05.02] 
+ 
+ Designers 
+ Notebook: Indie Game Jam Inverts Dogma 2001 by Ernest 
+ Adams [05.31.02]
+ Gamasutra 
+ 1997: Fifth Anniversary Flashback [05.29.02]
+ 
+ 
+ Game 
+ Audio Resource Guide 2002 [05.20.02] Gamasutra presents 
+ its second Game Audio Resource Guide. Highlights include: 
+ Todd Fay on the wonders of Performance Modeling, Marty 
+ O'Donnell discussing audio produciton for Halo, 
+ The pros and cons of using a live orchestra from Jack 
+ Wall, Gene Porfido reviews Digidesign's portable Mbox, 
+ the Fat Man offers unasked for advice, Gavin Andersen 
+ explains using audio to make games accessible to the 
+ blind, and Andrew Barnabas makes an appearance in the 
+ Game Audio Gallery. 
+ 
+ [More 
+ Features...] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest Contractors:
+Rapid Eye Entertainment, Inc. [07.11.02]
+Maxim Software [07.11.02]
+AdventurerLand Entertainment [07.11.02]
+Osmium Publishing [07.11.02]
+Charles Goodan [07.11.02]
+ 
+ 
+ Featured Contractors:
+ New 
+ Pencil: Offering the best in battle tested, top-quality 
+ video game art production.
+ Omni 
+ Interactive Audio: Ex-EA sound department, with multi-platinum 
+ credits.
+ Evolution 
+ Audio Post: Providing innovative and afforadable audio 
+ content for games.
+ GameBeat: 
+ Custom music & SFX - recent clients include EA, Sega, 
+ Microsoft. 
+ musicandsfx.com: 
+ Music, sound effects, voice acting and audio-post production 
+ services.
+ WetFire 
+ Audio: Full-service audio production for the gaming industry. 
+ 
+ Dhruva 
+ Interactive: India's leading provider of outsourced services 
+ to studios worldwide. 
+ Her 
+ Majesty's Righteous Beat Squad: Music composition, sound 
+ & voice creation, more.
+ Ballistic 
+ Pixel Lab: A production facility that will take your game 
+ to the next level.
+ Liguid 
+ Development : The only art resource you need for video 
+ game development.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Latest Jobs (Requires Login):
+Pandemic Studios: Programmers/Senior Programmers
+Midway Amusement Games, LLC: Software Engineer Opportunities
+Intrinsic Graphics, Inc.: Member Technical Staff &#8211; Graphics Production Tools
+Sigil Games Online: Senior Programmer
+Terminal Reality Inc.: Producer
+Maxis / Electronic Arts: Senior 3D Graphics Engineer
+Midway Home Entertainment Inc.: Product Testing Manager
+ArtSource, Inc.: Level Designer
+Superscape.com: 3D Mobile Games Programmer
+Swingin' Ape Studios: Senior Programmer
+Hoopla Entertainment: Netimmerse Programming Specialist
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Game 
+ Developer 
+ CD-ROM, Vol. 4 
+ All issues from May '01-April '02. Articles look as 
+ they appeared in print, fully searchable. Price: 
+ $49.00
+ 
+ 
+ 
+ 
+ 
+ Game 
+ Design Perspectives
+ A 
+ compilation of papers from professional game designers 
+ about the theory and practice of game design. Price: 
+ $31.96 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest 
+ Features:
+ Graduate 
+ Disseration: Understanding Gender Feedback Loops by James 
+ Davies, Middlesex University [07.08.02]
+ Master's 
+ Thesis: Statistical Person Tracker by Daniel Borthwick, 
+ University College London [05.29.02]
+ Master's 
+ Thesis: The Technoludic Film: Images of Videogames in Movies 
+ (1973-2001) by Matteo Bittanti, San 
+ Jose State University [05.01.02]
+ Doctoral 
+ Thesis: Curious Design Agents and Artificial Creativity: A Synthetic 
+ Approach to the Study of Creative Behavior by Rob Saunders 
+ University of Sydney [04.17.02] 
+ Master's 
+ Thesis: The Architechtures of Trust: Supporting Cooperation 
+ in the Computer-Supported Community by Jonas Heide Smith, 
+ University of Copenhagen [04.10.02] 
+ Master's 
+ Thesis: Gameplay: The Elements of Interaction by Patrick 
+ Mount, John Moores University [04.03.02]
+ 
+ [More 
+ Features and Theses...]
+ 
+ Latest Schools:
+ Virginia Commonwealth University: Richmond, Virginia 
+Musikhochschule Detmold Abteilung Muenster: Muenster, Germany 
+University of Texas at Austin: Austin, TX 
+QANTM: Brisbane, Australia 
+The Art Institute of Atlanta: Atlanta, GA 
+ 
+Featured 
+ Schools:
+ Academy 
+ Of Art College: San Francisco, CA, United States
+ Center 
+ for Digital Imaging and Sound: Vancouver, British Columbia, 
+ Canada
+ University 
+ of Advancing Computer Technology: Tempe, AZ, United States 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Latest Companies (Requires Login):
+Paranoid AB [06.13.02]
+Pocket Soft Inc. [06.07.02]
+Figment3D Enterprises Inc. [05.30.02]
+INTRAG Int'l [05.25.02]
+Magenta MultiMedia Tools B.V. [05.24.02]
+Froghop [05.22.02]
+Tyrell Innovations [05.01.02]
+Castle Access [04.29.02]
+Microsim Design [03.20.02]
+Simusoft3D Productions [02.20.02]
+ 
+ 
+ 
+ 
+Featured 
+ Products:
+ RTPatch: 
+ Reduce update size 90-99%. Update with only the changes.
+ ActiveMARK: 
+ Powerful security and broad distribution for Internet-distributed 
+ games.
+ BREW: 
+ An application platform from Qualcomm for developing wireless 
+ games. 
+ 3D 
+ Game Studio: Conitec's suite of game tools using a JavaScript-like 
+ language.
+ GlobalWave: 
+ A secure way to distribute rich media, using flexible payment 
+ technology.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ No enhanced projects currently listed. 
+[See ALL project listings here.] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ join 
+ | contact 
+ us | 
+ advertise 
+ | write 
+ | my 
+ profile 
+ news | features 
+ | companies | jobs 
+ | resumes | education | product 
+ guide | projects | store
+ 
+ 
+ 
+ Copyright © 
+ 2002 CMP Media LLC. All rights reserved. 
+ privacy policy | terms 
+ of service
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

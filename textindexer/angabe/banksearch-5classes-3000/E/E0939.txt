@@ -1,0 +1,164 @@
+
+C++ Compilers
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+ An incomplete list of C++ compilers
+ 
+Modified June 28, 2002
+I (Bjarne Stroustrup) am often asked to recommend
+a C++ compiler.
+However, I don't make recommendations; that would be too much like taking sides
+in commercial wars.
+Also, I don't know every C++ compiler; there are simply too many "out there".
+I use half-a-dozen C++ compilers on a regular basis, but that's only
+scratching the surface.
+I recommend that people take Standard conformance very serious when
+considering a compiler. If you can, avoid any compiler that doesn't closely
+approximate the ISO standard and supplies a solid implementation of the
+standard library.
+The recent releases from all the major C++ vendors do that.
+If you are a novice and don't know how to see if a compiler is conformant, try this:
+	#include
+	#include
+	using namespace std;
+	int main()
+	{
+	string s;
+	cout > s;
+	cout 
+If an implementation cannot handle this simple program as written, it is not
+a good candidate for learning Standard C++ (if you cut and
+paste, beware of html for "less than" in the #include directives).
+Here is a long article considering conformance and
+boost.org's compiler status page.
+Conformance is just one aspect of a compiler's quality (quality of generated
+code, error messages, compile speed, integration with tools, degree of support,
+and backwards compatibility are examples of other important aspects),
+but conformance is an important one.
+Use of a supplier's language extensions and non-standard-conforming features
+limits the portability of you code and can prevent you from choosing a new
+implementation supplier.
+Most of these compilers are embedded in frameworks of software development
+tools and libraries. These frameworks, environments, and libraries can be
+most helpful, but do remember that their use can lock you into a single vendor
+and that some uses have significant run-time performance implications.
+When looking for C++ on the web, you find that much of the information is
+"hidden" under various product names. In fact, I had more luck finding
+C++ compilers using google.com than by going directly to vendors that I knew
+sold them.
+Here, I have chosen to list C++
+implementations simply by the name of their provider, ignoring marketing
+labels.
+Some compilers that can be downloaded for free (do check their
+conditions/licenses before attempting commercial use):
+- 
+Apple C++
+- 
+Borland C++
+- 
+Cygwin (GNU C++)
+- 
+Dr. Dobbs C++ (GNU C++)
+- 
+GNU CC source
+- 
+Intel C++ for linux
+Some compilers that require payment (some allow free downloads for
+trial periods):
+- 
+Borland C++
+- 
+Comeau C++ for many platforms
+- 
+Compaq C++
+- 
+Edison Design Group C++ Front End
+- used by
+many C++ compiler suppliers
+- 
+Green Hills C++ for many embedded systems platforms
+- 
+HP C++
+- 
+IBM C++
+- 
+Intel C++
+- 
+Interstron C++
+- 
+Metrowerks C++,
+it comes for many platforms, search Metrowerks' main page
+- 
+Mentor Graphics/Microtec Research C++ for many embedded systems platforms
+- 
+Microsoft C++
+- 
+Paradigm C++, for x86 embedded systems
+- 
+The Portland Group C++ (parallization for Pentiums)
+- 
+SGI C++, optimizing compiler
+- 
+Sun C++
+- 
+WindRiver's Diab C++ used in many embedded systems. 
+It is impossible for me to keep this list complete and up-to-date.
+The C++ world is just too large and too much new is happening.
+Apologies to those suppliers who I failed to list, I know there are some,
+and please, if you have a link that you think ought to be listed here,
+send me a message: bs@research.att.com.
+Again: I just list compilers, I don't endorse them.
+Also, there can be no one compiler that is best for everyone, people's needs
+differ too much for that.
+For another list of C++ compilers, see
+the open directory project.
+For more C++ resources, see
+my C++ page.
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

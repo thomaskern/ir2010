@@ -1,0 +1,232 @@
+
+Security Features Overview
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: Security in Java 2 SDK 1.2
+Lesson: Security Features Overview
+JDK 1.2 contains substantial security features enhancements:
+policy-based, easily-configurable, fine-grained access control; 
+new cryptographic services and certificate and key management 
+classes and interfaces; and three new tools.
+These topics are discussed in the following sections:
+ 
+- Security Architecture Extensions
+- Cryptography Architecture Extensions
+- Security-Related Tools.
+Security Architecture Extensions
+Access control has evolved to be far more fine-grained than in previous
+versions of the Java platform.
+The original security model provided by the Java platform, known
+as the "sandbox" model, existed in order to provide a very restricted 
+environment in which to run untrusted code obtained from the open network. 
+In the sandbox model, shown in the following diagram, 
+local code is trusted to have full 
+access to vital system resources, such as the file system, but downloaded 
+remote code (an applet) is not trusted and can access only the limited resources 
+provided inside the sandbox. A security manager is responsible in this and
+subsequent platforms for determining which resource accesses are allowed.
+ JDK 1.0 Security Model:
+JDK 1.1 introduced the concept of a "signed applet," as illustrated 
+in the next figure. 
+A digitally signed applet is treated like
+local code, with full access to resources, if the public key used to
+verify the signature is trusted. Unsigned applets are still
+run in the sandbox. Signed applets are delivered, with their
+respective signatures, in signed JAR (Java ARchive) files.
+ JDK 1.1 Security Model:
+JDK 1.2 introduces a number of improvements over JDK 1.1.
+First, all code, regardless of whether it is local or remote,
+can now be subject to a security policy. 
+The security policy defines
+the set of permissions available for code from
+various signers or locations
+and can be configured by a user or a system administrator.
+Each permission specifies a
+permitted access to a particular resource,
+such as read and
+write access to a specified file or directory or connect access
+to a given host and port..
+The runtime system organizes code into individual domains, 
+each of which encloses a set of classes whose instances are granted the same set 
+of permissions. A domain can be configured to be
+equivalent to the sandbox, so applets can still be run in a
+restricted environment if the user or the administrator so chooses.
+Applications run unrestricted, as before, by default but can
+optionally be subject to a security policy.
+The new security architecture in JDK 1.2 is illustrated in the following figure.
+The arrow on the left end refers to a domain whose code is granted full
+access to resources; the arrow on the right refers to the opposite extreme:
+a domain restricted exactly the same as the original sandbox. The domains
+in between have more accesses allowed than the sandbox but less than
+full access. 
+ JDK 1.2 Security Model:
+Cryptography Architecture Extensions
+Note: This section is of interest mostly to developers already
+familiar with cryptography concepts. If you're not such a person, you may
+want to skip ahead to the section Security-Related Tools.
+Note: Some of the 
+cryptography terminology is defined in the 
+Glossary
+. For more information about cryptography, we recommend the
+book Applied Cryptography by Bruce Schneier,
+published by John Wiley & Sons, Inc., New York, NY, 1996.
+The first release of the JDK Security API in JDK 1.1 introduced the
+Java cryptography architecture (JCA), which refers to a framework for
+accessing and developing cryptographic functionality for the Java platform.
+The JCA includes a 
+provider architecture 
+that allows for multiple and interoperable cryptography implementations.
+The term cryptographic service provider (CSP), or simply provider,
+refers to a package (or a set of packages) that supplies
+a concrete implementation of a subset of the cryptography aspects of
+the JDK Security API. 
+In JDK 1.1 a provider could,
+for example, contain an implementation of one or more 
+digital signature 
+algorithms, 
+message digest
+algorithms, and key-generation
+algorithms. JDK 1.2 adds five more types of services:
+- Keystore creation and management
+- Algorithm parameter management
+- Algorithm parameter generation
+- Key factory support to convert between different key representations
+- Certificate factory support to generate certificates and
+certificate revocation lists (CRLs) from their encodings
+JDK 1.2 also enables a provider to
+supply a random-number generation (RNG) algorithm. 
+Sun's version of the Java Runtime Environment comes
+standard with a default provider, named 
+SUN. The SUN provider package includes implementations of
+a number of DSA (Digital Signature Algorithm) services,
+implementations of the MD5 (RFC 1321) and SHA-1 (NIST FIPS 180-1)
+message digest algorithms, a certificate factory for X.509 
+certificates and certificate revocation lists, a pseudo-random-number 
+generation algorithm, and a keystore implementation.
+The Java Cryptography Extension (JCE) extends the JDK 
+to include APIs for 
+encryption, 
+key exchange, and message
+authentication code (MAC). Together the JCE and the 
+cryptography aspects of the JDK 
+provide a complete, platform-independent cryptography API.
+The JCE is released separately as an extension to the JDK, in
+accordance with U.S. export control regulations,
+and is not covered in this trail.
+The following figure illustrates the various JCA modules. 
+The SPI (service provider interface) layer, representing methods
+that must be implemented by cryptographic service providers,
+is described in the following section.
+This figure has been reduced to fit on the page. 
+ Click the image to view it at its natural size.
+Cryptographic Services 
+A number of new "engine" classes 
+have been added in JDK 1.2 to the 
+Signature, MessageDigest, and 
+KeyPairGenerator classes available in JDK 1.1.
+An engine class defines a cryptographic service
+in an abstract fashion (without a concrete implementation).
+An engine class defines API
+methods that allow applications to access the specific type
+of cryptographic service it provides, such as a
+digital signature algorithm. The actual implementations,
+from one or more providers, are those for specific
+algorithms. 
+The application interfaces supplied by an engine class are
+implemented in terms of a service provider interface (SPI).
+That is, each engine class has a corresponding
+abstract SPI class that defines the service provider 
+interface methods that cryptographic 
+service providers must implement.
+For example, an API client may request and use an instance of 
+the Signature engine class to 
+access the functionality of a digital signature algorithm
+to digitally sign a file.
+The actual implementation supplied
+in a SignatureSpi subclass would be that 
+for a specific kind of signature
+algorithm, such as SHA-1 with DSA or MD5 with RSA.
+Each instance of an engine class encapsulates an instance of the
+corresponding SPI class as implemented by a cryptographic 
+service provider. Each API method of an
+engine class invokes the corresponding SPI method of the encapsulated
+SPI object.
+Certificate Interfaces and Classes
+ 
+JDK 1.2 introduces certificate interfaces and classes for parsing and 
+managing certificates and 
+provides an X.509 v3 implementation of the certificate interfaces.
+A certificate is basically a digitally signed statement from
+one entity (person, company, etc.), saying that the public key of 
+another entity has some particular value.
+Some of the certificate-related classes (all in the java.security.cert
+package) are as follows.
+- Certificate -
+This class is an abstraction for certificates that have various formats but important 
+common uses. For example, various types of certificates, such as X.509 and PGP, 
+share general certificate functionality, such as encoding and
+verifying, and some types of information, such as a public key. 
+X.509, PGP, and SDSI certificates can all be implemented by subclassing the 
+Certificate
+class, even though they contain different sets of information and 
+store and retrieve the information in different ways.
+- CertificateFactory -
+This class defines the functionality of a certificate factory, which is used to generate 
+certificate and certificate revocation list (CRL) objects from their encodings.
+- X509Certificate - This abstract class for X.509 certificates
+ provides a standard way to access all the attributes of an X.509
+certificate. 
+Key Management Classes and Interfaces
+ 
+JDK 1.1 introduced abstract Key interfaces. JDK 1.2 adds 
+- A KeyStore class (an engine class) 
+that supplies well-defined interfaces to access and modify the information
+in a keystore, which is a repository of keys and certificates.
+Multiple different concrete implementations are possible, where each 
+implementation is that for a particular type of keystore.
+A keystore type defines the storage and data format of the keystore 
+information.
+- A default KeyStore implementation, which implements the 
+keystore as a file, using a proprietary keystore type (format) named JKS. 
+The keystore implementation protects each private key with its individual 
+password and also protects 
+the integrity of the entire keystore with a
+(possibly different) password.
+- Key specification interfaces, which are used 
+for "transparent" representations 
+of the key material that constitutes a key. The key material for a key may,
+for example, consist of the key itself and the algorithm
+parameters used to calculate the key value.
+A transparent representation 
+of keys means that you can access each key material value individually.
+- A tool (keytool) for managing keys and certificates.
+Security-Related Tools
+JDK 1.2 introduces three new tools: 
+- The keytool is used to create pairs of public and private keys,
+to import
+and display certificate chains, to export certificates, and to
+generate X.509 v1 self-signed certificates and certificate requests
+that can be sent to a certification authority.
+- The jarsigner tool signs JAR (Java 
+ARchive format) files and verifies the authenticity of the
+signature(s) of signed JAR files.
+ 
+- The Policy Tool creates and modifies the policy configuration 
+files that define your installation's security policy.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

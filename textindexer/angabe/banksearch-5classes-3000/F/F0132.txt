@@ -1,0 +1,217 @@
+
+ 
+ 
+ 
+ The BitBlt Function
+ 
+ 
+ 
+ 
+Index 
+1. Getting
+Started 
+2. Calling
+the 
+Function
+3. Some
+Explanations
+4. Example 
+ 
+There are many tutorials over
+the internet about the BitBlt API call. This is one of the most 
+important functions used by
+graphics/game programmers, so I decided VB Center should have one about
+it too. 
+1.
+Getting Started... 
+ 
+The BitBlt function resides
+in GDI32 (graphics device interface), a dll that is usually located at
+your system path. It is used to print rectangular blocks of pixels from
+a source image (that can be either in a picture box or stored at a memory
+DC) to a destination (the same thing). 
+Well, if you didn't understand
+too much, just think of BitBlt as a function similar to PaintPicture
+- but with much more effects and velocity. 
+Back to Top
+2.
+Calling the Function 
+ 
+To call this function from VB,
+add the following code to the declarations section of a module: 
+ 
+Declare Function BitBlt
+Lib "gdi32" Alias "BitBlt"
+(ByVal hDestDC As Long,
+ByVal x As Long, ByVal
+y As Long, ByVal
+nWidth As Long, ByVal
+nHeight As Long,
+ByVal hSrcDC As Long,
+ByVal xSrc As Long,
+ByVal ySrc As Long,
+ByVal dwRop As Long)
+As Long 
+' ================================ 
+'PARAMETERS
+AND THEIR DESCRIPTION 
+' ================================ 
+' ByVal
+hDestDC As Long ..... hDC of object to receive the .bmp 
+' ByVal
+x As Long ........... x coordinate (upper-left) destination rectangle 
+' ByVal
+y As Long ........... y coordinate (upper-left) destination rectangle 
+' ByVal
+nWidth As Long ...... width of the destination rect. and source .bmp 
+' ByVal
+nHeight As Long ..... height of the destination rect. and source .bmp 
+' ByVal
+hSrcDC As Long ...... hDC of source object that contains the .bmp 
+' ByVal
+xSrc As Long ........ x coordinate (upper-left) source .bmp 
+' ByVal
+ySrc As Long ........ y coordinate (upper-left) source .bmp 
+' ByVal
+dwRop As Long ....... specifies the raster operation to be performed 
+ 
+ 
+Here it is! Now that you have
+declared the function, add some constants to the raster operations you'll
+use: 
+ 
+Public Const SRCCOPY
+= &HCC0020 'Copies
+the source bitmap to destination bitmap. 
+Public Const SRCAND
+= &H8800C6 
+'Combines pixels of the destination with source bitmap 
+ 
+'using the Boolean AND operator. 
+Public Const SRCINVERT
+= &H660046 'Combines pixels of the
+destionation with the bitmap 
+ 
+'using the Boolean XOR operator. 
+Public Const SRCPAINT
+= &HEE0086 'Combines
+pixels of the destination with source bitmap 
+ 
+'using the Boolean OR operator. 
+Public Const SRCERASE
+= &H4400328 'Inverts the destination
+bitmap and then combines the 
+ 
+'results with the source bitmap using the Boolean AND 
+ 
+'operator 
+Public
+Const DSINVERT = &H550009 
+'Inverts the destination bitmap. 
+Public
+Const NOTSRCCOPY = &H330008 
+'Copies the inverted source bitmap to the dest. 
+Public
+Const NOTSRCERASE
+= &H1100A6 'Inverts the result of combining
+the destination and 
+ 
+'source bitmap using the Boolean OR operator. 
+ 
+Public
+Const MERGECOPY
+= &HC000CA 'Combines the pattern
+and the source bitmap using 
+ 
+'the Boolean AND operation. 
+Public
+Const MERGEPAINT = &HBB0226 
+'Combines the inverted source bitmap with the 
+ 
+'destination bitmap using the Boolean OR operator. 
+ 
+Public
+Const PATCOPY = &HF00021 
+'Copies the pattern to the destination bitmap. 
+Public
+Const PATINVERT
+= &H5A0049 'Combines the destination
+bitmap with the pattern 
+ 
+'using the Boolean XOR operator. 
+Public
+Const PATPAINT
+= &HFB0A09 'Combines
+the inverted source bitmap with the pattern 
+ 
+'using the Boolean OR operator. Combines the result of 
+ 
+'this operation with the destination bitmap using the 
+ 
+'Boolean OR operator. 
+Public
+Const WHITENESS
+= &HFF0062 'Turns all output
+white. 
+Public
+Const BLACKNESS = &H42 
+'Turn output black. 
+ 
+With this you have all the possibilities
+that can be used with the BitBlt function. Now we can proceed... 
+Back to Top
+3.
+Some Explanations 
+ 
+If you examined the code well,
+you must have noticed two little tricky parameters: hDestDC and
+hSrcDC. 
+These properties are handles
+Windows use to identify where are the source and destination pixels. Device
+Contexts are utilized in almost all API calls - just take a look over VB
+Center and you'll see other functions that use DCs. 
+Forms and PictureBoxes already
+have their hDC property so that you can perform graphics-related functions. 
+Ok. So when you use BitBlt,
+it will be like this: 
+BitBlt to
+Destination.hDC , (additional parameters),
+from Source.hDC 
+Another thing: you must set
+your Forms and PictureBoxes AutoRedraw property to True, and after
+you blit, Refresh your control (object.Refresh).
+Back to Top
+4.
+Example
+ 
+The best way to learn is looking
+at examples, so pay attention to the following: 
+ 
+ 
+This image shows
+you how BitBlt works. Here we have a source picture, Picture1, and
+a destination picture (Picture2). We want to blit only the third
+cell to the scenery - it has 64x64 pixels and is located at the coordinate
+0,128 inside Picture1. Oh, and our hero must be at the coordinate 70, 200
+in the scenery. 
+So we use the code at the picture!
+It's like: 
+BitBlt
+to Picture2, at 70, 200, width/height:
+64,64, from Picture1, at
+0, 128, raster operation 
+To acheive transparency, SRCCOPY
+is not used... But this is just and example! :^) 
+ 
+ 
+Look at the example above with
+attention. I'm sure you understand something!
+If you have any questions,
+e-mail me!
+Check our tutorial on acheiving
+transparency and on the creation of DCs soon!
+Back to Top
+Back
+to the main page
+ 
+ 

@@ -1,0 +1,46 @@
+
+ mktime()
+ 
+ 
+mktime-Convert the broken-down time to a time_t value
+Synopsis
+ #include &#060;time.h&#062;
+ t = mktime(ts);
+ time_t t; /* number of seconds since 1/1/70 */
+ struct tm *ts; /* broken down time structure */
+Description
+ This function converts the broken-down time, expressed as local
+ time, to a time_t value identical to what the time function would
+ return for the specified date and time.
+ The functions localtime , gmtime , ctime , and mktime share a
+ static data area. A call to any one of these destroys the
+ results of the previous call.
+Returns
+ The mktime function returns the number of seconds since January 1,
+ 1970.
+Example
+ /*
+ *
+ * Get a time value for a very important event
+ * Sept 8, 1988 20:16:02
+ *
+ */
+ #include &#060;stdio.h&#062;
+ #include &#060;time.h&#062;
+ void main(void)
+ {
+ struct tm inputtm;
+ time_t event;
+ inputtm.tm_sec = 02; /* seconds after the minute */
+ inputtm.tm_min = 16; /* minutes after the hour */
+ inputtm.tm_hour = 20; /* hours since midnight */
+ inputtm.tm_mday = 8; /* day of the month */
+ inputtm.tm_mon = 9; /* months since January */
+ inputtm.tm_year = 88; /* years since 1900 */
+ inputtm.tm_isdst = 1; /* Daylight Savings Time flag */
+ event = mktime(&inputtm);
+ printf("%d seconds passed between 1/1/70, 00:00:00"
+ " and 9/8/88, 20:16:02n", event);
+ }
+See Also
+ time 

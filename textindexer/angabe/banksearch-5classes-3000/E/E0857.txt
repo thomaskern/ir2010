@@ -1,0 +1,217 @@
+
+GNE::Packet class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::Packet Class Reference
+The base packet class, used for dealing with all types of packets at a fundamental level. 
+More...
+#include 
+Inheritance diagram for GNE::Packet::
+List of all members.
+Public Methods
+ 
+ Packet (int id=0) 
+ Constructs a packet with the given ID. More...
+ 
+virtual ~Packet () 
+virtual Packet * makeClone () const 
+ Returns a newly allocated exact copy of this packet.
+ 
+int getType () const 
+ Returns the type of this instance. More...
+ 
+virtual int getSize () const 
+ Returns the current size of this packet in bytes. More...
+ 
+virtual void writePacket (RawPacket &raw) const 
+ Writes the packet to the given RawPacket. More...
+ 
+virtual void readPacket (RawPacket &raw) 
+ Reads this packet from the given RawPacket. More...
+ 
+Packet & operator= (const Packet &rhs) 
+ Copy operator you can use to help you in creating your own. More...
+ 
+Static Public Methods
+ 
+Packet * create () 
+ Returns a new instance of this class. More...
+ 
+Static Public Attributes
+ 
+const int ID = 0 
+ The ID for this type of packet.
+ 
+Detailed Description
+The base packet class, used for dealing with all types of packets at a fundamental level.
+All types of packets must inherit from this class to be recognized by GNE. GNE already implmenets some types of packets.
+When you create a new packet you MUST define your own versions of all virtual functions or the program will fail.
+See the example expacket on how to properly derive from a Packet class, or look at the code for the other GNE packets. 
+Constructor & Destructor Documentation
+ 
+ 
+ 
+ 
+ GNE::Packet::Packet 
+ ( 
+ int 
+ id = 0 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Constructs a packet with the given ID.
+If you pass no ID, the ID for an empty packet is assumed. Normally sending blank packets are not useful, however. If you are wanting to use a blank packet for some purpose such as a end-of-data marker or for sending some message that requires no data, it is suggested that you simply derive a class from Packet that adds no data, but has a unique ID so it can be "recognized" easier. 
+Parameters: 
+id 
+a number from PacketParser::MIN_USER_ID to 255. GNE packet id's are from 0 to MIN_USER_ID-1, inclusive. 
+ 
+ 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ Packet * GNE::Packet::create 
+ ( 
+ 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns a new instance of this class.
+This is used by the PacketParser::registerPacket function as a callback to make new packets to parse the data into. If you derive a new packet type, you'll probably want to register it, so you should create a create function of your own. 
+Reimplemented in GNE::CustomPacket, GNE::ExitPacket, GNE::PingPacket, and GNE::RateAdjustPacket. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::Packet::getSize 
+ ( 
+ 
+ ) 
+ const [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the current size of this packet in bytes.
+When overloading this function, call getSize on the parent class then add the sizes of your additional variables. If the size cannot be determined, then getSize should return a value = its possible size -- so in other words if the size cannot be determined, it should return the largest possible size that given packet could be. This is discouraged as much as possible since GNE allocates packets in the data stream based on this value, and large values will hinder performance. 
+Reimplemented in GNE::CustomPacket, GNE::ExitPacket, GNE::PingPacket, and GNE::RateAdjustPacket. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::Packet::getType 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the type of this instance.
+This allows you to identify the type of packet you have when you only have a Packet*. 
+ 
+ 
+ 
+ 
+ 
+ Packet & GNE::Packet::operator= 
+ ( 
+ const Packet & 
+ rhs 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Copy operator you can use to help you in creating your own.
+There is a debug assert in this function that checks to make sure the types match. Call this operator first from your copy operator. Many GNE packets may not support this operation, so check the documentation first -- if no operator= exists, then assume you cannot copy packets this way, unless the documentation says otherwise.
+ If you can't use operator= on a packet, you can use makeClone to achieve a nearly equivalent result. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Packet::readPacket 
+ ( 
+ RawPacket & 
+ raw 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Reads this packet from the given RawPacket.
+When overloading this function, call readPacket on the parent class then read your own variables.
+Note that the parser has already read the packet type from raw so it can create this packet, so it should not be re-read. This object already knows its type from creation. This is only relevant to the implemenation of the actual Packet class, and has no signifiance to derived classes, or to the end user. 
+Reimplemented in GNE::CustomPacket, GNE::ExitPacket, GNE::PingPacket, and GNE::RateAdjustPacket. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::Packet::writePacket 
+ ( 
+ RawPacket & 
+ raw 
+ ) 
+ const [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Writes the packet to the given RawPacket.
+You can continue writing more packets to the RawPacket after this method. You must make sure there is enough space in the RawPacket to fit this new packet. When overloading this function, call writePacket on the parent class then write your own variables. 
+Reimplemented in GNE::CustomPacket, GNE::ExitPacket, GNE::PingPacket, and GNE::RateAdjustPacket. 
+ 
+The documentation for this class was generated from the following files:
+- Packet.h
+- Packet.cpp
+Generated on Fri Mar 8 03:03:23 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

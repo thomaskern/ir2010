@@ -1,0 +1,38 @@
+Zeto - CryptDLL
+ 
+ 
+Home
+ 
+Resources
+ 
+Applications
+ 
+Source Code
+ 
+VB Tutorial
+ 
+Links
+ 
+ Mail Zeto
+ 
+ 
+ 
+ Source Code Listing - File/Path Exist 
+ 
+ 
+Code to check for the existence of a file or directory
+Download this code (1k)
+To check for a file:
+Function FileExist(vFile As String) As Boolean
+On Error Resume Next
+FileExist = False
+If Dir$(vFile) 
+End Function
+To check for a directory:
+Function PathExist(vPath As String) As Boolean
+On Error Resume Next 
+PathExist = False
+If Dir$(vPath, vbDirectory) 
+End Function
+© Zeto 1999. All Rights Reserved.
+ 

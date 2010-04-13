@@ -1,0 +1,661 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Working with the RMS 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+ 	
+	 
+	
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+Working With The RMS
+	
+	by John Muchow
+ -10/16/2001
+	
+	
+Within the Mobile Information Device Profile (MIDP), the Record Management System provides a means to store application data. In reading through various newsgroups and FAQs, several common questions keep resurfacing regarding the RMS:
+- Can record stores be shared among MIDlets?
+- Can record IDs be re-used?
+- How do you use the Enumeration class?
+Within this article, we'll take a closer look at each of these questions. Let's begin with a little background information. RMS uses non-volatile memory to store data. You can picture the storage area as a very simple database, where each row consists of a record ID, followed by a series of bytes.
+Record 
+Data 
+1 
+Data 
+2 
+Data 
+... 
+... 
+Record stores are referenced by name, which may consist of to 32 characters (case sensitive).
+Can Record Stores Be Shared Among MIDlets?
+The one word answer is yes. The more accurate answer is yes, if the MIDlets are packaged together within the same MIDlet suite. Put another way, each MIDlet must be stored in the same Java archive file (JAR).
+Let's assume we have two MIDlets within the same suite. If each has the following reference to a record store, the data in the store will be available to both MIDlets:static final String REC_STORE = "SharedRMS";
+Any MIDlet that is not part of the suite cannot access that same store. If we create another suite that has a MIDlet(s) with the same reference shown above, the record stores will be treated as distinct. As a further clarification, record store names are unique only within a suite. The same record store name can be used in multiple MIDlet suites, yet each suite will read/write to a separate area in persistent storage.
+Can Record IDs be Re-used?
+Each record within a record store is assigned a unique id. The first record written to the store will have the id of 1, the next 2, etc. Simple enough. So what happens when we delete a record?
+Let's assume we have 3 records in a store, with the IDs : 1, 2, 3. Deleting record id 2 removes the data for this record/ The two remaining records can still referenced by their IDs, 1 and 3.
+Record IDs are not reused, thus, adding a new record to the store will create a record with the ID 4. For all intents and purposes, record ID 2 is non-existent. Let's run through an example to reassure ourselves this is the case.
+This very simple MIDlet writes three records into a record store, with a message shown on the console for each record written. When the writing is complete, each record is read back from the store and displayed on the console. See Figure 1 for the output.
+Here is the block of code for reading the records from the store: 
+public void readRecords()
+{
+ try
+ {
+ // Intentionally small to test code below
+ byte[] recData = new byte[5]; 
+ int len;
+ 
+ for (int i = 1; i recData.length)
+ recData = new byte[recStore.getRecordSize(i)];
+ 
+ len = recStore.getRecord(i, recData, 0);
+ System.out.println("Record ID#" + i + ": " + 
+ new String(recData, 0, len));
+ }
+}
+ catch (Exception e)
+{
+ System.err.println(e.toString());
+}
+} 
+Notice the call to the record store to retrieve a record. We are accessing each record by its ID:len = recStore.getRecord(i, recData, 0);
+Let's add a line of code to delete the record with ID 2 and once again call readRecords() to display the record store contents. See Figure 2.
+After deleting ID 2, we can successfully retrieve the first record, ID 1. However, an exception is thrown when the read method tries to access ID 2. As mentioned earlier, IDs are not re-used, thus, there is no such ID 2 in the record store.
+Retrieve Records with Enumeration
+You have to agree, if it was up to us as the developer to determine what record IDs were unavailable in order to loop through the store without generating an error, we'd have to significantly beef-up our code. Fortunately, there is a much better tool built in MIDP, the Enumeration class.
+Let's write an alternative method to loop through the records in the store. 
+public void readRecordsUpdate()
+{
+ try
+ {
+ System.out.println("Number of records: " + 
+ recStore.getNumRecords());
+ 
+ if (recStore.getNumRecords() > 0)
+ {
+ RecordEnumeration re = 
+ recStore.enumerateRecords(null, null, false);
+ while (re.hasNextElement())
+ {
+ String str = new String(re.nextRecord());
+ System.out.println("Record: " + str); 
+ }
+ }
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+}
+An enumeration is a helper class that allows forward and backward movement through a record store. Moving through the store requires nothing more than a check to see if there is another record available (in either direction), and if so, requesting its data.while (re.hasNextElement())
+{
+ String str = new String(re.nextRecord());
+ System.out.println("Record: " + str); 
+}
+Using an enumeration the store is not accessed through a record ID, thus, we no longer receive an InvalidRecordIDException, see Figure 3. Notice record ID 2 has been removed from the database.
+Take a look at the declaration of the enumeration object:RecordEnumeration re = 
+ recStore.enumerateRecords(null, null, false);
+The first and second parameters can accept a reference to a RecordFilter and/or RecordComparator, respectively. When used in conjunction with the enumerator, a record filter can be used to find a specific record or subset of records. A comparator provides a means for the enumeration to return records in sorted order. A filter and comparator can also be used together, for example, to provide a subset of records, in sorted order. The actual code for searching and sorting is not provided as part of the RecordFilter or RecordComparator classes. Instead, you write the algorithms that carry out the search/sort and the enumerator calls these methods when creating the result set. In a future article we'll look at the specifics of how to use these classes along with an enumeration./*--------------------------------------------------
+* No GUI interface, all output is to the console
+*-------------------------------------------------*/
+import javax.microedition.rms.*;
+import javax.microedition.midlet.*;
+import javax.microedition.lcdui.*;
+import javax.microedition.io.*;
+ 
+public class rmsTest extends MIDlet
+{
+ private RecordStore recStore = null;
+ static final String REC_STORE = "test_db";
+ 
+ public rmsTest()
+ {
+ openRecStore(); // Create the record store
+ 
+ // Write a few records
+ writeRecord("CoreJ2ME");
+ writeRecord("In the middle"); 
+ writeRecord("MicroJava"); 
+ 
+ System.out.println("------------------------------"); 
+ readRecords();
+ 
+ System.out.println("------------------------------"); 
+ deleteRecord(2);
+ 
+ // This read method will throw an error
+// readRecords();
+ 
+ // New and improved read using Enumeration
+ readRecordsUpdate(); 
+ 
+ closeRecStore(); 
+ }
+ 
+ public void destroyApp( boolean unconditional )
+ {
+ }
+ 
+ public void startApp()
+ {
+ // There is no user interface, go ahead and shutdown
+ destroyApp(false);
+ notifyDestroyed();
+ }
+ 
+ public void pauseApp()
+ {
+ }
+ 
+ public void openRecStore()
+ {
+ try
+ {
+ // The second parameter indicates that the record store
+ // should be created if it does not exist
+ recStore = RecordStore.openRecordStore(REC_STORE, true );
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ } 
+ 
+ public void closeRecStore()
+ {
+ try
+ {
+ recStore.closeRecordStore();
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ }
+ 
+ public void writeRecord(String str)
+ {
+ byte[] rec = str.getBytes();
+ 
+ try
+ {
+ recStore.addRecord(rec, 0, rec.length);
+ System.out.println("Writing record: " + str);
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ }
+ 
+ public void readRecords()
+ {
+ try
+ {
+ // Intentionally small to test code below
+ byte[] recData = new byte[5]; 
+ int len;
+ 
+ for (int i = 1; i recData.length)
+ recData = new byte[recStore.getRecordSize(i)];
+ 
+ len = recStore.getRecord(i, recData, 0);
+ System.out.println("Record ID#" + i + ": " + 
+ new String(recData, 0, len));
+ }
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ } 
+ 
+ public void readRecordsUpdate()
+ {
+ try
+ {
+ System.out.println("Number of records: " + recStore.getNumRecords());
+ 
+ if (recStore.getNumRecords() > 0)
+ {
+ RecordEnumeration re = recStore.enumerateRecords(null, null, false);
+ while (re.hasNextElement())
+ {
+ String str = new String(re.nextRecord());
+ System.out.println("Record: " + str); 
+ }
+ }
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ }
+ 
+ public void deleteRecord(int id)
+ {
+ try
+ {
+ recStore.deleteRecord(id);
+ }
+ catch (Exception e)
+ {
+ System.err.println(e.toString());
+ }
+ }
+}
+Source Code:
+The source code for this article can be downloaded from http://www.CoreJ2ME.com/Microjava.
+John Muchow is the author of the forthcoming book "Core J2ME Technology" published by Sun Microsystems Press and Prentice Hall. John is an independent J2ME trainer and consultant. Visit www.CoreJ2ME.com for additional code examples, and information about J2ME/MIDP open enrollment and custom on-site training. 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

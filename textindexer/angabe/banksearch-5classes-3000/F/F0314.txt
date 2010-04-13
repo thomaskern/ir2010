@@ -1,0 +1,755 @@
+
+Simple Object Access Protocol: A Step-By-Step Approach
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ 
+ XML and SOAP - SOAP: A Step-By-Step Approach 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+SOAP - Simple Object Access Protocol - is the hottest thing in XML development
+right now. It has a major role to play in Microsoft's next generation of Visual
+Studio, and it is the basis of their ".NET" strategy. If you're
+looking to write a bullet-proof SOAP service now, in VB6, then look no further
+than Microsoft's SOAP toolkit for VB; but if you really want to understand 
+what SOAP is all about, then you need to get under the hood, and start building
+your own objects around the SOAP standard. This article aims to get you started.
+In the article, we will create a simple SOAP service, and a
+client to access that service. The service will be in the form of an Active
+Server Page, which I have called soap.asp - it will need to live in the root
+directory of your Personal Web Service (by default c:\inetpub\wwwroot\) Our
+service will accept and process SOAP requests made by our client - a VB exe,
+with a single module, and a start-up Sub Main().
+Simple Object Access Protocol: A Step-By-Step Approach
+By Syd Egan
+s we know, SOAP is a call-response mechanism, which operates in a
+client-server paradigm. The client (your application) makes a call to the
+server (a web server, somewhere on the internet), passing in parameters; and the
+server provides a response. Both call and response are transported in the
+form of XML documents. Therefore, to build our own example SOAP system, we need
+both a client and a server - a caller and a responder.
+The example we will follow is a very simple one: we will build a service that
+will calculate the tax due on a sales transaction. In traditional VB terms well
+will create a function with the following definition:
+Public Function GetSalesTax(ByVal
+pSalesTotal As Double) As
+Double
+ GetSalesTax = pSalesTotal * 0.04
+End Function
+Crude, but effective (if you live in a state where the sales tax rate is 4%!)
+This function defines a method name (GetSalesTax), a parameter (pSalesTotal -
+representing the total value of the sale) and a return value (the result of the
+function). In more traditional object-oriented terms, we might think of
+pSalesTotal as an "IN" parameter, and the GetSalesTax result as an
+"OUT" parameter. Quite straightforwardly: sales-total in; sales-tax
+out. A SOAP service can be thought of in terms of "IN" and
+"OUT" parameters - the client passes "IN" parameters to the
+server, and then receives the "OUT" parameters in return. So, in order
+to create our SOAP service, we need a server that will listen for requests to
+GetSalesTax, accompanied by "IN" parameters, and which will respond
+with "OUT" parameters, indicating the correct tax amount. Let's start
+with the client - the caller. How do we call the SOAP service to make our
+request.
+The Client
+In traditional VB terms, our request to the GetSalesTax function described
+above, would be something such as:
+dblSalesTax = GetSalesTax(100)
+Returning a value of $4.
+If the GetSalesTax function was contained within an external object, such as
+an MTS server, then the call would need to reference the server DLL:
+Dim objTax As
+New CTaxCalc
+dblSalesTax = objTax.GetSalesTax(100)
+In a SOAP system the call is little different, only the request is formatted
+as an XML document, which is passed up to the server. The appropriate document
+contains the same details as the MTS call -a method to call, and the parameter
+name and value.
+ 100
+In order to ensure that the server can correctly identify and decrypt this
+method call, it is wrapped up in a larger document, called a SOAP envelope,
+which references the universal name-space of the SOAP envelope standard.
+ 
+ 
+ 
+ 100
+ 
+ 
+Finally, to complete our SOAP request document, we will add a name-space
+reference to our method call, which points to the object which contains the
+method - the equivalent of the object declaration (Dim objTax As New CTaxCalc)
+in our MTS method call.
+ 
+ 
+ 
+ 100
+ 
+ 
+Now that we have built our SOAP request document, we are ready to send it to
+the server. The request is a simple HTTP post - just like posting a web form in
+your internet browser. Of course, your internet browser masks all the complexity
+of sending a form to a server; and in the longer-term .NET will mask this
+process from your VB code too. But for now, we need to do the job ourselves; and
+I have been using Microsoft's XML HTTP Request object to give me a helping hand.
+(The XMLHTTPRequest is an object within the MSXML class library (MSXML.DLL), and
+it comes with IE5.) Assuming that strEnvelope contains the XML document
+described above, the request is formatted thus:
+ 
+Dim objHTTP As
+ New MSXML.XMLHTTPRequest
+ Dim strEnvelope As String
+ 
+ 'Set up to post to our localhost server
+ objHTTP.open "post", "http://localhost/soap/soap.asp"
+ 
+ 'Set a standard SOAP/ XML header for the content-type
+ objHTTP.setRequestHeader "Content-Type", "text/xml"
+ 
+ 'Set a header for the method to be called
+ objHTTP.setRequestHeader "SOAPMethodName", _
+ "urn:myserver/soap:TaxCalc#GetSalesTax"
+ 
+ 'Make the SOAP call
+ objHTTP.send strEnvelope
+ 
+ 'Get the return value
+ strReturn = objHTTP.responseBody
+Now that we have sent our request,
+we move to the server, to see how we set up a SOAP service to listen and respond
+to our calls.
+The Server
+Our server needs to be configured to accept the HTTP post sent by the client.
+It will be noted that we direct the client's post to a URL on our local server -
+http://localhost/soap.asp. So our first job is to create this page, to listen
+for, and process, SOAP calls to our server. We know that our ASP will receive an
+XML document, in the form of an HTTP post, with a method name (GetSalesTax), and
+a parameter (SalesTotal). So, to write our basic listener service, all we need
+do is deconstruct the body of the request (the SOAP envelope) and pull out the
+value of the SalesTotal parameter.
+The SOAP envelope posted by the client is contained in the body of the
+request, or in ASP terms the Request object; and because it is XML, we can load
+it into an instance of Microsoft's XMLDOM in our ASP. Soap.asp begins like this:
+Set objReq =
+Server.CreateObject("Microsoft.XMLDOM")
+objReq.Load Request
+Thus objReq contains the SOAP envelope we created on the client, and we can
+extract the value of the SalesTotal parameter by running an XSL pattern query,
+using the SelectSingleNode method of the XML DOM object :
+strQuery = "SOAP:Envelope/SOAP:Body/m:GetSalesTax/SalesTotal" 
+varSalesTotal = objReq.SelectSingleNode(strQuery).Text
+With the parameter extracted, we
+can make our calculation to get the sales-tax:
+varSalesTax = varSalesTotal * 0.04
+Now we have the return value for sales-tax - the response - ready to
+pass back to the client, but as with the request, we need to format this
+response correctly, in order to comply with the SOAP standard. The SOAP response
+envelope conforms to a format-type identical to the request. The only difference
+is that the "IN" parameter (SalesTotal, in our case) is replaced by an
+"OUT" parameter - SalesTax, and the method name indicates that the
+document is a response:
+ 
+ 
+ 
+ 4
+ 
+ 
+We can build up this document, either by string-concatenation, or by creating
+a new instance of a DOM, and appending the appropriate nodes.
+Back on the client, the response is received, and can be decoded by
+extracting the appropriate node from the Envelope document:
+ 
+Dim objReturn As
+ New MSXML.DomDocument
+ objReturn.LoadXML strReturn
+ 
+strQuery = _
+ "SOAP:Envelope/SOAP:Body/m:GetSalesTaxResponse/SalesTax"
+ dblTax = objReturn.SelectSingleNode(strQuery).Text
+And that's it! A functional, compliant SOAP service in a few easy steps. Of
+course, the service that we have provided is far from sophisticated, but that is
+to miss the point. In the not-too-distant future, Visual Studio 7 will
+completely mask the implementation of SOAP; but I believe that there is value in
+understanding the way the engine turns beneath the hood. SOAP itself is a very
+simple protocol; and I hope you leave this article with a better understanding
+the infrastructure that lies behind SOAP, and the methodology through which
+SOAP-based component services are going to be provided in the future.
+Appendix 1: VB Client Code
+NB - This project contains a single module, with a Sub Main start-up object,
+and references the MSXML library. 
+The code assumes you are running a local web server (localhost),
+and that soap.asp is located in the web root, as described below.
+ 
+ 
+ 
+ 
+ 
+ 
+Sub Main()
+ 
+ Dim objHTTP As
+ New MSXML.XMLHTTPRequest
+ Dim strEnvelope As
+ String
+ Dim strReturn As String
+ Dim objReturn As New
+ MSXML.DOMDocument
+ Dim dblTax As
+ Double
+ Dim strQuery As String
+ 
+ 'Create the SOAP Envelope
+ strEnvelope = _
+ """>"
+ & _
+ ""
+ & _
+ "" & _
+ """>"
+ & _
+ "100"
+ & _
+ ""
+ & _
+ "" & _
+ ""
+ 
+ 'Set up to post to our local
+ server
+ objHTTP.open "post", "http://localhost/soap.asp",
+ False
+ 
+ 'Set a standard SOAP/ XML header
+ for the content-type
+ objHTTP.setRequestHeader "Content-Type",
+ "text/xml"
+ 
+ 'Set a header for the method to be
+ called
+ objHTTP.setRequestHeader "SOAPMethodName", _
+ "urn:myserver/soap:TaxCalculator#GetSalesTax"
+ 
+ 'Make the SOAP call
+ objHTTP.send strEnvelope
+ 
+ 'Get the return envelope
+ strReturn = objHTTP.responseText
+ 
+ 'Load the return envelope into a DOM
+ objReturn.loadXML strReturn
+ 
+ 'Query the return envelope
+ strQuery = _
+ "SOAP:Envelope/SOAP:Body/m:GetSalesTaxResponse/SalesTax"
+ dblTax = objReturn.selectSingleNode(strQuery).Text
+ 
+ Debug.Print dblTax
+ 
+ End Sub
+ 
+ 
+ 
+ 
+ 
+Appendix 2: ASP Server Code
+This code resides in an ASP - Soap.asp, in the root directory of the web
+server.
+ 
+ 
+ 
+ 
+ 
+ 
+"urn:schemas-xmlsoap-org:soap.v1"">"
+ & _
+ "" & _
+ "" & _
+ """>"
+ & _
+ "" & varSalesTax & ""
+ & _
+ "" & _
+ "" & _
+ ""
+ 
+ 'Write the return envelope
+ Response.Write strTmp
+ 
+ %>
+ 
+ 
+ 
+ 
+ 
+Syd Egan is a Project
+Leader at ComponentSource
+http://www.componentsource.com
+The Definitive Source Of Software Components
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+comments for Syd Egan
+	Sathyanathan Sundaram Saturday, March 24, 2001	
+	
+	
+	
+Perpetual error message
+	Barney Monday, April 30, 2001	
+	
+	
+	
+VB Module
+	Derrick Wednesday, May 02, 2001	
+	
+	
+	
+explanation on TaxCalc component
+	mprb Thursday, May 03, 2001	
+	
+	
+	
+Great example
+	Ray Carmody Monday, May 14, 2001	
+	
+	
+	
+Best One
+	S Apte Monday, May 14, 2001	
+	
+	
+	
+Great example
+	real term Sunday, May 20, 2001	
+	
+	
+	
+Component
+	M.N.Arunkumar Thursday, June 28, 2001	
+	
+	
+	
+Example a HUGE help.
+	Royden Friday, July 13, 2001	
+	
+	
+	
+ERROR 91
+	Manoj Friday, July 13, 2001	
+	
+	
+	
+Error 91 - object variable not set
+	Amin Monday, July 16, 2001	
+	
+	
+	
+error 91.. solution doesn't work...
+	Manoj Monday, July 16, 2001	
+	
+	
+	
+Soap does not work
+	jsevere Friday, July 27, 2001	
+	
+	
+	
+Nice Example
+	Wesley Thursday, August 02, 2001	
+	
+	
+	
+Good Example with some clarifications
+	Karthik Tuesday, August 07, 2001	
+	
+	
+	
+Good example
+	Cesar Thursday, August 09, 2001	
+	
+	
+	
+Exact what I needed
+	Abdullah Harput Tuesday, August 28, 2001	
+	
+	
+	
+Worthless
+	Ned Robinson Tuesday, August 28, 2001	
+	
+	
+	
+Worthless
+	Ned Robinson Tuesday, August 28, 2001	
+	
+	
+	
+OK, I got it working
+	Ned Robinson Tuesday, August 28, 2001	
+	
+	
+	
+Best I have seen
+	Partha Monday, September 03, 2001	
+	
+	
+	
+Best I have seen
+	Partha Monday, September 03, 2001	
+	
+	
+	
+It worked fine (local and remote)
+	Pablo Friday, September 21, 2001	
+	
+	
+	
+SOAP with VB service on APACHE-SOAP?
+	Nishant Tuesday, October 16, 2001	
+	
+	
+	
+Truly Great; Simplifying it...
+	Sarat Vepachedu Wednesday, October 17, 2001	
+	
+	
+	
+Fixed Error-91
+	Kevin Thursday, October 18, 2001	
+	
+	
+	
+NICE!
+	sjors pals Monday, October 22, 2001	
+	
+	
+	
+It doesn't work fo me
+	Tom Carr Tuesday, October 30, 2001	
+	
+	
+	
+Good one!
+	Krishna Tuesday, November 13, 2001	
+	
+	
+	
+Goo example for understanding SOAP
+	Philip Tuesday, November 13, 2001	
+	
+	
+	
+Error doesn't work at all.
+	Manoj Monday, November 19, 2001	
+	
+	
+	
+Error msg
+	Rovina Friday, December 07, 2001	
+	
+	
+	
+Soap Setup
+	Tom Carr Monday, December 10, 2001	
+	
+	
+	
+Excellent SOAP example
+	Hari Bandaru Wednesday, December 12, 2001	
+	
+	
+	
+Ivory Soap
+	Nick Hrones Wednesday, December 12, 2001	
+	
+	
+	
+Really good explanation
+	Vasu Tuesday, December 18, 2001	
+	
+	
+	
+How to resolve Error 
+	Abhijeet Thursday, December 20, 2001	
+	
+	
+	
+The best way to present SOAP concept 
+	Bhanu Prasad M Tuesday, January 01, 2002	
+	
+	
+	
+A trick to error 91 
+	stranger Tuesday, January 08, 2002	
+	
+	
+	
+Worked First Time. Excellent Example
+	Mark Castle Friday, February 01, 2002	
+	
+	
+	
+Eror
+	Ameur Friday, February 01, 2002	
+	
+	
+	
+Object.required: Solution?
+	Albert Wednesday, March 06, 2002	
+	
+	
+	
+Please help me!!!!
+	Deniz Friday, April 05, 2002	
+	
+	
+	
+This is not an example of SOAP !!!
+	man Thursday, April 25, 2002	
+	
+	
+	
+Inadequate explanation
+	Virendra Verma Friday, May 10, 2002	
+	
+	
+	
+NO ONE HAS THE ANSWER FOR THE ERROR ...
+	JP Sunday, April 07, 2002	
+	
+	
+	
+Error Executing 
+	pbrune Monday, April 15, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ 
+ XML and SOAP - SOAP: A Step-By-Step Approach
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

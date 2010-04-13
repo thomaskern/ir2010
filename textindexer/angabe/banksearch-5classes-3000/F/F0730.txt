@@ -1,0 +1,291 @@
+
+VB Helper: Visual Basic .NET Database Programming: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Visual Basic .NET Database Programming: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Source Code 
+ 
+ 
+ Related Articles 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Database Programming with Visual Basic .NET
+provides a broad introduction to database programming in Visual Basic. Chapters in the beginning of the book explain tasks that lie outside of your actual program such as designing and building a database. The next few chapters explain how to use Visual Basic's automated database tools to provide database support in simple ways. Later chapters explain how to interact directly with databases to provide sophisticated data processing capabilities.
+1. Data Storage Alternatives
+This chapter explains in greater detail what databases are and how programs can use them. It describes several different kinds of data storage techniques you can use when you don't really need the full power of a relational database. It also briefly describes a few less common types of databases in addition to the relational databases that are the book's focus.
+2. Database Design
+This chapter explains how to design a relational database. It tells you how to design, normalize, and construct a database. It explains master-detail relationships, keys, indexes, constraints, and other database construction concepts that you need to understand to build an efficient database.
+3. Security
+This chapter explains security, focusing on the security implemented by SQL Server and MSDE databases. It tells how to grant and deny privilege to connect to a server or a particular database. It tells how to use account IDs and roles to control the access each user gets to the database. For example, it shows how to give a user permission to create tables in a database, or how to allow a user to view but not modify data in a particular table.
+4. Off to See the Wizard
+This chapter describes the most useful database-related wizards that come with Visual Basic .NET. The simpler wizards can help you build SQL queries, initialize database connections, and configure data adapters. The more complicated Data Form Wizard can automatically build a complete database access form for your application. Although the results often require some customization, this wizard can save you a lot of time when starting a new application.
+5. The DataSet Family of Objects
+This chapter describes the DataSet class and classes that work closely with it. It explains how a DataSet object contains DataTable objects. A DataTable object in turn contains DataColumn objects that describe the columns of data and DataRow objects that hold the data. This chapter shows how a program can use DataRelation objects to define relationships between different DataTable objects and how a program can use a DataView object to manipulate a subset of a DataSet's values.
+6. Database Connections
+This chapter explains different ways an application can connect to a database. It shows how a program can initialize its data objects internally, load them using XML data, and connect to SQL Server or OLE DB databases. Once an application has connected to a database, it can manipulate the database. The RunScript program described in this chapter shows how a program can manipulate a database's structure and data quickly and flexibly with remarkably little code.
+7. XML Databases
+This chapter explains one of the newest technologies in data storage: XML (Extensible Markup Language). It explains how a program can load, manipulate, and save XML data. Although relational databases provide far more features for sorting, searching, updating, and grouping data, XML files provide a simple text-based alternative to relational databases that is sometimes useful.
+8. Bound Controls
+This chapter explains how bound controls automatically let a user view, modify, and delete data. These controls cannot perform extremely complex database operations but they can let you build simple database programs in remarkably little time. This chapter also explains how a program can use DataViews to bind a control to a subset of the data and how to use CurrencyManager objects to manage the position of the bound controls in the data.
+9. Data Safety
+This chapter shows how a program can implement data safety features to ensure that no changes are lost without the user's permission. Using a simple drawing program as an example, this chapter shows how a program can implement standard File menu items including New, Open, Save, Save As. It also shows how a program can build a most recently used file (MRU) list.
+10. A Single-User Example
+This chapter uses a simple order entry program to demonstrate several important single-user application techniques. It starts with a big form containing many controls. It refines the initial design to create an MDI interface that can tell when the user modifies a customer's data so it can ensure that the changes are saved safely.
+11. Multi-User Programming
+This chapter continues to improve upon the example built in Chapter 10 to demonstrate techniques useful in multi-user applications. The program developed in Chapter 10 has two serious drawbacks. First, it loads all of its data at once so it cannot handle extremely large databases. Second, this program does not protect users from each other. One user's changes can overwrite another's or they can make the program crash. The example presented in this chapter addresses these issues to make the program more efficient and save for multiple users.
+12. Query By Example
+This chapter describes a specific technique for selecting records from a database. A "query by example" form lets even inexperienced users perform complex database queries without worrying about all the details. You can add the form described in this chapter to your programs so users can select records using a variety of criteria quickly and easily. In many applications, this is the only record selection method the users will need.
+13. Discovering Database Structure
+This chapter explains how an application can learn about a database's structure. It shows how a program can use Visual Basic's database objects and SQL Server stored procedures to learn about the databases on a server, the tables in a database, and the columns in a table. It shows how to use stored procedures to identify the columns that form a table's primary key and how to determine which fields refer to a column as a foreign key.
+Appendix A. SQL
+This appendix summarizes some of the more important features of Structured Query Language (SQL). SQL plays an important t role in many database applications and many of the examples described in this book use SQL to perform tasks such as adding, modifying, and deleting database records, and modifying the database structure itself. This chapter summarizes the most useful commands provided by SQL.
+Appendix B. The Visual Basic .NET Development Environment
+This appendix provides a quick introduction to the Visual Basic .NET development environment. It explains how 
+you can customize the environment and why it may not look exactly as it does in the book's figures.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Visual Basic .NET Database Programming: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Source Code 
+ 
+ 
+ Related Articles 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

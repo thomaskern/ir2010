@@ -1,0 +1,510 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Serious KVM Programming 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+ 	
+	 
+	
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+Serious KVM Programming
+	
+	by Shiuh-Lin Lee
+ -02/04/2002
+	
+	
+In this article, I assume the readers are already familiar with KVM (K Virtual Machine), and I won't spend time to discuss the benefits of KVM applications in the wireless world. If readers are interested on those missing topics, there are several good articles can be found in the reference section. In this article, I will mainly address the experience gained from a port of my full-featured GIS (Geographic Information System) program from the Java SE (Standard Edition) to the Java ME (Micro Edition) KVM environment.
+In 1997, I implemented an Internet Java GIS applet program, JShape, which allows users to load the GIS, CAD or image data from the web server and display them on the user's web browser screen. After Sun introduced KVM, in the latter portion of 1999, I ported JShape to the Java ME CLDC (Connected Limited Device Configuration) Palm KVM environment as KShape. Also, in the early months of 2000, I implemented a new MShape GIS program, which can run on the Java ME MIDP (Mobile Information Device Profile) Motorola iDEN phone environment. Due to the different computing environment, the resulted programs have the different features. Here are the major differences between Java SE and Java ME (CLDC and MIDP), and the features supported in JShape, KShape and Mshape.
+ 
+Java SE 
+Java ME - CLDC (Palm) 
+Java ME - MIDP 
+Hardware Type 
+PC, Workstation 
+Handheld device, PDA 
+Cellular Phone, Pager 
+CPU Speed 
+100+ MHz 
+16 - 20 MHz (slow) 
+Very Slow 
+Program Memory Size 
+16+ MB 
+128 - 256 KB 
+Less Than 128 KB 
+Storage Size 
+1+ GB 
+1 - 8 MB 
+Less Than 256 KB 
+Display Size 
+640 x 480 pixels + 
+160 x 160 pixels 
+Around 100 x 100 pixels 
+Internet Connection 
+56.6 Kbps + 
+19.2 - 33.6 Kbps for regular modems
+14.4 Kpbs for some wireless modems 
+9600 Kbps 
+Java Class Library 
+Full 
+Subset 
+Subset 
+GUI Class Library 
+AWT, Swing 
+N/A 
+N/A 
+Internet Connection Class Library 
+HTTP, Socket, Datagram 
+Socket 
+Datagram 
+Math Class Library 
+Yes 
+N/A 
+N/A 
+Float & Double Data Types 
+Supported 
+N/A 
+N/A 
+Implemented GIS 
+JShape 
+KShape 
+MShape 
+JShape 
+ 
+JShape- An internet web based GIS program, which provides the following features:
+- Reads input vector data from ESRI shapefile,ESRI SDE, Oracle Spatial, and user defined text file.
+- Reads input image files from different sources (.gif, .jpg, dynamic map, multiple resolution map, etc.)
+- Provides Java API and Java Beans programming interface.
+- Provides JShape Script language interface.
+- Fully integrated with DHTML & Javascript languages. 
+KShape 
+ 
+KShape- A vector based GIS program for Palm KVM. It can access GIS data either from WWW Server or HotSync from the local machine. The retrieved data may be stored in Palm database for the later uses. Here are some screen images that illustrate the uses of KShape.
+ 
+ 
+The following diagram outlines the KShape Systems Architecture. 
+ 
+MShape 
+ 
+MShape- GIS raster map client for Motorola iDEN phones. This client program sends the GIS map request through JSGateway to a remote WWW GIS map server. The WWW map server will process the map request, generate the raster image, and send the requested image back to the MShape client.
+The following screen images illistrate the uses of MShape. 
+ 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	
+	1 of 2 
+	Next >>
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

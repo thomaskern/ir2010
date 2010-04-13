@@ -1,0 +1,38 @@
+
+Rich Edit Context Menu
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 06/21/97,
+ last update: 06/21/97 
+ 
+Home 
+ 
+ 
+ Context: Demonstrates extended
+ Edit context menu functionality for the RichEdit control
+ 
+ This example demonstrates implementing the main menu's Edit submenu as a right-click
+ context menu for the RichEdit control. The RichEdit control executes all keyboard edit
+ commands (Undo, Cut, Copy, Paste, Delete and Select All), but does not provide it's own
+ corresponding edit context menu. As a result, shortcut keys (and their associated command
+ strings) cannot be defined for these commands in Visual Basic. 
+ 
+ The example shows how to dynamically add and remove the strings from edit menu when
+ displayed in the main menu and as the context menu respectively, as well as how to execute
+ all edit menu commands through the Win32API.
+ 
+ Menu placement as a result of keyboard context menu display (via the Shift-F10 key
+ combination) and extended word selection are also demonstrated.
+ 
+ Requires Richtx32.ocx
+ 
+ Download context.zip (12kb) 
+ 

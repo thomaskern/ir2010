@@ -1,0 +1,159 @@
+
+Stroustrup: Errata for 1st/11th printing of The C++ Programming Language
+Errata for 1st/11th printing of The C++ Programming Language
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (special edition),
+Addison-Wesley, 2000. ISBN0-201-70073-5.
+Errata for the 1st printing yielding the 3rd printing.
+Also for the 11th printing of "The C++ Programming Language (3rd edition)"
+yielding the 12th printing.
+Errors and Clarifications
+Chapter 3:
+pg 55	s/Entry& e =/const Entry& e =/
+Chapter 4:
+pg 76	A better version of the example:
+#include 
+#include 
+int main()
+{
+	std::cout ::max()
+	::is_signed 
+Chapter 6:
+pg 131	Clarification of the first paragraph after the first example:
+	"The T(e) construct is sometimes referred to as a function-style
+	cast. Unfortunately, for a built-in type T, T(e) is equivalent to
+	(T)e (6.2.7). This implies that for many built-in types T(e)
+	is not safe. ..."
+Chapter 7:
+pg 146	s/21.2.1/21.3.2/
+Chapter 8:
+pg 193	add "++Driver::no_of_errors;" to each catch clause
+Chapter 10:
+pg 258	s/10.4.6.1/10.4.6.2/
+Chapter 11:
+pg 280	add the sentence "Scopes outside the innermost enclosing namespace
+	scope are not considered." before the first "For example:" and
+	replace the first example by:
+class AE { /* ... */ };	// not a friend of Y
+namespace N {
+	class X { /* ... */ };	// Y's friend
+	class Y {
+	friend class X;
+	friend class Z;
+	friend class AE;
+	};
+	class Z { /* ... */ };	// Y's friend
+}
+pg 288	s/return b;/return f;/
+Chapter 13:
+pg 346	s/}/};/ twice in the first example
+Chapter 16:
+pg 433	s/s.18.7/D.4.4.1/ on the line for 
+pg 457	s/vector tmp/vector/
+Chapter 17:
+pg 485	s/value_type;/value_type,/
+pg 496	s/size_t/ptrdiff_t/	twice
+pg 496	add after the definition of c_array:
+	"For compatibility with arrays, I use the signed ptrdiff_t (16.1.2)
+	rather than the unsigned size_t as the subscript type.
+	Using size_t could lead to subtle ambiguities when using []
+	on a c_array."
+Chapter 18:
+pg 535	s/sort(off.begin(),off.end(),Person_lt)/off.sort(off,Person_lt)/
+pg 536	/class located_in {/class located_in : public unary_function {
+pg 536	s/output_iterator/ostream_iterator/
+Chapter 20:
+pg 591	replace the first sentence by
+	"When a position and a size are supplied for a string in a compare(),
+	only the indicated substring is used. For example, s.compare(pos,n,s2)
+	is equivalent to string(s,pos,n).compare(s2)."
+Chapter 21:
+pg 619	somewhere add "If a get() or getline() function doesn't read
+	and remove at least one character from the stream, setstate(failbit)
+	is called, so that subsequent reads from the stream will fail (or
+	an exception is thrown (21.3.6))." also modify the example to:
+	void subtle_error()
+	{
+	char buf[256];
+	while (cin) {
+	cin.get(buf,256);	// read a line
+	cout 
+pg 632	s/noskipws()/unsetf(ios_base::skipws)/ twice
+pg 646	s/eptr/egptr/ twice
+Chapter 22:
+pg 670 see a complete example of Slice_iter and matrix
+	for a better idea of what the errata adds up to.
+pg 669	s/int i/size_t i/
+pg 671	the last example used a non-standard feature. Better:
+	v_even *= v_odd;	// multiply element pairs and store results in even elements
+	v_odd = 0;	// assign 0 to every odd element of d
+pg 674	s/int i/size_t i/ twice
+pg 683	a better operator*():
+valarray operator*(const Matrix& m, valarray& v)
+{
+	valarray res(m.dim2());
+	for (size_t i = 0; i& ri = m.row(i);
+	res[i] = inner_product(ri,ri.end(),&v[0],double(0));
+	}
+	return res;
+}
+pg 684	a better operator*():
+valarray operator*(valarray& v, const Matrix& m)
+{
+	valarray res(m.dim1());
+	for (size_t i = 0; i& ci = m.column(i);
+	res[i] = inner_product(ci,ci.end(),&v[0],double(0));
+	}
+	return res;
+}
+Chapter 25:
+pg 788	s/Circle*/Circle/ in 2.
+pg 788	s/Shape*/Shape/ in 2.
+Appendix C:
+pg 858	add "template before "void k("
+Appendix D:
+pg 871	s/istream& fout/ostream& fout/ twice
+pg 885	s/sget(cat,x,"no-such-season");
+}
+Appendix E:
+pg 939	s/rand()/(rand())/
+Typos
+Chapter 1:
+pg 10	umlauted o missing in Wikstroem's name.
+pg 19	s/conference/Conference/
+Chapter 5:
+pg 105	s/arrays of char/array of char/
+Chapter 8:
+pg 168: s/separating the implementation of the interface/
+	separating the implementation from the interface/
+Chapter 14:
+pg 355	s/, the program could:/, a function could/
+pg 368	s/constutors/constructors/
+pg 380	s/delete p;/delete pe;/
+Chapter 18:
+pg 521	s/Consequently, the standard library supplies
+	two adapters to allow pointers to functions
+	to be used together with the standard algorithms. in /
+	Consequently, in the standard library supplies
+	two adapters to allow pointers to functions
+	to be used together with the standard algorithms./
+Appendix D:
+pg 876	s/print_locale names/print_locale_names/
+pg 892	s/_byname locale/_byname facet/
+pg 899	s/amount/amount=/ five times in the output
+pg 916	s/get_date() the Istream's/get_date() from the istream's/
+pg 924	s/ctype locale/ctype facet/
+pg 931	s/Season_io locale/ctype facet/
+Appendix E:
+pg 936	s/point of view a/point of view of a/
+pg 952	s/T& vector::emergency_exit()/void vector::emergency_exit()/ twice
+pg 959	s/The cost of completely protecting against an exception while
+	moving elements in a vector be/
+	The cost of completely protecting against an exception while
+	moving elements in a vector would be/
+pg 960	s/associated containers/associative containers/
+pg 962	s/application its types/application types/
+pg 965	s/capable of throwing of/capable of throwing/
+pg 965	s/that provide strong (E4)./that provide the strong guarantee (E4)./
+pg 966	s/trivially type safe/trivially exception safe/

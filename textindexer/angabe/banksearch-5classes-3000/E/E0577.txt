@@ -1,0 +1,76 @@
+
+ Steve Litt's SQL Troubleshooting Page
+ 
+ 
+ 
+ 
+Troubleshooters.Com Presents:
+Steve Litt's SQL Troubleshooting Page
+Copyright (C) 1996 by Steve Litt
+See also: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ] 
+SQL is hard to troubleshoot because it's relatively monolithic, unlike
+modern modular OOP languages. Thus it's often hard to divide a SQL statement
+into sections. I don't claim to be an SQL guru, but here are some tips
+that have helped me in the past. Note that many SQL problems fall into
+one of these categories:
+Statement trashes the database
+Statement takes forever
+Statement takes much too long
+Statement erroneously fails to bring
+back results
+Statement returns the wrong results
+General SQL troubleshooting tips
+Build tiny test queries to test the SQL in parts.
+Test subqueries first.
+Comment liberally.
+If it's a trigger or stored procedure, be sure to install each change before
+testing.
+It's often easier to test triggers/stored procedures live in ISQL (or whatever).
+If possible, have an up-to-date, full-sized test database on another server
+for testing.
+Statement trashes database or takes
+forever:
+These are often the same thing since terminating the database connection
+often trashes the database. This is one of the rare cases when you'd prefer
+not to reproduce the symptom. Luckily, you can build the statement from
+scratch, one step at a time, evaluating each step to see if it will cause
+problems. This evaluation should include a check to make sure any lookup
+is either on a key field, or on a tiny table. It should also include a
+theoretical check for those multiplicative joins that produce unwieldy
+result sets. I build in this sequence, and test after each modification:
+- The core result set producing statement, without any relational lookups,
+computed fields, and if possible subqueries.
+- Separately test any subqueries to make sure they work the way you think
+they will.
+- Install the subqueries.
+- Install lookups one at a time.
+- Install computed fields.
+Statement takes much too long:
+One way to handle this is to treat
+it like it takes forever. Alternately, you can do a bottleneck analysis.
+Start with the general maintenance procedure of making sure every join
+and lookup accesses its table by a key (unless the table is tiny). Then
+comment out parts of the SQL statement using /* */. When you can toggle
+the exessive delay by commenting out and in a particular section of the
+SQL, see what's wrong with that section. You may need to run that section
+it separately using ISQL or whatever.
+Statement erroneously fails to bring back
+results:
+Usually caused by a join/lookup finding nothing. Take out lookups and
+try again. If that eliminates the symptom, narrow the cause to the specific
+lookup. If it doesn't, look at the logic of the underlying query.
+Statement returns wrong results:
+It's often best to start with the logic of the underlying query. Write
+it in English. Then make a SQL statement (no lookups or stored procedures)
+to return the correct results. If the problem with the original SQL is
+immediately obvious, just fix and test the original. Otherwise, add the
+lookups and computed fields a step at a time, testing along the way. Fix
+problems as they occur. Once you have a complete, working SQL statement,
+see where it differs from the original. It's important to figure why the
+problem happened so you can quickly solve similar problems later. Lastly,
+fix the original or replace it with the one you built up.
+See also: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]

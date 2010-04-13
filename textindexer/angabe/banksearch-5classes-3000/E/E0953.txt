@@ -1,0 +1,449 @@
+
+ 
+C >> File Input and Output 3 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ File Input and Output 2 
+ Main Menu 
+ File Input and Output 4 
+ 
+ 
+ 
+ 
+File Input and Output 3
+ 
+ 
+ 
+ 
+ 
+ 
+rewind()
+ 
+ 
+ 
+ 
+ 
+Recall from the last section that I had to close the existing file and reopening it so that I can read from the beginning again. Instead 
+ of using two separate function calls, fclose and fopen, I could've simply called rewind and passed it the 
+ file pointer. This is demonstrated in the next example. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+fputc()
+ 
+ 
+ 
+ 
+ 
+Here is the first file writing function I'd like to introduce. As its name suggests, we can write to a file one character at a time. 
+ 
+ 
+fputc takes two arguments: the first being an int (you can pass it the character you'd like to write to the file). 
+ The second is the FILE pointer. 
+ 
+ 
+ 
+ 
+ 
+fputc returns the ASCII code of the character written to file if it was successful, else EOF is returned. 
+ 
+This example writes inputted text to a file it creates, called "sentence.txt", then displays the entered text by 
+ reading from it: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ FILE *file;
+ char sentence[50];
+ int i;
+ file = fopen("sentence.txt", "w+");
+ /* we create a file for reading and writing */
+ if(file==NULL) {
+ printf("Error: can't create file.\n");
+ return 1;
+ }
+ else {
+ printf("File created successfully.\n");
+ printf("Enter a sentence less than 50 characters: ");
+ gets(sentence);
+ for(i=0 ; sentence[i] ; i++) {
+ fputc(sentence[i], file);
+ }
+ rewind(file); /* reset the file pointer's position */
+ printf("Contents of the file: \n\n");
+ while(!feof(file)) {
+ printf("%c", fgetc(file));
+ }
+ printf("\n");
+ fclose(file);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output depends on what you entered. 
+ 
+First of all, I stored the inputted sentence in a char array, since we're writing to a file one character at a time it'd be 
+ useful to detect for the null character. Recall that the null character, \0, returns 0, so putting sentence[i] 
+ in the condition part of the for loop iterates until the null character is met. 
+ 
+Then we call rewind, which takes the file pointer to the beginning of the file, so we can read from it. 
+ 
+In the while loop we print the contents a character at a time, until we reach the end of the file - determined by using the 
+ feof function. 
+ 
+This next example opens a file called input.txt which has some random text (less than 200 characters), stores each character in an 
+ array, then spits them back out into another file called "output.txt" in reverse order: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char c; /* declare a char variable */
+ char name[200]; /* Initialise array of total 200 for characters */
+ FILE *f_input, *f_output; /* declare FILE pointers */
+ int counter = 0; /* Initialise variable for counter to zero */
+ f_input = fopen("input.txt", "r"); /* open a text file for reading */
+ if(f_input==NULL) {
+ printf("Error: can't open file.\n");
+ return 1;
+ }
+ else {
+ while(1) { /* loop continuously */
+ c = fgetc(f_input); /* fetch the next character */
+ if(c==EOF) { /* if end of file reached, break out of loop */
+ break;
+ }
+ else if (counter= 0) { /* loop while counter's above zero */
+ fputc(name[counter], f_output); /* write character into output file */
+ counter--; /* decrease counter */
+ }
+ fclose(f_output); /* close output file */
+ printf("All done!\n");
+ return 0;
+ }
+ }
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+fputs()
+ 
+ 
+ 
+ 
+ 
+This function is the opposite to fgets in the way that it writes a line into a file. 
+ 
+ 
+ 
+fputs requires two arguments: a char * for the string you'd like to write, and a FILE pointer. It returns 
+ 0 only if the string is successfully written. 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ FILE *file;
+ char *sentence;
+ 
+ file = fopen("sentence2.txt", "a+"); /* open or create a file for appending */
+ if(file==NULL) {
+ printf("Error: can't create file.\n");
+ return 1;
+ }
+ else {
+ printf("File created successfully.\n");
+ printf("Enter a sentence: ");
+ gets(sentence);
+ fputs(sentence, file);
+ fputs("\n", file);
+ rewind(file);
+ printf("Contents of the file: \n\n");
+ /*while(fgets(sentence, 10, file)!=NULL) {
+ printf("%s", sentence);
+ }*/
+ while(!feof(file)) {
+ printf("%s", fgets(sentence, 10, file));
+ }
+ printf("\n");
+ fclose(file);
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output depends on what you entered. 
+ 
+This example demonstrates how to append a string to a file. After entering a sentence, we use fputs to add the sentence to 
+ the end of the text file (appending means "adding to the end"). We use another fputs to append the newline character 
+ immediately afterwards - this isn't necessary but it does make the text file look neater :) 
+ 
+Then to read the file from the beginning, use the rewind function. 
+ 
+The while loop simply prints out all the lines of the text file, but if you run the example on your machine, you might get 
+ (null) displayed as the last line. This is because we reach the end of the file before the while loop checks the !feof(file) 
+ condition. I personally prefer the check to see if fgets returns a NULL pointer - see the commented while loop. 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ File Input and Output 2 
+ Main Menu 
+ File Input and Output 4 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

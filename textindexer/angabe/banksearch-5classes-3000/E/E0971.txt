@@ -1,0 +1,403 @@
+
+ 
+C >> Arrays 2 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Arrays 1 
+ Main Menu 
+ Passing Arrays to Functions 
+ 
+ 
+ 
+ 
+Arrays 2
+ 
+ 
+ 
+ 
+ 
+ 
+Into The Next Dimension... 
+ 
+ 
+ 
+ 
+ 
+So far, I've been giving you examples with one dimensional arrays. An array's DIMENSION is the number of indices 
+ required to reference an element. For example, arrayOfInts[0] is the first element. The index is 0 - there is only 
+ 1 index so arrayOfInts is one dimensional. 
+ 
+Now suppose we want arrayOfInts[0] to hold 2 integers. So we'll move into the next dimension... arrayOfInts[0][0] 
+ could hold the first integer, and arrayOfInts[0][1] could hold the other. We need 2 indices to reference each integer, so arrayOfInts 
+ is two dimensional. 
+ 
+2 dimensions is probably the most you'll need, but 3 dimensions is like arrayOfInts[0][0][0] !! 2D arrays are useful for storing 
+ grid-base information, like coordinates. 
+ 
+ 
+ 
+You already know how to declare a 1D array, but what about 2D? Simple. Take this example:
+ int array2D[3][5]; 
+ 
+This tells the computer to reserve enough memory space for an array with 15, that is, 3 x 5 elements. 
+ 
+One way to picture these 15 elements is an array with 3 rows and 5 columns. 
+ 
+But there are times when you don't know the size, so you'd want to use an unsized array. However, you must specify every dimension 
+ size except the left one. Like this: 
+ int array2D[][5]; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initializing 
+ 2D Arrays
+ 
+ 
+ 
+ 
+ 
+Methods used are similar to those of the 1D arrays: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int first[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};
+ int second[3][4] = {0, 1, 2, 3,
+ 4, 5, 6, 7,
+ 8, 9,10,11};
+ /* a clearer definition than the first */
+ int third[][5] = {0,1,2,3,4}; 
+ /* third[] only has one index of 1 */
+ int fourth[][6] = {0,1,2,3,4,5,6,7,8,9,10,11}; 
+ /* fourth[] has 2 indices - 0 or 1 */
+ int i,j;
+ int fifth[5][4];
+ int sixth[2][6];
+ int seventh[2][3];
+ for(i=0 ; iArray 
+ Sizes
+ 
+ 
+ 
+ 
+ 
+If you ever wanted to find out how much memory your arrays occupy (1D or multidimensional), you can use the sizeof operator 
+ like this: 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char arrayChar[] = {'A','r','r','a','y','\0'};
+ int arrayInt[5] = {1,2,4,8,16};
+ float arrayFloat[3] = { 1.24 , 2 , 4.68756 };
+ double arrayDouble[2];
+ int arrayInt2D[][4] = {1,6,3,7,
+ 0,3,8,9,
+ 2,5,2,3};
+ arrayDouble[0] = 23.23456532;
+ arrayDouble[1] = 2.3422267;
+ printf("The size of arrayChar is %d\n", sizeof(arrayChar));
+ printf("The size of arrayInt is %d\n", sizeof(arrayInt));
+ printf("The size of arrayFloat is %d\n", sizeof(arrayFloat));
+ /* Alternative way */
+ printf("The size of arrayDouble is %d\n", sizeof(double) * 2);
+ printf("The size of arrayInt2D is %d\n", sizeof(arrayInt2D));
+ printf("The size of arrayInt2D[0] is %d\n", sizeof(arrayInt2D[0]));
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The size of arrayChar is 6 
+ The size of arrayInt is 20 
+ The size of arrayFloat is 12 
+ The size of arrayDouble is 16 
+ The size of arrayInt2D is 48 
+ The size of arrayInt2D[0] is 16 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You can use sizeof to find out the maximum of "rows" there are in a 2D array. For example, how many 
+ "rows" are there inarrayInt2D[][4]? 
+ 
+This is given by: sizeof(arrayInt2D) / sizeof(arrayInt2D[0]), which is 48/16 = 3. Think of this calculation 
+ as "size of entire array / size of a column". 
+ 
+So there are 3 "rows" and 4 "columns" to this 2D array. 
+ 
+Having said all that, the "rows and columns" visualization shouldn't confuse you with the way the data is 
+ stored in memory. 
+ 
+ int arrayInt2D[][4] = {1,6,3,7, 0,3,8,9, 2,5,2,3}; 
+ 
+- This uses 12 consecutive memory slots, with 1 placed in the first slot, 6 in the next one and so 
+ on. So 7 is next to the 0. In fact, arrayInt2D[0][4] returns 0, arrayInt2D[0][5] returns 
+ 3 and so on. arrayInt2D[3] returns some random number because there is no 4th row. 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Arrays 1 
+ Main Menu 
+ Passing Arrays to Functions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

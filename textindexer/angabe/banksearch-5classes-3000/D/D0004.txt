@@ -1,0 +1,891 @@
+
+ 
+ 
+ Devicetop.com - Tutorials
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login
+ 
+ password
+ 
+ 
+ 
+ logout 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ join devicetop! 
+ 
+ 
+ 
+ 
+ 
+ 
+ home > tutorials > java device programming > device programming w... 
+ 0 pts 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Tutorial Categories 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ All
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial Development Tools
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial DeviceTop
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial Escape
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Game Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ General Java
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Handheld Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Interactive Digital TV Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Java Device Programming
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ &nbsp 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Device programming with MIDP, Part 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 28-03-01 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ This second part of Michael Cymerman's MIDP series will focus on the development 
+ of an application using non-graphical user interface components. In addition, 
+ he'll explore the conversion and storage of application data to the MIDlet RecordStore. 
+ These two concepts are discussed in detail through a simple Stock Portfolio 
+ management application constructed specifically for this demonstration. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Part 
+ 1 of this series was focused on the deployment of the J2MEWTK environment 
+ and a rudimentary exploration of the MIDP APIs. This part of the series will 
+ focus on the development of an application using the pre-canned user interface 
+ components provided in the MIDP API. In addition, I'll explore the conversion 
+ and storage of application data to the MIDlet RecordStore. These 
+ two concepts will be discussed in detail through a simple Stock Portfolio management 
+ application constructed specifically for this article. 
+ 
+ 
+ Device 
+ programming with MIDP: Read the whole series! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+- Part 
+ 1. Build devices with MIDP APIs and J2ME across multiple wireless 
+ platforms. 
+ 
+- Part 
+ 2. Use these user-interface and data-store components to create 
+ MIDP-based applications.
+ 
+ 
+ 
+ 
+ 
+ 
+ The hierarchy of Displayable objects
+ In the examples found in Part 1, I discussed the two major categories of Displayables: 
+ Canvas and Screen. 
+ Canvas is a type of Displayable in which the developer 
+ accepts responsibility for creating the entire user interface. This is an extremely 
+ useful interface for creating complex graphical interfaces, such as those used 
+ in video games. If you choose this path, the UI is drawn on a Canvas 
+ object similar to the AWT Canvas used in applets. 
+ Screen is a type of Displayable in which you use 
+ predefined components to assemble a user interface. The components are similar 
+ to those AWT components used in constructing applets, such as Label 
+ and TextField. If you choose this path, you will need to add components 
+ to a subclass of the abstract Screen object when necessary to construct 
+ your user interface. 
+ I will focus on the Screen type of Displayable object 
+ in this part of the series, since the Canvas object was sufficiently 
+ discussed Part 1. As I mentioned above, the Screen object is an 
+ abstract class of Displayable. The subclasses of the Screen 
+ class are Alert, Form, List, and TextBox. 
+ In this article, I will examine the mechanics of these Displayable 
+ objects, including the construction, interaction, and event-handling schemes 
+ that enable them to come together to form an application. 
+ Detailed example
+ The best way to learn how to use some of these screens is through an example. 
+ The example used here contains some workflow that demonstrates the following 
+ concepts: 
+ 
+ 
+- Construction with different screen types
+ 
+- Construction with different screen components
+ 
+- Usage of commands from within the javax.microedition.lcdui 
+ classes
+ 
+- An implementation of MVC for efficient screen manipulation
+ 
+- Interaction with the javax.microedition.rms data store on the 
+ device
+ To provide this information, I will use a simple rendition of a brokerage 
+ application. In this application, the user can buy a stock or sell a stock that 
+ he or she currently owns. Please understand that this process has been highly 
+ simplified in order to demonstrate key concepts. 
+ In Part 3 of this series, I will expand this application to connect with a 
+ ticker service to retrieve accurate pricing for the purchase-using HTTP. 
+ ExampleMidlet
+ The ExampleMidlet provides the context for this application. It 
+ controls the flow and provides access to the device resources as defined in 
+ the MIDP specification. 
+ public class ExampleMidlet extends MIDlet implements Controller
+ 
+ As shown, the ExampleMidlet implements the Controller 
+ interface to manage the screen interactions. The intent of the Controller 
+ interface is to provide the services needed by both the view and model classes. 
+ Controller interface
+ The Controller interface contains methods to access the StockDatabase, 
+ which is a simple RMS data store, and to manipulate the Display 
+ object associated with the MIDlet. The Controller interface in 
+ this example is a simple interface that you can expand to include methods to 
+ retrieve properties, make HTTP connections, or whatever your application requirements 
+ deem necessary. 
+ 
+ public interface Controller
+ {
+ public StockDatabase getStockDatabase();
+ public Displayable currentScreen();
+ public void nextScreen(Displayable display);
+ public void lastScreen();
+ }
+ By implementing the Controller interface, the ExampleMidlet 
+ can expose certain methods to the individual screens. You could instead pass 
+ the MIDlet as a parameter to the screens, but you probably don't want to interfere 
+ with the normal MIDlet lifecycle. 
+ Within the ExampleMidlet, the nextScreen() and lastScreen() 
+ methods have been used to maintain the information about the currently visible 
+ screen. These methods use the java.util.Stack object to maintain 
+ the display state. 
+ The application will push the currently displayed Displayable 
+ object to the Stack prior to displaying the next screen when nextScreen 
+ is called. 
+ 
+ 
+public void nextScreen(Displayable display){
+ Displayable currentScreen = this.getDisplay().getCurrent();
+ 
+ if ( currentScreen != null)
+ _screenStack.push( currentScreen );
+ 
+ getDisplay().setCurrent( display);
+}
+ 
+ The application will pop the previously displayed Displayable 
+ object from the Stack and set the display to show that screen. 
+ 
+public void lastScreen()
+{
+ Displayable display = null;
+ 
+ if ( !_screenStack.empty() )
+ display = (Displayable) _screenStack.pop();
+ else
+ display = new WelcomeScreen( (Controller) this );
+ 
+ getDisplay().setCurrent( display);
+}
+ 
+ There are other ways in which you could handle the management of the screens. 
+ For example, you could read in a screen from the properties file and use that 
+ list to manage the interactions between the display screens. This approach provides 
+ the necessary management for this example without suffering through a more complex 
+ approach. 
+ WelcomeScreen
+ The first screen that is visible to the user is the WelcomeScreen. 
+ Let's walk through the code for this screen. The WelcomeScreen 
+ extends from the javax.microedition.lcdui.List object and implements 
+ the CommandListener interface. 
+ public class WelcomeScreen extends List implements CommandListener
+ 
+ The constructor is passed a parameter that contains a reference to the Controller 
+ as an argument, which will be stored as a private variable for future use. 
+ public WelcomeScreen(Controller controller)
+ 
+ Because the WelcomeScreen extends the List object, 
+ the superclass must be called for instantiation. The parameters passed are the 
+ title of the screen and the type of list. 
+ super("Welcome", List.IMPLICIT);
+ 
+ List
+ In this case, the list is of type IMPLICIT. The list types that 
+ you can use are shown in Table 1. 
+ 
+ Table 1. List types defined
+ 
+ List Type
+ Definition
+ 
+ 
+ IMPLICIT 
+ Neither checkboxes nor radio buttons are visible next to each item in 
+ a list. Users can select only one item from the list. Similar to an HTML 
+ Option list. 
+ 
+ 
+ EXPLICIT 
+ Radio buttons allow users to select only one item from the list. 
+ 
+ 
+ MULTIPLE 
+ Checkboxes allow users to select multiple items from the list. 
+ 
+ Ticker
+ The WelcomeScreen also contains a ticker that generates 
+ a simple welcome message to the user. To create a ticker, call 
+ its constructor with a String object of the message to be scrolled 
+ and then call the setTicker() method of the Screen 
+ object to add the ticker to the heading. 
+ Ticker ticker = 
+ new 
+ Ticker("Thank you for viewing the Stock Application Example");
+ 
+ this.setTicker( ticker);
+ 
+ 
+ Using the append() method, you can add each item to the list 
+ for display. 
+ append("Buy Stock", 
+ null);
+ append("Sell Stock", null); 
+ 
+ The WelcomeScreen will listen and handle any commands that are 
+ initiated when it is displayed. Therefore, it calls the setCommandListener() 
+ method with itself as a parameter. 
+ this.setCommandListener(this);
+ 
+ CommandListener
+ The event-handling infrastructure in the MIDlet architecture, briefly discussed 
+ in the WelcomeScreen example, lets you handle events generated 
+ from the MIDlet Screen objects. 
+ Events are generated on user actions, such as clicking the soft-key menu buttons 
+ on a Sreen or selecting items from a List. When these 
+ events are generated, the commandAction() method of the objects 
+ that have registered interest in the current screen will be executed. 
+ For the WelcomeScreen example, the user is presented with a list 
+ containing two items: "Buy Stock" and "Select Stock." When the user selects 
+ one of the items by using the up/down arrows and then clicking the action button, 
+ the commandAction() method will be called. 
+ 
+ 
+public void commandAction (Command c, Displayable d)
+{
+ if ( c == List.SELECT_COMMAND)
+ {
+ List shown = (List) _controller.currentScreen();
+ 
+ switch 
+ (shown.getSelectedIndex())
+ {
+ case 0:
+ _controller.nextScreen( 
+ new BuyStockScreen( _controller) );
+ break;
+ case 1:
+ default:
+ _controller.nextScreen( 
+ new SelectStockScreen(_controller) );
+ }
+ }
+}
+ 
+ This commandAction() method demonstrates how to capture the events 
+ generated by an IMPLICIT list. The first step involves retrieving 
+ the list from the display, which in this example is done through the Controller 
+ interface. The selected item can be retrieved from the list to allow the application 
+ to perform logical operations to determine the proper course of action. In this 
+ case, the next display object will be instantiated and passed to the controller's 
+ nextScreen() method. 
+ 
+ BuyStockScreen
+ Continuing the example, suppose the user has selected the "Buy Stock" option 
+ from the Welcome screen. In this section, I will examine the BuyStockScreen 
+ object that would be instantiated in that case. 
+ public class BuyStockScreen extends StockScreen implements CommandListener
+ 
+ The BuyStockScreen class extends the StockScreen 
+ class, which itself extends the javax.microedition.lcdui.Form class. 
+ StockScreen
+ The constructor is passed the title of the screen and a reference to the controller 
+ object, which is to be stored in a protected variable for use by the child class. 
+ The title is passed because the StockScreen object is inherited 
+ by the BuyStockScreen, SelectStockScreen, and SellStockScreen 
+ classes. 
+ 
+ 
+public StockScreen(String title, Controller controller)
+{
+	super(title);
+ _controller = controller;
+ _stockDB = controller.getStockDatabase();
+}
+ One item of interest in the constructor is the fact that the StockScreen 
+ class is retrieving a reference to the StockDatabase interface 
+ for use within the child classes. 
+ 
+ 
+public void displayScreen(String symbol, int numShares)
+{
+ _symbolField = new StringItem("Stock Symbol: ", symbol);
+ _numSharesField = new StringItem("Num Shares: ", ""+ numShares);
+ 
+ append(_symbolField);
+ append(_numSharesField);
+ generateButtons();
+}
+public void displayScreen()
+{
+ _symbolEntry = new TextField("EnterStock Symbol", 
+ "", 6, TextField.ANY);
+ _numEntry = new TextField("Enter Num Shares",
+ "", 10, TextField.NUMERIC);
+ 
+ append(_symbolEntry);
+ append(_numEntry);
+ 
+ generateButtons();
+}
+There are two different displayScreen() methods to illustrate 
+ two different user interface components: StringItem and TextField. 
+ StringItem
+ A StringItem is a display-only item that contains a label and a 
+ corresponding value. In this case, the StringItem is used to display 
+ the chosen stock and the number of shares for the sell order. 
+ TextField
+ A TextField is a UI component that lets the user enter information 
+ from the phone keypad to the application. The TextField takes the 
+ following parameters: 
+ 
+ 
+- Label
+ 
+- Initial text
+ 
+- Maximum length
+ 
+- Field constraint
+ Table 2 illustrates the different field constraints that may be used by default. 
+ 
+ Table 2. Description of different 
+ field constraints
+ 
+ Field Constraint
+ Description
+ 
+ 
+ ANY 
+ The user is allowed to enter any text 
+ 
+ 
+ EMAILADDR 
+ The user is allowed to enter an email address 
+ 
+ 
+ NUMERIC 
+ The user is allowed to enter only an integer value 
+ 
+ 
+ PASSWORD 
+ The text entered must be masked so that typed characters are not visible 
+ 
+ 
+ PHONENUMBER 
+ The user is allowed to enter a phone number 
+ 
+ 
+ URL 
+ The user is allowed to enter a URL 
+ 
+ You should note that different implementations of the MIDP specification may 
+ have differing behavior. For example, the phone number field may contain additional 
+ characters, such as the + sign commonly used in European phone numbers. The 
+ application must remain sensitive to these varying implementation details until 
+ the specification becomes more standardized. 
+ Both of the displayScreen() methods will call the generateButtons() 
+ method to create the "Next" and "Back" buttons used on all three of the subclass 
+ screens. In this method, each Command object is instantiated and 
+ in turn added to the screen using the addCommand() method. 
+ public void generateButtons()
+ {
+ this.nextCommand = new Command("Next", 
+ Command.SCREEN, 1);
+ this.backCommand = new Command("Back", 
+ Command.BACK, 1);
+ 
+ this.addCommand(backCommand);
+ this.addCommand(nextCommand);
+ }
+ }
+ 
+ BuyStockScreen revisited
+ I will now return to the BuyStockScreen. Because the superclass 
+ has handled all of the initialization, this screen needs only to set up its 
+ CommandListener actions. 
+ public BuyStockScreen(Controller controller)
+ {
+ super("Buy Stock", controller);
+ 
+ super.displayScreen();
+ 
+ this.setCommandListener(this);
+ }
+ 
+ In the commandAction() method, the first check is to determine 
+ if the user has clicked on the "Back" button. If so, the controller is called 
+ to display the previous screen retrieved from the Stack. 
+ public void commandAction(Command c, Displayable 
+ d)
+ {
+ if ( c == backCommand)
+ {
+ _controller.lastScreen();
+ }
+ 
+ If the user has instead clicked on the "Next" button, the process of buying 
+ a stock will begin. In this process, the parameters from the TextField 
+ must be retrieved. The buyStock() method of the StockDatabase 
+ interface will then be called to add the newly purchased stock to the stock 
+ database. If this proceeds without any exceptions, the WelcomeScreen 
+ will once again be displayed to the user. 
+ else
+ {
+ // buy 
+ the shares
+ try
+ {
+ String 
+ symbol = _symbolEntry.getString();
+ String 
+ shares = _numEntry.getString();
+ 
+ _stockDB.buyStock( 
+ symbol, shares, 4);
+ 
+ _controller.nextScreen( 
+ new WelcomeScreen( _controller) );
+ }
+ catch 
+ (StockException se)
+ {
+ this.setTitle("Bad 
+ Data");
+ 
+ se.printStackTrace();
+ }
+ }
+ 
+ StockDatabase
+ The StockDatabase interface is used to abstract the functionality 
+ of the MIDP storage implementation from the application. Because the UI developer 
+ does not need to understand the technical details of the data storage, an abstraction 
+ of this level can be helpful. 
+ public interface StockDatabase
+ {
+ public void buyStock(String symbol, String shares, int 
+ price) throws StockException;
+ public void sellStock(Stock stock, int numShares) throws 
+ StockException;
+ public Vector getStocks() throws StockException;
+ public Stock getStock(String stock) throws StockException;
+ }
+ 
+ The StockDatabase interface contains methods to add, retrieve, 
+ and remove data from the MIDlet RecordStore. The StockDatabase 
+ and corresponding data store will be discussed in further detail following my 
+ discussion of the UI components. 
+ 
+ SelectStockScreen
+ The SelectStockScreen presents the user with a list of stocks in 
+ a personal portfolio as retrieved from the database. The constructor of this 
+ object is responsible for initializing the display. Recall from the StockScreen 
+ discussion that the StockDatabase reference _stockDB 
+ has been retrieved in the superclass constructor. The getStocks() 
+ method is called to retrieve a list of the stocks in the user's portfolio. If 
+ any are found, a Vector containing those stocks will be returned 
+ and passed to the showStockList() method for conversion into a 
+ friendly user interface. 
+ public SelectStockScreen(Controller controller)
+ {
+ super("Select Stock", controller);
+ 
+ try
+ {
+ Vector 
+ stocks = _stockDB.getStocks();
+ 
+ Item 
+ displayItem = showStockList(stocks);
+ 
+ append(displayItem);
+ 
+ super.generateButtons();
+ 
+ this.setCommandListener( 
+ this);
+ }
+ catch (StockException se)
+ {
+ append(se.getMessage() 
+ );
+ }
+ }
+ 
+ ChoiceGroup
+ The showStockList() method is used to retrieve the Stock 
+ objects from the Vector of stocks. It then creates a ChoiceGroup 
+ object packed with the list of stocks the user can sell. A ChoiceGroup 
+ is an Item that you can add to a Form screen. It resembles 
+ a list in capabilities and options, but is not a screen type. On this screen, 
+ the EXCLUSIVE option for the list has been used to generate a list 
+ of stocks to sell so that the user can choose only one stock at a time. 
+ private Item showStockList(Vector stocks)
+ {
+ Stock currentStock = null;
+ 
+ _stockList = new ChoiceGroup("Choose 
+ stock", ChoiceGroup.EXCLUSIVE);
+ 
+ for ( int i = 0; i 0) {
+ return RecordComparator.FOLLOWS;
+ }
+ else {
+ return RecordComparator.EQUIVALENT;
+ }
+ }
+ 
+ RecordFilter
+ The RMSStockStore object implements the javax.microedition.rms.RecordFilter 
+ interface. This interface requires the implementation of a method called matches(). 
+ This method will act as a filter to enable the RecordStore to determine 
+ whether a given byte array matches the entity that is being queried in the tables. 
+ In this example, the RecordFilter is used to obtain the values 
+ of a single stock from the database. So, the matches() method must 
+ be used to ensure that only the records that match the stock are shown to be 
+ true by this method. 
+ A review of the following method demonstrates that the stock is again read 
+ from the InputStream using the StockStorage() method. 
+ The name of the stock is retrieved from the object using the getSymbol() 
+ method. Notice that the return statement itself performs the comparison between 
+ the name of the stock and the filter value that is stored as a class variable. 
+ 
+public boolean matches(byte[] candidate)
+ throws IllegalArgumentException
+{
+ // If no filter set, nothing 
+ can match it.
+ if (this.symbolFilter == null) 
+ {
+ return 
+ false;
+ }
+ 
+ ByteArrayInputStream bais = 
+ new ByteArrayInputStream(candidate);
+ 
+ DataInputStream inputStream 
+ = new DataInputStream(bais);
+ 
+ String name = null;
+ 
+ try {
+ 
+ Stock 
+ stock = StockStorage.readStock(inputStream);
+ int 
+ shares = stock.getNumShares();
+ name 
+ = stock.getSymbol();
+ }
+ ...
+ return (this.symbolFilter.equals(name));
+}
+ 
+ Only records for which this method returns true will appear in the set of 
+ results to this lookup. 
+ StockDatabase
+ The RMSStockStore object implements the StockDatabase 
+ interface defined for this example. These methods use the helper methods and 
+ the StockStorage object to perform the actions corresponding to 
+ their names. 
+ The buyStock() method is used to add a stock to the RecordStore. 
+ It is called from the BuyStockScreen when a user adds a stock to 
+ a portfolio. 
+ public void buyStock(String symbol, String 
+ shares, int price) throws StockException
+ {
+ int numShares = 0;
+ 
+ try
+ {
+ numShares 
+ = Integer.parseInt( shares);
+ }
+ catch( NumberFormatException 
+ nfe)
+ {
+ throw 
+ new StockException("Number of shares value is invalid", nfe);
+ }
+ 
+ The buyStock() method performs some basic field validation to 
+ ensure that the values are present and of the correct format. 
+ if ( numShares Resources 
+ 
+- Download the source code for this article from: 
+ http://www.javaworld.com/jw-03-2001/midp/examplemidlet.zip 
+ 
+- Read Part 1 of Michael Cymerman's "Device Programming with MIDP" (JavaWorld, 
+ January 5, 2001): 
+ http://javaworld.com/javaworld/jw-01-2001/jw-0105-midp.html 
+ 
+- For an overview and a list of relevant links, visit the MIDP homepage: 
+ http://java.sun.com/products/midp/index.html 
+ 
+- Java Developer Connection J2ME pages have a bunch of articles on MIDP development. 
+ Some may be out of date, so make sure to review the more current postings: 
+ 
+ http://developer.java.sun.com/developer/products/j2me 
+ 
+- Bill Day's J2ME Archive: 
+ http://www.billday.com/j2me 
+ 
+- Chat about all wireless in ITworld.com's Java Device Programming 
+ discussion, moderated by JavaWorld writer Qusay Mahmoud: 
+ http://www.itworld.com/jump/jw-0309-midp2/forums.itworld.com/webx?14@@.ee6b808/146!skip=101 
+ 
+- Complete listing of Embedded Java articles in JavaWorld's 
+ Topical Index: 
+ http://www.javaworld.com/javaworld/topicalindex/jw-ti-embedded.html 
+ 
+- Sign up for the JavaWorld This Week free weekly email newsletter 
+ and keep up with what's new at JavaWorld: 
+ http://reg.itworld.com/cgi-bin/subcontent12.cgi 
+ 
+ 
+- Other JavaWorld articles by Michael Cymerman: 
+ 
+ 
+ 
+- "Automate Your Build Process Using Java and Ant" (October 10, 2000): 
+ 
+ http://www.javaworld.com/javaworld/jw-10-2000/jw-1020-ant.html 
+ 
+- "Secure a Web Application, Java-style" (April 28, 2000): 
+ http://www.javaworld.com/javaworld/jw-04-2000/jw-0428-websecurity.html 
+ 
+- "Building a Java Servlet Framework Using Reflection, Part 1" (November 
+ 1999): 
+ http://www.javaworld.com/javaworld/jw-11-1999/jw-11-servlet.html 
+ 
+- "Building a Java Servlet Framework Using Reflection, Part 2" (February 
+ 2000): 
+ http://www.javaworld.com/javaworld/jw-02-2000/jw-02-servlets2.html 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CREATE &#8226; CODE &#8226; UPLOAD
+ 
+HOME l USER 
+ l FORUMS l NEWSWIRE 
+ l CONTEST l TOOLS 
+ l APPLICATIONS
+ 
+ABOUT DEVICETOP.COM PRIVACY 
+ STATEMENT CONTACT US CONTEST RULES PARTNERS
+NEED A JAVA BROWSER?
+ 
+© 2000 Espial Group Inc. Espial and devicetop.com 
+ are trademarks of Espial Group 
+Inc. All other trademarks belong to their 
+ respective owners.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

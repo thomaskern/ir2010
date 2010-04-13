@@ -1,0 +1,1183 @@
+
+ 
+ 
+ Devicetop.com - Tutorials
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login
+ 
+ password
+ 
+ 
+ 
+ logout 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ join devicetop! 
+ 
+ 
+ 
+ 
+ 
+ 
+ home > tutorials > java device programming > device programming w... 
+ 0 pts 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Tutorial Categories 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ All
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial Development Tools
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial DeviceTop
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Espial Escape
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Game Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ General Java
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Handheld Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Interactive Digital TV Programming
+ 
+ 
+ 
+	 
+ 
+ 	 	 
+ Java Device Programming
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ &nbsp 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Device programming with MIDP, Part 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 12-01-01 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Without too much platform customization or rework, vendors can use MIDP-compliant devices to develop applications that can run on multiple wireless platforms. This article, the first in a three-part series, introduces you to the concept of MIDP APIs and the J2ME platform. You will be exposed to the APIs used to generate graphical, form-based, storage-driven code that is capable of connecting with external resources. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Device programming with MIDP, Part 1 
+ The concepts behind MIDP APIs and J2ME to build cross-wireless-platform 
+ apps 
+ Summary
+ Without too much platform customization or rework, vendors can use MIDP-compliant 
+ devices to develop applications that can run on multiple wireless platforms. 
+ This article, the first in a three-part series, introduces you to the concept 
+ of MIDP APIs and the J2ME platform. You will be exposed to the APIs used to 
+ generate graphical, form-based, storage-driven code that is capable of connecting 
+ with external resources. (3,500 words) 
+By Michael Cymerman 
+If you've been following the wireless industry, you've noticed the speed at 
+ which a technology runs through its life cycle. A brand new product can become 
+ obsolete within months due to an improved technology or platform. The result 
+ of that rapid change has been the lack of standardization between the deployment 
+ platforms in the wireless world. A development team currently needs its staff 
+ to understand numerous markup languages and processes in order to deploy a product 
+ onto multiple devices. A marketing department continually needs to modify product 
+ direction based on the changing marketplace. 
+ Devices that are compliant with Mobile Information Device Profile (MIDP) will 
+ enable vendors to develop applications that can run on multiple wireless platforms 
+ without spending intensive amounts of energy customizing or reworking each platform. 
+ That would, in turn, let developers focus their energies on the system's functionality. 
+ This article is the first in a three-part series designed to introduce you 
+ to the concept of MIDP APIs and the Java 2 Micro Edition (J2ME) platform. I 
+ will expose you to the APIs used to generate graphical, form-based, storage-driven 
+ code that can connect with external resources. 
+ Introduction to J2ME 
+ The J2ME is Sun Microsystems's attempt to port the Java programming language 
+ to devices with resource limitations. A mobile phone, which lacks the computational 
+ power, memory, and workstation power, cannot perform the same functionality 
+ as high-end servers or client workstations. 
+ The J2ME platform is built upon the Java programming language to provide the 
+ maximum functionality available on the resource-limited device. A subset of 
+ the base functionality is provided along with some specialized classes. 
+ In this article, I will focus on the CLDC (Connected Limited Device Configuration) 
+ and MIDP classes. Those sets of classes make up a profile in the J2ME 
+ terminology. That profile is based on the extremely limited device memory, processor 
+ speed, battery, and network connectivity bandwidth. 
+ Introduction to CLDC APIs 
+ The CLDC is the base platform on which the MIDP APIs are stacked. The CLDC classes 
+ consist of a standardized set of functionality that all vendors who offer J2ME-certified 
+ phones will support. Generally, you won't have to interact directly with those 
+ classes, but certain devices require that you access those lower-level classes 
+ to perform certain functionality. Those low-level accesses will likely be deprecated 
+ as the devices and platform develop. 
+ Introduction to the MIDP profile 
+ The MIDP profile has been developed to support the vertical niche of cell phones 
+ or similar devices constrained by screen and keypad limitations, in addition 
+ to the obvious battery, processor, and bandwidth constraints. 
+ That profile contains a series of APIs that let you create anything from video 
+ games using customized graphics to full-scale business applications using external 
+ and internal data sources. 
+ Several device manufacturers have already announced that they will support 
+ the MIDP platform on their devices. At the time of this writing, Nextel has 
+ announced that its phones will support MIDP in the first quarter of 2001. 
+ Quick example 
+ Below is a simple HelloWorld type example that offers a quick overview of a 
+ midlet's life cycle. A midlet is the name given for the code that executes on 
+ your mobile device. It is similar to an applet in that it contains user interface, 
+ data, and control capabilities. 
+ import javax.microedition.midlet.*; 
+ import javax.microedition.lcdui.*; 
+ 
+ public class HelloMidlet extends MIDlet implements CommandListener 
+ { 
+ // Initialize the Midlet Display variable 
+ private Display midletDisplay; 
+ 
+ // Initialize a variable for the doneCommand 
+ private Command doneCommand; 
+ 
+ public HelloMidlet() 
+ { 
+ // Retrieve the display from the static 
+ display object 
+ midletDisplay = Display.getDisplay(this); 
+ 
+ 
+ // Initialize the doneCommand 
+ 
+ doneCommand = new Command("DONE", Command.SCREEN, 
+ 1); 
+ } 
+ 
+ /** 
+ * Create the Hello Midlet World TextBox and associate 
+ 
+ * the exit command and listener. 
+ */ 
+ public void startApp() 
+ { 
+ // Create the TextBox containing 
+ the "Hello Midlet World!!" message 
+ TextBox textBox = new TextBox("Hello 
+ Midlet", "Hello Midlet World!!", 256, 0); 
+ 
+ // Add the done Command to the 
+ TextBox 
+ textBox.addCommand(doneCommand); 
+ 
+ 
+ // Set the command listener 
+ for the textbox to the current midlet 
+ textBox.setCommandListener( 
+ (CommandListener) this); 
+ 
+ // Set the current display of 
+ the midlet to the textBox screen 
+ midletDisplay.setCurrent(textBox); 
+ 
+ } 
+ 
+ /** 
+ * PauseApp is used to suspend background activities 
+ and release 
+ * resources on the device when the midlet is not 
+ active. 
+ */ 
+ public void pauseApp() 
+ { 
+ } 
+ 
+ /** 
+ * DestroyApp is used to stop background activities 
+ and release 
+ * resources on the device when the midlet is at 
+ the end of its 
+ * life cycle. 
+ */ 
+ public void destroyApp(boolean unconditional) 
+ { 
+ } 
+ 
+ /* 
+ * The commandAction method is implemented by this 
+ midlet to 
+ * satisfy the CommandListener interface and handle 
+ the done action. 
+ */ 
+ public void commandAction(Command command, Displayable 
+ screen) 
+ { 
+ // If the command is the doneCommand 
+ if (command == doneCommand) 
+ { 
+ // Call 
+ the destroyApp method 
+ destroyApp(false); 
+ 
+ 
+ // Notify 
+ the midlet platform that the midlet has completed 
+ notifyDestroyed(); 
+ 
+ } 
+ } 
+ } 
+ 
+ This midlet's output is shown in Figure 1, which is a screen capture of the 
+ J2ME Windows Toolkit DefaultGrayPhone emulator. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 1. HelloMidlet output 
+ 
+ 
+ 
+ 
+ The first two lines import midlet-specific classes to support the MIDlet 
+ class, the CommandAction interface, and the user interface (UI) 
+ classes. Those classes are present in the MIDP APIs along with a modified subset 
+ of the Java programming language. The classes included in the MIDP API will 
+ be discussed in more detail later in this article. 
+ public class HelloMidlet extends MIDlet implements CommandListener 
+ 
+ 
+ This line declares the HelloMidlet class to extend the MIDlet 
+ class and implement the CommandListener interface. Each midlet 
+ must extend the abstract MIDlet class, which contains three methods, 
+ described below, that each midlet must override to complete its life cycle. 
+ 
+ 
+ Method Name
+ Method Purpose
+ 
+ 
+ startApp 
+ To allocate desired system resources and initialize the application. 
+ 
+ 
+ pauseApp 
+ To temporarily suspend resource-intensive processes. 
+ 
+ 
+ destroyApp 
+ To release resources used by the midlet and dispose of the midlet. 
+ 
+ In the previous example, the startApp contains the bulk of the 
+ functionality because the HelloMidlet does not use other system 
+ resources such as network connections or datastores. When the HelloMidlet 
+ is executed, the startApp will be called. 
+ As you would expect, the constructor is executed prior to the startApp 
+ method. In this example, the constructor retrieves the display from the global 
+ Display object. In addition, the constructor initializes the doneCommand. 
+ The startApp method above is used to create the screen to be 
+ displayed on the midlet. The following line shows the initialization of the 
+ TextBox screen. 
+ TextBox textBox = new TextBox("Hello Midlet", "Hello Midlet World!!", 
+ 256, 0); 
+ 
+ A midlet Screen may also contain Commands. A command 
+ is the mechanism the midlet uses to create menus as shown in the picture above 
+ with the "Done" button. Here's the code used to add the "Done" button to the 
+ TextBox screen: 
+ // Add the done Command to the 
+ TextBox 
+ textBox.addCommand(doneCommand); 
+ 
+ The Command source will generate CommandActions 
+ when it is clicked. In this simple example, the HelloMidlet will 
+ implement the CommandListener interface and thereby handle all 
+ events itself. As the developed system becomes more complex, handling events 
+ in a more expanded manner may be beneficial. 
+ // Set the command 
+ listener for the textbox to the current midlet 
+ textBox.setCommandListener( 
+ (CommandListener) this); 
+ 
+ Now that the TextBox has been created, it is ready to be displayed 
+ on the device screen. In the following line, I am setting the current display 
+ to the newly created TextBox: 
+ // Set the current display of the 
+ midlet to the textBox screen 
+ midletDisplay.setCurrent(textBox); 
+ 
+ The HelloWorld midlet is a simple example that uses only a few 
+ of the classes contained in the MIDP platform. In the following section, I will 
+ explore a subset of the MIDP API. 
+Overview of the MIDP/CLDC APIs 
+ Due to the limited nature of the devices upon which the MIDP/CLDC APIs will 
+ run, some Java functionality has been removed or modified from the specification. 
+ The MIDP/CLDC APIs include the following class libraries: 
+ 
+ 
+ 
+ 
+- java.lang.*
+ 
+ 
+ 
+- java.io.*
+ 
+ 
+ 
+- java.util.*
+ 
+ 
+ 
+- javax.microedition.io.*
+ 
+ 
+ 
+- javax.microedition.ui.*
+ 
+ 
+ 
+- javax.microedition.rms.*
+ 
+ 
+ 
+- javax.microedition.midlet.*
+ 
+ 
+ The java.lang package 
+ Included in the above library is a subset of the standard classes contained 
+ in the J2SE java.lang package. One notable exception is the Float 
+ class. The MIDP does not support floating-point calculations. Here are the included 
+ classes: 
+ 
+ 
+ 
+ 
+- Object
+ 
+ 
+ 
+- Class
+ 
+ 
+ 
+- Runtime
+ 
+ 
+ 
+- System
+ 
+ 
+ 
+- Thread
+ 
+ 
+ 
+- Runnable
+ 
+ 
+ 
+- Throwable
+ 
+ 
+ 
+- Math
+ 
+ 
+ 
+- String
+ 
+ 
+ 
+- Boolean
+ 
+ 
+ 
+- Short
+ 
+ 
+ 
+- Long
+ 
+ 
+ 
+- Byte
+ 
+ 
+ 
+- Character
+ 
+ 
+ 
+- Integer
+ 
+ 
+ 
+- StringBuffer
+ 
+ 
+ The java.io package 
+ The java.io package contains methods needed to retrieve information 
+ from remote systems. The following classes are included in the CLDC API: 
+ 
+ 
+ 
+ 
+- InputStream
+ 
+ 
+ 
+- OutputStream
+ 
+ 
+ 
+- Reader
+ 
+ 
+ 
+- Writer
+ 
+ 
+ 
+- DataInput
+ 
+ 
+ 
+- DataOutput
+ 
+ 
+ 
+- DataInputStream
+ 
+ 
+ 
+- DataOutputStream
+ 
+ 
+ 
+- ByteArrayInputStream
+ 
+ 
+ 
+- ByteArrayOutputStream
+ 
+ 
+ 
+- InputStreamReader
+ 
+ 
+ 
+- OutputStreamReader
+ 
+ 
+ 
+- PrintStream
+ 
+ 
+ The java.util package 
+ The java.util package contains a small subset of the original 
+ util package. It contains only the following classes: 
+ 
+ 
+ 
+ 
+- Calendar
+ 
+ 
+ 
+- Date
+ 
+ 
+ 
+- TimeZone
+ 
+ 
+ 
+- Enumeration
+ 
+ 
+ 
+- Vector
+ 
+ 
+ 
+- Stack
+ 
+ 
+ 
+- Hashtable
+ 
+ 
+ 
+- Random
+ 
+ 
+ The javax.microedition.io package 
+ The main object in the javax.microedition.io package is the Connector 
+ class. You can cast that class into different connection types, described below, 
+ using the connection interface. 
+ 
+ 
+ Connection Interface
+ Purpose of Connection
+ 
+ 
+ StreamConnection 
+ To open a basic connection that reads/writes simple data. 
+ 
+ ContentConnection 
+ To open a connection that provides content length, type,
+ and encoding information. This interface extends from the
+ StreamConnection interface. 
+ 
+ 
+ HttpConnection 
+ To open a connection that provides capabilities to
+ interface through HTTP including getting/setting headers
+ and HTTP-specific handling. This interface extends
+ from the ContentConnectioninterface. 
+ The Connector open() method has the following general form: 
+ Connector.open(":;"); 
+ 
+ 
+ The javax.microedition.ui package 
+ The javax.microedition.ui package contains the classes that you 
+ can use to define your midlet's user interface. The APIs offer two major choices 
+ of UI design. 
+ The Canvas, used in a following example, is used to construct 
+ a custom UI using the Graphics object. Using Canvas, 
+ you can design multithreaded video games or nontraditional user interfaces. 
+ The Screen object and subclasses, used in the HelloMidlet 
+ quick example earlier, are used to construct form-based user interfaces. I will 
+ discuss the capabilities of those UI classes in Part 2, or you can obtain them 
+ through the Javadoc. 
+ The javax.microedition.rms package 
+ The javax.microedition.rms package contains the classes needed 
+ to implement a temporary storage database on the device. That database is limited 
+ in its capabilities to store and retrieve information due to the device's size 
+ restrictions. 
+ I will explore the database APIs in Part 2 of this series. 
+ The javax.microedition.midlet package 
+ The javax.microedition.midlet package contains the MIDlet 
+ class. The MIDlet class executes the midlet life cycle and provides 
+ the getAppProperty(key) method to retrieve information from the 
+ application properties set in the jad file. 
+ Getting started 
+ Having completed the above example and explanation of the MIDP platform's power, 
+ I'll step through the process of installing the MIDP environment. In addition, 
+ I will explore the process of building and deploying the midlet classes. 
+ Installation 
+ A newly introduced toolkit from Sun has simplified the development of midlets. 
+ The Java 2 Micro Edition Wireless Toolkit (see J2MEWTK) 
+ provides a comprehensive toolset for midlet development. 
+ Currently, two limitations exist in that toolkit's installation. First, it 
+ will only run in the Windows environment. Sun will likely announce Solaris and 
+ Linux versions of the toolkit in the near future. Second, the installation directory 
+ name must not contain any spaces due to the internal build process used by the 
+ tool. 
+ After downloading the toolkit, you simply double-click on the application 
+ to execute it. Several prompts will let you specify the installation location. 
+ The J2MEWTK allows integration with the Forte development environment, also 
+ available from Sun. To install the Forte extensions to the toolkit, you select 
+ custom installation when prompted to choose between custom and typical. 
+ The following directory structure is created in your installation directory. 
+ Please note, as mentioned above, that if the directory name includes a space, 
+ the preverification process will not run correctly. 
+ 
+ 
+ Directory
+ Purpose
+ 
+ 
+ {Install}/apps 
+ Holds the files related to your individual projects. All source, resources, 
+ and configuration files will be contained here. In addition, these directories 
+ contain the products of the build process run by the tool. 
+ 
+ 
+ {Install}/bin 
+ Holds the bin files used to preverify and build the application code for 
+ the midlet environment. 
+ 
+ 
+ {Install}/lib/midpapi.zip 
+ Contains the classes used for the CLDC and MIDP APIs. 
+ 
+ 
+ {Install}/docs 
+ Contains the API Javadoc files and the MIDP UserGuide pdf file. 
+ Starting the KToolbar 
+ You can launch the KToolbar either from the command line or from 
+ a Start menu item created during the installation process. In either case, the 
+ executable is called Ktoolbar.bat. 
+ The KToolbar will appear on the screen as shown below in Figure 
+ 2. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 2. The KToolbar of the J2ME Wireless 
+ Toolkit 
+ 
+ 
+ 
+ 
+ Creating a project 
+ Once you've launched the tool, you can create a project for the HelloMidlet 
+ that I mentioned earlier. To do that, click on the "New Project..." button shown 
+ in Figure 2. A dialog box will appear as shown in Figure 3. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 3. New Project dialog box 
+ 
+ 
+ 
+ 
+ This dialog box requests the project name and class name of a midlet that 
+ will be contained in this project. Because a project can contain multiple midlets, 
+ you can change the midlet name entered in this dialog as needed. 
+ To continue with this example, you enter HelloMidlet as both 
+ the project name and the midlet class name in the New Project dialog box. Click 
+ the Create Project button after entering that information, and Figure 4 will 
+ appear to collect the settings for the HelloMidlet project. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 4. Required settings for HelloMidlet 
+ project 
+ 
+ 
+ 
+ 
+ The settings shown above in Figure 4 are the default settings based on the 
+ project name and the midlet name. The MIDlet-Jar-URL value is defaulted to the 
+ project name. You don't need to change any of the options shown in the above 
+ figure. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 5. Optional attributes for HelloMidlet 
+ project 
+ 
+ 
+ 
+ 
+ Figure 5 illustrates the screen in the KToolbar that lets you 
+ specify certain attributes for a project. The midlet can retrieve those attributes 
+ and use them as part of the application. Therefore, I encourage you to fill 
+ in values here rather than hard-code them into the individual applications. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Figure 6. MIDlets for HelloMidlet project 
+ 
+ 
+ 
+ 
+ 
+ Figure 6 shows a list of all the midlets that are included in the HelloMidlet 
+ project. The J2ME Windows Toolkit also lets you modify the order in which these 
+ midlets appear in the display when the jar file is running in the emulator. 
+ In this case, there is only one midlet so it will appear as MIDlet-1. 
+ Building the midlet 
+ The J2MEWTK contains a built-in build tool that will perform the build process 
+ for your project. To build your project, click on the Build button shown in 
+ Figure 2. That toolkit contains an automated build process, but others may not. 
+ Therefore, here are the steps of the build process: 
+ 
+ 
+- Create the classes and tmpclasses directories for build processing
+ 
+- Compile the Java source files into the tmpclasses directory
+ 
+- Preverify the classfiles contained in tmpclasses and output to classes
+ 
+- Jar up the verified classfiles
+ 
+- Jar up the resource files
+ 
+- Create a reminder to update the jar file size in the jad file
+ As a result of that build process, a jar file will contain all the preverified 
+ classes needed to deploy that application to the device and the project's jad 
+ file. 
+ The jad file 
+ The jad file contains all the information about the midlet, its property names, 
+ and its associated properties' values. For the HelloMidlet class 
+ used in the example, the jad file is: 
+ MIDlet-1: HelloMidlet, HelloMidlet.png, HelloMidlet 
+ MIDlet-Jar-Size: 1387 
+ MIDlet-Jar-URL: HelloMidlet.jar 
+ MIDlet-Name: HelloMidlet 
+ MIDlet-Vendor: Sun Microsystems 
+ MIDlet-Version: 1.0 
+ 
+ The midlet name, URL, size, and version are among the entries listed. The 
+ most interesting entry may be the MIDlet-1 line above. There is 
+ only one midlet in this jad file and, therefore, only one line. If there were 
+ n midlets, there would be n lines as follows: 
+ MIDlet-1: ... 
+ MIDlet-2: ... 
+ ... 
+ MIDlet-n: ... 
+ 
+ Each of the above lines would provide the midlet's name, the midlet's image 
+ file, and the name of the class file containing the midlet. 
+ Why pre-verify? 
+ As mentioned above, the class files are run through the preverification process. 
+ That process ensures that the classfiles do not attempt any of the invalid operations 
+ described previously. In addition, it is beneficial to perform some steps of 
+ the standard virtual machine on a more capable computer rather than leave them 
+ to the device's KVM. 
+ The KVM, designed to fit within 1 K, has been optimized for processing on 
+ the devices, not basic duties that you can outsource through preverification. 
+ Running the midlet 
+ Running the midlet is also handled via the J2MEWTK. Figure 2 shows the KToolbar 
+ with the Run button grayed out. Once a project is loaded, this button will be 
+ active. To run the midlet, select the device you intend to test from the following 
+ list: 
+ 
+ 
+- DefaultColorPhone: A color version of the default phone
+ 
+- DefaultGrayPhone: The default phone
+ 
+- MinimumPhone: A very basic emulator
+ 
+- Pager: A two-way pager
+ Once you select the device, simply click the Run button to launch the emulator. 
+ If you prefer to run the midlet from the command line, execute the following 
+ command: 
+ java -cp \lib\kvem.jar;\lib\kenv.zip;\lib\lime.jar -Dkvem.home= [-D=] 
+ com.sun.kvem.midp.Main -descriptor 
+ 
+ 
+ For a complete definition of the command syntax, please review section 5.5.2.1 
+ of the UserGuide file included in the Sun distribution. 
+ Graphical framework example 
+ The following example constructs a simple graphical framework to enable you 
+ to efficiently develop graphics code within the MIDP environment. 
+ A simple graphical example will include the following classes: 
+ 
+ 
+- GraphicalMidlet: The midlet class handling interactions with 
+ the device
+ 
+- GraphicalCanvas: The canvas containing the graphical objects
+ 
+- GraphicalObject: A default graphical object that implements 
+ Runnable
+ 
+- MovingTextObject: The default moving text object
+ 
+- VerticalScrollingTextObject: An extension to the default text 
+ object
+ In that example, the GraphicalMidlet class is responsible for 
+ extending the MIDlet class and thereby enforcing the midlet's life 
+ cycle. In addition, that class is responsible for implementing the CommandAction 
+ interface to handle the single command of Exit when the user is ready to leave 
+ the application. 
+ The constructor of the GraphicalMidlet class retrieves the display 
+ object from the statically accessible Display object. The constructor 
+ then instantiates a GraphicalCanvas class for which it will perform 
+ as the CommandListener. 
+ public GraphicalMidlet() 
+ { 
+ display 
+ = Display.getDisplay(this); 
+ 
+ canvas 
+ = new GraphicalCanvas(display); 
+ canvas.addCommand(exitCommand); 
+ 
+ canvas.setCommandListener(this); 
+ 
+ } 
+ 
+ In the GraphicalCanvas constructor, a new VerticalScrollingTextObject 
+ is created passing the canvas and the message. In this simple framework, no 
+ additional information regarding the speed, positioning, or the text message 
+ color is included. This expansion is left to the reader as an exercise. 
+ public GraphicalCanvas(Display d) 
+ { 
+ display = d; // save the display 
+ 
+ graphicalObject = 
+ new VerticalScrollingTextObject 
+ (this, "Hello Midlet World!!"); 
+ height = this.getHeight(); 
+ width = this.getWidth(); 
+ } 
+ 
+ The paint method is used by the GraphicalCanvas 
+ to redraw the screen as needed by the application. In this case, the canvas 
+ clears the previous entry and then requests that the GraphicalObject 
+ paint itself. 
+ protected void paint(Graphics g) 
+ { 
+ g.setColor(255,255,255); 
+ 
+ g.fillRect(0,0,width,height); 
+ 
+ graphicalObject.paint(g); 
+ 
+ } 
+ 
+ 
+ The start() method is invoked by the GraphicalMidlet 
+ to alert the GraphicalCanvas to begin its action. In this example, 
+ the canvas class instantiates a new thread containing the Runnable 
+ GraphicalObject class. The canvas class then starts the 
+ new thread so that it may begin its processing prior to calling the repaint 
+ method to initialize the painting of the canvas. 
+ You can also expand this example by adding more than one GraphicalObject 
+ to the canvas and then executing them simultaneously. I will leave that for 
+ you as a simple exercise. 
+ void start() 
+ { 
+ display.setCurrent(this); 
+ 
+ Thread 
+ t = new Thread(graphicalObject); 
+ t.start(); 
+ 
+ repaint(); 
+ 
+ } 
+ 
+ The GraphicalObject class implements the Runnable 
+ interface and can therefore be started by the thread in the GraphicalCanvas 
+ class's start() method. This Thread will execute until 
+ the stopThread method is called to break out of the loop. 
+ public void run() 
+ { 
+ stopThread 
+ = false; 
+ 
+ while 
+ (!stopThread) 
+ { 
+ move(); 
+ 
+ canvas.repaint(); 
+ 
+ 
+ try{ 
+ Thread.sleep(100); 
+ }catch(InterruptedException 
+ ie){ stopThread = true;} 
+ } 
+ } 
+ 
+ The GraphicalObject does not know the desired movement and painting 
+ of its subclass objects, but it specifies two methods that must be overridden. 
+ They are as follows: 
+ public abstract void move(); 
+ public abstract void paint(Graphics g); 
+ 
+ By overriding the methods above, the MovingTextObject can implement 
+ the movement it desires and the painting scheme as well. So, to generate a different 
+ object, such as a rotating gear, you would just have to change the paint 
+ and move methods. 
+ public void paint(Graphics graphics) 
+ { 
+ graphics.setColor(0,0,0); 
+ 
+ graphics.drawString(stringValue, 
+ posX, posY, Graphics.TOP| Graphics.LEFT); 
+ } 
+ 
+ public void move() 
+ { 
+ posX = getX(); 
+ posY = getY(); 
+ } 
+ 
+ In the move() method above, the methods getX() and 
+ getY() are called to return the moving text object's X and Y position. 
+ I did that to demonstrate an expansion to the framework. In this case, the expansion 
+ is fairly simple, the getX() method returns a constant value, while 
+ the getY() method increments the position of the Y value until 
+ the bottom of the display is reached. 
+ You could add additional movement schemes by subclassing the MovingTextObject. 
+ For example, a RandomMovingTextObject class might implement random 
+ values for the X and Y location points and return those in the getX 
+ and getY methods. I'll leave further expansion to the reader. 
+ What's ahead in this series 
+ My intent for this first article was to introduce the MIDP concept, demonstrate 
+ the life cycle through a simple code example, and illustrate a graphical example 
+ similar to the basic applets that most of you have constructed at one point 
+ or another. 
+ In Part 2 in the series, I will discuss the rudimentary storage system that 
+ the MIDP provides on the wireless device. Using form-based examples, I will 
+ analyze the APIs that you can use to provide a wireless database. 
+ In Part 3, I will detail the APIs used to connect the wireless device to external 
+ data sources such as URLs. In addition, a more detailed application will illustrate 
+ some concepts that you can follow to make MIDP development more efficient. 
+ Conclusion 
+ The deployment of Java code to the wireless device is the next logical step 
+ in the progression of functionality to that platform. The midlet has the potential 
+ to revolutionize the wireless platform by letting developers target mobile users 
+ more directly with more functional, easier-to-use applications. When combined 
+ with some of the other enhancements in the industry, such as location sensing, 
+ the platform appears poised for immediate acceptance. 
+ As was mentioned earlier, the MIDP platform will be present on devices beginning 
+ in January 2001. Nextel has planned support for the distribution of Java-enabled 
+ Motorola phones starting in January 2001. 
+ This is an exciting area of development that lets developers enter the wireless 
+ space without learning too many new Java APIs. The platform gives the "Write 
+ Once, Run Anywhere" concept in Java a whole different meaning. 
+Resources 
+ 
+- For an overview and a list of relevant links, visit the MIDP homepage: 
+ http://java.sun.com/products/midp/index.html 
+ 
+- Java Developer Connection J2ME pages have a bunch of articles on MIDP development. 
+ Some may be out of date, so make sure to review the more current postings: 
+ 
+ http://developer.java.sun.com/developer/products/j2me/ 
+ 
+- Bill Day's J2ME Archive: 
+ http://www.billday.com/j2me/ 
+ 
+- Chat about all wireless in ITworld.com's Java Device Programming discussion, 
+ moderated by JavaWorld writer Qusay Mahmoud: 
+ http://www.itworld.com/jump/jw-0105-midp/forums.itworld.com/webx?14@@.ee6b808/146!skip=101 
+ 
+ 
+- Complete listing of Embedded Java articles in JavaWorld's 
+ Topical Index: 
+ http://www.javaworld.com/javaworld/topicalindex/jw-ti-embedded.html 
+ 
+- Other JavaWorld articles by Michael Cymerman: 
+ 
+ 
+ 
+- "Automate Your Build Process Using Java and Ant" (October 2000): 
+ http://www.javaworld.com/javaworld/jw-10-2000/jw-1020-ant.html 
+ 
+- "Secure a Web Application, Java-style" (April 2000): 
+ http://www.javaworld.com/javaworld/jw-04-2000/jw-0428-websecurity.html 
+ 
+- "Building a Java Servlet Framework Using Reflection, Part 1" (November 
+ 1999): 
+ http://www.javaworld.com/javaworld/jw-11-1999/jw-11-servlet.html 
+ 
+- "Building a Java Servlet Framework Using Reflection, Part 2" (February 
+ 2000): 
+ http://www.javaworld.com/javaworld/jw-02-2000/jw-02-servlets2.html 
+ 
+ 
+Reprinted with permission from
+JavaWorld, January 2001, copyright ITworld.com, Inc. http://www.javaworld.com/javaworld/jw-01-2001/jw-0105-midp.html
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CREATE &#8226; CODE &#8226; UPLOAD
+ 
+HOME l USER 
+ l FORUMS l NEWSWIRE 
+ l CONTEST l TOOLS 
+ l APPLICATIONS
+ 
+ABOUT DEVICETOP.COM PRIVACY 
+ STATEMENT CONTACT US CONTEST RULES PARTNERS
+NEED A JAVA BROWSER?
+ 
+© 2000 Espial Group Inc. Espial and devicetop.com 
+ are trademarks of Espial Group 
+Inc. All other trademarks belong to their 
+ respective owners.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,41 @@
+
+VB Techniques: Visual Basic 6.0 Certification Exam Guide
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+Visual Basic 6.0 Certification Exam Guide
+Written by Dan Mezick and Scot Hillier
+Published by McGraw-Hill
+Much to the dismay of all those of us who have passed the Visual Basic 5.0 certification exams, Microsoft has changed the certification track to essentially include two required VB tests as part of the new certification track. There are a number of new VB 6.0 features that are being covered on the tests that you need to know about. The VB 6 Certification Exam Guide, written by Dan Mezick and Scot Hillier of New Technology Solutions, is designed to get you up to speed on all the material being covered on both certification exams. 
+Since the main focus of this book is on the certification test requirements, the book is laid out a bit differently from other VB books. There is significantly less time spent on the early material, such as the basic language skills. Only two paragraphs are spent on the For/Next loop, for instance, and similar amounts of time are spent on the other language constructs. For this reason, this book should not be used by new programmers who are racing to get their MCSD certificates. There won't be enough tutorial for them to be useful. For experienced programmers, however, this format works fine to let you review the material. 
+Each chapter begins with a list of the requirements being covered. These requirements match up with the requirements listed on the official Microsoft curriculum at this URL. In addition, you can tell which test the requirement is for as long as you know which number the test is. Many of the requirements for the tests overlap, which allows you to learn 75% of the material and be ahead for two different tests. 
+The examples being used in the text illustrate the point fairly well, but don't get much into the methods you can employ to really take advantage of the feature. This book concentrates on just getting you the information you need about each feature and not much of the why and how. If you're looking for that, get another book. 
+One odd thing I found in reading the book is that the topics are not in a particularly useful order. For instance, the error handling/debugging and installation chapters are placed between data access and the Windows API. For a reader going from front to back in the book, this wouldn't seem to make sense. However, if you're just jumping around in the book, this won't affect you much. One other minor formatting issue I found was that in some of the chapters with large blocks of code no indenting is done for lines that continue using the continuation character. This makes it extremely difficult to distinguish where the end of the line is. In addition, code within structures like Select/Case is not being indented, either. This may have been a formatting issue that the publisher overlooked. 
+In closing, this comprehensive book will be a good guide to the requirements for the new VB 6.0 certification tests. It is complete enough to get you the required information you need to pass the tests, but if you're really looking for a good how-to book, another text might be necessary in addition to this one. 
+Written by Eric Smith on 2/28/1999
+Categories
+VB Techniques Reviews, Book Reviews Category
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

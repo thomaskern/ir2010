@@ -1,0 +1,199 @@
+
+Stroustrup: The C++ Programming Language (Third Edition)
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+The C++ Programming Language
+(Third Edition and Special Edition)
+ Addison-Wesley, ISBN 0-201-88954-4 and 0-201-70073-5.
+The "special edition" is the hardcover version of the 3rd edition.
+It differs from the early printings of the 3rd edition by about 1,000
+corrections and clarifications,
+by two new appendices (just over 100 pages; also available online, see below),
+and by an improved index.
+The only difference between the current printings of the special edition and
+the 3rd edition is the cover (and the price difference implied by that
+stronger cover).
+See also
+my FAQ.
+Advice of the day
+(from TC++PL)
+10.5[5] Use a namespace to make the association between a class and its helper functions explicit; sec10.3.2.
+Translation of the day
+Greek: 
+ISBN unknown
+Here is
+- 
+the
+ preface
+- 
+the
+ preface to the second edition
+- 
+the
+ preface to the first edition
+- 
+the 
+ Table of Contents
+(and an
+ Expanded Table of Contents that is not part of the printed book)
+- 
+the introductory chapters
+- 
+Notes to the Reader incl. a discussion of the philosophy behind C++ and a brief history of C++
+- 
+A Tour of C++ presenting the basic programming
+techniques supported by C++ and the language features through wich C++
+supports them
+- 
+A Tour of the Standard Library presenting a
+few basic uses of C++ introducing its standard library; for most people this
+chapter gives a better view of C++ than does "A Tour of C++"
+and
+- 
+Appendix B: Compatibility
+discussing compatibility with C and earlier versions of C++
+- 
+Appendix D: Locales presenting C++'s facilities for internationalization
+- 
+Appendix E: Standard-Library Exception Safety
+introducing the fundamental concepts of exception safety and presenting
+techniques for using exceptions well illustrated by the guarantees offered by the standard library
+- 
+some 
+errata
+- 
+a few simple
+code examples
+- 
+a C++ glossary with references to sections of TC++PL.
+See also a note about the
+structure, contents, and aims of this book.
+For solutions to selected exercises see David Vandevoorde:
+C++ Solutions
+Addison-Wesley Longman ISBN 0-201-30965-3.
+Reviews and code can be found at
+David's site.
+Some of my interviews answer questions about
+my books.
+For translations, see
+my publication list and
+my cover gallery.
+Back Cover text:
+More than 500,000 programmers have benefited from previous editions.
+This is a complete rewrite of the most trusted book on C++.
+Based on
+the ANSI/ISO C++ standard,
+this book covers the C++ language,
+its standard library, and key design techniques as an integrated whole.
+The C++ Programming Language provides comprehensive coverage of C++
+language features and standard library components.
+For example:
+- 
+abstract classes as interfaces
+- 
+class hierarchies for object-oriented programming
+- 
+templates as the basis for type safe generic software
+- 
+exceptions for regular error handling
+- 
+namespaces for modularity in large-scale software
+- 
+run-time type identification for loosely-coupled systems
+- 
+the C subset of C++ for C compatibility and systems-level work
+- 
+standard containers and algorithms
+- 
+standard strings, I/O streams, and numerics
+With this third edition Stroustrup makes C++ even more accessible to those
+new to the language while adding information and techniques that even expert
+C++ programmers find invaluable.
+A web page to support the book can be found at
+http://www.aw.com/cseng/titles/0-201-88954-4
+ Bjarne Stroustrup is the designer and original
+implementor of C++ and the author of
+The C++ Programming Language (
+ first edition 1985,
+ second edition 1991 ),
+ The Annotated C++ Reference Manual, and
+ The Design and Evolution of C++.
+A graduate of the University of Aarhus, Denmark, and Cambridge University,
+England, Dr. Stroustrup is currently the head of
+AT&T Labs' Large-scale
+Programming Research Department and an AT&T Bell Laboratories Fellow.
+His research interests include distributed systems, operating systems,
+simulation, and programming.
+Reviews:
+Peter Salus in ;login: October 1997:
+Unlike those annoying volumes whose pages are filled with screendumps, this is
+full of real information. Bjarne has done a splendid job in this total rewrite
+of his important work.
+Mini review by Francis Glassborow (Editor of C Vu (Journal of the Association
+of C and C++ users), September 1997:
+Do not be deceived, this is a new book reusing an old title. It took three
+years to write and was critiqued by 12 technical reviewers and the author
+took every one of their comments seriously. That is what it takes to write
+a good programming
+book (and even so some errors got missed). ... I will go out on a limb and
+declare that if you have not read this book at least once during the next
+twelve months you are not a C++ programmer whatever you may think. As always,
+you will only get full benefit from your reading by thinking about what you
+read.
+- 
+Angelika Langer and Klaus Kreft for DevX May 2000.
+- 
+Francis Glassborow for ACCU in May 2000.
+- 
+Al Stevens in Dr. Dobb's Journal.
+- 
+The German-language Monitor magazine.
+If you see other reviews, please send me copies, URLs, etc.
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

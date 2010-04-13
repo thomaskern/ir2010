@@ -1,0 +1,206 @@
+	
+	 WDVL: Methods
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+For CGI Scripts
+Find Annual Reports
+EMedia Mag Free Sub
+Send a Press Release
+Free DNS Offer
+For Web Graphics
+Find A Web Developer
+FlashMX Tools/Bundles
+Software Store
+Comparison Shopping
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Methods	
+What are the applet methods?
+A method is a program structure consisting of variables and statements that can receive parameters and may return one value. A method may have local variables and it may use member variables. Method parameters are defined, with their data type, in the method argument list. Methods must have a return type. If no data is returned from a method it must be specified as "void". In the Contact applet the handleEvent() and action() methods are both boolean methods. All the other methods in the Contact applet are void. Methods have numerous access specifiers and modifiers that are well documented
+here.
+The browser controls the applet's behavior by executing four standard applet methods named:
+init(), start(), stop(), and destroy(). An applet requires the initialization code to be placed in the init() method, which is the first method called by the browser to get things going. An applet may optionally override the other three methods in order to perform functions at certain times in the lifecycle of the applet as listed in the table below.
+ 
+Method Name 
+Executed by browser when an HTML document that contains the applet: 
+Init() 
+Is loaded by the browser 
+Start() 
+Is displayed by the browser or revisited and displayed 
+Stop() 
+Is closed by browser or the browser is shut down. 
+Destroy() 
+After stop 
+In the Contact applet we have included a System.out.println() statement in these methods. This print statement illustrates the sequence of events as initiated by the browser. The output from these print statements is written into the Java console. The Java console is just a file on your computer. Its name and directory depends on the operating system and browser you are using. If you are using Windows 95 and Netscape Navigator the Java console is available under the Options menu and accessed under the option Show Java Console. If your using Windows 95 and Microsoft Internet Explorer the Java console is located in a file called javalog.txt which may be in the \Windows\Java\ directory. Under Microsoft Internet Explorer to see the javalog.txt file you have to shut down your browser first then use a text editor to look at the file. You may need to consult your browser help screens to locate the Java console on your specific operating system.
+init()
+The browser starts execution of an applet with the init() method. The Contact applet's init() method has two statements designScreen(); and readParam();. These methods are called without passing parameters or receiving returned values. The statements within both of these methods could have been coded in the init() method itself.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

@@ -1,0 +1,522 @@
+
+Using Workspaces with Team Development
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Technical Articles
+	
+	 > Enterprise Development
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Using Workspaces with Team Development
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	On this page 
+ 
+	
+	
+	
+	 
+	
+	
+	
+ 	
+	
+	
+	
+	
+	 
+	Local Files to Keep Out of a Source Code Control System 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Files for Exclusive Checkout 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Setting Include Directories 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Exporting Makefiles 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Unloading Projects to Speed Up Shared Workspaces 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Setting Environment Variables 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Glossary of File Name Extensions 
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+There are special challenges to sharing a large workspace with many projects with a team of developers. This paper focuses on the challenges and solutions to sharing a large workspace. 
+Note: Microsoft does not support opening projects and building them across a LAN. The only supported project for opening and building is one that is on the local hard drive. This paper suggests techniques of developing a project with a team, assuming that team members are copying the project to their local computers and updating the files using a source code control system (we used Microsoft Visual SourceSafe 5.0). 
+Local Files to Keep Out of a Source Code Control System
+When developing many project files in the same shared workspace, all checked into source code control (with local copies made to each developer's computer), the best strategy is to keep user-specific files local (like the .opt and .clw files). 
+Files that are local and should NOT be checked into source code control: 
+- filename.opt - This is a binary file that is the workspace options file for the local computer. 
+- filename.clw - This file is used by ClassWizard to track classes. 
+- filename.ncb - This file is a binary file used by ClassView and is specific to the local machine. 
+- filename.aps - This file is a binary file used by the local resource files. 
+- filename.mak - This is the exported makefile. 
+The .clw file should be local only. Checking this .clw file in sets the file to read-only and then ClassWizard will not recognize the file. Keep a copy of this file locally and regenerate the file when new source files are added to the overall project. To regenerate a .clw file, delete the old file, then select the option to make a new one when queried. 
+	
+	
+	 
+	
+	
+Files for Exclusive Checkout
+Some files that are unique to the project can develop merge conflicts when checked out by more than one person at once; this becomes a problem if no one is familiar with those merge conflicts, because they can be hard to resolve. The solution is exclusive checkouts of these files (to one person at a time). 
+The following files may develop merge conflicts: 
+- filename.dsp - The .dsp file can have compiler and linker options changed by two or more people at once, creating a complicated merge upon check-in. 
+- resource.h - There are incremental counts of the resources contained within the file. 
+- mydata.rc - There are incremental counts of the resources contained within the file. 
+	
+	
+	 
+	
+	
+Setting Include Directories 
+ Setting the include directories through the Tools menu Includes and Directories dialog box (see the Tools menu, Options, Directories, Includes) sets the path for all workspace files (and this change is only stored on the local computer). This limits the other workspaces. 
+An alternative is to list the library pathnames in the Project Setting dialog box, under the tab for the appropriate area. The three possible tabs are Resources, OLE Types, and C/C++ (for C/C++, use the Preprocessor category). Each of these locations has an edit box where you can specify additional include directories. If include file directory paths are not relative to the project's directory path, then environment variables can be set up to handle the differences. The best strategy is to set up all three local paths in these include directories (they can be different). 
+Files can use the "Persist As" property (on that file's property page) with environment variables to resolve files on a different drive than the .dsp file. 
+	
+	
+	 
+	
+	
+Exporting Makefiles 
+Exporting the makefiles may cause consistency problems in the directory trees, especially if using subprojects. The solution is to make the project directory trees on all computers involved identical to the build machine's project directory tree. For expert users, you can handle differences in the directory trees with environment variables and a common batch file that sets up the environment so all the files can be found. Exported makefiles that contain subprojects may have hard-coded pathnames in them, which makes the identical directory tree a necessity.
+Adding pathnames to library files using the Additional Include Directories causes hard-coded paths (instead of relative pathnames) in the exported makefile. There are several solutions to this: you can set all computers to have the same directory hierarchy, or you can generate a makefile with relative paths (this is slower and less flexible for swapping around .dsp files). To generate an exported makefile with relative paths, you can add the library file's pathname in the Tools Directories dialog box (see the Tools menu, Options, Directories, Includes). This will slow down the generation of the makefile as the build process checks all the directories listed each time.
+	
+	
+	 
+	
+	
+Unloading Projects to Speed Up Shared Workspaces
+Unloading projects in a workspace can speed up the load time of a workspace. For example, consider a workspace containing 20 projects that is shared across the team and a specific developer who only needs five of those projects. To speed up the loading of the workspace, the other 15 projects can be "unloaded" from the workspace. These unloaded projects are saved as a local option on the local computer and do not affect the shared workspace. 
+To unload a project from a workspace:
+- Load the shared workspace and go to FileView. 
+- Select the project to unload and right-click the mouse. 
+- Select Unload. 
+- Save the workspace. 
+The next time the project is displayed in FileView, the file icon will appear dimmed. To load the project again, right-click it and select Load. 
+However, if an unloaded project is a subproject or contains dependency files, that unloaded project may not declare to its parent project the export library file or other files needed to build. The solution is to specify the unloaded subproject containing the dependencies in the Project Settings dialog box using environment variables if necessary. Use the Object/Library Modules category on the Link tab to do this. If the subproject is copied to your local machine, you don't have to load the project containing dependencies to link to the library files, using this method. 
+Files added to the Project Settings tab pages will not get timestamp updates. Also, the user should add the library files for each configuration (release or debug) to the Project Setting tab pages. Debug library files need to link to debug files in the build listed in the Project Settings Link tab, for instance. 
+	
+	
+	 
+	
+	
+Setting Environment Variables
+Environment variables are customized variable names that redirect the Visual Studio environment to the location of the file on your computer. This is especially useful if files or directories on your computer are arranged differently than the computer that issues the build for the shared workspace. Please note that environment variable names need to be all uppercase letters. 
+To set environment variables (Windows NT 4.0):
+- Set the environment variables in the Visual Studio environment. 
+- On the Windows NT taskbar, click Start and click Settings. Open the Control Panel and click System. Click the Environment tab. 
+- Enter the environment variable name in the User Variables for Username box. Enter the pathname for the local copy of the file in the Value box. 
+- Shut down Visual Studio and restart it. 
+To set environment variables (Windows 95):
+- Set the environment variables in the Visual Studio environment. 
+- Add the following line to the Autoexec.bat file in Windows 95:
+SET VARIABLENAME=pathname; 
+For example:
+SET LIB=C:\Libraries\Lib; 
+- Save the Autoexec.bat file. 
+- Reboot the computer for the setting to take effect. 
+To check the settings, type SET at the command prompt. 
+	
+	
+	 
+	
+	
+Glossary of File Name Extensions 
+ 
+The following is a partial list of file name extensions related to Visual Studio. 
+- projectname.dsw - The project workspace file. 
+- projectname.dsp - The project file (used for building a single project or subproject). 
+- projectname.opt - The workspace option file. 
+- projectname.clw - The ClassWizard "database" file (used for tracking classes). 
+- resource.h - The header file generated by the development environment. This file contains symbol definitions. 
+- mydata.rc - The resource file script file. 
+- projectname.mak - The makefile containing project build instructions. This file is usually exported from the development environment and uses the NMAKE utility to build. 
+- filename.aps - The binary version of the current resource script file; this file is used for quick loading.
+- filename.ncb - This is a binary file used by ClassView. 
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,708 @@
+
+VB Helper What's New in VB6
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+	 
+	
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	New Home 
+	Old Home 
+	What's New 
+	Site Map 
+	 
+	Books 
+	How To 
+	Tips & Tricks 
+	Tutorials 
+	Stories 
+	Performance 
+	Essays 
+	Links 
+	Q & A 
+	New in VB6 
+	Free Stuff 
+	Pictures 
+	 
+	Awards Received 
+	Banners 
+	 
+	News Letter 
+	
+	Feedback
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	What's New in VB 6 
+	
+	Overview 
+	Language Features 
+	Controls 
+	
+	Control Features 
+	Control Creation 
+	Internet 
+	
+	Data Access 
+	
+	
+	 
+	
+	
+	
+Overview
+VB4 introduced classes. That was a Big Deal.
+VB5 introduced custom control creation. That was also a Big Deal.
+I don't see what the Big Deal is in VB6. Mostly it seems to be enhancements and bug fixes to existing tools. So far the most important thing I have found is ADO. This probably is the future of database access with Microsoft, but it's not a radical new tool that opens huge new possibilities for you, at least not immediately.
+If someone has an opinion about what the Big Deal is in VB6,
+drop me a note. See the replies at the bottom of this page.
+Language Features</B></FONT>
+<UL>
+<LI><B>UDTs</B> (All) You can use UDTs as arguments or return types of public properties and methods.
+<LI><B>Arrays</B> (All) Functions can return arrays. You can also assign one resizable array to another.
+<LI><B>File System Objects</B> (All) New file system objects.
+<LI><B>CallByName</B> (All) Access a property or method using its name as a string.
+<LI><B>CreateObject</B> (All) You can now specify the computer on which to create the object.
+<LI><B>StrConv</B> (All) You can now convert strings using a locale ID other than your computer's.
+<LI><B>Dictionary object</B> (All) Improvements to the Collection object.
+<LI><B>String functions</B> (All) Several new string functions:
+<UL>
+<LI>Filter
+<LI>FormatCurrency
+<LI>FormatDateTime
+<LI>FormatNumber
+<LI>FormatPercent
+<LI>InstrRev
+<LI>Join
+<LI>MonthName
+<LI>Replace
+<LI>Round
+<LI>Split
+<LI>StrReverse
+<LI>WeekdayName
+</UL>
+</UL>
+<HR COLOR=00C0FF>
+<FONT SIZE=+2><B><A NAME=controls>Controls</B></FONT>
+<UL>
+<LI><B>ADO Data</B> (All) An ADO version of the Data control.
+<LI><B>Coolbar</B> (Pro, Ent) User-configurable toolbars.
+<LI><B>DataGrid</B> (All) OLEDB version of DBGrid.
+<LI><B>DataList, DataCombo</B> (All) OLEDB versions of DBList and DBCombo.
+<LI><B>DataRepeater</B> (Pro, Ent) Helps make custom views of tables.
+<LI><B>DateTimePicker</B> (Pro, Ent) Dropdown calendar.
+<LI><B>Flat Scrollbar</B> (Pro, Ent) A flat scrollbar (is this a good thing?).
+<LI><B>Hierarchical FlexGrid</B> (All) Updated FlexGrid.
+<LI><B>ImageCombo</B> (All) A ComboBox that displays images.
+<LI><B>MonthView</B> (Pro, Ent) Pick contiguous ranges of dates.
+<LI><B>Data Binding</B> (All) Enhanced data binding and validation for many controls.
+<LI><B>ImageList</B> (All) Now supports GIF, JPEG, and CUR files.
+<LI><B>Misc Enhancements</B> to: MSChart (Pro, Ent), ProgressBar (All), Slider (All), TabStrip (All), Toolbar (All), TreeView (All).
+</UL>
+<HR COLOR=00C0FF>
+<FONT SIZE=+2><B><A NAME=control_features>Control Features</B></FONT>
+<UL>
+<LI><B>Data Validation</B> (All) Validate a control before it loses focus.
+<LI><B>* Dynamic Controls</B> (All) Create new controls at run time (not just using Load).
+<LI><B>* LoadPicture</B> (All) Specify size and color depth.
+<LI><B>Validation</B> (All) Validates the last control beore exiting a form.
+</UL>
+<HR COLOR=00C0FF>
+<FONT SIZE=+2><B><A NAME=control_creation>Control Creation</B></FONT>
+<UL>
+<LI><B>Data Consumers</B> (Pro, Ent) Create data consumers that you can bind to data sources.
+<LI><B>Data Sources</B> (Pro, Ent) Create data sources.
+<LI><B>Start Options</B> (All) Start the program in the browser or form.
+<LI><B>Lightweight Controls</B> (Pro, Ent) Create windowless and transparent controls.
+<LI><B>Arrays</B> (All) Functions can return arrays. Classes can have arrays as properties.
+<LI><B>Persistent Classes</B> (All) Can store class properties in PropertyBags.
+<LI><B>Class IDs</B> (Pro, Ent) Maintains class IDs between different versions of ActiveX components (I don't know why this is only available in the Pro and Ent editions since it is basically a bug fix).
+<LI><B>Validation</B> (Pro, Ent) Validate the control before it loses focus.
+<LI><B>Apartment Threading</B> (Pro, Ent) Use multiple threads.
+<LI><B>Class Builder</B> (Pro, Ent) Enhancements.
+<LI><B>CreateObject</B> (All) Create objects on remote hosts.
+<LI><B>Data Object Wizard</B> (Pro, Ent) Helps create middle tier objects.
+<LI><B>FontChanged</B> (All) New event.
+<LI><B>Transaction Server</B> (Pro, Ent) Support for transactional behavior.
+<LI><B>HasDC</B> (All) Indicates whether a control has a fixed or shared DC.
+</UL>
+<HR COLOR=00C0FF>
+<FONT SIZE=+2><B><A NAME=internet>Internet</B></FONT>
+<UL>
+<LI><B>IIS Applications</B> (Pro, Ent) Server-side VB code.
+<LI><B>DHTML</B> (Pro, Ent) Exposes more events in Internet Explorer.
+<LI><B>Web Publishing Wizard</B> (All) Now called the Package and Deployment Wizard. This is an enhanced piece of what was called the Setup Wizard. It helps you upload an application to a Web site.
+<LI><B>AsyncRead Improvements</B> (All) Provides more information like progress events.
+<LI><B>IE 4.x Download Support</B> (Pro, Ent) Lets you download ActiveX Documents just as you download ActiveX controls.
+</UL>
+<HR COLOR=00C0FF>
+<FONT SIZE=+2><B><A NAME=data>Data Access</B></FONT>
+<UL>
+<LI><B>ADO</B> (All) Simpler object model, better integration. Microsoft claims this is the way to go in future database access.
+<LI><B>Data Environment Designer</B> (Pro, Ent) Builds ADO database environments.
+<LI><B>ADO Data Control</B> (All) ADO version of the Data control.
+<LI><B>Enhanced Data Binding</B> (Pro, Ent) Lets you bind any ADO/OLEDB control to any ADO/OLEDB data consumer.
+<LI><B>Enhanced OLEDB support</B> (All) Introduces non-relational data sources.
+<LI><B>Query Designer</B> (Ent) Drag and drop query creation.
+<LI><B>Set Wizard enhancements</B> (All) Support for ADO, OLEDB, RDO, etc. Now renamed The Package and Deployment Wizard.
+<LI><B>Data Report</B> (Pro, Ent) Drag and drop reporting.
+<LI><B>Data Sources</B> (Pro, Ent) Lets you create your own controls that are data sources. You can bind other controls to them.
+<LI><B>Data View Window</B> (Pro, Ent) Browse databases and see their tables.
+<LI><B>SQL Editor</B> (Ent) Add stored procedures and write triggers.
+<LI><B>Hierarchical FlexGrid Control</B> (All) Improved FlexGrid that works with ADO.
+<LI><B>Data Repeater Control</B> (Pro, Ent) Lets you build an app that can view data records more easily.
+<LI><B>Pass Recordsets</B> (All) You can now pass an ADO recordset across machines.
+<LI><B>Data Form Wizard Enhancements</B> (Pro, Ent) - Enhancements. Supports ADO.
+<LI><B>Data Object Wizard</B> (Pro, Ent) Helps create middle tier objects.
+<LI><B>File System Objects</B> (All) Make file system access easier.
+<LI><B>Format Objects</B> (All) Provides conversion to/from database.
+<LI><B>Data Grid Control</B> (All) OLEDB version of DBGrid.
+<LI><B>DataList, DataCombo</B> (All) OLEDB versions of DBList and DBCombo
+</UL>
+<TABLE BGCOLOR=00C0FF WIDTH=100%>
+<TR><TD WIDTH=100%>Responses</TD></TR>
+</TABLE>
+<A HREF=mailto:josh@pipeline.com>Joshua Miller replies:
+I agree with you and I've never even used VB5 or 4, heh. VB6 has WebClasses, which I've used extensivly 
+and is weak at best. I agree that ADO is a nice upgrade, but not life changing indeed. I guess there's
+not much else to say.
+Denis Maschkewitz replies:
+Here are likely candidates for "The Big Deal" designation.
+We haven't upgraded yet, so I take your (or Microsoft's) word that
+these things work as intended [they seem to work--Rod]:
+- Dynamic Controls (All) Create new controls at run time (not just 
+using Load)." 
+- Apartment Threading (Pro, Ent), Use multiple threads.
+ This one would be really great. When I transfer data to Excel,
+ my program simply freezes. To display some MOVING notice I run
+ a separate exe - that's ridiculous! (I tried to use a control
+ (it is said that controls run in their own threads), but it 
+doesn't work).
+- Persistent classes
+- Object creation on remote machines
+Jarrod Roberson replies:
+The ability to create and bind your own classes to each other and to
+other controls natively.
+I have created a very similar mechanism that is implemented on each of
+my custom classes.
+I do wish I could iterate over the properties of a class. You can do
+with with C++ thru some COM interfaces, but not in VB.
+James Saull adds:
+IMHO
+ 
+It makes a lot of changes for web developers struggling with nasty
+script languages and ASP (UI integrated with business logic etc. that is
+not compiled)... IIS apps and DHTML apps are quite a big deal for me as
+a web developer - brings VB developers and web developers into the same
+pool. The web can get more serious and involved in the n-tier
+development world in a much more serious way.
+Apparently VB6 implements interfaces properly now too, but I wouldn't
+know about that.
+ 
+Mark Donelan says:
+The Big Deal with VB6 is, it comes with no "help". You have to get your
+information off of the MSDN CD's, which basically tell you the
+definitions of parameters you can pass. No longer can you copy and
+paste code from the help into your program or get useful info from it.
+I compare it to going from a massive online encyclopedia for information
+on a topic, to going to a pocket dictionary. I think that is the Big
+Deal, the help regressed exponentially.
+[I have to agree to a large extent. I have the MSDN CDs and it's next to impossible to find anything I want. It's a beta version, but it's remarkably buggy. The section selections keep dying on me so whenever I search, I get hits for Java, C++, etc. -- Rod]
+Amit Patel agrees:
+I also would like to complain about how bad the vb help is in 6.0. Every
+time I require help I have to search through worthless stuff on other
+lanuages which I am not using and it takes me for ever to find what I am
+looking for. I prefered the MS regular help vs. HTML by far.
+[You should be able to select a language (VB) from the Active Subset ComboBox. Then only the VB topics will be available. The others will be grayed out.
+Unfortunately in the version I have, this is broken. It works for a while and then starts listing every language as Visual Interdev Documentation. I can no longer select just VB. The only way I have found to fix this is to uninstall the documentation and reinstall it.
+Microsoft has been royally and rightfully flamed by a lot of people for their new help system. -- Rod]
+Robert Shurtleff III says it's not all bad:
+Wow. What horrific experiences. I have been using the new HTML help and
+for the most part love it. Yes it needs more examples!!! But, I really
+like its search engine, favorites tab, and the full listing with its grayed
+out topics (based on what area you have selected).
+I have on several occasion discovered the answer I needed because 'similar'
+topics in other areas were returned by the search engine. I like not being
+totally isolated.
+I do a lot of Web programming and traditional Client/server programming. I
+cut and paste code on an hourly basis out of the help system. I am not
+saying that it is perfect. But, I like the new direction! Yes, they need
+to finish filling in some content. But, we would probably have that problem
+no matter what the paradigm was.
+Reggie Ahlfield agrees that the new help is not the end of the world:
+I am very new to Visual Basic and I went from 5.0 CCE to buying 6.0. My VB 5.0 had no help so I don't really have anything to compare the VB6 help to. I do not mind the new help so much, and I like that I can read about the other languages should I decide to crossover in my programming. I eventually would like to be able to program in VC++. The help system is a little different, though, than most programs that I am used to.
+[I agree that it's nice to be able to read help for other languages. I do sometimes find a new approach to a problem. I particularly like the fact that API documentation is included. For example, search for GetBitmapBits. It's nice having this all there. -- Rod]
+Igor Lavrih describes some really annoying bugs:
+First major bug: SETUP (Package and deployment wizard) doesn't work with
+international versions of windows and does a lot of crashing when trying to
+setup anything (takes me about 3 weeks to debug, and it still doesn't work
+well)
+Second major bug: When defining a DATASOURCE property for any object, VB6
+browses through ALL THE FORMS (when clicking onto datasource property in
+property toolbar) and by that loading all of the forms in the background. I
+have to build several of my applicationg in break-up parts, else that
+browsing causes "OUT OF SYSTEM RESOURCES" or VB6 just freezes. A big
+problem, trust me.
+Third major bug: Several controls (DatePicker among them) do not like to be
+on the same form, or even on the same SSTAB. When an event of the second
+DatePicker should be triggered, it never happends. Instead it happends that
+that click or whatever causes event of the first DatePicker (or some other
+control). Doesn't work with indexes also...
+Help is totally smashed among Visual C, Java, ...
+This are not ALL of the BUGS, but it will be enough to give folks some
+thought. I sincerely hope that SP2 will be released soon with some really
+major updates and fixes.
+Lisa Hebert points some good and bad features:
+To me VB6 IIS and Web classes with DHTML are a pretty good feature.
+If you like sticking just to microsoft as a webserver / development platform.
+I havn't had much luck with the article that VB programmers journal put out a while back about how VB6 is supposed compile an exe and have it run on an independent platform.
+Example - If a 486 with 32 megs of Ram was only running windows 3.1 it could theoretically execute and run the 32 bit app. The 32 bit app would create its own Environment. But I don't see any documentation that supports this. Maybe Keith was off when he wrote the arcticle in the Journal, I don't know, I am still digging into the new Functions that VB6 has also.
+VB6 has a number of new functions for string manipulation.
+But in My opinion it is about as unstable as Charles Manson off his medication.
+I think there is a lot of work left into fixing the thing to make it stable.
+Herman Eldering adds:
+First of all I think the WebClasses and DHTML in VB6 is the big deal...
+But while reading the other responses I read that people found using the help difficult... I think it's just great. All the API help, and other things are there... And I suggest that when you only want VB help, just select VB in the index...
+[Note that the index does not work properly in my version -- Rod]
+Matt Riley says:
+You forgot to mention the resource editor -- as crippled as it may be, it sure beats having to use rc.exe (yes, I know, people use VC++ to make resource files, but for someone who only has VB, this is great!)
+[Ok, this is true. There are also some other enhanced tools like ImageEdit that lets you edit bitmaps, icons, and cursors. I tend to think of these as bug fixes since many of these tools used to exist in previous editions of Visual Basic, but they are improved and some are new. They are definitely handy.]
+Jinx adds this:
+I think the big thing in VB6 is the "DHTML Programs" you can create. Those, I believe are truly amazing.
+[I have not done much of this, but it is true that VB6 makes new kinds of Internet programming much easier--Rod]
+Willie Pagan says:
+VB Web classes and the data environment! ... Much easier 
+to develop ASP pages with VB and DHTML projects.
+Erwin Cortagerena sees a couple useful features:
+One of the most great hit in VB6 is the wide zoo of data-oriented tools, designers, controls and enhacements. Now is possible create in a few minutes : database applications with the DED (with several connections, commands, aggregates and more), build SQL statements with de SQL Editor, make reports with de DRD, and more. For the other hand all this improvements are limited, and is not possible create complex and big apps, but are useful for make previews, demos, or test things in a fast way.
+If is necessary to create "real apps", the "Big Deal" in VB6 is the ADO 2.x and your integration with the VB6 IDE, controls, designers and code. I maked some real-world apps with VB6/ADO, and are great (for your flexility, simplicity, speed and power). But the Big BAD Deal is the poor documentation of ADO, I don't understand the big Microsoft campaign for UDA (and ADO), and for the other hand the ridiculous ADO documentation, and the few that are shipped with VStudio 6 are so poor and not useful such the Microsoft "bug" with the low support to VB WinCE developers. I hope that this bugs will are fixed in a short time.
+Other Big Deal is the Internet Applications support. Simply: is great (and is the first release!). Now the VB Developers are in the top of the web developers mountain, because is possible create an ordinary HTML front end, but with all power of ASP, IIS and VB in background (and the ActiveX technology). Now any VB developer can create Web-based applications with ASPs, DHTML and more, without learn other program language!!! That is amazing.
+Jim Ludeman has something against horses ;-)
+Not to flog a dead horse (well okay let's beat it some more) but the help really is pretty bad. Mine didn't work at all after the install. I called MS and spent several hours on the phone. Reinstalling IE4 fixed most of the problems. Still context help is flaky. Search won't stay in it's assigned categories.
+MS support tried to make context help problems and search problems two incidents, which would have used up all my free support.
+I skipped 5.0 so I'm really impressed with 6. If I'd upgraded from 5.0 I think I'd feel ripped off.
+Meddad Hamiche adds:
+In Vb6.0 I don`t find any big deal. So, just an additional properties and methods in the most controls.
+And about ADO, I think it`s just to access Database server. So, if you have to access Database desktop like Access, DAO is the good way.
+Try to call a parametred query from access, and you are going to find the answer
+Malcolm Green sticks up for the new help system, sort of:
+I like the help that came with VB 6.0 but i think they should have had each
+and every sample written in all of the languages that way the example you
+see is the one you need no matter what language you are using. But it has
+helped me learn more C/C++ because you almost need to if you want to read
+any of the samples.
+Lorin Toews describes some other problems he has experienced:
+I have also had fun wrestling with the VB6 help system, but I'm generally satisfied with it. What I've found really frustrating is the Packaging and Deployment Wizard. 
+Problem number one, it is *slow* when installing, especially off of floppies. Cab files do make copying and downloading simpler, but it seems that SETUP has to load each cab file into RAM before it can extract the files. On a 486 (or even a low end Pentium) this is quite slow. When my users install an update to the 16-bit version of my app, they're done in a couple of minutes or less. The same process for the 32-bit version can take 5 minutes or more. I'd like to have the option of using cabs or going with each file compressed individually (as with the VB4 system). 
+Problem number two, when my users install an update to my app, they get lots of messages that the data file they are about to copy is older than the file already on their computer. This is not true. They have to select "No to All" unless they want to deal with 50 or 60 replacement prompts. I went into the SETUP1 code and found the line where the file dates are compared (for data files with no version stamping), and there is a "
+Problem number three, when the setup program tries to copy MSVCRT.DLL, it complains that it is in use by another program, but the only program that is running is Windows! (I do a Ctrl-Alt-Delete to make sure that only Systray and Explorer are running). You can tell SETUP to ignore, but that's a step that my users should not have to deal with.
+This all makes me wonder if the developers of the PDW ever tried it in a realistic situation (i.e. newbie users running slow machines).
+Kevin Gallagher has some theories about problems in general:
+Although I don't have VB6 yet, it seems to me that both Microsoft and Borland are the root to all the bad things occuring with VB6. Each one trying to out do the other one is hurting the everyday programmer!!! I perfer to use Delphi, which is why I am noticing that bugs are becoming more frequent when new releases appear for both VB and Delphi.
+Concerning the "big deal" with VB6, I can not answer that, although as programmers mature I think they expect to much from a new release of _any_ language. How much farther can it go before it turns into something else i.e. more internet features. Of course VB authors could do all of us a favor by moving towards Object Oriented based rather then Object Based, but that's wishful thinking.
+Lastly, isn't the reason that programmers use VB is because it is supose to be easy to use? I guess they (Microsoft) most figure that it is so easy that help does not matter anymore? My feeling is that if it takes more then four mouse click to get reasonable help for a topic of interest then something is really really wrong with the help...
+I (Rod Stephens) can only partly agree:
+I think Visual Basic and Delphi have pushed each other forward. If you were around before eitehr of these was introduced, you may remember how slow and unfriendly compilers were. I remember having a program that was only a few thousand lines long. Whenever I made a change, it literally took 4 or 5 minutes to recompile. And the debugger was practically worthless. I worked on compilers from both Microsoft and Borland (Delphi's authors) and both have come a very long way since.
+It is entirely possible, however, that these companies are rushing products to market before they are ready in an attempt to kill each other. Microsoft's announcing or shipping a product before it is really ready is nothing new.
+Paul Kolesnikoff takes a completely different tack:
+For me it seems that the biggest reason for Microsoft to introduce VB6 was
+to force IE4 onto as many machines as possible. The help is atrocious. When
+you select VB only, you should get VB only, not just grayed out choices for
+every other language. It is a pain to have to scroll through 50 topics for
+C++ and Java to get to one VB topic. If you want other languages, you can
+click on display all. I guess it wouldn't be so bad if it worked right, but
+to have to work with a buggy help system just because Microsoft is bent on
+internet browser domination is just too much. How can I set up Netscape to
+service the VB6 Help system?
+PS: My machine lock-up rate has gone up drastically since "upgrading" to
+VB6. 
+Bob is more complementary:
+In my humble opinion the "big deals" that VB has to offer:
+- ADO as a full replacement for RDO (ADO has been expanded)
+- Web Classes and Internet deployment.
+- The ability to dynamically assign activex controls. This basically
+allows us to customize forms "on the fly" and assign activex controls to
+them.
+The Editor's Note in the April 1999 issue of 
+Visual Basic Programmer's Journal
+is entitled "Five Things You Hate About VB6." In brief the list is:
+- ADO 2.0 Bugs
+- Poor Documentation and Frustrating HTML Help
+- Feature Bloat
+- No Performance Improvements
+- Minimal Core Language Enhancements
+See the magazine for details.
+Jørgen Winther adds:
+I fully agree in what Mark Donelan wrote about the missing help - it's really a very bad "improvement". Though the MSDN actually IS a way to find information about things, that you newer looked for (which enlarges your horizon!).
+No, the really big thing in this release is the hierarchical datasets in ADO combined with the Data Environment. I admit, I had to get used to the Data Environment - "why not do everything the good old RDO way?"). But when several developers who is also working on other projects is trying to catch up with the changes since they were last "on", it is actually a very good idea to do things in a non-coding way. If the thing was only working...
+John Ellsworth sees a positive side:
+If you do any MTS development, you'll be amazed how much the VB IDE hides from you, so that you can concentrate on the logic of your business rules. Along this same line, VB6 provides apartment threading. Also, if you work with Rational Rose in developing the large systems, you'll really appreciate how VB simplifies the work you have to do, compared to Java and C++. Forward engineering/Reverse engineering make life worth living again, so that the large project does not fall into that quantum of 70% failure rate known to exit on the large projects. VB makes RAD RAD. I won't even bother commenting on the Help shortcomings. Just use it twice and you'll quickly start finding websites such as this one where you can get real help.
+Tony Camacho gets right to the point:
+No big Deal and ADO is buggy and if you don't have a native driver stick to RDO.
+Most of the tools that have been added will not be used in a larger project,
+the DED, are you joking? ADO buggy as hell, no documentation? Help system, way
+to go guys!! I have learned from a wise man a long time ago, always jump to
+the next version when it comes to Microsoft products. Example VB3 to VB5, VB5
+to VB7. VB4 was a dog, maybe vb6 is not along the same lines but it isn't far
+off.
+Jeff Ritchie questions Microsoft's testing strategy:
+Ok I concur with all views regarding the Deployer, we can't get our
+version to write to floppies.
+ADO is great, we already develop in a multi-value database environment
+(mvBase), and drill down list are superb for handling this at the windows
+level. However, GA have just released clink.ocx which allows us much more
+flexibility in handling multi-value databases, therefore we have reverted to
+vb5 to avoid the numerous bugs in vb6
+Doesn't Microsoft understand the term beta test?
+Sameh Refaat has a good point that I didn't notice (because I work only on American English programs):
+The Big Deal with VB6 is, (For Middle East) the ability to create forms,menus & Most of controls that are oriented in a Right-To-Left format,R-T-L Alignment and change proparties RTL, Alignment at Run-Time.
+In VB5 it was only a few controls to allow RTL Alignment & RTL Property and it was only in the Design Mode not in Run Time Mode.
+In VB6, Most of the controls allow RTL Alignment & Property in Both Desgin & Run Time modes.
+But in ComboBox (Dropdown List Style) Have a bug if you change a property RTL at Run Time Erase a first item
+David Leek marches to the beat of a different drummer:
+What??? ADO buggy? Bad help? What programming language are these people using??!
+We started upgrading to ADO almost instantly, having read reports about scalability, reliablility and ease of use. And it's true! We haven't had any problems if you know what you're doing - and any good course should teach you this.
+As for the help, I've had no problems with this. Looking up functions +examples has maybe not improved a great deal, but certainly has not degraded.
+On a side point, here are my opinions on good + bad points in VB6:
+- Good - Data Environment. The ability to do hierarchical commands, database diagrams, intellisense stored procedures, etc. etc. I find extremely useful on a day-to-day basis.
+- Bad - Web Classes. I know everyone's going to throw tomatoes at me for this, but I don't think the concept makes sense. Webclass are designed so that the VB programmer can use VB to create a web environment. The trouble is, the browser downloads the webclass and runs it at the client. Bad news. Why can't we use server-side ASP? It's virtually identical from VB (the odd difference, accepted) and runs far, far quicker.
+There. I've made my points. Now blow them all to bits!
+Koray (from Istanbul) ads:
+Microsoft manages to market and sell it as if it is a big deal. THAT (as always) is the big deal.
+[I have to agree. No matter what we say about their products, Microsoft has a powerful marketing organization. -- Rod]
+Dennis E. Coburn says:
+I've just completed my first project with VB6.0. After paying an
+obscene price for 6.0 I ended up spending $120 more for books that would
+allow me to find out enough about it to use it. The help system really
+sucks. Hello MS...not all of us are interested in all the other
+languages you sell. Visual Studio us useless for me. Also, it may come
+as a considerable surprise to many people, but there are a lot of us who
+virtually never use databases beyond a 25 field 100 record table. Ditto
+web creation tools. (I write factory floor and vision system apps) I
+fail to see why a language has to try to do everything. Seems to me
+that advance database users could do perfectly well with a database
+development language and web developers already have loads of stuff to
+choose from. So why does VB have to try to be all things for all
+people? For me it's just useless bloat which complicates things beyond
+anything necessary.
+Rod Stephens replies:
+I have to agree with most of your points. Remember when you could actually boot a computer and run a compiler with only 256K of RAM? I recently downloaded VB6 SP3 which was more than 53 MB, and it's compressed.
+I think a couple factors driving Microsoft to unify things like this.
+They can probably save costs and build a better, more consistent product if they use a common platform. In theory, they can spend more time perfecting the common part. This is not necessarily bad. It just means all the products use the same IDE, debugging style, etc.
+In practice, the different tools seem unwilling to give up their favorite pieces so it's not working perfectly. Microsoft has been trying to get all the Office applications to use the same version of VBA for years and they are still not quite there.
+As for the bloat, I think the idea is they think they can sell another copy to Bob Jones if they can just add the farm scheduling function. I agree that a leaner, faster, easier-to-use product would be better. Unfortunately to Microsoft that means selling a core product and then a ton of add-ons that each cost extra. Then there would be package deals: Professional, Enterprise, Client-Server, Kitchen Sink, and who knows what else? So this would have its down-side, too.
+Delphi, who I think builds a better product, has some of this problem, too. There are too many ways to do the same thing so it can be hard to find the "right" one. And their documentation is probably worse than Microsoft's. The compiler is excellent, however, and they don't have the problem of making you buy Java just to run Visual Basic.
+Comfort:
+I agree with what people have been say about the big deal of VB6. The
+big deal is that the help sucks. Microsoft comes out with a great
+improvement wich is ADO and practly puts no examples on how to use the
+new tecnology. Also the ADO documentation is spread out partly in the
+SDK manual and partly in the VB manual making it confusing on wich
+sequence to follow to learn the topic. On my opinion another great
+mistake of Microsoft was to do away with the printed material.
+The printed material has a logic sequence that you can follow, you can
+read it anywhere like in a bus, or at night in bed and is a lot easier
+to reference. I also liked to buy Microsoft software only because of
+the great documentation it had, and I bet a lot of people didn't make
+pirate copies of the software because the originals came with the
+manuals. Let's see if in the future Microsoft corrects this great
+error!
+Dan Ørum:
+I agree with most of the opinions here. For me the BIG DEAL is the
+dissapointment with the VERY messy Help System - MSDN. It's a shame that
+Microsoft forgot that making a helpsystem, requires Psykologic and
+educational experience. This mess is clearly made up by technicans
+without the above mentioned qualifications.
+Upgrading from VB5, I missed my old Books Online, with it's layout and
+clarity, compared to MSDN. No doubt MSDN is a goldmine of good and
+precise
+information, but what does it help, when you find yourself getting lost
+time after time.
+My solution was to rip the VBONLINE from my old VB5 CD, install the
+needed OCX, and VOILA,- every time I need non VB6 specific help, I start
+looking in Books Online.
+Dmitriy Izbinsky:
+The BIG DEAL is the setup creating by Microsoft setup wizard need to 
+include some dependency information can't find some of them and 
+developer has to go in to Setup.lst to manually input them.
+The BIG DEAL if the Setup has to include in the project any references 
+to ADO, after setup runs on client computer some times error will
+acquired only because included setup version of ADO is not complete
+(Short Version). If client machine did not have previously installed
+ADO, then we have to run 
+full version of ADO setup to avoid any errors.
+VRLLOYD@aol.com:
+VB6 has some good, some, bad and some ugly. I am fairly new at this but I 
+have both VB5 & VB6. I originally deleted VB5 from both my computers. But, 
+I needed a safety net so I reloaded VB5. I am also taking a class 
+(intermediate,advanced VB) and my classmates have the same feeling. Too many 
+changes to some simple routines with not a clue about how to make the 
+transition. Microsoft should include that as a section in their new Versions 
+of everything.
+ Getting back to the point. Help is like the Library of Congress and it's 
+most likely there, you just have to learn the tricks to manuever it; I don't 
+have any unique hints.
+However, the Data Control has been somewhat of a pain. I can easily program 
+VB5 to display my record count while VB6 wont budge. Reposition event? It 
+'ain't happening. It' s taking me a lot of tweaking to get some things to 
+work; but it sure would be easier if I had some examples that work. That's 
+it! They cheated on the number of examples they gave in the help section! I 
+sure could use an example on how to complete this in VB6.
+Nathan Naveh:
+BIG it is, no doubt. The professional version is 3 CD's, with MSDN ocean
+of (redundant) info in 1.2 GB by itself.
+DEAL is another story. VB5 was a friendly tool, with good help system
+always one F1 away.
+VB6 turned to be WEB oriented and intertwined within all the other
+languages, as if Microsoft is saying "WE WANT TO PROMOTE THIS, and we
+don't care about your needs". That much web obsessed they are.
+Are ALL VB apps running DAO at all (beyond open / close some files)?
+Are ALL VB apps running HTML at all?
+Great majority of programs address office and industry needs, without
+all this hype.
+MS forgot by now who made them great - the developers who created the
+apps on top of their OS.
+Does anyone know how to install VB6 WITHOUT THE HELP?
+Jean-Pol Demoulin:
+Excuse my english but i speak currently french !
+There is a lot of problems with ADO !!! Where are FINDFIRST so easy, so clear ??? the method FIND is so difficult to programming !!!
+Soon?
+Neil C. & V. Hawkless:
+I think that anyone that complains about vb 6 is gone in the head.
+[Well, perhaps we are a little spoiled ;-) Things could be much worse . -- Rod]
+Krishan Kumar Gupta:
+I didn't find any difference between vb5 & vb6 as compared to interface.
+BIG it is, no doubt. The enterprise edition is 6 CD's, with MSDN ocean of (redundant) info in 1.2 GB by itself. DEAL is another story. VB5 was a friendly tool, with good help system always one F1 away. VB6 turned to be WEB oriented and intertwined within all the other languages, as if Microsoft is saying "WE WANT TO PROMOTE THIS, and we don't care about your needs". That much web obsessed they are.
+Are ALL VB apps running DAO at all (beyond open / close some files)? Are ALL VB apps running HTML at all? Great majority of programs address office and industry needs, without all this hype.
+MS forgot by now who made them great - the developers who created the apps on top of their OS.
+Does anyone know how to install VB6 WITHOUT THE HELP? There is a lot of problems with ADO !!! Where are FINDFIRST so easy, so clear ??? the method FIND is so difficult to programming !!!
+Soon?
+Jason Sage:
+I personally like VB 6. I've been coding Basic since I was 10 years old (no kidding), and VB since version 3.0, certified in 4, and I think it's coming along nicely. I too will admit the HELP could be better, but meg for meg, I think there are a lot of great things in there. ADO works fine for me so far, and if you want more control - or think ADO is lame - hit the ODBC DLL - that gives ya data access power - and problems - (complicated).
+The ASP page (IIS apps) work great - I dislike the web class "HTML" objects - I prefer to read files from the drive (little web page fragments - so I can edit files easily with ANYTHING I want ... as oppossed to the asscoiated editor).
+I still can't figure out how to deply the ASP stuff, admittingly, so I just move my project to the server - same directory structures etc - lame but works. (Help needs fixing here...yes I installed the server stuff on the server...still no deal).
+Summary:
+- Love the new project templates
+- Love intellisense, color coding, "feel" of editor
+- Love the IIS applications
+- Love ADO
+- Hate how certain topics in help - dont help
+- Hate not being able to figure out how to deply IIS asp apps and make a digital signed active X (or digital signed CAB for IIS deployment)
+- Hate whole repository thing (like repository principle - one stop shopping for all data structures, code frags, controls etc. Hate how difficult it is to utilize.)
+- Love how microsoft has added a myriad of "taken for granted" features to allow the budding and the pro developers do many different chores painlessly
+- WISH they would add true object oriented stuff to it all
+Michael Simms:
+I am a relative newbie to VB, I started in May 1999
+hardcore. I agree with some of the help comments, an especially good
+comment was creating an option of WHICH help was wanted/needed from MSDN.
+It is frustrating looking through example after example to try to find a
+fit. On the positive side, MSDN shows the potential of using other
+languages and/or methodologies to achieve the same goal. I for one love the
+Data Access tools (I am using DAO, I haven't had time to upgrade all apps to
+ADO...yet) and I utilize massive recordsets. VB makes this simple, fast and
+efficient, from any data source.
+As far as ADO problems, download MDAC 2.1 (which includes
+ADO 2.1).
+Vladimir Golomb:
+The big deal in VB 6.O for me is 1)I can write Oracle Subprograms
+(Functions and Procedures) within from Visual Basic 6.O side using new VB 
+tools. 2)I can use build in Oracle OLE Server to connect
+to the Oracle Database also. Although there will be some limitations of 
+manipulation with a database object.
+Charles Power:
+I would nearly agree with your analysis when comparing VB5 vs VB6, except
+for one feature-- the Data Environment Designer (DED). Simply dragging and
+dropping a connected database onto a form without the use of the traditional
+data control, saves times by creating underlying class modules and makes VB6
+much more powerful in the data apps environment.
+[I agree. The Data Environment, Data Command, and Data Report objects make reports really easy to use. I wouldn't be surprised if they replace some or all use of Crystal Reports over time. -- Rod]
+KIMOCE:
+The WebClasses for the IIS applications.
+Norman E. Spaulding:
+The Big Deal? Well, re the Help problem: No problems for me. I bought all the Microsoft manuals; that three manual set, plus a couple more, plus Dan Appleman's Win32 API book. So I have printed sources to use. Using VB6's Help is JUST FINE for me! I have had several problems EASILY solved. Cut-and-paste, and all. Don't know why everyone else is complaining..
+How about: FULL COMPILE (no more pseudo-code), and the ability to CREATE DLL's now? Doesn't that count for something?
+[These are nice. The full compile still isn't really a full compile, however. You still need to distribute huge DLLs with the application. -- Rod]
+Mallik Murthy:
+Regarding MSDN help, have you people wondered that you brought one product and you recieved help to all the (almost anyway) products of Microsoft. :-), now thats really stuff worth the price. Actually I like MSDN help a lot, sure I cribbed and cried when I made the changeover but I guess thats just post-cognitive dissonance. Now everytime I start MSDN I keep discovering lots of new stuff. There is a veritable Knowledge house in there and yeah its pretty buggy too.
+[I have recently discovered that Microsoft's new help is better than no help. A new version of some software trashed the older version, itself, and my help system. Now I can't even reinstall the help. Looks like I get the fun of rebuilding Window NT yet again some time in the future. Rod]
+Cormac Gebruers:
+Those of you who really don't like the MSDN CD approach to Help in VB6 - try using MSDN on the web www.msdn.microsoft.com. The entire MSDN CDs are replicated there (always the most up to date versions obviously) and the Developers site comes with an excellent search engine (just updated). I agree the CDs stink - the MSDN web site certainly does not. Give it a go
+Dave Buckner:
+Another is the ability to create IIS apps!
+Josh Einstein:
+I just have this to say... Most people who complain about Visual Basic 6 making their lives harder either a) don't know what they are doing and are just trained to repeat steps or b) are afraid of change. First of all, as far as the MSDN cds go, the only complaint I have about that is the samples and the fact that some members are not properly associated with help contexts. One very nice feature of MSDN is that when you install new SDK's such as say... DirectX or Microsoft Speech... they get added to your existing MSDN collection! Everything is in one place! It's very easy to use and if you update your MSDN software (I am running July 1999) you should have no problems in terms of bugs. Least I don't.
+Now let me talk about ADO. ADO has been proven to outperform the older data technologies. But also look at how SMALL the object model is. It is so simple to use. Stop whining and just read about it and I know for a fact the documentation is there, I am looking right at it. It has been there since the first cd. I have been using ADO since the first version because I saw it had promise. Now with datashaping and async execution, it has come a long way and is now superior to the other data technologies.
+My last point is this. People that complain that VB is capable of things they don't need to do. So what?? How many old people do you see driving porche's or other fast cars? So maybe you're not capable of using the new features, or maybe you are just not in need of them. They are still there and they don't disadvantage your software at all if you don't use it. What many people don't realize is that VB6 is just an IDE and compiler. All those controls you see are separate controls that can either be included or disgarded. You can upgrade them on your own or you can replace them. This goes for ADO (ADO is NOT a new feature to VB it is a relatively new data access component that I used extensively in VB5 and ASP version 1) and it also goes for Internet controls and the new scripting components (filesystemobject, dictionary, regular expressions, etc). I know this is long so you don't need to post it if it is. But I am in the mood to set some people straight.
+Jason Gorman:
+I don't think there's much to complain about with VB6 - it's the VB
+developers who I have a problem with. 
+Jeff Katz:
+A New Function: Split Very Important
+Jeff Katz:
+A New Function: Split Very Important
+As an utter complete and totally naive beginner with VB, I enjoy the simplicity of the environment, the relative consistency with the approach of other ms products and the ease of compiling small simple progs to run on other PCs.
+If we're talking about what VB6 illustrates about MS as a company, there's little I can say about their marketing strategies that hasn't been done to death, and more eloquently than i can manage.
+The helpfile is not written with people like me in mind; that is the feeling I get while trying to use it. Like in the changeover from W3.1 to W95+ the differences between VB6 helps and other ms help files causes me to go Ape at my PC. Come on, they're just the result of one out-of touch, tecky type trying to impress another out-of touch, tecky type, surely!
+The web help worked better for me, an appropriate peice of advice was attained after a 'mere' 10 mins of browsing and searching!!
+Stefan De Prins
+I think ADO is great, and it for sure is easier then using the ODBC dll, but only if you're working on the most common
+databases.For one, ADO still has a 8meg limit on a record field, so that leaves you nowhere if you're using full-text datbases
+which inlclude entire documents.
+I also find it outrageous that you can't run VB5 and VB6 along side eachother, like they are forcing you to upgrade...the
+versioning is messed up too, you should think they would consider backwards compatibility,but I had numerous occasions on
+wich files got corrupt by using a different version of OCX..and in a proffesional environment, you can't afford to restart a whole
+days work because an ocx has been upgraded.
+Briefly said, allthough I am using VB6 for some projects now,I still use VB5 most of the time,cause easier isn't always better
+(Millennium Resources)
+Well I've enjoyed reading everyone's comments. I consider my self
+intermediate to advanced and I've just upgraded. (I believe in never
+upgrading when a product is first released. or when a products ends with
+0 such as 6.0) but after reading everyone comments I'm a bit worried as
+to my results once I open up vb6. My first difficulty was getting msdn
+to work it has not worked though I have installed sp4 but it seems I'm
+not missing anything. I don't have much else to say other than I can't
+imagine life with out vb regardless of it's short comings it definitely
+will put my kids through school. I hope everyone will lightening up a
+little on Microsoft.
+Rod Stephens
+I think most of us would agree that we are better off with Microsoft and Visual Basic
+than without. After all, we are paid for programming with Visual Basic. That doesn't
+mean Microsoft couldn't do a better job.
+And it's much easier to point out things that need fixing than things that work.
+It would be silly to post a long list like:
+- Arrays still work
+- The ReDim statement is cool
+- Collections are really convenient
+- Etc.
+There are a huge number of things about Visual Basic that are really fantastic.
+It has made an enormous contribution to the evolution of programming. For that,
+Microsoft has my gratitude.
+Alwin M S
+I dont believe data access is being revolutionised with each release. There
+certainly is a difference between ODBC APIs, DAO, RDO and ADO. But it looks
+more like a marketing strategy and to make-believe people of a better
+product. I am sure the extra layers in ADO is definitely a overhead
+comparing their DAO or ODBC API counterparts. If RDO is for lazy people then
+ADO is for lazier. I am sure we will see more and more data access models
+being squeezed out of the APIs. People will fall head over heels thinking
+the lastest is the greatest. The only advantage I can see is, the initial
+learning curve is being reduced. Most of the rest of the features are
+disadvantages.
+Rod Stephens
+This is certainly true to an extent. You can certainly do most things using any of these technologies. One reason Microsoft is trying to make a leaner library is to allow faster Web access. When you use ADO via VBScript on a Web page, you don't want to have to create huge database objects.
+In any case, if Microsoft says ADO is the wave of the future, they will probably increase support for it, have new releases, build better database engines, etc. in the future. Meanwhile support for older database access methods is likely to dwindle over time. For better or worse.
+Tanveer
+To me the Biggest deal is ADO and Data-Environment.
+These two features have eased much load-off the developers head
+[The DataCommand and DataReport obects, too. -- Rod]
+Paul Gudgeon
+I disagree with your comment about
+ADO not being of great import. For me, it opens up the opportunity to publish databases on the internet, and
+enables me to open a database along a URL. I think this is very empowering.
+ADO has a number of other advantages over DAO, which I will not elaborate here, but in my mind it is quite an
+important step foward.
+ 
+sachin@digindia.digitek.com
+I think the biggest deal for vb6 is it has been released so soon.
+Kirk Jewell
+- The new help system is the CD - it is NOT good for LEARNING vb but it IS good for quick reference. However, why
+don't people just bye the Programming Guide and Language Reference books. Any specific areas they want to look
+at WILL have be written about by third parties (ie. Databases, Activex Controls). Learning an application through the
+help files a poor method and misses out on valid reasons why a particular control works in the way it does. 
+- ADO contains all the latest methods to access most databases (i.e. Jet 3.5/4, SQL/MSDE. Dbase etc) it is also
+the only one that will be updated by microsoft in the future. Therefore anyone writing using DAO is programming up
+dead end. There isnt anything you can't do by building your own SQL strings (as with any database that uses the
+SQL syntax).
+- If it wasn't for my name conventions I would get confused as to whether the classes and objects I had created
+were built in to VB6 or not. Except for my own programming errors. This brings me onto my final point....
+- Any 'bugs' that I have found with VB6 or ADO have ALL turned out to be my fault. They have been resolved by
+background reading of a book, carefull study of the code and systematically finding better ways to code. If people's
+biggest moan is not knowing how to use VB6's Help system then maybe they should invest in the official manuals
+and reference guides or third part work.
+Aubrey
+In response to the MSDN supporters...
+The problem is: it doesn't work for me. Like Rod, MSDN 
+can't seem to stay way from the non-VB related topics, and 
+it usually takes quite a bit of time to look for even the 
+simplest things. The learning curve of using Help is 
+undeniably a steep one.
+I upgraded to VB6. Obviously I have certain expectations 
+of it. Why should I be forced to purchase seperate guides 
+just because Microsoft can not make a good help system for 
+those of us who have been using its products for years? We
+are not trying to learn the language, we are trying to find
+quick, simple on-line references and examples of new 
+language functions that exist in VB6 or old ones which
+slipped our mind. In that regard, MSDN falls way short of 
+my expectation.
+Joe Hart
+In reference to using the help system...
+It is not that difficult to use if you build a subset of just the Visual Basic areas.
+To do this, go to the View menu in MSDN, then click the last item, Define Subset.
+There you can choose the areas you would like to include. Once the subset is defined,
+you can select that subset, and then only those items that are in the subset you
+defined will be shown. This way you can strip out all of the C++, Java and other
+items that are not relevant to Visual Basic. I would suggest leaving the Knowledge Base
+in though as that can be very handy.
+Oprea Liviu
+The 'Big Deal' in VB6 is IIS Application!
+	
+	Write a reply.
+	 
+	 
+	 
+	 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+ Subscribe to the VB Helper newsletter 
+	
+	
+	
+	Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc.
+	 All rights reserved.
+	 
+	www.vb-helper.com/newvb6.htm 
+	Updated 
+	
+	 
+	
+	
+	 
+ 

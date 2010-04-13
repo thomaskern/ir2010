@@ -1,0 +1,291 @@
+
+Hoskinson's Rotating Ad Banner Applet
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ Hoskinson's Rotating Ad Banner Applet 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 Your browser is not 
+Java-capable
+Hoskinson's Rotating Ad Banner Applet allows you to display 
+multiple advertising banners, in GIF, JPEG, or text format, each with their own 
+hyperlink. With the Rotating Ad Banner Applet, you can:
+ 
+- Display 
+ multiple ad banners, in either GIF, JPEG, or text format.
+ 
+ 
+- Assign 
+ each ad banner it's own hyperlink and browser frame target.
+ 
+ 
+- Specify 
+ the time interval at which banners are displayed. 
+ 
+- Specify a 
+ custom background, foreground, and link color for the applet container. 
+ 
+- Specify a 
+ custom intro message (displayed while the applet is retrieving images). 
+ 
+ 
+- Specify a 
+ custom font for your intro message and text banners. 
+ 
+- Specify an 
+ optional 3D border size. 
+ 
+- Package 
+ your image files with the Applet byte code files into a Java Cabinet file, if 
+ desired, to speed download for your Microsoft Internet Explorer 3.0x users. 
+ 
+This is what the mark-up looks like to implement the Rotating Ad
+Banner applet in your HTML page (Note: this assumes that adBanner_andyhosk.class is in the same directory as it's parent HTML page). The parameters, by the 
+way, correspond to the instance that is running on this page right now: 
+ 
+ 
+Your browser is not Java-capable
+ 
+ 
+ Parameter 
+ 
+Default Value 
+ 
+Possible Values 
+ 
+ 
+ images 
+ Hoskinson's Rotating Ad Banner Applet 
+ A 
+ carat ("^") delimited string representing the file names of the ad 
+ banners. The image files must originate from the same host as the
+ applet, and must be relative to the applet's codebase (The "codebase" is the
+ directory in which adBanner_andyhosk.class 
+ is located on your web server).
+ Additionally, the images must be valid .GIF or JPEG files. Please note that the number of
+ images will normally match the number of links. 
+If desired,
+ you may specify a line of text to be displayed instead of an image file. To implement
+ this, type the line of text to be displayed instead of an image file name. Use a tilde (~)
+ character to specify a line break, if desired. 
+ 
+For example, if you wanted the applet to display a JPEG file, a GIF
+ file, a line of text (with a line break), and then another GIF file, your mark-up would
+ look like this: 
+ 
+ 
+ 
+ 
+ links 
+ http://members.aol.com/andyhosk/ 
+ A 
+ carat ("^") delimited string representing the URLs that are loaded when 
+ their respective banner is clicked. These URLs can be either 
+ absolute or relative URLs. If you want to use a relative URL, your URL 
+ should be relative to the URL of the document in which the applet is 
+ running. If you do not want a given banner to link to anything, type null 
+ instead of a URL.
+Please ensure that the number of links match the number of images (banners).
+ If there is a mismatch between the number of banners and the number of links, the applet
+ will use the first URL encountered as the hyperlink for all banners (this action will be
+ documented in the Java log). 
+ 
+If you prefer that all banners link to one URL, you may assign only
+ one URL to the links parameter. 
+ 
+ 
+ targets 
+ _self for all banners 
+ This 
+ is anoptional parameter representing the target
+ browser windows in which the aforementioned URLs are loaded when their respective banner
+ is clicked. You can use this parameter in one of three ways: 
+ 
+- Omit 
+ this parameter in it's entirety. If this parameter
+ is not present, the TARGET attribute will default to _self (the current browser
+ window or frame) for all hyperlinks. 
+ 
+- Specify one (and only one) frame target. All hyperlinks
+ will default to this frame target. Allowable values include _top (the top level
+ browser window), _self (the current browser window or frame), _blank (a new
+ browser window), or the name of any open browser frame. 
+ 
+- Specify a carat ("^") delimited string representing 
+ the target browser windows in which the aforementioned URLs are loaded 
+ when their respective banner is clicked. Allowable values include _top (the top level browser
+ window), _self (the current browser window or frame), _blank (a new browser window), or the name of 
+ any open browser frame. If you use this option, the number of 
+ targets must match the number of images and URLs. If there is a mismatch between
+ the number of banners and the number of targets, the applet will use the first target
+ encountered as the target for all banners (this action will be documented in the Java
+ log). 
+ 
+ 
+ 
+ 
+ time_interval 
+ 3000 (3 seconds) 
+ Time delay between banners, in milliseconds; for all intents and
+ purposes, represents the speed at which the applet scrolls through the ad banners. 
+ 
+ 
+ bgcolor 
+ white 
+ The 
+ applet's background color. This is an optional parameter. If 
+ omitted, it defaults to white. Legal values include white, black, red, 
+ blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, 
+ orange, or an integer representing the RGB value (See Note 
+ Below). 
+ 
+ 
+ fgcolor 
+ black 
+ The 
+ applet's foreground color. This is an optional parameter. If 
+ omitted, it defaults to black. Legal values include white, black, red, 
+ blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, 
+ orange, or an integer representing the RGB value (See Note 
+ Below). 
+ 
+ 
+ introMessage 
+ Shareware version: "Loading Hoskinson's Ad Banner
+ Applet" 
+Registered version: "Initializing
+ Applet...Please Stand By" 
+ This is the message displayed by the applet while it is loading
+ images. Use a tilde (~) character to specify a line break, if desired. 
+ 
+ 
+ fontname 
+ Arial 
+ The name of the font to be used for all text messages (to include
+ the intro message and any text banners). Legal values include any installed font. If the
+ font you have specified does not exist on the remote client's machine, the client will use
+ its default font (usually Courier). 
+ 
+ 
+ fonttype 
+ bold 
+ The aforementioned font's style. Legal values include plain, bold,
+ or italic. 
+ 
+ 
+ fontsize 
+ 12 
+ The aforementioned font's point size. 
+ 
+ 
+ linkcolor 
+ Defaults to the value of fgcolor 
+ The 
+ "hot spot" color to which the applet container border (and each text 
+ banner) changes when the mouse is moved over the applet container. Legal 
+ values include white, black, red, blue, green, yellow, lightGray, gray, 
+ darkGray, magenta, cyan, pink, orange, or an integer representing the RGB 
+ value (See Note Below). 
+ 
+ 
+ border 
+ 0 (no border) 
+ An integer specifying the width (in pixels) of the applet
+ container's border. 
+ 
+Background and Foreground Color Attributes 
+Most people will find the thirteen basic colors sufficient. However,
+you can set the background and foreground color of the applet to any one of the 16+
+million colors in the 24 bit RGB (Red-Green-Blue) spectrum. But first, you must calculate
+the value of your custom color. To facilitate this, please use this calculator. 
+To use this 
+applet, download the following three files: 
+Download adBanner_andyhosk.class
+Download destination.class (adBanner_andyhosk.class
+uses this file, and both files should be placed in the same directory). 
+Download adBanner_lib.class
+(adBanner_andyhosk.class uses this file, and both files should be placed in the
+same directory). 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

@@ -1,0 +1,79 @@
+
+ 
+online C++ tutorial: What is a Variable?
+ 
+ 
+ 
+ Section 3: Variables, Types, and Operators 
+Section 3.1: What is a Variable?
+A variable is a place to store a
+piece of information. Just as you might store a friend's phone number
+in your own memory, you can store this information in a computer's
+memory. Variables are your way of accessing your computer's memory.
+Of course, your memory changes over time. Your friend moves across
+country and has a new phone number, and your friend's new phone number
+will replace the old one in your memory. Over time, as you acquire
+new friends, your memory will keep changing to store different pieces
+of information. Likewise, a computer's memory can change over time,
+if you tell it to. Since variables are your access point to your
+computer's memory, it makes sense that you'd be able to change the
+information in a computer's memory; otherwise, they wouldn't be called
+variables (they'd be called statics).
+Why should you care about variables? Variables are the essence of any
+computer program! Without variables, computers would be useless.
+Imagine a program which asks the user for two numbers and adds them
+together, and prints the result.
+# AddTwoNumbers
+Enter the first number: 2
+Enter the second number: 5
+The sum of 2 and 5 is 7.
+# 
+Sounds simple, right? But let's do a little role-playing to see what
+the computer has to do to execute
+this program. Instead of this interaction between a person and a
+computer, let's imagine the same kind of conversation between two
+people, Sol and Frank.
+Sol: Hey Frank, I just learned how to add two numbers together.
+Frank: Cool!
+Sol: Give me the first number.
+Frank: 2.
+Sol: Ok, and give me the second number.
+Frank: 5.
+Sol: Ok, here's the answer: 2 + 5 = 7.
+Frank: Sheesh! This guy is unbelievable!
+After Frank says "2", Sol has to store that number in his memory
+somewhere. It may be stored in short-term memory, but he has to
+store it somewhere before Frank gives him the second number. Even if
+Frank were to give him two numbers in the same sentence, Sol would
+have to store the numbers somewhere in his memory to add them
+together.
+In the sample program described above, the computer would most likely
+store "2" in a variable, then store "5" in a variable, and then
+calculate the sum by calculating the sum of the numbers store in the
+two variables.
+Although there are similarities between a person's memory and a
+computer's memory, there are some pretty big differences. In C++, you
+need to grab a little piece of the computer's memory before you can
+use it. In other words, you have to tell the computer that you're
+planning to store a number in a variable before you can actually do
+it. This is called declaring a variable. To declare a
+variable, you need to know what kind of information it will store
+(i.e., will it store a number, or a text-string, or something else)
+and how you plan to refer to the variable (i.e., the variable's name).
+C++ imposes fairly strict rules on how you can name your variables:
+- variable names must begin with a letter
+- variable names are "case-sensitive" (i.e., the variable "myNumber" is different from the variable "MYNUMBER" which is different from the variable "mYnUmBeR")
+- variable names can't have spaces
+- variable names can't have special characters (typographic symbols)
+What can you name your variables? In general, variable names
+can be composed of letters, numbers, and underscores (_).
+However, C++ reserves certain keywords which have special meaning to
+the language, and you are not allowed to use any of these keywords as
+variables names. Some examples of C++ keywords are int,
+for, else, and class. You can,
+however, use keywords in the middle of a variable name, such as
+"foreign" or "classical". For a complete list of C++ keywords, please
+see Appendix B.
+ 
+ 
+ 

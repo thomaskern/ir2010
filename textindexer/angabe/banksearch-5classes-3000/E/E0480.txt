@@ -1,0 +1,71 @@
+
+ strcmp()
+ 
+ 
+strcmp-Compare strings, case sensitive
+Synopsis
+ #include &#060;string.h&#062;
+ x = strcmp(a,b);
+ int x; /* comparison result */
+ const char *a,*b; /* strings being compared */
+Description
+ This function compares two NULL-terminated strings. The ASCII
+ collating sequence is used in all cases.
+ The relative collating sequence of the strings is indicated by the
+ sign of the return value, as follows:
+ Sign Meaning
+ ---- -------
+ negative first string is below the second
+ zero strings are equal
+ positive first string is above the second
+ If the strings have different lengths, the shorter one is treated
+ as if it were extended with zeroes. The strcmp function has a
+ built-in version that is equivalent to the standard library
+ version. The statement #include &#060;string.h&#062; provides a default
+ setting by which built-in functions are accessed. If you do not
+ want the built-in function, you can enter an #undef strcmp after
+ including the string.h file.
+Returns
+ The sign of the return value indicates the relative collating
+ sequence of the strings, as indicated above.
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;string.h&#062;
+ void result(char *name, int r)
+ {
+ char *p;
+ if (r == 0)
+ {
+ p = "is equal to";
+ }
+ if (r &#060; 0)
+ {
+ p = "is less than";
+ }
+ if (r &#062; 0)
+ {
+ p = "is greater than";
+ }
+ printf("%s string A %s string Bn",name,p);
+ }
+ void main(void)
+ {
+ char a[256],b[256];
+ while(1)
+ {
+ printf("Enter string A: ");
+ if (fgets(a,sizeof(a),stdin) == NULL)
+ {
+ break;
+ }
+ printf("Enter string B: ");
+ if (fgets(b,sizeof(b),stdin) == NULL)
+ {
+ break;
+ }
+ result("strcmp: ",strcmp(a,b));
+ }
+ printf("n");
+ }
+See Also
+ strncmp 

@@ -1,0 +1,475 @@
+ 
+ 
+ 
+ 
+ 
+Supporting Threads in Standard C++ - 1
+ 
+ Advanced Software
+Development 
+Supporting Threads in
+Standard C++ Part 1
+Phil Bass
+Why Threads?
+Shortly after the C++ standard was announced I read an article explaining
+what the standardisation committee will do next. There is still work to do, it
+said. Although the standard is not allowed to change for 7 years some parts
+will need to be clarified and ambiguities and inconsistencies will need to be
+resolved. At some stage the committee will also have to consider the next C++
+standard. The article urged its readers to report parts of the existing
+standard that could be improved and to submit suggestions for its next
+incarnation.
+I thought about this for a while. It seems to me that the biggest problem
+with C++ is its sheer size and complexity. Commercial organisations need to
+spend a lot of time and money training C++ programmers. Many of them feel it
+isn&#146;t worth the investment. What&#146;s wrong with C, Java or Visual
+Basic? Or simply C++ as a &#147;better C&#148;? To put it another way, C++ is
+an excellent language for writing efficient, high-quality, low-level software.
+But most software isn&#146;t like that. So, if C++ is to remain a main-stream
+language, it needs to become smaller, simpler and easier to use - without
+losing any of its power and flexibility.
+Unfortunately, but I had no idea how this could be done. So I thought some
+more and decided that the standard could be improved by making it bigger. Like
+C before it, C++ assumes an underlying (abstract) machine. It is a
+single-processor, single-process, single-thread machine. And most modern
+software is written to run in an environment of networked machines running
+multi-threading, multi-processing operating systems. If standard C++
+doesn&#146;t provide support for such environments C++ programs will always be
+platform-specific and the benefits of having a standard will inevitably be
+eroded.
+A Hierarchy of Architectures
+So, I asked myself, &#147;What other facilities do we need in C++ to support
+modern object-oriented, distributed-processing software environments?&#148;.
+The answer I gave myself was this:
+- threads and thread synchronisation mechanisms; 
+- processes, inter-process communications and process synchronisation
+mechanisms; 
+- networking and support for distributed objects. 
+1.I thought of this as a hierarchy of architectures, each layer adding
+facilities to those of the layer beneath. For completeness, I included support
+for objects in the hierarchy and produced this table.
+ 
+Architecture
+ 
+ 
+Objects
+ 
+ 
+Threads
+ 
+ 
+Virtual Address Spaces
+(processes)
+ 
+ 
+Physical Address Spaces
+(processors)
+ 
+ 
+procedural
+ 
+ 
+0
+ 
+ 
+1
+ 
+ 
+1
+ 
+ 
+1
+ 
+ 
+object-oriented
+ 
+ 
+n
+ 
+ 
+1
+ 
+ 
+1
+ 
+ 
+1
+ 
+ 
+multi-threaded
+ 
+ 
+n
+ 
+ 
+n
+ 
+ 
+1
+ 
+ 
+1
+ 
+ 
+multi-processing
+ 
+ 
+n
+ 
+ 
+n
+ 
+ 
+n
+ 
+ 
+1
+ 
+ 
+distributed
+ 
+ 
+n
+ 
+ 
+n
+ 
+ 
+n
+ 
+ 
+n
+ 
+Figure 1 - A Hierachy of Programming Architectures
+Traditional languages, like C, address the procedural level. Object-oriented
+languages, like C++ and Java, address the object-oriented level.
+Multi-threading, multi-processing and distributed architectures are not
+directly supported by general purpose programming languages(1). That is
+provided by operating systems and libraries. Perhaps it is time to think about
+adding these facilities to the C++ Standard Library.
+Support for Threads in the Standard Library
+Since then I have been prompted to consider multi-threading support for
+other reasons, too. Recent articles in Overload [1], [2] and the C/C++ Users
+Journal [3] have described designs that differ from those I&#146;ve seen
+before. There are also unresolved issues in projects at work related to the use
+of threads in object-oriented designs.
+So, I set myself the task of exploring current ideas and trying to design
+thread support facilities suitable for inclusion in the standard library. I am
+aware that this topic has been considered by a number of people more
+knowledgeable and more able than myself. And I believe that threads were
+omitted from the standard library partly because existing threading models
+differ too much for a &#145;standard&#146; solution to be accepted. The aim was
+not so much to define an extension to the standard, but more to learn about the
+strengths and weaknesses of different approaches while remaining focused on the
+essentials.
+Survey of Existing Multi-Threading Facilities
+I looked at a number of software packages providing threads. They are listed
+in Table 1.
+ 
+Category
+ 
+ 
+Package
+ 
+ 
+Description
+ 
+ 
+Operating system kernel API
+ 
+ 
+Win32 Threads
+ 
+ 
+C functions.
+ 
+ 
+ 
+Posix Threads
+ 
+ 
+C functions.
+ 
+ 
+Java interface
+ 
+ 
+Java Threads
+ 
+ 
+Java classes.
+ 
+ 
+General-purpose C++ interface
+ 
+ 
+Rogue Wave Threads
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+Objectspace Thread Classes
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+ACE Thread classes
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+John Harrington&#146;s Thread Classes
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+Allan Kelly&#146;s Class Templates
+ 
+ 
+C++ class templates.
+ 
+ 
+ 
+Bio-Rad&#146;s Thread Classes
+ 
+ 
+C++ classes.
+ 
+ 
+Vendor-specific C++ interface
+ 
+ 
+MFC CThread Class
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+OWL TThread Class
+ 
+ 
+C++ classes.
+ 
+ 
+ 
+VCL TThread Class
+ 
+ 
+C++/Delphi classes.
+ 
+Table 1 - A Selection of Thread packages.
+The packages fall into three main categories: operating system kernel API,
+general-purpose C++ interface and vendor-specific interface. In Java the
+distinction between operating system and language is blurred, so that has been
+given a category of its own.
+Most of the packages listed here have been studied only superficially. The
+kernel APIs provide the low-level facilities that might be used to implement
+C++ classes. They were examined to see what building blocks are readily
+available. Each of the vendor-specific C++ interfaces depends on facilities not
+directly related to the provision of multi-threading (e.g. Window objects). I
+regarded these extra facilities as inessential and inappropriate to a standard
+library. The Java and general-purpose C++ interface packages have much in
+common and I concentrated on these. It is worth noting, however, that the
+vendor-specific packages, when stripped of extraneous features, also have much
+in common with the Java and general-purpose groups.
+Core Facilities
+I will call the features common to most/all of the general-purpose
+interfaces (including Java) the core facilities. 
+Table 2 lists the core facilities together with the corresponding Win32 API
+functions by way of example. These features define the thread model that will
+be discussed in this article.
+ 
+Description
+ 
+ 
+Win32 Function
+ 
+ 
+Create a new thread.
+ 
+ 
+CreateThread
+ 
+ 
+Terminate the thread function.
+ 
+ 
+ExitThread
+ 
+ 
+Get a thread&#146;s exit code.
+ 
+ 
+GetExitCodeThread
+ 
+ 
+Destroy a thread.
+ 
+ 
+CloseHandle
+ 
+ 
+Get a thread&#146;s priority.
+ 
+ 
+GetThreadPriority
+ 
+ 
+Change a thread&#146;s priority.
+ 
+ 
+SetThreadPriority
+ 
+ 
+Suspend execution of the thread function
+until resumed.
+ 
+ 
+SuspendThread
+ 
+ 
+Resume execution of the thread function.
+ 
+ 
+ResumeThread
+ 
+ 
+Suspend execution until some condition
+becomes true.
+ 
+ 
+WaitForMultipleObjects, etc.
+ 
+ 
+Suspend execution of the thread function for
+a specific time period.
+ 
+ 
+Sleep
+ 
+ 
+Get the handle of the currently executing
+thread.
+ 
+ 
+GetCurrentThread
+ 
+ 
+Get the ID of the currently executing thread.
+ 
+ 
+GetCurrentThreadId
+ 
+ 
+Wait for the thread function to finish.
+ 
+ 
+WaitForSingleObject
+ 
+Table 2 - Summary of Core Facilities.
+In considering these facilities it is important to distinguish between a
+thread and the function it is executing. A thread is a resource provided by the
+system; a thread function is a user-defined piece of code.
+Other facilities provided by existing implementations include things like:
+names for threads (useful for diagnostics), access control (does the user have
+permission to create a thread, change its priority, etc.), ordering relations
+(operatorprinter;
+ std::string* file_name = args->file_name;
+ printer->print(*file_name);
+ return 0;
+}
+The new print function can be run in a separate thread like this:
+Epson_Stylus printer;
+std::string file_name("printer_test.txt");
+print_args args = {&printer, &file_name};
+thread print_thread(print_function,&args);
+Using Thread-Runs-Polymorphic-Object we must create a concrete thread
+function class:
+// concrete thread function class
+class print_function : public thread::function
+{
+public:
+ print_function (Printer& p, std::string n)
+ : printer(p), file_name(n)
+ {}
+private:
+ virtual int run()
+ {
+ printer.print(file_name);
+ return 0;
+ }
+ Printer& printer;
+ std::string file_name;
+};
+Like the print_args struct in the Thread-Runs-Function design the print
+function class holds information about the printer and the file to be printed.
+Now, though, the virtual thread function has access to that data via the
+implicit this pointer. No cast is necessary and no statements are
+required to decode the data structure.
+The new thread class can be used like this:
+Epson_Stylus printer;
+std::string file_name("printer_test.txt");
+print_function print_file(printer,file_name);
+thread print_thread(print_function);
+The quantity of code is similar in both designs, but the object-oriented
+style leads to better quality.
+Looking Ahead
+So far, we have only considered the fundamental mechanism for invoking a
+user-defined function in a separate thread. Most of the core facilities
+have not been discussed at all and some of them raise further design issues.
+There is one problem that is common to many of the core facilities; it is the
+age old problem of how to balance the need for a simple, consistent interface
+with the desire to make available the full power of each underlying
+implementation.
+As an example of what I mean, a VGA interface can be provided for just about
+any video card and this is fine for some applications. But many applications
+need more advanced graphical operations. Of course there are plenty of video
+cards to choose from, but they differ in capabilities and native interface. How
+can we write a portable graphics library that takes advantage of the particular
+features of each card? Threads present us with several examples of this sort of
+dilemma and I would like to explore these in the next article.
+Then, beyond the basic thread facilities there are issues of ownership and
+synchronisation. In each of the thread designs presented in this article a
+parent thread function provides some data to the child. Sometimes
+responsibility for those data items remains with the parent, sometimes it is
+passed on to the child. Similarly, a responsible parent will clean up after a
+child thread dies, but some parents will die themselves, leaving their children
+orphaned. I suggest these issues are best addressed by a more
+application-oriented threading model and there is scope for another article
+here.
+Summary
+This article has described three common approaches to basic thread
+facilities and discussed their suitability for inclusion in a standard library.
+The Thread-Runs-Polymorphic-Object model fits well with object-oriented
+designs and separates the thread support facilities from the
+application-specific code.
+Providing access to platform-specific facilities and the use of
+application-oriented thread models were raised as topics for further
+discussion.
+References
+[7] Overload, No. 31, April 1999, &#147;Using Templates to Handle
+Multi-threading&#148; by Allan Kelly.
+[8] Overload, No. 33, August 1999, &#147;More Threading with Templates&#148;
+by Allan Kelly.
+[9] C/C++ Users Journal, Vol. 17 No. 8, August 1999, &#147;Win32
+Multithreading Made Easy&#148; by John Harrington.
+[10] &#147;Design Patterns - Elements of Reusable Object-Oriented
+Software&#148;, by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides.
+[11] The C++ Programming Language, 3rd Edition, by Bjarne Stroustrup.
+(1) By &#147;general purpose programming languages&#148; I mean languages
+that don&#146;t have their own environment. This includes C and C++, but not
+Smalltalk and Forth. I&#146;m not sure how to classify Java!
+(2) More precisely, the template requires the expression
+&#145;object->Run()&#146; to be well defined where &#145;object&#146; is of
+type &#145;pointer to T&#146; and &#145;T&#146; is a template parameter.
+ Copyright © The
+Association of C & C++ Users 2000. All rights reserved. 

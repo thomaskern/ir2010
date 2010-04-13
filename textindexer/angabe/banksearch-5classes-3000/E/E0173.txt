@@ -1,0 +1,789 @@
+
+Tips and Tricks
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Tips and Tricks
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	On this page 
+ 
+	
+	
+	
+	 
+	
+	
+	
+ 	
+	
+	
+	
+	
+	 
+	Uncover Masked Exceptions 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Checking the Return Code of Win32 APIs 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Avoiding Batching Problems with the IDirect3DDevice2: :DrawPrimitive 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Invoking the ATL Registrar for Custom Registry Entries 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Using Registry Keys to Store User Program Information 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Debugging Reference-Count Problems in Your ATL Components 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Overcoming Ambiguous Interface Derivations in ATL 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Creating Dark Lights in Direct3D for Special Effects 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Function Pointers as Function Objects 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Using MFC to Subclass a Windows Common Dialog 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	Parsing Compound Strings with AfxExtractSubString() 
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You can quickly navigate through our inventory of Visual C++ tips, provided by the Visual C++ Developers Journal. Request your subscription today!
+VCDJ Tip: Uncover Masked Exceptions
+By Glenn Carr
+System Requirements: Visual C++ 5.0 or greater
+If your code uses exceptions extensively for error reporting, you may have some necessary &#147;catch (...)&#148; blocks that mask real errors such as access violations. In order to catch these types of bugs, you'll need to change the default debugger actions for these exceptions.
+While the debugger is active, select "Debug->Exceptions..." In the listbox containing the different types of exceptions, select all the items in the list. Next, set the Action to &#147;Stop always,&#148; then press OK. This will cause the debugger to break at any unexpected exception such as an access violation or a division by zero, instead of at the lowest &#147;catch (...)&#148; in the execution context.
+	
+	
+	 
+	
+	
+Checking the Return Code of Win32 APIs
+Davide Marcato
+System requirements: Win32 SDK
+It's wise to always check function return codes after every function call. This provides immediate error detection and the opportunity to handle the error. In Win32 programming, after a function return code indicates an error condition, call the GetLastError() function to get details on the error. The Microsoft Platform SDK documentation, found on MSDN Online, states that when a function fails it always returns 0, and when it succeeds, a non-zero. The most efficient way to implement API error checking in your code is: 
+BOOL SomeFunction() 
+{ 
+ if (!TextOut(...)) 
+ return FALSE; 
+ DoSomethingAfterText(...); 
+} 
+The preceding code should look familiar to all Windows developers. It is so familiar, in fact, that programmers occasionally forget the precise semantics of the return value in Win32 and write incorrect error-checking code because they have a tendency to think of such code as a Boolean value, i.e., if it equals FALSE there has been an error, if it equals TRUE everything worked fine. This does not match the official specification and can lead to nasty bugs, because the only guaranteed numeric return code when there has been a failure is 0 (which effectively equals the FALSE and NULL constants). The absence of errors can legally be represented by any other value, not necessarily 1, -1 or TRUE. Consequently: 
+if (!TextOut(...)) // OK 
+if (TextOut(...) == FALSE) // OK 
+if (TextOut(...) != NULL) // OK 
+if (TextOut(...) != TRUE) // Unreliable! 
+if (!(TextOut(...) == TRUE)) // Unreliable! 
+To be safe in Win32, always check for errors, never for success.
+	
+	
+	 
+	
+	
+Avoiding Batching Problems with the IDirect3DDevice2::DrawPrimitive Method
+By Peter Kovach
+System requirements:
+- Windows 95 or 98
+- Visual C++ 6.0 (or 5.0) compiler 
+- DirectX 6 or 7 installed 
+In Direct3D, when rendering with texture handles using the IDirect3DDevice2 interface, if we call the IDirect3DDevice2::DrawPrimitive() or IDirect3DDevice2::DrawIndexedPrimitive() methods within our scene, they will be batched.
+ 
+While batching improves the performance of Direct3D, it can pose some problems. When either of these two methods are batched, DirectX buffers them together and passes them to the Direct3D device driver in one call. If we make changes to the rendering states within our scene, these will be buffered as well. The contents of the buffer will be passed to the device driver as soon as the buffer is full or when we call the IDirect3DDevice2::EndScene() method. If we make changes to our scene that are not changes to the rendering state, they may be performed out of order with our code layout.
+ 
+For example, if we change the contents of one of our textures between calls to IDirect3DDevice2::DrawPrimitive or IDirect3DDevice2::DrawIndexedPrimitive, both of the primitives may be drawn with the new texture.
+ 
+This problem can be avoided by flushing the batching buffer prior to making changes to our scene which are not changes to our rendering state. To flush the batching buffer, use the IDirect3DDevice2::SetRenderState() method and pass the enumerated value D3DRENDERSTATE_FLUSHBATCH as the first parameter. Note that the second parameter should always be set to zero.
+	
+	
+	 
+	
+	
+Invoking the ATL Registrar for Custom Registry Entries
+By Glenn Carr
+Occasionally, you may want to add or remove keys in the registry using a separate, custom registrar script that doesn&#146;t rely on the default ATL _Module.RegisterServer() and _Module.UnregisterServer() invocations. 
+Normally, each coclass is registered when these ATL-provided functions traverse the list of objects defined in the object map for the module, and edit the appropriate registry entries. The DECLARE_REGISTRY_RESOURCEID macro then defines a static method, UpdateRegistry(), within each class, which gets called by the registration routine and invokes _Module.UpdateRegistryFromResource() itself for the registrar script resource.
+But it is also possible to program the ATL registrar entries independent of the _Module.[Un]RegisterServer() calls. To do so, you will need to:
+- insert a new "REGISTRY" resource type;
+- specify a new .rgs external file for the resource (Properties|File name);
+- add the new registrar script to the new .rgs file;
+- call CComModule::UpdateRegistryFromResource to add or remove the registry entries specified in your new registrar script (.rgs file). For example: 
+HRESULT hr = _Module.UpdateRegistryFromResource(IDR_MyRegistryEntries,
+ TRUE);
+_ASSERTE(SUCCEEDED(hr));
+The last argument indicates whether to add entries (TRUE) or remove entries (FALSE). Be sure to specify the &#147;NoRemove&#148; qualifier on any shared keys in the script so that unregistering your entries will remove only the entries you've added. UpdateRegistryFromResource() is actually a macro that is defined as UpdateRegistryFromResourceS() if you've defined _ATL_STATIC_REGISTRY (registrar linked in statically), or UpdateRegistryFromResourceD() if not (registrar code linked dynamically through ATL.DLL).
+	
+	
+	 
+	
+	
+Using Registry Keys to Store User Program Information
+By Brian Noyes
+An important part of making your program user friendly is having it remember user settings and preferences between sessions. Saving these settings in the registry is also a requirement for the Windows Logo program.
+The process to do so simply involves making sure your program is aware of where in the registry it is supposed to store this information, and then using some MFC functions to do the reading and the writing when necessary. The convention for persisting user preferences and settings between application sessions is to store these settings under the HKEY_CURRENT_USER\Software key in the registry. The convention also includes using sub-keys to the above with a hierarchy that starts with the name of the company who developed the software, followed by the application name the settings are for, and then any sub-keys and values you want to add for categorizing and saving your settings. For example, HKEY_CURRENT_USER\Software\DomeWorks\DeskShow holds the registry keys and values for my DeskShow program.
+The code to accomplish the above is simple. To set your company name, use the CWinApp::SetRegistryKey() function in your InitInstance() function. For example:
+BOOL MyApp::InitInstance()
+{
+SetRegistryKey(_T("DomeWorks"));
+&#133;
+}
+If you desire the next sub-key to be the name of the project, then nothing further is required prior to reading and writing values to the registry. MFC will set the project name as the profile name by default. However, if you want to modify it, perhaps because this project is a sub-project of the main application, simply follow the code above with code like this:
+free((void *)m_pszProfileName);
+m_pszProfileName = _tcsdup(_T("DeskShow"));
+Now all you have to do is use the CWinApp functions GetProfileString(), GetProfileInt(), GetProfileBinary(), WriteProfileString(), WriteProfileInt(), and WriteProfileBinary() wherever you need to to get and set values to the registry. For example:
+void MyClass::MyFunction() 
+{
+CString lastfilename = AfxGetApp()->GetProfileString(_T("Initialize"),
+ _T("LoadFile"), _T(""));
+AfxGetApp()->WriteProfileInt(_T("Epochs"), T("CurrentTime"),
+ m_currtime);
+&#133;
+}
+The first call will retrieve the LoadFile value from registry key HKEY_CURRENT_USER\Software\DomeWorks\DeskShow\Initialize, and will return an empty string if the value is not found. The second will write the member variable m_currtime to the CurrentTime value under the Epochs sub-key to DeskShow.
+These features make using the registry for program settings a piece of cake.
+	
+	
+	 
+	
+	
+Debugging Reference-Count Problems in your ATL Components
+By Steve Wampler
+This Tip assumes you are familiar with Microsoft Visual C++®, the Component Object Model (COM), and the Active Template Library (ATL).
+Once you suspect you have a COM reference counting problem, the best action to take is to find the code that's causing the problem. A good place to start is to trace all of the calls to your component's AddRef() and Release() methods and examine the results. What you're looking for are mismatched calls to AddRef() and Release().
+It's also helpful to set breakpoints in those methods, so that each time your application hits one of them, you can examine the call stack to determine who's making the call.
+To trace such calls, insert the following OuterAddRef(), OuterRelease(), InternalAddRef(), and InternalRelease() functions into your component's class declaration:
+class ATL_NO_VTABLE CFoo : 
+ public CComObjectRootEx,
+ public CComCoClass,
+ public IDispatchImpl
+{
+public:
+ [...]
+ ULONG OuterAddRef()
+ {
+ ULONG ulReturn =
+ CComObjectRootEx::OuterAddRef();
+ ATLTRACE(_T("++++AddRef() CFoo::%p refcount = %d\n"),
+ this, m_dwRef);
+ return ulReturn;
+ }
+ ULONG OuterRelease()
+ {
+ ULONG ulReturn =
+ CComObjectRootEx::OuterRelease();
+ ATLTRACE(_T("~~~~Release() CFoo::%p refcount = %d\n"),
+ this, m_dwRef);
+ return ulReturn;
+ }
+ ULONG InternalAddRef()
+ {
+ ULONG ulReturn =
+ CComObjectRootEx::InternalAddRef();
+ ATLTRACE(_T("++++AddRef() CFoo::%p refcount = %d\n"),
+ this, m_dwRef);
+ return ulReturn;
+ }
+ ULONG InternalRelease()
+ {
+ ULONG ulReturn =
+ CComObjectRootEx::InternalRelease();
+ ATLTRACE(_T("~~~~Release() CFoo::%p refcount = %d\n"),
+ this, m_dwRef);
+ return ulReturn;
+ }
+ &#133;
+};
+These methods override the corresponding methods in ATL's CComObjectRootEx. ATL calls the "outer" version of these methods when your component is aggregated, and the "internal" versions otherwise. The output to DevStudio's debug window looks something like this:
+++++AddRef() CFoo::04540600 refcount = 1
+++++AddRef() CFoo::04540600 refcount = 2
+~~~~Release() CFoo::04540600 refcount = 1
+++++AddRef() CFoo::04540600 refcount = 2
+++++AddRef() CFoo::04540600 refcount = 3
+~~~~Release() CFoo::04540600 refcount = 2
+~~~~Release() CFoo::04540600 refcount = 1
+~~~~Release() CFoo::04540600 refcount = 0
+Note: The value of the object's "this" pointer is printed after the class name to help you differentiate between different objects of the same class
+	
+	
+	 
+	
+	
+Overcoming Ambiguous Interface Derivations in ATL
+By Davide Marcato
+The typical way to add support for a COM interface to an ATL class involves
+two steps. First you derive the class from the interface (or from another
+class which in turn implements its methods), then you add an interface
+entry macro to the class's COM map to enable discovery through
+QueryInterface():
+BEGIN_COM_MAP(CCoClass)
+	COM_INTERFACE_ENTRY(IInterface)
+END_COM_MAP()
+It's very common for the coclass to inherit from several different
+interfaces through multiple inheritance, but what happens if the hierarchy gets complicated and one interface ends up inherited more than once? Typically a coclass derives from more than one dual interface and thus ends up with duplicate IDispatch&#146;s. The compiler will not know what inheritance path to walk to reach the methods and produce an error. The solution is to change the macro name to COM_INTERFACE_ENTRY2 and pass the explicit ancestor through which the QueryInterface() mechanism should obtain the interface as a second parameter:
+COM_INTERFACE_ENTRY2(IDispatch, IBranchToChoose)
+	
+	
+	 
+	
+	
+Creating dark lights in Direct3D for special effects
+By Peter Kovach
+To define a color for a material assigned to an object in Direct3D Immediate Mode, the color component values define the amount of each light component that is reflected by the surface using that material. If we set a material to have RGB values of (1.0, 1.0, 1.0), it will reflect all of the light that hits it. If we set a material to have RGB values of (0.0, 0.0, 0.0), it will reflect no light at all.
+ 
+Beyond the normal range of 0.0-1.0, Direct3D allows us to specify negative values for our light&#146;s component values as well as values above 1.0. If you use negative values, Direct3D will treat the resulting light as a dark light that will remove light from our scene.
+ 
+We can also specify values greater than 1.0, and Direct3D will generate lighting that is especially bright.
+Dark lights can have a very unique effect on a rendered 3D scene in our animated world. With them, we can set the surrounding area (such as an entire room) to have a "normal" ambient light level, and an area within this area to have a "darkened" look. We can do this to create areas in 3D fantasy games such as that surrounding a talisman on a table we want to be seen as creating a dark spell.
+To create a light object, we call the IDirect3D3::CreateLight method. We pass the first parameter as the address of a variable we wish filled with a valid IDirect3DLight interface pointer when the call succeeds. The second parameter must be set to NULL. 
+Once the light object is created, we can set the light&#146;s properties by setting up a D3DLIGHT2 structure and calling the IDirect3DLight::SetLight method with the address of the D3DLIGHT2 structure as its parameter. After our light is created, we can call IDirect3Dlight::SetLight again with new information whenever we wish to update our light&#146;s illumination properties.
+The following code shows how to create a light and set it as a dark light:
+ //
+ // g_lpD3D3 holds the address of an IDirect3D3 interface
+ //
+ LPDIRECT3DLIGHT g_lpD3DLight;
+ HRESULT hr;
+ 
+ hr = g_lpD3D3->CreateLight (&g_lpD3DLight, NULL);
+ if (SUCCEEDED(hr))
+ {
+	//
+ 	// g_lpD3DLight variable is a valid pointer to an 
+	 IDirect3D3 interface.
+ 	//
+ 	D3DLIGHT2 g_light;
+ HRESULT hr;
+ //
+ // Initialize the structure
+ //
+ ZeroMemory(&g_light, sizeof(D3DLIGHT2));
+ g_light.dwSize = sizeof(D3DLIGHT2); // MUST set the size!
+ //
+ // Create our Dark point light.
+ //
+ g_light.dltType = D3DLIGHT_POINT;
+ g_light.dcvColor.r = -0.5f;
+ g_light.dcvColor.g = -0.5f;
+ g_light.dcvColor.b = -0.5f;
+ //
+ // Position the light high in the scene, and behind the viewer.
+ // These coordinates are in world space, so
+ // the viewer could be anywhere in world space. 
+ // For this example, the viewer is at the origin of world space.
+ //
+ g_light.dvPosition.x = 0.0f;
+ g_light.dvPosition.y = 1000.0f;
+ g_light.dvPosition.z = -100.0f;
+ //
+// Don't attenuate
+//
+g_light.dvAttenuation0 = 1.0f; 
+g_light.dvRange = D3DLIGHT_RANGE_MAX;
+ //
+// Make the light active light.
+//
+g_light.dwFlags = D3DLIGHT_ACTIVE;
+ //
+// Set the property info for this light.
+// We have to cast the LPD3DLIGHT2 to be 
+// an LPD3DLIGHT.
+//
+hr = g_lpD3DLight->SetLight((LPD3DLIGHT)&g_light);
+if (SUCCEEDED(hr))
+{
+ //
+ // Add the light to the viewport here.
+ //
+}
+else
+ return hr;
+}
+else
+ return hr;
+	
+	
+	 
+	
+	
+Tip: Function pointers as function objects
+By Bill Wagner
+Function pointers can be used as function objects anytime an STL algorithm requests a function object (also known as a functor). This is important both as a useful idea and as a way to understand how functors work. A functor is a way to pass a function pointer into an STL algorithm. The difference is that the function pointer may be a class, or any object that supports the function call operator. The function call operator is defined as:
+operator () () 
+{
+};
+The address of a C-function works correctly: 
+float cosTheta [32];
+float sinTheta [32];
+// Assume Theta [] is an array with angles stored in it.
+std::transform (&Theta[0], Theta.end (), &cosTheta[0], cos);
+std::transform (&Theta[0], Theta.end (), &sinTheta[0], sin);
+	
+	
+	 
+	
+	
+Tip: Using MFC and ClassWizard to Subclass a Windows Common Dialog
+By Eduard Koller
+To subclass a Windows common dialog (for example, a CFileDialog) you need to create a "child dialog template" and then attach the template to your CFileDialog-derived class. This template must contain only the controls that you are adding to the dialog.
+In the well-known MFC FAQ, Scot Wingo wrote:
+"Note that since the system puts your dialog template on top of the normal dialog, MFC message routing won't get to your controls, so you can't code them through a message map in your CFileDialog derivative. If anybody has found a way around this, I'd love to hear it!"
+In Microsoft Visual C++ Version 6.0 the problem is partially solved: MFC message routing works fine, but you can't use ClassWizard to add handlers and member variables. Also, if you try to derive a class from CFileDialog using ClassWizard, it disables the "Dialog ID" box, and no code is added for the dialog.
+To solve this problem use the following trick:
+Using ClassWizard derive your class from CDialog (instead of CFileDialog).Then modify the base class and constructor of the generated class. Thus, your class will be derived from CFileDialog, and ClassWizard will be still able to handle your added controls.
+The following steps show how to perform this trick:
+- Create the template.
+- Attach a CDialog-derived class, using ClassWizard (for example, named CMyFileDialog).
+- In the header (.h) file, in the definition of CMyFileDialog, insert the line:
+DECLARE_DYNAMIC(CMyFileDialog)
+and modify the constructor declaration:
+CMyFileDialog(BOOL bOpenFileDialog, LPCTSTR lpszDefExt = NULL,
+LPCTSTR lpszFileName = NULL,
+DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
+LPCTSTR lpszFilter = NULL, CWnd* pParentWnd = NULL);
+- In the implementation (.cpp) file, insert the line:
+IMPLEMENT_DYNAMIC(CMyFileDialog, CFileDialog)
+then modify the constructor definition:
+CMyFileDialog::CMyFileDialog(BOOL bOpenFileDialog, 
+LPCTSTR lpszDefExt, LPCTSTR lpszFileName,
+DWORD dwFlags, LPCTSTR lpszFilter, CWnd* pParentWnd) :
+CFileDialog(bOpenFileDialog, lpszDefExt, lpszFileName, 
+dwFlags, lpszFilter, pParentWnd)
+{
+m_ofn.Flags |= OFN_ENABLETEMPLATE | OFN_PATHMUSTEXIST | 
+OFN_FILEMUSTEXIST | OFN_SHAREAWARE | OFN_ALLOWMULTISELECT;
+m_ofn.lpTemplateName = MAKEINTRESOURCE(IDD_ABOUTBOX1);
+}
+- Finally, replace in both header and implementation files any reference to CDialog with CFileDialog.
+	
+	
+	 
+	
+	
+Tip: Parsing Compound Strings with AfxExtractSubString()
+By Brian Noyes
+Microsoft Foundation Classes (MFC) has a few undocumented functions that can be useful at times &#150; including, AfxExtractSubString(). You won&#146;t find any documentation on it in the Visual C++ 6.0 help files, but if you search through the MFC samples, you&#146;ll find it used in several places. Simply put, this function allows you to easily extract sub-strings in a string that has other strings embedded and delimited by characters like NULL or linefeed.
+This is useful for parsing out sub-strings of a string table resource, or for parsing-out strings from Microsoft Windows controls such as the standard File Open dialogs that use these types of strings for some of their underlying data items (i.e. the file name for multiple selection File Open dialogs).
+For example, MFC AppWizard projects create a string resource named IDR_MAINFRAME by default which holds some useful information like the name of the application, the name of the document type, or the file extension profile for the default document type &#150; used for standard File Open/Save dialogs. An example of parsing-out information like this using AfxExtractSubString is below:
+	Cstring fullstring, appname, fileext;
+	Fullstring.LoadString(IDR_MAINFRAME); 
+	 //Get the full delimited string
+	AfxExtractSubString(appname, fullstring, 0, &#145;\n&#146;); 	
+	 //Pull out the first substring
+	AfxExtractSubString(fileext, fullstring, 4, &#145;\n&#146;); 	
+	 //Pull out the fifth substring
+The above MFC function can save you from writing error-prone parsing code.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

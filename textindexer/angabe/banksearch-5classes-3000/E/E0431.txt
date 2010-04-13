@@ -1,0 +1,411 @@
+
+GNE::PacketStream class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::PacketStream Class Reference
+This class resembles a packet stream through a connection. 
+More...
+#include 
+Inheritance diagram for GNE::PacketStream::
+List of all members.
+Public Methods
+ 
+ PacketStream (int reqOutRate2, int maxOutRate2, Connection &ourOwner) 
+ Creates a new PacketStream with the given flow control parameters. More...
+ 
+virtual ~PacketStream () 
+ Destroys this object. More...
+ 
+int getInLength () const 
+ Returns the current incoming queue length in packets.
+ 
+int getOutLength (bool reliable) const 
+ Returns the current outgoing queue length in packets. More...
+ 
+bool isNextPacket () const 
+ Is there at least one packet in the incoming queue? Note that this does not guarantee that getNextPacket will return a non-NULL value if it is possible for any other thread to try to get the data between your call and getNextPacket. More...
+ 
+Packet * getNextPacket () 
+ Returns the next packet from the queue, removing it from that queue. More...
+ 
+void writePacket (const Packet &packet, bool reliable) 
+ Adds a packet to the outgoing queue. More...
+ 
+int getCurrOutRate () const 
+ Returns the actual outgoing data rate, which may be the same or less that what was originally requested on connection. More...
+ 
+int getReqOutRate () const 
+ Returns the maximum outgoing rate that we are requesting. More...
+ 
+int getRemoteOutLimit () const 
+ Returns the maximum outgoing rate that the remote computer is allowing us to send to it. More...
+ 
+void setRates (int reqOutRate2, int maxInRate2) 
+ Sets new values that we are willing to send or receive. More...
+ 
+void waitToSendAll (int waitTime=10000) const 
+ Blocks on this PacketStream until all packets have been sent. More...
+ 
+void shutDown () 
+ Overrides Thread::shutDown so that the PacketStream daemon thread will be woken up since it might be waiting on a ConditionVariable.
+ 
+void addIncomingPacket (Packet *packet) 
+ Add the given packet to the incoming queue. More...
+ 
+Protected Methods
+ 
+void run () 
+Detailed Description
+This class resembles a packet stream through a connection.
+This class is maintained by the Connection class, and you shouldn't have to create your own PacketStreams. NOTE: all functions in this class are thread safe, since this class uses its own mutexes internally. Note that data in the class may change between calls, if another thread changes its state. 
+Constructor & Destructor Documentation
+ 
+ 
+ 
+ 
+ GNE::PacketStream::PacketStream 
+ ( 
+ int 
+ reqOutRate2, 
+ 
+ 
+ 
+ 
+ int 
+ maxOutRate2, 
+ 
+ 
+ 
+ 
+ Connection & 
+ ourOwner 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creates a new PacketStream with the given flow control parameters.
+Passing a value 0 for a rate is interpreted as "unlimited" or unrestricted rates. Passing a value less than 0 is not allowed. 
+Parameters: 
+reqOutRate2 
+This is the out rate that we are requesting, or in other words, the maximum rate we are willing to send. 
+maxOutRate2 
+The maximum rate the remote machine is letting us send. The actual outgoing rate, therefore, is the minimum of the two outgoing rate values. 
+ 
+ 
+ 
+ 
+ 
+ 
+ GNE::PacketStream::~PacketStream 
+ ( 
+ 
+ ) 
+ [virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Destroys this object.
+Any data left remaining in the in or out queues is destroyed as well. 
+ 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ void GNE::PacketStream::addIncomingPacket 
+ ( 
+ Packet * 
+ packet 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Add the given packet to the incoming queue.
+This is normalled used internally by the Connection class to add the packets, but it is safe for the user to call, if they want to delay processing of the packets for a later time and see what other packets are available.
+ Remember queues are LIFO, meaning this inserted packet will be the last in the queue after addition.
+ Also note that when you pass this object into the queue, you will eventually get it back from getNextPacket(), so you will want to handle deallocation at that point. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PacketStream::getCurrOutRate 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the actual outgoing data rate, which may be the same or less that what was originally requested on connection.
+This value is the minimum between the max rate limit from the remote computer, and our maximum outgoing rate. A value of 0 means there is no outgoing rate limit.
+If the requested rate changes, or if the remote computer changes its max allowed limit, this number will change to the new minimum between these rates. 
+ 
+ 
+ 
+ 
+ 
+ Packet * GNE::PacketStream::getNextPacket 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the next packet from the queue, removing it from that queue.
+It is your responsibility to deallocate the memory for this packet as the calling code becomes the owner of the memory the returned packet occupies. 
+Returns: 
+A pointer to the next packet, which you are responsible for deleting, or NULL if there is no next packet. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PacketStream::getOutLength 
+ ( 
+ bool 
+ reliable 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the current outgoing queue length in packets.
+This is meant as a possible hint for your application to tune its performance by knowning when the queues are starting to fill up.
+Parameters: 
+reliable 
+true for the outgoing reliable packet queue.
+ false for the incoming reliable packet queue. 
+ 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PacketStream::getRemoteOutLimit 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the maximum outgoing rate that the remote computer is allowing us to send to it.
+This value can change if the remote machine changes its rates through the setRates function. The value 0 means that no limit was requested. 
+See also: 
+getCurrOutRate , setRates 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PacketStream::getReqOutRate 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the maximum outgoing rate that we are requesting.
+The value 0 means that no rate limit was requested. 
+See also: 
+getCurrOutRate , setRates 
+ 
+ 
+ 
+ 
+ 
+ bool GNE::PacketStream::isNextPacket 
+ ( 
+ 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Is there at least one packet in the incoming queue? Note that this does not guarantee that getNextPacket will return a non-NULL value if it is possible for any other thread to try to get the data between your call and getNextPacket.
+This is only useful if you want to passively check for incoming data. If you are wanting to do anything with that data it is suggested that you use getNextPacket and if it is non-NULL then process the data. That method is thread safe. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::PacketStream::run 
+ ( 
+ 
+ ) 
+ [protected, virtual] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Bug: 
+ we need a way to guarantee that the write won't block when trying to send the ExitPacket on shutdown. 
+Reimplemented from GNE::Thread. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::PacketStream::setRates 
+ ( 
+ int 
+ reqOutRate2, 
+ 
+ 
+ 
+ 
+ int 
+ maxInRate2 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sets new values that we are willing to send or receive.
+See the constructor for more information. Pass a value less than 0 to leave one of the rates unchanged. Pass the value 0 for "unrestricted" rates. Changing the rates might cause a packet to get added to the outgoing packet stream to communicate this change to the other side.
+See also: 
+PacketStream::PacketStream 
+ 
+ 
+ 
+ 
+ 
+ void GNE::PacketStream::waitToSendAll 
+ ( 
+ int 
+ waitTime = 10000 
+ ) 
+ const 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Blocks on this PacketStream until all packets have been sent.
+Parameters: 
+waitTime 
+the max amount of time in ms to wait for the outgoing packet queue to clear. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::PacketStream::writePacket 
+ ( 
+ const Packet & 
+ packet, 
+ 
+ 
+ 
+ 
+ bool 
+ reliable 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Adds a packet to the outgoing queue.
+The packet given will be copied. 
+Parameters: 
+packet 
+the packet to send. 
+should 
+this packet be sent reliably if the connection supports it? 
+ 
+ 
+The documentation for this class was generated from the following files:
+- PacketStream.h
+- PacketStream.cpp
+Generated on Fri Mar 8 03:03:23 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

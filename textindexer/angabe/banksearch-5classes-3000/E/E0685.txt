@@ -1,0 +1,301 @@
+
+Using the GNU Compiler Collection (GCC)
+Using the GNU Compiler Collection (GCC)
+This file documents the use of the GNU compilers.
+Published by the Free Software Foundation
+59 Temple Place - Suite 330
+Boston, MA 02111-1307 USA
+Copyright © 1988, 1989, 1992, 1993, 1994, 1995, 1996, 1997, 1998,
+1999, 2000, 2001, 2002 Free Software Foundation, Inc.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.1 or
+any later version published by the Free Software Foundation; with the
+Invariant Sections being "GNU General Public License" and "Funding
+Free Software", the Front-Cover texts being (a) (see below), and with
+the Back-Cover Texts being (b) (see below). A copy of the license is
+included in the section entitled "GNU Free Documentation License".
+(a) The FSF's Front-Cover Text is:
+A GNU Manual
+(b) The FSF's Back-Cover Text is:
+You have freedom to copy and modify this GNU Manual, like GNU
+ software. Copies published by the Free Software Foundation raise
+ funds for GNU development.
+Short Contents
+- Introduction
+- Compile C, C++, Objective-C, Ada, Fortran, Java, or treelang
+- Language Standards Supported by GCC
+- GCC Command Options
+- C Implementation-defined behavior
+- Extensions to the C Language Family
+- Extensions to the C++ Language
+- GNU Objective-C runtime features
+- gcov: a Test Coverage Program
+- Known Causes of Trouble with GCC
+- Reporting Bugs
+- How To Get Help with GCC
+- Contributing to GCC Development
+- Using GCC on VMS
+- Funding Free Software
+- The GNU Project and GNU/Linux
+- GNU GENERAL PUBLIC LICENSE
+- GNU Free Documentation License
+- Contributors to GCC
+- Option Index
+- Index
+Table of Contents
+- 
+ Introduction
+- 
+ Compile C, C++, Objective-C, Ada, Fortran, Java, or treelang
+- 
+ Language Standards Supported by GCC
+- 
+ GCC Command Options
+- Option Summary
+- Options Controlling the Kind of Output
+- Compiling C++ Programs
+- Options Controlling C Dialect
+- Options Controlling C++ Dialect
+- Options Controlling Objective-C Dialect
+- Options to Control Diagnostic Messages Formatting
+- Options to Request or Suppress Warnings
+- Options for Debugging Your Program or GCC
+- Options That Control Optimization
+- Options Controlling the Preprocessor
+- Passing Options to the Assembler
+- Options for Linking
+- Options for Directory Search
+- Specifying subprocesses and the switches to pass to them
+- Specifying Target Machine and Compiler Version
+- Hardware Models and Configurations
+- M680x0 Options
+- M68hc1x Options
+- VAX Options
+- SPARC Options
+- Convex Options
+- AMD29K Options
+- ARM Options
+- MN10200 Options
+- MN10300 Options
+- M32R/D Options
+- M88K Options
+- IBM RS/6000 and PowerPC Options
+- IBM RT Options
+- MIPS Options
+- Intel 386 and AMD x86-64 Options
+- HPPA Options
+- Intel 960 Options
+- DEC Alpha Options
+- DEC Alpha/VMS Options
+- Clipper Options
+- H8/300 Options
+- SH Options
+- Options for System V
+- TMS320C3x/C4x Options
+- V850 Options
+- ARC Options
+- NS32K Options
+- AVR Options
+- MCore Options
+- IA-64 Options
+- D30V Options
+- S/390 and zSeries Options
+- CRIS Options
+- MMIX Options
+- PDP-11 Options
+- Xstormy16 Options
+- Xtensa Options
+- Options for Code Generation Conventions
+- Environment Variables Affecting GCC
+- Running Protoize
+- 
+ C Implementation-defined behavior
+- Translation
+- Environment
+- Identifiers
+- Characters
+- Integers
+- Floating point
+- Arrays and pointers
+- Hints
+- Structures, unions, enumerations, and bit-fields
+- Qualifiers
+- Preprocessing directives
+- Library functions
+- Architecture
+- Locale-specific behavior
+- 
+ Extensions to the C Language Family
+- Statements and Declarations in Expressions
+- Locally Declared Labels
+- Labels as Values
+- Nested Functions
+- Constructing Function Calls
+- Naming an Expression's Type
+- Referring to a Type with typeof
+- Generalized Lvalues
+- Conditionals with Omitted Operands
+- Double-Word Integers
+- Complex Numbers
+- Hex Floats
+- Arrays of Length Zero
+- Arrays of Variable Length
+- Macros with a Variable Number of Arguments.
+- Slightly Looser Rules for Escaped Newlines
+- String Literals with Embedded Newlines
+- Non-Lvalue Arrays May Have Subscripts
+- Arithmetic on void- and Function-Pointers
+- Non-Constant Initializers
+- Compound Literals
+- Designated Initializers
+- Case Ranges
+- Cast to a Union Type
+- Mixed Declarations and Code
+- Declaring Attributes of Functions
+- Attribute Syntax
+- Prototypes and Old-Style Function Definitions
+- C++ Style Comments
+- Dollar Signs in Identifier Names
+- The Character in Constants
+- Inquiring on Alignment of Types or Variables
+- Specifying Attributes of Variables
+- Specifying Attributes of Types
+- An Inline Function is As Fast As a Macro
+- Assembler Instructions with C Expression Operands
+- i386 floating point asm operands
+- Constraints for asm Operands
+- Simple Constraints
+- Multiple Alternative Constraints
+- Constraint Modifier Characters
+- Constraints for Particular Machines
+- Controlling Names Used in Assembler Code
+- Variables in Specified Registers
+- Defining Global Register Variables
+- Specifying Registers for Local Variables
+- Alternate Keywords
+- Incomplete enum Types
+- Function Names as Strings
+- Getting the Return or Frame Address of a Function
+- Using vector instructions through built-in functions
+- Other built-in functions provided by GCC
+- Built-in Functions Specific to Particular Target Machines
+- Alpha Built-in Functions
+- X86 Built-in Functions
+- PowerPC AltiVec Built-in Functions
+- Pragmas Accepted by GCC
+- ARM Pragmas
+- RS/6000 and PowerPC Pragmas
+- Darwin Pragmas
+- Solaris Pragmas
+- Tru64 Pragmas
+- Unnamed struct/union fields within structs/unions.
+- Thread-Local Storage
+- ISO/IEC 9899:1999 Edits for Thread-Local Storage
+- ISO/IEC 14882:1998 Edits for Thread-Local Storage
+- 
+ Extensions to the C++ Language
+- Minimum and Maximum Operators in C++
+- When is a Volatile Object Accessed?
+- Restricting Pointer Aliasing
+- Vague Linkage
+- Declarations and Definitions in One Header
+- Where's the Template?
+- Extracting the function pointer from a bound pointer to member function
+- C++-Specific Variable, Function, and Type Attributes
+- Java Exceptions
+- Deprecated Features
+- Backwards Compatibility
+- 
+ GNU Objective-C runtime features
+- +load: Executing code before main
+- What you can and what you cannot do in +load
+- Type encoding
+- Garbage Collection
+- Constant string objects
+- compatibility_alias
+- 
+ gcov: a Test Coverage Program
+- Introduction to gcov
+- Invoking gcov
+- Using gcov with GCC Optimization
+- Brief description of gcov data files
+- 
+ Known Causes of Trouble with GCC
+- Actual Bugs We Haven't Fixed Yet
+- Cross-Compiler Problems
+- Interoperation
+- Problems Compiling Certain Programs
+- Incompatibilities of GCC
+- Fixed Header Files
+- Standard Libraries
+- Disappointments and Misunderstandings
+- Common Misunderstandings with GNU C++
+- Declare and Define Static Members
+- Temporaries May Vanish Before You Expect
+- Implicit Copy-Assignment for Virtual Bases
+- Caveats of using protoize
+- Certain Changes We Don't Want to Make
+- Warning Messages and Error Messages
+- 
+ Reporting Bugs
+- Have You Found a Bug?
+- Where to Report Bugs
+- How to Report Bugs
+- The gccbug script
+- 
+ How To Get Help with GCC
+- 
+ Contributing to GCC Development
+- 
+ Using GCC on VMS
+- Include Files and VMS
+- Global Declarations and VMS
+- Other VMS Issues
+- 
+ Funding Free Software
+- 
+ The GNU Project and GNU/Linux
+- 
+ GNU GENERAL PUBLIC LICENSE
+- Preamble
+- How to Apply These Terms to Your New Programs
+- 
+ GNU Free Documentation License
+- ADDENDUM: How to use this License for your documents
+- 
+ Contributors to GCC
+- 
+ Option Index
+- 
+ Index
+Node:Top,
+Next:G++ and GCC,
+Up:(DIR)
+Introduction
+This manual documents how to use the GNU compilers,
+as well as their features and incompatibilities, and how to report
+bugs. It corresponds to GCC version 3.2. 
+The internals of the GNU compilers, including how to port them to new
+targets and some information about how to write front ends for new
+languages, are documented in a separate manual. See Introduction.
+- G++ and GCC: You can compile C or C++ programs. 
+- Standards: Language standards supported by GCC. 
+- Invoking GCC: Command options supported by gcc. 
+- C Implementation: How GCC implements the ISO C specification. 
+- C Extensions: GNU extensions to the C language family. 
+- C++ Extensions: GNU extensions to the C++ language. 
+- Objective-C: GNU Objective-C runtime features. 
+- Gcov: 	 gcov: a GCC test coverage program. 
+- Trouble: If you have trouble using GCC. 
+- Bugs: How, why and where to report bugs. 
+- Service: How to find suppliers of support for GCC. 
+- Contributing: How to contribute to testing and developing GCC. 
+- VMS: Using GCC on VMS.
+- Funding: How to help assure funding for free software. 
+- GNU Project: The GNU Project and GNU/Linux.
+- Copying: GNU General Public License says
+ how you can copy and share GCC. 
+- GNU Free Documentation License: How you can copy and share this manual. 
+- Contributors: People who have contributed to GCC.
+- Option Index: Index to command line options. 
+- Index: 	 Index of concepts and symbol names. 

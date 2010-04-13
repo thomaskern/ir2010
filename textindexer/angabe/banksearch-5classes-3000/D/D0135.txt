@@ -1,0 +1,368 @@
+ 
+	 Java Grande SC98 Home Page 
+ 
+ 
+	 
+ 
+	 
+Welcome to the
+	Java Grande Forum Station
+at Sun
+	Microsystems Booth
+SC 98 - Orlando, Florida
+ 
+	 
+Looking for
+	Technical
+	Reports? 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+Meet members of the JGF at Sun Microsystems'
+	Booth
+ 
+	
+ 
+	 
+	 
+	 
+Ronald F Boisvert - Denis Caromel -
+	Bryan Carpenter
+Geoffrey Fox - Dennis Gannon - Vladimir Getov
+David Henty
+	- Tomasz Haupt - Piyush Mehrotra
+Cleve Moler - Jose Moreira - Srilekha
+	Mudumbai
+Frank Pietryka - Mark Snir - George K. Thiruvathukal
+Anne E
+	Trefethen - Julien Vayssiere
+Gregor von Laszewski - Martin
+	Westhead
+Guansong Zhang
+...and other participants! 
+	
+	 
+	 
+	 
+Demonstrations and Descriptions:
+ 
+	 
+	 
+	 
+	 
+	
+ 
+	
+ 
+	
+contact person: 
+	
+Bryan
+	 Carpenter 
+	
+NPAC, Syracuse University 
+	
+ 
+	
+http://www.npac.syr.edu/projects/pcrc/HPJava/ 
+	 mpiJava is an object-oriented Java interface to the
+	standard Message Passing Interface (MPI). The interface was developed as part
+	of the HPJava project, but mpiJava itself does not assume any special
+	extensions to the Java language - it should be portable to any platform that
+	provides compatible Java-development and native MPI environments. 
+	
+The current release of mpiJava provides the full functionality
+	 of MPI 1.1. It is implemented as a set of JNI wrappers to native MPI packages.
+	 Platforms currently supported include Solaris using MPICH or SunHPC-MPI, and
+	 Windows NT using WMPI 1.1. We are actively developing the release and intend to
+	 add new features such as object serialization and support for additional
+	 platforms. The Java API is defined in the document "A Draft Java Binding for
+	 MPI". 
+	 
+ 
+	 
+	 
+	
+JavaMPI 
+	
+ contact person: 
+	
+Vladimir Getov 
+	
+School of Computer Science,
+University of
+	 Westminster
+London, UK 
+	
+ 
+	
+http://perun.hscs.wmin.ac.uk/CSPE/software.html 
+	 Towards Portable
+	Message Passing in Java: Binding MPI. We present a way of
+	successfully tackling the difficulties of binding MPI to Java with a view to
+	ensuring portability. We have created a tool for automatically binding existing
+	native C libraries to Java, and have applied the Java--to--C Interface
+	generating tool (JCI) to bind MPI to Java. The approach of automatic binding by
+	JCI ensures both portability across different platforms and full compatibility
+	with the MPI specification. To evaluate the resulting combination we have run a
+	Java version of the NAS parallel IS benchmark on a distributed--memory IBM SP2
+	machine. 
+	 
+ 
+	 
+	 
+	
+ 
+	
+ contact person: 
+	
+Srilekha
+	 Mudumbai 
+	
+Lawrence Berkeley National Laboratory 
+	
+ 
+	
+http://www-itg.lbl.gov/Akenti/ 
+	 Akenti is a security model and architecture that is
+	intended to provide scalable security services in highly distributed network
+	environments. The project goals are: 
+	 
+	 
+- to achieve the same level of expressiveness
+	 of access control that would be accomplished through a local human controller
+	 in the decision loop 
+	 
+- to accurately reflect the existing policy:
+	 authority, delegation, and responsibility present in these environments.
+	 
+	 
+	
+The approach makes use of: 
+	 
+	 
+- digitally signed certificates capable of
+	 carrying: 
+	 
+	
+- user identity authentication 
+	
+- resource usage requirements
+	 ("use-conditions") 
+	
+- user attribute authorizations ("attribute
+	 certificates") 
+	
+- delegated authorization 
+	 
+	 
+- authorization decisions split among on-line
+	 and off-line entities 
+	 
+	 
+ 
+	 
+	 
+	
+ 
+	
+ 
+	
+contact person: 
+	
+Tomasz
+	 Haupt 
+	
+NPAC, Syracuse University 
+	
+ 
+	
+http://www.npac.syr.edu/users/haupt/WebFlow/demo.html 
+	 
+	 Our research addresses needs for
+	high level programming environments and tools to support distance computing on
+	heterogeneous distributed
+commodity platforms and high-speed networks,
+	spanning across labs and facilities. More specifically, we are developing
+	WebFlow - a scalable, high level, commodity
+	standards based HPDC system that integrates: 
+	 
+	 
+- High-level front-ends for visual programming,
+	 steering, run-time data analysis and visualization, and collaboration built on
+	 top of the Web and OO commodity standards (Tier 1). 
+	 
+- Distributed object-based, scalable, and
+	 reusable Web server and Object broker Middleware (Tier 2) 
+	 
+- High Performance Backend implemented using
+	 the metacomputing toolkit of GLOBUS (Tier 3) 
+	 
+	 
+ 
+	 
+	 
+	
+ 
+	
+contact person: 
+	
+Denis Caromel 
+	
+Univ. de Nice Sophia Antipolis 
+	
+ 
+	
+http://www.inria.fr/sloop/C3D/ 
+	 C3D: A
+	distributed raytracer for benchmarking Java RMI & Serialization 
+	
+C3D
+	 is a Java benchmark application that measures the performance of a
+	 3D ray tracer renderer distributed over several Java virtual machines using
+	 Java RMI. This benchmark gives indication of the performance of the
+	 serialization process and Java RMI itself. The benchmark is an automated
+	 version of C3D, which is both a collaborative application and a distributed ray
+	 tracer: users can interact
+through messaging and voting facilities in order
+	 to choose a scene that is renderer using a set of distributed rendering engines
+	 working in parallel. Near-linear speedup is achieved with up to half a dozen
+	 rendering engines running in parallel and communicating using Java
+	 RMI. 
+	 
+ 
+	 
+	 
+	
+ JAMA 
+	
+contact
+	 person: 
+	
+Cleve
+	 Moler 
+	
+ 
+	
+and 
+	
+National Institute of
+	 Standards and Technology 
+	
+ 
+	
+http://math.nist.gov/javanumerics/jama/ 
+	 JAMA is a basic linear algebra package for
+	Java. It provides user-level classes for constructing and manipulating real,
+	dense matrices. It is meant to provide sufficient functionality for routine
+	problems, packaged in a way that is natural and understandable to non-experts.
+	It is intended to serve as the standard matrix class for Java, and will be
+	proposed as such to the Java Grande Forum and then to Sun. A straightforward
+	public-domain reference implementation has been developed by the MathWorks and
+	NIST as a strawman for such a class. We are releasing this version in order to
+	obtain public comment. There is no guarantee that future versions of JAMA will
+	be compatible with this one. 
+	
+JAMA is comprised of six Java classes: Matrix,
+	 CholeskyDecomposition, LUDecomposition, QRDecomposition,
+	 SingularValueDecomposition and EigenvalueDecomposition. 
+	 
+ 
+	 
+	 
+	
+ 
+	
+ contact person: 
+	
+Dennis
+	 Gannon 
+	
+Indiana University 
+	
+http://www.extreme.indiana.edu/pseware/ 
+	 DPSE-CAT is a distributed problem solving
+	environment component architecture toolkit. The component model for the CAT is
+	based on a java bean-like architecture that allows programmers to dynamically
+	compose scientific computations written in either Java or HPC++ into a single
+	distributed application. the individual software components are objects that
+	interoperate by means of the Java RMI semantics. However, the actual
+	implementation of RMI is over the Globus/Nexus communication system. The CAT
+	also contains a Java based information browser that lets the user have access a
+	distributed directory of Java and HPC++ components. 
+	
+Future version of DPSE-CAT will integrate Java Jini technology
+	 with Globus serevices and will support the DOE2000 Common Component
+	 Architecture model currently under design. 
+	 
+ 
+	 
+	 
+	
+ 
+	
+ 
+	
+contact person: 
+	
+Roldan
+	 Pozo 
+	
+National Institute of Standards and
+	 Technology 
+	
+ 
+	
+http://math.nist.gov/scimark/ 
+	 SciMark is a composite Java benchmark measuring the
+	performance of numerical kernels occurring in scientific and engineering
+	applications. It consists of five kernels which typify computational routines
+	commonly found in numeric codes: FFT, Jacobi relaxation, sparse
+	matrix-multiply, Monte Carlo integration, and dense LU factorization. These
+	kernels are chosen to provide an indication of how well the underlying JVM/JITs
+	perform on applications utilizing these types of algorithms. The problems sizes
+	are purposely chosen to be small in order to isolate the effects of memory
+	hierarchy and focus on internal JVM/JIT and CPU issues. SciMark scores are
+	normalized to a Sun SPARC 10 running Netscape Navigator 4.04 (SciMark = 1.0) A
+	SciMark of 3.0 indicates execution time that is 3 times faster than the
+	reference system. 
+	
+SciMark is packaged as a Java applet which can be downloaded
+	 from the SciMark Web page. Results
+	 can be returned to NIST for display in a list of contributed results. 
+	 
+	
+	 
+	 
+Java
+	Grande Forum Technical Reports
+ 
+	 
+	 
+	 
+	 JGF-TR-1: Making Java Work for High-End
+	Computing 
+	 PostScript -
+	PDF 
+	 
+ 
+	 
+	 JGF-TR-2: Desktop Access to Remote Resources 
+	 HTML 
+	 
+ 
+	 
+	 JGF-TR-3: MPI for Java: Position Document and Draft
+	API Specification 
+	 PostScript 
+	 
+	
+	 
+	 
+Return to top of document... 
+	 
+http://www.javagrande.org/ 

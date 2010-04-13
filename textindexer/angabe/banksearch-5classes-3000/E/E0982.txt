@@ -1,0 +1,111 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Set or remove the bold and italic settings of Font->Style
+Answer:
+The Style property of TFont is a set object. If you
+look in GRAPHICS.HPP, you will see something that looks like this:
+enum TFontStyle { fsBold, fsItalic, fsUnderline, fsStrikeOut };
+typedef Set TFontStyles;
+//...
+// skip some stuff
+// ...
+class __declspec(pascalimplementation) TFont : public TGraphicsObject
+{
+// ...
+__published:
+// ...
+	__property TFontStyles Style={read=GetStyle, write=SetStyle, nodefault};
+};
+Notice that the Style property of TFont is a
+TFontStyles set. To manipulate the Style of a font object you
+must modify the TFontStyles set. You can use any of the set operations
+to do your work. Here are some code examples.
+// Add the bold style to the font of a label
+// Any other Style settings remain intact
+Label1->Font->Style = Label1->Font->Style fsBold;
+// Remove bold style
+// Any other Style settings remain intact
+Label1->Font->Style = Label1->Font->Style >> fsBold;
+// Add bold, italic, and underline in one shot
+Label1->Font->Style = Label1->Font->StylefsBoldfsItalicfsUnderline;
+// Add bold and italic, but remove fsUnderline
+Label1->Font->Style=(Label1->Font->StylefsBoldfsItalic) >>fsUnderline;
+// Clear all styles and return to normal
+Label1->Font->Style = Label1->Font->Style.Clear();
+// Another way to clear all styles
+Label1->Font->Style = TFontStyles();
+// Set the Style to bold, and nothing else.
+Label1->Font->Style = TFontStyles() fsBold;
+// Test to see if the Style contains fsBold.
+// Note that Contains is called using a dot and not ->
+if( Label1->Font->Style.Contains(fsBold))
+ Application->Terminate();
+// Toggle the fsBold property
+if( Label1->Font->Style.Contains(fsBold))
+ Label1->Font->Style = Label1->Font->Style >> fsBold;
+else
+ Label1->Font->Style = Label1->Font->Style fsBold;
+// mask out the fsUnderline and fsStrikeThrough properties.
+// leave the other two alone.
+TFontStyles style;
+style fsBold fsItalic;
+style *= Label1->Font->Style; // set intersection, similar to bitwise and
+Label1->Font->Style = style;
+Note: Changing the font property of a control does not immediately redraw the
+control with it's new font. The control is invalidated, and will be redrawn when the
+application gets a chance to process the messages in its queue. To see this concept in
+action, use the Sleep command to halt the process directly after a change
+to the font of a TLabel control. You should see that the control is not
+repainted until after the delay (see code below). To force a repaint immediately,
+call the Update method of TLabel.
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+ Label1->Font->Style = Label1->Font->Style fsBold;
+ Sleep(4000);
+ // Label does not redraw until after the delay, when
+ // the function returns.
+}
+Note: The insertion and extraction operators > 
+are members of the set class. You can insert items into a sets using code
+like this (note the lack of an equal sign) because Font->Style fsBold;
+Note: The read and write methods for the Style property must
+call private GetData and SetData functions within the
+TFont class. Since every read and write of a control's font Style
+will call these functions, you may want to minimize the number of times you
+access the Style property directly if you are doing a lot of
+manipulation with the font. The code below shows two ways of doing the same
+thing, but the second strategy is a little more efficient.
+Label1->Font->Style = TFontStyles();
+if (CheckBox1->Checked)
+ Label1->Font->Style = Label1->Font->Style fsBold;
+if (CheckBox2->Checked)
+ Label1->Font->Style = Label1->Font->Style fsItalic;
+if (CheckBox3->Checked)
+ Label1->Font->Style = Label1->Font->Style fsUnderline;
+if (CheckBox4->Checked)
+ Label1->Font->Style = Label1->Font->Style fsStrikeOut;
+// a better way to do the same thing
+TFontStyles style;
+if (CheckBox1->Checked)
+ style fsBold;
+if (CheckBox2->Checked)
+ style fsItalic;
+if (CheckBox3->Checked)
+ style fsUnderline;
+if (CheckBox4->Checked)
+ style fsStrikeOut;
+Label1->Font->Style = style;
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

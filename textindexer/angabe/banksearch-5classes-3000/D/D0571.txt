@@ -1,0 +1,469 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : From PersonalJava to J2ME 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+	 
+ 
+ 
+ 	 
+ 
+ 
+ 	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+From PersonalJava to J2ME: Some Introductory Ideas
+	
+	by Paulo Moreira
+ -07/05/2001
+	
+	
+Wireless Boom
+Cell phones, PDAs, Pagers and Set-Top Boxes are increasingly present in our day-to-day lives -- wireless devices are experiencing an exponential growth. The combination of Internet access capabilities with powerful physical resources is making a revolution in the way that millions of people lead their lives, both professionally as personally. Consequently, the biggest priority is to provide a rich set of applications and services, so it can improve and facilitate the usability potential, optimizing market opportunities. 
+This scenario led Sun to the introduction of software components that standardize the use of Java technology in wireless devices. This step brought a radical change in this market. It offers an open platform, making the bridge between users, network operators, content providers and application developers. Benefits like dynamic application delivery, inter-platform compatibility, graphical interface enrichment, or security, are essential, bringing a whole new set of perspectives to this market. Therefore, Java stands up as the next and decisive step in the wireless industry.
+PersonalJava
+Three years ago, considering the emergent market of limited resource devices, Sun introduced three new technologies: PersonalJava, EmbeddedJava and JavaCard. Each of these technologies had a target set of devices, with a defined profile.
+PersonalJava is an optimized environment, targeted at consumer electronic devices with network and graphical user interface capabilities. In this group are included devices like PDAs, Webphones or Set-Top Boxes. PersonalJava consists of a Java Virtual Machine, which is a reduced version of the JVM 1.1, and an API, which is a subset of the JDK 1.1 API. The PersonalJava specification is currently in version 1.2.
+Comparatively to the Java Standard Edition, PersonalJava technology introduces a vast group of optimizations so that the memory usage can be dramatically reduced. In terms of the graphical interface, PersonalJava also brings huge changes, so it can be adapted to the target screen devices.
+PersonalJava API is divided into mandatory packages and optional packages. In mandatory packages we can find packages like java.applet, java.awt or java.net. This means that any PersonalJava implementation is required to include these packages. Therefore, any target device must include network and graphic user interface features, and must be able to execute applets. At the graphical level, Swing is not supported, leaving AWT as the only choice. This decision is understandable due to the resources constraints of target devices. Among others, java.rmi and java.sql can be found in optional packages. Implementation of these packages is dependent on what the manufacturer chooses to support in their specific device. Obviously, an application that makes use of optional packages has no guarantees it will run on all PersonalJava implementations.
+Sun developed an emulation environment (PJEE - PersonalJava Emulation Environment) that enables PersonalJava applications execution on a common PC. PJEE includes an application launcher and an appletviewer. Through the usage of this tool, development process is facilitated. The developer only has to make the application migration to the target device in the final development stage. PJEE is freely available for Windows and Solaris.
+JavaCheck is another Sun utility for helping PersonalJava application development. JavaCheck tells if an application will successfully run in a PersonalJava environment. It looks at class dependencies, and raises a signal if the application calls an API unavailable in PersonalJava. There are two versions of JavaCheck: one for checking PersonalJava 1.0 applications, and one for checking PersonalJava 1.1.x applications. One does not yet exist for PersonalJava 1.2.
+J2ME
+During the 1999 JavaOne Conference, recognizing that "one size doesn't fit all", Sun regrouped its Java technologies into three editions: Java 2 Platform Enterprise Edition (J2EE), Java 2 Platform Standard Edition (J2SE), and Java 2 Platform Micro Edition (J2ME). Each of these editions is aimed at a specific market segment. J2ME technology specifically addresses the vast consumer space, which covers the range of extremely tiny commodities such as Smart Cards or a Pager all way up to PDAs or Set-Top Boxes. Each edition defines a set of tools and supplies that can be used with a particular product:
+- Java Virtual Machines that fit inside a wide range of computing devices
+- Libraries and APIs that are specialized for each kind of computing device
+- Tools for development and device configuration
+PersonalJava and EmbeddedJava were absorbed by J2ME, while the JavaCard Forum continued to develop JavaCard technology.
+Modularity and customizability are essential J2ME requirements, due to the huge diversity of target devices. J2ME architecture must be modular and scalable so that it can support the kind of flexible deployment demanded by the consumer and embedded markets. To achieve this, J2ME provides a range of virtual machines, each optimized to the different processor types and memory footprints commonly found in the consumer and embedded marketplace. To support this flexibility, two concepts are essential -- configurations and profiles. A configuration defines a minimum platform for a horizontal class of devices, with similar memory and processing capacities. A profile defines a Java platform for a specific vertical market segment. Each profile is layered on top of a configuration. So, a configuration defines a broad horizontal device family, and a profile defines a specialized device category in that family. An application written to a specific configuration/profile guarantees portability across all devices included in that configuration/profile association.
+The Java Community Process (JCP) has the responsibility to define configuration and profile specifications. 
+In practice, a configuration specifies the JVM features and the Java libraries and APIs supported. A profile defines a set of Java APIs and class libraries that reside on top of a configuration, to provide domain-specific capabilities for devices in a specific market segment.Currently, there are two standard configurations: 
+- Connected Limited Device Configuration (CLDC) - addresses devices with a significant resources limitation, such as cell phones or Pagers. 
+- Connected Device Configuration (CDC) - addresses devices with a higher set of physical resources, like PDAs or Set-Top Boxes. 
+Only the CLDC final specification is available at the moment. Concerning profiles, just one final profile has been released - MIDP. MIDP is layered on the CLDC, targeted to Mobile Information Devices (MID) like cell phones or two-way Pagers. JCP is currently working on other profile specifications, both for CLDC and CDC.
+CDC + Personal Profile + Foundation Profile
+CDC was developed for devices with relatively larger amounts of memory and processing capabilities. It contains a JVM (CVM - C Virtual Machine) and a minimal set of class libraries and APIs. To run this on a device, a profile is also required. At the moment, the JCP has started three profile specifications for CDC: Personal Profile, Foundation Profile and RMI Profile.
+Foundation Profile has two purposes. First, to provide a complete API to devices with high network needs, which don’t require Graphical User Interface. Second, to work as a base profile to other profiles, so its features can be extended. Then, Foundation Profile can work alone or in association with another profile. 
+Personal Profile addresses devices with high level Internet connection needs. It has to provide strong graphical and network functionalities.
+The CDC/Foundation Profile/Personal Profile provides the right environment to succeed PersonalJava. Either technologies share the same set of target devices, having identical requirements and features. So, we can say that PersonalJava is entering in J2ME through this association. Because the Foundation Profile and Personal Profile specifications aren't ready, the developer still has to use PersonalJava. The PersonalJava community is pretty active, constantly introducing new products and development features. Soon we will have a developer migration from PersonalJava to J2ME. By now, these two technologies are being worked in parallel. In practice, to develop applications we still have to use PersonalJava.
+Practical Example
+Let's suppose I have a PDA device and I want to kick some Java applications. First of all I have to choose what Java technology will be more suitable for this device. Obviously the answer will be PersonalJava. I now have to search for a PersonalJava environment addressed to my system. If I'm using Windows CE there are some good options. So lets choose the cheapest solution. PersonalJava Runtime Environment for Windows CE includes all the tools required to execute PersonalJava applications in a PDA or a Pocket PC. It's freely available in Sun's Website, and supports three different processors (MIPS, SH3, ARM). The java.rmi and java.sql packages are included in this product. Installation and utilization are quite simple, making it accessible to any normal user.
+If I prefer Linux environments I have another good set of choices. Pocket Linux is a product from Transvirtual that includes Kaffe. Kaffe is a complete PersonalJava implementation. The usability is not as good as would be desirable, but it has a good potential.
+Last but not least, I can use SavaJe XE. This Operating System was designed from the ground up to run J2SE and PersonalJava technologies on handheld devices.
+Through a simple Internet search we can find many other good offers.
+Conclusions
+Due to an overwhelming evolution, wireless devices are having a more and more preponderant position in the services and applications marketplaces. Java stands as the next step on wireless devices, bringing a set of decisive advantages. PersonalJava was introduced as the Java technology directed to devices with hard network and graphical requirements. With the J2ME creation, Sun grouped in the same platform, all the Java technologies targeted to resource-constrained devices. CDC/Foundation Profile/Personal Profile will succeed PersonalJava in the J2ME platform.
+Following this evolution is an essential requisite, due to two fundamental reasons. First, the huge growth of the appellative PDA market, with high applications needs. Second, the cell phones technical evolution. In a near future (third generation mobile systems) is predictable that cell phones will progress to terminals with higher valences, which probably will be included in the PersonalJava target devices. This market will be huge, most likely exceeding the PCs market.
+Paulo Jorge Ribeiro Moreira is a final year student in Degree of Computer Science and Engineering Systems (LESI), in University of Minho, Portugal. Currently, Paulo is doing his Graduate training in Portugal Telecom Inovacão, a company of PT Group, the biggest Portuguese Telecommunications group. 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	 
+	
+	 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

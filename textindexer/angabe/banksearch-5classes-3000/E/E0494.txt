@@ -1,0 +1,304 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Working with Variable Argument Lists in Functions
+This article was contributed by Michael Uchitelev. 
+Environment: CFunctionService was developed for Microsoft® Windows NT® platforms using Microsoft® VisualC++ 6.0.
+Problem
+In the CRT and MFC libraries there are many functions, which take variable number of parameters. The problem is that there is no method to figure out how many arguments were passed during runtime and retrieve particular argument by the given index. Functions sprintf, CString::Format, etc. uses one of passed parameters (format string) to figure out the number of parameters. Sometimes there is a need to pass the number of parameters, which cannot be defined by another argument. 
+Solution
+There are at least two solutions:
+Passing one more extra parameter that will either define the number of passed parameters. This solution is straightforward, but less elegant. 
+Analyzing of the stack and retrieving all passed arguments as well as the number of them. This solution is more elegant, but uneasy, because there is no mechanism in C++, which allows to do that.
+CFunctionService is the implementation of the second solution.
+CFunctionService is a C++ class, which allows retrieving information about the number of passed arguments and retrieve pointers to all arguments passed to the function with variable number of arguments. 
+The result is an extensible base class capable of retrieving, enumerating and accessing function arguments.
+CFunctionService contains the following methods, fully documented in the download file.
+ 
+- Constructor - Initializes the class. 
+ 
+- begin - Checks if arguments can be enumerated, enumerates arguments, allocates an array to store argument pointers, stores each argument in the internal array and figures out the number of argument.
+ 
+- getargument - Retrieves the pointer to argument by the given index
+ 
+- getargumentcount - Retrieves the number of passed arguments
+ 
+- end - Deallocates an array of arguments and makes necessary cleaning.
+ 
+Development Methodology
+The core code (CFunctionService) is developed as reusable C++ class. 
+Limitations
+ 
+- During the implementation was made an assumption that there cannot be more than 32 passed parameters.
+ 
+- Arguments are not checked on their validity, which may cause the problem sometimes. For example if one of arguments is the class, which has no copy constructor and passed by reference it may cause a corruption of stack. When this argument is passed in the function with the fixed number of arguments the C++ compiler checks for this situation. In CFunctionService if stack is corrupted then an exception is thrown.
+Conclusion
+This class (CFunctionService) resolves very interesting issue - of how to define during runtime the 
+number of passed arguments.
+Downloads
+Download source - 4 Kb
+Download demo project - 13 Kb
+History
+Date Posted: April 10, 2001
+ 
+Comments:
+- what can I do for finding function... - Dongu (2001/09/09)
+- Some solutions to this problem - andi payn (2001/08/31)
+- Sorry but this fundamentally flawed. - Rob Pitt (2001/07/22)
+- Hi, do you know about : va_start, va_end, va_list ...? :)) - Slava (2001/04/27)
+- Release version crashes ! - Edouard Fattal (2001/04/13)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Build Flash Online
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+For Web Graphics
+Free DNS Offer
+Find Annual Reports
+Find a Consultant
+Internet Jobs
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

@@ -1,0 +1,129 @@
+
+C++ Tutorial: 4.2, Overloading operators
+">
+ Section 4.2 
+ Overloading operators
+ 
+ 
+ 
+ 
+C++ incorporates the option to use language standard operators between classes in addition
+to between fundamental types. For example:
+int a, b, c;
+a = b + c;
+is perfectly valid, since the different variables of the addition are all
+fundamental types. Nevertheless, is not so obvious that we can perform the following
+operation (in fact it is incorrect):
+struct { char product [50]; float price; } a, b, c;
+a = b + c;
+The assignation of a class (or struct) to other one of the same type is allowed
+(default copy constructor). What would produce an error would be the addition operation,
+that in principle is not valid between non-fundamental types.
+But thanks to the C++ ability to overload operators, we can get to do that objects derived
+from composed types as the previous one can accept operators which would not be
+accepted otherwise or even modify the effect of operators which they already admit.
+Here is a list of all the operators that can be overloaded:
++ - * / = += -= *= /= >
+>= == != = ++ -- % & ^ ! |
+~ &= ^= |= && || %= [] () new delete
+To overload an operator we only need to write a class member function whose name is
+operator followed by the operator sign that we want to overload,
+following this prototype:
+type operator sign (parameters);
+Here you have an example that includes the operator +. We are going to
+sum the bidimensional vectors a(3,1) and b(1,2).
+The addition of two bidimensional vectors is an operation as simple as to
+add the two x coordinates to obtain the resulting x coordinate
+and to add the two y coordinates to obtain the resulting y.
+In this case the result will be (3+1,1+2) = (4,3).
+// vectors: overloading operators example
+#include 
+class CVector {
+ public:
+ int x,y;
+ CVector () {};
+ CVector (int,int);
+ CVector operator + (CVector);
+};
+CVector::CVector (int a, int b) {
+ x = a;
+ y = b;
+}
+CVector CVector::operator+ (CVector param) {
+ CVector temp;
+ temp.x = x + param.x;
+ temp.y = y + param.y;
+ return (temp);
+}
+int main () {
+ CVector a (3,1);
+ CVector b (1,2);
+ CVector c;
+ c = a + b;
+ cout == != = > && || , 
+ A::operator@(B) 
+ operator@(A, B) 
+ a@b 
+ = += -= *= /= %= ^= &= |= >= [ ] 
+ A::operator@(B) 
+ - 
+ a(b, c...) 
+ () 
+ A::operator()(B, C...) 
+ - 
+ a->b 
+ -> 
+ A::operator->() 
+ - 
+* where a is an object of class A, b
+is an object of class B and c is an object of class
+C.
+You can see in this panel that there are two ways to overload some class operators:
+as member function and as global function. Its use is indistinct,
+nevertheless I remind you that functions that are not members of a class cannot
+access the private or protected members of the class unless the global
+function is friend of the class (friend is explained later).
+The keyword this
+The keyword this represents within a class
+the address in memory of the object of that class
+that is being executed.
+It is a pointer whose value is always the address of the object.
+It can be used to check if a parameter passed to a member function of an object
+is the object itself.
+For example, 
+// this
+#include 
+class CDummy {
+ public:
+ int isitme (CDummy& param);
+};
+int CDummy::isitme (CDummy& param)
+{
+ if (&param == this) return 1;
+ else return 0;
+}
+int main () {
+ CDummy a;
+ CDummy* b = &a;
+ if ( b->isitme(a) )
+ cout 
+class CDummy {
+ public:
+ static int n;
+ CDummy () { n++; };
+ ~CDummy () { n--; };
+};
+int CDummy::n=0;
+int main () {
+ CDummy a;
+ CDummy b[5];
+ CDummy * c = new CDummy;
+ cout 
+ Previous:
+4-1. Classes. 
+ 
+ index 
+ 
+ Next:
+4-3. Relationships between classes. Inheritance.
+ 

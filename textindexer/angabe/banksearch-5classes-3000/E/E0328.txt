@@ -1,0 +1,579 @@
+
+GotW #68: Flavors of Genericity
+ 
+ 
+ GotW #68 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Flavors of Genericity 
+ Difficulty: 7 / 10
+How generic is a generic function, really? The answer can depend as much
+on its implementation as on its interface, and a perfectly generalized interface
+can be hobbled by simple -- and awkward-to-diagnose -- programming lapses.
+Problem
+JG Question
+1. What's the purpose of C++'s template
+feature?
+Guru Questions
+The code in the following questions is taken from the box on page 42
+of Exceptional C++.[1]
+2. What are the semantics of the following
+function? Be as complete as you can, and be sure to explain why there are two
+template parameters and not just one.
+// Example 2(a): construct().
+//
+template 
+void construct( T1* p, const T2& value )
+{
+ new (p) T1(value);
+}
+3. There is a subtle genericity trap in the
+following functions. What is it, and what's the best way to fix it?
+ 
+// Example 3(a): destroy().
+ //
+ template 
+ void destroy( T* p )
+ {
+ p->~T();
+ }
+ 
+ template 
+ void destroy( FwdIter first, FwdIter last )
+ {
+ while( first != last )
+ {
+ destroy( first );
+ ++first;
+ }
+ }
+4. What are the semantics of the following
+function, including the requirements on T? Is it possible to remove any of those
+requirements? If so, demonstrate how, and argue whether doing so is a good idea
+or a bad idea.
+// Example 4(a): swap().
+//
+template 
+void swap( T& a, T& b )
+{
+ T temp(a); a = b; b = temp;
+}
+Solution
+1. What's the purpose of
+C++'s template feature?
+Templates provide powerful compile-time polymorphism. Misuse of templates can
+cause really hard-to-read error messages on many compilers, but templates are
+also one of C++'s most powerful features.
+When we think of polymorphism in an object-oriented world, we think of the
+kind of runtime polymorphism we get from using virtual functions. A base class
+establishes an interface "contract" as defined by a set of virtual
+functions, and derived classes may inherit from the base class and override the
+virtual functions in a way that preserves the contracted semantics. Then other
+code that expects to work on a Base object (and accepts the Base object by
+pointer or reference) can work equally well with a Derived object:
+ 
+// Example 1(a): Ye olde garden-variety runtime
+ // polymorphism. Doesn't draw big crowds these days.
+ //
+ class Base
+ {
+ public:
+ virtual void f();
+ virtual void g();
+ };
+ 
+ class Derived : public Base
+ {
+ // override f() and/or g() if desired
+ };
+ 
+ void h( Base& b )
+ {
+ b.f();
+ b.g();
+ }
+ 
+ int main()
+ {
+ Derived d;
+ h( d );
+ }
+This is great stuff, and gives a lot of runtime flexibility. The main
+drawbacks of runtime polymorphism are that the types must be related in a
+hierarchy derived from a common base class, and when the virtual functions are
+called in a tight loop you may notice some performance penalty because normally
+each call to a virtual function must be made through an extra pointer
+indirection, as the compiler figures out the Derived function you
+"really" mean to call.
+If you know the types you're using at compile time, then you can get around
+both of the above drawbacks: You can use types that are not related by
+inheritance, as long as they provide the expected operations:
+ 
+// Example 1(b): Ye newe C++-variety compile-time
+ // polymorphism. Powerful stuff. We're still
+ // finding out just what kinds of nifty things
+ // this makes possible.
+ //
+ class Xyzzy
+ {
+ public:
+ void f( bool someParm = true );
+ void g();
+ void GoToGazebo();
+ // ... more functions ...
+ };
+ 
+ class Murgatroyd
+ {
+ public:
+ void f();
+ void g( double two = 6.28, double e = 2.71828 );
+ int HeavensTo( const Z& ) const;
+ // ... more functions ...
+ };
+ 
+ template
+ void h( T& t )
+ {
+ t.f();
+ t.g();
+ }
+ 
+ int main()
+ {
+ Xyzzy x;
+ Murgatroyd m;
+ 
+ h( x );
+ h( m );
+ }
+As long as both objects x and m are of a type that provides member functions
+f() and g() that can be called with no parameters, h() will work. In Example
+1(b), both types actually have different signatures for f() and g(), and they
+also provide additional functions beyond just those two, but h() doesn't care...
+as long as f() and g() can be called without parameters, the compiler will allow
+h() to make the calls. Of course, when called, those functions should also do
+something that's sensible for h()!
+2. What are the
+semantics of the following function? Be as complete as you can, and be sure to
+explain why there are two template parameters and not just one.
+// Example 2(a): construct().
+//
+template 
+void construct( T1* p, const T2& value )
+{
+ new (p) T1(value);
+}
+construct() constructs an object in a given memory location using an initial
+value. The form of new used here is called "placement new," and
+instead of allocating memory for the new object, it just puts it into the memory
+pointed at by p. Any object new'd in this way should generally be destroyed by
+calling its destructor explicitly (as shown in Question 3), rather than by using
+a delete expression.
+Why two template parameters? Isn't one sufficient to make a copy of the value
+object? Well, if construct() had only one template parameter, then you would
+need to explicitly state the type of that parameter when copying from an object
+of a different type:
+ 
+// Example 2(b): A less functional construct(),
+ // and why it's less functional.
+ //
+ template 
+ void construct( T1* p, const T1& value )
+ {
+ new (p) T1(value);
+ }
+ 
+ // Assume that both p1 and p2 point to raw memory.
+ //
+ void f( double* p1, Base* p2 )
+ {
+ Base b;
+ Derived d;
+ 
+ construct( p1, 2.718 ); // ok
+ construct( p2, b
+ ); // ok
+ 
+ construct( p1, 42 ); // error: is T1 double or int?
+ construct( p1, 42 ); // ok
+ 
+ construct( p2, d ); // error: is T1 Base or Derived?
+ construct( p2, d ); // ok
+ }
+The reason the two noted cases are ambiguous is that the compiler doesn't
+know enough to deduce the template parameter, and so the programmer is forced to
+nominate a template parameter explicitly. Yet shouldn't we allow programmers to
+silently construct a double from an integer value? Probably; the worst that
+could happen is that we might lose some precision. Shouldn't we allow
+programmers to silently construct a Base from a Derived? Possibly; if Base
+allows that, then slicing would occur but that can be a legitimate choice of
+operation.
+Assuming that we want to allow the programmer to be able to do such things
+without explicitly naming types, we need to use the originally-presented version
+that has two independent template parameters.
+3. There is a subtle
+genericity trap in the following functions. What is it, and what's the best way
+to fix it?
+ 
+// Example 3(a): destroy().
+ //
+ template 
+ void destroy( T* p )
+ {
+ p->~T();
+ }
+ 
+ template 
+ void destroy( FwdIter first, FwdIter last )
+ {
+ while( first != last )
+ {
+ destroy( first );
+ ++first;
+ }
+ }
+destroy() destroys an object or a range of objects. The first version takes a
+single pointer, and calls the pointed-at object's destructor. The second version
+takes an iterator range, and iteratively destroys the individual objects in the
+designated range.
+Still, there's a subtle trap here. This didn't make a difference in any
+example in the book, but it's a little odd: The two-parameter
+destroy(FwdIter,FwdIter) version is templatized to take any generic iterator,
+and yet it calls the one-parameter destroy(T*) by passing it one of the
+iterators -- which requires that FwdIter must be a plain old pointer! This
+needlessly loses some of the generality of templatizing on FwdIter. It also
+means you can get Really Obscure error messages when compiling code that tries
+to call destroy(FwdIter,FwdIter) with non-pointer iterators, because (at least
+one of) the actual failure(s) will be on the destroy(first) line inside the
+two-parameter version, which typically generates such useful messages as the
+following, taken from one popular compiler:
+ 
+'void __cdecl
+ destroy(template-parameter-1,template-parameter-1)' : expects 2 arguments - 1
+ provided
+ 
+'void __cdecl destroy(template-parameter-1 *)' :
+ could not deduce template argument for 'template-parameter-1 *' from '[the
+ iterator type I was using]'
+These error messages aren't as bad as some I've seen, and with only a little
+bit of extra reading they do actually tell you (mostly) what's going on. The
+first message indicates that the compiler was trying to resolve the line
+"destroy(first)" as a call to the two-parameter version; the second
+indicates an attempt instead to resolve it as a call to the one-parameter
+version. Both attempts failed, each for a different reason: The two-parameter
+version can take iterators, but needs two of them, not just one; and the
+one-parameter version can take just one parameter, but needs it to be a pointer.
+No dice.
+Having said all that, in reality we'd almost never want to use destroy() with
+anything but pointers in the first place just because of the way the function is
+intended to be used, given that it turns things back into raw memory and all.
+Still, only a simple change is needed to let FwdIter be any iterator type, not
+just a pointer, so why not do it: Have destroy(iter,iter) call the destructor
+explicitly. In the two-parameter version of destroy(), change:
+ 
+destroy( first );
+To:
+ 
+destroy( &*first );
+This will almost always work. After all, we can usually expect that, for an
+iterator iter, the expression &*iter really does yield a pointer to the T
+object to which the iterator refers. Consider why it would usually work fine:
+All standard-conforming iterators [2] are
+required to supply an operator*() that returns a true T&. This is one of the
+reasons why proxied containers are not supported by the C++ standard; for more
+information about this and related issues, see the discussion of the expression
+&*t.begin() in GotW #50 [3] and
+my May 1999 C++ Report column.[4] (It
+is possible, if rare, to make "destroy( &*first );" not work: As
+Astute Reader Bill Wade pointed out, that formulation will fail to work if T
+overrides its operator&() to return something besides the object's address.)
+What's the moral of the story? Beware subtle genericity drawbacks when
+implementing one generic function in terms of another. In this case, there was a
+subtle principal drawback: The two-parameter version wasn't as generic for
+iterators as we originally thought. There was also an even subtler secondary
+drawback: The quick fix of changing "destroy( first );" to
+"destroy( &*first );" introduced a new requirement on T, namely
+that it provide an operator&() with normal semantics, namely one that really
+returns a pointer to the object. Both traps were neatly avoided when we stopped
+implementing one function in terms of the other.
+4. What are the
+semantics of the following function, including the requirements on T? Is it
+possible to remove any of those requirements? If so, demonstrate how, and argue
+whether doing so is a good idea or a bad idea.
+// Example 4(a): swap().
+//
+template 
+void swap( T& a, T& b )
+{
+ T temp(a); a = b; b = temp;
+}
+swap() just exchanges two values using the copy constructor and copy
+assignment operator. It therefore requires that T have a copy constructor and a
+copy assignment operator.
+If that's all you said, give yourself half marks only. One of the important
+things to note about the semantics of any function is its exception safety
+status, including what guarantees it provides: In this case, swap() is not at
+all exception-safe if T's copy assignment operator can throw an exception. In
+particular, if T::operator=() can throw but is atomic (all-or-nothing), then if
+the second assignment fails we exit via an exception but a has already been
+modified; if additionally T::operator=() can throw but is not atomic, then it is
+possible for swap() to exit via an exception but both parameters may have been
+modified and one may now contain neither of the two values. Therefore this
+swap() must be documented as follows:
+ 
+- if T::operator=() doesn't throw, swap() gives the aC guarantee
+ (all-or-nothing, except for side effects of T operations);[5]
+ 
+- otherwise, if T::operator=() can throw:
+ 
+ 
+- if T::operator=() is atomic, and swap() exits by means of an exception,
+ the first argument might or might not already have been modified;
+ 
+- otherwise, if T::operator=() isn't atomic, and swap() exits by means of
+ an exception, both arguments might or might not already have been modified,
+ and one of them might contain neither of the original two values.
+ 
+There are two ways to remove the requirement that T have an assignment
+operator, and the first additionally provides better exception safety:
+1. Specialize or overload swap(). Say that we have a class MyClass that uses
+the common idiom of providing a nonthrowing Swap(). Then we can specialize
+standard functions for MyClass as follows.
+ 
+// Example 4(b): Specializing swap().
+ //
+ class MyClass
+ {
+ public:
+ void Swap( MyClass& ) throw();
+ // ...
+ };
+ 
+ namespace std
+ {
+ template( MyClass& a, MyClass& b )
+ 
+ // throw()
+ {
+ a.Swap( b );
+ }
+ }
+Alternatively, we can overload standard functions for MyClass as follows:
+ 
+// Example 4(c): Overloading swap().
+ //
+ class MyClass
+ {
+ public:
+ void Swap( MyClass& ) throw();
+ // ...
+ };
+ 
+ // NOTE: Not in namespace std.
+ swap( MyClass& a, MyClass& b ) // throw()
+ {
+ a.Swap( b );
+ }
+Doing this is usually a good idea -- even if T does have an assignment
+operator that would allow the original version to work!
+For example, the standard library itself overloads swap() for vector
+ void swap( T& a, T& b )
+ {
+ if( &a != &b ) // note: this check is now necessary!
+ {
+ T temp( a );
+ 
+ destroy( &a );
+ construct( &a, b );
+ 
+ destroy( &b );
+ construct( &b, temp );
+ }
+ }
+First, this is never appropriate if T copy assignment can throw, because then
+you get all the exception safety problems of the original version, only in
+spades: You can get into situations where the objects hold not only
+indeterminate values, but no longer exist at all!
+If we know that T copy assignment is guaranteed not to throw, though, this
+version does have the extra ability to deal with types that can't be assigned
+but can be copy-constructed, and there are indeed many such types. Being able to
+swap such types is -not- necessarily a good thing, though, because if a type
+can't be assigned then it's probably set up that way for a good reason -- for
+example, it likely doesn't have value semantics, and it may have const or
+reference members -- and so providing a mechanism to "imbue" (or
+"impose") value semantics may be misguided and produce surprising and
+incorrect results.
+Worse still, this approach plays games with object lifetimes, and that's
+always questionable. Here by "plays games" I mean that it changes not
+only the values, but the very -existence-, of the operated-upon objects. Code
+using the Example 4(d) form of swap() could easily produce surprising results
+when users forget about the unusual destruction semantics.
+A guideline: If you must play games with object lifetimes and you know that
+doing so is okay, and you're certain that the operated-upon objects' copy
+constructors can never thow, and you're very sure that the unusually
+"imposed" value semantics will be all right in your application for
+those specific objects, then (and only then) you may legitimately decide to use
+such an approach in those specific situations only -- but even then, don't make
+such an operation a general template that could be accidentally instantiated for
+-any- type, and be very sure to document the blazes out of it so that the poor
+unsuspecting user next door knows what to expect, because this technique falls
+squarely into the "unusual" section of the C++ coding catalog.
+ 
+Notes
+1. H. Sutter. Exceptional
+C++ (Addison-Wesley, 2000).
+2. Note that this does not include
+vector::iterator, which is not a conforming iterator.
+3. Available at http://www.gotw.ca/gotw/050.htm.
+4. Sutter, H. "When Is a Container Not a
+Container?" (C++ Report, 11(5), May 1999). This discusses some
+of the evils of vector.
+5. See GotW #61.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

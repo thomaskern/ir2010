@@ -1,0 +1,194 @@
+
+GotW #77: #Definition
+ 
+ 
+ GotW #77 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+ 
+#Definition 
+ Difficulty: 4 / 10
+What can and can't macros do? Not all compilers agree.
+Problem
+JG Question
+1. Demonstrate how to write a simple max()
+preprocessor macro that takes two arguments and evaluates to the one that is
+greater, using normal = j, k is assigned the value of i+42, as intended. But if i = j, i gets incremented twice, which is
+probably not what the programmer intended:
+ ((++i) = pi, f() gets executed twice, which is almost
+certainly inefficient and often actually wrong.
+Alas, although we could work around the first two problems, this one is a
+corker -- there is no solution as long as max is a macro.
+4. Beware scope.
+Finally, macros don't care about scope. (They don't care about much of
+anything; see GotW #63.) They just perform textual
+substitution no matter where the text may be. This means that, if we use macros
+at all, we have to be very careful about what we name them. In particular, the
+biggest problem with the max macro is that it is highly likely to interfere with
+the standard max() function template:
+ // Example 1(d): Name tromping
+ //
+ #define max(a,b) ((a) // oops!
+The problem is that, inside header , there will be something
+like the following:
+ template const T& 
+ max(const T& a, const T& b);
+which the macro "helpfully" turns into an uncompilable mess:
+ template const T& 
+ ((const T& a) Copyright ©
+2002 Herb Sutter
+ 

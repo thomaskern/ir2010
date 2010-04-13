@@ -1,0 +1,362 @@
+
+VB Helper: Discussion: Will You Move to .NET?
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Discussion: Will You Move to .NET? 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I saw a survey at 
+programmersheaven.com
+that asked, "Will you move to .NET?" The final tally was:
+ Yes 26% 
+ No 45% 
+ Not Sure 28% 
+I wondered what people who weren't planning to move to .NET had in mind. After all, Microsoft is planning to drop support for VB 6, albeit not until the year 2008.
+I know of some people who are still using VB 5 because they feel it is more stable, and I even know of a few using VB 3 because they have legacy systems running under 16-bit Windows.
+So my question is, do these people plan on using VB 6 forever and ignoring VB .NET. Not a completely silly strategy, I'm just wondering. If the "No's"
+and half of the "Not Sure's" stay with VB 6, then Microsoft's will lose 63% of their VB customers. That would be big news!
+As an aside, you may or may not have noticed that virtually no book publisher is writing VB 6 books any more. Only VB .NET books. Either that means I have to keep up with VB .NET, or there may be an emerging market for new VB 6 books that no one is planning to write.
+Here are the replies I got.
+Joe Masching, JPM Computer
+If you wish to add our view to the mix, it is that we see no really compelling reason to make the change short of MS forcing obsolescence through changes to its OS. We are a very small business and, with the help of your newsletter, Code Guru, and other resources, have been able to avoid paying Microsoft's confiscatory support fees anyway, so their dropping support will cause no trauma here.
+Keep up the good work with the newletter. We look forward to each issue.
+Adam Kelly
+A simple answer, keep using VB6! That should not be a surprise, dig around on the net and there are folks out there developing in VB5 and 4 and see no reason to change! I will keep working in 6 for some time to come for several reasons and I have .NET and have experimented with it! So it is not lack of funds! Lack of time maybe!
+I will try to add a few reasons for the lack of momentum to move to .NET in no particular order
+- Lack of good resources to learn key concepts. Take a good hard look at the books out there for .NET and ask yourself if they are as good as the resources for VB6? Most are horrible and rehash of MS documentation Hardly any have new code as good examples of what you can do with .NET that exploits the new features to any extent. .NET was made to run apps over the net, seen any good examples? Seen any good examples of an improved web site with .NET? Most people learn by example and exploring code. Not by reading dry explanations of new concepts. A code example is worth a thousand words. If there were a good set of sample projects out there then the ground swell will happen. Programmers imaginations will be stimulated? But what is out there makes seeing the possibilities pretty difficult!
+- Security. Why would I build an application in .NET and deliver it to a client who can then reverse engineer it with almost no effort? .NET was made to run on your own server where you have control of the software, not on a third parties were they then can copy the software and do what they want to look at the content. All other issues of security in .NET are as yet unproven. Give the Hackers/Crackers a little more time and applications out there to see what it is like! There are third party products to lock down my VB6 code. Seen anything for .NET yet?
+- If Microsoft finds .NET stalling then they will change tack. I am hoping that the issue of Security will cause a major revision of .NET in 12 months as MS says they are stepping up to the plate on Security.
+- How much change can IT stand at one time! We get the first really good and stable OS from MS. Windows 2000. In less than two years it is replaced by XP which has all kinds of issues and is much less stable than 2000. We get .NET, but no server implementation of the .NET framework. It is still to come! How many times will the OS change in the next five years to get the upcoming security changes and .NET to work! Microsoft is burning out the very people that support the company with change after change, for marginal benefit and often a loss (stability)! So .NET development time and resources is being wasted just ensuring existing code and drivers work on XP!
+So where am I on the survey. Not Sure is the closest and I have .NET!!!! I know my option is to test what .NET can do for me on my own servers and wait 12 months while the whole thing builds up steam and fixes come to my first two gripes. Then we will see. But VB6 is an alternative in the meantime. The only thing I am really interested in at this point is if a similar program written in .NET to an almost identical VB6 program, that is really processor intensive, runs faster on a P4? I have found recently that VB6 code that is really processor intensive does not run faster on P4's with higher clock speeds. Get a faster PIII cheap and you can see execution times on the same code dropping. Why is my Mobile PIII on my laptop faster at executing VB6 code than a workstation P4 with almost double the clock cycles? The compiler in VB6 does not know how to make code that runs well on P4's is my guess. Does .NET code run faster, on faster P4's? I have put a lot of time into profiling my VB6 code and use every performance tweak out there, so it is not an issue of being badly written. Getting to exploit the speed of a P4 would be a positive in the column for reasons to move to .NET! Someone gave me a VB6 compiler that exploits a P4 to the maximum and one reason for change falls by the wayside!
+.NET has been a lot of MS marketing hype so far. If they really are betting the company on this product they should have fired all the marketing folks and hired a bunch of independent consultants to get out a series of diverse sample projects and applications. Find the people with the imagination who can inspire others and put that code out there were it can bee seen! Do what AOL did with CD's to market there service. Get out what .NET is where everyone can see what it can do! Not hype about what it is, with no substance. That is what has most people confused! Lead by example, not marketing rhetoric and buzzwords!
+I am not anti .NET! I think there is a lot in it I can use. Just realistic about the current state of play and Not Sure is not a bad place to be right now!
+Sorry for ranting!
+Rod Stephens
+Nice rant ;-) I agree with you pretty much. I think a lot of people will
+wtick with VB 6 for at least a while. And I'm certainly sticking with
+Windows 2000 as long as possible. Unfortunately the book publishers are all
+writing for VB .NET these days. I'll wait a bit and see if there is a need
+for more VB 6 books.
+Adam Kelly
+Windows 2000 is by far and away the best OS, MS has ever made. However we at my office can't stick with it forever because clients get miffed if you supply them with "AN OLD PC!" So unfortunately we have to test and move towards XP! As for sticking with VB6 and writing more VB6 Books! I will in the interim be sticking with VB6, I think long-term some iteration of .NET IS going to be in my future. Despite what I said about rapid changes to OS I pray for a quick update to .NET that will get rid of my gripes about the software or third party apps that fix the problems. I want more powerful programming tools, but also the right tools. I also want the book writers/magazines to start writing code and imaginative apps with .NET, for servers, clients and desktops, instead of writing out a rewrite of MS documentation. I just fear the pace will be slower than 12 months! If we are really lucky someone from MS is on you list and will hear the comments and take them to heart.
+This is a shame, as I think .NET has potential, just not there yet!
+Rob Crombie
+In an email today someone asked - "You don't like VB.Net?" I responded:
+MS can't do anything 'KISS'
+ADO versioning and deployment could have been made easier for developers. MS FrontPage is an example, where it creates messy 'code', and your host has
+to be running MS extensions (and correct version).
+VB.NET may make web apps a lot easier than MS's stuffed up attempts in the past (not referring to FrontPage, but to web classes etc). However by the time MS sorts out the security / deployment / versioning problems with VB.NET, someone else will have made web application development easy as well.
+VBClassic (VB6 & prior) desktop applications had problems in the past, and some individuals with high intelligence genes and low commonsense genes, decided that 'OO' would fix those problems. However 'OO' creates complexities and management issues of it's own
+The problems with previous VBClassic applications, can be avoided with just a few simple changes in approach / technique. Which I will be documenting in the near future, complete with examples (no charge).
+Darrell Cain
+I know I'll eventually move to .NET, but it only runs on NT based machines, right? Until my company and myself at home end up with NT type machines, I'll stick with VB6. Of course, I'm not a heavy duty programmer. I write VB programs to serve as utilities in the control and testing of hardware projects. So, maybe I don't count.
+Rod Stephens
+Nonsense, everyone counts! I suspect Microsoft claims such huge numbers of VB programmers because they count some marginal people like Office macro programmers as VB users, which is true in a way.
+Good point on the operating system issue. A lot of people (including me) see no great reason to switch operating systems once we have one that works. I'm pretty happy with W2K Pro (which can run VB .NET).
+Tom Kilker
+Re your .Net survey. Are you suggesting that thing will be so incompatible that it's an "either/or" decision?
+[Another good point. I suspect a lot of larger development shops will run VB.NET and VB6 (and probably older versions as well) at the same time. Rod]
+Gregory Hampton
+Considering Microsoft's implementation record, I believe that it would be
+prudent to wait for Microsoft to produce service pack 3, at the very least.
+VB6 will be widely supported until 2005, with extended support until 2008.
+6 years is a long enough time to keep using VB6 until MS gets the bugs out
+of their new development system.
+In addition, I don't want to upgrade to VB.NET just yet because it is not
+like VB6. It appears to me to be a completely different language altogether
+(although there are a lot of similarities), requiring the developer to spend
+some time to get familiar with the new syntax. There is also the problems
+of porting the applications to .NET format.
+One more point...my company will not implement nor support any software that
+has not been in use for at least 2 years. This is because of the huge
+number of computers that the software may be installed on.
+[Good points. It's amazing how many companies jump to adopt the latest technology just because a vendor's marketing people say they should. If everyone had higher standards (or any standards for that matter), we would all get much better products with new releases only when they had something to add rather than every year or two just to make money. Rod]
+Rob Crombie posted this message in a similar thread on a newsgroup and included a copy to share here.
+I spent 20 years in mainframe computing.
+The first 4 was in a Bank, doing Quality Assurance over implementation of
+new programs and also enhancements / bug fixes.
+The first rule(s) were
+- That they were fully tested.
+- There would be no deployment problems
+- They would meet user's needs/expectations
+The Bank was taken over, and computing Dept was closed.
+My next 16 mainframe years was as an Analyst & Programmer.
+The rules were basically the same.
+If we can be considered MS's users then they have not read the bloody rules.
+I suspect that the reason many programmers follow like sheep, is that
+possession of 'high intelligence' genes, often means a lack of 'common
+sense' genes.
+OR, if I was kinder, they love the challenge of getting the messes to work,
+and to deploy.
+OO got a foothold in VBClassic, because it was previously very easy to
+create sloppy code.
+OO forces data encapsulation onto the programmers, so some genius figured
+well that is the way to go to fix all the past sloppy programming.
+However OO imposes many problems and complications of it's own.
+MS listened to the hardcore programmers (yelling the loudest), and gave us
+VB.NET.
+I will concede that there was another reason -
+- MS's previous attempts for web programming did not follow the Rules
+(mentioned above).
+So, they had to come with something better.
+I will concede the VB.NET is better for web programming, than their previous
+attempts,
+BUT THEY ARE STILL NOT OBSERVING THE ABOVE RULES.
+By the time they get it right, surely someone will have come up with a
+better 'KISS' approach.
+Getting back to non-web programming.
+I will be preparing a document, which describes a few simple changes in
+technique/approach that will allow VBClassic programmers to avoid the
+previous sloppy programming practices.
+Going fully OO to fix those problems, is like designing / building airplanes
+to get from the East outskirts of a city to the West outskirts of that same
+city, because the roads weren't planned too well.
+[Rob makes the important point that object-oriented programming will not automatically prevent you from writing bad code. Many developers and software managers think that OO is a "silver bullet" that will save you from writing bad code. Untrue. An idiot is still an idiot even if he dresses well.
+Click here to see a list of books that explain how to write good code, with or without object-oriented features. Rod]
+Alex Stewart
+A few weeks ago you asked what will all these programmers do if they don't move to .NET ?
+Go elsewhere I guess. The company I work for is a big company, and it uses a lot of technologies. There has been absolutely no mention of going to .NET, but quite a lot about moving to Java.
+I support a few VB apps that work pretty well, but suffer from the usual bad design/no doco or comments. Trying to rewrite this for .NET would be a long, expensive business, with little or no gain. We'll stick with VB6 and if we need more, probably go to Java.
+The question you should be asking is "What will Microsoft do if people don't jump for .NET ? "
+From what I have seen, it looks good, but without the backward compatiblility, well, it just doesn't compute!
+Yogi Yang
+Well I want move to .NET. Though this was a situation that I had envisioned a few years a go and was expecting such thing from Borland (as I had seen C++ Builder) and not MS. The manner in which MS is releasing new and pretty hard to understand and learn technology I will just stick to VB 6.
+Living in a country where Internet bandwidth is very limited and it takes hours to even go to a few descent web sites I think .NET is just a hoax made for the developed world where there is unlimited bandwidth. I don't think .NET will pickup in India at all.
+Reverse Engineering is another problem. Everything is reversable. just a few days back I came accross a site which has got an official freeware VB5 decompiler. isn't that really nice? But when I tried it, it worked well with p-Code comiled software and native compiled software. If this can be done on VB5/VB6 then u can imagine what will happen to .NET compiled software. They would just spil themselves.
+From MS point of view .NET may be the future but it is not a practical future.
+For quite some time I have been brooding on the way MS is releasing new OS with more hardware requirement and Intel is pumping new Processors with just clock speed updates. In fact I was surprised to find an Installable version of Windows 2000 Pro. which did not install on AMD Athelon processor. This really shoked me. My fears have been confirmed with the release of WinXP and .NET. I feel there a conspiracy between MS and Intel to suck the consumer market dry. MS keeps on releasing new Softwae which require more Processing Power and Intel keeps on releasing Processors which are more faster and which confirms with MS standards. What do u think?
+Rod Stephens
+Don't feel picked on because you don't have high-speed Internet connections. Many development projects have this problem when they don't focus on the consumers properly. Microsoft's developers probably work on extremely fast computers with huge hard disks and enormous bandwidth. Business users can buy similar systems are just fine. Home users who don't want to buy new computers every year have a lot more trouble giving up a few GB of disk space for every product. Lots of people cannot justify the expense of DSL so they're stuck with slower modem connections.
+I don't think there's a neferious plot between Microsoft and Intel. I do think that Microsoft, at least, is able to take advantage of Intel's increasingly powerful chips to make their lives easier. Because Intel builds faster chips every few years, Microsoft feels no real need to build fast, lean operating systems. Instead they trade speed for features. Often the new features are things you can do without and sometimes they are things that I personally dislike, but it's harder to market a new operating system that has fewer features than the previous version. I would love to see an ad campaign like "Windows 2002: Lean, mean, and reliable" with fewer features and more reliability and speed. Who needs a dynamic Web desktop and active directories anyway? I'd rather have a system that booted in under five minutes and didn't crash once a week.
+One hope we have as consumers is that someone will build a reasonable alternative. Linux could be positioned to fill this role but unfortunately no one has turned it into a simple, reliable, useful product. While Redhat and others have made it possible for you to install, it's still not trivial and the result is a line-oriented system. Those were fine in the 60s and they're not all thath bad, but there's no reason not to have a simple, reliable windowing system. I'm sure there are some layered on Linux (I think I've seen one) but why isn't it penetrating the market?
+Julian Cripps
+With regard to .Net I resisted playing with the beta version and only bought it this year just after it came out. I had previously read MS's 10 reasons for upgrading from vb and like you found them rather lacking. I own a small firm and basically write desktop programs for my own use and use in my business and I do not think the win form enhancements are really a big deal. The menu editor is probably a little easier to use, but I never minded the old one. I think a picture property enabling menu icons to be easily added would have been more useful. Visual inheritance may be of some help rather than using templates or cut and paste as the base form can be extended, but I am concerned at the performance hit. I find win forms very slow to start up and of course the need to distribute the framework is a killer. The new graphics though seem interesting. I still find the ide confusing, although I like the override and overload features. 
+I have upgraded a few programs, but found that if the program is more than a few forms there is a lot to do after the wizard. To be fair I'd say the wizard does about 75%. I will certainly not be upgrading programs at work. I really can't see any advantage particularly with the time to get them working and testing. I just would not be prepared to take the risk. I'm very much of the frame of mind that if it works don't fix it. My customers would not be very interested in knowing that their work was late because we were now using MS latest programming system. We will have to do some web stuff soon and that is when we will probably start looking at net from a business. 
+I just can't understand how some of departments are apparently justifying to their managers to upgrade and don't believe many will for some time. I think the way forward will be for building some new parts in net when the new features are of advantage such as web stuff then gradually converting. I believe there will be some legacy vb6 and continued development in vb6 for much longer than MS are suggesting at present. Apart from the conversion and testing cost there is also the cost of replacing any 3rd party components used if they will not wrap properly. 
+Overall I think net is an advance and clearly ms had to do something about their web programming and this was obviously the main purpose of the change as it was clear that com was not the answer. I attended a MS .net road show in UK and the presenter's attitude was oh by the way we have not forgotten the desktop completely. I believe they were desperate to get the web part out and basically ignored the desktop and hopefully this will be addressed with the next releases as net matures. I also have a suspicion that it was thought it didn't really matter if there were gaps in the features of win forms as these would be filled by 3rd party component suppliers and this had the added advantage of giving a market to the suppliers so helping carry them with them and getting their support. 
+Clearly .net has been a godsend for the book and magazine publishers and trainers, but I think there will still be a market for vb6 books for sometime particularly if the principles apply more generally as well. 
+I have several of your books and have enjoyed them and found them interesting and useful. (My main complaint is that your clear code puts mine to shame!). Seriously though sometimes I think it would be helpful if the books were a little longer with space for a little more explanation of some items. 
+Although I did some Fortran programming many years ago and attend a vb evening course I have basically taught my self vb during the last 3 years from books magazines and the web and of course with the help of your newsletter. I have now learnt lots of techniques and can write workable programs, but often feel I'm doing things the hard way or reinventing the wheel. I am sure there are lots of similar people in my position so think there is a market for a book on 'Putting it all together'. With some complete larger projects rather than just code snippets possibly on the lines of an expanded version of your book Advanced VB techniques. 
+Other topics, which I have not come across books on, which I would find useful are:
+- A Manual on the detailed use and ins and out of vb's controls. I still have not cracked MsChart and DB grid gets me sometimes. 
+- Design and examples of GUI design. 
+- Building VB addins with examples. The books I have seen are always very confusing. 
+- Controlling office products and particularly word from vb. Most vba books seem to just give details about vba and the object model with few examples as a lead in and ignore word. How about 'Ready to Run VBA- office code library for vb users'. 
+On another note in a newsletter sometime ago you mentioned the computer used at Bletchley in world war 2 for decoding the German enigma code. On the PlanetSourcecode site I came across a vb enigma coding machine which is a bit of fun. 
+Finally if you want a hall of horrors I would vote Sams OO Programming with VB in 21days by J D Conley (1998 version) as the most misconceived vb book I've come across. The author says he used OO techniques in writing it. It gives that impression as well! 
+Bernie Greene
+There are some very good features in .NET but I will not be moving to it in
+the forseeable future. My main objection is the loss of my existing code
+base. I loved the RAD aspect of VB. MS have trashed this. That is one huge
+bad thing to do to your loyal customers. Upgrading my existing apps would be
+a nightmare. Then there is the matter of code that requires me to use an
+obfuscator that is not supplied. Sorry. Not impressed with that either. Then
+there is the fact that VB.NET bears so little resemblance to VB 6 that I may
+as well learn a new language. Now with the above factors in mind I started
+looking elsewhere and found a fascingating new tool called Runtime
+Revolution. It is quite easy to learn and use but the major pluspoint about
+it is that you can develop cross platform applications (run on Windows, Mac
+os and several flavours of UNIX and Linux) pretty much just by selecting
+which operating systems you want to compile for. This was a great eye
+opener. I haven't made any final decisions yet but I will be thoroughly
+checking out this new tool as it increases my potential marketplace. As a
+developer I love new tools and technologies that allow me to do more or do
+more with less code which is what .NET should have been. As a businessman I
+love the idea of increasing potential market share. I'd like to thank MS for
+inadvertantly pointing out to me that I have a business hat as well as a
+developer hat.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

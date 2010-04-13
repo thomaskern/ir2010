@@ -1,0 +1,123 @@
+
+Listing 4c - METAGDI2.BAS
+ 
+ 
+	 
+	 
+ 
+ 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	
+' These functions are "wrappers" for the
+' Windows GDI functions. This file only
+' declares the functions used in the
+' METADEMO program
+Option Explicit
+Function Meta_CreateBrushIndirect (index As Integer, lpLogBrush As LOGBRUSH) As Integer
+ Meta_CreateBrushIndirect = CreateBrushIndirect(lpLogBrush)
+End Function
+ 
+Function Meta_DeleteObject (index As Integer, hObject As Integer) As Integer
+ Meta_DeleteObject = DeleteObject(hObject)
+End Function
+ 
+Function Meta_Ellipse (index As Integer, X1 As Integer, Y1 As Integer, X2 As Integer, Y2 As Integer)
+ Meta_Ellipse = Ellipse(Meta_Files(index).Meta_hDC, X1, Y1, X2, Y2)
+End Function
+ 
+Function Meta_LineTo (index As Integer, X As Integer, Y As Integer) As Integer
+ Meta_LineTo = LineTo(Meta_Files(index).Meta_hDC, X, Y)
+End Function
+ 
+Function Meta_MoveTo (index As Integer, X As Integer, Y As Integer) As Long
+ Meta_MoveTo = MoveTo(Meta_Files(index).Meta_hDC, X, Y)
+End Function
+ 
+Function Meta_SelectObject (index As Integer, hObject As Integer) As Integer
+ Meta_SelectObject = SelectObject(Meta_Files(index).Meta_hDC, hObject)
+End Function
+ 
+Function Meta_SetMapMode (index As Integer, nMapMode As Integer) As Integer
+ Meta_SetMapMode = SetMapMode(Meta_Files(index).Meta_hDC, nMapMode)
+End Function
+ 
+Function Meta_SetWindowExt (index As Integer, X As Integer, Y As Integer) As Long
+ Meta_SetWindowExt = SetWindowExt(Meta_Files(index).Meta_hDC, X, Y)
+End Function
+ 
+Function Meta_SetWindowOrg (index As Integer, X As Integer, Y As Integer) As Long
+ Meta_SetWindowOrg = SetWindowOrg(Meta_Files(index).Meta_hDC, X, Y)
+End Function
+ 
+	 
+ 
+ 
+ 
+ 
+	 
+	 
+	 
+ 
+ 
+	 
+	 [Home] [Meta Files] [Hardcore VB] [What's Wrong?] [Image Sizes] 
+	 
+ 
+ 
+	 
+ 
+ 
+ 

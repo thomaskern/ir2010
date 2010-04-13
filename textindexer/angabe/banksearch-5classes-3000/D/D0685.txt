@@ -1,0 +1,251 @@
+
+7.3) Threads synchronisation, wait/notify
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+ 7)Threads 
+Objective 3) 
+Write code using synchronized 
+ wait notify and notifyAll to protect against concurrent access 
+ problems and to communicate between threads. Define the interaction between 
+ threads and between threads and object locks when executing synchronized wait 
+ notify or notifyAll.
+Why do you need the 
+ wait/notify protocol? 
+One way to think of the wait/notify protocol is to imagine an item of 
+ data such as an integer variable as if it were a field in a database. If you 
+ do not have some locking mechanism in the database you stand a chance of corruption 
+ to the data. 
+ 
+ Thus one user might retrieve the data and perform a calculation and write back 
+ the data. If in the meantime someone else has retrieved the data, performed 
+ the calculation and written it back, the second users calculations will be lost 
+ when the first person writes back to the database. In the way that a database 
+ has to handle updates at unpredictable times, so a multi threaded program has 
+ to cater for this possibility.
+The synchronized 
+ keyword 
+The synchronized keyword can be used to mark a statement or block of 
+ code so that only one thread may execute an instance of the code at a time. 
+ Entry to the code is protected by a monitor lock around it. This process is 
+ implemented by a system of locks. You may also see the words monitor, or mutex 
+ (mutually exclusive lock) used. A lock is assigned to the object and ensures 
+ only one thread at a time can access the code. Thus when a thread starts to 
+ execute a synchronized block it grabs the lock on it. Any other thread will 
+ not be able to execute the code until the first thread has finished and released 
+ the lock. Note that the lock is based on the object and not on the method.
+For a method the synchronized keyword is placed before the method thus
+synchronized void amethod() { /* method body */}
+For a block of code the synchronized keyword comes before opening and closing 
+ brackets thus.
+synchronized (ObjectReference) { /* Block body */ }
+The value in parentheses indicates the object or class whose monitor the code 
+ needs to obtain. It is generally more common to synchronize the whole method 
+ rather than a block of code.
+ 
+When a synchronized block is executed, its object is locked and it cannot be 
+ called by any other code until the lock is freed.
+synchronized void first();
+synchronized void second();
+There is more to obtaining the benefits of synchronization than placing the 
+ keyword synchronized before a block of code. It must be used in conjunction 
+ with code that manages the lock on the synchronized code . 
+wait/notify 
+In addition to having a lock that can be grabbed and released, each object 
+ has a system that allows it to pause or wait whilst another thread takes 
+ over the lock. This allows Threads to communicate the condition of readiness 
+ to execute. Because of the single inheritance nature of Java, every object is 
+ a child of the great grand ancestor Object class from which it gets this 
+ Thread communication capability.
+ 
+ 
+ 
+ 
+wait and notify should be placed within 
+ synchronized code to ensure that 
+ the current code owns the monitor 
+ 
+ 
+A call to wait from within synchronized code causes the thread to give 
+ up its lock and go to sleep. This normally happens to allow another thread to 
+ obtain the lock and continue some processing. The wait method is meaningless 
+ without the use of notify or notifyAll which allows code that 
+ is waiting to be notified that it can wake up and continue executing. A typical 
+ example of using the wait/notify protocol to allow communication between 
+ Threads appears to involve apparently endless loops such as
+//producing code
+while(true){
+try{ 
+ wait();
+ }catch (InterruptedException e) {}
+}
+//some producing action goes here
+notifyAll();
+As true is notorious for staying true this, code looks at first glance 
+ like it will just loop forever. The wait method however effectively means give 
+ up the lock on the object and wait until the notify or notifyAll 
+ method tells you to wake up. 
+ 
+ 
+ 
+ 
+Thread scheduling is implementation dependent and 
+ cannot be relied on to 
+ act in the same way on every JVM 
+ 
+ 
+Unlike most aspects of Java, Threading does not act the same on different platforms. 
+ Two areas of difference are Thread scheduling and Thread priorities. The two 
+ approaches to scheduling are
+ 
+- 
+ Preemptive 
+ 
+- 
+ Time slicing 
+In a pre-emptive system one program can "pre-empt" another to get 
+ its share of CPU time. In a time sliced system each thread gets a "slice" 
+ of the CPU time and then gets moved to the ready state. This ensures against 
+ a single thread getting all of the CPU time. The downside is that you cannot 
+ be certain how long a Thread might execute or even when it will be running. 
+ Although Java defines priorities for threads from the lowest at 1 to the highest 
+ at 10, some platforms will accurately recognise these priorities whereas others 
+ will not.
+ The notify method will wake up one thread waiting to reacquire the monitor 
+ for the object. You cannot be certain which thread gets woken. If you have only 
+ one waiting thread then you do not have a problem. If you have multiple waiting 
+ threads then it will probably the thread that has been waiting the longest that 
+ will wake up. However you cannot be certain, and the priorities of the threads 
+ will influence the result. As a result you are generally advised to use notifyAll 
+ instead of notify, and not to make assumptions about scheduling or priorities. 
+ Of course this is not always possible and you may have to try to test your code 
+ on as many platforms as possible. 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+ Which of the following keywords indicates a thread is releasing its 
+ Object lock?
+ 
+ 1) release
+ 2) wait
+ 3) continue
+ 4) notifyAll
+ 
+Question 2)
+ Which best describes the synchronized keyword?
+ 
+ 1) Allows more than one Thread to access a method simultaneously 
+ 2) Allows more than one Thread to obtain the Object lock on a reference
+ 3) Gives the notify/notifyAll keywords exclusive access to the monitor
+ 4) Means only one thread at a time can access a method or block of code 
+ 
+Question 3)
+What will happen when you attempt to compile and run the following code? 
+public class WaNot{
+int i=0;
+public static void main(String argv[]){
+ WaNot w = new WaNot();
+ w.amethod();
+ }
+ public void amethod(){
+	while(true){
+	try{ 
+ 	wait();
+	 }catch (InterruptedException e) {}
+	i++;
+	 }//End of while
+	}//End of amethod
+}//End of class
+1)Compile time error, no matching notify within the method
+2)Compile and run but an infinite looping of the while method
+3)Compilation and run
+4)Runtime Exception "IllegalMonitorStatException"
+ 
+Question 4)
+How can you specify which thread is notified with the wait/notify protocol?
+1) Pass the object reference as a parameter to the notify method
+ 2) Pass the method name as a parameter to the notify method
+ 3) Use the notifyAll method and pass the object reference as a parameter
+ 4) None of the above
+ 
+Question 5) 
+Which of the following are true
+1) Java uses a time-slicing scheduling system for determining which Thread 
+ will execute
+ 2) Java uses a pre-emptive, co-operative system for determining which Thread 
+ will execute
+ 3) Java scheduling is platform dependent and may vary from one implementation 
+ to another
+ 4) You can set the priority of a Thread in code 
+Answers
+Answer 1)
+ 2) wait
+ 
+ Answer 2)
+ 4) Means only one thread at a time can access a method or block of 
+ code
+ 
+ Answer 3)
+ 
+ 4) Runtime Exception "IllegalMonitorStateException"
+ 
+ The wait/notify protocol can only be used within code that is synchronized. 
+ In this case calling code does not have a lock on the object and will thus cause 
+ an Exception at runtime.
+ 
+ Answer 4)
+ 
+ 4) None of the above. 
+ 
+ The wait/notify protocol does not offer a method of specifying which thread 
+ will be notified. 
+ Answer 5)
+ 3) Java scheduling is platform dependent and may vary from one implementation 
+ to another
+ 4) You can set the priority of a Thread in code
+ Other sources on this topic
+ 
+ This topic is covered in the Sun Tutorial at 
+ http://java.sun.com/docs/books/tutorial/essential/threads/waitAndNotify.html
+ 
+ Richard Baldwin Covers this topic at
+ http://www.geocities.com/Athens/Acropolis/3797/Java058.htm
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec7.html#obj24
+ 
+ Bruce Eckel Thinking in Java
+ Chapter 14 
+ 
+Last updated
+ 20 Jan 2000
+ copyright © Marcus Green 1999
+ 
+ 
+ 

@@ -1,0 +1,38 @@
+
+C++ - Lesson 2
+Lesson Two
+As you learned in the last lesson, it is good practice to assign values to objects when they are declared. To do this, we use the = equals sign, which stores a value to an object. For example:
+int x = 64;
+float y = 33.1263;
+char z = 'Y';
+are all versions of objects that have values assigned to them. If, in the instance of a float, there is no type specified, the float number would be truncated. So the value "33.1263" would end up being "33".
+The keyword const is used to identify objects that cannot be modified once they have an initial value. This tells the reader that the value won't change, it tells the user that they can't change the value, and it produces more efficient code. An example of the use of const would be const float Pi = 3.1415;.
+One way of making calculations and other assignments easier to use and more efficient is to compound them. If you had i = i + 5;, you could shorten it by typing i += 5;. You can append two strings, like Date += Year;. The compound operators are +=, -=, *=, /=, and %=.
+There are a couple of special operators. One being the ++ increments a value by 1. So, you have three ways of adding one to an object: x = 2 + 1, x += 1, and x++;. If you were to type ++i, you'd be adding 1 to i before putting into an expression. i++ means you put i into an expression before adding 1 to it.
+You can use the string library to manipulate strings of data. You add the library to your program by typing #include . Then, you can create string objects such as string Greeting = "Hello";. There are some helpful manipulators for string objects. The code int a = Greeting.size(); initializes a to 5 because the size of the "Hello" string is 5 characters in length. Another useful capability is substr. Consider the following:
+string Date = "June 4, 2001";
+string Year = Date.substr(9, 4);
+Year is now equal to "2001" because substr went to the 9th position and captured the next 4 characters. You can achieve a similar outcome by typing string Year = Date.find("2001", 0);, which searches for "2001" at the beginning of Date. Year now equals 9 because it found 2001 in the 9th position. Finally, you can use getline() to receive the text entered by the user. There are many other capabilities of string. Below is a table of others you can use:
+TypeDefinition
+string::string() Default constructor initializes to represent empty string. 
+string::string(const char s[]) Initializes an object to represent a copy of the null-terminated char array s representation of a string sequence. 
+size_type string::size() const Returns the length of a string. 
+bool string::empty() const Returns true if the string represents the empty string; otherwise, it returns false. 
+const char* string::c_str() const Returns pointer to initial element of char array whose elements are a copy of the string. Null character terminates copy. 
+const char* string::data() const Returns pointer to initial element of char array whose elements are a copy of the string. 
+const_reference string::operator [](size_type i) If i is less that size(), the function returns a reference to the ith character of the string; if equal, 0 is returned; else, behavior is undefined. 
+Now that we have a generalized idea of what we can do with strings, let's apply them to the SimpleWindow class. SimpleWindow lets us create a window that's similar to the one we created with the Java applets. However, we don't need to do all the programming like in Java to view the window. The only thing we need to do is type:
+SimpleWindow W;
+W.Open();
+This will give you a window like the one you are viewing this tutorial in, only there will be no title, menu, location, or status bars. You will get just a plain window with nothing in the viewing area. We can change what is seen by changing the "SimpleWindow" line. To get a window with a title and a different size, we changed the line to this:
+SimpleWindow W("My First Window", 8, 2);
+This new line will give us a window that is 8 centimeters wide and 2 centimeters high with the title "My First Window". Now, we need to add something so that we know we're not learning how to create a window for no reason. Let's draw a rectangle. To show how we do this, here's the whole code below:
+SimpleWindow W("A Blue Rectangle", 8, 4);
+W.Open();
+RectangleShape R(W, 4.0, 2.0, Blue, 3, 2);
+R.Draw();
+Now we have an 8 by 4 centimeter window with a 3 by 2 centimeter blue rectangle that is 4 by 2 centimeters in from the top and left sides.
+Question: Ok!! You just turned my brain into mental mush. There's this, that, and the-other-thing. When are you going to tell me about some actual programming?
+Answer: I realize your frustration. I thought the same thing when I learned C++. Next we'll learn things that some of you already know. These are conditional and iterative constructs -- in short looping statements.
+Lesson One | Home | Lesson Three
+If you have any questions or comments about this lesson, feel free to click here and leave me your message.

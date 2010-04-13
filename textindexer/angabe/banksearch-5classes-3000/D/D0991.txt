@@ -1,0 +1,175 @@
+
+Free Java Help --- Articles ---
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Java Server Pages Information 
+ 
+Written By: Gangavarapu Suresh
+What is JavaServer Pages technology? 
+JavaServer Pages (JSP) technology 
+provides a simplified, fast way to create web pages that display dynamically 
+generated content. The JSP specification, developed through an industry-wide 
+initiative led by Sun Microsystems, defines the interaction between the 
+server and the JSP page, and describes the format and syntax of the page. 
+ 
+What is a servlet? 
+A servlet is a program written in the Java programming 
+language that runs on the server, as opposed to the browser (applets). 
+Why do I need JSP technology if I already 
+have Servlets? 
+JSP pages are compiled into Servlets, so theoretically you 
+could write servlets to support your web-based applications. However, JSP 
+technology was designed to simplify the process of creating pages by separating 
+web presentation from web content. In many applications, the response sent 
+to the client is a combination of template data and dynamically generated 
+data. In this situation, it is much easier to work with JSP pages than to 
+do everything with servlets. 
+What is a JSP page? 
+A JSP page is a page 
+created by the web developer that includes JSP technology-specific tags, 
+declarations, and possibly scriptlets, in combination with other static 
+(HTML or XML) tags. A JSP page has the extension .jsp; this signals to the 
+web server that the JSP engine will process elements on this page. The exact 
+format of a JSP page is described in the JSP specification.
+How do JSP pages work? 
+A JSP engine interprets tags and scriptlets, and 
+generates the content required - for example, by calling a bean, accessing 
+a database with the JDBCTM API or including a file. It then sends the results 
+back in the form of an HTML (or XML) page to the browser. The logic that 
+generates the content is encapsulated in tags and beans processed on the 
+server. JSP scriptlets let developers tie everything together, and ordinary 
+HTML tags control the formatting and display of the generated page. 
+Does 
+JSP technology require the use of other Java platform APIs? 
+JSP pages are 
+typically compiled into Java platform servlet classes. As a result, JSP 
+pages require a Java virtual machine that supports the Java platform servlet 
+specification. 
+How is a JSP page invoked and compiled? 
+Pages built using 
+JSP technology are typically implemented using a translation phase that 
+is performed once, the first time the page is called. The page is compiled 
+into a Java Servlet class and remains in server memory, so subsequent calls 
+to the page have very fast response times. 
+What scripting languages can 
+I use with JSP technology? 
+Some JSP engines may support other languages, 
+but the JSP 1.1 specification only specifies a scripting language based 
+on the Java programming language. 
+How do I use JavaBeans components 
+(beans) from a JSP page? 
+The JSP specification includes standard tags for 
+bean use and manipulation. The useBean tag creates an instance of a specific 
+JavaBeans class. If the instance already exists, it is retrieved. Otherwise, 
+it is created. The setProperty and getProperty tags let you manipulate properties 
+of the given object. These tags are described in more detail in the JSP 
+specification and tutorial. 
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

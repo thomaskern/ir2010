@@ -1,0 +1,279 @@
+
+ 
+Object Oriented Programming in C++
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Learning Object 
+ Oriented Programming in C++
+ 
+My personal opinion is that despite its 
+ slightly slower execution speed, OOP, or Object Oriented Programming, 
+ is one the best programming concept invented -- just as good as the multitasking 
+ OS and compiled libraries. OOP is really just trying to model individual 
+ objects in the world. This allows for natural-thinking -- what you would 
+ expect something to do in real life also does the same thing in code. 
+ If programmed correctly you could basically end up "speaking English" 
+ to the objects in your program or game. Users of Visual BASIC or Visual 
+ C++ will pick up this since it is an object-oriented language -- each 
+ control in the GUI is a type of object.
+ 
+Back to Tutorials 
+ Page
+ 
+Table of Contents
+ 
+Foreword
+ 
+ 
+ 
+ 
+Chapter I
+ Introduction to OOP
+ 
+Thinking in OOP
+ Layering
+ Containership
+ Inheritance
+ 
+Chapter II
+ The Syntax of OOP
+ 
+Prototypes
+ Data Hiding
+ Defining Functions
+ Defining Small Functions
+ Using the Code
+ Syntax Quibbles
+ 
+Chapter III
+ Using OOP
+ 
+A Real Programming Example
+ Constructors and Destructors
+ Passing Data to the Constructor
+ Data Hiding Revisted
+ 
+ 
+ 
+Chapter IV
+ Inheritance and Containership
+ 
+Building Cars
+ Object Interaction/Control
+ Inheritance
+ Initalizer Lists
+ Derivation
+ Using Derived Classes
+ Data Hiding in Inheritance
+ 
+Chapter V
+ Linked Lists
+ 
+Using Pointers with Classes/Structs
+ Introducing the Linked List
+ Linked Lists vs Arrays
+ Interface to the Linked List
+ Creating the LinkList
+ Adding Links
+ Getting the Data
+ Deleting Elements
+ Other Functions
+ 
+Chapter VI
+ Virtual Functions
+ 
+Pointers and Derived Classes
+ The Virtual Keyword
+ Virtual Destructors
+ 
+ 
+ 
+ 
+ 
+Foreword
+ 
+You will notice that throughout this tutorial I will leave 
+ a lot of code out and only will show how it goes together. Object Oriented 
+ Programming, or OOP, is a method of breaking down your code into smaller, 
+ simpler, and easier to understand blocks of code. I assume that you already 
+ know how to code up to the point of understanding structs and pointers, 
+ and are ready to move to OOP, which is one of the main uses for pointers.
+ 
+To get the most from this tutorial, copy the examples and fill in the 
+ code yourself. You will find that most of the functions only require a 
+ few lines of code -- and this is the point of OOP. After you get the class 
+ to work, add your own features, or rewrite the class using a different 
+ approach. If you have a question, try it in code, and if it doesn't compile 
+ or run correctly, that answers it. If you really get stuck, need extra 
+ help, or see an error in the tutorial, I am always glad to recieve your 
+ mail.
+ 
+Note that I have not directly tested and compiled all 
+ this code. If you copy the code and have any runtime or compile errors, 
+ or something happens you don't think should, PLEASE by all means contact 
+ me.
+ 
+I hope you enjoy this tutorial and learn a lot from it.
+ 
+Back to Top
+ 
+Proceed to 
+ Chapter One -- An Introduction to OOP
+ 
+ 
+ 
+ 

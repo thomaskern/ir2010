@@ -1,0 +1,518 @@
+
+VB Helper: Bug Proofing Visual Basic: Discussion: Performance Tips
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Discussion: Performance Tips 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This page lists some Visual Basic performance tuning tips. If you have other tips to share,
+let me know. I will update this page as tips are contributed.
+The book Bug Proofing Visual Basic contains some performance optimization tips. 
+More importantly, it explains when to optimize and when not to optimize. The condensed version is:
+First make it work correctly. Then worry about making it work quickly.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+There are many ways to speed up a Visual Basic program. Unfortunately most produce only a small benefit
+and make the program more complicated and harder to understand. For example, even if a program uses huge collections,
+converting them into arrays will probably only save you a few percent in run time and it may make simple
+operations much more complex.
+On the other hand, rewriting the program's main algorithms can reduce the run time by factors of hundreds.
+Here is a list of some of the many things you can do to improve performance. The ones at the top of the
+list are more likely to make a noticeable difference.
+- Paul Sheldon:
+I have found the technique described in the tip "Hide controls while sending
+them data" can in some cases give funny results,
+so I prefer to use the LockWindowUpdate API Call. You call it once
+passing the hwnd of the control, and all repaint messages will be
+blocked for that control (giving the same effect as hiding it), you then
+call it again with 0 as the parameter to restart the repaint messages.
+Obviously it is good to also put the reset in your error handling.
+- Seth:
+Hide controls while you send data to them. For example, suppose you want to display
+1,000 strings in a ListBox. Set the control's Visible property to False,
+set the strings, and then set Visible back to True.
+The reason this makes it faster is
+because the ListBox doesn't have to "repaint" itself every time a string of
+data is sent. The
+ListBox only has to paint itself once, not every single time an item is
+added.
+- Constantijn Enders:
+Split IF functions. Visual Basic doesn't has an option like complete boolean 
+evaluation. If the first expression is false it will still evaluate the second
+one even if the result will be useless.
+ 
+Private Sub Command1_Click()
+ ' Slow code
+ If f1 And f2 Then
+ Debug.Print "True"
+ End If
+ ' Faster because f2 not executed when f1 is false
+ If f1 Then
+ If f2 Then
+ Debug.Print "True"
+ End If
+ End If
+End Sub 
+And if possible put the fastest function at the top line
+If both function have the same speed put the function that is 
+most of the time false at the top
+- Constantijn Enders:
+Use option Compare Text at the top of the module. This will eliminate
+the need for UCase$ functions. You can still use StrComp(s1, s2, vbBinaryCompare).
+- Constantijn Enders:
+Parse results directly to controls. If CheckPassword is a function which result a boolean:
+ 
+If CheckPassword() = True Then
+ cmdLogon.Enabled = True
+Else
+ cmdLogon.Enabled = False
+End If 
+Is slower than:
+ 
+cmdLogon.Enabled = (CheckPassword() = True) 
+Or even better:
+ 
+cmdLogon.Enabled = CheckPassword() 
+- Constantijn Enders:
+Cache the results of a function just as you would a property.
+ 
+For i = 1 To 10
+ Command(i).Enabled = CheckPassword()
+Next 
+Is slower than:
+ 
+bEnabled = CheckPassword()
+For i = 1 to 10
+ Command(i).Enabled = bEnabled
+Next 
+Because in the first routine the CheckPassword function is 
+executed 10 times.
+- Carman Thornton:
+In addition to using integer operations whenever possible. Use \ for division instead of / (it's faster). 
+Use * .5 instead of / 2. Example: 11 * .5 = 5.5 is faster than 11 / 2 = 5.5.
+Assembler instruction "MUL" is faster than "FDIV".
+[Click here to download a test program comparing different calculations. You may be surprised at the results. -- Rod]
+- Mike Carver:
+Whenever possible don't use square roots. For example:
+ 
+ 
+If a * a + b * b = 4 Then ... 
+is much faster than
+ 
+If Sqr(a * a + b * b) = 2 Then ... 
+- Smidge:
+If you have to do anything with repetative calculations really fast (ie: Circles or anything dealing with Trig functions), it may help out a lot to create a table of values for whatever resolution you need for the data.
+For example, precalculating the x, y coordinates of a circle about a point every two degrees (or use radians, which are actually better for this) is often good enough and much faster than using the SIN, COS and TAN functions.
+[I have used this technique and it can make a huge difference depending on your application. My book
+Ready-to-Run Visual Basic Algorithms uses this technique to calculate Fibonacci numbers.
+- Rewrite the program in C++ or Delphi. [This is rarely an option, but it is the ultimate solution when you REALLY need more performance, so I am listing it anyway.]
+- Upgrade to Visual Basic .NET. VB.NET should provide roughly the same performance as VC++ or C# in Visual Studio .NET. Delphi may still be faster than all of these, though I haven't seen benchmarks comparing them.
+- Upgrade to Visual Basic 5 or 6. Compiled native Visual Basic executables are a lot slower than C++ or Delphi executables, but they are much faster then the non-compiled programs produced by Visual Basic 4 and earlier versions. [This is another expensive option, but easier than learning a new language.]
+- Profile your application. Use a performance monitoring tool to see exactly where the program is spending most of its time. Visual Basic 4 and 5 come with one. Visual Basic 6 does if you buy the enterprise edition. Don't waste your time optimizing code that is already fast enough.
+- Decompress graphics. Set the Picture property for a Form or PictureBox to a .bmp file, not a compressed JPEG or GIF file. Those files are stored in the program in compressed form so the program needs extra time to display them. Decompressing graphics will make the executable image larger but will load the pictures faster.
+- Preload forms. Load all the forms you will use when the program starts. Then they can display faster when you need them.
+- Use arrays instead of collections. Arrays are much faster. Use collections only if you need their special features like keyed lookup.
+- Preallocate arrays so they are big enough and you don't have to ReDim them later.
+- If you need to set all entries in an array to zero, use ReDim to reallocate it. This takes longer than leaving the array alone (the previous tip), but is faster than setting the entries one at a time.
+- To set entries to zero in a fixed-sized array (allocated using Dim), use the Erase statement. This destroys dynamically allocated arrays, but resets fixed-sized arrays. BwetS.
+- Use the MemCopy or RtlMoveMemory API functions to copy arrays instead of copying their entries one at a time.
+- Use specific data types instead of Variants. Always declare a variable's data type. If you don't, it defaults to variant.
+- Use specific object types rather than declaring a variable to be of type Object. Be as specific as possible. For example, Object is bad, Control is better, TextBox is best.
+- Do not empty a collection by removing its elements. Destroy it by setting it to Nothing.
+- Declare and allocate objects in separate lines. The statement "Dim obj As New MyClass" is actually slower than "Dim obj As MyClass" and "Set obj = New MyClass" on two separate lines (try it).
+- Use integer operations whenever possible. Use \ for division instead of / (it's faster).
+- Use Len to test for zero-length strings. For example, If Len(my_string) = 0 Then ... This is faster than using If my_string = "" Then...
+- Use With for a long series of object references used several times. This executes faster than if you repeat the series of objects in each statement.
+- Use as few string operations as possible, they are slow.
+- Order Select Case statements so the most commonly used value comes first.
+- Call sub and function with by ref parameters when possible. Adriano Ghezzi [Note that this makes the routine more prone to accidental side effects so be careful--Rod]
+- Set form to nothing when you never need. Adriano Ghezzi [This saves memory and may save lots of time if you have so many forms that you must page. If you only have a few forms, it will be faster to keep them always loaded and just hide them--Rod]
+- Perceived performance is as important as actual performance. Imagine clicking on a button, and nothing happens for 10 seconds. That will be a very long 10 seconds. Add a progress bar, and the user won't even notice the 10 seconds. Robert Terblanche.
+- When you use a lot of images several times in an application. Put them on one form and load them when needed from that form. Jan Cromwijk [This makes all the images load when that form is loaded so they are ready to go when you need them--Rod]
+- If you need to do a lot of string/file processing, use mid$ (and trim$ etc.) rather than mid as the latter treats the data type as a variant as opposed to a string, which can be up to 3 times slower (I think you can use the $ sign with mid, trim, left and right). Steven R. Hamby.
+- To make the application seem faster, display its first form as quickly as possible. Use Show in the form's Load event handler to make it appear before performing long startup calculations.
+- Put as little code as possible in Form_Load event handlers so the forms load quickly.
+- If the initial form taks a long time to load, display a splash screen immediately and remove it only when the first form is loaded (Advanced Visual Basic Techniques shows how to make different kinds of interesting splash screens).
+- Group subroutines in modules. When one routine calls another, the other routine's module is loaded. If one routine calls many others from different modules, all the modules must be loaded. If all the routines are in the same module, they will all be loaded at once.
+- Do not waste memory. Sometimes you can make a program faster using more memory, but sometimes more memory can slow things down. In particular, if you use so much memory that the program cannot fit in real memory all at once, the system will page. That can slow the program enormously.
+- Set AutoRedraw to False to reduce memory usage. Set AutoRedraw to True to make redrawing faster for complicated drawings.
+- Set ClipControls to False (read the help for more information).
+- Use Move to position controls instead of setting the Left and Top properties.
+- Hide a control if you need to change a bunch of its appearance properties. Make it visible again when you are done modifying it.
+- Use a temporary variable to refer to a complex expression multiple times. For example, suppose you need to set several values in the SelectedEmployee.NextOfKin.HomeInformation.Address object. Instead of referring to this long expression several times, use:
+ 
+Dim addr As AddressInfo
+Set addr = _
+ SelectedEmployee.NextOfKin.HomeInformation.Address
+addr.Street = txtStreet.Text
+addr.City = txtCity.Text
+addr.State = txtState.Text
+addr.Phone = txtPhone.Text 
+- Cache properties you use multiple times. If the program needs to refer to txtLastName.Left several times, save that value in a variable and refer to the variable instead. Accessing variables is much faster than accessing properties.
+- Use Line (x1, y1)-(x2, y2), , B to draw a box instead of using Line four times.
+- Use Image controls instead of PictureBoxes if possible. Image controls take less memory.
+- Use Frame controls to hold other controls instead of PictureBoxes. Frame controls take less memory.
+- Use control arrays for controls that are unimportant. For example, many forms contain a lot of uninteresting labels. Put them all in a control array. A control array containing 10 controls usees less memory than 10 individual controls. 
+- Perform long, low-prioirity calculations in the background using a Timer.
+- Use comments and meaningful variable names. Long comments and variable names, and blank lines do not add to the compiled program's size so there is no harm in using them.
+- Do not line number every line because line numbers increase the program's size.
+- Remove unused variables and code since they remain in the program and take up memory.
+- Use DoEvents to allow the user to perform other actions while your long process is running. This can reduce the user's frustration even if it doesn't make the program move faster. (John Dye)
+- Use the FindFirstFile, FindNextFile, and FindClose API functions to quickly search directories. Nikolaos D. Dimopoulos.
+[Note that using API functions is often but not always faster. It is always more complicated and sometimes riskier than using VB--Rod]
+- UCase$ and LCase$ let you perform case insensitive comparisons. The following API functions are faster:
+ 
+Declare Function CharLower Lib "user32" _
+ Alias "CharLowerA" (ByVal lpsz As String) As String
+Declare Function CharUpper Lib "user32" _
+ Alias "CharUpperA" (ByVal lpsz As String) As String 
+Nikolaos D. Dimopoulos.
+- Use a temporary variable to refer to a complex expression multiple times. For example, suppose you need to set several values in the SelectedEmployee.NextOfKin.HomeInformation.Address object. Instead of referring to this long expression several times, use:
+ 
+Dim addr As AddressInfo
+Set addr = _
+ SelectedEmployee.NextOfKin.HomeInformation.Address
+addr.Street = txtStreet.Text
+addr.City = txtCity.Text
+addr.State = txtState.Text
+addr.Phone = txtPhone.Text 
+The With command speeds things up in the same way, so this could be:
+ 
+With SelectedEmployee.NextOfKin.HomeInformation.Address
+ .Street = txtStreet.Text
+ .City = txtCity.Text
+ .State = txtState.Text
+ .Phone = txtPhone.Text
+End With 
+Mark Focas.
+- Use ByRef to pass values instead of ByVal. When you use ByRef, the program passes the (small) address of the value. When you use ByVal, it must make a new copy of the value and pass that. Generally it is faster to pass the address instead of a copy.
+However, when you are making an out-of-process call, ByVal is faster. With out-of-process calls, Visual Basic must repackage the value anyway to send it to the other process. If you use Byref, it must then unpackage the returned result and that takes extra time.
+Kevin B. Castleberry.
+- Use * instead of ^ to take simple integer powers. For example, use A = B * B instead of A = B ^ 2. The first is faster. Michalis Vlastos.
+- If you need to build a long string, build it in pieces and then join the pieces when they are all finished. For example, suppose subroutines AddText1, AddText2, etc. append text to a string. Then the following code:
+ 
+Dim txt As String
+txt = AddText1(txt)
+txt = AddText2(txt)
+txt = AddText3(txt) 
+takes longer than this code:
+ 
+Dim txt As String
+Dim txt1 As String
+Dim txt2 As String
+Dim txt3 As String
+AddText1(txt1)
+AddText2(txt2)
+AddText3(txt3)
+txt = txt1 & txt2 & txt3 
+In the first code, the AddText subroutines must manipulate long strings. In the second example they work with relatively short strings.
+- Save intermediate results in mathematical calculations. For example, this code:
+ 
+Xsquare = x * x
+Ysquare = y * y
+a = 2 * Xsquare + 3 * Ysquare
+b = 3 * Xsquare + 5 * Ysquare
+If a + b > 50 Then ... 
+is faster than this version:
+ 
+If 2 * x * x + 3 * y * y + _
+ 3 * x * x + 5 * y * y > 50 _
+Then ... 
+Michalis Vlastos.
+- Cade Roux has some words of wisdom about Visual Basic's optimizations.
+When I moved to VB5 from VB4, I immediately started compiling everything to native code for speed. For large interactive applications which are not processor bound, I have found the size of the executable for the compiled version causes it to load much slower and execute slower due to the large executable size, and probably larger working set. I had a 10MB exe go down to 4MB by switching back to P-Code. The compile time is vastly shorter as well, resulting in quicker test-cycles. We no longer compile to native code at all, even on smaller applications.
+[Database bound applications may show the same effect. Any program that spends a lot of time waiting for some slow process (the user, a database, a modem, etc.) will not be limited by the code speed. In those cases, you will get smaller executables and possibly better performance if you do not compile. -- Rod]
+- From Chris Collura:
+When looping to a final value, do not put the function returning the count in the looping logic.
+ 
+i = 1
+Do While i 
+Runs slower than
+ 
+i_max = SlowFunction()
+i = 1
+Do While i 
+[Note: For loops do not evaluate their bounds every time through the loop. When the For statement starts, the system calculates the upper bound and saves it. It does not recalculate it every time through the loop. Therefore this code is reasonably fast:
+ 
+For i = 1 To SlowFunction()
+ total = total + i
+Next i 
+If you need the program to recalculate the function each time through the loop,
+use a Do loop.
+Rod]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Discussion: Performance Tips 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

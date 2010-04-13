@@ -1,0 +1,197 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Visual Basic SQL Server 7.0
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ 
+ Visual Basic Books 
+ 
+Data Environment Designer Connections
+The last method of connecting to a 
+database that we are going to cover is the Data Environment
+Designer. This 
+built-in ActiveX control provides a quick code-less method
+of adding a database connection. This designer uses either a DSN or a DSN-less
+connection. All of the connection information is stored for you in the ActiveX control as properties of the control. You simply provide
+all of the information for the connection and the Data Environment Designer
+will take care of the rest of the work for you.
+<![if !supportEmptyParas]> <![endif]>
+You can also add a Command object
+that will execute SQL statements, stored procedures, tables, and views. All of
+this is set up through dialogs that step you through the process. Best of all
+is that you don't have to write any code to provide this functionality, as this
+is all handled within the Data Environment Designer.
+<![if !supportEmptyParas]> <![endif]>
+The objects created for you
+behind the scenes by the Data Environment Designer
+ can be used
+by data
+aware controls on your forms. A data aware control is one that
+can be bound to a data source, such as an ActiveX data control or recordset.
+You can also access these objects through code. When using the Data Environment
+Designer's Command object you can drag and drop the fields from
+the Command object onto your form, as will be
+demonstrated shortly.
+<![if !supportEmptyParas]> <![endif]>
+Try It Out - Using the Data Environment
+Designer
+In this example, we will be
+creating a 
+Standard EXE project that contains a form
+with no controls. The controls shown in the screen shot below will be added
+from the Data Environment Designer. We will add the Data Environment Designer
+and set the connection using the DSN that we have used previously. We will then
+add a Command object to the Data Environment Designer to
+open the State_T table. Finally, we will add the State_Name_VC
+field to the form. Our completed form will look something like this:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>1. 
+<![endif]>We start by opening a new Standard EXE project in VB, and renaming/captioning
+the form if required.
+<![if !supportLists]>2. 
+<![endif]>Add the following code to the Form_Load event. This code can be found in frmTryItOut4.frm:
+<![if !supportEmptyParas]> <![endif]>
+Private Sub
+Form_Load()
+   'Use the standard Windows icon
+   Me.Icon = Nothing
+End Sub
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>3. 
+<![endif]>This is the only code that we are adding and the
+only code that will be in our project. Next, add the Data
+Environment Designer by selecting the Project
+menu and then selecting Add Data Environment. If Add
+Data Environment
+isn't listed here, you should select More ActiveX Designers
+in the Project menu and then choose Data Environment from the sub menu. The location of Data Environment in the Project
+menu is related to the number of third-party ActiveX controls that have been
+installed for VB. If you still do not see the Data Environment Designer then
+click on the Project menu and choose Components. On the Designers
+tab, check the checkbox next to Data Environment
+and then click OK on this dialog. You should now
+see Data Environment in the Project menu. 
+At this point
+your project should look like the screen shot shown below:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>4. 
+<![endif]>Right click on Connection1
+and choose Properties from the popup menu, or
+click on the Properties icon on the Data Designer Environment toolbar. Click on the Connection tab in the Data Link
+Properties dialog. Select the Wrox Auto
+Works DSN in the Use data source name combo box.
+<![if !supportLists]>5. 
+<![endif]>If you are using NT authentication you do not need
+to specify any more information. If you are using SQL Server authentication for
+your login ID then enter your User name
+and Password in the appropriate boxes.
+Check the Allow saving password checkbox so
+you are not prompted for your password anymore.
+<![if !supportLists]>6. 
+<![endif]>All readers should test their connection at this
+point by clicking on the Test Connection
+button. Once your connection has been verified, close this dialog by clicking
+on the OK button:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>7. 
+<![endif]>The next step we want
+ to perform
+is to add a Command object to the Data Environment Designer
+by clicking on the Add Command
+icon on the Data Environment Designer toolbar,
+or by right clicking in the white space and choosing Add Command from the popup menu. The Command object will provide a method to
+retrieve the state names from the State_T
+table in the database.
+<![if !supportLists]>8. 
+<![endif]>To access the Command
+object Properties dialog, right click on
+the Command1 object and choose Properties in the popup menu, or click the Properties icon on the Data Environment Designer toolbar. The source of
+data for this example will be the State_T
+table as in the first example. We need to select Table
+from the Database Object combo box and in
+the Object Name combo box choose State_T from the list of tables in our database.
+That's all we need for this example, but feel free to poke around in this
+dialog and look at the various options in the different tabs. When you are
+done, click the OK button to dismiss this dialog:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>9. 
+<![endif]>Now that we have the Command
+object set with the data that it should retrieve, expand the Command object and it will display all of
+the columns in the State_T
+table. At this point, tile your windows in VB so that the Data Environment Designer and form are both
+displayed. Click on the State_Name_VC
+column in the Data Environment Designer and drag it onto the form:
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportLists]>10. 
+<![endif]>At this point, believe it or not, we are ready to
+run our project, so go ahead and start your project. You will be prompted with
+a SQL Server Login dialog. If you are
+using NT authentication in SQL Server, ensure that the Login ID and Password
+fields are blank and then click on the OK button.
+If you are using SQL Server authentication, enter your Login ID and Password and
+then click on OK.
+<![if !supportEmptyParas]> <![endif]>
+At this point your form
+should display your state name and look similar to the one shown at the start
+of this example. If you stop your project and look at the code in the form and Data Environment Designer,
+you will notice that the only code that is listed in your project is the few
+lines of code that we inserted in step 2.
+<![if !supportEmptyParas]> <![endif]>
+After having performed this
+exercise, you can immediately see where the Data Environment Designer can save
+you lots of time and coding to implement data access in your front-end
+programs. There is only one thing that you should be aware of. By default, the
+Data Environment Designer sets a reference to Microsoft ActiveX Data Objects
+Library version 2.0. In order to take advantage of the latest fixes
+and advancements in ADO, you should remove this reference and set a reference
+to version 2.5, or the latest version that you have available.
+<![if !supportEmptyParas]> <![endif]>
+If you want to, you can
+experiment on your own with the Data Environment Designer, using code to
+control the connection and displaying of the Command object data.
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+ ©1999-2000 Visual Basic Books. All rights reserved.

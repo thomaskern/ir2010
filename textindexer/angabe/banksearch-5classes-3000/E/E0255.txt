@@ -1,0 +1,249 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Create a design time package for registering components in a runtime package.
+Answer
+If you install a component in C++Builder, by default the component will be added
+to the user package. In BCB5, the name of the user package project is DclUsr50.bpk.
+In other versions of BCB, the name of the user package varies a little bit. The project
+file for the user package can be found in the $(BCB)\lib directory.
+The user package is both a runtime and a design time package. This means that the package
+contains both the code for the component and the code for registering the component into
+the IDE. It also means that that the package BPL file will be used by both the BCB
+IDE and by EXEs that use the package (assuming that use of runtime packages was on when the EXE
+was built).
+For lightweight use with just a handfull of components, the user package proves to be adequate.
+However, you may need to customize your use of packages if you have a component that registers
+a property editor or a component editor. For advanced components, you should separate your code
+into two packages. One package should be a runtime only package. The runtime package contains
+the actual source code for the component. The second package should be a design time only package.
+The design time package contains code for registering the component. It should also contain the
+code for any custom property or component editors, as well as code for registering those editors.
+ 
+Note:
+The runtime package and the design time package cannot have the same name. To delineate between the two, I like to
+append _rt to the name of runtime packages, and _dt to the name of design time packages. The packages that
+are shown in this FAQ are called test_rt.bpk and test_dt.bpk.
+ 
+Here are the steps to follow if you want to separate your component into both a runtime package
+and a design time package. The steps are broken into two groups. The first group deals with creating the
+runtime package, and the second group covers the design time package. These steps assume that you are starting
+with an existing component called TComponent1 that was created with the File-New Component wizard.
+Creating the runtime package
+1: Create a new package by running the File-New Package wizard. Save the package as test_rt.bpk.
+2: When BCB creates a new package, it configures it to be both a design time and a runtime package. We want
+test_rt.bpk to be a runtime only package. To make the change, open the project options for the package and go to the
+Description tab. Check the Runtime Only radio button. While you have the project options open, you should also
+fill in a description for the package. Figure 1 shows the changes that we made.
+ 
+Figure 1. Configuring a runtime only package
+ 
+3: On the linker tab of the project options, make sure that the Generate Import Library and
+Generate .lib file options are both checked. They are usually already checked for you when you create the package. The
+Generate Import Library option sets the /Gi linker switch. This switch tells the linker to generate a .BPI
+file when the package is built (BPI files are import libraries for the BPL dynamic link library). The
+Generate .lib file option sets the /Gl (lower case L) linker switch. This option tells the linker to generate a static
+library for the package. This library is used by projects that statically link to your package. This occcurs when users uncheck the
+Runtime Packages check box in their project options.
+4: If your want to be able to debug into the source code for your component, then you should configure the rest of
+the project options for debugging. This can be done in one step by clicking the Debug button on the Compiler tab of the
+project options. If you don't want to debug your component source, then you should do a release build instead. If you plan on giving
+your package to other users, then you should do a release build. In this case, click the Release button on the
+Compiler options tab.
+5: Add the CPP or PAS files for your component to the runtime package project. This can be
+done by right clicking the big Add button on the package project manager. Enter the file names for your component and
+click OK. You can also create a new component from this dialog.
+For this FAQ, we are using a component called TComponent1 which resides in component1.cpp. This CPP file
+should be added to the runtime package project.
+6: When you create a new component in C++Builder, the component source includes code for registering the component.
+Since we are creating a separate design time package that will register the component, we don't need or want the component source to
+contain registration code. Open the code for your component and remove the registration code. The code snippet below demonstrates
+what should be removed.
+//-----------------------------------------------------------------------
+#include 
+#pragma hdrstop
+#include "Component1.h"
+#pragma package(smart_init)
+//-----------------------------------------------------------------------
+// ValidCtrCheck is used to assure that the components created do
+// not have any pure virtual functions.
+//
+static inline void ValidCtrCheck(TComponent1 *)
+{
+ new TComponent1(NULL);
+}
+//-----------------------------------------------------------------------
+__fastcall TComponent1::TComponent1(TComponent* Owner)
+ : TComponent(Owner)
+{
+}
+//-----------------------------------------------------------------------
+// REMOVE HERE!!!!
+// Remove everything from here down, including the namespace.
+namespace Component1
+{
+ void __fastcall PACKAGE Register()
+ {
+ TComponentClass classes[1] = {__classid(TComponent1)};
+ RegisterComponents("Howe", classes, 0);
+ }
+}
+//-----------------------------------------------------------------------
+7: At this point, we are done configuring the runtime package. Build the package and
+verify that the following files are generated: test_rt.bpl, test_rt.bpi, and test_rt.lib. By default, the
+LIB and BPI file will go to the $(BCB)\projects\lib directory and the BPL file will go to the
+$(BCB)\projects\bpl directory. These settings can be controlled from the Library tab of the global environment options.
+The two settings are called BPL output dir and BPI/LIB output dir.
+Creating the design time package
+1: Now we are ready to create the design time package. Create a new package by running the
+File-New Package wizard. Save the package as test_dt.bpk.
+2: Once again, we need to change the package options. This time, we want to configure the package
+to be a design time only package. Open the project options and check the Designtime Only button. Fill in the description
+for the package as well. Figure 2 shows the new settings for this tab.
+ 
+Figure 2. Configuring a design time only package
+ 
+3: Design time packages are only used from the IDE. There is no reason for users of your component to link with
+the design time package. For this reason, you do not need to generate a static LIB file or a BPI import file
+for your design time package. Go to the linker tab of the project options and uncheck the Generate Import Library and
+Generate .lib file options.
+ 
+Note:
+You may want to create a BPI file if your design time package contains code that another design time package might want
+to use. For example, if your design time package contains a property editor that you want to share with others, then you will want to
+create a BPI file. Other users will add your BPI file to the required list of their design time package.
+ 
+4: You usually will not need to debug the source code for your design time package. For this reason, you probably
+want to do a release build of the design time package. Go to the Compiler tab of the project options dialog and click the release
+button.
+ 
+Note:
+It is possible to debug a design time only package, but it is rare. One situation where you might want to debug a design time package
+is if you have a component editor or property editor that you want to debug. If this is the case, then you should do a debug build
+of your design time package. See the article on debugging components at design time for more
+information on debugging components and editors at design time.
+ 
+5: Create a new CPP file and add it to the design time package. This file will register
+the components that are in the runtime package. Save the file as compreg.cpp. Add the following code to the file.
+#include 
+#pragma hdrstop
+#include 
+#include 
+// Include the header file for TComponent1
+#include "component1.h"
+#pragma package(smart_init)
+// Note:
+// The namespace name must be the same name as this CPP file in all lower case
+// except for the first letter, which must be uppercase.
+namespace Compreg
+{
+ void __fastcall PACKAGE Register()
+ {
+ TComponentClass classes[] = {__classid(TComponent1)
+ };
+ RegisterComponents("Howe", classes,
+ sizeof(classes)/sizeof(TComponentClass)-1);
+ }
+}
+6: The design time package needs to link with, or use, the runtime package. The package project manager shows
+these dependencies in the Requires node of the tree. The design time package will initially require the VCL package
+(VCL50.bpi in BCB5). We need to add test_rt.bpi to that list. From the package project manager, right click
+on the Requires node in the tree and select Add from the popup menu. BCB should display a dialog box for adding
+packages to the list of required packages. Figure 3 shows this dialog box.
+ 
+Figure 3. Adding a packaged to the list of required packages
+ 
+Use the browse button to find test_rt.bpi. The file should be in the $(BCB)\projects\lib directory.
+After you find the file, click the OK button. When the dialog box closes, test_rt.bpi should appear in the
+project manager tree. Figure 4 shows what the project manager should look like at this point.
+ 
+Figure 4. The project manager after adding the runtime package to the required list
+ 
+7: You should now be ready to build the design time package. Build the project and verify that the file
+test_dt.bpl appears in the $(BCB)\projects\bpl directory. The design time package is now ready for
+installation. You can install it by pressing the Install button on the package project manager. You can also install the
+package by selecting Component-Install Package from the main menu of BCB.
+Notes and Tips:
+1: The source code and project files for this FAQ can be downloaded from the link at the bottom of page. If you have troubles
+getting your components to install, try building and installing the package projects in the ZIP file.
+2: When you install a package, that package must be a design time or a design time/runtime combo package. You cannot
+install a runtime only package. In this FAQ, you should install test_dt.bpl, not test_rt.bpl.
+3: If your runtime package depends on components in other packages, you will need to add the BPI files for
+those packages to the list of required packages. For example, if you have a package that depends on the ADO components, then you
+should add vclado50.bpi to the list of required packages for your runtime package. However, don't add anything that
+you don't need. If you change a component so that it doesn't rely on a certain package anymore, then you should remove that package
+from the list of required packages.
+4: If you register a property editor, the registration code and the code for the property editor belongs in the design time
+package. If you register one of the existing BCB property editors, then you may need to add additional packages to the required
+list for the design time package list. These packages are IDE only packages. This means that the package is a design time only
+package from Borland that should not be redistributed to your clients.
+For example, let's say that you want to register the DataField property editor for a data aware component that you
+have made. The property editor is called TDataFieldProperty. To register this property editor, your design time
+package needs to link with dcldb50.bpi and dsnide50.bpi. (the names of those packages will vary from
+one version of BCB to the next). It is perfectly fine for a design time package to rely on these files. However, you can't
+use them from a runtime package (that doesn't make a whole lot of sense anyway).
+The IDE design time BPI files are located in the $(BCB)\lib directory and usually begin with the letters
+dcl. You can use TLIB to inspect the contents of a BPI file. The following command creates a text
+list file for dcldb50.bpi.
+ > tlib dcldb50.bpi, dcldb50.lst
+I have a python script that can quickly create a list file for all
+of the BPI files in a given directory.
+5: Adding a BPI file to the required package list has the following impact on a package:
+- A USEPACKAGE macro is added to the main source file for the package.
+(ie USEPACKAGE("test_rt.bpi");
+- The BPI file is added to the PACKAGES value in the XML source of the project.
+The linker sees the PACKAGES value from the XML source. The USEPACKAGE macros appear to only be
+used by the IDE. The PACKAGES value in the project XML should match the list of USEPACKAGE macros
+in the project source. However, it is possible for these to get out of sync. If this happens, you may need edit the
+BPK file in an external editor.
+6: The function prototypes for registering property editors reside in dsgnintf.hpp. In past versions
+of BCB, it was acceptable to include this file and use its routines from a runtime package. However, with BCB5 that has changed.
+You can no longer register property editors and component editors from a package that is both a design time and an runtime package.
+The reason for this is that calling these routines from a runtime package means that the functions from dsgnintf.hpp will
+be linked with your app. Borland does not want you to deploy these IDE routines with your EXE, and it makes little sense to do so.
+In fact, you can't anymore. The property editor and component editor object code resides only in BPL files that you can't
+distribute with your app. The code is not available in any of the static VCL libraries that you can link with.
+This change in how you use dsgnintf.hpp forces you to split your combination packages into separate runtime and design time
+packages.
+7: Now that we have covered how to create a runtime package and a design time package duo, it is time for a small taste of
+bad news. The way that BCB deals with runtime package projects is seriously flawed. The problem is that unless you take steps to
+counteract it, BCB will put the same OBJ modules into the package's static LIB file that it puts into the
+dynamic BPL file.
+This is a flawed approach. When BCB compiles the CPP files in your runtime package, each component will be
+marked for export. This is required because the component must be exported from the BPL file (recall that BPL
+files are really just glorified DLLs). However, when you put these OBJs into a static LIB
+file, they are still tagged for export. If those OBJs are linked with an EXE project, the functions in the
+OBJ will be exported from the EXE. This results in the gratuitous exporting of component methods from your
+EXE. It also can result in tremendous amounts of code bloat.
+For lightweight use, this exporting problem isn't too big of an issue. However, if you make extensive use of components and packages,
+then this can be a real burden. See this article for information on how to solve the
+problem of unwanted exports (this article is still being worked on. If you get a 404 error, then the article probably is not yet posted).
+8: Borland's IMPLIB utility cannot create a BPI import library from a BPL file. The only way to
+create a BPI file is to have the linker generate one when it links the BPL. The linker will generate a BPI
+file if you pass it the /Gi switch.
+9: A design time package can register components for more than one runtime package. The relationship does not have to
+be one to one. I employ a 2-1 relationship on one of my projects at work. I decided to separate my runtime packages into two groups:
+one package with visual components and one package with non visual components. I did this because I have NT service projects and
+console mode projects that need to use the non-visual components but not the visual components. By splitting the runtime package into
+two packages, I eliminate the dependency between my non-visual projects and the visual components. Both the visual and the non-visual
+components are registered from the same design time package.
+10: It is perfectly safe to register pascal components from a C++ registration unit. In our example, COMPREG.CPP could
+have registered a component from a pascal unit. Just as in the C++ example, the pascal component unit should not contain a registration
+function.
+For the most part, the reverse scenario is not true. You cannot register a C++ component from a pascal registration unit. If you
+really want to do this, you can, but it requires a tremendous amount of unecessary work.
+ Downloads for this FAQ 
+ faq97.zip Project and source files for this FAQ. 
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

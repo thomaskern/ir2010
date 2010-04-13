@@ -1,0 +1,58 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Loops
+Loops repeat codes. For example if you need to determine if Word.exe was loaded when your program was running, you would use a loop because Word could be run at any time, so therefore we would need to search (or loop continuously) for it until the program was opened (whether 1 minute or 30). There a few kinds of Loops you will learn in this tutorial...
+Do While Loops
+This loop is probably the most commonly used loop that VB supports. The Do While loop works w/ comparison operators, such as VB's If statement does. It uses comparison operators such as , =, , >, etc... After that, you would throw in some codes... And once you finish the loop you would write "Loop," just as you would write "End If" at the end of the If statement.
+ Do While Comparison
+ VB Codes
+ Loop
+The Do While Loop continues looping if the comparison test is true, once its false, it stops. You must however make sure that all loops you have in your program finish properly, b/c if the loop doesn't finish properly, you might not be able to close your program. A never ending Loop is called an Infinite Loop.
+Example
+ Private Sub Command1_Click()
+ Dim AgeInput As Integer 'Dimming is the proper way to code 
+ age = MsgBox("You must be 18 years old or older to enter. Are you old enough?", vbQuestion + vbSystemModal + vbYesNo, "Age")
+ If age = 7 Then 'If 7 (No button) was pressed then close
+ End 'the program b/c user isn't old enough
+ Else
+ 'The user is old enough they pressed 6, which is the yes button
+ AgeInput = InputBox("How old are you?", "Age") 'User is entering age
+ End If
+ Do While AgeInput 'if the users less then 18
+ MsgBox "You aren't old enough", vbCritical, "Error"
+ 'telling them
+ AgeInput = InputBox("How old are you?", "Age")
+ 'asking them again
+ 'and this loop will continue until the user
+ 'writes an integer 18 or higher!
+ Loop
+ End Sub
+Example
+ Do While TheSum 
+ TheSum = TheSum + 1
+ Loop
+Do Until Loop
+The Do Until Loop runs the code as long as the comparison test is false.
+ Do Until Comparison
+ VB Codes
+ Loop
+ Do Until Password = Password2
+ Msgbox "The passwords do not match, please make sure they're both spelled correctly and try again!", vbCritical
+ Loop
+There are other Do Loops also.
+Here is the format for them:
+ Do
+ VB Codes
+ Loop While Comparison
+&
+ Do
+ VB Codes
+ Loop Until Comparison
+For Loop
+Example
+ For A = 1 To 10
+ Beep
+ Next A
+This simply beeps 10 times b/c it's counting from 1 to 10. You can also write "For A = 1 To 10 Step 2" which can count up to 10 by 2's... By the way in order to terminate loops early, the "Exit For" & "Exit Do" do just that, find an example here. Now you are ready to move on to some other important things...
+Back
+Next

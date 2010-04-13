@@ -1,0 +1,216 @@
+
+C++ tutorial: 1.3, Operators.
+ Section 1.3 
+ Operators. 
+ 
+ 
+ 
+ 
+Once we know of the existence of variables and constants we can begin to operate with them.
+For that purpose, C++ provides the operators, which in this language are a set of
+keywords and signs that are not part of the alphabet but are available in all
+keyboards. It is important to know them since they are the basis of the C++ language.
+You do not have to memorize all the content of this page, since the details are
+only provided to serve you as a later reference in case you need it.
+Assignation (=).
+The assignation operator serves to assign a value to a variable.
+a = 5;
+assigns the integer value 5 to variable a. The part at the left of the
+= operator is known as lvalue (left value) and the right one as
+rvalue (right value). lvalue must always be a variable whereas the right side
+can be either a constant, a variable, the result of an operation or any combination of
+them.
+It is necessary to emphasize that the assignation operation always takes place from
+right to left and never at the inverse.
+a = b;
+assigns to variable a (lvalue) the value that contains
+variable b (rvalue) independently of the value that was stored
+in a at that moment. Consider also that we are only assigning the
+value of b to a and that a later change of
+b would not affect the new value of a.
+For example, if we take this code (with the evolution of the variables' content in green
+color):
+int a, b; // a:? b:?
+a = 10; // a:10 b:?
+b = 4; // a:10 b:4
+a = b; // a:4 b:4
+b = 7; // a:4 b:7
+it will give us as result that the value contained in a is 4
+and the one contained in b is 7. The final modification
+of b has not affected a, although before we have declared
+a = b; (right-to-left rule).
+A property that has the assignation operation in C++ over other programming
+languages is that an assignation operation can be used as rvalue (or part of
+an rvalue) for another assignation. For example:
+a = 2 + (b = 5);
+is equivalent to:
+b = 5;
+a = 2 + b;
+that means: first assign 5 to variable b and then
+assign to a the value 2 plus the result of the
+previous assignation of b (that is 5), remaining
+a with a final value of 7. Thus, the following expression
+is also valid in C++:
+a = b = c = 5;
+assigns 5 to the three variables a, b and c.
+Arithmetic operators ( +, -, *, /, % )
+The five arithmetical operations supported by the language are:
++ addition 
+- subtraction 
+* multiplication 
+/ division 
+% module 
+Operations of addition, subtraction, multiplication and division would not suppose an
+understanding challenge for you since they literally correspond with their respective
+mathematical operators.
+The only one that may not be known by you is the module,
+specified with the percentage sign (%). Module is the operation that gives the rest of
+a division of two integer values. For example, if we write
+a = 11 % 3;, the variable a
+will contain 2 as result since 2 is the rest from
+dividing 11 between 3.
+Compound assignation operators (+=, -=, *=, /=, %=, >>=, , =, Greater than 
+= Greater or equal than 
+ 4) would return true. 
+(3 != 2) would return true. 
+(6 >= 6) would return true. 
+(5 = c) would return true since (2*3 >= 6) is it. 
+(b+4 > a*c) would return false since (3+4 > 2*6) is it. 
+((b=2) == a) would return true. 
+Be aware. Operator = (one equal sign) is not the same as operator ==
+(two equal signs), the first is an assignation operator (assigns the right side of the
+expression to the variable in the left) and the other (==) is a relational operator
+of equality that compares whether both expressions in the two sides of the operator are equal
+to each other. Thus, in the last expression ((b=2) == a), we first assigned
+the value 2 to b and then we compared it to
+a, that also stores value 2, so
+being true the result of the operation.
+In many compilers previous to the publication of the ANSI-C++ standard, as well as in the C
+language, the relational operations did not return a bool value
+true or false, rather they returned an
+int as result with a value of 0 in order to represent
+"false" and a value different from 0 (generally
+1) to represent "true". For more information, or if your compiler
+does not support the bool type, consult the section
+bool type.
+ 
+Logic operators ( !, &&, || ).
+Operator ! is equivalent to boolean operation NOT, it has only one
+operand, located at its right, and the only thing that it does is to invert the value
+of it, producing false if its operand is true and
+true if its operand is false.
+It is like to say that it returns the opposite result of evaluating its operand.
+For example:
+!(5 == 5) returns false because the expression at its right (5 == 5) would be true. 
+!(6 returns true because (6 would be false. 
+!true returns false. 
+!false returns true. 
+Logic operators && and ||
+are used when evaluating two expressions to obtain a single result. They
+correspond with boolean logic operations AND and OR respectively.
+The result of them depends on the relation between its two operands:
+First
+Operand
+a Second
+Operand
+b result
+a && b result
+a || b 
+true true true true 
+true false false true 
+false true false true 
+false false false false 
+For example:
+( (5 == 5) && (3 > 6) ) returns false ( true && false ).
+( (5 == 5) || (3 > 6)) returns true ( true || false ).
+Conditional operator ( ? ).
+The conditional operator evaluates an expression and returns a different value according
+to the evaluated expression, depending on whether it is true or false.
+Its format is:
+condition ? result1 : result2
+if condition is true the expression will return
+result1, if not it will return result2.
+7==5 ? 4 : 3 returns 3 since 7 is not equal to 5. 
+7==5+2 ? 4 : 3 returns 4 since 7 is equal to 5+2. 
+5>3 ? a : b returns a, since 5 is greater than 3. 
+a>b ? a : b returns the greater one, a or b. 
+Bitwise Operators ( &, |, ^, ~, > ).
+Bitwise operators modify the variables considering the bits that represent the value
+they store, that means, their binary representation.
+op asm Description 
+& AND Logical AND 
+| OR Logical OR 
+^ XOR Logical exclusive OR 
+~ NOT Complement to one (bit inversion) 
+> SHR Shift Right 
+For more information about binary numbers and bitwise operations, consult
+Boolean logic.
+Explicit type casting operators
+Type casting operators allows you to convert a datum of a given type to another.
+There are some ways to do this in C++, the most popular one, compatible with the C language
+is to precede the expression to be converted by the new type enclosed between
+parenthesis ():
+int i;
+float f = 3.14;
+i = (int) f;
+The previous code converts the float number 3.14 to an integer value
+(3). Here, the type casting operator was (int).
+Another way to do the same thing in C++ is using the constructor form: preceding the
+expression to be converted by the type and enclose the expression between
+parenthesis:
+i = int ( f );
+Both ways of type casting are valid in C++. And additionally ANSI-C++ added new
+type casting operators more specific for object oriented programming
+(Section 5.4, Advanced class type-casting).
+sizeof()
+This operator accepts one parameter, that can be either a variable type or a variable
+itself and returns the size in bytes of that type or object:
+a = sizeof (char);
+This will return 1 to a because char is
+a one byte long type.
+The value returned by sizeof is a constant, so it is always determined
+before program execution.
+Other operators
+Later in the tutorial we will see some few more operators, like the ones referring to
+pointers or the specifics for object-oriented programming. Each one is treated in its
+respective section.
+Priority of operators
+When making complex expressions with several operands on it we may have some doubts
+about which operand is evaluated first and which later. For example, in this expression:
+a = 5 + 7 % 2
+we may doubt if it really means:
+a = 5 + (7 % 2) with result 6, or
+a = (5 + 7) % 2 with result 0
+The correct answer is the first of the two expressions, with a result of 6.
+There is an established order with the priority of each operator, and not
+only the arithmetic ones (those whose preference we may already know from mathematics)
+but for all the operators which can appear in C++. From greatest to lowest priority.
+The priority order is as follows:
+Priority Operator Description Associativity 
+1 :: scope Left 
+2 () [ ] -> . sizeof Left 
+3 
+ ++ -- increment/decrement Right 
+ ~ Complement to one (bitwise) 
+ ! unary NOT 
+ & * Reference and Dereference (pointers) 
+ (type) Type casting 
+ + - Unary less sign 
+4 * / % arithmetical operations Left 
+5 + - arithmetical operations Left 
+6 > bit shifting (bitwise) Left 
+7 >= Relational operators Left 
+8 == != Relational operators Left 
+9 & ^ | Bitwise operators Left 
+10 && || Logic operators Left 
+11 ?: Conditional Right 
+12 = += -= *= /= %=
+>>= 
+ Previous:
+1-2. Variables. Data types. Constants. 
+ 
+ index 
+ 
+ Next:
+1-4. Communication through console.
+ 

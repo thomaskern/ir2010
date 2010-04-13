@@ -1,0 +1,242 @@
+
+	Yet Another Code Site - New Rich Edit 3.0 Features
+	
+	
+	
+	
+	
+	
+	
+	
+	
+Yet
+	Another Code Site
+	 
+	
+New Rich Edit 3.0 Features
+Here is a list of features new to or extended in Rich Edit 3.0. 
+This information is taken largely from Microsoft's developer site as
+of December 13, 1998, and I consider it to be very preliminary. 
+I have only begun testing of these features and, therefore, cannot
+attest to the accuracy of the information. To get the most
+up-to-date information, see the Microsoft developer site link on the
+main page and keep checking back with this site.
+I have organized the information into the following rather
+arbitrary categories (see the last category for new information):
+	
+- 
+Overview 
+	
+	
+- 
+Improved
+	character and paragraph formatting 
+	
+	
+- 
+Improved
+	program control 
+	
+	
+- 
+Nice
+	finishing touches 
+	
+	
+- 
+Where
+	to get it
+	
+- 
+Got
+	it &#150; ready to code
+	
+- 
+The
+	Latest Information
+Ok, some of this page is old news. This Rich Edit 3.0 thing
+is evolving each day so check the last category ("Latest
+Information") for the newest information.
+Overview
+The Rich Edit 3.0 control adds or improves support in a number of
+areas. Most notable to me are:
+	
+- 
+Improved character and paragraph
+	formatting including built-in normal and heading styles, paragraph
+	numbering, basic table support, and more underline types and colors.
+	
+	
+- 
+Better program control such as the
+	ability to defer screen updates across multiple content changes (you
+	should be able to reduce screen flicker when inserting and modifying
+	multiple lines of text), fetching and restoring the current scroll
+	position precisely, suspending and resuming undo recording, and the
+	ability to (as I read it) increase or decrease the size of fonts in
+	text containing mixed text sizes while retaining relative font
+	sizes. Also, there is improved support, or at least better
+	documentation, for the Text Object Model (TOM). 
+	
+	
+- 
+Other nice finishing touches such
+	as support for smart quotes, soft hyphenation, and an italics
+	cursor. 
+	
+Finally, there is better support for internationalization and "RTF
+roundtripping." (For more information on international
+character support, see the Microsoft Developer Network link on the
+main page.) RTF roundtripping, as I understand it, is the
+ability to retain RTF formatting that the Rich Edit control cannot
+actually display. For example, Rich Edit 2.0 had a number of
+character and paragraph formatting codes that the control could
+recognize but not display. You could recognize, and even set,
+formats such as paragraph borders programmatically even though the
+control would not actually display them. This is presumably
+useful only if you would be viewing the RTF text later in a more
+sophisticated word processor such as Microsoft Word. I assume
+that "improved RTF roundtripping" means that RTF formatting
+not supported directly by Rich Edit 3.0 will not be lost when editing
+the text.
+Anyway, here are some of the details:
+Improved character and paragraph formatting
+Paragraph numbering
+Rich
+Edit 2.0 supported setting paragraph numbering styles for RTF
+roundtripping. The control now supports displaying numeric,
+upper/lower alphabetic, or Roman numeral paragraph numbering. 
+The depth of paragraph numbering is apparently limited to one (per
+the online documentation). These features are implemented in
+the existing CHARFORMAT2 and PARAFORMAT2 structures.
+Simple tables
+Support for
+simple tables (no wrapping inside cells) is now included. The
+user interface is limited -- there is no support for resizing -- but
+you can delete and insert rows. By enabling "advanced
+typography," you can set column alignments within cells. 
+See the EM_GETTYPOGRAPHYOPTIONS and EM_SETTYPOGRAPHYOPTIONS messages
+for enabling the column alignment within table cells. (I am
+unsure how to put text into tables, but check back here occasionally
+for more information as I get it.) 
+Normal and heading styles
+Normal
+style and heading styles 1 through 9 are supported. See the
+EM_SETPARAFORMAT and EM_GETPARAFORMAT messages and the TOM
+interfaces. 
+More underline types
+Rich
+Edit 2.0 implemented more underline types than were actually
+documented. Now we get documented support for dashed, dash-dot,
+dash-dot-dot, and dot underlines. See the CHARFORMAT2 structure
+for more information. 
+Underline coloring
+15 colors
+of underlines are now documented as supported. See the
+CHARFORMAT2 structure for more information. 
+Hidden text
+RTF roundtripping
+support is now provided for hidden text. 
+Improved program control
+Zoom
+In older
+versions of the Rich Edit control, the size of the text within the
+Rich Edit control on the screen was a direct function of the
+formatted size of the text in the control. Now, you can
+increase or decrease the size of the text within the control from
+1/64th to 64 times the underlying font size. (Tests indicate a
+downward limit of 100%, significant visual evidence of upward scaling
+beyond 200%, and bugs in reporting the true zoom factor when less
+than 100% (i.e., ttp://www.microsoft.com/msdownload/platformsdk/setuplauncher.htm
+From the Platform SDK page, there is a link to the Platform SDK
+Download page labeled as something like "Platform SDK setup." 
+Currently, it takes you to the second link above which allows you to
+run the first stage setup program. This setup program lets you
+select which Platform SDK components to download. Once you have
+selected the items to download, it runs a second setup program that
+actually downloads and installs the selected items. Warning: 
+I was worried that Microsoft would again change the links so I
+grabbed all of the components at once. This download took
+several days at 56 kbps to complete and, I think, more than a
+gigabyte of disk space. You probably will want to be somewhat
+more selective although I cannot tell you what, exactly, you will
+need for Rich Edit 3.0.
+Note: The Platform SDK help files contain the Rich Edit
+documentation. This is great -- no more going online to get the
+basic information!
+Many thanks to Mr. Zulkarnain and Mr. Bullock for giving us
+something to work with. If you know where to find more recent
+versions of these files, please share.
+Got it &#150; ready to code
+Rich Edit 3.0 is no more complex than Rich Edit 2.0. 
+Microsoft recently revamped the MSDN site (see the Links page) and it
+now includes substantially more information about both versions. 
+Unfortunately, some of the information is inaccurate or easily
+misunderstood, so I will be working through it for a while. Let
+me know what you learn.
+Once you have Rich Edit 3.0 installed, see the Rich
+Edit 3.0 Code Samples page for what I have learned about the Rich
+Edit 3.0 so far and code to get you started using it with the Borland
+VCL.
+The Latest Information
+Joel Harrison informed me that the "\page" RTF code does
+actually work in Rich Edit 3.0. I have tested and confirmed
+this with Rich Edit 3.0 version 5.30.18.0300 on Windows 98. 
+This is great news -- thanks, Joel! Now the bad news: The
+obvious way to insert a page break in Rich Edit 3.0 is to use the
+PFE_PAGEBREAKBEFORE and PFM_PAGEBREAKBEFORE flags in the PARAFORMAT2
+structure. This inserts a "\pagebb" RTF code which
+does nothing when rendering. So how do we insert the "\page"
+code and, once inserted, how do we find and remove it?
+Shawn Bullock offers the following: "Just as an update,
+there is now another source where one might find the necessary header
+files and (dlls?)... the September Edition of Platform SDK. My
+CD came with the October shipment of MSDN Universal (likely
+professional also) and can still be downloaded in the usual spot, and
+is also available as part of the Windows2000 SDK, too..."
+New information as of January 13, 2000
+Would you believe that Microsoft has a page that looks up DLLs and
+tells you where they came from? Thanks to a frequent but
+anonymous (by his request) visitor for the following links: 
+To search Microsoft's site for the distribution code/product that
+contains a specific DLL. See The
+Microsoft DLL Help Database.
+He added the following:
+For NT -- So you don't have to redownload the whole platform sdk,
+I should also say that the msi package is available at:
+ftp://ftp.microsoft.com/developr/PlatformSDK/Jan2000/msi/winnt/x86/instmsi.exe
+or For Windows 9x -- 
+ftp://ftp.microsoft.com/developr/PlatformSDK/Jan2000/msi/win95/instmsi.exe
+Eric DuPont provided the following source for Rich Edit 3.0
+(riched20.dll; version 5.30.13.0906): 
+http://www.smartftp.com/smartftp/Riched30.exe. 
+The home page is http://www.smartftp.com/download.html.
+Please send me additional information as you get it or
+figure it out so that we can help those that follow -- rest assured
+that you will get full credit for your contributions to the site.
+In particular, if you learn how to use new functionality
+or identify other products with which Rich Edit 3.0 is distributed,
+please let me know.
+	
+	
+	
+	
+	
+Home
+	| Top
+	Of Page |
+	Code
+	| Papers
+	| FAQs
+	| Links
+	| Search
+	| Feedback
+	 
+	
+	
+Page updated January 16, 2000
+	 
+	
+Copyright
+© 1998, 1999, 2000 Thin Air Enterprises and Robert Dunn. 
+All rights reserved.

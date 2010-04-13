@@ -1,0 +1,180 @@
+
+Free Java Help --- Articles --- Forte Review
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Forte Review 
+ 
+What is Forte?
+ Forte is a Java IDE (Integrated Development Environment) 
+made by Sun. It basically is a program for writing Java programs. The thing that makes Forte
+so drastically different from just the simple JDK is that it uses a Graphical User Interface,
+which makes it much more user friendly than using JDK through DOS. The goal of Forte
+is to make life easier for the programmer. All of the things Forte does can be done with the normal
+JDK, it is just harder with the JDK.
+What is so good about Forte?
+ I just started using Forte yesterday, and am quite impressed with
+it. Sun did a very nice job with this product. I would have to say that probably the best thing
+about Forte is the ease of creating a new "project". For example, I might want to make a new applet.
+In DOS, first you would have to create the .java file with all the code needed to begin an applet, 
+such as the class name and having it extend applet, etc. etc. etc. After a while, typing the same
+stuff over and over again can get pretty annoying (well, for those of us who are lazy anyway :) ). Then
+you have to make an HTML file with an applet tag which points to the appropriate class.
+ 
+In Forte, to begin a new applet, just go to File, then "New From Template". 
+Then you choose the Applet template under the Classes folder. Next it asks you for the class name. In the example
+I give you, the class name will be freejavahelp. You click okay, and the following pops up in the code window:
+/*
+ * freejavahelp.java
+ *
+ * Created on October 31, 2000, 5:18 PM
+ */
+/**
+ *
+ * @author Jim H
+ * @version 
+ */
+public class freejavahelp extends java.applet.Applet {
+ /**
+ * @param args the command line arguments
+ */
+ public void init () {
+ }
+}
+ Then, it gets even better. You can type in a little code, click one
+button to compile instead of typing "javac -g freejavahelp.java". Then when it is done compiling you simply
+click the play button. It is really really simple. 
+ Another feature that I just learned how to use by reading the manual (within the last five minutes, thats how simple it is)
+is the Form Editor. This is an incredible feature for the newbie who might not know how to use components himself.
+Basically what it does is allow you you set up Graphical User Interfaces really easily. You click on
+the component you want (such as Button, Label, or Choice), and then you click where you want it to go on the
+form based on the layout you chose. Doing this enters the code into the Java file for you. In short, what the Form
+Editor does is much like what Visual Basic does. It allows you to set up a GUI extremely easily, even if you have
+no brain at all. You can use AWT or Swing with this.
+ Another advantage of the form editor is that it can help you to learn about parts
+of Java you might not be familiar with. I personally am not very familiar with Swing, and rather than buy a book
+on Swing, I will just fiddle around with the form editor and will see what code comes up because of it. Yay :)
+Disadvantages:
+ Believe it or not, there are some definite problems with Forte. One is that it
+makes Java easy. Too easy. You might think this is good, but in some cases it is not. To a newbie, learning the
+language is very important. If you just click where you want components to go, you will never know how to do it
+without the Form Editor. If you ever need something completely customized, you won't be able to do it, because you
+learned how to drag and drop components, not how to write the code for them.
+ Another problem that I see with Forte is the speed. I downloaded Forte for my old Pentium
+120mHz. I would go to launch Forte, and it was so slow it wouldn't open. I let my computer sit for hours, and it didn't
+open. The screen wasn't frozen either. Even when I open it on my new 1gHz, it takes 30 seconds to load. This may
+seem like not bad, but this is 10 seconds longer than it takes me to boot up Windows Millenium, and 30 times the amount of
+time it takes me to load Internet Explorer 5.5 . So I think it is safe to say it is pretty slow.
+Overall Impression
+ It is needless to say that I am very impressed with Forte. I recommend it to anyone
+who has a computer who can handle it and who already knows Java. If you don't know Java, please try to not use Forte
+until you do. It will help you tremendously in the end to be able to code your applets without dragging and dropping
+components. The download is only 12 or so megabytes, and can be downloaded from Sun's website.
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

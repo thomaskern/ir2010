@@ -1,0 +1,420 @@
+
+ 
+GNE -- Game Networking Engine
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+GNE -- Game Networking Engine
+ Last updated: 
+ Friday, March 8, 2002
+ 
+ 
+Thank you very much to 
+ for providing services for GNE.
+ 
+ 
+The GNE Protocol Version 1.0 fifth 
+ draft is released! Please read over it and check it out, and send 
+ me any input.
+ 
+About GNE :: Feature 
+ List :: Current Progress :: Help 
+ Wanted :: Dependancies :: Documentation
+ 
+On the SourceForce 
+ Project Page: News 
+ :: Download 
+ :: Surveys
+ 
+About GNE
+ 
+GNE, or the Game Networking Engine, is a cross-platform, multithreaded, 
+ C++ networking library with an API specifically addressing the needs of 
+ game networking. There are two parts of GNE, the mid-level classes that 
+ handle packeted, error checked, and bandwidth throttled communication 
+ between two peers. This will be completed with GNE 0.5.
+ 
+The high-level classes will be worked on after GNE 0.5 and will handle 
+ things like unique player ID's, player-to-player text communications, 
+ and develop a framework for a game server. It will also have a list server 
+ which is a server list players can connect to find games to play in.
+ 
+Feature List
+ 
+Legend: In 0.45 :: In 
+ current CVS :: In 0.5 :: In 
+ GNE 1.0
+ The current CVS version also improves, extends, and fixes many bugs in 
+ the areas already marked green.
+ 
+ 
+- Provide a C++ class interface for threads, mutexes, 
+ and condition variables.
+ 
+- Provide a C++ class interface for timers and timer 
+ callbacks.
+ 
+- A very capable and flexible logging and debugging system 
+ which is filterable and reports various events to the log file (file 
+ name, line number, class, this pointer, thread name, and printf style 
+ messages).
+ 
+- Provide a simple C++ implementation of console I/O 
+ functions to be used for the GNE examples, and for text-only servers 
+ using GNE. This implementation is different from ncurses or conio because 
+ it thread-aware to allow output and input to happen from multiple threads 
+ at the "same" time.
+ 
+- Provide a C++ class interface for packets, from which 
+ the user is expected to derive their game-specific packet classes from.
+ 
+- A set of standard packet classes.
+ 
+- Provide a proper way of serializing packets in endian-independant 
+ format. Some of this functionality will be handled by HawkNL.
+ 
+- Provide the user with a base client/server protocol 
+ framework, handling these specific events, common to virtually any game: 
+ 
+ 
+- Low-level connections which are bandwidth monitored 
+ and controled.
+ 
+- Checking for server/client network protocol versions.
+ 
+- Handling text messages to be sent to all players.
+ 
+- Assigning unique IDs to players, and managing player lists, allowing 
+ you to distribute data to the whole group, or parts of it.
+ 
+- Players entering, leaving, 
+ or timing out at any time (the user can restrict joining 
+ to game start only), handled directly by the GNE code.
+ 
+- Time Syncronization between peers.
+ 
+ 
+ 
+- Provide the user an abstraction of "connections" to 
+ a server/client: 
+ 
+ 
+- Connections where all packets arrive and arrive in order (packets 
+ over TCP, SPX or similar)
+ 
+- Connections where all packets are not guaranteed arrival (UDP, 
+ IPX or similar)
+ 
+ 
+ 
+- Provide an event-driven scheme for responding to sockets, 
+ which will work similarly to MFC. The user should overload the events 
+ they wish to respond to.
+ 
+- Provide a framework/protocol for a server list server, 
+ similar to networks like battle.net or Half-Life, supporting multiple 
+ types of games with optional game-specific information. Unlike battle.net, 
+ the server list will simply act as a database sending a list of IP addresses, 
+ their game type, and the optional game-specific data.
+ 
+ 
+Current Progress
+ 
+GNE is passing the middle stages of development. With the completion 
+ of GNE 0.5 the mid-level classes will be completed. After GNE 0.5 the 
+ high-level classes will be designed, prototyped, implemented, then tested. 
+ After that the list server will be implemented and GNE will be completed.
+ 
+Comming Features
+ 
+This latest version of GNE (0.49) was supposed to be 0.5, the completed 
+ "mid-level" portion of GNE which is GNE without the high-level 
+ game engine classes. There are a couple of simple missing features which 
+ will be implemented in 0.5:
+ 
+ 
+- Timeouts are not yet detected automatically, but doing so yourself 
+ now will not be overly difficult. Even the final version of timeout 
+ detection will be somewhat limited as GNE cannot force the other end 
+ to respond to anything, including PingPackets -- only you can send packets, 
+ but GNE will trigger an event (onTimeout) after a connection has been 
+ idle for a user-specified amount of time.
+ 
+- Thread priorities have not been implemented because I haven't been 
+ able to figure how how to do this portably with pthreads yet -- if you 
+ know how, feel free to speak up ;).
+ 
+- Throwing exceptions in the readPacket and maybe the writePacket methods 
+ will be allowed and caught to signal the caller that parsing of the 
+ packet cannot be completed. Not having this functionality is not very 
+ bad right ow as TCP and UDP protocols guarantee that data inside of 
+ packets is always sent correctly if it arrives, therefore readPacket 
+ should only fail due to a programming error. For now it is advised that 
+ you use asserts to check for this problem.
+ 
+ 
+Help Wanted
+ 
+I am currently looking for some people to help me with this project. 
+ Anyone at any skill level will be able to help! Actually if you feel less 
+ than confident about your networking programming ability then it is your 
+ help I need the most, because I need to make sure the GNE API is easy 
+ to use and understand for people who have not programmed on it and understand 
+ it inside and out already (like me).
+ 
+I need people at this point in the project to start taking a part simply 
+ by joining the mailing lists and/or commenting on the documentation and 
+ API of GNE to help address the following questions and help with the following:
+ 
+ 
+- Do you understand the API? If not, is there a way it could be redone 
+ or modified to help it become easy to use?
+ 
+- Are you able to follow the documentation? Do you find the doxygen 
+ documentation useful? Or is the Rose UML Diagrams more useful to you?
+ 
+- Participate in the mailing list in helping choose the features of 
+ GNE and how the API should work.
+ 
+ 
+If you are feeling like helping a more substantial amount, consider the 
+ following ways you can help GNE improve faster:
+ 
+ 
+- Simply by downloading GNE, testing the examples and reporting errors.
+ 
+- Becoming an official tester/maintainer of a particular port of GNE 
+ and the makefiles that are used for it.
+ 
+- Writing makefiles/scripts/project files for your own compiler that 
+ is not already supported.
+ 
+- Help with providing documentation/tutorials, adding examples, or adding 
+ comments for the existing examples from perspectives other than mine.
+ 
+ 
+And lastly, of course, if you feel up to it, I can always use an additional 
+ coder or two, as right now I am working on the project myself in my spare 
+ time.
+ 
+Any help you provide for GNE whether from an email of encouragement to 
+ becoming an GNE developer will help to improve the quality and speed of 
+ development of GNE and I thank you.
+ 
+Dependancies
+ 
+The following things are needed for GNE:
+ 
+ 
+- ISO-1998 compliant C++ compiler 
+ 
+ 
+- Out-of-the-Box for: 
+ 
+ 
+- Windows: MSVC6, MingW
+ 
+- Linux: GCC 2.9x and GCC 3.x
+ 
+- Solaris 8: Intel or UltraSparc CPUs, GCC 2.9x and GCC 3.x
+ 
+ 
+ 
+- MSVC 4 or 5 might also work, and other *NIX as well, but testers 
+ are needed for this!
+ 
+ 
+ 
+- The HawkNL networking library 
+ from HawkSoft, version 1.5b2 
+ or higher. The download link is on the left sidebar when you are in 
+ the HawkNL section. Version 1.5b1 may be used but has a bug which will 
+ cause GNE protocol violations due to it misreporting reliable packet 
+ sizes.
+ 
+- pthreads implementation (pthreads-win32 
+ for Windows used for Windows), UNIX already has pthreads support. 
+ HawkNL comes with a binary distrobution which is acceptable to use with 
+ GNE as well.
+ 
+- A curses library like libncurses5.2 (Linux) is needed to run GNE under 
+ UNIX environments.
+ 
+ 
+Documentation
+ 
+This documentation is for GNE 0.49. If you are using the CVS version, 
+ it is recommended that you download doxygen 
+ and generate the docs using the supplied doxygen.cfg file. The Rational 
+ Rose stuff is offline for now as it is hard to maintain and totally sucks. 
+ If anyone actually used it, email me and I'll put it back up.
+ 
+ 
+- Requirements Document (HTML)
+ 
+- GNE FAQ
+ 
+- GNE Protocol Specification (HTML document)
+ 
+- Rational Rose 2001 model file (.mdl)
+ 
+- Rational Rose online model file (class diagrams in PNG and more generated 
+ by Rose)
+ 
+- Online HTML documentation generated by doxygen
+ 
+ 
+ 

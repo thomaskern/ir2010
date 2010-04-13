@@ -1,0 +1,77 @@
+
+ malloc()
+ 
+ 
+malloc-Allocate memory
+Synopsis
+ #include &#060;stdlib.h&#062;
+ b = malloc(n);
+ void *b; /*block pointer */
+ size_t n; /*number of bytes */
+Description
+ The malloc function allocates a block that is n bytes long and is
+ aligned in such a way that you can cast the block pointer to any
+ pointer type. If the block cannot be allocated, a NULL pointer is
+ returned.
+ The malloc function can only allocate 64 kilobytes at a time if
+ short integers are used.
+Returns
+ A NULL pointer is returned if there is not enough space for the
+ requested block.
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;stdlib.h&#062;
+ #include &#060;string.h&#062;
+ struct LIST
+ {
+ struct LIST *next;
+ char text[2];
+ };
+ void main(int argc, char *argv[])
+ {
+ struct LIST *p;
+ struct LIST *q;
+ struct LIST list;
+ char b[256];
+ int x;
+ printf("nBegin new group...n");
+ for (q = &list; ; q = p)
+ {
+ printf("Enter a text string: ");
+ if (fgets(b,sizeof(b),stdin) == NULL)
+ {
+ break;
+ }
+ if (b[0] == NULL)
+ {
+ if (q == &list)
+ {
+ printf("n");
+ exit(EXIT_SUCCESS);
+ }
+ break;
+ }
+ x = sizeof(struct LIST) - 2 + strlen(b) + 1;
+ p = malloc(x);
+ if (p == NULL)
+ {
+ printf("No more memoryn");
+ exit(EXIT_FAILURE);
+ }
+ q-&#062;next = p;
+ p-&#062;next = NULL;
+ strcpy(p-&#062;text, b);
+ }
+ printf("nnTEXT LIST...n");
+ p = list.next;
+ while(p != NULL)
+ {
+ q = p-&#062;next;
+ printf("%s", p-&#062;text);
+ free(p);
+ p = q;
+ }
+ list.next = NULL;
+ }
+See Also
+ calloc , free , realloc 

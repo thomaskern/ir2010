@@ -1,0 +1,883 @@
+
+Simple GCC projects
+- GNU Project - Free Software Foundation (FSF)
+Simple GCC projects
+This page lists projects which are feasible for people who aren't
+intimately familiar with GCC's internals. Many of them are things
+which would be extremely helpful if they got done, but the core team
+never seems to get around to them. They're all busy wrestling with
+the problems that do require deep familiarity with the
+internals. We hope this will make it easier for more people to assist
+the GCC project, by giving new developers places to jump in.
+Most of these projects require a reasonable amount of experience
+with C and the Unix programming environment. Do not despair if any
+individual task seems daunting; there's probably an easier one. If
+you have no programming skills, we can still use your help
+with documentation or the bug database. See below.
+We assume that you already know how to get the
+latest sources, configure and build the compiler, and run the test
+suite. You should also familiarize yourself with the
+requirements for contributions to GCC.
+Many of these projects will require at least a reading knowledge of
+GCC's intermediate language,
+RTL.
+It may help to understand the higher-level tree structure as
+well. Unfortunately, for this we only have an incomplete, C/C++ specific manual.
+Bug patrol
+These projects all have to do with bugs in the compiler, and our
+test suite which is supposed to make sure no bugs come back.
+- Analyze failing test cases.
+Pick a test case which fails (expected or unexpected) with the
+present compiler, and try to figure out what's going wrong. For
+internal compiler errors ("ICEs") often you can find the problem by
+running cc1 under the debugger. Set a breakpoint on
+fancy_abort (this happens automatically if you work in
+your build directory). When gdb stops, go up the stack to the
+function that called fancy_abort. It will have just
+performed some sort of consistency check, which failed. Normally this
+check will be visible right there. (If the ICE prints "Tree check:"
+or "RTL check:" before the usual message, the check is hiding in the
+accessor macros.) Examine the data structure that was checked. Walk
+back in time and figure out when it got messed up.
+There are a large number of routines which you can call from the
+debugger, to display internal data in readable form. Their names all
+begin with "debug_". The most useful ones are
+debug_tree for printing tree structures,
+debug_rtx for printing chunks of RTL, and
+debug_bb and debug_bb_n for printing out
+basic block information.
+If the problem is that the compiler generates incorrect code, the
+place to start is the RTL debugging dumps. Run the compiler with the
+-da switch. This will generate twenty or so debug dumps,
+one after each pass. Read through them in order (they are numbered).
+The code should start off correct, but then become erroneous. When
+you find the mistake, enter the debugger, set a breakpoint on the pass
+that made the mistake, and watch what it does. You can find out the
+name of the entry point for each pass by reading through
+rest_of_compilation in toplev.c.
+- Get rid of testsuite/gcc.misc-tests and
+testsuite/g++.dg/special.
+These are a handful of tests each that aren't handled by the normal
+test sequence. We'd like to get rid of the special case framework.
+We think that they're only done this way for historical
+reasons, but we aren't sure. Most of the work would be figuring out
+what's going on in those directories. You'll need some understanding
+of Expect, TCL, and the DejaGNU test harness.
+- Cross-reference all the tests and find all the duplicates.
+It's likely that the same test has been added more than once, over
+the years. You'd need to figure out a sensible definition of "the
+same test" that can be checked mechanically, then write a program that
+does that check, and run it against the entire test suite.
+- Set up more autobuilders.
+We already have an autobuilder by Geoff Keating (see gcc-regression),
+which nags people in e-mail when they break the tree.
+We'd like to have a similar setup for other platforms. At the
+least we should have one for each of the primary evaluation platforms
+listed in the criteria for GCC
+3.0. However, the more the better.
+It would be nice if at least one of these platforms were beefy
+enough that it could run with RTL consistency checks enabled. This
+slows the compiler down by an order of magnitude, but has found plenty
+of bugs in the past.
+In addition to the existing systems, you should look at the Tinderbox system
+developed for the Mozilla project.
+Kaveh Ghazi 
+suggests that the autobuilders should keep track of regressions in the
+number of warnings, and bug patchers until they are fixed, just as
+they do for testsuite regressions now.
+General code cleanliness
+These are projects which will generally make it easier to work with
+the source tree.
+- Warnings patrol.
+Simple: build the tree, run the warn_summary script
+(from the contrib directory) against your build log, then
+go through the list and squelch the warnings. In most cases this is
+easy. However, if you have any doubt about what some piece of code
+does, ask. Sometimes the proper fix is not obvious. For example,
+there are a lot of warnings about "comparison between signed and
+unsigned" in a GCC build, but unless you really know what you're
+doing, you should leave them alone.
+Also, some warnings are spurious: for example, the floods
+of "ISO C requires rest arguments to be used" complaints on some
+platforms are technically correct but useless, because the offending
+macro is printf. If you can patch the part of the
+compiler that issues spurious warnings, so it doesn't anymore (but
+still does generate the warning where it's appropriate), we're happy
+to take those patches too.
+- Eliminate support for compiling with traditional C compilers in
+the language frontend subdirectories.
+See: this
+announcement and the discussion following it which clarifies the
+guidelines. In addition to the cleanups listed
+here, one can also consider removing unnecessary casts, such as
+those on the return value of xmalloc, alloca
+and other memory allocation routines, casts on the arguments passed
+e.g. to the mem* functions, casts on 0
+e.g. used in assignment, initialization or comparison, etc. Note
+casts on values passed to stdarg functions or used in ~
+mask operations may still be necessary since they ensure type
+width.
+- Find and expunge all the places where one .c file includes
+another.
+In most cases this is just sloppiness, and can easily be converted
+to separate compilation of both files, then linking the two objects
+together. There may be places where someone is trying to simulate
+generic programming through the macro facility. Discuss what should
+be done with the maintainers of those files.
+- Break up enormous source files.
+Not terribly hard. Watch out for file-scope globals. Suggested
+targets:
+	472k java/parse.y
+	440k cp/decl.c
+	428k combine.c
+	356k dwarf2out.c
+	336k expr.c
+	308k cp/pt.c
+	300k loop.c
+	248k cp/class.c
+	244k cse.c
+	240k flow.c
+	232k fold-const.c
+	228k c-decl.c
+	224k function.c
+	220k cp/typeck.c
+	220k c-typeck.c
+	204k dwarfout.c
+There are several other files in this size range, which I have left
+out because touching them at all is unwise (reload, the Fortran front
+end). You can try, but I am not responsible for any damage to your
+sanity which may result.
+- Remove as much code from parser actions as possible.
+This goes more or less with the above. Good existing code:
+expr_no_commas:
+ expr_no_commas '+' expr_no_commas
+ { $$ = parser_build_binary_op ($2, $1, $3); }
+Bad existing code:
+cast_expr:
+ '(' typename ')' cast_expr %prec UNARY
+ { tree type;
+ int SAVED_warn_strict_prototypes = warn_strict_prototypes;
+ /* This avoids warnings about unprototyped casts on
+ integers. E.g. "#define SIG_DFL (void(*)())0". */
+ if (TREE_CODE ($4) == INTEGER_CST)
+ warn_strict_prototypes = 0;
+ type = groktypename ($2);
+ warn_strict_prototypes = SAVED_warn_strict_prototypes;
+ $$ = build_c_cast (type, $4); }
+All the logic here should be moved into a separate function in
+c-typeck.c, named something like parser_build_c_cast. The point of
+doing this is, the less code in Yacc input files, the easier it is to
+rearrange the grammar and/or replace it entirely. Also it makes it
+less likely that someone will muck with action code and then forget to
+rebuild the generated parser and check it in.
+We also want to minimize the number of helper functions embedded in
+the grammar file. java/parse.y is a particularly bad
+example, having upwards of 10,000 lines of code after the second
+%%.
+- Break up enormous functions.
+This is in the same vein as the above, but significantly harder,
+because you must take care not to change any semantics. The general
+idea is to extract independent chunks of code to their own functions.
+Any inner block that has a half dozen local variable declarations at
+its head is a good candidate. However, watch out for places where
+those local variables communicate information between iterations of
+the outer loop!
+With even greater caution, you may be able to find places where
+entire blocks of code are duplicated between large functions (probably
+with slight differences) and factor them out.
+- Break up enormous conditionals.
+Harder still, because it's unlikely that you can tell what the
+conditional tests, and even less likely that you can tell if that's
+what it's supposed to test. It is definitely worth the effort if you
+can hack it, though. An example of the sort of thing we want
+changed:
+ if (mode1 == VOIDmode
+ || GET_CODE (op0) == REG || GET_CODE (op0) == SUBREG
+ || (modifier != EXPAND_CONST_ADDRESS
+ && modifier != EXPAND_INITIALIZER
+ && ((mode1 != BLKmode && ! direct_load[(int) mode1]
+ && GET_MODE_CLASS (mode) != MODE_COMPLEX_INT
+ && GET_MODE_CLASS (mode) != MODE_COMPLEX_FLOAT)
+ /* If the field isn't aligned enough to fetch as a memref,
+ fetch it as a bit field. */
+ || (mode1 != BLKmode 
+ && SLOW_UNALIGNED_ACCESS (mode1, alignment)
+ && ((TYPE_ALIGN (TREE_TYPE (tem))
+ = 0
+ && (TREE_CODE (TYPE_SIZE (TREE_TYPE (exp)))
+ == INTEGER_CST)
+ && 0 != compare_tree_int (TYPE_SIZE (TREE_TYPE (exp)),
+ bitsize)))))
+ || (modifier != EXPAND_CONST_ADDRESS
+ && modifier != EXPAND_INITIALIZER
+ && mode == BLKmode
+ && SLOW_UNALIGNED_ACCESS (mode, alignment)
+ && (TYPE_ALIGN (type) > alignment
+ || bitpos % TYPE_ALIGN (type) != 0)))
+ {
+- Verify all the object->header dependencies in the Makefiles.
+Mega bonus points for working out a way to do automatic dependency
+generation without relying on features of GCC or GNU
+make. And we don't want a make dep pass if it can
+possibly be avoided.
+- Figure out some way to get dependencies of source files on
+tm.h and xm-host.h headers.
+Presently these dependencies are omitted entirely. Almost
+everything has to be rebuilt if you change tm.h or
+xm-host.h, and right now the only way to do
+that is rebuild from scratch.
+- Delete garbage.
+#if 0 blocks that have been there for years, unused
+functions, unused entire files, dead configurations, dead Makefile
+logic, dead RTL and tree forms, and on and on and on. Depending on
+what it is, it may not be obvious if it's garbage or not. Go for the
+easy ones first.
+- Revisit issues put off till later.
+Find comments of the form /* Look at this again after gcc 2.3 */,
+or /* ... after date */ where date was sometime in
+the last millennium, and investigate. Analyze test cases marked XFAIL
+and patch them.
+- Disentangle the current web of header-header interdependencies.
+This is a major undertaking, and you should be able to deal with
+all kinds of lurking monsters.
+At present, most of GCC's internal headers use whatever they need
+without any consideration for whether or not it has been declared yet.
+This forces the users of those headers to know what each one needs,
+and use it explicitly. Worse, there is no simple or even documented
+relation between the source file where something is defined, and the
+header where it is declared.
+There are some horrible kludges lurking here and there. In places
+we avoid prototyping things if we haven't seen necessary typedefs, for
+example. Some things are declared in several different headers, each
+used by a disjoint subset of the source. Odds are that some of those
+duplicates don't match the definition.
+Your goals for this project:
+ 
+- 
+It should be possible to include any header without having to
+ worry about what its dependencies are; i.e. all headers should
+ explicitly pull in their dependencies. (like the standard library
+ headers).
+ 
+As an exception, headers should not explicitly reference
+ config.h, system.h, or
+ ansidecl.h. Nor should they reference any headers
+ explicitly included by system.h, such as
+ stdio.h. They should reference other headers
+ from libiberty or libc, where necessary.
+ 
+- 
+Each function, global declaration, or type definition should
+ appear in exactly one header. Forward declarations of structs and
+ unions do not count.
+ 
+- 
+That one header should have an obvious relationship to the
+ nature of the thing being declared. It should never be necessary to
+ grep the entire source tree to figure out which header you need.
+ 
+- 
+Each header should have the minimum possible number of
+ references to other headers. If a header describes ten routines,
+ two of which require rtl.h, and the other eight are
+ useful by themselves, then the header should be split so that they
+ can be used without dragging in RTL. Possibly the corresponding
+ source file should be split to match.
+- Disambiguate flags.
+Find all the places where one flag bit is used with several
+different meanings depending what sort of tree or RTL it is in, and
+give each different meaning a different accessor macro. Augment the
+tree/RTL checking macros so they verify that the accessors match the
+data.
+- Rename routines used by the debugging information generators, so
+they do not occupy the same namespace as routines intended to be used
+when debugging the compiler.
+Currently, if you ask gdb for a list of all the functions whose
+names begin with "debug_", you get a mixed bag of
+data structure dumpers and debug-info generators:
+(gdb) call debug_
+debug_args debug_line_section_label
+debug_bb debug_loop
+debug_bb_n debug_loops
+debug_binfo debug_name
+debug_bitmap debug_no_type_hash
+debug_bitmap_file debug_print_page_list
+debug_biv debug_ready_list
+debug_call_placeholder_verbose debug_real
+debug_candidate debug_regions
+debug_candidates debug_regset
+debug_define debug_reload
+debug_dependencies debug_reload_to_stream
+debug_dwarf debug_rli
+debug_dwarf_die debug_rtx
+debug_end_source_file debug_rtx_count
+debug_flow_info debug_rtx_find
+debug_giv debug_rtx_list
+debug_ignore_block debug_rtx_range
+debug_info_level debug_sbitmap
+debug_info_section_label debug_start_source_file
+debug_info_type debug_stderr
+debug_insn debug_tree
+debug_iv_class debug_type_names.2
+debug_ivs debug_undef
+It is not at all obvious which is which. Rename functions so that
+everything which is useful from the debugger has a name starting with
+debug_, and nothing else does.
+- Change code formatting to follow the GCC coding conventions
+consistently.
+Port cleanliness
+This involves mostly bringing back ends up to date with the current
+state of the art in the machine-independent code. Many ports date
+back to the 1980s and have not been actively maintained since then.
+There is also work to be done in cleaning up the places where the MI
+code uses machine-specific macros.
+In addition to understanding RTL, you need to read the machine description and target macros sections of the GCC
+manual.
+- Migrate default definitions of tm.h macros out of
+random source files into defaults.h.
+It would be a lot more work, but we might consider including
+defaults.h first, have it define everything
+unconditionally, then have tm.h's #undef
+whatever they need to override.
+- Remove commented-out definitions of macros and descriptions of
+macros which ports do not use from all tm.h files.
+This is so that grepping for all the uses of a particular macro
+will get no false positives.
+- Remove comments above macro definitions in the tm.h
+files that only describe the meaning of the macro and say nothing specific
+to that machine.
+These comments have largely been copied from one tm.h
+file to another, and many may be out of date by now. Target macros
+should be documented in tm.texi only, not in the
+individual target headers. However, where there are comments
+describing the reason for a particular target's choice of definition,
+or saying something about that choice beyond repeating what the
+definition means, those comments should be preserved.
+When removing comments describing target macros (whether on
+definitions of those macros, or on commented-out definitions), make
+sure that the macro is documented in tm.texi and the
+comments don't say anything more that ought to be in the manual.
+- Convert huge macros in each tm.h to functions in the
+corresponding tm.c.
+This can be tricky when a huge macro is defined not by the general
+tm.h for a processor, but the specific one for some
+particular target triple. The best known approach here is to set some
+flag macros in the target-specific tm.h, then
+#ifdef up the function in tm.c. Better
+ideas would be appreciated.
+- Adjust the definitions of porting macros to make the above easier.
+There are some macros that need a lengthy definition, and are
+required to perform a goto to a label outside the macro
+under certain conditions. This makes moving all the logic into a
+separate function difficult. These macros should be replaced by
+new macros which return a flag instead. The goto then happens in the
+code that uses the macro.
+- Convert configurations to the new style where tm.h chunks do not
+include each other incestuously.
+Instead, config.gcc lists each chunk explicitly, in
+order from least to most specific.
+- Clean up #ifdef messes in tm.h chunks.
+The preferred style is: Chunks are used in order from least to most
+specific. Each chunk mentions only the macros it has specific
+definitions for. Each chunk #undefs any previous
+definition first. (Contrary to popular belief, it is always safe to
+#undef a macro, whether or not it has already been
+defined.)
+- Make porting macros testable at runtime.
+We'd like to be able to change more of the compiler's behavior at
+runtime using -m switches. To do this, regions of code
+that presently read
+ #ifdef MACRO
+ ... code ...
+ #endif
+must become instead
+ #ifdef MACRO
+ if (MACRO) 
+ ... code ...
+ #endif
+If possible (this depends on which macro it is) a third form is
+even better: in defaults.h
+	#ifndef MACRO
+	#define MACRO 0
+	#endif
+and then the users become simply
+	 if (MACRO)
+	 ... code ...
+This style subjects more code to compile-time checking, so bit-rot
+in obscure target-specific features is more likely to be noticed.
+- Reverse the sense of TARGET_MEM_FUNCTIONS.
+This macro controls which set of bulk memory operation routines are
+used internally by the compiler. The ISO C standard provides
+memcpy, memcmp, and memset;
+older BSD-derived systems have instead bcopy,
+bcmp, and bzero (which can only set memory
+to all-bits-zero). The default in the compiler is to use the BSD
+functions, but these days a target is much more likely to have the ISO
+C ones.
+Make the default be to use the standard functions, requiring the
+definition of TARGET_BSD_MEM_FUNCTIONS to use the others.
+This requires careful checking that each target keeps the same
+behavior.
+Alternatively, put the ISO C functions in libgcc on systems that
+don't have them all in libc, and eliminate
+TARGET_MEM_FUNCTIONS altogether. See a
+message about this.
+- Convert text peepholes to RTL peepholes.
+GCC has two forms of peephole optimization: the old style that
+edited the text assembly output as it was being generated, and the new
+style that transforms RTL to RTL. The new form is conceptually
+cleaner and requires less gunk in the implementation.
+The targets with text peepholes are:
+ 1750a arm avr c4x cris dsp16xx fr30 i860 i960 m32r m68hc11 m68k
+ mcore mips mn10200 mn10300 ns32k pa romp rs6000 s390 sh sparc.
+- Convert text prologue/epilogue generation to use expanders
+instead.
+As with peepholes, there is an old style and a new. The old style
+uses the TARGET_ASM_FUNCTION_PROLOGUE and
+TARGET_ASM_FUNCTION_EPILOGUE macros, which insert text
+directly into the output. The new style uses the
+prologue and epilogue named expanders to
+generate RTL.
+The situation here is a bit weird. Targets which only have
+TARGET_ASM_FUNCTION_PROLOGUE/EPILOGUE in
+tm.h are:
+ 1750a a29k arc avr clipper dsp16xx elxsi h8300 i370 i860 i960
+ m68k ns32k pdp11 romp vax
+Targets which only have prologue and epilogue
+named expanders are:
+ alpha c4x fr30 m68hc11 mcore mn10200 mn10300 pj sh
+Targets which have both are:
+ arm convex d30v i386 ia64 m32r m88k mips pa rs6000 sparc
+I'd suggest starting with the targets that have both.
+- Find magic numbers in .md files and make them use
+define_constants instead.
+define_constants is brand new, so few targets know
+about it. It is most useful for things like fixed register numbers.
+Constants defined with it are also visible to C code via the
+insn-codes.h header.
+- Correct all warnings and errors emitted by gen*.c in
+the course of a bootstrap.
+This may require pretty detailed knowledge of the way machine
+definition files are supposed to be written, unfortunately. For the
+more exotic targets, you can usually start by building a
+cross-compiler from whatever you have to -unknown-none. It
+doesn't have to work, just build far enough to run the MD
+generators.
+- Store attribute lists in canonical form.
+Consider making the adjustments described in the comment above
+the definition of is_attribute_p: caller is required to
+state the unqualified form of the name, not the underscored form; all
+internal attribute lists remember the unqualified form, no matter what
+was used in the code.
+- Convert md files that use (cc0) so they don't anymore.
+This is hard, but would be a great improvement to the compiler if
+it were done for all existing targets. The basic idea is that
+(insn ### {cmpsi} (set (cc0) (compare (reg:SI A) (reg:SI B))))
+(insn ### {bgt} (set (pc) (if_then_else
+ (gt (cc0) (const_int 0))
+ (label_ref 23)
+ (pc)))
+becomes
+(insn ### {bsicc} (set (pc) (if_then_else
+ (gt:SI (reg:SI A) (reg:SI B))
+ (label_ref 23)
+ (bc)))
+Unfortunately, the technique is very poorly documented and may need
+extending to other conditional operations (setcc, movcc) as well.
+Contact Bernd
+Schmidt 
+before beginning any work on this.
+- Find hooks in the machine-independent code which aren't used by
+any target anymore, and remove them.
+Right now there probably aren't too many of these, but there will
+be once some of the above projects get rolling.
+Configuration and Makefiles
+This largely consists of the same sort of thing as the above, but
+for per-host configuration instead of per-target. You will need to
+understand autoconf, or Make, to do these projects.
+- Find places that are still using obsolete system-category macros
+(USG, POSIX, etc) and autoconfiscate them.
+tsystem.h uses USG and a couple others to
+know if it can safely include string.h and
+time.h. As both of them are required by C99, we should
+just synthesize them and include them unconditionally. (fixproto
+already does this for stdlib.h and several others.)
+The real mess is in the debug info generators.
+- Fix the Makefile so it doesn't confuse the build and host systems
+anymore.
+This should be search-and-replace, but you need to understand the
+distinction. GCC needs to know about the machine it is being
+built on, the machine it will run on, and the
+machine it will generate code for. In a normal "native"
+build, these are all the same. A generic cross-compiler has a
+different target than its host, but the build machine is the same as
+the host. And in a "Canadian cross" build, they are all different.
+Autoconf knows about this sort of thing. It calls the three
+machines the build, host, and target
+respectively. GCC's Makefile also knows about this, but it
+pervasively refers to the build machine as the host. This is
+confusing. The Makefile should be changed to match Autoconf's
+convention.
+- Clean up the configure script.
+The horrible tests for assembler features particularly need to die,
+but there are plenty of other atrocities. If you want a relatively
+easy one, find all the places that use test -a or
+-o, and make them use && or
+|| instead.
+Check out autoconf 2.5x and see if it will
+help any. Odds are it will. If it has broken something we
+depend on, let the autoconf maintainers know. Some changes are known
+to be needed to the GCC configure scripts to work with autoconf 2.5x.
+Feed back gcc-private autoconf macros to the autoconf maintainers.
+We have several that would be widely useful, such as
+GCC_NEED_DECLARATIONS and the mmap tests.
+- Run fixincludes and fixproto on all targets. Eliminate the
+exotic fixincludes scripts used on some targets.
+We want all targets' headers to be handled the same way. The
+existing practice causes hard-to-find bugs which only manifest on
+platforms that are unpopular, so they never get fixed.
+- Get as much as possible out of the t-target
+Makefile fragments.
+It's unlikely that these can be eliminated entirely, since we have
+no way of testing the features of a target when we are still
+constructing its cross-compiler. However, there is a lot of obsolete
+cruft in them. Start by expunging all remaining traces of
+libgcc1.
+There are also things in there that should be handled by
+fixincludes and fixproto, such as INSTALL_ASSERT_H and the corresponding
+Makefile magic.
+Note that targets do not need to supply a
+t-target fragment, if it has nothing to do.
+Empty fragments can be deleted and all references to them nuked from
+config.gcc.
+- Get as much out of the x-host fragments and
+xm-host.h headers into autoconf tests,
+system.h, etc., as possible.
+I am fairly sure that all of these files can be eliminated
+completely, and their infrastructure done away with. Information in
+them is in six categories:
+ 
+- 
+Historical dead wood: definitions of macros or Make variables
+ that are no longer used for anything, definitions that are
+ invariably overridden by something else, etc. Some files contain
+ only comments!
+ 
+- 
+Things that belong in system.h or
+ ansidecl.h, such as definitions of
+ TRUE.
+ 
+- 
+Things that belong in a tm.h or
+ t-target file. E.g. x-linux
+ has no business saying not to run fixproto,
+ xm-interix.h has no business specifying how to run
+ global constructors.
+ 
+- 
+System category assertions, which should be replaced by feature
+ checks, but we have to do work in machine-independent code
+ first.
+ 
+- 
+Feature assertions, which should be replaced by autoconf
+ probes. Some of these are there because at the time they were
+ written, autoconf couldn't detect whatever it was. Note that
+ all the autoconf tests have to work when the compiler is itself
+ being cross-compiled (with exceptions when we can do graceful
+ degradation, e.g. the mmap tests). Others are there because the
+ autoconf test for the feature in question breaks in the presence
+ of a buggy host compiler and/or library.
+ 
+In principle there is no reason why all of the feature
+ assertions can't be replaced by autoconf probes, with sufficient
+ cleverness. The hardest ones will probably be
+ {SUCCESS,FATAL}_EXIT_CODE. Note that autoconf 2.50
+ has sufficient tricks up its sleeve to do
+ HOST_BITS_PER_* even when cross compiling.
+ 
+- 
+Information on how to deal with file systems which are not
+ Unix-y. For instance, definitions of
+ PATH_SEPARATOR(_2) and/or
+ HAVE_DOS_BASED_FILE_SYSTEM, a complete override of
+ INCLUDE_DEFAULTS for VMS, etc.
+ 
+This stuff is harder to deal with than the others. For DOS,
+ we could restructure the machine-independent code so there was
+ just one switch, namely HAVE_DOS_BASED_FILE_SYSTEM,
+ and autoconf could set that based on the host machine name. We
+ probably want to go in that direction anyway. See "Library
+ infrastructure," below.
+ 
+I don't know what to do about VMS. It is utterly different,
+ although I'm told the system libraries mask a lot of the
+ differences these days. I would be very surprised if GCC
+ actually builds on {alpha,vax}-dec-*vms* right now.
+- Move the bootstrap logic up to the top level Makefile. Cause
+libiberty to be 3-staged as well as the gcc directory. Cause a blind
+"make" from the top level to do the Right Thing for native as well as
+cross compiles.
+This may be too big for anyone other than a Make expert to attempt,
+but if done it would be immensely useful.
+- Autoconfiscate the top level of the directory tree.
+The top level is handled by a strange beast known as "Cygnus
+configure," which is understood by very few people. If it were
+replaced by an autoconf script it would be much easier to work
+with.
+Unfortunately, you will need guru-level Make and shell script
+skills to even attempt this.
+Library infrastructure
+These tasks are about improving the utility routine library used by
+GCC. If you like data structures, these may be for you.
+- Find private implementations of general data structures, and make them
+use library routines instead.
+For example, there are hand-rolled hash tables all over the place.
+Most of them should be using libiberty's hashtab.c
+instead. However, there are at least three places where we
+deliberately use custom code for performance reasons, so be careful.
+- Write nifty pseudo-template versions of existing general data
+structures to avoid abstraction penalties.
+This is for someone who likes working with preprocessor macros, and
+can use them cleverly but still readably. Start with
+hashtab.c and splay-tree.c (both in
+libiberty).
+Once this is done, we can stop avoiding the general code in
+performance-critical areas.
+- Generalize gcc-specific data structure modules and move them to
+libiberty.
+For example: [s]bitmap.c, lists.c,
+stringpool.c.
+- Find private workarounds for host bugs and move them to libiberty.
+These tend to be hiding in odd places like the config directory, or
+else woven through important areas of code, e.g. the garbage
+collector.
+- Extract all the code that manipulates pathnames, make sure it can
+handle DOS as well as Unix style paths, and move it to libiberty.
+prefix.c, simplify_pathname in
+cppfiles.c, and so on. Also, make all the DOS handling
+conditional only on HAVE_DOS_BASED_FILE_SYSTEM, and get
+rid of the PATH_SEPARATOR macros.
+- Implement a macro preprocessor for .md files.
+It should act like the macro processor for CGEN, which also uses
+RTL-ish definition files. You can start with conditional blocks and
+include files. Remember that we already have define_constants.
+Documentation
+- Document every RTX code and accessor macro thoroughly.
+- Ditto, every meaningful insn name.
+- Ditto, every tm.h macro. (See a list of
+undocumented ones.)
+- Ditto, every command line switch.
+These may involve hunting down whoever added whichever thing it is
+and torturing information out of them.
+- Work out the correct argument and return types for each tm.h
+macro, and make the manual describe them with @deftypefn
+and similar using C prototypes. For those macros for which
+performance is not important, change them to be functions, in the
+targetm structure.
+- Update the porting manual.
+The porting manual describes what used to be the proper way to
+write a GCC back end. It is several years out of date. Find all the
+out-of-date advice for porters and replace it with correct advice.
+Mark old, deprecated features as such.
+- Finish documenting the tree structure and the front-end interface.
+We've got quite a bit of this but it is scattered all over the
+place. It belongs in the official manual. There is a C/C++ specific manual, and a
+third party,
+general manual. Both of them are incomplete. Several people have
+written partial manuals on implementing new front ends: look at The GNU Compiler
+Writer's Jump Point and our readings list.
+Michael Dupont 
+is working on this, so contact him first.
+- Roll information in external documents into the official manual.
+Start with the readings list and the
+secondary Texinfo documents in the source tree.
+- Improve user and installation documentation.
+Pick your favorite FAQ from the lists and roll it into the manual.
+Add information on relevant standards. Document the exact semantics
+of all the extensions. Also say what they're good for. If they're
+useless, admit it.
+- Improve the indexing of the GCC manual.
+For example, all command line options should be indexed, and there
+should be index entries for the text of all error messages that might
+be confusing, if there's a relevant part of the manual. See a message to
+gcc-bugs about this.
+- Read the whole manual.
+Become familiar with what's documented where and report or fix any
+problems you see. Then shout at anyone who sends a patch to gcc-patches without including all
+relevant documentation changes.
+- Install all Texinfo manuals.
+Such as libstdc++-v3/porting.texi. You will have
+to adapt the configure checks for available makeinfo to use outside the gcc
+subdirectory.
+- Improve support for building other manual formats.
+For example, arrange for make dvi at top level to
+build DVI versions of all manuals. Add a make html
+target to build HTML versions of manuals (using either
+texi2html or makeinfo --html). Consider
+adding targets to build PostScript and PDF versions of manuals
+(texinfo.tex includes some support for PDF
+output).
+- Adapt the send-pr manpage in GNATS to a manpage for gccbug.
+Or document gccbug in the official manual, then use
+texi2pod and pod2man to make a manpage out
+of that. See what's presently done for the cpp and
+gcc manpages.
+- Give all commands a manpage.
+This is best done by documenting them in the Texinfo manual, then
+generating the manpages via texi2pod etc. That way we
+only have to remember to update the documentation in one place.
+- Go through the list of "Actual Bugs" in trouble.texi.
+Work out what they refer to, if necessary by asking people who were
+involved in GCC development when those bugs were documented. If no
+longer present, then remove them from the list; if still present, add
+them to GNATS or fix them.
+User interface
+- Implement -std for the C++ front end. (Also Fortran,
+Java?)
+- Add a -std value equivalent to
+-traditional to the C front end.
+- Fix the places where -std=c89 is not the same thing
+as -ansi.
+- More broadly, make more and more flags consistent across all the
+front ends.
+- Implement a -Wstd switch that turns on all warning
+flags useful in well-written standard-compliant code (for C,
+-Wstrict-prototypes -Wmissing-prototypes
+-Wwrite-strings). (Should this imply -Wall?
+-W?)
+- Give -W a better name, such as -Wextra.
+- Implement fine-grained warning control, e.g. disabling a specific
+warning by name. A message to the
+gcc list discusses one possible design (based on the gettext
+principle of matching against message text rather than assigning other
+unique identifiers to each message).
+- Teach collect2 to recognize when an object module requires a
+specific runtime support library and link it in automatically.
+That is, if the first linker invocation spits out undefined
+symbols, see if they are from libstdc++, libf2c, etc. and throw in the
+appropriate library on the second pass. This would pretty much
+eliminate the need for language specific drivers.
+It would be neat if it would recognize when libm was necessary,
+too. (No more "where's sqrt(3)?" bug reports!)
+Optimizer improvements
+These require some knowledge of compiler internals and substantial
+programming skills, but not detailed knowledge of GCC internals.
+I think.
+- Make insn-recog.c use a byte-coded DFA.
+Richard Henderson and I started this back in 1999 but never
+finished. I may still be able to find the code. It produces an order
+of magnitude size reduction in insn-recog.o, which is
+huge (432KB on i386).
+- Make GCSE (and CSE?) capable of digging inside PARALLELs.
+This is needed for GCSE to do any good at all on i386.
+Here's some dialogue on the subject, which unfortunately may only
+confuse you.
+ 
+Michael Meissner:
+Actually I would imagine gcse handles clobbers [inside parallels] just
+fine and dandy, since it uses single_set which strips off
+the clobbers/uses if there is only one set. What it doesn't handle is
+a parallel that has two sets, which on the x86 is for setting the
+condition code register. This probably applies to more phases than
+just gcse (look for single_set). Another place a
+parallel with 2 sets is used is for machines that do both the divide
+and modulus in one step.
+Richard Henderson:
+Those don't get created until combine.
+No, the real problem is that gcse doesn't handle hard registers,
+so the clobber of hard register 17 (flags) squelches everything.
+Daniel Berlin:
+The comment above hash_scan_insn claims it doesn't handle clobbers in
+parallels, yet the code appears to.
+ 
+- Teach the combiner to delete no-op moves it generates.
+This includes unrecognizable no-op moves. You can get things like
+(set (cc0) (cc0)), or
+(set (pc) (pc)). Neither of these is a valid
+insn, but throwing them out would win. See the discussion
+on gcc-patches last year.
+- Find all the places that simplify RTL and make them use
+simplify-rtx.c.
+Here is some commentary from there:
+Right now GCC has three (yes, three) major bodies of RTL simplification
+code that need to be unified.
+- fold_rtx in cse.c. This code uses
+various CSE specific information to aid in RTL simplification.
+- combine_simplify_rtx in combine.c.
+Similar to fold_rtx, except that it uses combine specific
+information to aid in RTL simplification.
+- The routines in this file.
+Long term we want to only have one body of simplification code; to
+get to that state I recommend the following steps:
+- Pore over fold_rtx and simplify_rtx and move any simplifications
+which are not pass dependent state into these routines.
+- As code is moved by #1, change fold_rtx and
+simplify_rtx to use this routine whenever possible.
+- Allow for pass dependent state to be provided to these routines
+and add simplifications based on the pass dependent state. Remove
+code from cse.c and combine.c that becomes
+redundant/dead.
+It will take time, but ultimately the compiler will be easier to
+maintain and improve. It's totally silly that when we add a
+simplification that it needs to be added to four places (three for RTL
+simplification and one for tree simplification).
+- Convert reorg.c to use the flow graph.
+Then we can throw away resource.c. Long term we want
+reorg folded into the scheduler, but that's much harder.
+- Improve dwarf2out.c.
+DWARF2 can handle all kinds of heavy optimizations that we'd like
+to do, but our generator doesn't know how just yet. At the very least
+it'd be nice if -gdwarf-2 -fomit-frame-pointer could give
+you a clean backtrace on all targets where DWARF works. (This is
+definitely possible.)
+You need to coordinate with the gdb team. It does no good for gcc
+to generate fancy debug info if the debugger doesn't understand
+it.
+C/C++ front end
+- Clean up special_function_p and other handling of
+functions with names implying given properties.
+All properties special_function_p determines ought to
+be specifiable with attributes as well. Where
+special_function_p checks for a function not defined by
+ISO C, the attribute ought to be added by fixincludes rather than
+presuming anything about its semantics within the compiler. All this
+special handing should be disabled by -ffreestanding.
+There is now a unified way of attaching attributes to functions
+with known semantics when they are declared (explicitly or
+implicitly); see builtin-attrs.def.
+This should be used for "builtins" such as exit and
+abort that only exist for this purpose as well as for functions such
+as malloc handled by special_function_p.
+- Move all flags shared between C and C++ to c-common.[ch].
+(Make sure that the flags in question are genuinely used in both
+front ends. When I [Joseph Myers] started looking at this, the first
+case I found was that -fcond-mismatch was ignored for C++ - so I
+documented that instead.)
+- More generally, share more code between the C and C++ front ends.
+Web page work
+- Set up a system that automatically checks the mirrors list.
+It should detect mirrors that have gone away, are persistently
+down, or are very out of date (the last being easy to do for those
+carrying snapshots, harder for those with releases only).
+DJ Delorie 
+has some scripts to do this already.
+Please send FSF & GNU inquiries & questions to
+gnu@gnu.org.
+There are also other ways
+to contact the FSF.
+These pages are maintained by
+The GCC team.
+Please send comments on these web pages and GCC to
+gcc@gnu.org or
+gcc@gcc.gnu.org,
+send other questions to gnu@gnu.org.
+Copyright (C) Free Software Foundation, Inc.,
+59 Temple Place - Suite 330, Boston, MA 02111, USA.
+Verbatim copying and distribution of this entire article is
+permitted in any medium, provided this notice is preserved.
+ Last modified 2002-07-01
+ 
+ 
+ 

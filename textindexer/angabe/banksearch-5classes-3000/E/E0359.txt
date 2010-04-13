@@ -1,0 +1,146 @@
+
+ 
+ PHP HOW-TO: PHP Download
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 3. PHP Download
+- PHP main site 
+http://www.php.net
+- PHP resources 
+http://ils.unc.edu/web-db/php/links.html
+- PHP Code Exchange - 
+http://px.sklar.com
+- Vex Net 
+http://www.vex.net/php
+Mirror sites are in many countries like www.COUNTRYCODE.php.net, where
+COUNTRYCODE is like us, fe, sk etc.
+- 
+http://www.fe.de.php.net
+- 
+http://www.sk.php.net
+- 
+http://php.iquest.net/
+- Questions e-mail to :
+rasmus@lerdorf.on.ca
+ 3.1 PHP Installation on Microsoft Windows 95/98/NT/2000
+PHP is IMMENSELY POPULAR on Microsoft Windows platform and is surprisingly 
+more popular than Microsoft's own ASP web scripting language!! A major reason
+for popularity is that PHP is a object oriented scripting language whereas ASP is not.
+PHP has a large collection of re-usable classes (objects).
+PHP runs lot faster than ASP on MS Windows and has more features and functionalities
+than Microsoft ASP.
+PHP is much more robust, reliable and powerful than ASP.
+And the user base of PHP is extremely large because PHP runs on MS Windows,
+Linux, Mac OS and all UNIX'es.
+Greatest advantage of
+PHP is that you can develop on MS Windows and deploy on Linux or UNIX and vice versa!!
+There are more PHP users under MS Windows98/NT/2000 than on any other operating system!!
+Because there is so much demand for PHP on MS Windows 98/NT/2000, a ready to 
+install executable is made and you simply double-click on the exe file to 
+automatically install PHP in just 2 minutes. Download the PHP executable 
+install file from
+- MS Windows exe installer for PHP 
+http://php.weblogs.com/easywindows
+- Lots of info on PHP on MS Windows platform 
+http://php.weblogs.com
+- Install and config of PHP on 
+MS Windows 
+http://www.php.net/manual/install-windows95-nt.php
+- PHP Triad installs a complete PHP server environment on Windows platforms
+http://www.phpgeek.com
+ 3.2 Apache Webserver Quick-Install (10 seconds) on Microsoft Windows 95/98/NT/2000
+You need a web-server to run the PHP on MS Windows. You can use MS IIS web server
+or you can use free Apache web-server for MS Windows 95/98/NT/2000. To save you 
+lot of time here is the ready-to-install setup.exe file for apache
+for Windows platform:
+PHPTriad which is Apache+PHP+MySQL single package is at 
+http://www.phpgeek.com/phptriad.php
+and at 
+mirrorsite.
+I very strongly recommend PHPTriad as it is immensely popular among MS Windows
+users (millions of downloads).
+Apache binaries - 
+http://httpd.apache.org/dist/httpd/binaries/win32
+3.3 SQL server for Microsoft 
+SQL server can be on a seperate box which need not be running MS Windows.
+You also need a SQL server for doing web development. I recommend that you
+install Redhat Linux on a very old PC like (Pentium or 486 box) and install the
+PostgreSQL
+RPMs on it. You do not need any windows graphics for a database server
+and at console mode startup the 
+PostgreSQL
+server. 
+PostgreSQL
+is about 3 times 
+faster than Oracle or MS SQL server. 
+The PostgreSQL support code for PHP was written by Adam Sussman
+asussman@vidya.com
+You can also order ready-to-go cheap Linux boxes from -
+- Egghead 
+Egghead,
+click on Auctions and Linux boxes, you get best deals in live Auctions.
+- Goto 
+LinuxHardware and click ComputerSystems,
+LinuxOnline,
+Linux hardware 
+Crynwr,
+Linux 
+HarwareNet
+- US 
+Land5,
+US 
+QLiTech,
+US 
+CompaqLinux,
+US 
+VAlinux,
+US 
+StoreAnywhere
+- In Europe : 
+UK 
+GBdirect,
+UK 
+MultiT,
+Hungary 
+Leonardo,
+Belgium 
+Mind,
+Germany 
+Spier
+- DEC alpha linux 
+DECalpha
+and 
+CompaqAlphaLinux
+You can also get 
+PostgreSQL
+for Windows NT/2000 from 
+http://www.askesis.nl.
+See also the 
+PostgreSQL
+howto at
+pgsql-howto
+3.4 ASP To PHP Converter - Migration From ASP2PHP
+After installing PHP, you may want to migrate all the Microsoft ASP programs
+to PHP. See the chapter 
+ASP2PHP.
+ 3.5 PHP Installation on UNIX'es and others
+See the installation guide and instructions at 
+PHP main site 
+http://www.php.net or INSTALL file
+in the downloaded package itself.
+ 3.6 PHP Installation on Apple Macintosh
+Apple Macintosh is Unix like operating system. And actually it's father is FreeBSD.
+It picked up many titbits from other Unices and is quite powerful OS.
+See the Unix history at 
+Unix Family Tree
+and click on the item 12 to see the Apple Mac position 
+at 
+Apple Mac tree.
+The installation and use of PHP on Apple Mac will be very similar to that of on Unix OS.
+Next
+Previous
+Contents

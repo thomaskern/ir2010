@@ -1,0 +1,107 @@
+
+Accessing System Resources
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Trail: Essential Java Classes
+Lesson: Accessing System Resources
+Sometimes, a program requires access to system resources such as system
+properties, standard input and output, or the current time. Your
+program could make system calls directly to the window or operating
+system, but then your program would be able to run only in that
+particular environment. Each time you want to run the program in a new
+environment, you'd have to port your program by rewriting the
+system-dependent sections of code.
+The Java platform lets your program access system resources through a
+(relatively) system-independent API implemented by the
+System class and
+through a system-dependent API implemented by the
+Runtime class.
+Purity Tip: 
+Some of the system resources available through the System
+and Runtime classes cannot be used in 100% Pure Java programs.
+These resources are noted throughout this lesson. 
+Most system programming needs are met through the System class.
+However, in rare cases, a program might have to access the system
+through the Runtime object that represents the current runtime
+environment. The last section of this lesson, The
+Runtime Object
+explains how to do this and talks about the trade-offs of
+accessing the system directly via the Runtime object.
+The following diagram shows that the System
+class allows your Java programs to use system resources
+but insulates them from system-specific details.
+If you've experimented with other lessons in this tutorial, you've no
+doubt already seen the System class's
+standard output stream used in
+several examples to display text. This and other resources available
+through System are briefly described here and
+covered in the sections indicated.
+Using the System Class
+All of System's methods and variables
+are class methods and class variables.
+You don't instantiate the System class to use it;
+you use the System class's
+methods and variables directly from a reference
+to the System class.
+The Standard I/O Streams
+Probably the most frequently used items from the System
+class are the streams used for reading and writing text. The
+System class provides
+one stream for reading text--the standard input stream--and two streams
+for writing text--the standard output and standard error streams.
+System Properties
+Properties are key/value pairs that your Java programs can use to set
+up various attributes or parameters between invocations. The Java
+platform itself maintains a set of system properties that contain
+information about the current platform. You can access the system
+properties through the System class.
+Forcing Finalization and Garbage Collection
+In Java, you don't have to free an object when you're done with it-the
+garbage collector runs periodically in the background and cleans up
+unreferenced objects. Or you can force the garbage collector to run
+using System's gc method. Also, you can
+request that the runtime system
+perform object finalization using System's
+runFinalization method.
+Providing Your Own Security Manager
+The security manager is an application-wide object that determines
+whether potentially threatening operations should be allowed. You use
+the System class to set and get the security manager for an
+application. Subclasses of java.lang.SecurityManager
+implement a specific management policy.
+Miscellaneous System Methods
+The System class includes several miscellaneous methods
+that let you get the current time in milliseconds, exit the
+interpreter, and copy arrays.
+The Runtime Object
+Most system programming needs are met through the programming interface
+provided by the System class.
+However, in rare cases, a program must
+bypass the system-independent interface
+of the System class and use system
+resources directly from the runtime environment.
+The Java environment provides a
+Runtimeobject, which represents the current runtime environment.
+You can use a Runtime object
+to access system resources directly.
+Note: 
+Messaging the Runtime object directly compromises
+your ability to run your program on different systems.
+You should do this only in special situations.
+ 
+Start of Tutorial
+>
+Start of Trail
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

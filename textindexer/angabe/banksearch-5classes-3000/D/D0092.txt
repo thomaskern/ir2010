@@ -1,0 +1,274 @@
+
+Hoskinson's Vertical Scroll Applet
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+Hoskinson's Vertical
+Scroll Applet 
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Your browser does not support Java.
+This applet is a simple text animation which plays multiple vertical
+scrolling marquees for which you can specify a URL and frame target to go to when the
+applet container is clicked. You can also specify font, style, size, scroll delay,
+scroll amount, background and foreground color, and mouse-over "hot spot" color.
+This applet should run on any platform to which a reasonable implementation of the Java VM
+has been ported. I have tested it on the following platforms: 
+ 
+- Microsoft Internet Explorer 4.01/Win95 
+ 
+- Netscape Navigator 4.04/Win95 
+ 
+- Netscape Navigator 3.01/Win95 
+ 
+- Microsoft Internet Explorer 3.02/Win95 
+ 
+ This is what the mark-up looks like to implement the
+ Vertical Scroll Applet in your HTML page (Note: this assumes that verticalScroll2_andyhosk.class
+ is in the same directory as it's parent HTML page). The parameters, by the way,
+ correspond to the instance that is running at the top of this page: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Your browser does not support Java.
+ 
+ 
+Applet Parameters 
+(Listed alphabetically)
+ 
+ Parameter 
+ Default Values 
+ Possible Values 
+ 
+ 
+ alignment 
+ center 
+ The horizontal alignment of text within the applet container;
+ "left" or "center" 
+ 
+ 
+ bgcolor 
+ white 
+ The applet's background color. Legal values include white, black,
+ red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, orange, or
+ an integer representing the hexidecimal RGB value (for example, the RGB
+ value of the color white is "FFFFFF"). Defaults to "white". 
+ 
+ 
+ cabbase 
+ none 
+ The name of the CAB archive used by Microsoft Internet Explorer.
+ This is an optional parameter, but, if specified, the CAB file must be located in the
+ codebase directory. If you are going to use the included CAB file, then this value should
+ be "verticalScroll2_andyhosk.cab". 
+ 
+ 
+ fgcolor 
+ black 
+ The applet's foreground color. Legal values include white, black,
+ red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, orange, or
+ an integer representing the hexidecimal RGB value (for example, the RGB
+ value of the color white is "FFFFFF"). Defaults to "black". 
+ 
+ 
+ fontname 
+ SansSerif 
+ Any installed font. Defaults to "SansSerif". 
+ 
+ 
+ fontsize 
+ 12 
+ Any valid point size. Defaults to 12. 
+ 
+ 
+ fontstyle 
+ bold 
+ plain, bold, bold_italic, or italic. Defaults to "bold". 
+ 
+ 
+ hotspotcolor 
+ blue 
+ When the scrolling text is associated with a URL, the scrolling
+ text changes to this color when the mouse is moved over the applet container. Legal values
+ include white, black, red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan,
+ pink, orange, or an integer representing the hexidecimal RGB value (for
+ example, the RGB value of the color white is "FFFFFF"). 
+ 
+ 
+ licenseID 
+ null 
+ This value must be "VS2981121RAH". If not, an unlicensed
+ shareware notice will be prepended to your scrolling messages. 
+ 
+ 
+ linespacing 
+ 5 
+ The number of pixels between lines of text. 
+ 
+ 
+ scrollamount 
+ 1 
+ The scroll amount (in pixels) of each animation frame. The
+ smaller the number, the smoother the animation. Defaults to 1. 
+ 
+ 
+ scrolldelay 
+ 20 
+ Time delay between animation frames, in milliseconds; for all
+ intents and purposes, represents the scrolling speed of the marquee (smaller is faster).
+ Defaults to 20. 
+ 
+ 
+ target0 through targetx 
+ _self 
+ The target browser window of a given URL parameter (see below).
+ Allowable values include _top (the top level browser window), _self (the current browser
+ window or frame), _blank (a new browser window), or the name of any open browser
+ frame. This is an optional parameter....if a URL is specified and the target
+ parameter is omitted, the target defaults to "_self." 
+ 
+ 
+ text0 through textx 
+ "Hoskinson's Vertical Scroll Applet Version 2.0" 
+ The scrolling marquee text. The text will automatically wrap to the
+ applet container's dimensions. To force a line break, use the "^" character as a
+ token. You can have as many scrolling text objects as you want; Just remember to use
+ the proper parameter name convention (i.e., text0 for your first one, text1 for your
+ second one, etc.) 
+ 
+ 
+ URL0 through URLx 
+ http://www.hoskinson.net/ 
+ The URL to jump to when the applet container is clicked, for a
+ corresponding text object. This URL can be either absolute or relative. If you want
+ to use a relative URL, your URL should be relative to the URL of the document in which the
+ applet is running. This is an optional parameter....if you don't want a
+ corresponding text object to link to a URL, simply omit this parameter. You can have a
+ corresponding URL object for as many (or as few) of your text objects as you want; 
+ Just remember to use the proper parameter name convention (i.e., URL0 for your first one,
+ URL1 for your second one, etc.). 
+ 
+When implementing this applet, please place the following files
+(located in the same directory as this file) on your web server: 
+ 
+- Microsoft Internet Explorer 3.x/4.x Cabinet Archive file: verticalScroll2_andyhosk.cab 
+ 
+- Netscape Navigator 4.x ZIP archive: verticalScroll2_andyhosk.zip 
+ 
+- Java bytecode files (for all other browsers): verticalScroll2_andyhosk.class, verticalScrollCanvas.class, verticalScrollCanvasNotifier.class, scrollObject.class, ScrollThreadListener.class.
+ 
+Please Note: You must adjust the CODEBASE attribute of your
+applet tag accordingly if these files are not placed in the same directory as the parent
+HTML file.
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

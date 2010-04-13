@@ -1,0 +1,171 @@
+
+ISO C++
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+International standard for the C++ programming language approved!
+Morristown, New Jersey, USA,
+Friday, November 14, 1997
+FOR IMMEDIATE RELEASE
+This week, technical experts representing eight countries and about 40 companies
+involved with software technologies met in Morristown, New Jersey and completed
+the content of an international standard for the C++ programming language.
+C++:
+During the 90s, C++ quietly became the dominant programming language for demanding
+applications in such diverse fields as finance, telecommunications, embedded systems,
+and computer-aided design. Unseen by ordinary users of computers and of computerized
+services (such as making an 800 call on a telephone or making a stock market
+transaction), C++ has become one of the cornerstones of modern life by becoming
+the choice of professional programmers for sophisticated applications. Running on
+all computers from the most powerful supercomputers and commercial mainframes
+to the ubiquitous personal computers and unseen microprocessors, C++ is used
+by more than 1.5 million programmers worldwide. 
+Standardization:
+Anticipating this critical role for C++, various national standards organizations
+and the International Standards Organization (ISO) started in 1989 an effort to
+standardize C++. Over the years, representatives from Australia, Canada, Denmark,
+France, Germany, Ireland, Japan, the Netherlands, New Zealand, Sweden, the UK,
+and the USA have met regularly together with representatives from about a hundred
+companies and many interested individuals to write a mutually agreed upon standard.
+The companies that have contributed to the standard include giants such as AT&T,
+Ericsson, Digital, Borland, Hewlett Packard, IBM, Mentor Graphics, Microsoft,
+Silicon Graphics, Sun Microsystems, and Siemens. After about 8 years of work,
+this standard is now complete. Today (Nov 14, 1997), the standard was approved
+by a unanimous vote of the countries that had representatives present in Morristown.
+Final ratification by two dozen countries is expected by March 1998.
+Impact:
+The standard will make it easier to teach C++ (which is just coming into use
+for the Advanced Placement Computer Science courses in US high schools),
+to use C++ in applications, and to port C++ programs from one kind of computer
+to another. Basically, the standard heralds a new era of C++ use where more
+advanced techniques can be used effectively in industrial, research, and
+educational software. Software tools providers are already shipping C++
+implementations and tools that approximate the standard. The standard allows
+users greater freedom of choice of C++ implementations, allows implementers
+ and major users to check implementations against the standard using test
+suites and to compare implementations using performance tests. The increased
+stability and portability offered by the standard is a boon to library providers
+and tools provides as well as implementers. These improvements will help C++
+application developers to build better applications faster, and to maintain
+them with less cost and effort. The result will be further improvements in
+the quality of applications delivered to end users - who, typically, will
+have no idea that they are relying on C++ in their everyday life.
+Scope of the Standard:
+The C++ standard covers both the C++ language itself and its standard library.
+The standard library represents a significant improvement over what has been
+generally available. It will ease the task of learning C++ and make it far
+simpler to write programs that run on a variety of platforms. The standard
+library provides standard input/output, strings, containers (such as vectors,
+lists, and strings), non-numerical algorithms (such as sort, search, and merge),
+and support for numeric computation. As could be expected from the result of
+an international effort, the C++ standard provides extensive support for the
+use of national character sets (e.g. European national characters and Japanese
+characters).
+ 
+C++ background:
+C++ was initially designed and implemented by Dr. Bjarne Stroustrup at AT&T Labs
+(then AT&T Bell Labs). The first commercial release happened in 1985. The language
+gained widespread use in industry and academia during the 1980s, and around 1990
+the major computer and software tools suppliers started to provide C++ to their
+users as a major implementation tool. After explosive growth of the C++ user
+population in the 1980s and early 1990s where C++ usage doubled every 7.5 months,
+the use of C++ has settled into a pattern of steady growth (on the order of 15%
+to 30% a year). The new standard is expected to sustain and stimulate this growth.
+The number of C++ programmers worldwide is estimated to be more than 1.5 million.
+More than 400 books are currently in print about C++ programming.
+C++ and other programming languages:
+C++ is a general-purpose programming language with an bias towards systems
+programming that supports low-level programming in traditional styles, data
+abstraction, object-oriented programming, and generic programming. C++ was
+initially developed from the C programming language by the addition of
+facilities for object-oriented programming from the SIMULA programming
+language. Over the years, the flexibility and generality of the facilities
+offered by C++ has been greatly improved without compromising run-time
+efficiency. C++ is distinguished among programming languages by a combination
+of efficiency (like C and Fortran) and abstraction facilities. The "abstraction
+facilities" provided by C++ allow programs to be expressed in terms natural
+to application designers (rather than lower-level computer-oriented terminology).
+Some of these abstraction facilities are also provided by "object-oriented"
+languages such as Smalltalk and Java, others are only available in experimental
+"functional" languages. The C++ abstraction mechanisms are distinguished by
+their run-time efficiency. 
+The official designation of the Working Group's product will be ISO/IEC
+FDIS 14882, where "FDIS" means "Final Draft International Standard".
+C++ standard contacts in the US:
+Tom Plum (ISO C++ convener), Plum Hall, tplum@plumhall.com,http://www.plumhall.com.
+Stephen Clamage (ANSI C++ chairman), Sun Microsystems, clamage@eng.sun.com
+Andrew Koenig (C++ project editor), AT&T Labs, ark@research.att.com,
+http://www.research.att.com/info/ark.
+Bjarne Stroustrup (C++'s designer), AT&T Labs, bs@research.att.com,
+http://www.research.att.com/~bs.
+International C++ standards contacts (recent Heads of Delegation):
+Fergus Henderson (Australia), Melbourne Univ., fjh@cs.mu.oz.au
+Josee Lajoie (Canada), IBM Canada, josee@vnet.ibm.com
+Keld Simonsen (Denmark), DKUUG, keld@dkuug.dk
+Vincent Lextrait (France), ILOG, lextrait@ilog.fr
+Erwin Unruh (Germany), Siemens-Nixdorf, erwin.unruh@mch.sni.de
+Martin O'Riordan (Ireland), MartinO_AtHome@msn.com
+Tsutomu Kamimura (Japan), IBM Tokyo Research Lab, kamimura@trl.ibm.co.jp
+Jan Christiaan van Winkel (Netherlands), AT Computing, jc@ATComputing.nl
+Dag Bruck (Sweden), Dynasim AB, dag@dynasim.se
+Steve Rumsby (UK), Warwick Univ., steve@maths.warwick.ac.uk
+Clark Nelson (USA), Intel Corp., clark_nelson@ccm.jf.intel.com
+The secretariat for SC22/WG21 is provided by the convener's company,
+Plum Hall Inc, of Kamuela HI. Plum Hall is a small privately-held
+company providing validation tests, textbooks, and testing tools
+for professional software developers. Contact Peter Kurpis at
+Plum Hall Inc, 3 Waihona Box 44610, Kamuela HI 96743,
++1-808-882-125, FAX +1-808-882-1556, info@plumhall.com, www.plumhall.com
+This is not part of the ISO press release:
+Back to Bjarne's homepage.
+Stroustrup: The C++ Programming Language (3rd Edition)
+describes the standard.
+Stroustrup: The Design and Evolution of C++
+describes many of the decisions that led to the standard.
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

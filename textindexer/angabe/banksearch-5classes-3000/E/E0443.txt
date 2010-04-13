@@ -1,0 +1,177 @@
+
+DevX: C++ Zone: Product
+	
+ 	
+ 
+ DevX Home 
+ 
+ Premier Club 
+ Search 
+ RFP Exchange 
+ eLearning 
+ Code Library 
+ Help 
+ Locator+ 
+Shop DevX 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+	
+	
+	
+ 	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+	
+ 
+ 
+	 Product Review
+	of the week 
+	 
+	
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+ ParaSoft Corporation 
+ 
+ 
+ 626-305-0041 
+ 
+ 
+ "_top">http://www.parasoft.com 
+ 
+ 
+ 
+ 
+ 
+ (Reviewed 9/5/2000 ) 
+ 
+ 
+ Develop, run, and manage white-box, black-box, and regression test cases for your classes and functions. 
+ 
+ 
+ 
+ 
+ 
+ C++Test 
+ 
+ 
+ 
+ 
+ 
+ 
+	C++Test 1.0
+An important part of robust application development is performing thorough unit testing of your code, not only in development, but also for regression testing. It's usually easy to come up with a good test for the code you're currently working on. It's another matter to design that test and retain it in a way that can be rerun automatically in a regression test scenario. 
+You can use C++Test 1.0 by ParaSoft Corp. to build a comprehensive test case harness for your classes and functions. C++Test works on a file-by-file basis, and generates white-box test cases automatically by parsing and analyzing your code. You can have it generate test cases for you automatically. Or, you can set up your own white-box or black-box test cases using a test case editor that allows you to specify input and output parameters, as well as preconditions and post-conditions. You can also edit the cases that C++Test generates automatically and modify them as desired. If your functions call other functions or methods not accessible to C++Test, such as interface methods or API calls, C++Test generates stub function calls for you, and also allows you to modify them or define your own as necessary. 
+When you run the tests defined for a file or project, the tool passes the function the specified input parameters, checks the preconditions, evaluates the output parameters against what is expected, and checks the post-conditions. If a test fails for any reason, it's color-coded red in the results window. You can also use the product's test coverage tool that color-codes and shows line coverage counts to help identify portions of your code that didn't get tested sufficiently. You can then either modify the existing tests or define new tests to ensure adequate coverage. 
+You can load files into C++Test one at a time, or you can load an entire Visual Studio project all at once. C++Test creates a Visual C++ add-in toolbar that lets you call up C++Test directly from within Visual C++. You can save all the test cases you've created for a file or Visual C++ project as a C++Test project so that you can easily load the test cases in the future, and rerun them as regression test scenarios. 
+One thing to note: The test cases C++Test automatically generates are not as "white-box" as you might expect. C++Test generates test cases for boundary cases based on the input parameter types. For example, if you have a function that takes a single integer as an input parameter, C++Test generates six test cases: positive and negative values of MAX_INT, +/-, 1, 0, and a random value. If you have two input integers, you get 36 test cases with every combination of the six cases for the two input parameters. But if there are conditionals in your function where internal boundary conditions exist, these won't get test cases automatically generated for them. This would be the case in the sample statement, if (input >=5). However, through the use of the test case editor, you can easily define test cases for these internal boundary conditions yourself. It just requires a little more insight and discipline to make sure all cases are covered. 
+You face some limitations on passing complex parameters into functions as well. You can define input parameters using the test case editor for pointers or references to object types&#151;but depending on the contents of the object types, you might not be able to construct what you need to test it out fully. For example, if you have an image processing function, and one of the input parameters is an MFC CBitmap pointer, you have no decent way to set up the contents of that object to pass in a real bitmap (perhaps a test pattern) and examine the output. 
+The user interface leaves a little to be desired for those used to Windows Explorer- or Visual Studio-like user interfaces. It's a Java interface, so you don't get some of the benefits of standard Windows user interface features such as standard File Open/Save dialogs and double-click behaviors you're probably used to from other tools. Because ParaSoft is planning releases of C++Test on other platforms, such as Linux and Solaris, the Java interface can be a benefit if you're doing cross-platform development because you should get a more consistent interface in the different environments. 
+Parsing can be a little slow, too. If the file you're building in C++Test includes a lot of other headers and source, C++Test parses all those files as well, and can take a while to do so. The product features pretty good documentation in the form of HTML help files, and some example source code files to experiment with as you get up to speed on the tool. 
+Overall, C++Test is a powerful tool for developing and managing unit test cases for the life cycle of a product. It makes it easy to develop, run, and manage complex unit test case harnesses for your projects. 
+ 
+Brian Noyes is an independent software consultant with DomeWorks Software. He's an MCSD with nine years of software development, project management, and test and evaluation experience. He's a technical reviewer and occasional author for Visual C++ Developers Journal. You can reach him at 
+ bnoyes@domeworks.com.
+ 
+ 
+ 
+ -Brian Noyes
+ 
+ 
+ 
+ 
+ 
+	
+	
+Sponsored Links 
+Click here for a free FREE iSeminar and Oracle9i Application Server software!
+ 
+SPECIAL REPORT: Winning with Web Services
+ 
+Reduce line-by-line headaches with this "code review in a box."
+ 
+How do Drivers Access UNICODE? Get the Scoop Here...
+ 
+Learn Web Services and Win Cool Prizes--Take the IONA Dream Warrior Challenge TODAY!
+ 
+ 
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+ 
+ 
+	 
+ 
+	Back to C++ Zone 
+ 
+	
+	More Reviews 
+ 
+	Product Guide 
+ 
+	 

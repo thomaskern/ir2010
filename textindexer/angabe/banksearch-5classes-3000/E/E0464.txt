@@ -1,0 +1,361 @@
+
+ 
+C >> Memory Allocation ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The C Preprocessor 
+ Main Menu 
+ strcat and strncat 
+ 
+ 
+ 
+ 
+Memory Allocation
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+Your computer's memory is a resource - it can run out. The memory usage for program data can increase or decrease as your program runs. 
+ 
+ 
+Up until this point, the memory allocation for your program has been handled automatically when compiling. However, sometimes the computer 
+ doesn't know how much memory to set aside (for example, when you have an unsized array). 
+ 
+ 
+ 
+The following functions give you the power to dynamically allocate memory for your variables at RUN-TIME (whilst 
+ the program is running). For the past tutorials, memory was allocated when the program was compiled (i.e. COMPILE-TIME). 
+ 
+ 
+To use the four functions discussed in this section, you must include the stdlib.h header file.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+malloc() and free()
+ 
+ 
+ 
+ 
+ 
+malloc requires one argument - the number of bytes you want to allocate dynamically. 
+ 
+If the memory allocation was successful, malloc will return a void pointer - you can assign this to a pointer variable, 
+ which will store the address of the allocated memory. 
+ 
+If memory allocation failed (for example, if you're out of memory), malloc will return a NULL pointer. 
+ 
+ 
+ 
+Passing the pointer into free will release the allocated memory - it is good practice to free memory when you've finished 
+ with it. 
+ 
+This example will ask you how many integers you'd like to store in an array. It'll then allocate the memory dynamically using malloc 
+ and store a certain number of integers, print them out, then releases the used memory using free. 
+ 
+ 
+ 
+ 
+ #include 
+#include /* required for the malloc and free functions */
+int main() {
+ int number;
+ int *ptr;
+ int i;
+ printf("How many ints would you like store? ");
+ scanf("%d", &number);
+ ptr = malloc(number*sizeof(int)); /* allocate memory */
+ 
+ if(ptr!=NULL) {
+ for(i=0 ; i0 ; i--) {
+ printf("%d\n", *(ptr+number-i)); /* print out in reverse order */
+ }
+ free(ptr); /* free allocated memory */
+ return 0;
+ }
+ else {
+ printf("\nMemory allocation failed - not enough memory.\n");
+ return 1;
+ }
+}
+ 
+ 
+ 
+ 
+ 
+Output if I entered 3: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+How many ints would you like store? 3 
+ 0 
+ 1 
+ 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+When I first wrote the example using a Borland compiler, I had to cast the returned pointer like this: 
+ 
+ptr = (int *)malloc(number*sizeof(int)); 
+ 
+ 
+ 
+The above example was tested in MSVC++ but try casting the pointer if your compiler displays an error. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+calloc()
+ 
+ 
+ 
+ 
+ 
+calloc is similar to malloc, but the main difference is that the values stored in the allocated memory space is zero 
+ by default. With malloc, the allocated memory could have any value. 
+ 
+calloc requires two arguments. The first is the number of variables you'd like to allocate memory for. The second is the size 
+ of each variable. 
+ 
+ 
+ 
+Like malloc, calloc will return a void pointer if the memory allocation was successful, else it'll return 
+ a NULL pointer. 
+ 
+This example shows you how to call calloc and also how to reference the allocated memory using an array index. The initial 
+ value of the allocated memory is printed out in the for loop. 
+ 
+ 
+ 
+ 
+ #include 
+#include /* required for the malloc, calloc and free functions */
+int main() {
+ float *calloc1, *calloc2, *malloc1, *malloc2;
+ int i;
+ calloc1 = calloc(3, sizeof(float)); /* might need to cast */ 
+ calloc2 = calloc(3, sizeof(float));
+ malloc1 = malloc(3 * sizeof(float));
+ malloc2 = malloc(3 * sizeof(float));
+ if(calloc1!=NULL && calloc2!=NULL && malloc1!=NULL && malloc2!=NULL) {
+ for(i=0 ; irealloc()
+ 
+ 
+ 
+ 
+ 
+Now suppose you've allocated a certain number of bytes for an array but later find that you want to add values to it. You could copy 
+ everything into a larger array, which is inefficient, or you can allocate more bytes using realloc, without losing your data. 
+ 
+ 
+realloc takes two arguments. The first is the pointer referencing the memory. The second is the total number of bytes you 
+ want to reallocate. 
+ 
+ 
+ 
+Passing zero as the second argument is the equivalent of calling free. 
+ 
+Once again, realloc returns a void pointer if successful, else a NULL pointer is returned. 
+ 
+This example uses calloc to allocate enough memory for an int array of five elements. Then realloc is called 
+ to extend the array to hold seven elements. 
+ 
+ 
+ 
+ 
+ #include
+#include 
+int main() {
+ int *ptr;
+ int i;
+ ptr = calloc(5, sizeof(int));
+ if(ptr!=NULL) {
+ *ptr = 1;
+ *(ptr+1) = 2;
+ ptr[2] = 4;
+ ptr[3] = 8;
+ ptr[4] = 16;
+ /* ptr[5] = 32; wouldn't assign anything */
+ ptr = realloc(ptr, 7*sizeof(int));
+ if(ptr!=NULL) {
+ printf("Now allocating more memory... \n");
+ ptr[5] = 32; /* now it's legal! */
+ ptr[6] = 64;
+ for(i=0 ; i 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

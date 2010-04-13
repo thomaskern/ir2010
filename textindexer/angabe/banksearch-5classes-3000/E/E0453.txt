@@ -1,0 +1,203 @@
+ 
+ 
+Yet Another Code Site - TRichEdit Bugs 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ Yet Another Code
+	 Site 
+ 
+ 
+ BCB
+1.0 & 3.0 TRichEdit bugs 
+Obvious VCL Bugs 
+As best I recall, the specific Windows messages that
+ were problems were: 
+ 
+BCB 1.0 has a number of bugs. New Windows API
+ messages were added to take advantage of the large amount
+ of text that a Rich Edit control can handle. The BCB
+ 1.0 TRichEdit used the older messages and, therefore, could
+ not handle large documents properly. 
+ 
+ 
+ 
+	 
+Message BCB 1.0 used 
+	 
+ 
+ 
+	 
+Message that should have been used 
+	 
+ 
+ 
+	 
+EM_GETSEL 
+	 
+ 
+ 
+	 
+EM_EXGETSEL 
+	 
+ 
+ 
+	 
+EM_LIMITTEXT 
+	 
+ 
+ 
+	 
+EM_EXLIMITTEXT 
+	 
+ 
+ 
+	 
+EM_LINEFROMCHAR 
+	 
+ 
+ 
+	 
+EM_EXLINEFROMCHAR 
+	 
+ 
+ 
+	 
+EM_SETSEL 
+	 
+ 
+ 
+	 
+EM_EXSETSEL 
+	 
+ 
+ 
+These messages work fine for small documents but, if you
+ want to use BCB 1.0 TRichEdit controls with large text
+ files, you will need to write your own code to set or get
+ the current selection, set the maximum amount of text the
+ control can hold, get the line number from an offset
+ position in the text, and find text in the control. 
+ 
+Most of these appear to be fixed in BCB 3.0. 
+ However, both BCB 1.0 and 3.0 use the EM_FINDTEXT message
+ instead of the EM_FINDTEXTEX message to implement the
+ FindText() method. I am somewhat unclear on whether
+ this is a problem. If it is, you will need to write
+ your own routine to use EM_FINDTEXTEX. 
+ 
+Another Type Of Bug 
+So much for VCL code that clearly has bugs. There
+ is another type of bug that falls into the "unexpected
+ behavior" or "unnecessary limitation" or
+ "might be a feature" category. 
+ 
+The first of these has to do with the undocumented fact
+ that the VCL occasionally deletes and re-creates the
+ TRichEdit control's underlying Windows Rich Edit. See
+ the paper titled " Window handles vs. TRichEdit (and
+ other VCL) controls" available on this site for more
+ information. If you have not read this paper, please
+ do -- otherwise, you are almost guaranteed to spend many
+ hours chasing this one down. 
+ 
+A second might-be-a-feature-but-is-a-bug-to-me has to do
+ with the non-granularity of text styles. Ok, that
+ phrasing is more than a little obscure. What I mean
+ is this: If you change a text style say, to italics,
+ any other styles in the selected text are lost. For
+ example, assume that you have selected text that looks like
+ this: 
+ this is normal text, this is bold
+text, this is underlined text
+To add the italics style to the text, you might try to
+ use code something like this: 
+ RichEdit1->SelAttributes->Style = RichEdit1->SelAttributes SelAttributes was the style of
+ the first character in the selected range (in this case,
+ normal text, no bold or underlined attributes). The
+ code then added the fsItalic attribute to the returned
+ value and then applies this combination of attributes to
+ the selected text. 
+ 
+I would prefer -- actually, I expected -- the bold and
+ underlined text remain bold and underlined with the italics
+ added. Obviously not. Had the VCL treated each
+ style as a separate property, this would work as I would
+ want and expected it to work. 
+ 
+Unfortunately, since the VCL treats all of the styles as
+ a single property, this is not what you get. The Rich
+ Edit 2.0 sample code on this site demonstrates how to get
+ around this unnecessary limitation. Although written
+ for BCB 3.0+, the relevant code should easily back-port to
+ BCB 1.0. 
+ 
+Finally -- True Rich Edit Bugs 
+Rich Edit controls definitely have a bug or two. 
+ Some of these are difficult to classify as true Microsoft
+ Rich Edit control bugs, mainly because the Borland VCL does
+ some strange things and I do not have the time to trace
+ through all of the code. On the other hand, much of
+ the code that I have written to handle Rich Edit controls
+ bypasses the VCL for exactly that reason. These are
+ bugs that I am all but certain are true Rich Edit bugs. 
+ 
+The only case that I will cite here (because of the
+ uncertainty factor) is this: If you have text that is
+ "normal" and underlined to the left of italicized
+ text that is not underlined, the text is drawn to the
+ screen with extra space after the italicized text. 
+ For example, text that should be formatted as: 
+ 
+this text contains the word
+ "synchronicity" which is
+ drawn oddly 
+is drawn as: 
+ this text contains the word
+"synch ronicity" which
+is drawn oddly 
+Note the extra underlined space in the middle of the
+ word "synchronicity." This bug appears both
+ when the text is displayed in the control (although it
+ seems to occur only after formatting the text for a preview
+ with the EM_FORMATRANGE message) and when the text is drawn
+ on the screen for a preview (which implies that you have
+ already formatted the text with the EM_FORMATRANGE
+ message). Oddly, the text prints exactly as it
+ should. I do not yet have a work-around for this one. 
+ 
+If you spend much time with Rich Edit controls, you will
+ almost certainly find other VCL and true Rich Edit
+ bugs. If you find more, please send me sample code
+ that clearly demonstrates the bug so that we can save
+ others a little time. If you have workarounds, please
+ share them, too. 
+ 
+ 
+ 
+	 
+Home | Top Of Page |
+	Code |
+	Papers |
+	FAQs |
+	Links |
+	Search
+	| Feedback 
+	 
+ 
+ 
+	 
+Page updated 
+	
+ 
+	 
+ 
+ 
+Copyright ©
+ 1998-2001 Thin Air Enterprises and Robert Dunn. All
+ rights reserved. 
+ 

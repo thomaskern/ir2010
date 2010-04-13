@@ -1,0 +1,96 @@
+
+ 
+ C++ Programming HOW-TO: C++ Coding Conventions
+ 
+ 
+ 
+Next
+Previous
+Contents
+14. C++ Coding Conventions
+Coding convention is very essential for readability and maintenance of programs. And
+it also greatly improves the productivity of the programmer. 
+Coding convention is required for good coding discipline.
+The following is suggested - 
+inside class definition:
+- All public variables must begin with m like mFooVar. 
+The m stands for member.
+- All protected variables must begin with mt, 
+like mtFooVar and methods with t, like tFooNum(). 
+The t stands for protected.
+- All private variables must begin with mv, like mvFooVar and 
+methods with v, like vFooLone(). The v stands for private.
+- All public, protected and private variables must begin with 
+uppercase after m like F in mFooVar. 
+- All pointer variables must be prefixed with p, like 
+- Public variables mpFooVar and methods like FooNum()
+- Protected variables mtpFooVar and methods with t like tFooNum()
+- Private variables mvpFooVar and methods with v like vFooNum()
+Uniform world-wide coding convention for C++ language will help better programming.
+In the sample code given below t stands for protected,
+v stands for private,
+m stands for member-variable and
+p stands for pointer.
+class SomeFunMuncho
+{
+ public:
+ int mTempZimboniMacho; // Only temporary variables should be public as per OOP
+ float *mpTempArrayNumbers;
+ int HandleError();
+ float getBonyBox(); // Public accessor as per OOP design
+ float setBonyBox(); // Public accessor as per OOP design
+ protected:
+ float mtBonyBox;
+ int *mtpBonyHands;
+ char *tHandsFull();
+ int tGetNumbers();
+ private:
+ float mvJustDoIt;
+ char mvFirstName[30];
+ int *mvpTotalValue;
+ char *vSubmitBars();
+ int vGetNumbers();
+};
+When your program grows by millions of lines of code, then you will greatly
+appreciate the naming convention as above. The readability of code improves,
+because just by looking at the variable name like mvFirstName you can
+tell that it is member of a class and is a private variable.
+Visit the C++ Coding Standards URLs
+- C++ FAQ Lite - Coding standards 
+http://www.parashift.com/c++-faq-lite/coding-standards.html
+- Rice university coding standard 
+http://www.cs.rice.edu/~dwallach/CPlusPlusStyle.html
+- Identifiers to avoid in C++ Programs 
+http://oakroadsystems.com/tech/cppredef.htm
+- Coding standards from Possibility 
+http://www.possibility.com/Cpp/CppCodingStandard.html
+and 
+mirror site
+- Coding standards for Java and C++ from Ambysoft 
+http://www.ambysoft.com/JavaCodingStandards.html
+- Rules and recommendations 
+http://www.cs.umd.edu/users/cml/cstyle/
+- Indent and annotate 
+http://www.cs.umd.edu/users/cml/cstyle/indhill-annot.html
+- Elemental rules 
+http://www.cs.umd.edu/users/cml/cstyle/Ellemtel-rules.html
+- C++ style doc 
+http://www.cs.umd.edu/users/cml/cstyle/Wildfire-C++Style.html
+- C++ Coding Standards by Brett Scolcum 
+http://www.skypoint.com/~slocum/prog/cppstds.html
+- Logikos C++ Coding Standards 
+http://www.logikos.com/standards/cpp_std.html
+- NRad C++ coding standards 
+http://cadswes.colorado.edu/~billo/standards/nrad
+- BEJUG C++ coding standards 
+http://www.meurrens.org/ip-Links/java/joodcs/ToddHoff.html
+- Arctic Labs coding standards 
+http://www.arcticlabs.com/codingstandards
+See also
+- For rapid navigation with ctags 
+Vim color text editor
+- To improve productivity see 
+C++ Beautifier HOWTO
+Next
+Previous
+Contents

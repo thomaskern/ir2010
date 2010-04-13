@@ -1,0 +1,170 @@
+
+ 
+ PHP HOW-TO: IDE tools for PHP 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 14. IDE tools for PHP 
+Many HTML editors are supporting PHP. 
+In near future every HTML editors and XML editor will be supporting PHP
+"Rapid Application Development" tool.
+You will notice that some of the PHP editors run only on MS Windows. Yes!! 
+there are millions of PHP developers on MS Windows platform. 
+PHP is IMMENSELY POPULAR on Microsoft Windows platform and is surprisingly 
+more popular than Microsoft's own ASP web scripting language!! 
+PHP runs lot faster than ASP on MS Windows and has more features and functionalities
+than Microsoft ASP. 
+PHP is much more robust, reliable and powerful than ASP.
+There are more PHP users under MS Windows98/NT/2000 than on any other operating system!!
+PHP initially started on Linux/UNIX environment but today there are more
+PHP developers on MS Windows platform as compared to UNIX.
+ 14.1 PHP IDE 
+PHP IDE tools are at :
+- PHAktThe PHP support in Macromedia Dreamweaver UltraDev that allows
+Ultradev Developers to create PHP sites 
+PHAkt
+- PHP Lens
+http://phplens.com
+is a rapid application development component which allows PHP developers
+to dynamically and quickly create web applications that retrieve information from
+databases. With phpLens, data can be presented as html tables with facilities to create,
+edit, paginate, search and delete records. PHPLens uses ADODB.
+See also 
+ADODB.
+- PHP IDE and Editor "PHP Coder" 
+is now renamed to Maguma and is available at
+http://www.maguma.com/english/index.php
+- HAPEdit at 
+http://hapedit.free.fr
+- Cross-platform IDE : Activestate Komodo 
+http://www.activestate.com/Products/Komodo
+- Zend PHP IDE 
+http://zend.com/store/products/zend-ide.php
+- IDE for PHP scripting (Web Browser) : 
+http://www.ekenberg.se/php/ide
+- Nexidion PHP IDE 
+http://www.nexidion.org
+- Enter in Search keyword 'PHP IDE' in Source Forge 
+http://sourceforge.net
+- Color editor gvim for PHP (Win and linux)
+at 
+http://metalab.unc.edu/LDP/HOWTO/Vim-HOWTO.html
+and see also 
+ptags of PHP
+ 14.2 PHP IDE for MS Windows only 
+PHP IDE/editor on MS Windows platform are :
+- Rated 1st (the best PHP tool on MS Windows) :
+PHPTriad is a complete PHP development and server environment for
+Windows. It installs PHP, Apache, MySQL, and PHPMyAdmin, both installing and setting up
+the environment. PHPTriad is at 
+http://www.phpgeek.com/phptriad.php
+and at 
+mirrorsite
+- Rated 2nd : PHP Coder 
+http://www.php-ide.com 
+- Rated 3rd: PHPEd (Soyal), an excellent PHP editor (MS Windows) 
+http://soysal.free.fr/PHPEd
+- IDE for PHP editor (MS Windows): 
+http://www.phpedit.com
+- Color editor gvim for PHP (Win and linux)
+at 
+http://metalab.unc.edu/LDP/HOWTO/Vim-HOWTO.html
+and see also 
+ptags of PHP
+- IDE for PHP (MS Windows) 
+http://www.pc-service-boerner.de/PHPScriptEditor.htm
+- "EditPlus Text editor" win32 
+http://www.editplus.com (high 
+rating 5 stars)
+- eNotepad win32 
+http://www.edisys.com/Products/eNotepad/enotepad.asp (high
+rating 5 stars)
+- PHP editor win32 
+http://www.chami.com/html-kit (high rating 5 stars)
+- UltraEdit win32 
+http://www.ultraedit.com with PHP 
+word file at 
+http://www.ultraedit.com/downloads/additional.html
+- ScriptWorx editor win32 
+http://www.softlite.net/products/scriptworx (rating 4.5 stars)
+- TextPad editor win32 
+http://www.textpad.com (rating 4.5 stars)
+- PHP editor "ASPEdit" 
+http://www.tashcom.com/aspedit (rating 3.5 stars) along 
+with PHP code explorer 
+http://www.tashcom.com/codex (rating 4.5 stars)
+- Code-genie editor similar to UltaEdit or TextPad but smaller in size 
+http://www.code-genie.com
+- HTML/PHP editor Dreamweaver 
+http://www.dreamweaver.com
+- HTML/PHP editor Homesite 
+http://www.allaire.com/homesite
+- HTML/PHP editor Hotdog 
+http://www.hotdog.com
+ 14.3 PHP IDE for both MS Windows and Linux 
+PHP IDE/editor for bot MS Windows and Linux platforms are :
+- PHP editor (for both windows and linux/UNIX) 
+http://www.coffeecup.com/select/editor.html (rating 5 stars).
+- HTML/PHP editors Amaya 
+http://www.w3.org/Amaya
+- Folding text editor (Win and linux) 
+http://fte.sourceforge.net
+- PHP Editor (Win and linux) 
+http://www.scintilla.org
+- Color editor gvim for PHP (Win and linux)
+at 
+http://metalab.unc.edu/LDP/HOWTO/Vim-HOWTO.html
+and see also 
+ptags of PHP
+- Jed (win and linux) 
+http://space.mit.edu/~davis/jed.html
+- Editors for PHP : 
+http://www.itworks.demon.co.uk/phpeditors.htm
+- Editors for PHP : 
+http://www.oodie.com/tools/index.php?view=editor
+ 14.4 PHP IDE for Linux only 
+The best IDE for PHP on linux is Coffeecup Editor as given below:
+- Color editor gvim for PHP (Win and linux)
+at 
+http://metalab.unc.edu/LDP/HOWTO/Vim-HOWTO.html
+and see also 
+ptags of PHP
+- PHP editor
+http://www.coffeecup.com/select/editor.html (rating 5 stars).
+- HTML/PHP editors Quanta 
+http://quanta.sourceforge.net
+- HTML/PHP editors Blue Fish 
+http://bluefish.linuxave.net
+- HTML editors AswEdit 
+http://www.advasoft.com
+ 14.5 PHP Utilities 
+Zend is a server-side caching software speeds up Web site performance, maximizes hardware
+resources, and improves the online experience of customers, providing a good return
+on investment. Zend accelerator caches PHP scripts, helping to reduce processing time
+and Web server load while enabling administrators to monitor site performance in real time.
+Cost is $980 and supports Linux, Solaris and FreeBSD.
+Zends provides:
+- Enables IT to serve more Web site visitors with existing hardware
+- Speeds up Web site response time
+- Provides real-time performance monitoring
+- Zend Optimizers 
+http://www.zend.com
+- Zend Compilers 
+http://www.zend.com
+- APC "Alternative PHP Cache" is an open-source alternative to Zend's commercial
+accelerator which is at 
+http://apc.communityconnect.com.
+- Lots of info on PHP on MS Windows platform 
+http://php.weblogs.com
+- PHP GroupWare Apps 
+http://www.phpgroupware.org
+- PHP Web Shop 
+http://www.phpshop.org
+- PHP Nuke Web Portal system 
+PhpNuke
+Next
+Previous
+Contents

@@ -1,0 +1,144 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/ug/larger/multisrc.html 
+ 
+search 
+ 
+Guide: Multiple sources 
+By the time you've gotten some experience with writing software,
+you'll realize that doing everything in one source file is just not
+going to work. Kind of like keeping all your clothes in one big box -
+eventually the socks get lost at the bottom. Most programs are built
+from more than one source, with each source containing a "module" of
+functionality, usually self-contained so that you can work on it
+separately and (hopefully) test it separately also.
+Another reason why you'd want to use multiple source files is so
+that you can write different parts of your program in different
+languages. For example, gcc uses C for most of its modules, but it
+uses bison to compile the grammar itself. Multiple sources also
+reduces your debugging cycle, because most of the sources will already
+be compiled when you go to rebuild your program after fixing that one
+last bug :-)
+Anyway, the purpose of this part of the Guide is to help you figure
+out how to build a program that is made up of more than one
+source file.
+The first thing you have to understand is the concept of a "global
+symbol". Symbols are things like function and variables.
+Global symbols are symbols that are known to the whole program. For
+example:
+int c;
+int foo(int x)
+{
+ int y = x * 2 + 1 + c;
+ printf("foo(%d)=%d\n", x, y);
+}
+In this code snippet, the symbols c and foo are
+global; c because it's a variable declared outside any
+functions, and foo because it's a function that other parts
+of the program will be able to use. There is another global symbol
+here also - printf. Even though this snippet doesn't
+define printf, it's still a symbol that this snippet
+uses. The difference is that foo is defined by us and
+printf is external to us.
+Consider these two functions, each in their own source file:
+int foo(int x) int bar(int j)
+{ {
+ return bar(x) + 47; printf("j is %d\n", j);
+} return j*j;
+ }
+In this example, the file on the left defines the global symbol
+foo and refers to the external symbol bar. The file
+on the right, however, defines the global symbol bar and
+refers to the external symbol printf.
+When you compile these files to objects, by using "gcc -c
+foo.c" and "gcc -c bar.c" (go ahead and try it), the
+compiler doesn't yet know how it will resolve those references to
+symbols it doesn't know about it. What does it do? Pretty much
+nothing. It just writes down the missing information in the object
+file, and puts off the problem until later. When is later? Once you
+have all the files compiled, you link them all together.
+Unix calls this "loading", as in "load them all up into one program",
+hence the program that does this is called ld, even though
+gcc takes care of calling ld for you.
+When you combine these objects together (along with the standard C
+library, which happens automatically), the linker (ld) makes
+a big list of all the global symbols in all the objects, defined and
+external. It matches up the references to the symbols with the
+definitions of them. If any are still missing, you get an error - an
+"unresolved external". If none are missing, you get a program!
+One other thing that the linker does is make sure that no two files
+defined the same symbol. For example, no program can have two
+functions called foo - which would it use? This goes for
+variables also, which a lot of people stumble on. Consider these two
+files:
+int size = 42;	extern int size;
+In this example, the left file defines a variable size and
+the right file refers to the external variable size. When
+you link these together, everyone is happy. Now consider this:
+int size = 42;	int size;
+In this case, both files are defining the variable
+size, so when you link them, there's a problem. While this
+looks like an obvious problem, a lot of people put the definition in a
+header file, which is included in multiple source files, and
+inadvertently define it once in each file. Always use extern
+in header files! Remember, also, that extern alone won't
+define a symbol. At least one of the sources must have a definition
+for the variable as well.
+OK, enough about symbols. How do you compile and link these files?
+Well, let's start with two source files, main.c and
+foo.c:
+int main(void) int foo(int x)
+{ {
+ printf("foo(4)=%d\n", foo(4)); return 2*x+1;
+ exit(0); }
+}
+OK, first we have to compile these files into objects. Use commands like
+this:
+gcc -c main.c
+gcc -c foo.c
+You could have also done "gcc -c main.c foo.c", the
+results are the same. However, the two-command approach is better
+once you learn to use make to automate the compilations. The
+net result is that you have two new files in your directory,
+main.o and foo.o. These are the object files. Each
+contains the compiled versions of the sources, along with symbol
+tables and other information.
+To see the symbol tables, try this command:
+nm main.o foo.o
+To build the final program, use gcc again:
+gcc main.o foo.o -o main.exe
+When you run main.exe, you'll see that it prints out the
+correct value! If it didn't, you could edit just one of the two
+files, recompile just that file, and just link the two objects at the
+end. While this doesn't seem like much of a savings, consider
+building gcc. It has hundreds of source files and takes 20 minutes to
+build from scratch. Editing and compiling just one source file takes
+less than a minute, including building the program. Quite a savings,
+eh? 
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 1997 
+by DJ Delorie 
+ 
+ 
+Updated Apr 1997 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

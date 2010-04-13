@@ -1,0 +1,421 @@
+
+Help - gnatsweb
+gcc User: guest 
+ 
+ gnatsweb
+ 
+ 
+MAIN PAGE CREATE QUERY ADV. QUERY LOGIN AGAIN HELP 
+ 
+Help
+ 
+	 
+Gnatsweb User Guide
+	 
+Introduction
+	 
+The Gnatsweb interface is a front-end to the GNATS problem
+	tracking system used to create, view and modify GNATS problem reports. Support
+	organizations can use it for tracking of issues related to products that are
+	supported (i.e. software, hardware, documentation, etc.) Problem reports are
+	used to notify responsible parties of problems. When the problems are
+	looked into, the problem reports can be edited and email gets sent to all
+	interested parties.
+	 
+ The Gnatsweb help is divided into the following sections:
+	 
+	
+- Login Page
+	
+- Main Page
+	
+- Create Problem Report Page
+	
+- Edit Problem Report Page
+	
+- View Problem Report Page
+	
+- Query Problem Reports Page
+	
+- Advanced Query Page
+	
+- Query Results Page
+	 
+	 
+ For more information about GNATS, see the
+	GNATS home page.
+	 
+Login Page
+	 
+The login page is used to login to the GNATS system. The first time
+	Gnatsweb is used, this page is presented. After the first time, the
+	main page is displayed because the settings are stored in
+	cookies on the machine that has the web browser running. There is a button on
+	the main page that takes the user to the Login Page. This
+	button is used to select a new database if desired. There are several controls
+	on the screen: 
+	 
+	
+	 User Name: (textbox) 
+	 This is the GNATS user name to login as. 
+	 Password: (textbox)
+	 This is the GNATS password for the user name.
+	 Database: (combobox)
+	 This selects the database to login to. The dropdown menu lists all
+	 the available databases.
+	 Login (button) 
+	 This logs into the selected GNATS database.
+	
+	 
+If the user name and password are correct, the main
+	page will be shown.
+	 
+Main Page
+	 
+The main page is used to select the various operations within the GNATS
+	database. There are seven operations available from this page:
+	 
+	
+	 Create Problem Report: (button)
+	 This button displays the Create Problem Report
+	 Page. It is used to create a new problem report.
+	 Edit Problem Report: (button and textbox)
+	 This is used to edit an existing problem report. The Problem Report
+	 Number is entered into the text box and either the ENTER key is
+	 pressed or the Edit button is pressed.
+	 View Problem Report: (button and textbox)
+	 This is used to view an existing problem report. The Problem Report
+	 Number is entered into the text box and either the ENTER key is
+	 pressed or the Edit button is pressed.
+	 Query Problem Reports:
+	 This button displays the Query Problem Reports
+	 Page. Used for querying of existing problem reports.
+	 Advanced Query:
+	 
+	 This button displays the Advanced Query
+	 Page. Used for complex querying of existing problem reports.
+	 Login again:
+	 This button displays the Login Page. Used for
+	 selecting a different GNATS database.
+	 Help:
+	 Displays the Gnatsweb User Guide.
+	 
+	 
+Create Problem Report Page
+	 
+The Create Problem Report page is used to create a new problem report.
+	There are many controls on this page. Here is a description of each one: 
+	 
+	
+	 Reporter's email: (textbox)
+	 This is the person filing the new problem report. This is necessary
+	 because someone without access to the GNATS database may be the
+	 Originator (described below).
+	 CC: (textbox)
+	 Carbon copy the problem report to this email address. This is
+	 useful for sending a new problem report to interested parties. Future changes
+	 to the problem report are not emailed to this address.
+	 Others to notify of updates: (textbox)
+	 This can be a comma separated list of email addresses that will be
+	 notified when this problem report changes. This is useful for others that may
+	 be interested in this problem.
+	 Category: (combobox)
+	 This combobox allows the selection of a category which the problem
+	 report should be filed under. Category names might for instance correspond to
+	 product names.
+	 Synopsis: (textbox)
+	 This is a short description of a problem. This is used in the
+	 Query Page and the Advanced Query
+	 Page.
+	 Confidential: (combobox)
+	 This combobox selects whether or not the problem report is
+	 confidential. This is useful since in-house problem reports don't necessarily
+	 need to be seen by the public.
+	 Severity: (combobox)
+	 This has three options: critical, serious,
+	 non-critical. This is a best guess (i.e. if the hardware catches fire,
+	 it should probably be critical). When creating a problem report, the
+	 severity level is often merely an educated guess. It will often be changed
+	 later on, based on the assessment of the GNATS administrator or the person
+	 responsible for the problem category.
+	 Priority: (combobox)
+	 Like severity, this is merely a guess at the priority level of the
+	 problem.
+	 Class: (combobox)
+	 The class of the problem. This is also a guess.
+	 Submitter-Id: (combobox)
+	 The valid submitter identification. If this is unknown, leave the
+	 default setting. Otherwise select the one desired.
+	 Originator: (textbox)
+	 An email address of the person reporting the problem. This is often
+	 the same as the Reporter's email address. 
+	 Release: (textbox)
+	 This should include the installed version of the product which the
+	 problem report applies to, together with identification of applied patches,
+	 updates, fixes etc. Accurate information in this field is often critical for
+	 tracking and diagnosis of the problem.
+	 Environment: (textbox)
+	 A description of the environment where the problem occurred.
+	 Important information might include hardware make and model, operating system
+	 name and version, system patchlevels etc. In general: the more, the
+	 better.
+	 Description: (multi-line textbox)
+	 A full description of the problem. Good descriptions become good
+	 solutions. Bad descriptions make problems hard to solve.
+	 How-To-Repeat: (multi-line textbox)
+	 This is a description of the steps necessary to recreate the
+	 problem.
+	 Fix: (multi-line textbox)
+	 If a workaround or fix has been determined, this is the place to
+	 put that information.
+	 Submit (button)
+	 This submits the problem report to the GNATS database. Email will
+	 be sent to the Reporter's email and Originator's email addresses,
+	 and all other parties listed in the Others to notify field. The GNATS
+	 administrator and the responsible person also gets a copy.
+	 Reset (button)
+	 Reset all fields to defaults. Most the textboxes are cleared and
+	 the comboboxes are set to their defaults.
+	 
+	 
+Edit Problem Report Page
+	 
+The Edit page is used to modify a problem report when a solution or fix
+	has been found, or when any other change to the problem report is required.
+	Many of the fields parallel the Create Problem Report
+	Page (consult that section for a description of the other fields), but
+	others are specific to the edit page.
+	 
+ Some fields have a textbox labeled Reason Changed just below
+	them. If the field above has been modified, the Reason Changed field must be
+	filled in. This is used for tracking the changes to various fields deemed
+	important enough to require an explicit reason for change.
+	 
+ Here are the fields on the edit page that come in addition to those on
+	the Create Problem Report page:
+	 
+	
+	 Responsible: (combobox)
+	 This is the identity of the individual who is responsible for
+	 handling the problem report.
+	 Reason Changed: (multi-line textbox) below the Responsible
+	 field.
+	 If the Responsible field changes, this must be filled in with a
+	 reason for the change.
+	 State: (combobox)
+	 The current state of the problem report. Usually this field is
+	 changed by the Responsible person as the handling of the problem report
+	 progresses.
+	 Reason Changed: (multi-line textbox) below the State
+	 field.
+	 If the State field changes, this must be filled in with a reason
+	 for the change.
+	 Class: (combobox)
+	 The class of the problem report.
+	 Release-Note: (multi-line textbox)
+	 This field is usually used when a problem report has been closed
+	 and incorporated into a new release of a product. The release notes are then
+	 usually collected for use in an update report to be distributed with the
+	 released software.
+	 Submit Edit (button)
+	 This submits the changes to the GNATS database. Another page is
+	 displayed with the results. If fields are missing or incorrectly filled out,
+	 the changes necessary to fix the problem are displayed. By using the 'back'
+	 button in the web browser, the user can go back to the problem report, correct
+	 the errors and resubmit.
+	 Audit-Trail: (multi-line text display)
+	 This is a cumulative description of all the changes made to this
+	 problem report.
+	 
+	 
+View Problem Report Page
+	 
+The View page is used to display a GNATS problem report without changing
+	it. It has the same fields described in the Create Problem
+	Report Page and the Edit Problem Report Page, together
+	with two additional buttons and a link:
+	 
+	
+	 Edit (button)
+	 This displays the edit page.
+	 View audit-trail (button)
+	 Because the Audit-Trail field can get quite long, it is only
+	 displayed when this button is clicked.
+	 send email to interested parties (link)
+	 This is for sending email to the parties interested in this problem
+	 report.
+	 
+	 
+Query Problem Reports Page
+	 
+The Query Problem Reports page is for simple searches of the problem
+	report database. It displays the Query Results Page.
+	The fields are "anded" together for the search, meaning that all the criteria
+	selected must match each problem report searched in order for the report to be
+	included in the results. There are several selections that can be made:
+	 
+	
+	 Submit stored query (button and combobox)
+	 Often repeated queries can be stored from the Query Results Page. This selects a previously stored
+	 query. If no queries have been stored, this field is not displayed.
+	 Category: (combobox)
+	 This will select all or a specific category to search.
+	 Severity: (combobox)
+	 This will select all or a specific severity to search.
+	 Priority: (combobox)
+	 This will select all or a specific priority to search.
+	 Responsible: (combobox)
+	 This will select all or a specific responsible to
+	 search.
+	 State: (combobox)
+	 This will select all or a specific state to search.
+	 Ignore Closed (checkbox)
+	 This selects whether or not to ignore closed problem reports
+	 (ignore is on by default).
+	 Class: (combobox)
+	 This will select all or a specific class to search.
+	 Synopsis Search: (textbox)
+	 This will search the synopsis field for the text entered.
+	 Multi-line Text Search:
+	 
+	 This will search all the multi-line text fields for the text
+	 entered.
+	 Column Display: (multi-select listbox)
+	 This selects the columns to be displayed in the query results
+	 table. The selection is stored by the web browser, so the next time a query is
+	 requested, the columns selected for the previous query will be selected by
+	 default.
+	 Display Current Date (checkbox)
+ This selects whether or not to display the current date and time on the
+	 query results page. (this is on by default).
+	 Submit query (button)
+	 This submits the query and the Query Results
+	 Page is displayed.
+	
+	 
+	 
+Advanced Query Problem Reports Page
+	 
+The Advanced Query Problem Reports page is not for the faint of heart.
+	This is a very complicated form with many features. There are three buttons and
+	a combobox to start the search:
+	 
+	
+	 Submit stored query (button and combobox)
+	 Often repeated queries can be stored from the Query Results Page. This selects a previously stored
+	 query. If no queries have been stored, this field is not displayed.
+	 Submit query (button)
+	 Submit the advanced query, and display the Query Results Page.
+	 Reset (button)
+	 Reset the form.
+	
+	 
+There are four sub-sections to this form:
+	 
+	
+- Search All Text
+	
+- Search By Date
+	
+- Search Individual Fields
+	
+- Select Columns to Display
+	 
+	 
+Any one of these sub-sections can be used separately or together for
+	complex searches.
+	 
+Search All Text
+	 
+There are two types of searches on all text:
+	 
+	
+- Single-line text fields
+	
+- Multi-line text fields
+	 
+	 
+Regular expressions can be used in searches.
+	 
+Search By Date
+	 
+The Search By Date sub-section allows you to limit the range of problem
+	reports according to various time parameters. There are six self explanatory
+	fields available:
+	 
+	
+- Arrived After
+	
+- Arrived Before
+	
+- Modified After
+	
+- Modified Before
+	
+- Closed After
+	
+- Closed Before
+	 
+	 
+The dates are entered in a string like: 1999-04-01 05:00 GMT.
+	Though the date matching scheme is pretty robust, it should accept quite a few
+	formats.
+	 
+Search Individual Fields
+	 
+The Search Individual Fields sub-section is used for matching based on a
+	specific field in the GNATS problem report. All the fields have a textbox for
+	doing regular expression searches. Where applicable, fields have a multi-select
+	listbox that can be used. When nothing is entered for the textbox or selected
+	in the listbox, those fields are not used in the match. Here are the valid
+	matchable fields:
+	 
+	
+- Category
+	
+- Synopsis
+	
+- Confidential
+	
+- Severity
+	
+- Priority
+	
+- Responsible
+	
+- State
+	
+- Class
+	
+- Submitter-Id
+	
+- Originator
+	
+- Release
+	 
+	 
+Each field is described in the Create Problem Report
+	Page or the Edit Problem Report Page sections of this
+	user guide. The 'state' field also has an 'Ignore Closed' checkbox to ignore
+	all closed problem reports.
+	 
+Display
+	 
+This sub-section contains a multi-select listbox that is used to set the
+	displayable columns in the Query Results Page.
+ 
+Below this is a checkbox entitled "Display Current Date". This checkbox controls
+ whether or not the current date will be displayed on the query results page.
+ (this is on by default).
+	 
+Query Results Page
+	 
+The problem report table displayed shows the problem report numbers as
+	links to the View Problem Report Page. In order to sort the
+	table by the contents of a specific column, click the column heading.
+	 
+At the bottom of the page is a text entry field and a button to store a
+	query selection. Stored queries are accessible from the Query
+	Problem Reports Page or the Advanced Query Problem
+	Reports Page. This provides for a quick way to repeat often-made searches
+	without having to make all the selections again.

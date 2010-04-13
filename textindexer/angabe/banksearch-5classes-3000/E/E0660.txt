@@ -1,0 +1,349 @@
+
+Stroustrup: ESC99 Talk
+Standard C++ for Embedded Systems Programming
+Here are the slides I used for my keynote at ESC'99 in Chicago, March 2 1999.
+ 	 Standard C++ for Embedded Systems Programming
+	Bjarne Stroustrup
+	AT&T Labs
+	Florham Park, NJ 07932, USA
+	bs@research.att.com
+	http://www.research.att.com/~bs
+	
+Abstract:
+To ease design, implementation, and maintenance of software, we want
+to raise the level of abstraction in our code. What does Standard C++
+offer to make this possible without loss of performance or predictability?
+	
+Overview
+	Philosophy, aims, fundamentals
+	some numbers
+	Classes
+	inlining, assembler
+	Abstract classes
+	Memory management
+	Templates
+	containers	
+C++
+	- is a better C
+	- supports data abstraction
+	- supports object-oriented programming
+	- supports generic programming
+(it is a ``a multi-paradigm language'')	
+Work at the highest level that you can afford
+	- shorter source code
+	- clearer source code
+	- easier maintenance
+	- better source-level tool support
+	
+But what does "afford" mean?
+	- run-time
+	- storage overhead
+	- predictability
+	- development time
+	- maintenance cost
+	- tool support
+	- programmer skill
+	- ...
+	
+C++ aims:
+	efficiency *and* abstraction
+	- not "efficiency *or* abstraction"
+	- not "efficient if you limit yourself to C style"
+	- not "if you use my experimental optimizer" 
+	- now
+	not "in a few years when magic happens"
+	
+C++ has always been used for embedded applications:
+	- device drivers
+	- network layers
+	- real time OSs
+	- monitoring equipment
+	- dash boards
+	- welding robots (and other robots)
+	- DSP
+	- ...
+	("always" == "from 1982 or so")
+	
+Standard C++
+	- ISO/IEC-14882 standard ratified 1998 
+	- the result of a consensus process
+	Canada, France, Germany, Japan, UK, US, ...
+	AT&T, Borland, Ericsson, IBM, HP, Intel, MS
+	Siemens, Sun, ...
+	hundreds of individuals
+	- serves the needs of diverse communities
+	- eases cooperation / understanding
+	- room for growth
+	
+	- wide support
+	
+There is no substitute for
+	- intelligence
+	- experience
+	- taste
+	- hard work	
+Zero-overhead rule:
+	``What you don't use, you don't pay for''
+	or
+	``There is no way of writing equivalent C code
+	 that runs faster or generates smaller code''
+	
+	- but does implementations meet it?
+	- Classes (yes)
+	- Virtual functions (yes)
+	- Exceptions (can, rarely do)
+	 expect 5% to 20% space and/or time overhead
+	- templates (yes)
+	- libraries (some do, some don't - know your libraries)	
+Crucial point: Function call
+	C++	C
+non-virtual member	function
+	p->f(1) 1.72s f(p,1) 1.67s
+	p.f(1) 1.47s f(&s,1) 1.67s
+virtual fct	indirect fct
+	p->g(1) 1.47s g(&s,1) 1.46s
+	x.g(1) 1.47s g(p,1) 1.47s
+static member	function
+	X::h(1) 1.72s h(1) 1.72s
+inline fct	macro
+	p->k(1) 0.66s K(p,1) 0.67s
+	x.k(1) 0.46s K(&s,1) 0.46s
+That's good enough for anyone who can live with C.
+(implementations vary, check yours)
+Here is a simple program for timing calls	
+Concrete types:
+	Examples:
+	built-in types, complex, point, pairs, dates, disc locations,
+	source code locations, BCD characters, error messages, lines,
+	currency, nodes, links, timers, queues, devices, ...
+	
+Concrete types:
+	small heavily-used abstractions are very common
+	design them carefully
+	support them well
+	- convenience
+	- efficiency
+	the mundane is statistically more important than the advanced
+The ideal candidate for a class:
+	frequently used
+	elegant interface matters
+	efficiency matters
+	represent concept that might be useful elsewhere
+	in other programs
+	
+	on other systems
+	simple interface
+	many possible implementations
+Classes:
+class queue {
+public:
+	put(message*);
+	message* get();
+	// ...
+private:
+	// representation
+};
+void filter(queue& in, queue& out)
+{
+	while (message* m = in.get()) {
+	// do something
+	put(m);
+	}
+}
+inline message* queue::get()
+{
+	if (no_of_elements() == 0) return underflow();
+	// ...
+	
+}
+representation available (=> run-time efficiency)
+	- inlining
+	- true local variables
+no space overhead
+layout compatibility when desired
+Inlining:
+	In theory, compilers are better at inlining
+	In reality, programmers can do better with "inline" declarations
+	- better pipelining
+	- more opportunities for optimizers
+	- less code for simple functions
+There are things you just can't do in a machine-independent way,
+	specialized instructions (e.g. vector operations,
+	I/O instructions, memory mapping instructions),
+	so use assembler:
+inine int isr_hot_flag()	// i960
+{
+	register unsigned tmp;
+	asm("modpc 0, 0, %0" : "=r" (tmp));
+	return tmp & 0x2000;
+}
+In emergencies, asm() can also be used for hand optimization
+Abstract classes for defining interfaces:
+class Device {
+	// no representation (=> typically no constructor)
+public:
+	virtual int open(int opt) =0; // pure virtual
+	virtual int close(int opt) =0;
+	virtual int read(char* p, int n) =0;
+	
+	// ...
+	virtual ~Device(); // virtual destructor
+};
+Abstract classes:
+representation unavailable to optimizers
+	- usually allocate using new
+	- use virtual functions
+	- access through pointers and references
+different representations can coexist
+	- no recompilation of user code after representation change
+Abstract classes allow many different implementations:
+class Dev1 : public Device {
+public:
+	int open(int opt);
+	int close(int opt);
+	int read(char* p, int n);
+	
+	// ...
+private:
+	// representation
+};
+class Dev2 : public Device {
+	// ...
+};
+Polymorphic code even useful without dynamic memory allocation
+Dev1 d1(args1);
+Dev2 d2(args2);
+void f(Device& d)
+{
+	char buf[max];
+	int n = d.read(buf,max);
+	// ...
+};
+void g()
+{
+	f(d1);
+	f(d2);
+}
+Free store
+	some embedded systems can afford it, many can't
+	- time
+	- space
+	- predictability
+	- memory exhaustion
+	- several memory types/pools (placement)
+Automatic garbage collection possible where affordable:
+	http://www.hpl.hp.com/personal/Hans_Boehm/gc
+Special-purpose memory allocation:
+	new X;	// use default allocator
+	// or class-specific allocator
+	new(&buffer[3]) X;	// place X in buffer[3]
+	new(Shared) X;	// allocated from Shared memory
+Exception handling;
+	- uniform mechanism for signalling errors
+	- reasonably simple
+	try { ... } catch(some_error) { ... }
+	throw some_error();
+	- potentially efficient
+	- not suitable for all embedded applications
+	- can be disabled in most implementations
+Predictability:
+	basic operations perform in fixed time, except
+	exception throw
+	default free store allocation
+Can programmers predict performance?
+	yes, but not without
+	- being experienced and careful and/or
+	- using profilers
+	(just like for *every* other language - including assembler)
+Templates:
+	Needed for efficient and typesafe containers.
+	no run-time overhead
+	static type safety
+	- eliminates many casts
+	- eliminates many macros
+	memory overhead if carelessly used
+Templates:
+	Almost every standard library facility is template based
+	- stream i/o
+	- strings
+	- containers
+	- algorithms
+	- complex numbers
+	- vectors with numeric operations
+Containers:
+template class vector {
+ // ...
+};
+vector vc(10);
+ 
+void h()
+{
+ // ...
+ vc[3] = complex(7,3);
+ vc[5] = vc[7];
+ // ...
+}
+Standard library templates:
+	Containers:
+	list, vector, priority_queue, map, ...
+	Algorithms:
+	sort, binary_search, partial_sort
+	find, find_if 
+	copy, unique_copy
+	for_each, transform
+	accumulate
+	...
+Note: type safe (no casts), optimal run time,
+	be careful about code replication
+Simple run-time efficiency test:
+	read a lot of input,
+	do a bit with each element,
+	store each element in memory
+	do a bit with the set of elements
+I/O plus computation
+	(if necessary, memory could be pre-allocated)
+	vector buf;
+	fstream fin(file,ios::in);
+	double d;
+	while(fin>>d) buf.push_back(d);	// read and store
+	
+	sort(buf.begin(),buf.end());
+// ...
+Read, sort, and write floating-point numbers
+	unoptimized	optimized
+elements	C++	C	C/C++ ratio	C++	C	C/C++ ratio
+500,000	3.5	6.1	1.74	2.5	5.1	2.04
+5,000,000	38.4	172.6	4.49	27.4	126.6	4.62
+(for details, see May issue of C and C++ Users' Journal)
+Here are
+the programs used for those timings
+How could that be done?
+	- templates for generality
+	- clean, simple algorithms
+	- inlining for efficiency
+Does C++ always run this much faster than C?
+	- of course not
+	- implementations differ (library and language)
+	- often there is no scope for major improvements
+You don't need "genius programmers" to use Standard C++
+	- simple execution model
+	- simple object model
+	- choose techniques and language features to suit problem
+	- no prize for using the largest number of features
+	- use frameworks and foundation libraries as appropriate
+	- much easier to use than to design/implement
+Weaknesses (that can be strengths)
+	no standard
+	-concurrency
+	- persistence
+	- large standard execution environment (e.g. OS services)
+	- GUI
+Standard C++
+	- well specified
+	not proprietary (ISO, ANSI, ...)
+	long-term stability (5 year revision cycle)
+	- multiple implementations/suppliers
+	- efficient
+	- comprehensive
+	- easier to learn than previous versions
+For links, see http://www.research.att.com/~bs

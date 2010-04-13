@@ -1,0 +1,41 @@
+
+ 
+ 
+ 
+ 
+ 
+ EJB Tutorial
+ 
+EJB Tutorial
+ 
+Tutorial Index Page
+Deploying the Entity Bean
+To deploy the entity bean in the Blazix EJB server, add the following lines
+to the EJB configuration file ejb.ini.
+ejbJar: c:\Ejbtut\PropsEjb.jar
+ejb.Props.dataSource: propsDataSource
+ejb.Props.table: PropsTable
+The first line loads the EJB by specifying the name of the Jar file created
+by the EJB compiler. Loading the EJB also registers the name of the
+EJB - "Props" in this case - with the EJB server. In the next line
+we are specifying the data source associated with the EJB. The data
+source is already configured, so we just need to give its name to the EJB
+server. We also need to the specify the table name within the data
+source.
+After having changed the ejb.ini file as shown above, start the Blazix
+EJB server. You should see the following lines in the output from
+the EJB server showing your EJB was deployed:
+Deploying EJB-Home class "props.PropsHome" at JNDI name "Props"
+[Note: It is not always necessary to stop and restart the server
+to deploy an EJB. In fact, in a production environment this
+would not be a good idea. Many EJB containers support "live" deployments
+and updates of EJBs. For instance, in Blazix, EJBs can be added or
+updated via a "live" deployment using the EJB remote administration tool. 
+See your server documentation for details.]
+Exercise: Deploy your employee EJB.
+Troubleshooting Tips
+ 
+Next tutorial: Using the Entity Bean 
+Contents
+ 
+ 

@@ -1,0 +1,310 @@
+
+Stroustrup: Errata for 2nd printing of The C++ Programming Language
+Errata for 2nd printing of The C++ Programming Language
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (3rd edition),
+Addison-Wesley, 1997. ISBN0-201-88954-4.
+Errata for the 2nd printing yielding the 3rd.
+Errors and Clarifications
+Preface:
+pg vi	Add David Gay to the list of people who commented on early darfts of the book
+Chapter 1:
+Chapter 2:
+Chapter 3:
+pg 55	s/++i/++i)/
+pg 58	s/C::const_iterator/typename C::const_iterator/
+pg 61	s/oo(os)/oo(os,"\n")/
+pg 61	s/return !is && !os;/return !is.eof() && !os;/
+pg 61	s/attached to an ostream/attached to a file/
+pg 61	add as last sentence of 3.8.3: "The ostream_iterator's second argument is
+	used to delimit output values."
+pg 62	s/histogram[string]++;/histogram[s]++;/
+pg 65	s/template/template/
+Chapter 4:
+pg 72	s/-127 to 128/-128 to 127/ twice
+pg 79	s/in a C++ program./in a C++ program (for the effects of #include see sec9.2.3)/
+pg 84	s/Nonstatic members of a structure .../Array elements and nonstatic structure or
+	class members have their lifetimes determined by the object of which they are part./
+Chapter 5:
+pg 94	s/iy:x,y/x>y?x:y/
+Chapter 7:
+pg 147	s/compute2(Vec v)/compute2(const Vec& v)/
+pg 155	s/_see expr.exercices_[17]/see sec6.6[17]/
+pg 157	s/button2[3]/button2[2]/
+pg 162	s/#ifdef identifier causes/#ifdef identifier conditionally causes/
+pg 164	19. s/as defined in sec6.6/s/as defined in sec5.9/
+Chapter 8:
+pg 178	s/we look for get/we look for operator==/
+pg 192	s/cin.get(ch)/input->get(ch)/ twice
+Chapter 9:
+pg 199	s/contains three errors:/contains two errors:/
+pg 199	s/defined twice./defined twice. Note that these are not errors in C (secB.2.2)./
+pg 207	s/ysort(/void ysort(/
+pg 207	s/compare() has C linkage/ccmp() has C linkage/
+pg 208	s/qsort(v,sz,1,&ccmp)/isort(v,sz,1,&ccmp)/ second occurrence
+Chapter 10:
+pg 239	s/catch(Bad_date)/catch(Date::Bad_date)/
+pg 240	s/12
+pg 266	s/String/string/ twice
+pg 268	s/r1=complex+(complex+(x,y),z)/r1=operator+(x,operator+(y,z))/
+Chapter 11:
+pg 292	s/T* operator++()/Ptr_to_T& operator++()/
+pg 292	s/T* operator--()/Ptr_to_T& operator--()/
+pg 292	s/T* operator++(int)/Ptr_to_T operator++(int)/
+pg 292	s/T* operator--(int)/Ptr_to_T operator--(int)/
+pg 292	s/p.operator--(1)/p.operator--(0)/
+pg 295	s/for( int i = 0;/for( int i = 1;/
+Chapter 12:
+pg 307	s/to pass objects/to pass pointers and references to objects/
+pg 311	s/mem_fct/mem_fun/
+pg 313	add "Point center;" to class Circle
+pg 319	add "void reset_value();" to class Ival_slider
+pg 323	s/Ival_box =/Ival_box* pb =/
+Chapter 13:
+pg 333	s/class Link/struct Link/
+pg 333	s/cout val/
+pg 335	s/int f(/Record f(/
+pg 338	s/template T get_nth/template int get_nth/
+pg 339	s/return C::lt(str1[i],str2[i]);/return C::lt(str1[i],str2[i])?-1:1;/
+pg 340	s/return C::lt(str1[i],str2[i]);/return C::lt(str1[i],str2[i])?-1:1;/
+pg 346	s/:private vector/:public vector/
+pg 348	s/Truncation problems .. from secC.6.2.6./ Truncation problems could be caught
+	at run time using a checked conversion in the style of implicit_cast (sec13.3.1)
+	and checked (secC.6.2.6):
+pg 348	s/: re(checked_cast(c.re)), im(checked_cast(c.im))/
+	: re(checked_cast(c.real())), im(checked_cast(c.imag()))/
+pg 349	s/set/set/
+Chapter 14:
+Chapter 15:
+Chapter 16:
+pg 436	s/Vector_itor(Vector& vv)/Vector_itor(Vector& vv)/
+pg 444	s/using a reverse_iterator:/using a reverse_iterator (sec19.2.5):/
+pg 447	s/template void assign(Size n, const T2& val = T2());/void assign(size_type n, const T2& val);/ (recent standards resolution)
+pg 452	s/= T()// (recent standard resolution)
+pg 453	s/(p2+1)/p2.base()/
+pg 454	s/16.3.6/16.3.3/
+pg 454	s/delete()/erase()/
+pg 457	s/19.4.5/19.4.2/
+pg 457	s/Other Functions/Other Member Functions/
+Chapter 17:
+pg 463	s/Add elements to end of vector/Change size of vector/
+pg 464	remove "assign(n)" line (recent standards resolution)
+pg 464	stack, queue, and priority_queue have no list operations
+pg 464	pririoty_queue has front and back operations (not list and front)
+pg 464	stack and queue's back operations are const+
+pg 467	s/17.4/17.4.1.5/
+pg 468	s/q) { return/q) const { return/
+pg 472	s/16.3.6/16.3.5/
+pg 473	s/void remove(const T& val)/void remove(const T& val);/
+pg 474	s/17.8[3]/17.8[13]/
+pg 480	s/16.3/16.3.1/
+pg 482	s/pair(const pair& p) :first(p->first), second(p->second) { }/pair(const pair& p) :first(p.first), second(p.second) { }/
+pg 485	s/operator()(const T& x, const T& y) {/operator()(const T& x, const T& y) const {/
+pg 486	s/keytype& k const/keytype& k) const/
+pg 486	s/keytype&)/keytype& k)/
+pg 487	s/Modifiers/List Operations/
+pg 487	s/modifiers:/list operations:/
+pg 488	s/*(m.insert(make_pair(k,V())).first).second/(*(m.insert(make_pair(k,V())).first)).second/
+pg 490	the body of f() should be
+	m.insert(make_pair("x",4));
+	m.insert(make_pair("x",5));	// no effect: there already is an entry for "x" (sec17.4.1.7)
+	// now m["x"] == 4
+	mm.insert(make_pair("x",4));
+	mm.insert(make_pair("x",5));
+	// mm now holds both ("x",4) and ("x",5)
+pg 491	s/multiple values that have the same key./multiple occurrences of a key./
+pg 493	renumber variables to b5, b6, b7, b8
+pg 493	s/no char/no char*/
+pg 495	s/true if no bit is 0/true if no bit is 1/
+pg 498	s/H())/H(), const EQ& = EQ())/
+pg 499	s/*size/*b.size()/
+pg 500	s/phone_book1()/phone_book1/
+pg 500	s/}/};/ at the end of class hash_map
+pg 500	s/key_type k/const key_type& k/ twice
+pg 502	s/size_type/size_t/ in struct Hash
+pg 503	s/size_type/size_t/
+Chapter 18:
+pg 510	s/Find the last occurrence of a value./Find the first element larger than a value./
+pg 514	s/operator()/void operator()/
+pg 516	s/,li.end()// twice
+pg 516	s/,vi.end()//
+pg 517	s/club_eq/Club_eq/
+pg 518	s/,b.end()//
+pg 518	s/mem_fun_ref1/mem_fun1_ref/
+pg 521	s/operator()(T* p)/operator()(T* p) const/
+pg 521	s/lp/ls/ twice
+pg 523	s/Pred::result_type not1(/unary_negate not1(/
+pg 523	s/Pred::result_type not2(/binary_negate not2(/
+pg 530	s/class Out>/class Out, class Pred>/
+pg 531	s/purge(set/purge(deque/
+pg 532	s/return this;/return s;/
+pg 532 s/update_positions(vector/update_positions(list/ twice
+pg 532 s/,oper.end()// twice
+pg 532	s/have an output operator/have an output iterator/
+pg 536	s/list/list/
+pg 536	s/copy elements/remove elements/
+pg 536	s/s(ss)/:town(ss)/
+pg 537	/to containers/to sequences/
+pg 540	/proper place:/proper place with no element comparing less than the Nth element placed after it in the sequence:/ 
+pg 541	s/VI p = lower_bound/VI q = lower_bound/
+pg 541	s/or end()/or last/
+pg 541	s/new sequence/new sorted sequence/
+pg 543	s/with the lowest value/with the highest value/
+pg 543	comment for make_heap():	// turn sequence into heap
+pg 543	comment for sort_heap():	// turn heap into sequence
+pg 544	s/cmp(b,a)/cmp(a,b)/
+pg 545	s/v2+strlen(v1)/v2+strlen(v2)/
+pg 546	s/18.4.4.2./18.4.4.3/ in [10]
+Chapter 19:
+pg 554	s/trivial to define difference()/trivial to define distance()/
+pg 557	After the definition of reverse_iterator add this explanation:
+	"A reverse_iterator is implemented using an iterator called current.
+	That iterator can (only) point to the elements of its sequence plus
+	its one-past-the-end element. However, the reverse_iterator's
+	one-past-the-end element is the original sequence's (inaccessible)
+	one-before-the-beginning element. Thus, to avoid access violations,
+	current points to the element after the one the reverse_iterator
+	refers to. This implies that * returns the value *(current-1)
+	and that ++ is implemented using -- on current."
+pg 569	s/it (n
+pg 569	replace the line starting ``while(q operator()(size_t i) { return row(i); }
+	Cslice_iter operator()(size_t i) const { return row(i); }
+pg 673	the const versions of row() and column() should return Cslice_iter
+pg 676	s/is assigned to a Matrix:/is assigned to a Vector:/
+pg 676	s/MVmulMadd/MVmulVadd/ seven times
+pg 678	s/index(/gslice_index(/ thrice
+pg 678	s/v[m].fill(0)/v[m]=0/ (recent standards change)
+pg 679	s/22.4/22.4.2/ twice
+pg 680	s/Note the use of a member template to ensure initialization
+	of any complex type with any other (sec13.6.2)./Note the use of member
+	templates to ensure initialization and assignment of any complex
+	type with any other (sec13.6.2)./
+pg 681 Replace the last complete sentense on the page by
+	"Similar specializations ensure that a complex and a
+	complex can be quietly converted to a complex
+	but that a complex cannot be implicitly converted to a
+	complex or to a complex and a complex
+	cannot be implicitly converted to a complex."
+pg 682	s///
+pg 682 Replace the example at the bottom of the page and its associated text with:
+The simple version of accumulate()
+adds elements of a sequence using their + operator.
+For example:
+	void f(vector& price, list& incr)
+	{
+	int i = accumulate(price.begin(),price.end(),0);	// accumulate in int
+	double d = 0;
+	d = accumulate(incr.begin(),incr.end(),d);	// accumulate in double
+	// ...
+	}
+Note how the type of the initial value passed determines the return type.
+pg 684	s/ temp.begin/temps.begin/
+pg 685	s/temp_changes/temps/ twice
+Chapter 23:
+Chapter 24:
+Chapter 23:
+Appendix A:
+pg 794	add "export," "and," "and_eq," etc. to list of keywords
+Appendix B:
+pg 817	add "export" to table of keywords.
+Appendix C:
+Typos
+Chapter 1:
+Chapter 2:
+Chapter 3:
+Chapter 4:
+pg 71	s/are converted to ints and integer arithmetic, and/are converted to ints; integer arithmetic and/
+Chapter 5:
+pg 91	s/The empty string is written .../The empty string is written as a pair of
+	adjacent double quotes, "" (and has the type const char[1])./
+Chapter 6:
+pg 140
+3. (*2)
+Read a sequence of possibly whitespace-separated (name,value) pairs,
+where the name is a single whitespace-separated word and the value is an
+integer or a floating-point value.
+Chapter 7:
+pg 162	s/The directive #ifdef identifier causes/The directive #ifdef identifier conditionally causes/
+Chapter 8:
+Chapter 9:
+pg 201	s/get()/get(char* p)/
+pg 202	s/get()/get(char* p)/
+pg 216	s/chose/choose/
+Chapter 10:
+pg 236	s/Date(int d =0, Month m =Month(0), int y =0);/Date(int dd =0, Month mm =Month(0), int yy =0);/
+Chapter 11:
+pg 299	10. s/String that produce/String that produces/
+pg 300	s/if y and p/if x and p/
+Chapter 12:
+pg 323	s/Ival_box_maker/Ival_maker/
+pg 325	s/of a of a house/ of a house/
+Chapter 13:
+pg 333	s/paramenter/parameter/
+pg 334	s/sort(vector v)/sort(vector)/
+pg 334	s/sort(vector v)/sort(vector)/
+pg 334	s/Vol. l3/Vol. 3/
+pg 336	s/any call that matches sqrt(complex) also match/... also matches/
+pg 341	s/always makes/always make/
+pg 342	s/paramenter/parameter/
+pg 342	s/when a partial specification is/when a partial specialization is/
+pg 342	s/It important ... Vector was achieved/It is important ... Vector is achieved/
+pg 343	s/pattern also a matches/pattern also matches/
+pg 344	s/paramenter/parameter/
+pg 346	s/vec from sec3.7.1/Vec from sec3.7.1/
+Chapter 14:
+Chapter 15:
+Chapter 16:
+pg 446	s/bad reference/bad index/
+pg 450	s/Stack Operators/Stack Operations/
+pg 459	s/algotithm/algorithm/
+Chapter 17:
+pg 462	s/Member Access/Element Access/
+pg 463	remove duplicate "max_size()" line
+pg 468	s/Cmp(x,y)||Comp(y,x)/cmp(x,y)||cmp(y,x)/
+pg 474	s/friut/fruit/
+pg 479	s///
+pg 483	s/and calculates/and also calculates/
+pg 490	s/i++/++i/
+pg 492	s/flips the bit/return ~b[i]/
+pg 492	s/i'th/(i+1)'th/
+pg 497	rename hashmaps to hm1, hm2, and hm3
+pg 498	s/entry (if any)/Entry (if any)/
+pg 502	s/operator()/operator()()/
+pg 504	s/be in order/kept ordered/ in [11]
+pg 505	s/value/binary value/ in 11.
+pg 505	s/removed()/removed/ in 13.
+pg 505	s/17.6/17.6.1/ in 15.
+pg 506	s/with overflow/with overflow in hash_map/ in 24.
+pg 506	s/Tt/St/ in 29.
+pg 506	s/size_type/size_t/ in 33.
+Chapter 18:
+pg 518	s/operator()/operator()()/
+pg 525	s/which pred returns/which pred() returns/
+pg 528	s/The search() and search_n()/The search(), search_n(), and find_end()/
+pg 532	s/produce an output/produce a return value/
+pg 532	s/input sequences is/input sequence is/
+pg 537	s/Out first/Out res/ twice
+pg 537	s/first n values/first n elements/
+pg 537	s/add 20 element/add 20 elements/
+pg 537	s/rotatey its elements left/rotates its elements/
+pg 541 s/The inplace_merge/The inplace_merge()/
+pg 545	s/value of next_permutation/value of next_permutation()/
+pg 547	s/text/test/ in 4.
+Chapter 19:
+Chapter 20:
+Chapter 21:
+Chapter 22:
+pg 663	s/individual members/individual elements/
+pg 665	s/val_array/valarray/
+pg 668	s/first+/start()+/
+pg 667	s/Operations/Nonmember Operations/
+pg 676	s/by result of mvm/by result of m/
+pg 685	s/result/res/ twice
+pg 685	s/In particular, ... turns/In particular, partial_sum() turns .../
+pg 687	s/val_array/valarray/
+pg 687	s/like apply()/like apply() (sec22.4.3)/ twice
+Chapter 23:
+pg 701	s/achieving that/that achieving/ in footnote
+Chapter 24:
+Chapter 25:

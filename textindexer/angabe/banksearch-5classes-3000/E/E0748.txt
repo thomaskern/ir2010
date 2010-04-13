@@ -1,0 +1,310 @@
+
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Platform independent extensible log class
+This article was contributed by 
+Chen Mingjie.
+Environment: VC6, BC55, Win2000 SP2, g++, Redhat Linux 7.1
+Introduction:
+The ability to log is commonly needed in every software project on every platform. I wrote this class to save time.
+There are two basic log classes provided for easy use. One is CFileLog, which implements a file logging system. The other is CRegFileLog that implements a registry controled file logging system. The whole logging system is quit easy to extended for any propose.
+How to use:
+Just include MjLog.h and construct an MjTools::CFileLog or MjTools::CRegFileLog instance. When you want to add a log message, call yourObject.AddLog("Log message").
+Demo code:
+#include "MjLog.h"
+int main()
+{
+ MjTools::CFileLog m_Log("test.log");
+ std::string a="aaa";
+ m_Log.Clear();
+ m_Log.AddLog("Abc");
+ m_Log.AddLog(a);
+ MjTools::CFileLog m_Log1=m_Log;
+ m_Log1.AddLog("From Log1");
+#ifdef WIN32 //RegistryLogControl only valid in Windows system
+ // construct a registry key controled log object. If 
+ // the specified registry key is found,the log is enabled
+ MjTools::CRegFileLog m_regLog("reglog.log",
+ "HKEY_LOCAL_MACHINE\\Software\\YourControlKeyName");
+ m_regLog.AddLog("reglog");
+ m_regLog.Pause();
+ m_regLog.AddLog("reglog1");
+ m_regLog.Resume();
+ m_regLog.AddLog("reglog2");
+#endif
+ return 0;
+}
+How to compile:
+The source code itself can be compiled and executed. You can use command line tool to compile it. 
+Under VC++:
+CL /D"_TEST_" MjLog.cpp 
+This one may cause a link error. I don't know why.But if you use a win32 console project, no error occurs
+Under BCC:
+bcc32 /D_TEST_ mjlog.cpp
+Under Linux:
+g++ /D_TEST_ MjLog.cpp
+Future Updates:
+1. Make the class thread_safe.
+2. Still thinking...
+Downloads
+Download source - 2.41 Kb 
+History
+Date Posted: November 20, 2001
+Comments:
+- growth of log, over write old info! - Matthew Pasko (2002/04/16)
+- fix for link errors (VC++) - Edmond Nolan (2002/02/06)
+- Why would you want to add "Logging" overhead to the Registry? - Hector Santos (2001/12/09)
+Add Comment
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Secure Business IM
+Find a Web Host
+EMedia Mag Free Sub
+For CGI Scripts
+Business Search
+Build Flash Online
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

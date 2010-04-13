@@ -1,0 +1,549 @@
+
+flipCode - Game Development News & Resources
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Development News -
+Development Tutorials -
+Development Links -
+Industry Interviews -
+Computer Book Reviews -
+Programming Contest -
+FC Developer Desktops -
+ Currently Active:
+Ask MidNight - Q&A -
+Theory & Practice -
+DirtyPunk's Column -
+3D Geometry Primer -
+Harmless Algorithms -
+ Complete / Closed: 
+Art Of Demomaking -
+Fountain Of Knowledge -
+Network Programming -
+Portal Engine Series -
+Cool, It Works! -
+Message Center -
+#flipCode IRC Channel -
+gollum.flipcode.com -
+freeside.flipcode.com -
+jratcliff.flipcode.com -
+epicboy.flipcode.com -
+fourth.flipcode.com -
+tentacle.flipcode.com -
+orbit.flipcode.com -
+ghoul.flipcode.com -
+jaap.flipcode.com -
+polygone.flipcode.com -
+pixelpracht.flipcode.com
+frog.flipcode.com -
+General Information -
+Advertising Information -
+News Archives -
+Tech File Information -
+Anis Ahmad -
+Jacco Bikker -
+Jeroen Bouwens -
+Lionel Brits -
+Phil Carlisle -
+Alex Champandard -
+Roy Jacobs -
+Alexander Herz -
+Victor Ho -
+Luke Hodorowicz -
+Mike Hommel -
+Steven Hugg -
+Toby Jones -
+Jacob McCosh -
+Kurt Miller -
+Jan Niestadt -
+Tane Piper -
+Muresan Robert -
+Adam Robinson -
+Henry Robinson -
+Conor Stokes -
+Jaap Suter -
+Nicholas Vining -
+Peter White -
+ 
+ 
+"Gross stupidity, falsehood, and muddled thinking are not dream; and form no escape from life to a mind trained above their own level."
+-H. P. Lovecraft
+ 
+ 
+ Latest Headlines
+ 
+New A* Explorer
+Data Driven Windows
+Collapsar Creations Project1
+3DS Loading Library
+Metaballs and Heightmaps
+Argentine Game Developers
+New GLGooey Release
+Edge Detection Demo
+ 
+ 
+ 
+ Recent Highlights
+ 
+June Coding Contest!
+Object Outlining Tutorial
+May Coding Contest!
+AABB Trees Article
+Win32 Window Skins
+C++ DLLs from VB
+Writing A "Simple" Game
+Game Institute Review
+ 
+ 
+ 
+ Tech File Updates
+ 
+Jeroen Bouwens (04/01) 
+Adam Robinson (04/01) 
+Phil Carlisle (01/09) 
+Alex Champandard (01/05) 
+Muresan Robert (06/26) 
+Henry Robinson (06/21) 
+Steven Hugg (05/14) 
+ 
+ 
+ 
+Current Discussion Topic
+ 
+Latest Forum Activity
+ 
+Contemporary Computer Science
+(213 Comments)
+How is computer science changing in the face of corporate influences?
+Join the discussion here!
+ 
+Re: MS attacks OpenGL Vertex/Fragment Programming...
+Re: Compilefarm
+Profling OpenGL Application
+Re: D3DX replacement
+Re: Getting polygons near me
+Visit The Message Center
+ 
+15 July 2002 
+ 
+ 
+ 
+ 
+ New A* Explorer
+ 1:23PM EST
+ -
+ Posted by
+ Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+generation5 has been updated with a new release of James Matthews' A* Explorer application, "designed to help people understand the workings of the A* algorithm." 
+ 
+ 
+ 
+ 
+ 
+ Data Driven Windows
+ 1:18PM EST
+ -
+ Posted by
+ Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Angel Code posted a new tutorial entitled "Coupling a window handle with a data object", written by Andreas Joensson. Here's a clip from the introduction:In this tutorial I will show you how to couple a created window handle with a data object even before the window has received any messages. This is good for the case where you want to have data driven windows, i.e windows that behave according to the data associated with them. By using data driven windows you can create two windows with different behaviour without having to register two different window classes, which is how the Win32 API normally works.The full article is available here. 
+ 
+ 
+ 
+ 
+ 
+ Collapsar Creations Project1
+ 1:09PM EST
+ -
+ Posted by
+ Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Richard Garand announced the 0.2 release of Collapsar Creations' Project1, a cross-platform, open source space sim in the works. 
+ 
+ 
+ 
+ 
+ 
+ 3DS Loading Library
+ 1:07PM EST
+ -
+ Posted by
+ Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Lev Povalahev sent along the following news about his 3DS loading library:I've just released a new version of my 3ds loading library, L3DS. Some
+new features include material support and automatic calculation of
+tangent space, needed for dot3 bumpmapping and other tangent space
+lighting. The library itself is not 3D-API specific, but an example
+program is provided, that uses SDL and OpenGL to load and display 3ds
+file.For details and downloads, visit here. 
+ 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>The Daily Flip</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Image Of The Day
+Update - There's a new Image Of The Day online, a screenshot submitted by Stephan Schaem.
+Browse the IOTD gallery here!
+Tip Of The Day
+Update - There's a new Tip Of The Day online, Compilefarm submitted by Lennart Denninger. Browse the TOTD Collection here!
+Code Of The Day
+Update - There's a new Code Of The Day online, Template Pixel Converter submitted by Sander van Rossen.
+Browse the COTD Collection here!
+tasty links:
+- No Bells, No Whistles: Just Games
+- The Mod Squad (Thanks Alex!)If you'd like to discuss programming, gfx, or any of these links, stop by the Message Center! 
+ 
+13 July 2002 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>Metaballs and Heightmaps</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1>&nbsp;&nbsp;&nbsp;2:58PM EST</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Michael from Nitrogen announced the release of two new projects: "a Metaball simulation displaying a curved-plane, cylinder and positive and negative metaballs. And a Heightmap demo which calculates vertex normals on the fly." 
+ 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>The Daily Flip</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Image Of The Day
+Update - There's a new Image Of The Day online, a screenshot submitted by Glyn Humphreys.
+Browse the IOTD gallery here!
+tasty links:
+- Astronomers Reach The Event Horizon 
+- Glenn Powers Ahead With Ion Engine If you'd like to discuss programming, gfx, or any of these links, stop by the Message Center! 
+ 
+11 July 2002 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>Argentine Game Developers</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1>&nbsp;&nbsp;&nbsp;1:23PM EST</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+H. Hernan Moraldo sent along the following news:The Argentine Association of Game Developers (ADVA) has launched the
+English version of its website, dedicated to expose the work of most
+of the game development teams in Argentina, and to show how the
+development community unfolds. The site offers complete information about
+the many member groups, their current and previous game projects, and
+the meetings the association organizes for its members.For more information, visit here
+ 
+ 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>New GLGooey Release</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1>&nbsp;&nbsp;&nbsp;1:19PM EST</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Niel Waldren announced a new release of GLGooey, "a platform-independent, small, extensible collection of user interface components rendered using OpenGL." 
+ 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>The Daily Flip</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Image Of The Day
+Update - There's a new Image Of The Day online, a screenshot submitted by Lucas Walter.
+Browse the IOTD gallery here!
+tasty links:
+- New Strategy Backed For Solar System Exploration 
+- Video Game "Brain Damage" Claim Criticised 
+- Art Institute Game Art & Design Program If you'd like to discuss programming, gfx, or any of these links, stop by the Message Center! 
+ 
+10 July 2002 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>Edge Detection Demo</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1>&nbsp;&nbsp;&nbsp;1:19PM EST</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Tom Nuydens of Delphi3D sent along the following news:Delphi3D has been updated with a demo that performs edge detection on a
+3D scene. This is achieved by rendering the scene to a texture and then
+applying a simple convolution filter to the texture image. The demo
+makes use of GL_NV_register_combiners and requires a GeForce3 or better
+to run.For details and downloads, visit here. 
+ 
+<table width="97%" cellspacing=0 cellpadding=0 border=0>
+<tr>
+ <td>
+ <table width="100%" cellspacing=2 cellpadding=0 border=0>
+ <tr>
+ <td>
+ <font face="Verdana, Tahoma, Helvetica" color="#ffffff" size=3><b>The Daily Flip</b></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffff00" size=1></font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffff" size=1>-</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1>Posted by</font>
+ <font face="Helvetica, Verdana, Tahoma, Helvetica" color="#ffffcc" size=1><a href="mailto:kurt@flipcode.com">Kurt Miller
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Image Of The Day
+Update - There's a new Image Of The Day online, a screenshot submitted by Ville Koskela.
+Browse the IOTD gallery here!
+tasty links:
+- Wild New Theory For Building Planets 
+- Liberty Alliance Set To Battle Passport If you'd like to discuss programming, gfx, or any of these links, stop by the Message Center! 
+ 
+View The Past Seven Days Of News Here
+Previous News Can Be Found Archived Here
+ 
+ 
+<img width=120 height=90 src="http://www.flipcode.com/iotd/07-15-2002s.jpg">
+Image Of The Day Gallery
+Code Of The Day:
+Template Pixel Converter
+<font face="Verdana, Helvetica" size=2>7 Comments
+Code Of The Day Gallery
+Tip Of The Day:
+Compilefarm
+<font face="Verdana, Helvetica" size=2>12 Comments
+Tip Of The Day Gallery
+Developer Resource:
+Boost Library
+<font face="Verdana, Helvetica" size=2>43 Comments
+Featured Resources
+<img src="http://www.flipcode.com/gfx/makedonation.gif" width=110 height=23 border=0>
+ Comparison Shopping
+Price Grabber
+ 
+ Development
+ 
+ Visual Studio .NET 
+ NuMega Boundschecker 
+ Borland Delphi 6 
+ Visual C++ Pro 6 
+ CodeWarrior Pro 7 
+ Intel VTune Analyzer 
+ Visual Basic 6 Pro 
+ MSDN Subscription 
+ Turbo Assembler 5 
+ InstallShield Pro 
+ Visual SourceSafe 6 
+ C++ Builder 6 
+ Game Starter Kit 
+ More Software
+ 
+ Books
+ 
+ Effective C++ 
+ 3D Game Engine Design 
+ Real-Time Rendering 
+ Design Patterns 
+ Algorithms In C++ 
+ Advanced Animation 
+ Writing Solid Code 
+ Code Complete 
+ Mythical Man-Month 
+ Physics For Games 
+ Adv. Linux Graphics 
+ Game Progamming Gems 
+ More Books
+ 
+ 
+ Forum Login: 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+<img width=88 height=31 src="http://www.flipcode.com/gfx/fcc-mini.jpg" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/gg_mini_banner3.gif" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/ai-depot.png" border=0 alt="Artificial Intelligence Depot">
+<img width=88 height=31 src="http://www.flipcode.com/gfx/gdse-b.gif" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/gdnet.gif" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/turbo_link.jpg" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/gameinstitute-mini.gif" border=0>
+<img width=88 height=31 src="http://www.flipcode.com/gfx/GameTutorials_Link.jpg" border=0>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Copyright © 1998-2001 FLIPCODE.COM, INC. All Rights Reserved. Please read our Terms, Conditions, and 
+Privacy information.
+This site is optimized for at least 1024x768 resolution (hi-color) viewing with a browser that supports style sheets.

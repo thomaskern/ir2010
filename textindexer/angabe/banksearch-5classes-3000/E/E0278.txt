@@ -1,0 +1,575 @@
+
+GotW #66: Constructor Failures
+ 
+ 
+ GotW #66 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+ 
+Constructor Failures 
+ Difficulty: 7 / 10
+What exactly happens when a constructor emits an exception? What if the
+exception comes from an attempt to construct a subobject or member object? This
+issue of GotW analyzes one aspect of C++ in detail, shows why it should work the
+way that it does, and demonstrates the implications for constructor exception
+specifications.
+Problem
+JG Question
+1. Consider the following class:
+// Example 1
+//
+class C : private A
+{
+ B b_;
+};
+In the C constructor, how can you catch an exception thrown from the
+constructor of a base subobject (such as A) or a member object (such as B)?
+Guru Questions
+2. In Example 1, if the A or B constructor
+throws an exception, is it possible for the C constructor to absorb the
+exception, and emit no exception at all? Justify your answer, explaining by
+example why this is as it should be.
+3. What are the minimal requirements that A
+and B must meet in order for us to safely put an empty throw- specification on
+C's constructor(s)?
+Solution
+This issue of GotW was inspired by questions and a lengthy email exchange
+with Bobby Schmidt, renowned columnist for CUJ and MSDN Online's "Deep
+C++." For more information about Bobby's treatments of the topics addressed
+below, be sure to check out the very interesting reading in the online
+references mentioned in Note 1.[1]
+1. Consider the
+following class:
+// Example 1
+//
+class C : private A
+{
+ B b_;
+};
+In the C constructor, how can you catch an exception
+thrown from the constructor of a base subobject (such as A) or a member object
+(such as B)?
+The short answer is: By using a function-try-block.
+For example, here's how we can write a function-try-block for C's
+constructor:
+ 
+// Example 1(a): Constructor function-try-block
+ //
+ C::C()
+ try
+ : A ( /*...*/ ) // optional initialization list
+ , b_( /*...*/ )
+ {
+ }
+ catch( ... )
+ {
+ // We get here if either A::A() or B::B() throws.
+ 
+ // If A::A() succeeds and then B::B() throws, the
+ // language guarantees that A::~A() will be called
+ // to destroy the already-created A base subobject
+ // before control reaches this catch block.
+ }
+The more interesting, question, though is: Why would you want to do this?
+That question is at the heart of this GotW issue.
+Object Lifetimes, and What a Constructor Exception Means
+In order to answer Question #2 correctly, we need only to fully understand
+object lifetimes[2] and what it means for a
+constructor to throw an exception.
+Take a simple example:
+{
+ Parrot parrot;
+}
+In the above code, when does the object's lifetime begin? When does it end?
+Outside the object's lifetime, what is the status of the object? Finally, what
+would it mean if the constructor threw an exception? Take a moment to think
+about these questions before reading on.
+Let's take these items one at a time:
+Q: When does an object's lifetime begin?
+A: When its constructor completes successfully and returns normally. That is,
+control reaches the end of the constructor body or an earlier return statement.
+Q: When does an object's lifetime end?
+A: When its destructor begins. That is, control reaches the beginning of the
+destructor body.
+Q: What is the state of the object after its lifetime has ended?
+A: As a well-known software guru[3] once
+put it, speaking about a similar code fragment and anthropomorphically referring
+to the local object as a "he":
+ 
+He's not pining! He's passed on! This parrot is no more! He has ceased
+ to be! He's expired and gone to meet his maker! He's a stiff! Bereft of life,
+ he rests in peace! If you hadn't nailed him to the perch he'd be pushing up
+ the daisies! His metabolic processes are now history! He's off the twig! He's
+ kicked the bucket, he's shuffled off his mortal coil, run down the curtain and
+ joined the bleedin' choir invisible! THIS IS AN EX-PARROT!
+ 
+- Dr. M. Python, BMath, MASc, PhD (CompSci)
+ 
+[The actual code example being commented upon by the above guru was only
+ slightly different:
+ 
+{
+ Parrot();
+ const Parrot& perch = Parrot();
+ 
+ // ... more code; at this point, only the first
+ // temporary object is pushing up daisies ...
+ }
+ 
+Get it? It's a lifetime-of-temporaries-bound-to-references joke. Remember
+ it for Bay area parties.]
+Kidding aside, the important point here is that the state of the object
+before its lifetime begins is exactly the same as after its lifetime ends --
+there is no object, period. This observation brings us to the key question:
+Q: What does emitting an exception from a constructor mean?
+A: It means that construction has failed, the object never existed, its
+lifetime never began. Indeed, the only way to report the failure of construction
+-- that is, the inability to correctly build a functioning object of the given
+type -- is to throw an exception. (I will presently comment on the obsolete
+"if you get into trouble just set a status flag to 'bad' and let the caller
+check it via an IsOK() function" programming convention.)
+In biological terms, conception took place -- the constructor began --, but
+despite best efforts it was followed by a miscarriage -- the constructor never
+ran to term(ination).
+Incidentally, this is why a destructor will never be called if the
+constructor didn't succeed -- there's nothing to destroy. "It cannot die,
+for it never lived." Note that this makes the phrase "an object whose
+constructor threw an exception" really an oxymoron. Such a thing is even
+less than an ex-object... it never lived, never was, never breathed its first.
+We might summarize the C++ constructor model as follows:
+ 
+Either:
+ 
+(a) The constructor returns normally by reaching its end or a return
+ statement, and the object exists.
+ 
+Or:
+ 
+(b) The constructor exits by emitting an exception, and the object not only
+ does not now exist, but never existed.
+There are no other possibilities. Armed with this information, we can now
+fairly easily tackle Question #2.
+I Can't Keep No Caught Exceptions[7]
+2. In Example 1, if the
+A or B constructor throws an exception, is it possible for the C constructor to
+absorb the exception, and emit no exception at all?
+If you didn't consider the object lifetime rules, you might have tried
+something like the following:
+// Example 2(a): Absorbing exceptions?
+//
+C::C()
+try
+ : A ( /*...*/ ) // optional initialization-list
+ , b_( /*...*/ )
+{
+}
+catch( ... )
+{
+ // ?
+}
+If the handler body contained the statement "throw;" then the catch
+block would obviously rethrow whatever exception A::A() or B::B() had emitted.
+What's less obvious, but clearly stated in the standard, is that if the catch
+block does not throw (either rethrow the original exception, or throw something
+new), and control reaches the end of the catch block of a constructor or
+destructor, then the original exception is automatically rethrown.
+Think about what this means: A constructor or destructor function-try-block's
+handler code MUST finish by emitting some exception. There's no other way. The
+language doesn't care what exception it is that gets emitted -- it can be the
+original one, or some other translated exception -- but an exception there must
+be! It is impossible to keep any exceptions thrown by base or member subobject
+constructors from causing some exception to leak beyond their containing
+constructors.
+In fewer words, it means that:
+ 
+If construction of any base or member subobject fails, the whole object's
+ construction must fail.
+This is no different than saying "there is no way for a human to exist
+(i.e., be born alive) if any of its vital organs (e.g., heart, liver) were never
+formed." If you tried to continue by keeping at least those parts you were
+able to make, the result may be a hunk of flesh, probably rotting, but it was
+never a human being. There is no such thing as an "optional" base or
+member (held by value or reference) subobject.
+A constructor cannot possibly recover and do something sensible after one of
+its base or member subobjects' constructors throws. It cannot even put its own
+object into a "construction failed" state... its object is not
+constructed, it never will be constructed no matter what Frankensteinian efforts
+the handler attempts in order to breathe life into the non-object, and whatever
+destruction can be done has already been done automatically by the language --
+and that includes all base and member subobjects.
+What if your class can honestly have a sensible "construction partially
+failed" state -- i.e., it really does have some "optional"
+members that aren't strictly required and the object can limp along without
+them, possibly with reduced functionality? Then use the Pimpl idiom to hold the
+possibly-bad parts of the object at arm's length. For similar reasoning, see Exceptional
+C++ Items 31-34 about abuses of inheritance[4];
+incidentally, this "optional parts of an object" idea is another great
+reason to use delegation instead of inheritance whenever possible, because base
+subobjects can never be made optional because you can't put base subobjects into
+a Pimpl.
+ 
+ 
+ 
+Aside: Convergence is funny sometimes. Long after I
+started pushing the Pimpl idiom and bashing needless inheritance, I kept on
+coming across new problems that were solved by using Pimpl or removing needless
+inheritance, especially to improve exception safety. I guess it shouldn't have
+been a surprise because it's just this whole coupling thing again: Higher
+coupling means greater exposure to failure in a related component. To this
+comment, Bobby Schmidt responded:
+ 
+And maybe that's the core lesson to pull out of
+ this -- we've really just rediscovered and amplified the old
+ minimal-coupling-maximum-cohesion axiom.[5]
+ 
+ 
+ 
+I've always had a love/hate relationship with exceptions, but even so I've
+always had to agree that exceptions are the right way to signal constructor
+failures given that constructors cannot report errors via return codes (ditto
+for most operators). I have found the "if a constructor encounters an
+error, set a status bit and let the user call IsOK() to see if construction
+actually worked" method to be outdated, dangerous, tedious, and in no way
+better than throwing an exception.
+Toward Some Morals
+Incidentally, this also means that the only (repeat only) possible use for a
+constructor function-try-block is to translate an exception thrown from a base
+or member subobject. That's Moral #1. Next, Moral #2 says that destructor
+function-try-blocks are entirely usele--
+"--But wait!" I hear someone interrupting from the middle of the
+room. "I don't agree with Moral #1. I can think of another possible use for
+constructor function-try-blocks, namely to free resources allocated in the
+initializer list or in the constructor body!"
+Sorry, nope. After all, remember that once you get into your constructor
+try-block's handler, any local variables in the constructor body are also
+already out of scope, and you are guaranteed that no base subobjects or member
+objects exist any more, period. You can't even refer to their names. Either the
+parts of your object were never constructed, or those that were constructed have
+already been destroyed. So you can't be cleaning up anything that relies on
+referring to a base or member of the class (and anyway, that's what the base and
+member destructors are for, right?).
+Aside: Why Does C++ Do It That Way?
+To see why it's good that C++ does it this way, let's put that restriction
+aside for the moment and imagine, just imagine, that C++ did let you mention
+member names in those handlers. Then imagine the following case, and try to
+decide: Should the handler delete t_ or z_? (Again, ignore for the moment that
+in real C++ it can't even refer to t_ or z_.)
+// Example 2(b): Very Buggy Class
+//
+class X : Y {
+ T* t_;
+ Z* z_;
+public:
+ X()
+ try
+ : Y(1)
+ , t_( new T( static_cast(this) )
+ , z_( new Z( static_cast(this), t_ ) )
+ {
+ /*...*/
+ }
+ catch(...)
+ // Y::Y or T::T or Z::Z or X::X's body has thrown
+ {
+ // Q: should I delete t_ or z_? (note: not legal C++)
+ }
+};
+First, we cannot possibly know whether t_ or z_ were ever allocated, so
+neither delete could be safe.
+Second, even if we did know that we had reached one of the allocations, we
+probably can't destroy *t_ or *z_ because they refer to a Y (and possibly a T)
+that no longer exists and they may try to use that Y (and possibly T).
+Incidentally, this means that not only can't we destroy *t_ or *z_, but they can
+never be destroyed by anyone!
+If that didn't just sober you up, it should have. I have seen people write
+code similar in spirit to the above, never imagining that they were creating
+objects that, should the wrong things happen, could never be destroyed! The good
+news is that there's a simple way to avoid the problem: These difficulties would
+largely go away if the T* members were auto_ptrs or similar manager objects.
+Finally, if Y::~Y() can throw, it is not possible to reliably create an X
+object at any time! If you haven't been sobered yet, this should definitely do
+it. If Y::~Y() can throw, even writing "X x;" is fraught with peril.
+This reinforces the dictum that destructors must never be allowed to emit an
+exception under any circumstances, and writing a destructor that could emit an
+exception is simply an error. Destruction and emitting exceptions don't mix.
+The above side discussion was to help better understand why the rules are as
+they are. After all, as noted, you can't even refer to t_ or z_ inside the
+handler anyway. I've refrained from quoting standardese elsewhere in this GotW,
+so here's your dose... from the C++ standard, clause 15.3, paragraph 10:
+ 
+Referring to any non-static member or base class of an object in the
+ handler for a function-try-block of a constructor or destructor for that
+ object results in undefined behavior.
+Some Morals
+Therefore the status quo can be summarized as follows:
+ 
+Moral #1: Constructor function-try-block handlers have only one
+ purpose -- to translate an exception. (And maybe to do logging or some other
+ side effects.) They are not useful for any other purpose.
+ 
+Moral #2: Since destructors should never emit an exception,
+ destructor function-try-blocks have no practical use at all.[6]
+ There should never be anything for them to detect, and even if there were
+ something to detect because of evil code, the handler is not very useful for
+ doing anything about it because it can not suppress the exception.
+ 
+Moral #3: Always perform unmanaged resource acquisition in the
+ constructor body, never in initializer lists. In other words, either use
+ "resource acquisition is initialization" (thereby avoiding unmanaged
+ resources entirely) or else perform the resource acquisition in the
+ constructor body.
+For example, building on Example 2(b), say T was char and t_ was a plain old
+char* that was new[]'d in the initializer-list; then in the handler there would
+be no way to delete[] it. The fix would be to instead either wrap the
+dynamically allocated memory resource (e.g., change char* to string) or new[] it
+in the constructor body where it can be safely cleaned up using a local
+try-block or otherwise.
+ 
+Moral #4: Always clean up unmanaged resource acquisition in local
+ try-block handlers within the constructor or destructor body, never in
+ constructor or destructor function-try-block handlers.
+ 
+Moral #5: If a constructor has an exception specification, that
+ exception specification must allow for the union of all possible exceptions
+ that could be thrown by base and member subobjects. As Holmes might add,
+ "It really must, you know." (Indeed, this is the way that the
+ implicitly generated constructors are declared; see GotW #69.)
+ 
+Moral #6: If a constructor of a member object can throw but you can
+ get along without said member, hold it by pointer and use the pointer's
+ nullness to remember whether you've got one or not, as usual. Use the Pimpl
+ idiom to group such "optional" members so you only have to allocate
+ once.
+And finally, one last moral that overlaps with the above but is worth
+restating in its own right:
+ 
+Moral #7: Prefer using "resource acquisition is
+ initialization" to manage resources. Really, really, really. It will save
+ you more headaches than you can probably imagine.
+Justifying the Rules
+From legality, we now turn to morality:
+Justify your answer, explaining by example why this is
+as it should be.
+In short, the way the language works is entirely correct and easily
+defensible, once you think about the meaning of C++'s object lifetime model and
+philosophy.
+A constructor exception must be propagated, for there is no other way to
+signal that the constructor failed. Two cases spring to mind:
+// Example 2(c): Auto object
+//
+{
+ X x;
+ g( x ); // do something else
+}
+If X's construction fails -- whether it's due to X's own constructor body
+code, or due to some X base subobject or member object construction failure --
+control must not continue within f(). After all, there is no x object! The only
+way for control not to continue in f()'s body is to emit an exception. Therefore
+a failed construction of an auto object must result in some sort of exception,
+whether it be the same exception that caused the base or member subobject
+construction failure or some translated exception emitted from an X constructor
+function try block.
+Similarly:
+// Example 2(d): Array of objects
+//
+{
+ X ax[10];
+ // ...
+}
+If the 5th X object construction fails -- whether it's due to X's own
+constructor body code failing, or due to some X base subobject or member object
+construction failing -- control must not continue within the scope. After all,
+if you tried to continue, you'd end up with an array not all of whose objects
+really exist.
+A Final Word: Failure-Proof Constructors?
+We could slyly rephrase Question #2 as follows: Is it possible to write and
+enforce an empty throw-specification for a constructor of a class, if some base
+or member constructor could throw? After all, to enforce a "throws
+nothing" guarantee for any function, we must be able to absorb any possible
+exceptions that come our way from lower-level code, to avoid accidentally trying
+to emit them to our own caller.
+This, not coincidentally, brings us to the final question:
+3. What are the minimal
+requirements that A and B must meet in order for us to safely put an empty
+throw- specification on C's constructor(s)?
+Now that we've done all the hard work, this one's easy: For a constructor to
+have an empty throw-specification, all base and member subobjects must be known
+to never throw (whether they have throw-specs that say so or not).
+An empty throw-specification on a constructor declares to the world that
+construction cannot fail. If for whatever reason it can indeed fail, then the
+empty throw-spec isn't appropriate, that's all.
+ 
+Notes
+1. R. Schmidt. "Handling Exceptions in C and C++,
+Parts 14-16". (The link is to Part 15; you can navigate from there.)
+2. For simplicity, I'm speaking only of the lifetime of an
+object of class type that has a constructor.
+3. The inventor of the Python programming language?
+4. H. Sutter. Exceptional
+C++ (Addison-Wesley, 2000).
+5. R. Schmidt. Private correspondence, February 2, 2000.
+6. Not even for logging or other side effects, because there
+shouldn't be any exceptions from base or member subobject destructors and
+therefore anything you could catch in a destructor function-try-block could be
+caught equally well using a normal try-block inside the destructor body.
+7. A double pun, can be sung to the chorus of
+"Satisfaction" or to the opening bars of "Another Brick in the
+Wall, Part N."
+ 
+Copyright ©
+2002 Herb Sutter
+ 

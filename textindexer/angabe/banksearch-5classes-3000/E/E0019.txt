@@ -1,0 +1,2165 @@
+ 
+ 
+ 
+Yet Another Code Site - FAQs 
+ 
+ 
+ 
+	 
+ Yet Another Code Site 
+ 
+ 
+Frequently Asked Questions 
+ 
+ 
+	 
+This page answers questions frequently
+	asked about Rich Edit controls, the Borland TRichEdit VCL
+	component, and the VCL in general. I humbly suggest
+	that you spend some time here before posting queries to
+	newsgroups or sending me questions. Of course, if you
+	have questions not answered here or elsewhere on this site,
+	please feel free to send the questions to me. And if
+	you find a solution for a problem that might be of interest
+	to others, please share this information with me so that I
+	may add it to this site. 
+	 
+ 
+ 
+ 
+ 
+	 The Questions: 
+ 
+ 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I downloaded a code sample from this site but it
+	does not compile. (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+When I use TRichEditOle(RichEdit1) in my form's
+	constructor, it does not work properly. 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+TRichEditOle works until I for a while and then
+	the OLE features stop working. What gives? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I created a Rich Text Format (RTF) document in
+	WordPad and inserted a bitmap in the document. When I
+	load the document into a TRichEdit control, the bitmap is
+	not displayed. When I print the document, the bitmap
+	is not printed. How do I display and print bitmaps
+	with a TRichEdit control? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I determine the current position (line and
+	character offset or column) of the cursor in a TRichEdit
+	control? How do I move the cursor to a specific line
+	or column? (11-01-1998) Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I control the margins when printing the
+	contents of a TRichEdit control? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I want to print the contents of two TRichEdit
+	controls on the same page. However, when the first
+	page finishes, the page is ejected and the second one
+	begins on the second page. How do I print them on the
+	same page? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I want to create a print preview window for my
+	TRichEdit control. Where do I start? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I want my Print Dialog to display "Print
+	Range, From Page 1 To [last page]." How do I
+	determine how many pages a TRichEdit will print so that I
+	can display the page range in the Print Dialog? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I want to display a bitmap behind my TRichEdit
+	control. Is this possible? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I created a TRichEdit control, set the PlainText
+	property to true, and set the font to a fixed-pitch font
+	(e.g., Courier New). How do I set the tab stops so
+	that the columns line up properly? 
+	(07-24-1999) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Many Windows programs let you undo/redo many
+	changes. Can I add multi-level undo/redo to
+	TRichEdit? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I know that I can turn on word wrap by setting
+	the TRichEdit WordWrap property. This causes lines to
+	wrap at the window boundaries. However, I would like
+	to have lines wrap exactly as they would print while I edit
+	text in the control. (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do determine the current insert/overwrite
+	mode for a TRichEdit? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+When I load a large document (greater than 64k),
+	the document loads fine and I can scroll to the
+	bottom. Oddly, I cannot add text to the
+	control. If I delete some text, I can add that number
+	of characters back, but I cannot add more text than I
+	delete. How do I load and edit large files with
+	TRichEdit? (11-01-1998, updated 12-21-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+The TRichEdit vertical scrollbar disappears
+	sometimes. Is there a fix or work-around? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I determine if a document file is plain
+	text, Rich Text Format (RTF), or something else before I
+	load the document? (11/01/98) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+You mention that the Rich Edit 2.0 control
+	supports multi-level undo/redo. What else does it
+	do? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I am interested in the Rich Edit 2.0
+	control. Where do I get it? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I wrote a custom component that needs to trap the
+	parent form's messages. How do I subclass the form's
+	WinProc to call my class's member function? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I wrote a component that saves the
+	Printer()->Handle when it is created. At some
+	point in the program, the saved value seems to no longer be
+	valid. What causes this? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I am using TRichEdit::Print(AnsiString Caption)
+	to print the contents of a Rich Edit control. Why
+	does the caption not print at the top of any of the
+	pages? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I downloaded the TRichEdit20 sample code. 
+	Why does it raise an "out of resources" exception
+	when I add or insert a line of text
+	programmatically? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+The Lines property of TRichEdit returns only the
+	plain ASCII text from the control. I want to get the
+	raw RTF-encoded text from a Rich Edit control. How do
+	I do that? Can I insert RTF coded text into a Rich
+	Edit control? Can I copy text from one Rich Edit
+	control into another without using the Clipboard? 
+	(11-01-1998) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I combined the printing code from the Printing and Previewing Rich Edit
+	Controls paper with the TRichEdit20 class. 
+	When I try to print, the program hangs in the rendering
+	loop. Any ideas? (11-01-1998) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I downloaded the TRichEditRawRtf class code from
+	the site and it sounds like what I need. 
+	Unfortunately, whenever I attempt to insert RTF-encoded
+	text, I get an exception with a "code 16." 
+	Why? (02-18-1998, updated 12-23-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+The TRichEdit20 class looks like it should be
+	simple to convert to a component. Why do you
+	distribute it as a class instead of a component? 
+	(04-03-1999) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+When I distribute my program, I have to
+	distribute other Borland runtime library DLLs with my
+	program. How do I include everything in my program so
+	that I do not have to distribute any other files? 
+	(07-24-1999) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Many programs have buttons on the Help About
+	dialog that will let the user send the developer e-mail or
+	link directly to the developer's site. How do I do
+	that? (07-24-1999) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+When I disable a Rich Edit 2.0 control, the
+	background is redrawn in gray. TRichEdit leaves the
+	background white when disabled, which is what I want. 
+	Why is this? Can I change this to get the white
+	background instead? (07-30-1999) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I wrote a TConversion class for my application's
+	documents and used TRichEdit::RegisterConversionFormat to
+	associate the file extension with the converter. If I
+	open one of my application's documents, the data is
+	converted as expected. If I then open a *.txt file
+	without restarting the program, TRichEdit tries to convert
+	the plain text as if it were one of my application's
+	documents. Similarly, if I first open a *.txt file
+	and then open one of my application's documents, the data
+	is not converted. What is going on? 
+	(07-31-1999) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I need details on the Rich Text Format (RTF)
+	encoding format. Where can I get more information on
+	the RTF specification? (10-19-1999) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I am taking a C/C++ class and my homework
+	assignment requires that I print the result of several
+	computations. The instructor has given me code to
+	print the results but it does not work. 
+	(11-01-1999) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I want to print an RTF document file, but I do
+	not need to display it in a Rich Edit control. Can I
+	simply print the document without using all of the Rich
+	Edit printing code on your site? 
+	(01-13-2000) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+You used the phrase "RTF
+	round-tripping." What the &*$% is that? 
+	(01-25-2000) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+When a user pastes text from the Clipboard into
+	my TRichEdit control, I want the text to be
+	unformatted. I set the PlainText property to true
+	but, when the user pastes text, formatted text is
+	inserted. How do I ensure that pasted text is
+	unformatted? (07-14-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Is there a simple way to use regular expressions
+	with TRichEdit controls? Most regular expression
+	libraries use a unique syntax &#150; what is the particular
+	syntax used by the VCL library? 
+	(08-27-2000) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+My program works flawlessly on my development
+	machine. However, some users have problems printing
+	with certain printers which I do not have available for
+	testing. Is there a way to recreate the problems on
+	my development machine? (09-09-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+The TRichEdit component takes much longer than
+	WordPad to open large files. Can I improve the load
+	times? (09-22-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I save and restore the current scroll
+	position in a TRichEdit component? (10-19-2000,
+	updated 01-14-2001) Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Where can I find a code sample to do
+	? (12-22-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I trap double-clicks on a
+	TRichEdit? (12-23-2000) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+How do I get the TRichEdit to scroll to the
+	bottom of the text when new lines are added? 
+	(12-25-2000) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+I am using Rich Edit 2.0/3.0 and set the
+	paragraph line spacing to single, 1.5, or double using
+	PARAFORMAT2.bLineSpacingRule. After setting the
+	spacing to 1.5 or double, I cannot set the paragraph line
+	spacing back to single-spacing. What gives? 
+	(01-27-2001) Read the
+	FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+In my program, the TRichEdit flashes excessively
+	when I do certain things. That is, it appears to be
+	redrawn frequently. How do I eliminate flicker in
+	TRichEdit components? (02-20-2001) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+The TRichEdit component works properly on Windows
+	95/98/NT but behaves oddly on Windows 2000. What is
+	causing this? (02-24-2001) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+My program loads riched20.dll (i.e., it uses
+	RichEdit 2.0/3.0). Is it possible to determine at
+	runtime which version (2.0 or 3.0) is actually
+	loaded? (03-03-2001) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+In addition to left, center, and right paragraph
+	justification, the RichEdit 2.0 PARAFORMAT2 structure
+	includes a "full justification" value
+	(PFA_JUSTIFY). It does not seem to work. Any
+	ideas? (03-04-2001) 
+	Read the FAQ. 
+	 
+ 
+ 
+	 
+ 
+	 
+ 
+ 
+	 
+Microsoft Word's spell-checker underlines
+	misspelled words with a red wavy underline. Can
+	RichEdit controls do this? (09-07-2001, updated
+	09-10-2001) Read the
+	FAQ. 
+	 
+ 
+ 
+ 
+ 
+	 The Answers: 
+ 
+ 
+ I downloaded a code
+ sample from this site but it does not compile. 
+ 
+There are a couple of possibilities: (1) You are
+ using BCB 1.0 or (2) the code has bugs. 
+ 
+(1) If you are using BCB 1.0. 
+ 
+Most of the code on this site should work with BCB 1.0
+ with minor changes. There are two primary categories
+ of changes that you should expect to make. 
+ 
+First, BCB 3.0 introduced a new macro (or maybe it is a
+ keyword) &#150; "PACKAGE." The code may
+ work if you simply remove "PACKAGE" wherever you
+ find it. 
+ 
+[ By the way, if you have BCB 1.0 and find yourself
+ searching the include files and source directories
+ regularly, consider using the DOSKEY utility that comes
+ with Windows 95. DOSKEY lets you scroll back and
+ forth through the most recent commands, edit them, and
+ re-execute them. It is very handy if you spend much
+ time with the DOS command line. 
+ 
+Second, BCB 3.0 added new headers and may have
+ reorganized the contents of some of the old headers. 
+ If you get an error message that says that a header could
+ not be found, try commenting the #include statement
+ out. It may not even be needed. If this
+ generates errors elsewhere in the code, try searching all
+ of the include files in the &#133;\include and
+ &#133;\include\vcl directories for the function being
+ called. The GREP utility included with BCB can be
+ used to do this and has a switch for searching
+ subdirectories. 
+ 
+One more tip: Both BCB 1.0 & 3.0 come with a
+ VCL class browser. It is included in the examples
+ and, once compiled, can be added to the IDE Tools
+ menu. This tool makes studying the VCL and navigating
+ through the class hierarchy code much easier. ] 
+ 
+(2) You believe that the code has bugs. 
+ 
+Most of the code samples and FAQ examples are taken from
+ a large working project. I may have inadvertently
+ left calls to functions in my project that are not included
+ in the code on this site. There are also a few
+ examples that I cobbled up from bits and pieces of
+ otherwise unrelated code. I may simply have screwed
+ them up. If you believe that the code is incomplete
+ or simply wrong, please send me
+ e-mail so
+ that I can fix it. 
+ 
+ When I use
+ TRichEditOle(RichEdit1) in my form's constructor, it does
+ not work properly. 
+ 
+This is probably because the Windows handle for
+ RichEdit1 was not valid. See the paper titled
+ Window handles
+ vs. TRichEdit (and other VCL) controls available on
+ this site. 
+ 
+ TRichEditOle works until
+ I for a while and then the OLE features stop working. 
+ What gives? 
+ 
+The VCL is free to destroy and create controls whenever
+ it needs to. Certain events, like changing the
+ Scrollbars property for a TRichEdit control, cause this to
+ happen. When this does happen, the connection between
+ the TRichEdit control and TRichEditOleCallback class is
+ lost &#150; the "new" Rich Edit no longer calls
+ the TRichEditOleCallback functions that provide the OLE
+ support. See the paper titled
+ Window handles
+ vs. TRichEdit (and other VCL) controls available on
+ this site for more information. 
+ 
+ I created a Rich
+ Text Format (RTF) document in WordPad and inserted a bitmap
+ in the document. When I load the document into a
+ TRichEdit control, the bitmap is not displayed. When
+ I print the document, the bitmap is not printed. How
+ do I display and print bitmaps with a TRichEdit
+ control? 
+ 
+The Windows Rich Edit control relies on OLE to provide
+ support for displaying and printing bitmaps. Adding
+ OLE support solves this. See the code sample titled
+ Adding OLE
+ functionality to TRichEdit for one solution to this
+ problem. 
+ 
+ How do I determine
+ the current position (line and character offset or column)
+ of the cursor in a TRichEdit control? How do I move
+ the cursor to a specific line or column? 
+ 
+See the Code Snippet. 
+ 
+ How do I control
+ the margins when printing the contents of a TRichEdit
+ control? 
+ 
+See the paper titled
+ Printing and
+ Previewing Rich Edit Controls available on this site. 
+ 
+ I want to print the
+ contents of two TRichEdit controls on the same page. 
+ However, when the first page finishes, the page is ejected
+ and the second one begins on the second page. How do
+ I print them on the same page? 
+ 
+See the paper titled
+ Printing and
+ Previewing Rich Edit Controls available on this site. 
+ 
+ I want to create a
+ print preview window for my TRichEdit control. Where
+ do I start? 
+ 
+See the paper titled
+ Printing and
+ Previewing Rich Edit Controls available on this site. 
+ 
+ I want my Print
+ Dialog to display "Print Range, From Page 1 To [last
+ page]." How do I determine how many pages a
+ TRichEdit will print so that I can display the page range
+ in the Print Dialog? 
+ 
+See the paper titled
+ Printing and
+ Previewing Rich Edit Controls available on this site. 
+ 
+ I want to display a
+ bitmap behind my TRichEdit control. Is this
+ possible? 
+ 
+Thanks to Kimberly Paternoster for sending the solution
+ for this one. 
+ 
+I do not know of a way to do this with Rich Edit 1.0
+ controls. Kimberly says that it cannot be done: 
+ "As it ends up, RE 1.0 doesn't support transparent
+ background. It paints the background in the WM_PAINT
+ message instead of the WM_ERASEBKGND." 
+ 
+Kimberly went on to point out that Rich Edit 2.0
+ controls can be created with the WS_EX_TRANSPARENT style to
+ allow a background bitmap to show through. The
+ WS_EX_TRANSPARENT flag tells Windows to paint all sibling
+ controls obscured by the Rich Edit 2.0 before painting the
+ Rich Edit control. 
+ 
+This turns out to be remarkably easy to add to the
+ TRichEdit20 class available on this site. Simply add 
+ Params.ExStyle |= WS_EX_TRANSPARENT;
+ to the TRichEdit20::CreateParams() method. Then
+ drop a TImage on the form where the TRichEdit20 object will
+ be displayed. Load a bitmap into the TImage and set
+ the Alignment and AutoSize properties as desired. That is
+ all that there is to it.... Well, under certain
+ conditions, I found that I also had to set the
+ TRichEdit->Brush->Style to bsClear. 
+ 
+I was also successful changing the WS_EX_TRANSPARENT
+ flag after the Rich Edit 2.0 control was visible using: 
+ LONG exStyle = ::GetWindowLong(RE->Handle, GWL_EXSTYLE);
+exStyle |= WS_EX_TRANSPARENT;
+::SetWindowLong(RE->Handle, GWL_EXSTYLE, exStyle);
+RE->Brush->Style = bsClear; // just to make sure
+ Finally, I can confirm Kimberly's observation. 
+ This does not seem to work for Rich Edit 1.0 (TRichEdit)
+ controls. 
+ 
+ I created a
+ TRichEdit control, set the PlainText property to true, and
+ set the font to a fixed-pitch font (e.g., Courier
+ New). How do I set the tab stops so that the columns
+ line up properly? 
+ 
+This one took a remarkable length of time to
+ solve. There are a few prefacing comments. 
+ 
+First, this is only an issue if you are trying to
+ display a formatted output with a fixed pitch font. 
+ This is common for source code editors and hexadecimal
+ dumps where each character of output must line up with the
+ character above it. If you are using a proportional
+ font, then absolute offsets from the left margin are fine
+ and you do not need this FAQ. 
+ 
+Second, the native Rich Edit control allows you to set
+ up to 32 tabstops (MAX_TAB_STOPS as defined in richedit.h)
+ &#150; beyond that, you're screwed. 
+ 
+Third, tabstops are set in TWIPs relative to the left
+ margin in the native Rich Edit control. The problem
+ is converting character positions (as offsets) into
+ absolute offsets in TWIPs. The offsets are, of
+ course, dependent upon the font being used. 
+ 
+All that said, the following code works for me. 
+ //---------------------------------------------------------------------------
+typedef int TTabStops[MAX_TAB_STOPS];
+class TMyRichEdit : public TRichEdit
+{
+protected:
+ TTabStops FTabStops;
+ int FTabStopsCount;
+public:
+ __fastcall TMyRichEdit(TComponent* Owner) :
+ TRichEdit(Owner), FtabStopsCount(0) {};
+ void TMyRichEdit::SetTabStops(int tabCount, TTabStops& tabStops);
+ void TMyRichEdit::SetTabStops(int tabSize);
+ void TMyRichEdit::SetTabStops(int tabChars, TFont& font, bool entireDocument);
+};
+//---------------------------------------------------------------------------
+void TMyRichEdit::SetTabStops(int tabCount, TTabStops& tabStops)
+{
+ PARAFORMAT pfmt;
+ ::memset(&pfmt, 0, sizeof(pfmt));
+ pfmt.cbSize = sizeof(pfmt);
+ pfmt.dwMask = PFM_TABSTOPS;
+ for (int i = 0; i Assign(&font);
+ ::SelectObject(hdc, afont->Handle);
+ AnsiString s = AnsiString::StringOfChar('X', tabChars);
+ SIZE sz;
+ int cx = ::GetDeviceCaps(hdc, LOGPIXELSX);
+ int success = ::GetTextExtentPoint32(hdc, s.c_str(), tabChars, &sz);
+ int tabSizeTwips = sz.cx;
+ ::RestoreDC(hdc, -1);
+ ::ReleaseDC(Handle, hdc);
+ delete afont;
+ tabSizeTwips = ::MulDiv(tabSizeTwips, 1440, cx);
+ // hide and save selection
+ CHARRANGE chrg, chrgAll;
+ ::SendMessage(Handle, EM_EXGETSEL, 0, (LPARAM) &chrg);
+ // if entireDocument, set selection to all
+ if (entireDocument) {
+ chrgAll.cpMin = 0;
+ chrgAll.cpMax = -1;
+ ::SendMessage(Handle, EM_EXSETSEL, 0, (LPARAM) &chrgAll);
+ }
+ // set tab size
+ if (success) SetTabStops(abs(tabSizeTwips)); // no error on failure...
+ // restore selection
+ ::SendMessage(Handle, EM_EXSETSEL, 0, (LPARAM) &chrg);
+}
+//---------------------------------------------------------------------------
+ Thanks to Jonathan Grenier and others for pointing out
+ that I left out some important code. Hopefully, the
+ code is now less mysterious. 
+ 
+ Many Windows
+ programs let you undo/redo many changes. Can I add
+ multi-level undo/redo to TRichEdit? 
+ 
+There are two solutions: (1) Write the code to
+ track changes and implement the undo/redo actions yourself
+ and (2) use Rich Edit 2.0 which does the work for
+ you. See the code sample titled
+ Adding
+ Rich Edit 2.0 functionality to TRichEdit available on
+ this site for solution #2. 
+ 
+ I know that I can
+ turn on word wrap by setting the TRichEdit WordWrap
+ property. This causes lines to wrap at the window
+ boundaries. However, I would like to have lines wrap
+ exactly as they would print while I edit text in the
+ control. 
+ 
+Try this: 
+ ::SendMessage(Handle, EM_SETTARGETDEVICE, (WPARAM) Printer()->Handle,(LPARAM) width);
+ The width parameter above is the rendering rectangle
+ width in twips. 
+ 
+ How do determine
+ the current insert/overwrite mode for a TRichEdit? 
+ 
+The native Rich Edit control will not tell you whether
+ the next character keyed will be inserted or
+ overwritten. You will have to trap keystrokes and
+ track the insert/overwrite mode yourself. One way to
+ do this is to write your own class, presumably derived from
+ TRichEdit, to track the control's current insert/overwrite
+ state. Note that Rich Edit controls are in insert
+ mode when created. 
+ 
+Here is what I use: 
+ class TMyRichEdit : public TRichEdit
+{
+protected:
+ bool FInsertMode;
+ TNotifyEvent FOnInsertChange;
+ void __fastcall SetInsertMode(bool insertMode);
+ void ToggleInsertMode(void);
+public:
+ TMyRichEdit(&#133;)&#133; set state variable
+ DYNAMIC void __fastcall KeyDown(Word &Key, Classes::TShiftState Shift);
+ __property bool InsertMode = { read = FInsertMode, write = SetInsertMode, nodefault };
+__published:
+ __property TNotifyEvent OnInsertChange = { read = FOnInsertChange, write = FOnInsertChange, default = 0 };
+};
+//---------------------------------------------------------------------------
+void __fastcall TMyRichEdit::KeyDown(Word &Key, Classes::TShiftState Shift)
+{
+ TRichEdit::KeyDown(Key, Shift);
+ TShiftState noShiftKeys;
+ if (Key == VK_INSERT && Shift == noShiftKeys) {
+ FInsertMode = !FInsertMode;
+ if (FOnInsertChange) FOnInsertChange(this);
+ }
+}
+//---------------------------------------------------------------------------
+// note: SetInsertMode() does not trigger an OnInsertChange event
+//
+void __fastcall TMyRichEdit::SetInsertMode(bool insertMode)
+{
+ if (insertMode == FInsertMode) return;
+ ToggleInsertMode();
+}
+//---------------------------------------------------------------------------
+// note: ToggleInsertMode() does not trigger an OnInsertChange event --
+// the FInsertMode member shadow variable gets flipped in the KeyDown()
+// handler
+//
+void TMyRichEdit::ToggleInsertMode(void)
+{
+ // synthesize an insert keystroke (cannot use keybd_event() because
+ // there is no window associated with the API function)
+ if (!Handle) return;
+ // save and clear the event handler
+ TNotifyEvent event = FOnInsertChange;
+ FOnInsertChange = 0;
+ // the following scarfed from a Micro$oft VB(?) example
+ ::SendMessage(Handle, WM_KEYDOWN, VK_INSERT, 0x00510001);
+ ::SendMessage(Handle, WM_KEYUP, VK_INSERT, 0xC0510001);
+ // restore the event handler
+ FOnInsertChange = event;
+}
+//---------------------------------------------------------------------------
+ When I load a large
+ document (greater than 64k), the document loads fine and I
+ can scroll to the bottom. Oddly, I cannot add text to
+ the control. If I delete some text, I can add that
+ number of characters back, but I cannot add more text than
+ I delete. How do I load and edit large files with
+ TRichEdit? 
+ 
+This is a rather gray area. I have been able to
+ duplicate some reported problems. However, my
+ solutions do not seem to universally resolve the problem. 
+ 
+First, if you are using BCB 1.0, there is a known
+ problem with the MaxLength property. Check out the
+ paper titled BCB 1.0 & 3.0 TRichEdit bugs
+ available from this site. 
+ 
+Next, try 
+ ::SendMessage(RichEdit1->Handle, EM_EXLIMITTEXT, 0, 0x7fffffff);
+ after RichEdit1->Handle is valid. (See the
+ paper titled Window handles vs. TRichEdit (and other VCL)
+ controls available on this site for an explanation of
+ when RichEdit1->Handle is valid.) Do this before
+ adding or loading any text into the control. 
+ 
+Note #1: I have determined empirically that
+ setting the EM_EXLIMITTEXT to a value with the high bit set
+ can cause problems in some cases. Hence, the
+ 0x7fffffff value above rather than 0xfffffff. 
+ 
+Note #2: Adrian Carter reports that 0x7ffffffd was
+ the largest value that worked correctly on his version of
+ RichEdit 1.0 (riched32.dll, 173,536 bytes, 1996/08/24,
+ version 4.00.834.839). 
+ 
+ The TRichEdit
+ vertical scrollbar disappears sometimes. Is there a
+ fix or work-around? 
+ 
+This appears to be a bug in the Rich Edit control or in
+ the TRichEdit class. I have found some magical code
+ in TRichEdit (meaning that I have not bothered to
+ completely debug it) that may be responsible. Anyway,
+ here is a workaround (along with my comments to myself): 
+ // apparently there is a bug which we must work around... if you drop a large
+// file (> 32k?) on a TRichEdit, the vertical scroll bar is not enabled until the 
+// control is manually scrolled down a page. this would not be such a big 
+// deal if we trapped the LoadFromFile() used, typically, to load the TRichEdit 
+// control. unfortunately, that would require deriving from TRichEditStrings 
+// and working a lot harder than I'm willing to work at the moment, so we'll try
+// to fix it here. the sad result is that the programmer must call this function 
+// after loads to make sure the vertical scroll bar is visible. man! working 
+// around Microsoft bugs is a lot easier in OWL, but it (OWL) looks like a 
+// dead horse. anyway, it is an ugly work-around -- it has an ugly name...
+//
+void TMyRichEdit::WorkAroundVerticalScrollBarBug(void)
+{
+ // scroll down a page, then back
+ ::SendMessage(Handle, EM_SCROLL, (WPARAM) (INT) SB_PAGEDOWN, 0);
+ ::SendMessage(Handle, EM_SCROLL, (WPARAM) (INT) SB_PAGEUP, 0);
+}
+ How do I determine
+ if a document file is plain text, Rich Text Format (RTF),
+ or something else before I load the document? 
+ 
+There are no guarantees, but here is what I use: 
+ See the Code Snippet. 
+ 
+ You mention that
+ the Rich Edit 2.0 control supports multi-level
+ undo/redo. What else does it do? 
+ 
+Well, I am assuming that it fixes at least some of the
+ bugs in Rich Edit 1.0. Additional
+ functionality: Automatic recognition of URLs and the
+ ability to send a message to your program when a URL is
+ invoked (clicked); and support for new Rich Text Format
+ (RTF) codes (RTF 1.5?). Check out the
+ Microsoft Developer Network for more
+ information. For a demonstration of how to use some
+ of these features, see the TRichEdit20 class in the
+ Code
+ Samples section of this site. 
+ 
+ I am interested in
+ the Rich Edit 2.0 control. Where do I get it? 
+ 
+See the paper titled
+ Using Rich Edit
+ 2.0 With BCB available on this site. 
+ 
+ I wrote a custom
+ component that needs to trap the parent form's
+ messages. How do I subclass the form's WinProc to
+ call my class's member function? 
+ 
+See the paper titled
+ Creating a
+ Windows Callback to a Member Function available on this
+ site. 
+ 
+ I wrote a component
+ that saves the Printer()->Handle when it is
+ created. At some point in the program, the saved
+ value seems to no longer be valid. What causes
+ this? 
+ 
+Printer()->Handle returns the handle to the global
+ TPrinter object that is automatically created by the
+ VCL. This object is used by some VCL objects, like
+ TRichEdit, for basic printing. 
+ 
+Printer()->Handle actually returns a handle to a
+ device context (HDC) or a handle to an information context
+ (HIC) at different points in time. If I recall
+ correctly, it actually returns a HDC only between
+ BeginDoc() and EndDoc(), in other words, only when it is
+ printing. Outside of a BeginDoc()/EndDoc() pair, it
+ returns a HIC. The HIC returned before BeginDoc() may
+ be different from the HIC returned afterwards. To be
+ safe, do not store the value returned by
+ Printer()->Handle unless you invest the time to study
+ the VCL code thoroughly. 
+ 
+ I am using
+ TRichEdit::Print(AnsiString Caption) to print the contents
+ of a Rich Edit control. Why does the caption not
+ print at the top of any of the pages? 
+ 
+According to the help files, "The Caption parameter
+ specifies the title that appears on the printed
+ output." This is incredibly misleading. The only
+ printed output on which this string would appear is a
+ network print job banner page. 
+ 
+There is no code in TRichEdit::Print() to print headers
+ or footers of any kind. The Caption string is
+ actually assigned to the Title property of Printer (the
+ global TPrinter object). This, in turn, is displayed
+ in the Print Manager (or print spooler) and, as I
+ mentioned, on network print job banner pages. 
+ 
+You can, of course, print your own headers and
+ footers. See the paper titled
+ Printing and
+ Previewing Rich Edit Controls available on this site. 
+ 
+ I downloaded the
+ TRichEdit20 sample code. Why does it raise an
+ "out of resources" exception when I add or insert
+ a line of text programmatically? 
+ 
+The "out of resources" exception occurs when
+ adding or inserting a line of text with code similar to the
+ following: 
+ RichEdit1->Lines->Add("Some text."); // to add text at the end
+/* or */
+RichEdit1->Lines->Insert(0, "Some text."); // to add text at the beginning
+ I was a bit lazy when building the TRichEdit20
+ class. If you look at all of the code involved to
+ date, you will find a number of supporting classes, some of
+ which are extensions to existing classes. For
+ example, TFontStyle2, TConsistentAttributes2,
+ TTextAttributes2, and TParaAttributes2 are extensions to
+ existing VCL classes. I was trying to keep the number of
+ extended classes to a minimum&#133;. 
+ 
+The problem is buried in the VCL TRichEditStrings
+ class. When a line of text is inserted, the
+ TRichEditStrings class adds a carriage return/linefeed pair
+ (CRLF) . It then saves the current start of text
+ position, adds the text, and, if the resulting text
+ position is not equal to the original + the length of the
+ inserted text + 2 (for the CRLF), then the VCL raises an
+ exception. Rich Edit 2.0 controls convert CRLF pairs
+ into CR and, thus, the number of characters inserted is one
+ less than with Rich Edit 1.0 controls. The VCL
+ assumes that this means that there was insufficient memory
+ to insert the text. 
+ 
+The ultimate solution is to create a new class derived
+ from TRichEditStrings and wedge it into the TRichEdit20
+ class. Until I get around to that, the workaround is
+ to trap the error. If you are uncomfortable assuming
+ that the text was inserted without any errors, you can try
+ the following untested code (let me know if you have
+ corrections): 
+ RichEdit1->SelLength = 0;
+int i = RichEdit1->SelStart;
+AnsiString text = "Some text.";
+try {
+ RichEdit1->Lines->Add(text);
+ }
+catch (EOutOfResources& e) {
+ if (RichEdit1->SelStart != i + text.Length() + 1) throw e;
+ }
+// no error
+ I hope to add an update to cure this problem fairly
+ soon, so keep an eye on the site. 
+ 
+ The Lines property
+ of TRichEdit returns only the plain ASCII text from the
+ control. I want to get the raw RTF-encoded text from
+ a Rich Edit control. How do I do that? Can I
+ insert RTF coded text into a Rich Edit control? Can I
+ copy text from one Rich Edit control into another without
+ using the Clipboard? 
+ 
+RTF-encoded text can be retrieved from a Rich Edit
+ control using WinAPI calls. RTF-encoded text can
+ similarly be inserted into a Rich Edit control. 
+ Putting the two together allows you to copy RTF-encoded
+ text from one Rich Edit control into another without using
+ the Clipboard. 
+ 
+Code to demonstrate this technique is available on this
+ site. See the
+ TRichEditRawRtf class code sample. 
+ 
+ I combined the
+ printing code from the Printing and Previewing Rich Edit
+ Controls paper with the TRichEdit20 class. 
+ When I try to print, the program hangs in the rendering
+ loop. Any ideas? 
+ 
+A new message was added for Rich Edit 2.0 controls,
+ EM_GETTEXTLENGTHEX, which must be used instead of
+ WM_GETTEXTLENGTH. Replace the following line (in both
+ the printing and previewing rendering loops): 
+ int lastOffset = ::SendMessage(RichEdit1->Handle, WM_GETTEXTLENGTH, 0, 0);
+ with this: 
+ GETTEXTLENGTHEX gtlx = { GTL_PRECISE, CP_ACP };
+int lastOffset = ::SendMessage(Handle, EM_GETTEXTLENGTHEX, (WPARAM) &gtlx, 0);
+ I have not found a good explanation of the
+ GETTEXTLENGTHEX structure values, so these were selected by
+ trial and error. If you find a good explanation of
+ the structure, please let me know. 
+ 
+ I downloaded the
+ TRichEditRawRtf class code from the site and it sounds like
+ what I need. Unfortunately, whenever I attempt to
+ insert RTF-encoded text, I get an exception with a
+ "code 16." Why? 
+ 
+This particular code is returned by the underlying
+ Windows Rich Edit control, not by the sample code. 
+ From my experience, it is caused by trying to insert text
+ that is not properly RTF-encoded text. 
+ 
+The TRichEditRawRtf class uses standard Rich Edit
+ functions to move code into and out of the control, and
+ both assume that you are inserting or extracting a complete
+ and valid RTF-encoded file. That is, when you
+ "GetRtf(), you receive an AnsiString that, by itself,
+ would comprise a valid RTF file. Similarly, when you
+ "PutRtf()," the rtfText parameter must contain
+ text that would be a complete RTF-encoded file. 
+ 
+All of that may be incomprehensible, so let me put it
+ another way. Most problems using the code from the
+ site seem to result from not creating a fullRTF
+ stream to insert into an existing Rich Edit control. 
+ A minimally complete RTF-encoded file would be something
+ like: 
+ {\rtf1 Some text}
+ A more complete RTF stream might look like this: 
+ {\rtf1\ansi\ansicpg1252\deff0\deftab720{\fonttbl{\f0\fswiss MS Sans Serif;}
+{\f1\froman\fcharset2 Symbol;}{\f2\fswiss\fcharset1 MS Sans Serif;}}
+{\colortbl\red0\green0\blue0;}\deflang1033\pard\plain\f2\fs16 Some Text}
+ The most common mistake seems to be trying to insert
+ only a portion of the above. For example, you
+ cannotuse the following to change the color of the
+ text (by itself): 
+ MyRichEditRawRtf->PutRtf("\colortbl\red1\greeen1\blue1 Some text");
+ Instead, you must insert something like: 
+ MyRichEditRawRtf->PutRtf("{\rtf1\colortbl\red1\greeen1\blue1 Some text }");
+ To make a long story short, please spend some time with
+ the sample application &#150; it displays exactly what
+ should be passed to PutRtf(). 
+ 
+Note: Menno van der Leden reports that using
+ "{\rtf1 Some text}" continued to give the code 16
+ error. He found that "{\rtf Some text}"
+ (omitting the "1") solved it. 
+ 
+ The TRichEdit20
+ class looks like it should be simple to convert to a
+ component. Why do you distribute it as a class
+ instead of a component? 
+ 
+Good question. There are several reasons. 
+ 
+First, I did not develop the code as a full-featured,
+ drop-in replacement for TRichEdit. My intent is to
+ give you a good starting point for learning about Rich Edit
+ controls in general, and the Rich Edit 2.0 control in
+ particular. Frankly, components add additional
+ complexity not related to the issues that I am trying to
+ address. 
+ 
+Second, I am too lazy to answer all of the questions
+ about component installation problems that would
+ undoubtedly arise. I have had plenty of problems
+ installing third party components, converting my own
+ components from BCB3 to BCB4, and the like. Classes
+ are much simpler and engender fewer questions. 
+ 
+Lastly, if you try to convert the class into a
+ component, you will discover that an exception is raised
+ when the component is instantiated by the IDE. This
+ happens when the IDE attempts to set the control's text to
+ match the control's name. As I described in another
+ FAQ (see the link below), I did not rewrite the
+ TRichEditStrings class used by the Lines property of
+ TRichEdit and inherited by the TRichEdit20 class. The
+ TRichEditStrings class assumes that adding a line of text
+ will extend the length of the text in the control by two
+ bytes (carriage control + linefeed, aka CR/LF). Since
+ Rich Edit 2.0 uses only one byte (CR) to delimit a line,
+ TRichEditStrings assumes that the line was not inserted
+ successfully and throws an "insufficient memory"
+ exception. You can trap this in your own code;
+ however, the IDE executes code not present in the
+ TRichEdit20 class. Perhaps there is an easy way
+ around this &#150; I will post a fix as soon as I bother to
+ solve it or someone is kind enough to solve it for all of
+ us. 
+ 
+Go to the related
+ FAQ. 
+ 
+Note: The
+ TaeRichEdit Component available on this
+ site is a full-featured Rich Edit 2.0/3.0 IDE component
+ that solves the last problem. Although largely
+ compatible with the Borland TRichEdit component, there are
+ differences. 
+ 
+ When I distribute
+ my program, I have to distribute other Borland runtime
+ library DLLs with my program. How do I include
+ everything in my program such that I do not have to
+ distribute any other files? 
+ 
+To include all of the needed code in the executable
+ program and eliminate the runtime DLLs in BCB4 and BCB5,
+ change the following options: 
+ 
+Project | Options, Linker
+ tab, uncheck "Use Dynamic RTL." 
+ 
+Project | Options, Packages
+ tab, uncheck "Build with runtime packages." 
+ 
+BCB3 has the same options, but one of them located
+ elsewhere (I think the second one was in the Options menu).
+ 
+ 
+Be aware that this will include the runtime code in your
+ *.exe making it significantly larger. Other options
+ on the Compiler and Linker tabs will also affect the size
+ and speed of your program. 
+ 
+ Many programs have
+ buttons on the Help About dialog that will let the user
+ send the developer e-mail or link directly to the
+ developer's site. How do I do that? 
+ 
+Thanks to Michael Cutler for this one. Here is
+ what he worked out (edited to be addresses at
+ "somesite.com"): 
+ 
+"The ShellExecute()
+ Method works for both HTTP and MAILTO. You need to
+ include '#include ' for it to work. 
+ Below is the code I used (2 buttons, one for HTTP and one
+ for MAILTO)." 
+ //----------------------------------------------------------------------
+void __fastcall TForm1::HTTPButtonClick(TObject *Sender)
+{
+ ::ShellExecute(NULL, "open", "http://somesite.com", NULL, NULL, SW_SHOWNORMAL);
+}
+//----------------------------------------------------------------------
+void __fastcall TForm1::MAILTOButtonClick(TObject *Sender)
+{
+ ::ShellExecute(NULL, "open", "mailto:someone@somesite.com", NULL, NULL, SW_SHOWNORMAL);
+}
+//----------------------------------------------------------------------
+ Keep in mind that these functions assume that the user
+ has installed a default browser and e-mail program,
+ respectively. For truly bullet-proof code, you would
+ need to determine if these default programs were installed.
+ 
+ 
+ When I disable a
+ Rich Edit 2.0 control, the background is redrawn in
+ gray. TRichEdit leaves the background white when
+ disabled, which is what I want. Why is this? 
+ Can I change this to get the white background instead? 
+ 
+Well, this was a surprise -- I had not noticed
+ this. My tests confirmed that TRichEdit (Rich Edit
+ 1.0) does indeed leave the background color unchanged when
+ disabled while Rich Edit 2.0/3.0 controls gray the
+ background when disabled. Oddly, I have been unable
+ to find any documented reference to this change. 
+ 
+The easiest way to work around this problem is to use
+ the TRichEdit::ReadOnly property instead of the
+ TRichEdit::Enabled property. Setting ReadOnly to
+ false leaves the background color intact and does not allow
+ the text to be changed, which is probably what you are
+ trying to do. 
+ 
+This is not, however, a perfect solution. A
+ disabled control does not normally receive focus (for
+ example, the user cannot or 
+ into the control), whereas a read-only edit control can
+ receive focus but the text cannot be changed. This is
+ a rather subtle difference for most purposes, but if it
+ matters to your application, I will suggest a couple of
+ possible solutions: 
+ 
+- 
+Use the ReadOnly property, trap the TWinControl::OnEnter
+ event, and throw the focus to the next control (forwards or
+ backwards, depending upon how the user got there). 
+ This seems a bit tricky to me, but it may very well be easy
+ with the VCL. 
+ 
+- 
+Use the Enabled property and intercept the WM_PAINT
+ and/or WM_ERASEBKGND messages and change the background
+ brush to the appropriate color. I have a gut feeling
+ that messing with Rich Edit paint messages is not a Good
+ Thing, but I have not ruled it out.... Yet. 
+ 
+I have tried neither of these solutions and would be
+ interested in hearing from you if you try them, either
+ successfully or unsuccessfully. 
+ 
+Thanks to David Davies for mentioning the problem. 
+ 
+ I wrote a
+ TConversion class for my application's documents and used
+ TRichEdit::RegisterConversionFormat to associate the file
+ extension with the converter. If I open one of my
+ application's documents, the data is converted as
+ expected. If I then open a *.txt file without
+ restarting the program, TRichEdit tries to convert the
+ plain text as if it were one of my application's
+ documents. Similarly, if I first open a *.txt file
+ and then open one of my application's documents, the data
+ is not converted. What is going on? 
+ 
+The interactions between TConversion class and
+ TRichEdit::Lines->LoadFromFile(), SaveToFile(),
+ LoadFromStream(), and SaveToStream() are, at best,
+ unintuitive. To me they are simply buggy. 
+ 
+The problem is buried in the TRichEditStrings class
+ (TRichEdit::Lines property) and is implemented in
+ comctrls.pas. The first time a file is loaded using
+ LoadFromFile(), TRichEditStrings looks up the file
+ extension in the list of registered converters and, if it
+ is found, assigns the converter to a variable called
+ FConverter. If no converter is found, a default text
+ converter (which does nothing) -- not the
+ TRichEdit::DefaultConverter -- is created and assigned to
+ FConverter. However, if FConverter is not null, the
+ assignment is not made and the previously assigned
+ converter is used. 
+ 
+This has implications for SaveToFile() as well. 
+ When you load a file, FConverter is initialized. If
+ you then save the file with a different file extension,
+ SaveToFile() will use the old converter. For example,
+ say you wrote a converter and associated it with
+ *.xyz. You then open a *.txt file and save it as a
+ *.xyz file. The data will be saved as a plain text file
+ (with, of course, the xyz extension). 
+ 
+Note that TRichEdit::DefaultConverter may not work quite
+ as you would expect either. It will only be used for
+ LoadFromStream() and SaveToStream() operations. And,
+ if you LoadFromFile() and then SaveToStream(), the
+ converter used for LoadFromFile() will still be used for
+ streaming the data out. 
+ 
+Sadly, I have no solutions short of rewriting
+ significant portions of the TRichEdit and TRichEditStrings
+ classes or doing your own streaming directly from the
+ underlying Rich Edit control. See the EM_STREAMIN and
+ EM_STREAMOUT messages in the WinAPI and the
+ TRichEditRawRtf class code on this site
+ if you are interested in the latter approach. 
+ 
+ I need details on
+ the Rich Text Format (RTF) encoding format. Where can
+ I get more information on the RTF specification? 
+ 
+You probably already know this, but Rich Text Format is
+ a specification unique to and fully controlled by
+ Microsoft. There is no standard outside of what
+ Microsoft shares with us. Given that, the
+ specification can be found on Microsoft's site. I
+ suggest that you search the Microsoft KnowledgeBase for the
+ most current information, but here is what I found when I
+ posted this FAQ: 
+ 
+Microsoft KnowledgeBase article titled: WD:
+ Rich Text Format (RTF) Specification 1.5 Appnote
+ (GC0165): 
+ 
+http://support.microsoft.com/support/kb/articles/Q86/9/99.ASP
+ 
+ 
+Microsoft has an Application Note available: 
+ Rich Text Format (RTF) Specification and Sample RTF
+ Reader (GC0165) that contains: 
+- Version 1.5 of the Microsoft Rich Text Format
+Specification 
+- Addendum for the Japanese version of Word 6.0
+- Addendum describing how to create an RTF reader
+application
+- Source code for a sample RTF reader
+You can get this Application Note at: 
+ 
+http://support.microsoft.com/download/support/mslfiles/GC0165.exe.
+ 
+ 
+ I am taking a C/C++
+ class and my homework assignment requires that I print the
+ result of several computations. The instructor has
+ given me code to print the results but it does not
+ work. 
+ 
+Apparently, many C/C++ course instructors are unfamiliar
+ with the Windows operating system. This is, by
+ itself, not necessarily a Bad Thing. For their
+ students that use Windows development tools, however, it
+ creates much confusion and frustration. Typically,
+ the sample code provided by the instructor looks something
+ like this: 
+ 
+C programs: 
+ printf("The answer is: %i", theAnswerVariable);
+/* or */
+fprintf(stdout, "The answer is: %i", theAnswerVariable);
+ C++ programs: 
+ cout myprog >> prn:
+ or 
+ C:>myprog >> lpt1:
+ If this looks similar to your homework assignment
+ instructions, then this FAQ may help. 
+ 
+The standard C/C++ input/output (I/O) techniques do not
+ work with Windows programs. Neither do the MS-DOS
+ techniques for redirecting output to the printer. 
+ Despite the strong temptation, I will not go into a
+ long-winded explanation of early teletype devices, MS-DOS
+ command line redirection, the ANSI character code set, the
+ development of the C and C++ languages, the evolution of
+ the associated I/O libraries, and the history of the
+ world. No, I will not even mention these
+ pre-requisites. Just take my word for it -- these
+ routines and techniques do not work in the Windows
+ environment. 
+ 
+So, how do you get your homework assignment answers
+ printed? A simple solution is to send the output to a
+ disk file and then open and print the file using the
+ Microsoft Windows NotePad program. If you have not
+ changed the default Windows *.txt file association, then
+ the following should work. 
+ 
+C programs: 
+ /* you may need to #include */
+/* open the disk file. */
+FILE* outfile;
+/* open to write, replace if already exists */
+outfile = fopen("c:\temp.txt", "w+"); 
+/* "print" to the file. substitute all of the printf() parameters for "..." below.
+fprintf(outfile, ...);
+/* close the disk file. */
+fclose(outfile);
+ C++ programs: 
+ // you may need to #include 
+// open the disk file.
+ofstream outStr("c:\temp.txt");
+// "print" to the file (stream).
+outStr LoadFromStream() and
+ TRichEdit::Lines->LoadFromFile()). Clipboard
+ operations do not use streams. 
+ 
+By default, the TRichEdit control passes keystrokes to
+ the underlying Windows Rich Edit control. The native
+ Rich Edit control interprets and
+ keystrokes as instructions to insert text
+ from the Clipboard. The Rich Edit control will
+ attempt to insert the Clipboard contents in the "most
+ suitable format" (my words, not Microsoft's). 
+ This means that, if possible, the control will insert the
+ text with the original formatting. 
+ 
+To force the TRichEdit component to insert text without
+ formatting, you must trap any actions that insert text from
+ the Clipboard. Below is an example that traps the
+ keystroke using the TRichEdit
+ OnKeyDown event and forces the text to be inserted without
+ formatting. Trapping other keystrokes, mouse
+ operations, etc., is left as "an exercise for the
+ student." 
+ //---------------------------------------------------------------------------
+void __fastcall TForm1::RichEdit1KeyDown(TObject *Sender, WORD &Key, TShiftState Shift)
+{
+// create a TshiftState set that corresponds to only the shift key
+TShiftState ss;
+ss = ss ?
+if (Key == VK_INSERT && Shift == ss) {
+ // null out the key code to prevent further processing
+ Key = 0;
+ // create a REPASTESPECIAL structure to use in the 
+ // EM_PASTESPECIAL message
+ REPASTESPECIAL reps = { 0, 0 };
+ // tell the Rich Edit control to insert unformatted text (CF_TEXT)
+ ::SendMessage(RichEdit1->Handle, EM_PASTESPECIAL, CF_TEXT, (LPARAM) &reps);
+ }
+}
+//---------------------------------------------------------------------------
+ Is there a simple
+ way to use regular expressions with TRichEdit
+ controls? Most regular expression libraries use a
+ unique syntax &#150; what is the particular syntax used by
+ the VCL library? 
+ 
+The VCL regular expression library included in BCB4 and
+ BCB5 is fairly simple to use. You may want to use the
+ TTaeRegExp class available on this site. See the
+ TaeRegExp.zip download available in the
+ Code
+ Samples section of this site. 
+ 
+If you want to develop your own code from scratch,
+ search for "Perl-compatible regular expressions"
+ topic in the BCB help. 
+ 
+ My program works
+ flawlessly on my development machine. However, some
+ users have problems printing with certain printers which I
+ do not have available for testing. Is there a way to
+ recreate the problems on my development machine? 
+ 
+If the problem is that the print does not look as
+ expected, you will probably need to get the specific
+ hardware configuration set up in your test lab to see the
+ actual printed output. On the other hand, if the
+ problem is that the program generates a GPF, you may be
+ able to reproduce the problem by simply installing the
+ printer driver that the user has installed. 
+ 
+I assume that you would already have asked the user to
+ install the most current drivers available from the printer
+ manufacturer and the problem persisted. So, go grab
+ the same driver from the manufacturer's site and install it
+ as a local (non-networked) printer. If the install
+ program complains that you do not have the printer
+ attached, you may (should!) be able to continue the
+ installation (lie to the install program if necessary). 
+ 
+If you can get the driver installed, go into Start Menu
+ | Settings | Printers and right-click the newly installed
+ printer. From the context menu, select
+ Properties. This will bring up the printer's
+ Properties dialog. Select the Details tab and change
+ the "print to" destination from "LPT1:"
+ (or whatever hardware port you selected during the
+ installation) to "File:" Change any other
+ printer settings to match your user's printer settings. 
+ 
+Barring any user network issues, the new printer should
+ operate identically to the user's configuration except that
+ whenever your program sends print to this printer, it will
+ send the output to a file. (You will be prompted for
+ a destination filename each time that you print.) If
+ your program is, indeed, causing the problem that the user
+ reported, you should now be able to reproduce it. 
+ 
+ The TRichEdit
+ component takes much longer than WordPad to open large
+ files. Can I improve the load times? 
+ 
+You can try disabling the ENM_REQUESTRESIZE
+ notification., which corresponds to the TRichEdit
+ OnResizeRequest event, while loading the file with the
+ following code: 
+ int mask = ::SendMessage(RichEdit1->Handle, EM_GETEVENTMASK, 0, 0);
+::SendMessage(RichEdit1->Handle, mask & ~ENM_REQUESTRESIZE, 0, 0);
+[ load the file ]
+::SendMessage(RichEdit1->Handle, EM_SETEVENTMASK, 0, mask);
+ Thanks to Petr Vones for this suggestion. 
+ 
+ How do I save and
+ restore the current scroll position in a TRichEdit
+ component? 
+ 
+First, a brief description of the problem: Assume
+ that you are writing a chat room program. As new
+ messages are a posted in the chat room, you want to append
+ them to the text in the control. However, to do this,
+ you must position the caret at the bottom of the text and
+ then insert the text. Finally, you need to restore
+ the original caret position (easy) and scroll back such
+ that the top line displayed is the same one as before
+ inserting the text (not so easy). 
+ 
+Here is a trick posted by Peter Below (TeamB) in a
+ Delphi forum. I have translated, modified, and
+ expanded the original post somewhat for presentation
+ here. Hopefully, I have not munged it too badly. 
+ // first save the current caret location
+int selStart = RichEdit1->SelStart;
+int selLength = RichEdit1->SelLength;
+// get the line number of the first visible line
+int firstLine = ::SendMessage(RichEdit1->Handle, EM_GETFIRSTVISIBLELINE, 0 , 0);
+// disable screen redraws
+RichEdit1->Lines->BeginUpdate();
+[ move the caret, insert the text, etc. ]
+// restore the caret location
+RichEdit1->SelStart = selStart;
+RichEdit1->SelLength = selLength;
+// here is the trick &#150;- get the current first visible line, 
+// compute the number of lines to scroll, and scroll...
+int currLine = ::SendMessage(RichEdit1->Handle, EM_GETFIRSTVISIBLELINE, 0, 0);
+::SendMessage(RichEdit1->Handle, EM_LINESCROLL, 0, firstLine &#150; currLine);
+// enable screen redraws
+RichEdit1->Lines->EndUpdate();
+ In truth, this solves only half of the problem. 
+ The vertical position has been restored, but the horizontal
+ position may not be correct. 
+ 
+Michael Buschbeck offers the following solution for
+ restoring the horizontal position: 
+ // get horizontal scroll bar position
+int nHorzScrollPos = ::GetScrollPos(RichEdit1->Handle, SB_HORZ);
+[ do whatever you want ]
+// restore horizontal scroll bar position
+::SendMessage(RichEdit1->Handle, WM_HSCROLL, SB_THUMBPOSITION | (nHorzScrollPos ? 
+ 
+There are
+ many
+ sites with sample code and
+ web
+ rings and
+ search
+ sites to help locate these sites. Of course, the
+ Borland newsgroups are also a great
+ source of information.... 
+ 
+However, BCB comes with lots of useful sample code that
+ is easy to overlook. Before wasting a lot of time
+ searching the Internet for answers, you might want to spend
+ a few minutes searching the Examples folder in the BCB
+ installation directory (for BCB5, the default is
+ C:\Program Files\Borland\CBuilder5\Examples &#150;
+ other versions are similar). Some of the neat things
+ that are included with BCB5 Professional (other versions
+ may not include all of these &#150; or may include even
+ more): 
+ 
+- A "single instance" component. If the
+user attempts to run a second copy of the program, this
+component signals the first instance and passes information
+from the second to the first instance before terminating
+the second instance. Look in the
+Examples\Controls\SingleInst folder. 
+- An example of using the undocumented TrayIcon class to
+put an icon in the system taskbar's tray (next to the
+clock). (Note: I have been unable to find the source
+code for this component nor any other documentation beyond
+the sample code.) Look in the
+Examples\Controls\TrayDemo folder. 
+- A component that allows your program to get program
+version information. Look for the
+Examples\Controls\VersionInfo folder. 
+If you do not find the examples, then you may not have
+ installed them &#150; check the BCB installation
+ disk. Assuming that your CD drive is D: and that you
+ have BCB5, look in D:\RunImage\CBuilder5\Examples. 
+ Adjust as necessary for a different CD drive assignment or
+ version of BCB. 
+ 
+The BCB5 Professional installation disk also includes: 
+ 
+- The C++ Builder 5 Developer's Guide
+(D:\Documentation\Dg.pdf) 
+- The C++ Builder 5 Quick Start manual
+(D:\Documentation\Qs.pdf). 
+- A JPEG image component (D:\Info\Extras\Jpeg) 
+So, check out the samples &#150; hopefully, this will
+ save you a bit of time.... 
+ 
+ How do I trap
+ double-clicks on a TRichEdit? 
+ 
+Remy Lebeau (Gambit) offered the following solution in a
+ C++ Builder forum. Simply publish the unpublished
+ OnDblClick event like so: 
+ class PACKAGE TMyRichEdit : public TRichEdit
+{
+public:
+ __fastcall TMyRichEdit(TComponent* Owner);
+__published:
+ __property OnDblClick;
+};
+__fastcall TMyRichEdit::TMyRichEdit(TComponent* Owner) : TRichEdit(Owner)
+{
+}
+void __fastcall TForm1::MyRichEditDblClick(TObject* Sender)
+{
+ ShowMessage("double-clicked");
+}
+ Thanks for sharing, Remy. 
+ 
+ How do I get the
+ TRichEdit to scroll to the bottom of the text when new
+ lines are added? 
+ 
+To scroll to the bottom of the text in the component,
+ move the selection to the bottom and then tell the
+ TRichEdit to scroll to the caret like so: 
+ RichEdit1->SelLength = 0;
+RichEdit1->SelStart = RichEdit1->GetTextLen();
+::SendMessage(RichEdit1->Handle, EM_SCROLLCARET, 0, 0);
+ If that does not work, you may need to add code to
+ ensure that the Rich Edit control has focus. For
+ example: 
+ TWinControl* activeControl = Form1->ActiveControl;
+Form1->ActiveControl = RichEdit1;
+[ do the above here ]
+Form1->ActiveControl = activeControl;
+ Finally, the TRichEdit::HideSelection property may play
+ a role; try setting the property to false. 
+ 
+ I am using Rich
+ Edit 2.0/3.0 and set the paragraph line spacing to single,
+ 1.5, or double using PARAFORMAT2.bLineSpacingRule. 
+ After setting the spacing to 1.5 or double, I cannot set
+ the paragraph line spacing back to single-spacing. 
+ What gives? 
+ 
+The EM_SETPARAFORMAT message appears to work properly
+ with PARAFORMAT2.bLineSpacingRule set to 1 (1.5 spacing) or
+ 2 (double-spacing). However, as you have found,
+ setting the paragraph line spacing back to single-spacing
+ (bLineSpacingRule = 0) has no effect. This appears to
+ be a bug in both RE 2.0 and 3.0. 
+ 
+To clarify/simplify the question and solution, assume
+ the following function: 
+ //---------------------------------------------------------------------------
+void SetLineSpacing(int lineSpacing) 
+{
+ PARAFORMAT2 pf2;
+ ::memset(&pf2, 0, sizeof(PARAFORMAT2));
+ pf2.cbSize = sizeof(PARAFORMAT2);
+ pf2.dwMask = PFM_LINESPACING;
+ pf2.bLineSpacingRule = lineSpacing;
+ ::SendMessage(RichEdit1->Handle, EM_SETPARAFORMAT,0, (LPARAM) &pf2);
+}
+//---------------------------------------------------------------------------
+ If you call the above with SetLineSpacing(1), the
+ selected paragraph(s) will be spaced at 1.5 times the line
+ height as expected. If you then call
+ SetLineSpacing(2), the paragraph(s) will be properly
+ double-spaced. However, subsequent calls of
+ SetLineSpacing(0) will not result in the expected and
+ documented paragraph single-spacing. 
+ 
+The work-around is easy once you know how &#150; the
+ PARAFORMAT2.bLineSpacingRule = 5 sets the line height in
+ twentieths of a single line's height; this works correctly
+ for 20 twentieths (single-spacing). The following
+ revision to the above code ensures that EM_GETPARAFORMAT
+ returns the proper value (0) in
+ PARAFORMAT2.bLineSpacingRule. 
+ //---------------------------------------------------------------------------
+void SetLineSpacing(int lineSpacing)
+{
+ PARAFORMAT2 pf2;
+ ::memset(&pf2, 0, sizeof(PARAFORMAT2));
+ pf2.cbSize = sizeof(PARAFORMAT2);
+ pf2.dwMask = PFM_LINESPACING;
+ // if single-spacing, set to 20 twentieths
+ if (!lineSpacing) {
+ pf2.bLineSpacingRule = 5; // space in 20ths of a line height
+ pf2.dyLineSpacing = 20;
+ ::SendMessage(RichEdit1->Handle, EM_SETPARAFORMAT, 0, (LPARAM) &pf2);
+ }
+ // drop through even if lineSpacing == 0 to ensure 
+ // correct value from bLineSpacingRule with EM_GETPARAFORMAT
+ pf2.bLineSpacingRule = lineSpacing;
+ ::SendMessage(RichEdit1->Handle, EM_SETPARAFORMAT, 0, (LPARAM) &pf2);
+}
+//---------------------------------------------------------------------------
+ Thanks to Lincoln Silk and Paivi Majaranta bringing
+ this bug to my attention and for helping me work through
+ it. 
+ 
+ In my program, the
+ TRichEdit flashes excessively when I do certain
+ things. That is, it appears to be redrawn
+ frequently. How do I eliminate flicker in TRichEdit
+ components? 
+ 
+While you may not be able to completely eliminate
+ redrawing, you can definitely minimize it. The
+ typical answer &#150; and one that I have given for years
+ &#150; is to use code like this: 
+ RichEdit1->Lines->BeginUpdate();
+[do the stuff that causes flicker]
+RichEdit1->Lines->EndUpdate();
+ I suggest that you try this first. However, you
+ may still get a lot of flicker because the VCL forces the
+ TRichEdit window to be redrawn after many of the
+ component's operations. 
+ 
+You can take total control using the WinAPI, but you
+ will need to be careful. Here are the pieces of code:
+ 
+ // disable redrawing
+::SendMessage(RichEdit1->Handle, WM_SETREDRAW, 0, 0);
+[do the stuff that causes flicker]
+// tell Windows to ignore anything previously done that might have changed
+// the contents of the window
+::ValidateRect(RichEdit1->Handle, 0);
+// re-enable drawing
+::SendMessage(RichEdit1->Handle, WM_SETREDRAW, 1, 0);
+ As I mentioned, you must be careful with this code to
+ be sure that the screen is properly updated when
+ necessary. At this point, the TRichEdit window has
+ not been redrawn to reflect any changes. If you moved
+ the caret, modified text, or did anything else that changed
+ what should be displayed, the control will not properly
+ reflect this. To force the control to redraw itself,
+ use one of the following: 
+ ::InvalidateRect(RichEdit1->Handle, 0, 1); // erase background and redraw
+::InvalidateRect(RichEdit1->Handle, 0, 0); // redraw without erasing background
+ The above tells Windows that the RichEdit contents
+ should be updated "when convenient." To
+ force an immediate repainting of the window (rather than
+ waiting for Windows "to get around to it"), add
+ the following: 
+ ::UpdateWindow(RichEdit1->Handle);
+ Finally, a warning: Do not use the above inside
+ of a WM_PAINT message handler or the VCL Paint() method. 
+ 
+ The VCL TRichEdit component works
+ properly on Windows 95/98/NT but behaves oddly on Windows
+ 2000. What is causing this? 
+ 
+Assuming that your code is not at fault, the problem may
+ have something to do with the way that Microsoft has
+ implemented RichEdit 1.0 (TRichEdit uses RE 1.0) support
+ for Windows 2000. If you check the size of
+ riched32.dll, I think that you will find that the file is
+ somewhere around 4KB, nowhere near the normal 160+KB for
+ the full RE 1.0 DLL. This leads me to believe that
+ W2K riched32.dll is a "wrapper" that simply
+ forwards calls to riched20.dll (RE 2.0/3.0). And,
+ based on the reports that I have received, it appears to be
+ a rather buggy wrapper. 
+ 
+If you are confident that your code is correct, my best
+ advice is to try to convert your code to use RE 2.0/3.0
+ directly. You can find links to a couple of the
+ better-known free Delphi-based components on my Links page
+ or you can try the
+ TRichEdit20 class (free) or
+ TaeRichEdit Component (free only for
+ non-commercial use), both available on this site. 
+ 
+ My program loads riched20.dll (i.e.,
+ it uses RichEdit 2.0/3.0). Is it possible to
+ determine at runtime which version (2.0 or 3.0) is actually
+ loaded? 
+ 
+Here is one way: 
+ See the Code Snippet. Note that, if
+ you have the source for the component, you might want to
+ modify the sample code to use the module handle returned
+ from ::LoadLibrary() instead of obtaining the handle using
+ ::GetModuleHandle(). 
+ 
+ In addition to left, center, and right
+ paragraph justification, the RichEdit 2.0 PARAFORMAT2
+ structure includes a "full justification" value
+ (PFA_JUSTIFY). It does not seem to work. Any
+ ideas? 
+ 
+Try adding the following to enable some of the more
+ advanced line-breaking features: 
+ ::SendMessage(RichEdit1->Handle, EM_SETTYPOGRAPHYOPTIONS, TO_ADVANCEDTYPOGRAPHY, TO_ADVANCEDTYPOGRAPHY);
+ Note: The WinAPI help states that this is a
+ RichEdit 3.0-only message. However, I would try it
+ with RE 2.0 since the documentation is so frequently
+ incorrect. 
+ 
+ Microsoft Word's spell-checker
+ underlines misspelled words with a red wavy
+ underline. Can RichEdit controls do this? 
+ 
+ There are two parts to this question: (1) Can you
+ create a wavy underline and (2) can you color the underline
+ red while leaving the text color unchanged. RichEdit
+ 1.0 supports only a plain underline and the color cannot be
+ separately specified. RichEdit 2.0 supports at least
+ a couple of underline types (single, double, and word)
+ according to the documentation. RichEdit 3.0 supports
+ even more underline styles including thick, wave, dash,
+ dash-dot, dash-dot-dot, and dotted (I have not verified
+ that they all work; the wavy style *does* work). 
+ Since setting the underline color to a different color than
+ the text is listed as a RichEdit 3.0 enhancement, I assume
+ that it does not work with prior versions. However,
+ many RE 2.0 features are undocumented, so it may be worth
+ trying if you are using RE 2.0. 
+ 
+All of that said, here is how it works: Set the
+ lower nibble of the CHARFORMAT2 bUnderlineType to the
+ desired underline style and set the upper nibble of
+ bUnderlineType to values of 1 to 15 (0x1? to 0xf?) to set
+ the color. (Be sure to read "the catch" at
+ the bottom of this entry.) 
+ 
+For example, the following code will add a wavy red
+ underline to the selected text in a RE 3.0: 
+ // create a CHARFORMAT2 structure
+::CHARFORMAT2 cf2;
+ 
+// initialize the CHARFORMAT2 structure to modify the underline type
+::memset(&cf2, 0, sizeof(cf2));
+cf2.cbSize = sizeof(cf2);
+cf2.dwMask = CFM_UNDERLINETYPE;
+// set the underline type to the wavy style and the color to red
+cf2.bUnderlineType = CFU_UNDERLINEWAVE | 0x50 /* 5 = red */
+// apply the change to the selected text
+::SendMessage(RichEdit1->Handle, EM_SETCHARFORMAT, true, (LPARAM) &cf2);
+Many thanks to Patrick Blackman for sharing this
+ information. 
+ 
+ Unfortunately, there is a catch. Although the
+ above displays correctly, the RE 3.0 control does not
+ appear to save the color value correctly in an RTF
+ document. In fact, if you use any color value other
+ than zero (auto-color), the RE control not only does not
+ save the underscore color, it strips the underscore from
+ the document entirely. Underscore colors may simply
+ be unsupported in RTF; I did not find it in the RTF 1.5
+ specification. OTOH, this may be yet another RE
+ bug.... 
+ 
+ 
+	 
+	Home |
+	Top Of Page |
+	Code |
+	Papers |
+	FAQs | Links |
+	Search
+	| Feedback 
+	 
+ 
+ 
+	 
+ Page updated 
+	
+ 
+	 
+ 
+ 
+ Copyright ©
+ 1998-2001 Thin Air Enterprises and Robert Dunn. All
+ rights reserved. 
+ 

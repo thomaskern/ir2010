@@ -1,0 +1,80 @@
+
+ 
+online C++ tutorial: Using a Class (Instantiation)
+ 
+ 
+ 
+ Section 7: Class Declarations 
+Section 7.2: Using a Class (Instantiation)
+ 
+Just as writing a class declaration was an extension of concepts
+we've already covered, the same is true of the syntax needed to
+instantiate an object. Instantiating an object is what allows
+you to actually use objects in your program. You can write hundreds
+and hundreds of class declarations, but none of that code will be used
+until you create an instance of an object. A class declaration is
+merely a template for what an object should look like. When you
+instantiate an object, C++ follows the class declaration as if it were
+a blueprint for how to create an instance of that object.
+Instantiating an object
+The good news is, you already know how to create an instance of an
+object! It is exactly the same as using a variable. Let's say you
+want to have four players in your game, each trying to find their way
+to the end of a maze faster than the others. You might start by
+creating four instances of your Player object, like this:
+Player blueHat;
+Player redHat;
+Player greenHat;
+Player yellowHat;
+It's as easy as that. Although these objects are all
+Players, they are completely independent of one another.
+They were created from the same template, but they can have different
+attributes. For example, "blueHat" might be a slow, strong player,
+while "greenHat" might be quick and weak, and "yellowHat" might be a
+well balanced individual, etc. The thing that makes these objects
+similar is that they all must have values for strength, health, and
+agility, but nothing else. They can all move, attack monsters, and
+get treasures, but that is all they can do. So -- they are similar in
+the kinds of things they can do and the attributes they must have, but
+they are different in that they can each have their own values for
+those attributes.
+Using an object's member functions
+Now that we can create objects, we need to know how to use them. That
+is, we need to be able to use their member functions. Calling an
+object's member functions is similar to calling a regular function,
+with a slight twist.
+Suppose someone is playing your adventure game, and they are
+controlling the player with the green hat. When the person hits the
+key to attack a monster, you need to make sure that the correct code
+gets executed so that the right player attacks the monster. The code
+would look like this:
+greenHat.attackMonster();
+It's very similar to the way that a regular function is called,
+preceeded by the name of the object on which the function should be
+called (greenHat), and a period. So, instead of calling
+the function attackMonster(), we are telling
+greenHat to call the function attackMonster.
+This is the power of C++. You can very easily "delegate
+responsibility" to the objects you've written, so that what seems like
+an impossible task, writing a video game, becomes much more
+manageable.
+Now let's suppose that greenHat picks up a treasure. Somewhere in your program, the following will get executed:
+greenHat.getTreasure();
+This will cause the function getTreasure to be executed for the player with the green hat only. The other players in the game will not execute this function. Perhaps you write getTreasure to look like this:
+void Player::getTreasure() {
+ health++; // increments the value of the player's health by one
+}
+Suppose that before greenHat picked up the treasure, the following were the players' values for their healths:
+blueHat: 14 
+redHat: 11 
+yellowHat: 8 
+greenHat: 11 
+After greenHat picked up the treasure, the values would be:
+blueHat: 14 
+redHat: 11 
+yellowHat: 8 
+greenHat: 12 
+Notice that only greenHat's health increased when the function Player::getTreasure was called; that's because the member function was called on greenHat only.
+ 
+ 
+ 

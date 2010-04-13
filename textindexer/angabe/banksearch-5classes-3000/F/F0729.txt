@@ -1,0 +1,115 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Files, Folders and Drives
+How to get the type of a drive using the GetDriveType API
+ID: 783
+Author: Abstractvb
+Date: 8/22/2000 10:07:08 PM
+VB6
+Add this code to a new form and then run the form. It will tell you the drivetype for drive C:. Try changing the drive name to your cdrom drive and running it and it should display a msgbox with the words CDROM in it.
+Private Const DRIVE_UNKNOWN = 0
+Private Const DRIVE_CDROM = 5
+Private Const DRIVE_FIXED = 3
+Private Const DRIVE_RAMDISK = 6
+Private Const DRIVE_REMOVABLE = 2
+Private Const DRIVE_REMOTE = 4
+Private Declare Function GetDriveType Lib "kernel32" Alias "GetDriveTypeA" (ByVal nDrive As String) As Long
+Private Sub Form_Load()
+ MsgBox DriveType("C:\")
+End Sub
+Function DriveType(strPath As String) As String
+ Dim strType As String
+ 
+ Select Case GetDriveType(strPath)
+ Case DRIVE_UNKNOWN
+ DriveType = "UNKNOWN"
+ Case DRIVE_CDROM
+ DriveType = "CDROM"
+ Case DRIVE_FIXED
+ DriveType = "FIXED"
+ Case DRIVE_RAMDISK
+ DriveType = "RAMDISK"
+ Case DRIVE_REMOVABLE
+ DriveType = "REMOVABLE"
+ Case DRIVE_REMOTE
+ DriveType = "REMOTE"
+ End Select
+End Function
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

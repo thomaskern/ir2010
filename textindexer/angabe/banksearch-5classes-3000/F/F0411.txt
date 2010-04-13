@@ -1,0 +1,75 @@
+
+Learn to Program with Visual Basic 6- Chapter 4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+Learn to Program with Visual Basic 6
+Chapter 4
+Visual Basic Methods
+"Properties," I said, "are attributes or characteristics of a Visual Basic object. Methods are actions that you perform on those objects. If color, number of doors and horsepower are attributes of an automobile, then forward and reverse are methods."
+"Methods are used by a programmer to perform an action on an object," I said. "For instance, there is a method called Move which can be used to move an object on the screen." 
+Visual Basic Events
+"If we continue with our comparison of Visual Basic objects to automobiles then approaching a red light at a junction could be thought of as an event. The ApproachingRedLight event happens to the vehicle and in response it stops," I said.
+"The form, and the objects on it, can also recognize and respond to events. An object's type determines the range of events that it can respond to. For instance, a list box is scrollable and has a Scroll event. You certainly wouldn't scroll a check box, so check boxes don't have Scroll events. Check boxes and list boxes can be clicked on, though, so they both have a Click event," I continued.
+"For every event that an object can respond to there is an Event Procedure. An event procedure is a fragment of code that relates to a particular object and a particular event. You might have a command button called Command1 that can be clicked on so there would be a 'Command1 gets Clicked' event procedure."
+"Visual Basic methods are placed in these Event procedures; without them the events would have no way of responding. Let's go back to our example of the automobile. The ApproachingRedLight event happens but the automobile needs to have a SlowDownAndStop method to be able to respond correctly to this event."
+"Who decides what events an object responds to?" Barbara asked.
+"Microsoft decided which events an object would be able to respond to when they created the Windows operating system," I said. "For example, most objects in Windows respond to being clicked by the user, but not all. This behavior is a function of the Windows environment."
+"So you're saying that to make an object do something," Jack said, "we place code into an event procedure that will be triggered when the user performs an action on the object. The code invokes one of the methods of the object. So, for instance, if we want to move a command button to the bottom of the screen when the user clicks on it, we would code the Move method of the command button in the command button's Click event."
+"That was perfect, Jack," I said. "That's exactly what you would do. Now if this isn't perfectly clear yet for the rest of you, don't worry, it will be soon."
+I then started a new Visual Basic project and double-clicked my mouse on the form. This opened up the Visual Basic Code Window, which I then displayed on the classroom projector:
+ 
+"So that's the code window you've been talking about," Joe said. "Yes, this is the Visual Basic Code Window," I said, "which allows us to place code in an event procedure. As I mentioned, an event procedure is associated with both an object and an event."
+I directed everyone's attention to the two list boxes at the top of the code window. "The list box on the left," I said, "is called the Object List Box, and the list box on the right is officially known as the Procedure List Box, although I prefer to call it the Event List Box. The Object List Box contains the name of the form, a general section, plus every control that appears on the form. The Event List Box shows every event that the object selected in the Object List Box can respond to. Notice that the event procedure name is the name of the selected object and the selected event, separated by an underscore (_)."
+"What is the line reading End Sub?" Joe asked.
+"That's the end of the event procedure," I said. "Between that line and the event procedure header is where we place any code that we write for this event procedure."
+"How can you see the event procedures for other objects?" Dave asked. "You can display other objects, by clicking on the Object List Box," I said. "At that point, click on the Event List Box and you can display all the events associated with that object."
+I clicked on the Event List Box to let everyone see the rest of the events to which the form can respond. The following screen was displayed on the classroom projector:
+ 
+"The form has a number of event procedures," I said, "in which we can place code. As a demonstration, I will place some code in the form's Click event procedure."
+I found the Click event procedure by scrolling through the list in the Event List Box.
+"We'll discuss writing code later in the class," I said. "Right now, I just want to leave you with a feeling of what can be done in code before we finish for the day. I'll demonstrate the Visual Basic Move method, which is one of nineteen methods associated with the form. The Move method will quickly change the location of the form on the screen."
+"Can't we do that by setting the Left and Top properties also?" Valerie asked.
+"That's an excellent question," I said. "You're right, you can also move the form by setting the form's Left and Top properties and we'll see in the coming weeks that you can set those properties in code too. This won't be the first time that we'll see that there is a way to achieve the same result by using a method or setting some properties. Given the choice between setting an object's properties, and invoking a method that produces the same result, choose the method. Invoking the method is more efficient, and therefore faster, than setting a property."
+I typed some code into the event procedure for the Click event of the form, and displayed it on the classroom projector:
+ 
+ 
+"This code will move the form to the upper left hand corner of the screen when I click on the form," I said. "Do not forget we started a new project to do this and not the China shop project, otherwise it will not work because our form’s name in the China project is frmMain not Form1! "
+I then ran the program by clicking on the Start button of the Toolbar. When I clicked on the form, the form immediately moved to the upper left-hand corner of the screen.
+I waited a few minutes because some of the students had coded this themselves.
+"When I entered the code and ran the program," Rhonda said, "the form moved immediately to the upper left-hand corner of the screen and I hadn't even clicked on it."
+"Most likely," I said, "that's because you accidentally entered the code into the Load event procedure of the form, not the Click event. The Load event of the form is triggered when the program starts. The Click event of the form is triggered when you click on the form. To change it over, just replace the word Load with the word Click in the code."
+"Oh, I see, that's what I did," she said. "Now that I got it to work, can you explain what those zeroes mean?"
+"Sure," I said, "this line of code:"
+Form1.Move 0,0 
+"invoked the Move event of the form, with the parameters 0,0 which represents the upper left-hand coordinates of the screen."
+"Coordinates?" Ward said. "You mean that X and Y stuff in geometry?"
+"That's right," I said, "but don't worry, the math in the class doesn't get any more complicated than that."
+I assured everyone that we would be discussing methods of the form and controls as they arose during the development of the China Shop project. I asked if there were any questions, but there were none. I told everyone to make sure they had a good night's sleep next Friday night.
+"In next week's class," I said, "we'll be completing the China Shop User interface. You'll need to be fresh!"
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

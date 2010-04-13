@@ -1,0 +1,211 @@
+
+ 
+ japhar.org
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A portable interpreter
+ for Java bytecodes
+ 
+ 
+ 
+ 
+	
+	 
+	 Japhar 
+	 Getting it 
+	 Mailing Lists 
+	 Supported Platforms 
+	 Mauve Results 
+	 
+	 Documentation 
+	 JavaSoft Docs 
+	 Japhar Docs 
+	 Japhar/OJI 
+	 Release News 
+	 
+	 Related Projects 
+	 
+	 
+	 
+	 
+ 
+ 
+ japhar release news 
+ 
+ 
+ 
+New in 0.11 released 2002-06-19:
+- Added missing AWT stubs.
+- Correct the version number printed from 'japhar'. Use our version
+ number, not the one from libffi.
+- Fixed runtime SIGSEGV during initialization caused by const globals now
+ being write protected on Linux.
+- Corrected stack creation, making sure the topframe is a valid frame
+ (and not behid the last valid frame).
+- Upgraded libtool parts to v1.6.1 and automake parts to 1.4.2.
+- Fix autodetection of NSPR on Debian.
+- Now allocates enough memory when storing the class path.
+New in 0.10 released 2001-05-27:
+- Fixes to exception handling in JNI code.
+- Correct stack trace printing.
+- Added missing liboji/japharSecureEnv.h to distribution.
+- ./configure now finds NSPR on Debian 2.2 automatically.
+- Removed some warnings.
+New in 0.09 released 2000-09-17:
+- Exception machinery should be much quicker - no more checking for an
+ exception after every opcode (heh - i can't believe that code lasted
+ this long).
+- Major, major, MAJOR API CHANGES. All the externally visible API has
+ been moved to one header (runtime.h). It has a flavor similar to KNI
+ and JNI, and provides a lower level and sometimes more efficient means
+ of dealing with japhar.
+- Moved to NSPR exclusively for portability reasons. The only remaining
+ piece from the arch/ directory is the libtool ltdl stuff.
+- virtual and interface methods are now stored in per class vtables.
+ this should speed up both lookup and invocation substantially.
+- the object representation has been changed (again :) to be more
+ efficient in time and space.
+- BeOS patches from Chris and Makoto Kato .
+- bug fixes in the iushr and lushr instructions. fixes mauve double
+ and float tests.
+- error condition work in System.arraycopy and the java.net functions.
+ fixes more mauve tests.
+- Win32 and Solaris patches.
+- Upgraded libtool to version 1.3.5
+- Using libtool ltdl for DLL handling.
+- Removed ununsed configure param --with-classpath
+New in 0.08 released 1999-03-15:
+- audio now works if you have a reasonably configured /dev/audio.
+- loads of awt changes. appletviewer is displaying useful stuff, very close
+ to the 1.1 appletviewer. 1.2 awt is still far off.
+- swing 1.1.1 stuff (using a JDK1.1.7 classes.zip file) is starting to show
+ up! :) check out the images on www.japhar.org.
+- we're now running mauve against japhar, and will periodically update the
+ page as we test more things (and fix more problems).
+- Slight changes to the GC interface that make it easier for GC's to keep
+ state around.
+- Exceptions now work properly. fillInStackTrace and printStackTrace work
+ as expected.
+- JDK1.2 support is coming on line - All the JDK1.2 utilities give
+ usage messages when run now.
+- the Inflater stuff is finally working, so jar tvf will give reasonable
+ output.
+- A binary search is made to find classes in .zip/.jar files now, which
+ should result in a bit of a speedup.
+- switched to automake version 1.4.
+- Endianness/alignment fixes contributed from Christophe Lizzi.
+- The configure script is now more intelligent. use the --with-jdk switch
+ to specify a JDK distribution directory. You can use either a 1.1.x or
+ 1.2 distribution (or not specify one at all.)
+- gcc specific optimization in libruntime (-finline-functions) results in
+ rather large (~2 second) difference in typical execution time of javac
+- dump-class is dead. it's functionality has been rolled into japharh.
+New in 0.07 released 1999-01-28:
+- Garbage collection is being worked on again. So far, we've vtable'ized the
+ JVM's interface to the collector, and have started work on one (for use
+ in Mozilla.)
+- libffi is now used on supported platforms. Stubs aren't generated (and
+ aren't used) on those platforms.
+- squashed a nasty bug -- the only one remaining (that I know of) that keeps
+ javac from working some instances.
+- The Motif/Lesstif AWT is now partly working
+- Classpath integration patches
+New in 0.06 released 1998-09-29:
+- Big News! Japhar is now able to build a mozilla OJI plugin. We're the 
+ first free JVM to do it :)
+- Reflection should now be working.
+- jclass's are now jobjects and not ClazzFile*'s
+- lots of stuff is inlined, and the interpreter loop is now a switch 
+ statement, not made up of different functions.
+- we now handle mangled names for overloaded native methods.
+- throw OutOfMemoryError in various places instead of proceeding (and
+ often crashing.)
+- throw ClassCastException in op_checkcast when it's correct to do so,
+ and fix it to handle arrays properly.
+- All java.net native methods should now be implemented
+New in 0.05 released 1998-06-22:
+- --with-dmalloc now enables dmalloc.
+- dump-class and japharh now using getopt.
+- new object representation is in, which is more efficient in both
+ space and time.
+- Bugfix in opcodes
+- Some JNI improvements
+- Started on Win32 support.
+- Started on documentation.
+- Plugged some memory leaks.
+- Better thread support (implemented more native methods)
+- Improved handling of .jar and .zip files.
+New in 0.04 released 1998-04-23:
+- Added support for Netscape's NSPR library. enable it using
+ --enable-nspr when configuring.
+- The JNIEnv pointers are now handled properly -- native methods
+ now use (*env)->Function instead of (*env->Function).
+- Japhar is now distributed under the LGPL. Well, it's libraries are LGPL'ed
+ and the example uses of japhar (the japhar interpreter, japharh, and 
+ dump-class) are distributed under the GPL.
+- Due to licensing foo in Sun's JDK distribution, you have to have your
+ own copy of JDK1.1.5 to configure japhar. use --with-sun-jdk= to
+ tell japhar where it is. It'll slurp out the stuff it needs.
+ Please make sure it's 1.1.5, or you're going to be in a world of pain.
+ Do not copy or link the classes archive from japhar-0.3 or previous
+ distributions.
+New in 0.03 released 1998-03-31:
+- libtool-1.2 and automake-1.2h are being used now.
+- squashed a *nasty* bug dealing with the operand stack's top pointer
+ not being restored to the correct value when we pop a stack frame.
+- javac now prints out a usage message when run with no arguments.
+- Runs on Solaris 2.5
+- Bugfix in network and file code 
+- Removed some memory leaks
+- Now using GNU getopt
+- Skip unknown class attributes instead of crashing
+- lib/libjvmdi is now present (in all it's incomplete glory :)
+New in 0.02 released 1998-03-28:
+- We've learned a bit more about automake in this release, so the testsuite
+ should be working.
+- Bugfixes in the socket code
+- Changed how to find runtime classes. Now looks thru
+ $prefix/japhar/share/ adding all .jar files it finds.
+- Fixed problem with missing -lSM and -lICE when not linking with X11
+- Some speedup in method resolving
+- Some 64bit cleaning
+- Fixed behavior of GetObjectClass for native methods.
+- More motif awt work.
+New in 0.01:
+- Japhar now comes with native methods and a classes.jar file
+ from JDK 1.1.5.
+- we now include the JDK's properties files.
+- This release incorporates Petter's dejagnu testsuite. Check
+ the README for more information.
+- Numerous native method bugs fixed.
+- Changed stack frames from being malloc/free'ed to
+ being carved out of a per-thread malloc'ed area that's
+ only malloced when the thread is initially created. Should
+ speed things up.
+- filled in native methods for java/lang/SecurityManager.
+- addition of stubbed out libnative/sun.debug.agent.
+- work on sun.awt.motif is proceeding. appletviewer pops up
+ windows, but doesn't even come close to working yet.
+New in 0.0:
+- First release of japhar code (version 0.0).
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 	 
+ 
+	 
+ Last modified: Fri Jun 21 03:02:52 PDT 2002
+ 
+ 
+ 
+ 

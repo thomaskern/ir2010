@@ -1,0 +1,1171 @@
+ 
+ 
+ 
+ Yet Another Code Site - Links 
+ 
+ 
+ 
+ 
+ 
+ 
+Yet Another Code Site 
+ 
+ Links 
+ Here are links to sites that are authoritative sources of BCB or WinAPI
+information, provide extensive BCB (or possibly Delphi) source code, contain
+good tutorials or short code samples that I found interesting or educational,
+provide tools that are better than average, or have extensive links to other
+useful BCB-oriented sites. Other than Microsoft and Borland, I have
+avoided linking to sites for vendors unless their products may be freely used
+by hobbyists or are otherwise exceptional. Hopefully, you will find them
+to be useful and informative. If you know of other sites that might be of
+interest or broken links on this page, please let me know. 
+Quick Link Page Navigation: 
+The
+Best Places To Begin
+Borland C++ Builder Sites
+Delphi Sites 
+Other Sites 
+Open
+Source Efforts 
+Script Sources
+Books & Publications
+Vendor Sites 
+ The Best Places To Begin 
+ I have not found any other sites that specialize in Rich Edit
+controls. The following sites are simply good places to start if you are
+looking specifically for information on Rich Edit controls, the Windows API, or
+VCL information. I have included a few search engines that might also be
+useful. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Microsoft's
+Developer Network 
+Lots of information on using the entire Windows API. Searchable database of
+documents, code samples, and free tools. Free basic enrollment. For a
+fairly complete example of using Rich Edit controls in straight C/C++ (no MFC),
+look for the REITP sample code. Of course, this site is the final
+authority on all native Windows controls. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Borland.com
+ Borland's
+Developer Support Site 
+ Borland's BCB Additional Sites 
+The Borland web site does not have much, if anything, specifically about Rich
+Edit controls. In fact, from my experience, I must conclude that Borland
+is almost as clueless about Rich Edit controls as I am. However, the site
+is the authoritative source for BCB information, patches, updates, FAQs, and
+links to other BCB developer sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Borland's VCL Newsgroup
+ Borland's Windows API Newsgroup 
+ List Of All
+Borland Newsgroups 
+Borland's newsgroup discussion forums are typically very helpful. Many
+"experts" regularly monitor the posts and answer questions where they
+can. The above two forums are the best places to post questions about
+Rich Edit controls. However, there are numerous other forums that cover
+everything from the IDE to Delphi. I suggest that you add the server
+(forums.inprise.com) to your newsgroup reader and select the forums that most
+interest you. 
+(If you have never participated in a newsgroup, you might want to read my
+Advice For New Newsgroup Users.) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DejaNews
+Bad news: DejaNews folded. Good news: Google took over the
+DejaNews archives (see below). Bad news: Google does not make the
+newsgroups archives clearly searchable. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Open Directory Project's C++ Builder Category
+Lists several sites &#150; hopefully the list will grow. Anyway, they
+gave me a "cool site" award, so they clearly have good taste,
+right? (Note: The Open Directory Project was previously known as
+NewHoo.) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Google
+Another search site that appears to be useful for programmers. For
+example, search for "rich edit" or "richedit" and
+you will find 390+ relevant links. Change the search to "borland and
+(richedit or "rich edit")" and you will find less than 80
+relevant sites. I suggest that you try the latter first....
+Note: DejaNews gave up recording all newsgroup posts. Google.com
+has taken over the newsgroup history that DejaNews previously recorded. 
+Unless Google.com also caves, you should be able to search old newsgroup posts
+there. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Teoma
+If you think that Google is a great search engine, you should check out
+Teoma. In my experience, this search site returns results that are at
+least as good as Google. Of course, "your mileage may vary,"
+but I suggest that you give it a try.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ MER
+Systems
+This site has a full database of Borland/Inprise newsgroup/forum messages with
+a good search engine. Recommended. 
+ 
+ Borland C++ Builder Sites 
+ Sites with lots of information on BCB, components and component libraries,
+tools that address my personal interests, or good links to other BCB sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Borland C+
+programming web rings
+Web rings are simply sites with a common interest that link to each other in a
+way that allows you to move from site to site in an organized fashion. 
+These particular web rings contain sites that concentrate on Borland C++
+Builder. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The
+Bits - The C++ Builder Information & Tutorials Site
+An excellent C++ Builder site. Tutorials, components, columns, and
+more. Well organized with many free components that include source
+code. If someone has solved the problem, there is a good chance that The
+Bits will have it. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The
+Developer's Corner Journal
+A good site for Borland information. Magazine format with columns on the
+Windows GUI, network development, object design, product reviews, and
+more. See the Tips, Tricks, and Tidbits column for the 
+ RxLib
+English Help Files. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Bytamin-C
+Borland C++ Builder site. Components, articles, tips and tricks, and a
+message board (free). This is a home site for the Visual Assembler
+Project, an endeavor whose goal is to make Assembler a Rapid Application
+Development (RAD) environment. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ FraserSoft
+Home of GenHelp. GenHelp generates a help file from Delphi and C++
+Builder source. You then need add descriptions for each of the
+properties, methods, and events in the appropriate GenHelp windows. With
+a couple of clicks, you can generate a help file that looks and feels like the
+Borland help. If you later modify your source code, simply re-import the
+changed files and key the additional help information. Writing help files
+is a pain, but this tool has saved me considerable effort and time.... 
+Pete has also posted an English version of the RxLib help files. Be sure
+to thank him if you find them useful. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BCBDEV.COM
+Harold Howe's (of Borland TeamB fame) site. FAQs, IDE tips, links to
+other BCB sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ VCL
+Components
+This site is a collection of freeware and shareware VCL components. 
+Although not strictly C++ Builder code, you can limit searches to specific
+versions of BCB and Delphi, freeware or shareware, and components that include
+source code. 
+ Delphi Sites 
+ If you are looking for answers to BCB programming problems, Delphi users
+may have "been there, done that." These are some of the most
+complete sites and may, in fact, have Delphi components that you can install in
+BCB. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The RxLib Component Library
+RxLib is an exceptional kit of tools. Complete with Delphi Pascal source
+code (and installation instructions for BCB), it is freeware from a very
+talented set of programmers in Russia. This is a definite must-have
+library. I will not say it is "complete" &#150; but only because no
+library is ever complete. On the other hand, if there ever was a free set
+of tools that came close, this is it. The only real short-coming &#150;
+and it is only a problem if you do not speak Russian &#150; is that there are
+no English help files available from the authors. An English translation
+is available at The Developer's Corner Journal and on Pete Fraser's FraserSoft
+site (see the links above). Version 2.60+ of the RX Component Library
+contains the TRxRichEdit component, which supports Rich Edit 2.0. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Torry's
+Delphi Pages
+If you are looking for a Delphi/Pascal solution or you simply want a
+RichEdit 2.0 component that you can install and use, you might want to look at
+TRichEdit98 on this site. Although I have not used it, the code appears
+to be well-designed and claims to implement all of the RichEdit 2.0 features
+that I cover on this site &#150; maybe more &#150; including OLE support,
+character and paragraph formatting, and even extended URL support beyond what
+the native RichEdit 2.0 control provides. Look for TRichEdit98 on the
+"Edits, Memos #2" page. The current version as of 01-05-99, is
+v1.32, includes Delphi source code, and is freeware. Let me know what you
+learn about it. And, if your experiences are positive, do not forget to
+thank the authors. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The Delphi Super Page
+This site has tons of components, many with source code. Although
+primarily a Delphi site, there are separate sections for Borland C++ Builder
+code. Further, the site is incredibly well organized. I consider
+this a "must-see" site.... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DelphiZine.com
+This site is the home of, or at least associated with, the Delphi Informant
+Magazine. There are good articles complete with Delphi source code
+that explain using the VCL, automating Outlook, and even some articles that
+delve into the Windows API. Given the C++ Builder's common VCL heritage,
+this site is worth a look. 
+ 
+ Other Sites 
+ Sites that provide source code for my personal interests: 
+Compression, image manipulation, encryption, regular expression parsers,
+operating systems, and compiler tools. The sites may or may not have
+BCB-specific source code; however most, if not all, provide C/C++ source code. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Info-ZIP
+Info-ZIP's purpose is to provide free, portable, high-quality versions of the
+Zip and UnZip compression-archiving utilities that are compatible with the
+DOS-based PKZIP by Phil Katz . 
+Info-Zip is now hosted at www.freesoftware.combut is currently difficult to find. 
+For now, the above link works. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Simtel.Net
+Free source code for Windows programs, GNUish tools (MS-DOS versions of GNU
+tools &#150; largely inactive, I think, but the old source continues to be very
+useful), DJGPP (the free C++ GPP compiler ported to the MS-DOS platform), and
+lots of other stuff. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The
+CodeGuru Site/MFC Programmer's Sourcebook 
+Tons of source code and information on difficult Windows programming
+topics. Granted, the code is in WinAPI or MFC, but sometimes you have to
+go slumming. If you are willing to work a little, this is an excellent
+and very complete source. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Wotsit's Format
+This site has file format information for just about everything under the
+sun. The index lists: Graphics files, movies/animations, archive files,
+binaries, spreadsheet/database, font files, game files, text files/documents,
+Internet related, sound and music, Windows files, GIS formats, comms formats,
+printer formats, hardware formats, miscellaneous, and game programming. I
+could not find the kitchen sink, but I would wager that it is in there
+somewhere. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The
+Graphics File Format Page 
+Want information about a graphics file format? This is another good site;
+however, the main page appears to have been neglected since 1997. Given
+that I am editing this in 2001, this would not be my first choice unless I was
+looking for a pre-1998 format. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ John Maddock's Home Page
+Dr. John has been kind enough to make his regular expression library, Regex++,
+available for free. It is fully compatible with BCB and incredibly easy
+to use. He has posted other goodies, too. 
+While I admire Dr. John's work and believe that it is a superior effort, some
+of the BCB libraries based on his code and referenced on his site are not
+free. If you are looking for a free solution or do not want to develop
+your own libraries, you may want to see the free PCRE code (next entry below)
+and updated BCB/PCRE code available on this site (main page
+ Code Samples section) for a
+possibly less complete, but abosolutely free, solution. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Perl-Compatible Regular Expression Library (PCRE)
+Borland C++ Builder versions 4.0 and 5.0 come with a regular expression library
+based on an earlier version of this tool (PCRE 2.x). Both versions
+include the source code for the library albeit well-hidden (look in the
+[bcbroot]\Source\RTL\source\pcre folder) and the help files include some
+incomplete information (search the index for "Perl-compatible regular
+expressions"). I have posted a PCRE 3.4 port on the main page of
+this site &#150; see the Code
+Samples section and look for "Upgrading the BCB regular expression
+library to PCRE 3.4 ." 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Washington University
+A large FTP site with Windows-specific archives, Unix, graphics, and other
+source code. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ScramDisk Home Page
+This site is run anonymously and has source code for a number of well-known
+encryption algorithms. More interesting is the ScramDisk program which
+allows you to create encrypted disk volumes. I have not tested it yet so
+I suggest exercising extreme caution. However, the ScramDisk source code
+is available on the site, so take a look. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ BCB and Delphi Freeware Zip Components Page
+A source for ZipBuilder and ZipMaster freeware (PKZIP-format file-compression
+source code). The site also contains links to other useful
+PKZIP-compatible file compression tool sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hutch's home page
+Whoever said that Windows killed assembler programming was clearly wrong. 
+This site provides assembler coding techniques, programs, and tutorials. 
+If you are interested in programming at the bare metal &#150; and really
+understanding what both the software and hardware do at the machine level
+&#150; this could quickly become one of your favorite sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Iczelion's Win32 Assembly HomePage
+Here is another assembler site, but do not go here if you are not really
+interested in assembler code &#150; this site may provide answers to more
+questions than you ever thought to ask. As Alice said, it gets
+"curiouser and curiouser" and you may find yourself overwhelmed or
+completely distracted. On the other hand, there is no programming problem
+that these guys cannot overcome. 
+This site has tutorials; examples; assembler macros; links to freeware
+assemblers and other related sites; and an entry point to the
+ x86 Assembly Language Webring. Mirror sites: 
+ Mirror #1 (fast)
+and Mirror #2
+(slow). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SmartFTP
+Looking for Rich Edit 2.0 or 3.0 DLLs? You can download Rich Edit 3.0
+here. 
+Frankly, I have tried -- unsuccessfully -- to determine whether this site is
+authorized to distribute the Microsoft RE DLLs. However, the site has
+made the code available for so long that I must conclude that either it is
+authorized or that Microsoft does not care enough to search for RE copyright
+violations. On the other hand, maybe Microsoft will shut this site down
+tomorrow -- so depend on this site at your own risk. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SysInternals 
+This site specializes in advanced utilities, technical information, and source
+code related to Windows 9x, Windows Me, and Windows NT/2000 internals. 
+Source code is available for many unusual tasks. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FreeVCS 
+This is a free Version Control System (VCS) worth looking at. Before you
+get too excited, there are a couple of caviats....
+First, FreeVCS is not open source. In fact, the site FAQs state that
+source code is not available at any price. Second, while FreeVCS can be
+integrated into the Delphi IDE, the BCB IDE integration is, at this writing,
+merely a promise. That said, you can use the FreeVCS outside of the BCB
+IDE. Despite these warnings, I think this is worthy of a few hours of
+review.
+ 
+ Open Source Efforts 
+ Thanks to tips from site visitors, I learned that there are sites that have
+or are working on editors that are, in some cases, substantially similar to the
+Rich Edit control. For example, the Unix world is working on replacements
+for the Microsoft Rich Edit control. Other sites are simply trying to
+produce usable text editors and word processors that import and export Rich
+Text Format (RTF) files. As I began chasing down the Rich Edit open
+source sites, I discovered other cool stuff. I found sites that are
+working on open source compilers, non-RTF editors, linkers, format converters,
+assemblers, zip libraries, encryption tools &#150; the list goes on and on. 
+ Be warned that I have not personally downloaded, installed, and tested the
+code from all of these sites. (I wish that I had the time to do
+that.) The information below is mostly glommed from the source
+sites. If you find sites not mentioned here, please let me know. 
+Likewise, if you have comments about these sites (both positive and negative),
+please let me know. Before committing to code from these sites, be sure
+to understand the licensing terms, especially if you have commercial
+aspirations. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+StarOffice/OpenOffice
+ StarOffice is now Open Source!
+StarOffice is a full-featured Microsoft Office compatible suite of applications
+which runs on a variety of platforms (Windows, Unix, and Solaris; Macintosh
+support coming soon). By "full-featured," I mean that it
+includes everything that you would expect from an office suite: A word
+processor, spreadsheet, presentation software, image editor, database program,
+and macro language. See the
+press release and the
+http://www.openoffice.org/ site for more info. For the
+current free version of StarOffice 6.0 (beta), see the Sun Microsystems link in
+the Vendor Sites section below. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+SourceForge
+SourceForge is a free service to Open Source developers offering easy access to
+the best in version control, mailing lists, bug tracking, message
+boards/forums, task management, site hosting, permanent file archival, full
+backups, and total web-based administration. If you are looking for open
+source solutions, this appears to be a truly worthwhile starting point. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+AbiSource
+This site is the home of AbiWord, an open source GUI editor similar to the Rich
+Edit control for Unix and Windows (BEOS and Macintosh ports are
+underway). It uses XML for the native document format and can read and
+write files in RTF, HTML, and other formats. It even includes a
+spell-checker. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scintilla
+Scintilla is another GUI editor with free source for Windows and Unix. It
+includes source code editing features such as syntax highlighting and
+auto-indent. The site also has links to other editor source code sites. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ SynEdit
+SynEdit is a 32-bit syntax highlighting edit control, not based on native
+Windows controls. Predefined highlighters are included for C++, Fortran,
+Java/JavaScript/JScript, Pascal, Visual Basic/Visual Basic Script/VBScript,
+HTML, MS-DOS Batch scripts, Perl, TCL/Tk, AWK Scripts, SQL, x86 Assembler,
+Delphi/C++Builder Form definitions, INI Files, Python, and more. If none
+of these fit your needs, you can define your own list of keywords. RTF
+and HTML exporters are included. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The GNU
+Project
+Home to (you guessed it) the GNU project &#150; free source code for just about
+every Unix utility that exists. If you need MS-DOS versions of LEX or
+YACS (compiler development tools), check out FLEX or Bison. If you want
+source code for a program editor, look at GNU EMACS. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ PCRE (Perl-Compatible Regular Expression Library)
+Recent versions of the Borland Delphi and C++ Builder VCL include a Regular
+Expression search library. As best I can determine, these BCB versions
+are based upon the PCRE 2.x library. A PCRE 3.4 port for BCB5 is
+available on the main page of this site &#150; look for the TTaeRegExp class. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+OWL NExt
+This site appears to be dedicated to creating an open source version of the
+BC++ OWL class library and making it portable to non-Borland compilers. 
+Personally, I think that OWL was a better class library than the current BCB
+Delphi-bound VCL so, if you are not already tied to the VCL or Borland
+compilers, this class library worth a look. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Borland's InterBase
+Even Borland has jumped into the open source movement, throwing its
+once-strategic database product, InterBase, into the ring. Do not kid
+yourself &#150; this is no toy database. This product was once positioned
+to compete with Oracle and Sybase, albeit a bit too late. It is now in
+its 6 th version and comes with a local database server (for
+development without a dedicated server), supports SQL and large binary field
+objects (BLOBs) for storing images and other arbitrary binary data, has support
+tools for managing the servers and tables, and, possibly most importantly,
+includes complete technical documentation. And since C++ Builder ships
+with native VCL InterBase components for accessing and managing the data
+(InterBase Express), this is definitely worth looking into. Want
+portability? Linux and Solaris code is already posted for free
+download. Check it out. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ WC3 (The
+World Wide Web Consortium)
+This site has been around since 1994 with a goal of promoting common protocols
+and standards. You might want to check out Amaya which is a complete web
+browsing and authoring environment. The site notes that it comes equipped
+with a WYSIWYG style of interface, similar to that of the most popular
+commercial browsers. Also, the
+HTML
+Converters page links to various file converters including some that
+convert HTML to/from RTF (see the
+Word
+Processor filters etc link to go directly to the page that contains
+RTF/HTML converters). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+LiNUX.COM
+LiNUX.COM's mission is to enrich the Linux community by providing a centralized
+place for individuals of all experience levels to learn (and teach) the power
+and virtues of the Linux Operating System. Since a simple search for
+"edit" on this site generates zero hits, this site is not
+recommended. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The
+Linux Home Page
+If you are interested in Linux, this is a good site. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+GExperts Home Site 
+GExperts is an extensive set of add-in tools for the Borland Delphi and C++
+Builder IDEs. This set of "experts" includes a better GREP
+search utility, a message dialog source code generator, a tool for backing up
+the current project to a ZIP file, an option to export syntax-coded text to a
+file, add keyboard shortcuts to comment/uncomment a block of code, and much
+more. While I think that you really should try this code, a couple
+warnings are in order: 
+- While this is an "open source" project, some of the code depends
+upon licensed code (such as VCLZip). I found that you cannot modify the
+source without licensing code from others. 
+- Much of the code works only with Delphi sources. For example, the
+backup utility recognizes only Delphi files by default; I wanted to add BCB
+files to the default but ceased my efforts to add support for BCB file types
+after finding that a license for VCLZip was required in order to recompile the
+project. 
+ In summary, I think that BCB programmers should look at this tool. 
+However, until it is entirely free code, we will be forced to live with a
+Delphi-centric implementation. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Wei Dai's Site
+This site has C/C++ source code for encryption algorithms (Crypto++). The
+site states that "one purpose of Crypto++ is to act as a repository of
+public domain (not copyrighted) source code...." (I suggest that
+you grab all of the free crypto code that you can before the US government once
+again classifies cryptography as a munition.) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Majix
+MAJIX is an open source Java RTF to HTML/XML converter. I have not yet
+spent much time with it (hey, I just found it), but
+IBM
+has information about it, so it must be good, right?
+ 
+HTML & Scripts
+Through the years I have been mostly interested in posting useful code,
+FAQs, papers, snippets, etc. Frankly, having a "pretty" site
+was the least of my concerns -- it was more important to make the site browser
+independent (no Java scripts, no ActiveX plug-in's, etc.). I could use my
+time making the site useful or I could spend my time making the site
+attractive. Well, YACS is still not pretty, but I have found a few sites
+that post code that make it easier to make sites "pretty" without too
+much effort. Here are a few links that I think you might find helpful. 
+ 
+ 
+ 
+ 
+ 
+ HTML Goodies 
+Joe Burns wrote the book HTML Goodies, one of the early, technically relevant texts
+on HTML. His site continues to have some of the best explanations of HTML
+as well as useful scripts. 
+ 
+ 
+ 
+ WebReference.com
+According to the site, WebReference is "one of the oldest and most
+respected Web development sites (since 1995)." Well, I cannot attest
+to that, but the site hosts the DHTML Hierarchical script -- a menu script that
+claims to be agnostic between Netscape, Internet Explorer, and, possibly, other
+browsers. 
+ 
+ 
+ The JavaScript Source
+This site has tons of free scripting source code, many of which you can simply
+cut and paste into your site's code. This is worth checing out. 
+ Books and Publications 
+ Generally, I do not recommend many books or magazines. The following
+recommended publications fall into one of three categories: Essential
+basic references, surprisingly good intermediate to advanced references, or
+periodicals with consistently high-quality technical articles. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Programming Windows, Charles Petzold
+The Borland VCL is a great tool and will be all that you need 90% of the
+time. This book is for the other 10%. If you are new to the Windows
+environment or want to understand the Windows API, I am convinced that this
+book is required reading. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Borland C++ Builder 4 Unleashed, Kent Reisdorph, et al 
+This 1200+ page tome includes chapters on Rich Edit controls, templates,
+threads, database, COM/OLE/ActiveX, ActiveForms, graphics, and more. Kent
+does an excellent job of explaining the basics of printing with Rich Edit
+controls and provides a slick Rich Edit style sheet class. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Applied Cryptography, Bruce Schneier
+This is the introduction to cryptography by which all others are
+measured. In-depth discussions on all of the major algorithms and
+protocols. C source code is included. Free monthly e-mail
+newsletter on cryptography issues. Highly recommended. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Compiler
+Design In C, Allen I. Holub 
+An accessible book on compiler theory and design, it walks the reader through
+the development of compiler development tools similar to LEX and YACC. 
+Each of the tools is presented with complete C code examples preceded by a
+section on compiler, lexical analysis, or parser theory. This is not an
+easy read, but, for C/C++ programmers interested in compiler development, this
+is a unique and useful source. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ C/C++
+Users Journal
+If you are looking for a magazine that targets standard C/C++, this is a good
+choice. Lots of source code, questions and answers on standards, columns
+on STL, and more. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Dr.
+Dobb's Journal
+This magazine is heavy on source code, covers many programming languages, and
+demonstrates solving many interesting programming problems. Dr. Dobb's
+Journal has been around for many, many years because of its high-quality
+articles. You can probably pick a copy up at your local bookstore. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Developer's Information Library
+The Developer's Information Library (DIL) is a CD collection of some of the
+best technical information about Borland products assembled by the UK
+Inprise/Borland User Group (UK/BUG). The CD includes tips taken from
+newsgroups and excellent sites (including, ahem, this one); freeware,
+shareware, and evaluation versions of programs; the latest Borland software
+patches; a collection of several thousand image files; and "antique
+software" (need a copy of Turbo C 1.01 or 2.01 or Turbo Pascal 3.02 or
+5.5? -- it is on the CD). Of course, you can search through the database
+by keyword and filter by category (BDE, C++, CBuilder, CORBA, Delphi, Java,
+etc.). 
+ To be fair, much -- if not all -- of the content is available on the
+Internet. However, the DIL CD assembles some of the best information in
+an easy-to-use format. For more information, click the above link and
+select "DIL CD" from the navigation bar on the UK/BUG home page. 
+ 
+ Vendor Sites 
+ These vendor sites are those that provide useful f ree software, contain
+freeware with source, supply unrestricted licenses for my evaluation (e.g., a
+copy that included source code and no limitations on my comments about the
+product), or have otherwise noteworthy products. I do not plan to
+recommend many, but the few that are included below should be especially
+worthwhile. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sun Microsystems
+Sun recently bought StarOffice, a full-featured Microsoft Office clone which
+runs on a variety of platforms (Windows, Unix, and Solaris; Macintosh support
+coming soon). By "full-featured," I mean that it includes
+everything that you would expect from an office suite: A word processor,
+spreadsheet, presentation software, image editor, database program, and macro
+language. And they are still giving it away. Scott McNealy may beat
+Bill Gates yet.... 
+ StarOffice v6.0 (beta) is now available. This is 80MB+ of
+seriously good application software. Even better, Sun now provides a
+software development kit. Check it out! 
+ StarOffice is now Open Source! See the
+Open Source Efforts section above. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Castlewood Systems, Inc.
+Another vendor site, but this is phenomenal! This company manufactures a
+removable drive that is fast, reliable (in my experience), and, best of all,
+affordable. This product, called an Orb Drive, stores 5.7GB of
+data. Compared to a Jaz drive, it is larger, faster, and much, much
+cheaper to feed. And the prices keep coming down..... 
+See the Castlewood site or check out my Orb vs Jaz comparison. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Novell DeveloperNet
+Novell's developer support site. NetWare C/C++, Delphi, and ActiveX SDK
+libraries and components. Registration is free. 
+Frankly, Novell has made more than a few strategic mistakes. However, do
+not be misled by statistics and pundits' opinions &#150; Novell is
+well-entrenched in larger companies, at least in file- and print-server
+functions. Novell now makes the development tools free and even provides
+Delphi versions of the tools that BCB programmers can use. Perhaps I am
+biased, but I think Novell has better tools and is well-positioned to take back
+the ground lost to Microsoft in recent times. On the other hand, Linux
+may rightfully overtake them both..... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Component Software
+Need a free version control system (VCS) for personal use? Well, I
+did. As best I remember, this is not a new version control product. 
+I recall checking this product out several years ago. Back then, it was
+not well-integrated into the Windows programming environment. Today it
+much more complete and, thankfully, there is a free personal edition available
+for download.. For what it is worth, I *think* that the product is based
+upon the free Unix RCS (Revision Control System) with added support for the
+Windows programming environment. Anyway, I suggest that you give it a try
+-- so far, I have been impressed.... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Woll2Woll Software
+This company produces a variety of products and they were kind enough to let me
+review InfoPower. InfoPower is their database product which works
+with BCB and Delphi. The version that I reviewed contains a full range of
+database tools and classes, including a Rich Edit 2.0 field editor. If
+you are working with databases that need Rich Edit support, I suggest that you
+evaluate this product. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+toolsfactory
+BCB4 and BCB5 ship with a "lite" version of Class Explorer. As
+of May 15, 2000, Class Explorer Pro is available free for non-commercial
+use. If you are a non-commercial enterprise, you definitely need to get
+this upgrade. You might also want to review their new Doc-O-Matic
+help-generation tool. Of course, you should also check out Pete Fraser's
+GenHelp tool if
+you need to create help files for BCB source code. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Lobstersoft
+If you are a shareware programmer, a commercial tool provider, or even a
+freeware programmer, you should look at the Software Administration Kit (SAK)
+on this site. The SAK makes it easy to keep track of users, registration
+codes, product release dates, sales statistics, and bug reports. You can
+even send customized messages to your users using the macro and e-mail
+facilities built into this program. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Logictran
+If you need to convert RTF text to HTML or XML, you might want to check out
+this site. In my limited tests, the tool translated my RTF files to
+virtually identical HTML. The converter is highly configurable, so you
+should be able to tweak it to generate exactly what you want, need, or
+expect. I was primarily interested in adding the ability to translate RTF
+to HTML from within my programs. However, Logictran supplies stand-alone
+programs to convert files so, if you simply need to translate files, you can do
+so without writing any code. 
+ Frankly, I found the RTF converter to be a bit challenging to use at first
+-- there were no BCB interfaces or samples. Worse, the documentation was
+directed largely at Visual Basic programmers. (If you have never tried to
+port VB OLE code to another language, be warned that it is harder than it
+sounds.) Logictran's support was excellent and we quickly resolved the
+problems; you can now find BCB sample code and documentation on the Logictran
+site. 
+ 
+ WebRings
+ For five years or so, Yet Another Code Site has been a member of the
+C++ Builder Programmer's Ring and the Borland C++ Builder
+WebRing. Sadly, both of these web rings have been acquired by
+WebRing.org which, according to WhoIs, now belongs to
+Yahoo.com. I have nothing against Yahoo, but I tire of having my
+site suspended from the ring by the flawed automated site-checking software and
+rude responses from Yahoo -- and no responses from ringmasters -- when I
+attempt to restore my site to the rings. So, I give up
+-- and we all lose....
+As a courtesy to visitors to this site, and an undeserved bonus for Yahoo,
+here are links to the list of sites on the rings. As soon as I remove the
+references to the web rings from the home page, these links will also be
+deleted. Please bookmark them now if you are interested in finding them
+later.
+	The C++
+Builders Programmer's Ring
+" BORDER="0" CELLPADDING="2" CELLSPACING="0">
+ 
+Home| Top Of Page| Code| Papers|
+FAQs|
+Links|
+Search|
+Feedback 
+ 
+ 
+Page updated 
+ 
+ Copyright © 1998-2002 Thin Air
+Enterprises and Robert Dunn. All rights reserved. 

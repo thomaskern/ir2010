@@ -1,0 +1,470 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Sublcass a windows control
+Answer
+The term subclass can mean different things to different people. In C++ language terms, subclassing equates to
+deriving a new class from a base class. In Windows API terms, subclassing is the act of hooking the window procedure
+of a window so you can intercept messages. This FAQ describes how to subclass a window to intercept messages. There
+are several ways to accomplish this. You can use the windows API, you can assign a VCL property, or you can derive
+a new VCL class that overrides the behavior of the base control.
+Subclassing with the Windows API
+The API contains a function called SetWindowLong. Among other things,
+this function allows you to set the window procedure (WNDPROC) of any window handle in your program's
+address space. The function GetWindowLong allows you to retrieve the window procedure of a window handle.
+The code listing below uses GetWindowLong and SetWindowLong to sublcass a TListView. The
+program intercepts the WM_ERASEBKGND message to paint a custom background in the list view. Figure 1
+illustrates what the code is doing.
+//-------------------------------------------------------
+// header file
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+ TListView *ListView1;
+ TImageList *ImageList1;
+ void __fastcall FormResize(TObject *Sender);
+private:	// User declarations
+ WNDPROC FOriginalProc;
+ void __fastcall PaintListView(HDC &dc);
+public:	// User declarations
+ __fastcall TForm1(TComponent* Owner);
+ __fastcall ~TForm1();
+ LRESULT __fastcall ListViewProc(HWND hWnd,
+ UINT uMsg,
+ WPARAM wParam,
+ LPARAM lParam);
+};
+//-------------------------------------------------------
+// source file
+//-------------------------------------------------------
+#include 
+#pragma hdrstop
+#include "main.h"
+//-------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//-------------------------------------------------------
+LRESULT CALLBACK ControlWndProc(HWND hWnd,
+ UINT uMsg,
+ WPARAM wParam,
+ LPARAM lParam)
+{
+ return Form1->ListViewProc(hWnd, uMsg, wParam, lParam);
+}
+//-------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ // Call GetWindowLong to retrieve the original window proc
+ FOriginalProc = (WNDPROC) GetWindowLong(ListView1->Handle, GWL_WNDPROC);
+ // Call SetWindowLong to assign the new window proc for the listview
+ SetWindowLong(ListView1->Handle, GWL_WNDPROC, (LONG)ControlWndProc);
+}
+//-------------------------------------------------------
+__fastcall TForm1::~TForm1()
+{
+ // Set the window proc back to the original function
+ SetWindowLong(ListView1->Handle, GWL_WNDPROC, (LONG) FOriginalProc);
+}
+//-------------------------------------------------------
+LRESULT __fastcall TForm1::ListViewProc(HWND hWnd,
+ UINT uMsg,
+ WPARAM wParam,
+ LPARAM lParam)
+{
+ LRESULT lResult = 0;
+ switch(uMsg)
+ {
+ case WM_ERASEBKGND:
+ PaintListView((HDC)wParam);
+ lResult = 0;
+ break;
+ case WM_HSCROLL:
+ case WM_VSCROLL:
+ LockWindowUpdate(hWnd);
+ lResult = CallWindowProc ((FARPROC)FOriginalProc, hWnd, uMsg,
+ wParam, lParam);
+ InvalidateRect (hWnd, 0, true);
+ LockWindowUpdate(NULL);
+ break;
+ default:
+ lResult = CallWindowProc ((FARPROC)FOriginalProc, hWnd, uMsg,
+ wParam, lParam);
+ break;
+ }
+ return lResult;
+}
+//-------------------------------------------------------
+void __fastcall TForm1::PaintListView(HDC &dc)
+{
+ TRect rect = ListView1->BoundsRect;
+ Graphics::TBitmap *MemBitmap = new Graphics::TBitmap;
+ MemBitmap->Width = rect.Right - rect.Left;
+ MemBitmap->Height= rect.Bottom- rect.Top;
+ MemBitmap->Canvas->Brush->Style = bsSolid;
+ MemBitmap->Canvas->Brush->Color = clAqua;
+ MemBitmap->Canvas->FillRect(Rect(0,0,
+ MemBitmap->Width,
+ MemBitmap->Height));
+ MemBitmap->Canvas->Pen->Color = clNavy;
+ MemBitmap->Canvas->Pen->Width = 20;
+ MemBitmap->Canvas->MoveTo(0,0);
+ MemBitmap->Canvas->LineTo(MemBitmap->Width, MemBitmap->Height);
+ ::BitBlt(dc,0,0,MemBitmap->Width, MemBitmap->Height,
+ MemBitmap->Canvas->Handle,0,0,SRCCOPY);
+ delete MemBitmap;
+}
+//-------------------------------------------------------
+void __fastcall/ TForm1::FormResize(TObject *Sender)
+{
+ ListView1->Repaint();
+}
+//-------------------------------------------------------
+Figure 1: Painting the background of a TListView control.
+Note 1: Windows is picky about the kind of function that you pass to SetWindowLong. Unfortunately,
+it waits until runtime to let you know if anything is wrong. SetWindowLong passes the
+callback function as a LONG variable. The problem is that you can cast just about anything as a LONG.
+If you prototype the callback function incorrectly, the compiler cannot catch your mistake at compile time. Make sure
+that the function that you pass to SetWindowLong takes four arguments, returns a LONG value, and uses
+the __stdcall calling convention. If you prototype the function like this, you shouldn't have any problems.
+LRESULT CALLBACK ControlWndProc(HWND hWnd,
+ UINT uMsg,
+ WPARAM wParam,
+ LPARAM lParam)
+Note 2: The window procedure that you pass to SetWindowLong cannot be a non-static method of class.
+Non-static member functions take a hidden this pointer as their first argument. The hidden pointer identifies
+the object whose method you are calling. This is a result of how compilers implement classes and objects in C++.
+For example, look at the ListViewProc method of TForm1. The function takes four arguments, an
+HWND, an integer, a WPARAM, and an LPARAM. In reality, the function takes a fifth argument
+that is a pointer to a TForm1 object. The form pointer identifies the form whose method is being invoked. You
+can see the hidden pointer argument by inspecting the assembly language generated by a call to the
+ListViewProc function.
+Windows has no concept of this pointers, objects and classes. When you subclass a window procedure, the
+operating system expects to see a function that takes four arguments: an HWND, an integer, a WPARAM,
+and an LPARAM. It doesn't expect
+to find a function that takes a fifth pointer argument. If you subclass a window procedure with a non-static member
+function, Windows will not pass arguments to the function correctly. If you attempt to dereference any members of the
+class from inside your window procedure, you could cause an access violation because the hidden this pointer
+will probably be a garbage value. Also you run the risk of corrupting your stack because the wrong number of arguments
+will be popped off when the function returns.
+You can subclass a window procedure with a static member function of a class, because static member functions don't
+have a hidden pointer argument. If you decide to try this technique, make sure that your static member function follows
+the same calling convention that Windows will use to call the function. The code below shows how you would declare
+the function.
+class TForm1 : public TForm
+{
+...
+private:
+ static LRESULT CALLBACK ListViewProc(HWND hWnd,
+ UINT uMsg,
+ WPARAM wParam,
+ LPARAM lParam);
+};
+When you use a static member function as your callback procedure, you cannot attempt to call non-static member functions
+and you can't dereference non-static member variables of the class. This presents a problem in this example, because we
+store the original window procedure in a private variable. We would not be able to dereference this variable from a
+static callback function (unless we made the variable static too). The next section describes a VCL technique that
+allows you to subclass using a non-static member function of a class.
+Note 3: The original window proc for the listview is stored in a variable called FOriginalProc. This
+variable serves two purposes. First, it allows us to pass on window messages when we don't want to alter the default
+behavior of the control. Secondly, when the form's destructor executes, we set the window proc of the listview back
+to the original handler. This is very important. The lifetime of the listview exceeds the lifetime of the form.
+Actually, to be more precise, it exceeds the lifetime of the TForm1 part of the form.
+The listview is deleted by the base classes of the form. When the listview gets destroyed, certain messages are sent.
+Windows will send those messages to the ControlWndProc function if we don't restore the original handler.
+The problem is that ControlWndProc calls a method of TForm1.
+This is a bad scenario if the TForm1 destructor has already executed. To prevent this from occuring, the code
+restores the original window procedure of the listview in the destructor of the form.
+Subclassing with the VCL MakeObjectInstance function
+The VCL provides a utility function called MakeObjectInstance that allows you to sublcass a window using
+a member function of a class. When you subclass using MakeObjectInstance, the actual window proc is a method
+inside the VCL called StdWndProc. StdWndProc dispatches windows messages to the method of your
+class. StdWndProc handles the task of determining which object should get
+the message. Put another way, StdWndProc knows the value of the hidden this pointer that must be
+passed when your member function is called.
+The code snippets below demonstrate how to sublcass the listview using MakeObjectInstance. Notice that the
+stand alone function ControlWndProc is no longer needed.
+//-------------------------------------------------------
+// header file
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+ TListView *ListView1;
+ TImageList *ImageList1;
+ void __fastcall FormResize(TObject *Sender);
+private:	// User declarations
+ WNDPROC FOriginalProc;
+ void * FObjectInstance;
+ void __fastcall PaintListView(HDC &dc);
+ void __fastcall ListViewProc(TMessage &msg);
+public:	// User declarations
+ __fastcall TForm1(TComponent* Owner);
+ __fastcall ~TForm1();
+};
+//-------------------------------------------------------
+// source file
+//-------------------------------------------------------
+//-------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ // Call GetWindowLong to retrieve the original window proc
+ FOriginalProc = (WNDPROC) GetWindowLong(ListView1->Handle, GWL_WNDPROC);
+ // Call MakeObjectInstance to setup a wndproc for the member function
+ FObjectInstance = MakeObjectInstance(ListViewProc);
+ // Pass the result of MakeObjectInstance to SetWindowLong
+ // to assign the new window proc for the listview
+ SetWindowLong(ListView1->Handle, GWL_WNDPROC, (LONG)FObjectInstance);
+}
+//-------------------------------------------------------
+__fastcall TForm1::~TForm1()
+{
+ // Set the window proc back to the original function
+ SetWindowLong(ListView1->Handle, GWL_WNDPROC, (LONG) FOriginalProc);
+ // Call FreeObjectInstance to release memory consumed by MakeObjectInstance
+ FreeObjectInstance(FObjectInstance);
+}
+//-------------------------------------------------------
+void __fastcall TForm1::ListViewProc(TMessage &msg)
+{
+ msg.Result = 0;
+ switch(msg.Msg)
+ {
+ case WM_ERASEBKGND:
+ PaintListView((HDC)msg.WParam);
+ msg.Result = 0;
+ break;
+ case WM_HSCROLL:
+ case WM_VSCROLL:
+ LockWindowUpdate(ListView1->Handle);
+ msg.Result = CallWindowProc ((FARPROC)FOriginalProc,
+ ListView1->Handle,
+ msg.Msg,
+ msg.WParam,
+ msg.LParam);
+ InvalidateRect (ListView1->Handle, 0, true);
+ LockWindowUpdate(NULL);
+ break;
+ default:
+ msg.Result = CallWindowProc ((FARPROC)FOriginalProc,
+ ListView1->Handle,
+ msg.Msg,
+ msg.WParam,
+ msg.LParam);
+ break;
+ }
+}
+//-------------------------------------------------------
+void __fastcall TForm1::PaintListView(HDC &dc)
+{
+ //Same painting code as before
+ ...
+}
+//-------------------------------------------------------
+void __fastcall/ TForm1::FormResize(TObject *Sender)
+{
+ ListView1->Repaint();
+}
+//-------------------------------------------------------
+Note 1: MakeObjectInstance returns a void pointer. This void pointer should
+be passed to the SetWindowLong API function. Do not pass the name of your member function to
+SetWindowLong.
+Note 2: Every call to MakeObjectInstance should have a corresponding call to
+FreeObjectInstance. MakeObjectInstance allocates memory that is not freed until you call
+FreeObjectInstance. Failing to free up this memory causes memory leaks.
+Subclassing with the WindowProc property of a control
+The TControl class from the VCL provides a public property that allows you to subclass a control without much
+effort. The property is called WindowProc. You can intercept messages sent to a control by assigning a new
+function to the WindowProc property of a control. The next code listing demonstrates how to subclass the
+listview control through its WindowProc property.
+//-------------------------------------------------------
+// header file
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+ TListView *ListView1;
+ TImageList *ImageList1;
+ void __fastcall FormResize(TObject *Sender);
+private:	// User declarations
+ TWndMethod FOriginalProc;
+ void __fastcall ListViewProc(TMessage &msg);
+ void __fastcall PaintListView(HDC &dc);
+public:	// User declarations
+ __fastcall TForm1(TComponent* Owner);
+ __fastcall ~TForm1();
+};
+//-------------------------------------------------------
+// source file
+//-------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ // Store the original valud of WindowProc in the member variable
+ // and then assign our method to the WindowProc property
+ FOriginalProc = ListView1->WindowProc;
+ ListView1->WindowProc = ListViewProc;
+}
+//-------------------------------------------------------
+__fastcall TForm1::~TForm1()
+{
+ // Set the window proc back to the original function
+ ListView1->WindowProc = FOriginalProc;
+}
+//-------------------------------------------------------
+void __fastcall TForm1::ListViewProc(TMessage &msg)
+{
+ msg.Result = 0;
+ switch(msg.Msg)
+ {
+ case WM_ERASEBKGND:
+ PaintListView((HDC)msg.WParam);
+ msg.Result = 0;
+ break;
+ case WM_HSCROLL:
+ case WM_VSCROLL:
+ LockWindowUpdate(ListView1->Handle);
+ FOriginalProc(msg);
+ InvalidateRect (ListView1->Handle, 0, true);
+ LockWindowUpdate(NULL);
+ break;
+ default:
+ FOriginalProc(msg);
+ break;
+ }
+}
+//-------------------------------------------------------
+void __fastcall TForm1::PaintListView(HDC &dc)
+{
+ //Same painting code as before
+ ...
+}
+//-------------------------------------------------------
+void __fastcall/ TForm1::FormResize(TObject *Sender)
+{
+ ListView1->Repaint();
+}
+//-------------------------------------------------------
+Note: Notice that value returned by the WindowProc property is of the type TWndMethod and
+not WNDPROC. This has an important consequence. TWndMethod functions already know how to deal with
+the VCL's TMessage structure. This means that you can call the original WindowProc function without
+bothering with the API CallWindowProc function. You simply call the original WindowProc and pass it
+the TMessage structure.
+Subclassing by deriving a new control
+It turns out all VCL classes that inherit from TWinControl already subclass the window handle of the control.
+The subclassing is done so that the VCL class can respond to messages sent to the control. Without subclassing, none
+of the internal message maps or WndProc functions would ever get called. In fact, the base class uses
+MakeObjectInstance to perform the subclassing, and the subclassed proc executes the function stored
+by the WindowProc property to handle the message (see TWinControl.MainWndProc in CONTROLS.PAS).
+Because VCL classes already subclass the window handle, you can intercept messages by deriving a new class from a
+VCL base class. When you utilize this technique, you subclass a window handle by subclassing, or inheriting from, a
+existing base class. The code below shows how to derive a class from TListView that paints the custom
+background.
+//-------------------------------------------------------
+// header file
+class PACKAGE TXListView : public TListView
+{
+private:
+protected:
+ void __fastcall WndProc(TMessage &msg);
+ void __fastcall PaintListView(HDC &dc);
+public:
+ __fastcall TXListView(TComponent* Owner);
+};
+//-------------------------------------------------------
+// source file
+//-------------------------------------------------------
+__fastcall TXListView::TXListView(TComponent* Owner)
+ : TListView(Owner)
+{
+}
+//-------------------------------------------------------
+void __fastcall TXListView::WndProc(TMessage &msg)
+{
+ msg.Result = 0;
+ switch(msg.Msg)
+ {
+ case WM_ERASEBKGND:
+ PaintListView((HDC)msg.WParam);
+ msg.Result = 0;
+ break;
+ case WM_HSCROLL:
+ case WM_VSCROLL:
+ LockWindowUpdate(Handle);
+ TListView::WndProc(msg);
+ InvalidateRect (Handle, 0, true);
+ LockWindowUpdate(NULL);
+ break;
+ default:
+ TListView::WndProc(msg);
+ break;
+ }
+}
+//-------------------------------------------------------
+void __fastcall TXListView::PaintListView(HDC &dc)
+{
+ TRect rect = BoundsRect;
+ Graphics::TBitmap *MemBitmap = new Graphics::TBitmap;
+ MemBitmap->Width = rect.Right - rect.Left;
+ MemBitmap->Height= rect.Bottom- rect.Top;
+ MemBitmap->Canvas->Brush->Style = bsSolid;
+ MemBitmap->Canvas->Brush->Color = clAqua;
+ MemBitmap->Canvas->FillRect(Rect(0,0,
+ MemBitmap->Width,
+ MemBitmap->Height));
+ MemBitmap->Canvas->Pen->Color = clNavy;
+ MemBitmap->Canvas->Pen->Width = 20;
+ MemBitmap->Canvas->MoveTo(0,0);
+ MemBitmap->Canvas->LineTo(MemBitmap->Width, MemBitmap->Height);
+ ::BitBlt(dc,0,0,MemBitmap->Width, MemBitmap->Height,
+ MemBitmap->Canvas->Handle,0,0,SRCCOPY);
+ delete MemBitmap;
+}
+//-------------------------------------------------------
+// using the component from a form
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ TXListView *ListView1 = new TXListView(this);
+ ListView1->Align = alClient;
+ ListView1->Parent = this;
+ ListView1->LargeImages = ImageList1;
+ ListView1->IconOptions ->Arrangement = iaLeft;
+ int nCount = ImageList1->Count;
+ for(int j=0; jItems->Add();
+ item->Caption = "item " + IntToStr(j);
+ item->ImageIndex = j;
+ }
+}
+//-------------------------------------------------------
+Note: Of all the subclassing techniques described in this article, the technique of inheriting a new class is
+probably the best strategy from an object oriented standpoint. It is a bad design practice to litter a form class with
+a bunch of code that subclasses and paints the background of a listview control. It is wiser to derive a new class and
+encapsulate the custom behavior while maintaining the default behavior of the base class.
+Notice that you don't have
+to write code that subclasses the window handle when you derive a new class from TListView. The base class
+already does that, and deriving a new class leverages that code in the base classes. Also, you don't have to worry
+about listview messages being sent to a form that is in the middle of being destroyed. Not only is deriving a new
+class cleaner from an object oriented point of view, it is probably more robust and less prone to failure.
+ Downloads for this FAQ 
+ subclass1.zip BCB3 project that demonstrates SetWindowLong to subclass a listview. 
+ subclass1x.zip Same as subclass1.zip. Includes an EXE. Zip is 170k. 
+ subclass2.zip BCB3 project that uses MakeObjectInstance to subclass a listview. 
+ subclass2x.zip Same as subclass2.zip. Includes an EXE. Zip is 170k. 
+ subclass3.zip BCB3 project that subclasses a listview through its WindowProc property. 
+ subclass3x.zip Same as subclass3.zip. Includes an EXE. Zip is 170k. 
+ subclass4.zip BCB3 project that shows how to subclass a listview by deriving a new class. 
+ subclass4x.zip Same as subclass4.zip. Includes an EXE. Zip is 170k. 
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

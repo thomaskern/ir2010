@@ -1,0 +1,107 @@
+
+ 
+ japhar.org
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A portable interpreter
+ for Java bytecodes
+ 
+ 
+ 
+ 
+	
+	 
+	 Japhar 
+	 Getting it 
+	 Mailing Lists 
+	 Supported Platforms 
+	 Mauve Results 
+	 
+	 Documentation 
+	 JavaSoft Docs 
+	 Japhar Docs 
+	 Japhar/OJI 
+	 Release News 
+	 
+	 Related Projects 
+	 
+	 
+	 
+	 
+ 
+ 
+	embedding Japhar in Mozilla
+	 
+ 
+ 
+	
+	 This is a step-by-step guide to making the Japhar/OJI plugin
+	 for Mozilla. (Note: The
+	 Japhar/OJI plugin is only available at present for Unix.)
+	 
+	 
+	 
+- Get the Mozilla source:
+ 
+	 Information on retrieving the mozilla source can be found
+	 here.
+	 
+	 
+- Build mozilla as normal:
+	 Build instructions for mozilla can be found
+	 here.
+	 
+	 
+- Configure Japhar to use Mozilla/NSPR:
+	 Configure Japhar with the following command (there is no carriage return on this line):
+	 
+	 configure --with-mozilla= --enable-nspr --enable-oji --with-sun-jdk=
+	 
+	 
+- Build japhar normally:
+	 
+	 
+- Build the Japhar/OJI plugin:
+	
+	 cd 
+	 gmake japhar_oji
+	
+	 
+	 
+- Install the Japhar/OJI plugin:
+	 
+	cp /lib/liboji/.libs/libjaphar_oji.so.0.0 ~/.netscape/plugins
+	 
+	 
+	 
+- Rerun Mozilla:
+	 That's it! Go to a web page with APPLET tags on it.
+	 
+	 
+	 
+	 Note: You will most
+	 definitely find applets that don't work. Don't expect
+	 much. OJI is evolving, and Japhar is as well. Please,
+	 let us know of any
+	 problems you have.
+	 
+ 
+ 
+	 
+ 
+ 
+ 
+ 	 
+ 
+	 
+ Last modified: Sun Mar 5 17:16:55 PST 2000
+ 
+ 
+ 
+ 

@@ -1,0 +1,31 @@
+
+ 
+ 
+ Gradient Background
+ 
+Changing
+the Desktop Wallpaper
+ 
+To
+change the desktop wallpaper, declare the function below: 
+Declare
+Function SystemParametersInfo Lib "user32" Alias "SystemParametersInfoA"
+_ 
+(ByVal 
+uAction As Long, ByVal uParam As Long, ByVal lpvParam As Any, _ 
+ByVal
+fuWinIni As Long) As Long 
+Const
+SPI_SETDESKWALLPAPER = 20 
+To
+call the function, use it as follows:
+Dim
+ChangeWP 
+ChangeWP
+= SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, "Image File", 0) 
+where
+Image File is a .bmp file of your desire 
+ 
+ 
+ 
+ 

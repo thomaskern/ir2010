@@ -1,0 +1,10 @@
+
+ 
+ Timing 
+When clicked, this applet shows the number of milliseconds that
+have passed on your station since January 1st 1970. Far out, man ! Groovy !
+Essence
+	long time = System.currentTimeMillis () ;
+JAVALESSONS.COM
+Copyright © 2000 System Exclusive & Multi Midi (NL) All rights
+reserved

@@ -1,0 +1,146 @@
+
+	
+	10.1) The java.util package
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	
+Java2 Certification 
+Tutorial 
+	
+	 
+	
+	
+ 
+	 
+	
+You can discuss this topic with others at
+http://www.jchq.net/discus
+Read
+reviews and buy a Java Certification book at
+http://www.jchq.net/bookreviews/jcertbooks.htm
+10) The java.util package 
+Objective 1) 
+Make appropriate selection of collection classes/interfaces to
+suit specified behavior requirements.
+Note on this Objective 
+Although it does not mention it specifically, this objective
+involves one of the new objectives for the Java2 version of the exam,
+a knowledge of the collection classes. The exam questions on these
+new collections are fairly basic, requiring a knowledge of where and
+how you might use them, rather than a detailed knowledge of the
+fields and methods.
+The old collections 
+The Java 2 API includes new interfaces and classes to enhance the
+collections available. Earlier versions of Java included
+	
+- vector 
+	
+- hashtable 
+	
+- array 
+	
+- BitSet 
+	
+Of these, only array was included in the objectives for the
+1.1 certification exam. One of the noticeable omissions from Java 1.1
+was support for sorting, a very common requirement in any programming
+situation,
+The new collections 
+At the root of the Collection API is the Collection
+interface. This gives you a series of common methods that all
+collection classes will have. You would probably never create your
+own class that implements Collection as Java supplies a series of
+sub-interfaces and classes that uses the Collection interface.
+The Java2 API includes the following new collection interfaces 
+	
+- Sets 
+	
+- Maps
+	
+Classes that implement the Collection interface store
+objects as elements rather than primitives. This approach has the
+drawback that creating objects has a performance overhead and the
+elements must be cast back from Object to the appropriate type
+before being used. It also means that the collections do not check
+that the elements are all of the same type, as an object can be just
+about anything. 
+A Set 
+A Set is a collection interface that cannot contain
+duplicate elements. It thus matches nicely onto concepts such as a
+record set returned from a relational database. Part of the magic of
+the Set interface is in the add method.
+add(Object
+o)
+Any object passed to the add method must implement
+the equals method so the value can be compared with existing
+objects in the class. If the set already contains this object the
+call to add leaves the set unchanged and returns false. The
+idea of returning false when attempting to add an element
+seems more like the approach used in C/C++ than Java. Most similar
+java methods would seem to throw an Exception in this type of
+situation.
+A List 
+A list is a sorted collection interface that can contain
+duplicates
+Some important methods are
+	
+- add 
+	
+- remove 
+	
+- clear 
+	
+The JDK documentation gives the example of using List to
+manage an actual GUI list control containing a list of the names of
+the Planets. 
+A Map 
+Map is an interface, classes that implement it cannot
+contain duplicate keys, and it is similar to a hashtable.
+Why use Collections instead of arrays?.
+The big advantage of the collections over arrays is that the
+collections are growable, you do not have to assign the size at
+creation time. The drawback of collections is that they only store
+objects and not primitives and this comes with an inevitable
+performance overhead. Arrays do not directly support sorting, but
+this can be overcome by using the static methods of the Collections.
+Here is an example.
+import java.util.*;
+public class Sort{
+ public static void main(String argv[]){
+ Sort s = new Sort();
+ }
+Sort(){
+ String s[] = new String[4];
+ s[0]="z";
+ s[1]="b";
+ s[2]="c";
+ s[3]="a";
+ Arrays.sort(s);
+ for(int i=0;i
+Jyothi
+	Krishnan on this topic at
+	
+http://www.geocities.com/SiliconValley/Network/3693/obj_sec10.html#obj30
+	 
+	
+Last updated
+21 May 2002
+copyright © Marcus Green
+2001
+most recent version at http://www.jchq.net

@@ -1,0 +1,170 @@
+
+Free Java Help --- Articles --- Command Prompt Problems
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Command Prompt Problems 
+ 
+ ARTICLE REQUEST:
+ The hardest thing I find about java is
+running it from the command
+ prompt. Could you do an article from installation to running
+an application
+ and an applet? I've got the javac thing down, but the
+rest...
+ Okay, whoever submitted this request is
+simply awesome! Not only did you submit a request (which I always love), but
+you also wrote more than two words! :) To those of you who are submitting
+article requests, the more you write in the request, the more likely I will be
+to write an article! Thank you!
+ Quite frankly, having to compile java files
+from the command prompt and using the command prompt in general can be a pain
+in the butt for the average Windows user. When I first installed the JDK on
+Windows (maybe a year or so ago), I used to get SO frustrated because I
+had absolutely no clue how to do anything.
+ Installation of the JDK can be a pain in
+itself. The biggest problem that I had was understanding CLASSPATH and PATH.
+Basically, you have to point PATH to the folder with javac, java, appletviewer,
+and all the other programs that come with the JDK. You also have to point
+CLASSPATH to the folder where classes.zip resides. These variables can be found
+in autoexec.bat. To learn more about installation of the JDK, go to our
+tutorial here.
+ If you set the two variables above
+correctly, then you should be good to go and use JDK. Compiling is pretty easy,
+there is a good explanation of how to do it here.
+ In the days when I first started
+programming in Java, I tried to execute Applets using java
+appletclassname.class. This never worked, and I soon found out that the
+java command is used to execute applications, not applets. The main difference
+between the two is that applets put into HTML documents, and applications are
+not. To test your applet, copy the following text into notepad, replace
+classname.class with the name of your class file (with the .class exstension).
+Then save it as an HTML file (whatever.html). It must be saved in the same
+folder as the class file 
+ Now, if you have a browser that supports
+Java (most do), you can open your browser, then open the HTML file that you
+just created. Your applet should come up, as long as there are no errors.
+ There is another alternative for executing
+applets, though. Currently, I am on a p120, so I don't want to run Netscape
+unless I absolutely have to. I use the appletviewer program included with JDK.
+It takes up a lot less system resources than a browser. To use the appletviewer
+program, simply open a dos-prompt, get into the directory where you saved your
+HTML file to, then type appletviewer whateveryounamedit.html . Not too
+bad :)
+ I personally rarely write Java
+applications, but when I do, I execute them with the java command. Just open a
+dos-prompt (command prompt) and get into the directory where your classfile is.
+Typing java classname should work. You shouldn't need to type the .class
+extension.
+To whoever requested this article:
+If I did not cover what you wanted, email me at freejavahelp@freejavahelp.com ,
+and tell me more what you are looking for, and I will gladly add more. Thanks
+again.
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

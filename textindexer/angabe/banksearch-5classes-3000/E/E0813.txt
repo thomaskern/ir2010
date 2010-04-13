@@ -1,0 +1,132 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq18_11.html 
+ 
+search 
+ 
+Node:HW Int pitfalls,
+Next:Inline Asm,
+Previous:_go32 vs __dpmi,
+Up:Low-level
+18.11 Hardware interrupt hooking has its subtleties
+Q: I did everything you tell me to install the interrupt handler
+correctly, but my program occasionally still hangs....
+Q: From time to time my program crashes with a message "Page Fault
+in RMCB". What's that?
+A: Hooking interrupts in DJGPP (and in protected mode in general)
+has a few subtle aspects. In general, hardware interrupt handling in
+DJGPP v2.x is rock solid if you play by the rules. 
+Unfortunately, the rules are a bit tricky.
+One cause of your problems might be that your interrupt handler or some
+memory location it uses get paged out because of the virtual memory
+mechanism, or because your program spawned a child program. In that
+case, the interrupt might cause a call to a non-existent service
+routine, with the obvious results. You should lock all the memory pages
+that your handler accesses by calling the
+__dpmi_lock_linear_region library function. This also means in
+practice that you should write your handler in assembly, as described in
+how to set an interrupt handler, above. You can disable virtual memory, or put
+_CRT0_FLAG_LOCK_MEMORY into _crt0_startup_flags to make
+sure nothing is paged out (but then your program might not have enough
+memory to run, unless you run on memory-abundant systems).
+When CWSDPMI detects that your handler accesses memory that is not
+locked, it aborts your program with a message saying "Page Fault in
+RMCB". This can happen if your program installs a callback for
+some real-mode service, like the mouse callback, as well as if you
+install a hardware interrupt handler; in both of these cases you need to
+lock all the memory touched by your handler or by functions it calls. 
+CWSDPMI aborts your program if your program attempts to page while an
+interrupt handler or a real-mode callback are active, because paging
+uses DOS file I/O. Since DOS is non-reentrant, if the hardware
+interrupt handler was called in a middle of another DOS call, paging
+could badly damage your hard disk37. By refusing to page in these cases, CWSDPMI ensures
+the stability of your system and integrity of your files. You pay for
+that stability by having to lock all code and data touched by the
+handler.
+Another problem might be that the hardware peripheral you use generates
+a lot of interrupts. Due to specifics of hardware interrupts handling
+in protected mode, there is a substantial overhead involved with
+reflection of interrupts between real and protected modes. For
+instance, on a 486DX/33 this reflection might consume up to 3000 clocks;
+on a 386SX/16, even a 1KHz clock might eat up 1/2 of available cycles. 
+One user reported that a 120 MHz Pentium will be able to service up to
+45-50K interrupts per second before exhausting its CPU resources, and a
+486DX/50 is capable of about half that number. If your hardware fires
+too many interrupts, your CPU might not be able to keep up. A good rule
+of thumb is to consider 20KHz as the breaking point, if your program
+needs to do something non-trivial besides servicing interrupts. If you
+are beyond that interrupt rate, consider reducing the interrupt
+frequency, or move some of the processing done inside the interrupt
+handler to some other place. Use a ring-0 DPMI server such as CWSDPR0
+or PMODE/DJ (of these two, the latter is the faster one) which don't
+swap interrupt stacks--this will reduce the overhead of the interrupt
+reflection to some degree. If your handler is written in C, write it in
+assembly and make sure it doesn't chain. And most important--make sure
+your program keeps the processor completely in protected mode while
+handling high-frequency interrupts: avoid unnecessary library calls,
+disk I/O, BIOS calls, and anything else that could generate a mode
+switch. For example, using BIOS services to wait a certain period of
+time while interrupts come in is clearly a bad idea when the interrupts
+come at high frequency.
+Installing a good memory manager will usually also remove most of the
+mode switch overhead, since a memory manager runs the CPU in V86 mode,
+where hardware interrupts are delivered in protected mode by the
+processor, without any need for a mode switch.
+Preventing the program from paging (by installing enough physical RAM
+and using memory efficiently) will also help keeping the CPU in
+protected mode, since paging is done by calling DOS in real mode. By
+keeping your processor in protected mode as much as you can, you avoid
+the expensive mode switches when the interrupts are reflected to your PM
+handler.
+If all that still doesn't help, install a real-mode handler.
+Some losing memory managers, notably EMM386, were reported to induce a
+high interrupt handling overhead. In one case, a user reported an
+increase in the maximum interrupt rate his program could support from 2
+KHz to 6 KHz after uninstalling EMM386.
+Still another possibility is that you use a non-default sbrk
+algorithm in your program. Check if the header file crt0.h is
+included anywhere in the program, and if so, if the
+_CRT0_FLAG_UNIX_SBRK bit in the _crt0_startup_flags
+variable is set by the program. If it is, then a hardware interrupt
+which happens at the wrong time could crash your machine, especially if
+you run under Windows 3.X.
+You should also keep in mind that the DPMI server can decide to handle
+some of the interrupts itself and not pass them to your program,
+although this is rare. For example, Windows 9X won't pass the
+Ctrl-Alt-Del combination to your keyboard interrupt handler, but
+will rather act on it itself; QDPMI sometimes processes Ctrl-C
+keypresses so that your program never sees them, etc. Sometimes, but
+not always, you can change some configuration option to make some keys
+get to your handler (e.g., the Alt-TAB setting on the Windows3.X
+.PIF file).
+If the above still doesn't explain your problem, then post your code on
+the DJGPP mailing list or
+the comp.os.msdos.djgpp news group, tell there how it fails and somebody will
+usually have a solution or a work-around for you.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

@@ -1,0 +1,107 @@
+
+ 
+ PHP HOW-TO: Appendix A PHP examples 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 28. Appendix A PHP examples 
+28.1 PostgreSQL large object Example
+Submitted by: 
+PHP code exchange 
+ px@sklar.com 
+To get this file, in the web-browser, save this file as 'Text' type
+as pgsql_largeobj.lib
+PX: PHP Code Exchange - 
+large object access
+28.2 User authentication Example
+To get this file, in the web-browser, save this file as 'Text' type
+as user_pw.lib
+From the PHP 3 Manual:
+Works only if PHP is an Apache module.
+Instead of simply printing out the $PHP_AUTH_USER and $PHP_AUTH_PW, 
+you would probably want to check the username and password for 
+validity. Perhaps by sending a query to a
+database, or by looking up the user in a dbm file.
+28.3 Network admin Example
+To get this file, in the web-browser, save this file as 'Text' type
+as network.lib
+PHP: network adminstrator's best friend from 
+http://www.phpWizard.net
+As a web-developer, you're probably used to such lovely tools as ping,
+whois, nslookup etc. But what when you need one of those utilities at a
+client's office and have no access to telnet? Good guess. Time to look
+up the functions in the "Network" section of the PHP manual.
+Socket operations: 
+The most important function there is fsockopen(). Using this function,
+you can connect to any open port on a server and establish a socket
+connection with it. The function's syntax is as following:
+ int fsockopen(string hostname, int port, int [errno], string [errstr]);
+The first two arguments are obvious, the next two are optional and used
+for error handling. The "errno" and "errstr" should be passed by reference.
+"Passing by reference" means that the original variable will get
+modified. Normally, the content of a variable passed to a function
+wouldn't be modified.
+So, you could use this function to open a connection to a webserver and
+print out the headers:
+function get_headers($host, $path = "/")
+{
+ $fp = fsockopen ("$host", 80, &$errnr, &$errstr) or die("$errno: $errstr");
+ fputs($fp,"GET $path HTTP/1.0\n\n");
+ while (!$end)
+ {
+ $line = fgets($fp, 2048);
+ if (trim($line) == "")
+ $end = true;
+ else
+ echo $line;
+ }
+ fclose($fp);
+}
+In this example you see that you can apply any file operations (fread,
+fwrite etc) to the the pointer you got using the fsockopen() call. Note
+that the example realizes a HTTP/1.0 client - it won't work with
+name-based virtual hosts.
+Finger: 
+Naturally, you can also open connections to other ports. Writing a
+small finger client with PHP is trivial therefore. Let's change the
+example from above to query a finger daemon:
+function finger ($host, $user)
+{
+ $fp = fsockopen($host, 79, &$errno, &$errstr) or die("$errno: $errstr");
+ fputs($fp, "$user\n");
+ while (!feof($fp))
+ echo fgets($fp, 128);
+ fclose($fp);
+}
+Whois: 
+Querying a whois server uses the same concept:
+// domain is like "phpwizard.net"
+function whois($domain, $server="whois.internic.net")
+{
+ $fp = fsockopen ($server, 43, &$errnr, &$errstr) or die("$errno: $errstr");
+ fputs($fp, "$domain\n");
+ while (!feof($fp))
+ echo fgets($fp, 2048);
+ fclose($fp);
+}
+Blocking and non-blocking operations: 
+But there's a problem with all those functions. They work fine if 
+- You have a connection with low latency and 
+- If the server you're connecting to is up and 
+running. 
+If not, your script will be busy until
+it times out. The reason for this is that default socket connections
+are blocking and don't time out. You can avoid these "hanging scripts"
+by switching to non-blocking socket operations. The function
+set_socket_blocking() does just that: it set all operations on a socket
+(first parameter: socket pointer) to either blocking (second parameter:
+true) or false (second parameter: false). Using non-blocking
+operations, the finger function would like like this:
+ $fp = fsockopen($host, 79, &$errno, &$errstr) or die("$errno: [ ] $errstr");
+ set_socket_blocking($fp, 0);
+ fputs($fp, "$user\n");
+ $stop = time() + $timeout;
+ while (!feof($fp) && time() 

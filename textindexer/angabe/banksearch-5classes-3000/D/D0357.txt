@@ -1,0 +1,71 @@
+
+Tools for Optimizing Java
+ 
+ 
+Tools for Optimizing Java
+[ index ]
+[ benchmarks
+ | compilers 
+ | maintainability
+ | resources
+ | rules 
+ | size
+ | speed ]
+ 
+Profiling:
+To profile a (single-threaded) application, use java
+ -prof. To profile an applet, use java -prof
+ sun.applet.AppletViewer myfile.html (tip from David Moore). The profile file
+ can then be analyzed using a tool such as Profile
+ Viewer or HyperProf.
+ You can also use the profiling tools built into an IDE such as
+ 
+ VisionSoft
+ 
+Note that commercial profilers such as Optimize It! can profile both time
+ and memory.
+ 
+ 
+ 
+Disassembly:
+Use javap -c 
+ to see the bytecode that your Java is compiled into:
+	javac -O test.java
+	javap -c test | more
+ To understand the bytecode, read the
+ Java
+ VM spec.
+ 
+Timing:
+Write a timing harness to wrap around code fragments so that
+ you can benchmark them. You can either adapt the old thread-based
+ HotJava
+ Performance Tests, or just use a simple
+ loop. Note that system.currentTimeMillis() 
+ returns the time of day, not the process time, so all benchmarking
+ should be done on an idle machine. Call system.gc()
+ before every timing run to minimize inconsistent results due to
+ garbage collection in the middle of a run. On systems with
+ sub-millisecond clocks you can use native methods to access them (e.g.,
+ gettimeofday() or getrusage() on Unix
+ systems).
+ 
+Memory use:
+You can write a memory-use harness in just the same way you'd write
+ a timing harness, replacing calls to
+ system.currentTimeMillis() with calls to
+ 
+	long freemem ()	{
+	 System.gc();
+	 return Runtime.getRuntime().freeMemory();
+	}
+ 
+ (tip from Glen McCluskey).
+ 
+ http://www.cs.cmu.edu/~jch/java/tools.html 
+ Tools for Optimizing Java 
+ 
+ 
+ Last modified: Wed 18 Mar 1998 
+ Copyright &#169 1996, 1997 Jonathan Hardwick 
+ 

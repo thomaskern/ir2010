@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Runner {
 
 
-    public ArrayList<CountedNGram> run_from_dir(String input_dir, String output, int n, boolean stemming, int lower, int upper) throws IOException {
+    public ArrayList<CountedNGram> run_from_dir(String input_dir, String output, int n, boolean stemming, double lower, double upper) throws IOException {
         Reader r = new Reader(lower, upper);
         r.setStemming(stemming);
 

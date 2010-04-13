@@ -1,0 +1,164 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq3_9.html 
+ 
+search 
+ 
+Node:Config,
+Next:More than 64MB,
+Previous:Reasonable hardware,
+Up:Requirements
+3.9 How to configure your system for DJGPP
+Q: How do I configure my system to get optimal performance under
+DJGPP?
+A: That depends on the amount of RAM you have installed in your
+machine. Below are some guidelines to help you.
+- If you have 2 MBytes or less RAM installed:
+- Don't use any memory manager. 
+- Use of CWSDPMI as your DPMI host is highly recommended. 
+- Remove any TSR and device drivers you don't absolutely need (like
+SETVER.EXE, HIMEM.SYS etc.) from your CONFIG.SYS
+and AUTOEXEC.BAT.
+- Do not install disk cache or RAM disk; point your TMPDIR
+environment variable to a directory on your hard disk. Put a
+sufficiently large BUFFERS= statement into your CONFIG.SYS
+(I recommend setting BUFFERS=40,8) to make DOS file operations
+faster8. 
+- If you use CWSDPMI as your DPMI host, get the CWSPARAM program
+(from the csdpmi4b.zip archive) and set the
+"Minimum application memory desired before 640K paging" parameter to
+512K or larger. Depending on how much memory you actually have, you
+might need to further fine-tune this parameter. This parameter defines
+the lowest amount of extended memory CWSDPMI will use; if your system
+doesn't have that much free extended RAM, CWSDPMI will use conventional
+memory instead, where usually there should be around 600K of free RAM. 
+- If you run under Windows, be sure to set the maximum amount of extended
+memory on your PIF file for the DOS box to a reasonable value. 
+With this configuration, GCC will run out of free physical RAM and start
+paging when compiling almost any C program and all C++ programs. If
+you are serious about DJGPP development, you need to buy more RAM
+urgently.
+- If you have 2-4 MBytes of RAM installed:
+- Don't use any memory manager.
+- Remove any TSR and device driver you don't absolutely need (like
+SETVER.EXE, HIMEM.SYS) from your CONFIG.SYS and
+AUTOEXEC.BAT.
+- Get a disk cache which works from conventional memory and configure it to
+256K size at most, or don't use a cache at all.
+- Do not install a RAM disk; point your TMPDIR environment
+variable to a directory on your hard disk.
+- If you run under Windows, be sure to set the maximum amount of extended
+memory on your PIF file for the DOS box to a reasonable value. 
+With this configuration, GCC will still run out of free physical RAM and
+start paging when compiling large C programs and most C++ programs. 
+Plan to buy more RAM as soon as you can.
+- If you have 5-8 MBytes of RAM installed:
+- Use a memory manager such as EMM386 or QEMM386. Try using
+the FRAME=NONE parameter of the memory manager. This will
+disable Expanded Memory (EMS) services as far as most programs are
+concerned; if you must use DJGPP together with any program which needs
+EMS, try to configure that program to use Extended Memory (XMS) instead.
+- Load DOS, device drivers and TSRs HIGH. This is done by using
+the DEVICEHIGH= command (instead of DEVICE= in
+CONFIG.SYS, and by using the LOADHIGH command in
+AUTOEXEC.BAT.
+- Give your disk cache 1 MByte of RAM. Enable its delayed-write (a.k.a. 
+write-back) feature.
+- Do not install a RAM disk; point your TMPDIR environment
+variable to a directory on your hard disk.
+- If, after configuring your system as above, you still have more than 2.5
+MBytes of free RAM left (4 MBytes, if you plan to program in C++ a lot),
+enlarge the disk cache size.
+- If you run under Windows, be sure to set the maximum amount of extended
+memory on your PIF file for the DOS box to a reasonable value. 
+- If you have more than 8 MBytes of RAM:
+- Use a memory manager to load DOS, TSRs and device drivers HIGH.
+- Install at least a 2-MByte-large disk cache, configured to use the delayed-
+write feature. If you have plenty of RAM, you can give your cache as much
+as 8 MBytes of memory. Here's an example of a line to put into your
+AUTOEXEC.BAT file that installs an 8-MByte cache for hard disks
+C:, D:, and F::
+loadhigh c:\dos\smartdrv.exe c+ d+ f+ 8192
+(The + character after the drive letter enables the delayed-write
+(a.k.a. write-back) feature for that drive.) Note that you do
+not need, and should not install a disk cache if you intend to
+use DJGPP programs from Windows 9X, because Windows includes its own
+built-in disk cache (called VCACHE) that is loaded together with
+the operating system.
+- If you have more than 10 MBytes left, install a RAM disk with a size of at
+least 1.5 MBytes and point your TMPDIR environment variable to it. 
+If your RAM disk is less than 4 MBytes, GCC might run out of space there
+for very large source files (e.g., cccp.c file from the GCC source
+distribution), but this shouldn't happen unless the size of the source
+file you are compiling approaches 1 MByte. Note that software is
+available that lets you install a RAM disk even on Windows 9X. 
+(However, I'm told that Microsoft's own RAMDRIVE.SYS only
+supports long file name on the RAM disk if its size is less than 9MB.)
+- As a general rule of thumb, you should leave at least 8 MBytes of free
+RAM after installing the disk cache and the RAM disk. 16MB free is even
+better, especially if you need to run large programs like RHIDE or
+Emacs, or to compile large source files. 
+Some people disable the delayed-write feature for safety reasons, to
+avoid losing files due to system crashes. If you are worried about this,
+you can usually gain performance without sacrificing safety by enabling
+delayed-write together with an option that causes the cache to flush the
+write-behind data before the system returns to the DOS prompt. For a
+SmartDrv disk cache, this is achieved by specifying /N/F
+switches instead of /X.
+Using a memory manager, such as EMM386 or QEMM, is not
+required (DJGPP will run without it), but highly recommended, since it
+has several advantages:
+- Memory managers provide an API for allocating extended memory called
+VCPI (the Virtual Control Program Interface). Using that API
+allows CWSDPMI to allocate only as much extended memory as is needed,
+leaving the rest for non-DJGPP programs, in case you invoke them from
+DJGPP programs. In contrast, without a memory manager, CWSDPMI will
+allocate all of the available extended memory to itself, leaving none of
+it to non-DJGPP programs. This consideration is especially important if
+you use some DJGPP program, like Bash or Emacs, as your primary system
+interface.
+- Without a memory manager, you cannot access UMBs (the Upper Memory
+Blocks) which give you more DOS memory to work with. In particular,
+CWSDPMI will load itself into UMBs if they are available.
+- Memory managers provide the VDS (Virtual DMA Services) API which
+allows to write programs that use DMA in protected mode.
+- Memory managers support the expanded (EMS) memory, which some older DOS
+programs still use. 
+If your memory manager is EMM386, I recommend to put the
+NOEMS NOVCPI parameters on its command line. This will allow you
+to use UMBs and up to 128MB of physical memory (if you have that much
+installed). Without these parameters, many versions of EMM386
+limit your physical memory to 32MB.
+It is generally not recommended to install DJGPP on a networked drive,
+since this makes it slower, particularly when linking programs. If you
+do install DJGPP on a networked drive, you should consult your network
+administrator to configure the network for maximum performance. For
+Novell networks, a good place to look for advice is the Novell FAQ
+(search for a file called nov-faq.htm).
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

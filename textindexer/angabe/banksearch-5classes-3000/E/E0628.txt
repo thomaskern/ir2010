@@ -1,0 +1,50 @@
+
+ 
+online C++ tutorial: Function Basics
+ 
+ 
+ 
+ Section 5: Functions 
+Section 5.2: Function Basics
+Now that you know what a function is, let's look at function
+syntax. We've already seen that a function can take
+some inputs, do some stuff, and then produce an output.
+The basic form of a function definition is this:
+output function_name (input_1, input_2, input_3, input_...) {
+ // code to execute inside function
+}
+It's called a function definition because we
+are defining the function. We are saying, "This is a
+function named function_name, whose inputs are
+input_1, input_2, etc., and whose
+output is output. When it is called, the function
+will execute the code in between its curly braces ({}).
+At this point, let's refine our sample function definition.
+When programmers talk about functions, instead of the
+word input they usually use the word parameter.
+A parameter to a function is nothing more than an input
+to a function. At the same time, instead of using
+the word output, programmers generally refer to
+the return of a function. A particular function
+"returns" a value. So, here is our updated 
+function definition:
+return_type function_name (parameter_1, parameter_2, parameter_3, parameter_...) {
+ // code to execute inside function
+}
+Notice that in place of output, the function
+definition says return_type. That's because when we
+are actually writing a function definition, we'll put the
+return type there, immediately preceding the name of the
+function. The return type is nothing more than a plain old
+variable type, such as int, or double, etc.
+Similarly, parameters use variable types also. If the first
+input to a function is an int, then the first
+parameter will be something like int my_number.
+We'll see what my_number does in just a moment.
+A Real Function!
+Enough dilly-dally, let's see a real, working, C++ function that
+actually does something! Suppose we need a function that,
+converts a temperature from Celsius to Fahrenheit. Here it is:
+ 
+ 
+ 

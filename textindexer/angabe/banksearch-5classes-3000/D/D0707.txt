@@ -1,0 +1,165 @@
+
+	
+	
+	
+	
+	
+	
+	
+	
+Bit Shifting
+The exam generally presents at least on question 
+ on the bit shifting operators. It is possible to be a professional Java programmer 
+ for many years without having to use the bit shifting operators. if you are 
+ from a C++ background you can be mislead into thinking that all of your knowledge 
+ can transfer directly to the Java language. Typical examples of where bit shifting 
+ is used &#147;in the real world&#148; is cryptography and low level manipulation 
+ of image files.
+If you have not come accross the
+concept of shift operators at all, you need to switch to thinking in
+binary. I will assume you have a working understanding of the concept
+of the binary numbers system. The shift operators are used only with
+integer primitives, thus you will get a compile time error if you
+attempt to perform a shift operation on a value of type double.
+Note: All these examples and commentry
+are based on an integer which is always 32 bits in java. I believe
+the exam does not cover shifting variables of larger than integer
+type. Any attempt to shift a byte will cause it to be cast to an
+integer &#147;behind the scences&#148;, meaning the following
+commentry will still hold true.
+Unsigned 
+ right shift >>> of a positive number
+I will start with the unsigned right
+shift because it is probably the wierdest of the bit shifts and
+requires an understanding of twos complement number representation to
+fully understand. It gets extra weird when negative numbers are
+involved so I will start with positive numbers. The unsigned right
+shift operation treats a number as purely a bit pattern and ignores
+the special nature of the sign bit. Remember that once you start
+looking at a number as a sequence of bits any bit level manipulation
+can have some unexpected results when viewed as a normal number.
+The unsigned right shift operation
+takes two operands, the first number is the number that will have its
+bits shifted and the number after the operand is the number of places
+to be shifted. Thus the following
+3 >>> 1
+Means that you will shift the bits in
+the number 3 one place to the right.
+The twos complement numbering system
+means that the leading bit in a number indicates if it is positive or
+negative. If this value is zero the number is positive, if it is 1 it
+is negative. With the unsigned right shift the leading bit position
+is always filled with a zero. This means an unsigned right shift
+operation always results in a positive number.
+If you think of the number 3 as being
+represented by 
+011
+And you shift it one place to the right
+ with 
+3 >> 1
+you will end up with 
+001
+Note that the bits that have new values
+moved into them &#147;fall off the end&#148; of the number and are
+effectivly thrown away.
+If you perform the shift two places to
+the right it will come as little surprise that the number becomes
+zero as the number zero is moved into all of the bit positions. If
+you keep increasing the number of places you are shifting by such as
+6 places, 10 places 20 places you will find the result stays at zero
+as you might expect. If you persist however when you get to 
+3 >>>32 
+The surprising result is 3. Why is this so?
+Behind the scenes before the shift a
+mod 32 is performed on the operand. The modulous operator (indicated
+in java by the % character divides one number by another and returns
+the remainder. Whilst the mod operator is being performed on a number
+smaller than itself the original number is returned so whilst the
+number of places being shifted is less than 32 the mod operation is
+not noticed. Once you get to 32 places it starts to kick in.
+ Thus 32 % 32 returns zero as there is
+nothing left over and the number returned by the operation 
+3 >>> 32 
+is 3, ie 3 is shifted 0 places.
+ I did not find this at all intuitive at first so 
+ I wrote the following code 
+public class shift{
+static int i=2;
+public static void main(String argv[]){
+	System.out.println(32 % 32);
+	System.out.println( 3 >>> 32);
+	}
+}
+The output of this code is 
+0
+3
+Key Concept
+A mod 32 operation is performed on the
+operand before a shift takes place
+Unsigned shift >>> of a negative number
+An unsigned shift of a negative number
+will generally result in a positive number. I say generally as an
+exception is if you shift by exactly 32 places you end up with the
+original number including the sign bit. As explained earlier, the
+reason you generally get a positive number is that any unsigned right
+shift replaces the leading sign bit with a zero which indicates a
+positive number.
+The results of an unsigned shift of a
+negative number can seem very odd at times, take the following
+System.out.println( -3 >>>
+1);
+You might think that this would result
+in a number such as 
+1
+ie the sign bit is replaced by a zero
+resulting in a positive number and the bits are shifted one place to
+the right. This is not what happens, the actual result is
+2147483646
+Strange but true.
+The reason behid this odd result is to
+do with the way twos complement number representation works. If you
+imagine the bits in a number represented by the wheels on the display
+of a car odometer, what happens when you count down from the largest
+possible number to zero, and then go to the first number below zero?.
+All of the digits are set to 1 including the sign bit to indicate a
+negative number. When you perform an unsigned right shift you are
+breaking this way of interpreting the numbers and treating the sign
+bit as just another number. So although you started off with a small
+negative number such as &#150;3 in the example you end up with a
+large positive number. You may get a question on this in the exam
+that asks you to identify the result of an unsigned shift of a
+negative number. The one correct answer may seem very unlikely.
+Key Concept
+A unsigned right shift >>> by
+a positive amount of a small negative number will result in a large
+postive number returned.
+ 
+The signed left shift operation > and > 
+ are not to hard to understand as the results are fairly predictable. The signed 
+ part of the description refers to the most signficant bit of the number (the 
+ zero or one at the far left hand side if you were to write it out in binary). 
+ if this is set to 0 the number has a positive value, if it set to 1 the number 
+ has a negative value.
+When performing signed bit shifting the
+shifting effectivly ignores the sign bit. All the bits except the
+sign bit can be moved but the sign bit stays the same. Thus a left
+or right shift (>) will never cause a number to
+change its sign. A positive number will always stay positive and a
+negative number will always stay negative.
+An example
+2 >> 2;
+This shift moves all bits in the number
+2 two places to the right Thus
+Thus the value
+0010
+becomes 
+0000
+Or decimal zero (well zero in any other
+base as well I suppose).
+This is the equivalent of performing a
+repeated integer division, in this case resulting in zeros in every
+position. 
+Key Concept 
+The number of bit places shifted is within the range 
+ mode 32. This has no effect until you attempt to shift more than 32 places. 
+ Thus if you attempt to perform a shift such as 2 

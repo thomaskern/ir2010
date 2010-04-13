@@ -1,0 +1,56 @@
+
+Inside AWT
+ 
+Inside AWT
+ 
+This is a series of three articles:
+ 
+- Making your own UI Components
+ (1400 words)
+ 
+- Migrating the Components to
+ AWT 1.1 (1800 words)
+ 
+- Serializing UI Components
+ (1500 words)
+ 
+- Download the articles and the source
+ code
+The author offers you an inside look of AWT, which helps you
+to make right design decisions, if you are creating UI
+Components. He also signals some of the AWT limitations and a bug of JDK 1.1.x, which isn't fixed in
+JDK 1.2 beta 4 either.
+The first article answers to
+two questions: Why is it necessary to make your own components?
+and How to do that? It presents three classes of components,
+which use AWT 1.0. This is a necessary introduction for the next
+two articles. The article is followed by an applet, which has 300
+lines.
+The second article shows you
+how the components from the previous article can be converted to
+AWT 1.1 and what the advantages are. The author analyzes a few of
+the sources of AWT classes to provide details about the
+delegation event model and he demonstrates how this can improve
+both the performance and the architecture of the applications.
+Nevertheless, there are a few inconsistencies in AWT 1.1. The new
+applet has 400 lines.
+The third article gives you
+one more reason to use AWT 1.1. The new components are JavaBeans,
+so they are serializable. The applet is transformed into an
+application, whose user interface is persistent. At each run the
+window of the application will be deserialized and shown on
+screen in the same position with the same dimension, and the
+components will have same state as they have at the last close of
+the application. The source code has 250 lines. 
+The conclusion from the final of the third article rises three
+questions to the programmers from JavaSoft, whose design
+decisions limit the possibilities of the independent developers,
+who create UI components.
+The author of this page can be reached at andcio@hotmail.com. 
+Back to Java Developer's Page (Visit
+this page every month) 
+URL:
+http://www.geocities.com/SiliconValley/Horizon/6481/InsideAWT.html
+Last updated: December 30, 1998
+This page hosted by Get your
+own Free Homepage 

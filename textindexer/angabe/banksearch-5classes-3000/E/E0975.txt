@@ -1,0 +1,119 @@
+
+ ERCB: The C++ Programming Language, Third Edition 
+[ ERCB Home |
+ New |
+ Feature |
+ Brief |
+ Archive |
+ Received |
+ Letters |
+ Classifieds |
+ Links 
+]
+Vital Statistics
+ 
+Title C++ Programming Language: Third Edition 
+Author Bjarne Stroustrup 
+Publisher Addison-Wesley Publishing Company, Inc.
+ 
+Reading, Massachusetts
+ http://www.aw.com/devpress/ 
+ 
+Copyright 1997 
+ISBN 0-201-88954-4 
+Pages 910 
+Price $44.95 
+ 
+ 
+The Gospel According to Bjarne
+ 
+ Bjarne Stroustrup's The C++ Programming Language, Third
+Edition (Addison-Wesley, 1997) has been available for
+several months. This work, by the creator of C++, is the
+definitive treatment of the subject and has been since its
+first edition in 1987. I must confess that I did not care
+for the first edition. I had expected a tutorial approach as
+elegant as the classic K&R white book. But then, K&R was
+about C, a programming language that supported a familiar
+programming model. The C++ programming model was new to most
+of us ten years ago, and Stroustrup's first edition was
+daunting, to say the least. Looking at it now, I find it far
+less so and much easier to read. 
+Comparing the first and third editions of The C++
+Programming Language provides insight into how the C++
+language has grown and changed in the past decade. The third
+edition has almost three times the number of pages and a
+slightly different organization. Whereas the first edition
+included a 67-page language reference manual at the end, the
+third edition includes only a language grammar section to
+represent formal language definition. This is appropriate.
+The ANSI/ISO Standard document, which is now the formal
+language and library definition, is itself about 750 pages
+long. Stroustrup plans to publish The Annotated C++ Language
+Standard (coauthored by Andrew Koenig, the ANSI C++
+committee's Project Editor) sometime this year. 
+The third edition takes a tutorial approach with many of
+Stroustrup's personal programming philosophies. The author's
+explanations of how he uses language features provide
+examples for learning the behavior of those features. He
+also explains code idioms that some programmers routinely
+use but that he finds inappropriate. 
+As much as possible, the third edition reflects Standard C++. 
+When small language features are found to be missing,
+particularly new ones, Stroustrup pledges to add them to a
+future printing. 
+The book includes many code examples. There is no diskette
+or CD-ROM, because Stroustrup avoids a teaching approach
+wherein readers compile and run examples. His examples are
+mostly code fragments that demonstrate the points he makes
+and the issues he addresses. The code fragments are
+readable, meaningful, and neither frivolous nor cute, and
+since you do not compile them, you need not worry that your
+compiler does not fully support Standard C++.
+There are four parts to the body of the book: "Part I: Basic
+Facilities;" "Part II: Abstract Mechanisms;" "Part III: The
+Standard Library;" and "Part IV: Design Using C++." Even if
+you are already a seasoned C++ programmer, Part IV, which is
+a rewrite of several chapters from the second edition, is
+worth the price of the book. It describes Stroustrup's
+philosophies on the design and development cycle of a
+software project involving C++. In his words, Part IV aims
+"to bridge the gap between would-be language-independent
+design and programming that is myopically focused on
+details." 
+The three appendixes are: "A: The C++ Grammar;" "B:
+Compatibility;" and "C: Technicalities." Appendix B
+discusses the differences between C and C++ and explains how
+the languages have become more compatible over time. Some of
+this convergence results from changes being made to the C
+specification (double-slash comments and no implicit int,
+for example). The appendix also discusses the issues related
+to porting C++ code from older C++ implementations, advising
+that, where possible, you should use the latest
+implementation of a compiler so that newer features are
+available to you. 
+Appendix C is about technical details that a programmer
+faces that are not necessarily language issues. I
+particularly like the discussion on the problems associated
+with traditional multidimensioned arrays as compared to
+using STL containers to achieve the same result without the
+headaches. 
+This book is an essential addition to a C++ programmer's
+library. It is not for dummies, and it wouldn't be my first
+choice for an entry-level, self-help tutorial on C++ for
+beginning programmers. It is, however, an excellent textbook
+for programmers who are self-motivated and students who
+study under the watchful care of a skilled instructor. As an
+experienced C++ programmer, I find the book useful as a
+reference to language usage and behavior. The author
+invented the language and then stayed close to the
+standardization and innovation process for the duration,
+always maintaining a careful vigilance over the evolution of
+his brainchild. Consequently, this book serves, for those
+who do not care to pore over the ANSI/ISO document (or the
+promised annotated version), as the authority on the
+Standard C++ language, how it works, and how you should use
+it. 
+-- Al Stevens 
+Copyright ©1998 DDJ Electronic Review of Computer Books
+Created 3/31/1998 / Last modified 3/31/1998 / webmaster@ercb.com

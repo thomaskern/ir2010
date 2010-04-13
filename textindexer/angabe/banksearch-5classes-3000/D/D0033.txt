@@ -1,0 +1,789 @@
+
+ 
+ 
+Java Lessons overview
+JavaLessons.com
+91 days access for only US$ 19,-
+How can I access all lessons ?
+Well over 100 lessons
+Let me try
+Have you seen our 
+Free Lessons ?
+In this lesson .....
+ 
+....you can learn about :
+ 
+Graphical User Interface, GUI
+ 
+SetText
+ 
+- Changing text in a TextField and a Label.
+- the constructor
+- handling mouse events
+- changing colors
+ 
+Focus
+ 
+- a component getting keyboard focus
+- checking a string.
+- setting the caret position
+- getting text from a TextField
+ 
+Text Components
+ 
+- Using the multi-line text component TextArea
+- Adding text to it
+- Clearing it
+- Protecting its contents
+ 
+Fonts
+ 
+- Changing font for different components
+- Which types
+- Styles : bold, italic
+- Combining styles
+- Multi-line choice component List
+- Adding to it
+- Constructor
+ 
+Cursor
+ 
+- What cursors there are
+- How to associate a cursor with a component
+ 
+Right click
+ 
+- 
+Acting on a mouse right-button click
+ 
+Constructors
+ 
+Construction
+ 
+- 
+Constructors
+ 
+Error handling, date and time
+ 
+Exceptions
+ 
+- 
+Handling errors
+- 
+try .. catch .. finally
+- 
+converting String to int
+ 
+Custom Exception
+ 
+- Making your own exception class
+- Throwing it
+- Catching it
+- A method throwing an exception from a called method
+- Choosing between Exception and RuntimeException
+ 
+Date and time
+ 
+- 
+getting current date and time
+- 
+showing these in different formats
+ 
+Date checking
+ 
+- 
+Converting String input to Date
+- 
+parsing
+ 
+Applet/Browser matters
+ 
+ Sound
+ 
+- 
+retrieving clip
+- 
+sound formats : .au , .mid, .wav
+- 
+playing, stopping, looping
+- 
+Applet's stop method
+- 
+determining applet's origin
+ 
+ Applet methods
+ 
+- 
+init
+- 
+start
+- 
+stop
+- 
+destroy
+ 
+Show HTML
+ 
+- 
+asking the browser to get and show HTML 
+- 
+constructing a URL
+ 
+Applet Communication
+ 
+- 
+applets calling each other's methods
+- 
+applet naming in HTML
+- 
+casting / type conversion
+ 
+GUI, Layout
+ 
+Size
+ 
+- 
+getting components' dimensions
+- 
+using size to center component
+- 
+positioning a component
+- 
+disabling layout manager
+ 
+ Panels
+ 
+- 
+using Panels to create main division
+- 
+using a grid layout
+ 
+FlowLayout
+ 
+- 
+Applet/Panel's default layout method
+ 
+ BorderLayout
+ 
+- 
+Layout division of 4 borders and remaining space.
+- 
+Constants : CENTER, NORTH, EAST, SOUTH, WEST.
+ 
+GridLayout
+ 
+- 
+Grid layout : rows, columns
+- 
+Cells/components equally sized
+ 
+CardLayout
+ 
+- 
+Group of Panels, only one on top.
+- 
+Adding to Panel
+- 
+LayoutManager
+- 
+Casting
+- 
+Placing a Card on top
+ 
+GridBagLayout
+ 
+- 
+Layout of grid : rows, columns
+- 
+Positioning components with x, y cell coordinates
+- 
+Components sized differently.
+- 
+Removing components from container
+ 
+Border size, Insets
+ 
+- 
+A container having borders.
+ 
+Interface, adapter, event handling, inner class 
+ 
+Interfaces
+ 
+- 
+Defining and implementing an interface
+- 
+Using an interface for constants
+- 
+Using an interface as array data type
+- 
+Determining type of reference variable, instanceof
+ 
+Adapters
+ 
+- 
+Inner class
+- 
+Adapter classes
+- 
+Handling mouse events thru adapters
+ 
+Inheritance, overriding, polymorphism
+ 
+Inheritance
+ 
+- 
+Inheriting methods, data
+- 
+Object
+- 
+superclass
+- 
+subclass
+ 
+Overriding
+ 
+- 
+Overriding methods
+- 
+Polymorphism
+- 
+Extending functionality
+- 
+toString()
+- 
+final
+ 
+Painting, drawing
+ 
+Images
+ 
+- 
+Retrieving a gif or jpg image from applet.
+- 
+Same, from stand-alone application.
+- 
+Determining size of image.
+- 
+Using a transparent gif, moving it.
+- 
+Determining HMTL's origin.
+ 
+Painting
+ 
+- 
+The paint method, called programmatically or automatically.
+- 
+Setting drawing colour.
+- 
+Drawing lines.
+- 
+Preventing erasure, overriding the update method.
+- 
+Painting in memory.
+ 
+Swing painting
+ 
+- paintComponent
+- JPanel subclass
+- JComponent superclass
+ 
+Clipping
+ 
+- 
+Painting in selected region only.
+ 
+GUI : keyboard, components
+ 
+Keys
+ 
+- 
+Handling keyboard events.
+- 
+Filtering keyboard input.
+- 
+Handling function keys, control keys.
+- 
+KeyListener.
+ 
+Scrollbar
+ 
+- 
+Creation, using it, handling its events.
+ 
+ List and Choice
+ 
+- 
+Using these choice components.
+- 
+Adding lines.
+- 
+Handling choices.
+- 
+The switch statement.
+ 
+Checkboxes and Radiobuttons
+ 
+- 
+Using these.
+- 
+Determining on/off state
+ 
+GUI : AWT Components, customizing
+ 
+ Component Methods
+ 
+- 
+Determining size, color, location etc, etc....
+- 
+Determining origin of event.
+ 
+State
+ 
+- 
+Disabling components.
+- 
+Making them invisible.
+- 
+The other way round.
+ 
+Custom Component 1
+ 
+- 
+Making an own visual component.
+- 
+Listening to its events by parent.
+ 
+Custom Component 2
+ 
+- 
+Same thing, but acting like a button, generating an action event.
+- 
+Using the Vector collection class.
+ 
+Static
+ 
+Statics
+ 
+- 
+static vars.
+- 
+static methods.
+- 
+constants, final.
+ 
+GUI : Scrollpane
+ 
+Scrollpane
+ 
+- 
+Using it to scroll a visual component.
+ 
+Browser or stand-alone
+ 
+Applet or Application ?
+ 
+- 
+Making a stand-alone application.
+- 
+Using a frame, positioning it, sizing it.
+- 
+Determining screen size.
+- 
+Using an inner class for handling window events.
+- 
+Making an applet class suitable for both situations.
+- 
+WindowListener.
+- 
+WindowAdapter.
+- 
+System.exit(0)
+ 
+-.-
+ 
+Packages
+ 
+- 
+Putting a class in a package.
+- 
+Using its full name.
+- 
+Using CODEBASE in HTML.
+- 
+Useful package names.
+ 
+-.-
+ 
+Access
+ 
+- 
+Restricting access to data and methods from methods in other classes.
+- 
+public, private, protected, package
+- 
+get/set methods
+ 
+-.-
+ 
+Copy, Paste. The clipboard.
+ 
+- 
+Exchanging data with other applications.
+ 
+Beans
+ 
+Beans 1
+ 
+- 
+Making a visual bean, that can be saved and restored, for easy use in a
+builder tool.
+ 
+Beans 2
+ 
+- 
+Same, painting itself.
+ 
+Beans 3
+ 
+- 
+Adding a property.
+ 
+Beans 4
+ 
+- 
+Adding event generation.
+- 
+Deployment in .jar file.
+- 
+Manifest file.
+ 
+GUI : Dialogs, Windows
+ 
+Own Dialog
+ 
+- 
+Making a custom dialog window.
+- 
+Its lifespan, using its components.
+- 
+Setting its layout mode.
+ 
+File Dialog
+ 
+- 
+Choosing directory and file thru dialog window.
+- 
+Filtering files.
+ 
+Window
+ 
+- 
+Making a separate Frame window.
+- 
+Disposing of it.
+ 
+GUI : Menus
+ 
+Menus
+ 
+- 
+Handling menu choices.
+- 
+Disabling menu item.
+- 
+Communication with parent class.
+- 
+Submenus.
+- 
+Shortcut keys.
+- 
+WindowListener.
+- 
+WindowAdapter.
+ 
+Popupmenu
+ 
+- 
+Context/popup menus.
+- 
+Removing component.
+ 
+Files and database
+ 
+String Files
+ 
+- 
+Writing, reading Unicode strings.
+- 
+Adding to an existing file.
+- 
+Untrusted code.
+ 
+ByteStreams
+ 
+- 
+Writing, reading binary data : bytes, ints, doubles etc...
+ 
+Update a File
+ 
+- 
+I/O on file.
+- 
+Random access.
+ 
+Java DataBase Connectivity, JDBC
+ 
+- 
+Loading a database driver.
+- 
+Connecting to database.
+- 
+Using SQL.
+ 
+JDBC 2
+ 
+- 
+Using PreparedStatement
+ 
+Collections
+ 
+List
+ 
+- 
+java.util.ArrayList
+- 
+java.util.LinkedList
+- 
+Add, search, remove
+- 
+Index
+- 
+Iterating
+- 
+Sorting
+ 
+Set
+ 
+- 
+java.util.HashSet
+- 
+java.util.TreeSet
+- 
+Add, search, remove
+- 
+Iterating
+ 
+Map
+ 
+- 
+java.util.HashMap
+- 
+java.util.TreeMap
+- 
+Key-value pairs
+- 
+Add, search, remove
+- 
+Iterating
+ 
+Properties
+ 
+- 
+Managing key-value pairs in list.
+- 
+Lookup in list.
+- 
+Handling Enumeration.
+- 
+Reading from url.
+ 
+Sorting
+ 
+- 
+Sorting regular arrays
+- 
+Fast search
+ 
+Printing
+ 
+Printing 1
+ 
+- 
+Printing 1.1 .
+- 
+Printing several pages.
+- 
+Page dimension
+ 
+Printing 2
+ 
+- 
+Printing 1.2 up .
+- 
+Page specs.
+ 
+Multithreading
+ 
+Threads 1
+ 
+- 
+Separate task thru thread within same class.
+- 
+Runnable, run method.
+- 
+Pausing it.
+ 
+Threads 2
+ 
+- 
+Thread class subclass.
+- 
+Synchronizing threads, one at a time.
+- 
+Stopping thread.
+ 
+Threads 3
+ 
+- Using
+synchronized for exclusive use of an object.
+- 
+Setting priorities.
+ 
+Threads 4, Swing
+ 
+- Dealing with the GUI from a thread
+- Inner class Runnable
+- invokeAndWait
+- invokeLater
+ 
+Server side programming
+ 
+Servlets 1
+ 
+- 
+Server-side cooperation with HTTP-server.
+- 
+Generation of HTML.
+- 
+Handling HTTP GET.
+- 
+Handling URL query string.
+- 
+localhost.
+ 
+Servlets 2
+ 
+- 
+Handling HTML FORM contents.
+- 
+Handling HTTP POST.
+ 
+Servlets 3
+ 
+- 
+Handling a user's HTTP session data.
+ 
+14 JSP lessons
+ 
+- 
+Scriptlet
+- 
+Declaration
+- 
+Objects
+- 
+Content-type
+- 
+Query string
+- 
+Handling POST
+- 
+Session
+- 
+Include
+- 
+Exception
+- 
+Forward
+- 
+Beans
+- 
+Custom tags, attributes
+ 
+Security
+ 
+Signing
+ 
+- 
+Making code to be trusted.
+- 
+Public/private keys.
+- 
+Making a Java Archive, .jar , file.
+- 
+Keystore.
+- 
+Certificates.
+- 
+Policy file.
+ 
+Network communication/cooperation
+ 
+Sockets
+ 
+- 
+Processes communicating via the net.
+- 
+Server listening on port.
+ 
+Remote Method Invocation, RMI
+ 
+- 
+Registering as RMI server.
+- 
+Finding this from client.
+- 
+Calling its methods via the net.
+ 
+CORBA
+ 
+- 
+Registering as CORBA server.
+- 
+Finding this from client.
+- 
+Calling its methods via the net.
+- 
+Object Request Broker, ORB .
+- 
+Interface Definition Language, IDL .
+ 
+GUI : Swing
+ 
+14 Swing lessons
+ 
+- 
+Swing characteristics, its relation to AWT.
+- 
+Several components : JApplet, table, tree, toolbar, menu, HTML-editor,
+progressbar, splitpane, tabbed pane, layers.
+- 
+Look and Feel
+- 
+Boxlayout
+- 
+Child window within frame
+- 
+Dialogs : file , color , input , message , confirm.
+- 
+Stand-alone application.
+ 
+How can I access all lessons ?
+Let me try
+Copyright © 2000-2002 System Exclusive & Multi Midi (NL) All rights
+reserved
+JavaLessons.com
+a.k.a. www.jlessons.com
+ 
+ 

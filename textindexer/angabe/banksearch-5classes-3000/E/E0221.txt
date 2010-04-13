@@ -1,0 +1,638 @@
+
+Stroustrup: newsgroup posting
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+Posting to comp.lang.c++
+In December of 1994, I got provoked beyond my capacity to remain silent and
+posted a response to messages on comp.lang.c++ and related newsgroups.
+My response, though strong, proved somewhat popular so I make it available
+here.
+Please remember that this is not a reviewed academic paper and that what is
+fact and what is opinion is labelled as such.
+This posting was mild compared to what provoked it.
+Apart from converting the ASCII message to HTML, I have not edited it.
+The "solid technical paper documenting the beauty and power of C++," I
+refer to in the first paragraph became: 
+A. R. Koenig and B. Stroustrup:
+Foundations for Native C++ Styles.
+Software Practice and Experience. Vol 25, special issue S4.
+December 1995.
+Some of the themes of that paper can be found in the
+papers,
+I provide postcript for.
+ - Bjarne Stroustrup.
+May 2002: Revisiting this note after observing a couple of current flame wars,
+I find that depressing little have changed for the better in the way people
+post/argue over the last 8 years.
+If I were to comment today, I'd of course refer to the 3rd/special edition of
+">my C++ page,
+and to my article "Learning Standard C++ as a New Language"
+(available from my publications page.
+I would also point out that C++ has had an ISO standard since 1998 and
+that many programmers could be much more productive if they relied on
+the standard library (see my technical FAQ".
+I would also have explicitly mentioned generic programming.
+This message is a response to a lot of outrageous inaccuracies, innuendo,
+rudeness, and flat-out false statements about C++ and its user community.
+The most dignified response would be a solid technical paper documenting
+the beauty and power of C++. However, people who believe even part of
+the rubbish posted about C++ will be unlikely to invest the time to get
+hold of such a paper and read it. In fact, the stated purpose of some
+of the worst postings has been to warn people against gaining an understanding
+of C++. Also, there is no shortage of material describing C++
+and its uses. Consequently, I chose to respond directly.
+I consider a large portion of the bashing of C++ and the C++ users
+unwarranted, ill-informed, self-serving, and intellectually dishonest.
+Sadly, one must expected some mud to be thrown at anything successful,
+but I think some posters have gone too far in their attacks on C++.
+Please note, that I am NOT claiming C++ is perfect, that I am NOT
+saying that every critic of C++ is dishonest or ill-informed, that
+I'm not suggesting people should stop discussing C++'s strengths and
+weaknesses (where relevant), and that I am NOT telling you to stop
+using your favorite programming language and use C++ instead.
+I am asking people to clean up their act, to be honest and up-front
+with their aims and motives, to refrain from unsupported derogatory
+statements, to avoid ``have you stopped beating your wife'' style of
+demagogy, and to get a minimum of acquaintance with C++ before
+starting to give advice (positive or negative) about it.
+If you - like most people - have not been engaging in disreputable
+debating practices, please don't take offense from my words; they
+are not aimed at you.
+And do, please do, learn not only C++, but also other languages,
+systems, and techniques that might be helpful to your work and
+intellectual growth. A closed mind is a recipe for bigotry.
+Personally, I have found many stimulating ideas in Ada, Algol68,
+CLOS, Eiffel, ML, Modula-*, Smalltalk, Simula, etc. and in code
+written in those languages. For most of the kind of work I do,
+I prefer C++, but I have never found learning a new language
+unrewarding. The thing to remember, though, is that a programming
+language - any programming language - is a means to an end (the
+building of systems), rather than an end in itself. Considering
+how to build better systems and how various languages can serve
+that end is a much better use of time than fighting language wars.
+Please remember that a system can be ``better'' according to many
+different criteria. The particular purpose of a system together
+with the particular context of its development often have decisive
+effects on the judgement of a system by its builders and - more
+importantly - of its users. 
+Below, I present abbreviated versions of common unfair attacks on C++
+in quotes and then comment on them. Naturally, I try to make my comments
+helpful to people suffering from the root causes of those of the attacks
+that have a basis in reality rather than being just manifestations of
+commercial or intellectual rivalry.
+"C++ sucks"
+- 
+	If you think so, go use what you consider better. It may indeed
+	be better than C++ for your purposes.
+- 
+	C++ is a very useful language that is used successfully by MANY
+	people in MANY application areas. I guess that is a large part of
+	what bothers some. By being successful, C++ offends many who
+	have strong notions of what else ought to be successful.
+- 
+	The major cause of complaints is C++ undoubted success. As someone
+	remarked:
+	There are only two kinds of programming languages:
+	those people always bitch about and those nobody uses.
+- 
+	C++ isn't perfect. That is well known and acknowledged from the
+	start. It is, however, a reasonably carefully thought-out language
+	where the design is based part on acknowledged principles and part
+	on solid experience and feedback from actual use. See my book
+The Design and Evolution of C++ for an exposition of the aims
+	of C++, the design process that led to the current language, the
+	reasons for particular design decisions, etc. 
+- 
+	I wish I had an electronic equivalent to a little duck-horn,
+	so that a rude BEEP was triggered by every unsupported derogative
+	statement about C++. The noise would be deafening, though.
+	An increasing number of people seem to relish displaying their
+	ignorance and poor manners by snide remarks and gratuitous
+	inaccuracies.
+- 
+	At a recent conference, a speaker asked for a show of hands and
+	found that twice as many people claimed to hate C++ as had ever
+	written even a single small C++ program. The only word for such
+	behavior is bigotry. In dealing with the current wave of C++ bashing,
+	we should remember that bigotry is bred by ignorance and fear.
+- 
+	It should also be remembered that if bigotry is not opposed but
+	allowed to fester and sow distrust real harm results.
+"C++ is too complex"
+	C++ is much more complicated than, say, C and Pascal. However,
+	MANY have succeeded in learning and applying C++. It has been
+	demonstrated again and again that you don't need to be a genius
+	to learn C++ in a reasonable time or to use C++ well. Further,	
+	it has been demonstrated that there are several distinct ways
+	of reaching that level of competence.
+	So, what about C++ is hard to learn, and why? Someone knowing C
+	well can learn Pascal in a week - and vice versa. Becoming expert
+	- that is, learning to avoid the more common pitfalls and using
+	common idioms of the new language - is harder. It could even take
+	a couple of months. The reason for the easy transition is that
+	the languages are fundamentally similar. All that needs to be
+	learned is a bit of syntax and a few simple ways of using the
+	new syntax. Often, this can be learned from looking at the briefest
+	description of the language and some code. The time and effort
+	needed is a small fraction of was originally invested in becoming
+	an effective programmer.
+	This is where C++ is different. The key concepts of data abstraction
+	and object-oriented programming are new to most people. Yes, these
+	days most people have heard about OOP, but most have no practical
+	experience with it and can no more do a object-oriented design than
+	swim or bicycle based only on having read an article on the subject.
+	You can use C++ effectively as a more strongly type checked C with
+	a bit of simple data abstraction and library use thrown in after
+	a week. However, becoming comfortable with OOP/OOD takes most people
+	much longer. Estimates of six to eighteen month for becoming really
+	proficient are often quoted, are in line with my personal experience
+	with new C++ projects, and are in line with experience with other
+	languages supporting OO.
+That demonstrates that the problems with notation and other language-technical
+details are minor. They are typically overcome within weeks.
+The real problems - as with any language - are conceptual: How to make
+a good design; not (just) how to express it.
+	The much touted problems with readability are again vastly overstated.
+	You can write obscure code in any language, and significant programs
+	in a language you have only superficial knowledge about are always
+	unreadable - especially if prejudice prevent you from actually
+	trying to overcome notational barriers. A major part of readability
+	is simply familiarity and experience.
+	The idea that a manager or a complete novice in a language can come
+	even close to comprehending a significant program because some inherent
+	virtue of a particular language is nothing more than marketing hype
+	and self-delusion. When people make such claims I wonder what else
+	they might believe or be willing to claim.
+	So why do reasonably clever and experienced people sometimes fail
+	to learn C++ or fail to use it effectively after they have supposedly
+	learned it? Usually because they have the wrong expectations. This
+	actually has to be the case because I haven't found any strong
+	correlation between what we could call smarts and becoming good
+	C++ programmers. Some really clever programmers fail, and some
+	supposedly mediocre ones succeed spectacularly.
+	The ones that fail are usually the ones who believe they know
+	everything already. Coming to C++ with a ``C is THE language''
+	or ``OO means Smalltalk'' attitude is a recipe for failure.
+	You can write in an (almost) pure C or (almost) pure Smalltalk
+	style in C++, but that usually is not a good use of C++. Doing
+	that involves a constant battle with the fundamental concepts
+	of C++ and with the C++ type system. Against the fundamental
+	structure of a language - any language - you can win Pyrrhic
+	victories only.
+	Another mistake is made by people who firmly believe that THEY
+	don't need tutorial material. ``Real programmers read only code
+	and reference manuals.'' That attitude is a recipe for disaster
+	with C++. Undoubtedly, someone can learn OOP from reading code
+	- after all Alan Kay (partly) learned OO by deciphering an 80
+	page Simula program thinking it was Algol. However, most people
+	are not in the same league as Alan.
+	Experience shows that trying to learn OOP or C++ from
+The Annotated C++ Reference Manual
+is usually a BIG mistake.
+	It is a nice book, I can recommend it (:-), but not as a tutorial.
+	After all, most people wouldn't try learning a natural language
+	exclusively from a grammar plus a dictionary. Few would succeed.
+	Naturally, I recommend my "The C++ Programming Language (2nd edition)"
+	for learning C++, but there are many other good books
+	out there, and my book is not the best tutorial for everyone.
+	Take advice from others who have succeeded in becoming good C++
+	programmers (rather than from self-proclaimed C++ haters or people
+	without practical C++ experience). It is a curious phenomenon to find
+	self-proclaimed C++ haters trying to cash in on C++'s popularity
+	by teaching C++, writing articles on C++, and even by writing
+	C++ textbooks as their first C++ project.
+	Whatever you do, focus on concepts and design issues rather than
+	language-technical details. The details will come in time provided
+	the basic concepts are there. Try to avoid relying exclusively on
+	``how-to manuals'' and ``handy-hints books.'' I have even noticed
+	people on the net who clearly were trying to learn C++ without any
+	textbook or reference manual; such an effort must be most frustrating
+	and have a low probability of succeeding. It is also a sad waste
+	of time even if it - against all odds - should succeed.
+	Another thing to keep in mind is that C++ is not Windows, Unix,
+	X, MacApp, Etc. These systems have their own logic and complexities
+	distinct from those of C++. Simultaneously trying to learn event-driven
+	user interfaces, distributed computing, OOD, and C++ is definitely
+	hard. However, C++ is often the least complicated entity in such a
+	collection of concepts/tools/systems/libraries. Blaming C++ for the
+	complexity of a system used through it is not quite fair - even if
+	C++ and its various program development environments are the most
+	visible and tangible part of such a system.
+	The bottom line is that the world is VERY complex, and to some
+	extent the tools we use reflect that. Among the tools we use,
+	C++ is nowhere near the most complex.
+	Whatever the reason, and contrary to the popular doomsday scenarios,
+	most programmers who genuinely try succeed in becoming productive C++
+	programmers in a reasonable time.
+"C++ programmers are idiots"
+	When C++ was new, one of the things that pleased me most was
+	that discussions about C++ were so much better informed than
+	discussions about most other languages, that the understanding
+	of key concepts were so much better in C++ groups than in, say,
+	C and Pascal groups, and that groups such as comp.lang.c++ were
+	so much more polite and supportive than that of other groups.
+	Clearly, I thought naively, C++ attracts a much better class of
+	programmers, learning C++ helps people to absorb the key concepts
+	of good programming/design, and the resulting success makes people
+	more tolerant and helpful.
+	I was wrong. The phenomenon was real, but it had little to do with
+	C++. In a small dedicated community, life is relatively easy. people
+	do their homework, people have access to reasonable sources of
+	information, gross errors and misconceptions are corrected before
+	they can cause significant harm, compilers and teaching materials
+	are up-to-date, etc.
+	This is not and cannot be the case in a multi-hundred-thousand
+	member community: Some will be taught out of outdated or unsuitable
+	books, some will use antiquated compilers and tools, some will
+	be taught by charlatans, some will be remote from current and
+	reliable news-sources, some will have unsuitable rules and
+	regulations imposed on their work, etc. Also, in a rapidly growing
+	community, most users will be novices.
+	Does this make C++ programmers idiots? or ``on average idiots?''
+	Not at all, but the average C++ programmer is not part of a
+	relatively closely knit elite with access to the latest
+	information and tools. Neither is the average C++ programmer
+	someone with a lot of spare time for study and stimulating
+	intellectual debate. When the number of any group goes up,
+	the average - in every way - MUST converge towards the industry
+	average.
+	Proponents of languages that still have relatively minute - and
+	therefore relatively close-knit and well-informed user communities
+	- are making the mistake I made: seeing the evident success and
+	enthusiasm of their fellow ``cult members'' as a direct consequence
+	of qualities of their favorite language. They are wrong; if - against
+	all odds - their language should escape into the mainstream the
+	vastly enlarged user community will get its share of the problems
+	and failures.
+	Many of C++'s problems are best ascribed to problems with the scale
+	of the user community and the scale of the problems attacked - as
+	opposed to problems with the C++ language design.
+	Many of the most experienced individuals and organizations in the
+	industry (and academia) use C++. Ascribing their choice of C++ over
+	alternatives to stupidity, ignorance, or inexperience is arrogant
+	and insulting - and in many cases simply wishful thinking based on
+	a limited field of knowledge.
+	I still think the average C++ programmer is pretty smart, but rarely
+	a fanatic, and usually too busy getting the work done to bother with
+	language laws or the latest academic advances in OO type theory.
+	Fortunately, one doesn't need to be a genius to write good C++.
+"C++ is just C, but worse"
+	C++ can be used just like C, but it doesn't have to be and in general
+	it isn't. Many (most?) people start with C++ as a more strongly type
+	checked versions of C, use libraries, add a bit of data abstraction,
+	and then progress to a more complete and effective use of the C++
+	specific features. That is in my experience a good way to progress,
+	especially if you are not in an environment where genuine experience
+	with OO in C++ is available and supported by management.
+	One effect of this gradual approach is that as long as the number of
+	C++ programmers and C++ projects is growing rapidly, much (most?)
+	C++ code will be written by people at the beginning of their personal
+	or organizational learning curve. Their code will reflect it.
+	However, this situation does not last - however much as detractors
+	would like it to. All the personal and indirect experience I have
+	indicate that people are moving right along as expected.
+	Talking about C/C++ as if it were one thing and ascribing every
+	weakness of C and negative past experience with C to C++ is just
+	plain wrong. personally, I take most uses of the compound ``C/C++''
+	as an indication of ignorance.
+	Considering C a smaller, faster, and better specified alternative
+	to C++ is another popular fallacy. The C-like subset of C++ is as
+	fast, as well specified, and easier to deal with than C itself.
+	One source of popularity of this fallacy is an unwillingness
+	by some C/Pascal-level programmers not to learn something really
+	new. Another is wishful thinking by some proponents of more
+	advanced languages: after all, if C++ is simply a more complicated
+	C it cannot be a serious competitor to a more advanced language.
+"C++ is useless/unreliable/dangerous because it lacks feature/property X"
+	Also heard as ``you can't write real/reliable/maintainable/elegant/
+	re-usable/object-oriented/modern software without feature X - and C++
+	doesn't have X.''
+	Bosh! 
+	Once you - as many - have seen a few dozen large industrial C++
+	projects completed on time, as budgeted and going through maintenance
+	as hoped for, clever arguments based on the necessity of individual
+	language features - invariably features absent in C++ - lose
+	their credibility. Such arguments remain interesting sources for
+	ideas for improvements of C++, but their central sales/propaganda
+	message is fundamentally discredited.
+	Over the years C++ has been deemed useless because it lacked
+	(among other things) type checking, metaclasses, multiple
+	inheritance, garbage collection, generics, concurrency support,
+	exceptions, co- and contra-variance, dynamic linking, typecase
+	switches. Simultaneously, if was - often by the same people -
+	deemed useless because it was too complicated and had too many
+	features. At the same time, a steady and increasing stream of
+	projects were successfully completed in C++. 
+	My firm conclusion is that no single feature is truly necessary.
+	Much more successful software has been written in languages proclaimed
+	BAD, than has been written in languages acclaimed as saviors of
+	suffering programmers; much more.
+	Also, each time C++ has acquired another feature - according to my
+	original view of how the language should evolve - the absolutely
+	essential feature people used as proof of C++'s fatal weakness
+	changed.
+	The real driving logic seems to be:
+	If feature X is in ``favorite language'' and not in C++,
+	it MUST be fundamental to ``favorite buzzword''.
+	That is backwards and illogical, but it makes commercial and
+	psychological sense. After all, if ``favorite language'' didn't
+	have such a killer feature arguing against C++ in a simple-minded
+	manner could be unpleasantly hard. One of the oldest and most
+	disreputable tricks in the book is to define OO so that ``favorite
+	language'' and no other language really supports OO. Since every
+	neat feature can be illustrated by a neat example that can't be
+	done without some ugliness in a language that doesn't have the
+	feature, the redefine-OO trick always takes in a few suckers.
+	Fortunately, these ``neat features'' rarely prove as essential in
+	practice as their proponents claim they are in theory.
+	If no feature is essential, then why use any features? You can in
+	theory write anything in machine code, and apparently get anything
+	to work in the real world using C. However, why should you where
+	there is a better alternative available? Many people strongly
+	prefer C++ over procedural languages such as C and Pascal and
+	deem the feature set provided by C++ close to essential for
+	their applications. A feature need not be essential to be helpful.
+	The set of features provided by C++ is such that aspects of
+	most major features get used in most major programs - directly
+	or indirectly.
+	I do not consider the set of features in C++ excessive; where a
+	genuinely needed feature is missing from a programming language,
+	the result isn't that the programmer has to understand less to
+	work on a system; the result is that the complexities gets represented
+	in the code itself rather than in a common form in a programming
+	language. A major benefit of supporting a feature directly in a
+	language or in a standard library is that much of the effort needed
+	to understand one system will pay off when looking at another
+	system where similar language and library features have been used.
+	Such benefits are far harder to achieve when mechanisms are provided
+	through code in a simpler language.
+	Remember that many C++ features are there primarily to allow library
+	building. Not every feature needs to be used directly by every user,
+	nor does every feature have to be examined in detail by every tutorial.
+"C++ is not Object-oriented"
+	C++ supports object-oriented programming (as defined by most
+	people). C++ supports it pretty well for real-world applications.
+	Its type system and general model of the world are coherent and
+	relevant to real applications.
+	The proof of the pudding is in the eating, so I consider the fact
+	that many large projects have been completed using C++ much more
+	significant than the fact that C++ doesn't conform to the latest
+	fashion of OO theology.
+	Have a look at the ``Design Patterns'' book by Gamma et.al. for
+	examples of elegant designs clearly expressed in relatively
+	straightforward C++.
+	I observe that there are a lot of myths about what features C++ has
+	and doesn't have, and also about the essential soundness of the
+	features that people (mostly) agree that it does have. Many posters
+	and even many writers of academic papers really ought to update
+	their knowledge of C++. It would be unfair to seriously complain
+	just because someone didn't know about a feature added to the 
+	upcoming C++ standard sometime during the last year or a feature
+	for which an implementation wasn`t generally available. However,
+	I see claims based on the 1985 edition of 
+The C++ Programming Language.
+That - especially when comparisons are made with
+	experimental languages - is totally misleading. Doing so in 1994
+	is intellectual sloppiness bordering on dishonesty.
+If comparing C++ to a widely distributed language, at least try
+to compare to C++ as distributed over the last few of years (say,
+as described in 
+"The C++ Programming Language (2nd edition)").
+If comparing with an experimental language. Try to get up-to-date
+information - say 
+The Design and Evolution of C++ or the C++ standards committees working
+paper. ``The C++
+Report'' and other magazines tries to keep their readers informed
+and tend to be only a meeting or two behind the committee. Simply
+relying on hostile hearsay from the net is not respectable.
+"C++ compilers/tools are too buggy"
+	Yes, but they are getting better.
+	Yes, but compilers/tools are never quite good enough.
+	Yes, but they have - often just barely - been good enough for real work.
+	Yes, but they are still better than the alternatives on many platforms.
+	Most importantly, C++ and its various implementations have a solid
+	core where different compilers tend to agree and where the code
+	generated is reliably good. There are several ways of looking at
+	a language. If your job is to write a test suite or your aim is
+	to ``push the envelope'' of what can be done, you hit a lot of
+	annoying bugs and variation between implementations. If your job
+	is to build systems, you try hard to avoid the grey areas - and
+	often succeed.
+	By and large, C++ compilers have been ``ok but not great'' according
+	to the standards of their community. Some have been better. Now that
+	the rate of language changes has decreased, I expect to see significant
+	improvements in quality; in fact, I think I'm already seeing signs
+	of that.
+	C++ tools are improving in general: For example, I had expected it
+	to be years before I saw a C++ debugger that allowed you to stop
+	a program at a breakpoint, rewrite a function, and then restart
+	the program using the new function. Sun now sells a C++ system
+	handles does that. Another example of the improved state of affairs
+	is the wide availability of memory-leak detectors, simple browsers,
+	and other useful program development tools.
+"The C++ standards committee is out of control"
+	(whatever that means)
+	First of all, you can't believe everything you hear on comp.lang.c++,
+	comp.std.c++, etc. In general, such forums are noisy and dominated by
+	a relatively low number of people with strong opinions and relatively
+	few restraints on expressing those opinions. If you consider the net
+	in any way representative, you can get a spectacularly warped view
+	of the world.
+	Facts:
+- 
+	Most proposals for language extensions are rejected.
+- 
+	Most proposals for changes are rejected.
+- 
+	Most accepted changes and extensions are minor.
+- 
+	The committee is working on a rather tight and definite
+	schedule (Committee draft and US public review
+	early in 1995, final vote as soon after as ISO
+	rules allows for).
+- 
+	The committee is working of a schedule as tight as
+	that of other language standards (e.g. C and Ada).
+- 
+	Most members of the committee are honest, competent,
+	and hardworking individuals.
+- 
+	Most members of the committee would rather see
+	a finished standard and get on with something else.
+- 
+	The committee is responsive to events and opinions in
+	the C++ community at large - partly through the
+	organizations the members represent and partly
+	through a general willingness to listen and explain.
+- 
+	Many members help popularize the deliberations and
+	decisions of the committee (but it is hard to
+	reach a large and diffused user community - see
+	messages on the net, magazine articles, conference
+	talks, etc.).
+	If you can, come to a meeting and see for yourself. There is no fee
+	for attending a single meeting and you don't have to represent anyone
+	to visit. Reasonably enough, you can't vote at your first meeting,
+	though. Some members may show impatience if you try to take precious
+	committee time without having done your homework, but you can listen
+	and there are lots of time to discuss things outside formal sessions
+	of the committee as a whole.
+	Currently, work is focused on clarification and on libraries.
+	Just one language extension has been approved during last 8 months
+	(adoption of the keyword ``explicit'' to suppress use of a constructor
+	for implicit conversion) - and that's a restriction.
+	Much work has been done on details of name lookup, overload
+	resolution, the type system, the memory and object models, etc.
+	The major event in the library area was the adoption of the STL
+	library in response to demands for containers, etc.
+	It might be worth mentioning that two things are happening at once:
+	Compilers are being developed and distributed at the same time
+	the language development is continuing. Whichever order those two
+	things happen in, *someone* will complain. Moreover, if language
+	development stopped, people would complain too. Already, some
+	people are complaining because the rate of language change has
+	slowed to a crawl.
+	I find it blatantly unfair when posters use strong words against
+	``the committee'' because it is a nebulous concept like ``the
+	bureaucrats.'' The committee consists of hardworking individuals
+	most of whom just happen to be unable to respond to comments in
+	various forums. Suggestion: Don't post anything about the committee
+	that you would be ashamed saying to me face-to-face in public.
+	Also, please remember that the committee members are all volunteers.
+	
+"I have heard of lots of C++ disasters"
+	- and senator McCarthy had heard of 200 communists in the US state
+	department; he even claimed to have a list in his pocket.
+	There were a month-long thread in comp.lang.c++ and elsewhere
+	headed ``C++ disasters.'' In fact, no genuine C++ disasters were
+	documented. There were lots of statements on the form ``X failed
+	and they might have used C++'' and ``X was in trouble and they
+	used C++'' but I didn't see any message making a causal link
+	between C++ use and failure plausible. C++ was being blamed for
+	everything from the collapse of the US phone system (it didn't
+	collapse and the breakdown people keep referring to occurred in
+	a system not written in C++) to the Denver airport baggage
+	handling system (there were/are a bit of C++ in that system but
+	not anywhere near as much C++ as C and assembler). By the quality
+	of the ``logic'' applied it is a marvel that C++ wasn't also
+	blamed for the (possible) crumbling of the runway surface.
+	Genuine C++ failures must occur. After all, when a lot of people
+	try some non-trivial new tool - any new gadget - some will ``fail.'
+	I think it would be fair to guess that 10% to 20% will miss the
+	point, find the tool not to their taste, fail to use it correctly,
+	apply the tool in an area that it is unsuited for, etc. By that
+	logic and the sheer weight of numbers we must conclude that more
+	programmers have had some failure learning or using C++ than have
+	tried any other OO language. This would explain the emotional heat
+	of some criticisms of C++.
+	Many more have succeeded with C++, though, and most failures must
+	have occurred on a small scale or we would have heard much about
+	them - people tend not to be shy about publishing other people's
+	failures (even if in an ideal world that would be bad taste). I see
+	no evidence that projects using C++ have a greater failure rate
+	than projects in general. In my limited experience, the opposite
+	seems to be the case, despite that C++ appears to be used on a
+	disproportionate number of ``ambitious'' projects. I take this
+	as a testimony to people's good sense, to C++'s flexibility, and
+	to the fact that strong core of genuine C++ experts have always
+	recommended caution in the adoption of C++ and new techniques.
+	On the other hand, the C++ community is somewhat to blame for not
+	doing more to publicize their successes. As usual, the C++ community
+	is anarchic and possesses no central focus - such as a single users
+	group or a central coordinating organization. Usually, that is an
+	advantage because it helps foster initiative, but when it comes to
+	collecting and dispensing information the C++ community is at a
+	disadvantage compared to communities focused of a single central
+	company or organization. It would be a major benefit if someone
+	would collect - and make easily available - brief descriptions of
+	a couple of hundred C++ projects of significant size.
+"I just don't like C++"
+	Fine. There are lots of things I don't like. Sometimes, I object
+	to aesthetic aspects; sometimes something just doesn't serve my
+	needs. If asked, I may even express my negative opinion, but rarely
+	rudely, and never as an unprovoked attack or a snide remark about
+	other people's work. If I am perceived to do so by lack of
+	consideration or I slip up (nobody is perfect), I apologize.
+	I don't apologize for C++, though. I find C++ the best choice for
+	a wide range of applications. If you can find the time, I encourage
+	you to try to find out why that is. Many have found the effort
+	worthwhile.
+	I wish more people would distinguish between an expression of
+	personal opinion/taste (such as ``I just don't like C++'') and what
+	is claimed to to be an expression of objective fact (such as ``C++
+	sucks''). It seems to me that a significant number of posters have
+	difficulties distinguishing their personal opinions from objective
+	facts.
+	Live and let live is a good policy. Spending a lot of emotional
+	energy attacking other people's work is unhealthy.
+Final comment
+	In this note, I didn't try to present technical arguments
+	for (or against :-) C++. You can find many of my technical
+	arguments and opinions in my
+ books
+and 
+ papers.
+Other good
+	sources of information about C++ and its use are the proceedings
+	of the USENIX C++ conferences, ``The C++ Report,'' Andy Koenig's
+	column in JOOP, and (to a lesser extent) the OOPSLA proceedings.
+	I encourage the C++ community to make a greater effort to document
+	work done in C++ and make such information more generally available
+	(that is, not just preaching to the choir).
+	In general, I encourage people to popularize their favorite
+	programming system through solid examples, rather than by
+	merely scoring points off imagined opponents by clever programming
+	tricks or demagogy.
+	In general, try to be a bit more tolerant and refrain from
+	hyperbole. We need an intellectual honest discussion and a
+	greater degree of professionalism in the discussion of
+	programming and programming languages.
+- Bjarne Stroustrup
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

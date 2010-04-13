@@ -1,0 +1,240 @@
+
+Free Java Help --- Tutorials --- Events --- KeyEvent
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+ KeyEvent 
+ 
+ KeyListeners are used to catch events when
+keys are typed, pressed, or released. The keys being "typed" consists of a
+press and a release. So technically, each time you type a key, you could catch
+a typed event, a pressed event, or a released event. Oh ya, first things first,
+gotta have this:
+import java.awt.event.*;
+ Oh ya, gotta implements KeyListener, here
+is an example:
+public class classnamehere extends Applet implements KeyListener
+ Just add KeyListener to the list of things
+you are already implements, or, if you haven't implemented anything yet, just
+write "implements KeyListener" next to "extends Applet". Hmmmmmmmm. What else.
+Oh ya, any object you want to catch KeyEvents, you have to add a KeyListener
+to, here is how you do it:
+objectnamehere.addKeyListener(this);
+ Here are the methods in the KeyListener
+class that you have to define in your applet:
+public void keyTyped(KeyEvent e){}
+public void keyPressed(KeyEvent e){}
+public void keyReleased(KeyEvent e){}
+ If you want something to happen when a key
+is typed, put code between the brackets of public void keyTyped(). If you want
+something to happen when the key is pressed, put your code into the brackets of
+public void keyPressed(). If you want something to happen when the key is released, put your code into the brackets of public void keyReleased().
+ Now that you know the basics, check out the
+applet. The i key moves the cursor up, the j key moves it left, the k key moves
+it down, and the l key moves it right.
+//-------------------------------//
+//Copyright 2000 FreeJavaHelp.com//
+//-------------------------------//
+//the next line imports the applet class
+import java.applet.Applet;
+//the next line imports the event classes
+import java.awt.event.*;
+//the next line imports the GUI components
+import java.awt.*;
+//the next line begins the program, and makes it extend Applet
+//and implements KeyListener
+public class keyevent extends Applet implements KeyListener{
+ //declares two variables, x and y
+ int x=50,y=50;
+ public void init(){
+ //sets the bg color of the applet
+ setBackground(Color.green);
+ //allows this applet to catch KeyEvents by
+ //adding a KeyListener to it
+ addKeyListener(this);
+ }
+ //the paint method paints things on the screen
+ public void paint(Graphics g){
+ //sets the color to blue
+ g.setColor(Color.blue);
+ //draws the vertical line
+ g.drawLine(x,y-10,x,y+10);
+ //draws the horizontal line
+ g.drawLine(x-10,y,x+10,y);
+ }
+ //the applet wasn't working before, so i put the following
+ //method in to solve the problem. Basically what it does
+ //is let the main part of the applet to "get the focus"
+ //so that key events can be recognized. Sorta weird, but hey
+ //it works
+ public boolean isFocusTraversable(){
+ return true;
+ }
+ //the next method is used to detect when keys are pressed
+ public void keyPressed(KeyEvent e){
+	}
+ //the next method is used to detect when keys are released
+ public void keyReleased(KeyEvent e){}
+ //the next method is used to detect when keys are typed
+ public void keyTyped(KeyEvent e){
+ //this if statement decreases the value of y by 2 if
+ //i is pressed, then it repaints the applet
+ if(e.getKeyChar()=='i'){
+ y-=2;
+ repaint();
+ }
+ //this if statement increases the value of y by 2 if
+ //k is pressed, then it repaints the applet
+ if(e.getKeyChar()=='k'){
+ y+=2;
+ repaint();
+ }
+ //this if statement increases the value of x by 2 if
+ //l is pressed, then it repaints the applet
+ if(e.getKeyChar()=='l'){
+ x+=2;
+ repaint();
+ }
+ //this if statement decreases the value of x by 2 if
+ //j is pressed, then it repaints the applet
+ if(e.getKeyChar()=='j'){
+ x-=2;
+ repaint();
+ }
+ }
+}
+ There is the applet, now I will explain how
+we can figure out which key was pressed. If I wanted to do something only if
+the letter k was pressed, I would write an if statement along the
+lines of:
+if(e.getKeyChar()=='k'){
+	//what you want to happen goes here
+}
+ Also, in writing this applet, I found out
+something that I didn't know before. Before I added the isFocusTraversable()
+method to the applet, nothing would happen when I pushed the keys. This is
+because the part of the applet that I wanted to handle KeyEvents could not get
+the focus. Anyways, so when I put in the isFocusTraversable() method and made
+it return true, it worked perfectly fine.
+ Don't forget, we have a section in our
+Forums dedicated completely to Event Handling, so if you need ANY help, check
+it out!
+Tutorial Contents
+ 
+ 
+Lessons in the Events Section
+ 
+Beginning
+ActionEvent
+MouseEvent
+mouseMove()
+KeyEvent
+mouseDown()
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

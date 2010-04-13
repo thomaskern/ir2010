@@ -1,0 +1,259 @@
+
+Stroustrup: C++
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+The C++ Programming Language
+ 
+Modified July 6, 2002
+Advice of the day
+(from
+TC++PL)
+10.5[5] Use a namespace to make the association between a class and its helper functions explicit; sec10.3.2.
+FAQ of the day
+Where can I get a machine-readable version of the standard?
+Article of the day
+Interview by IEEE Computer from IEEE Computer Magazine, June 1998.
+C++ is a general purpose programming language with a bias towards systems
+programming that
+- is a better C
+- supports data abstraction
+- supports object-oriented programming
+- supports generic programming.
+I (Bjarne Stroustrup)
+am the designer and original implementor of C++.
+You can find the language, the techniques for using it, and the techniques
+for implementing it described in my
+books,
+my
+papers,
+in hundreds of books by others, and thousands of papers by others.
+There are far too many to list.
+Try a bookstore or a library.
+Answers to many questions about C++ can be found in
+- 
+my FAQ,
+- 
+my C++ Style and Technique FAQ
+- 
+my C++ glossary, and
+- 
+some interviews that I have given.
+C++ has been standardized by ANSI (The American National Standards Institute),
+BSI (The British Standards Institute),
+DIN (The German national standards organization),
+several other national standards bodies,
+and ISO (The International Standards Organization).
+You can find a
+slightly out-of-date draft standard here.
+The ISO standard has been finalized and adopted by unanimous vote Nov 14, 1997.
+It was ratified in August 1998 by a 22-0 vote.
+The standard is ISO/IEC 14882;
+it is available for downloading at the
+National Committee for Information Technology Standards Electronic Store.
+The cost is (as I write this) US$18.00 payable on-line via credit card.
+The downloaded document is in PDF form, 2794KB total size.
+The ISO C++ standards committee maintains an
+official site
+with information about the current state of the standards effort.
+Here is a press release about C++ and its standard
+intended for non-programmers and
+a press release about the availability of the standard.
+My book
+The Design and Evolution of C++
+describes the standards process and many of the design decisions made.
+My book
+The C++ Programming Language (Special Edition) describes
+C++ as defined by the ISO standard.
+Discussions about C++ and its use can be found in most forums covering
+programming. The usenet groups comp.lang.c++.moderated and
+alt.comp.lang.learn.c-c++ are good examples. These groups can be accessed in
+various ways including
+Google Groups (sort by date).
+More links:
+- 
+A list of interesting C++ applications
+- 
+Marshall Cline's
+ C++ FAQ.
+- 
+The
+learn.c-c++ newsgroup FAQ
+presents much information of use for C and/or C++ novices.
+- 
+STL (Standard Template Library)
+FAQ.
+- 
+SGI's implementation of the STL.
+- 
+High-performance numerical libraries provide excellent tests for interesting new programming techniques:
+POOMA from LANL,
+Blitz++ from U. of Waterloo,
+MTL from U. of Notre Dame,
+and
+ROOT from CERN.
+Note that the POOMA project maintains
+a page listing compilers that are standards conforming enough for their
+advanced uses.
+All of these libraries are available for downloading.
+- 
+A list of available C++ libraries known as
+the C++ libraries FAQ.
+- 
+Boost.org: A repository for
+libraries meant to work well with the C++ standard library.
+- 
+Doug Schmidt's site with information about a lot of things including
+the ACE framework
+and
+the TAO real-time ORB.
+- 
+AT&T Cambridge Laboratory's robust, reliable, efficient, open-source, CORBA2.1
+compliant
+OmniORB
+(in C++ and supporting C++, of course :-).
+- 
+Hans-J. Boehm's
+site for C and C++ garbage collection
+and a couple of sites offering collectors based on his work
+(University of Tokyo,
+geodesic.com).
+- 
+ C++ Standards FAQ
+containing many valuable links (including some to implementations of the standard library).
+- 
+An incomplete
+list of C++ compilers.
+- 
+Several test suites are available for C++ (try try looking for
+``C++ test suite'' using your favorite search engine.
+For example,
+Plumhall and
+Perennial
+sell extensive commercial standards conformance suites.
+- 
+A net posting
+answering some unfair criticisms of C++.
+- 
+A net posting about
+how to approach learning C++.
+- 
+An ASCII version of the slides I used for
+my keynote at the Spring'99 Embedded Systems Conference.
+- 
+An extensive collection of book reviews can be found on
+the ACCU (The Association of C and C++ Users) site.
+- 
+Sean Corfield's
+ site
+summarizing the changes from ARM C++ to Standard C++.
+- 
+David Tribble's
+ paper
+listing incompatibilities between C++ and C99.
+- 
+A list of resources for people learning C++ from
+The Cambridge University Engineering Department.
+- 
+A list of C++ resources such as
+libraries, implementations, books, FAQs, other C++ pages, etc..
+- 
+A large (18,000+) collection of links to information on OO, OOP languages, etc.
+called
+Cetus.
+- 
+A page listing
+numerous GUI toolkits.
+- 
+A catalog of
+C++ links
+from Forchungszentrum Julich.
+- 
+Addison-Wesley Longman's
+links to C++ and OOP resources.
+- 
+Greg Comeau's C++ related
+site in New York.
+- 
+Brad Appleton's collection of
+C++ and OOP links.
+- 
+The C++ section
+of the open directory project.
+- 
+Herb Sutter's collection of 
+articles
+focussing on how to learn and use Standard C++ in a modern style.
+- 
+Kevlin Henneys' collection of
+thought provoking and useful articles
+about good C++ design and style.
+- 
+The
+C/C++ Users Journal
+has a changing collection of useful articles
+and links especially
+the C++ Expert Forum.
+- 
+Several videos, audio recordings, and transcripts of talks,
+panels, and interviews from
+Dr. Dobb's Technetcast archieves featuring me.
+- 
+An ad for
+videos of a couple of my talks.
+- 
+Dennis Ritchie's homepage containing lots of interesting information
+about the history
+of C, Unix, and (AT&T) Bell Lab's computer science research center
+(where C++ was born).
+Some of these sites are commercial.
+They are listed because I found some interesting information there, not
+because I wanted to endorse a product.
+All the major software suppliers have C++ related information on their sites.
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

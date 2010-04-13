@@ -1,0 +1,537 @@
+
+ 
+C >> strcat and strncat ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Memory Allocation 
+ Main Menu 
+ Creating Header Files and
+ Library Functions 
+ 
+ 
+ 
+ 
+strcat and strncat
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+strcat and strncat are library functions that perform string CONCATENATION. This term is 
+ used to describe the combining of strings. 
+ 
+Both these functions require the string.h header file to be included. 
+ 
+The reason why I've left these until now, is because they require you to dynamically allocate memory before the concatenation of strings. 
+ It isn't as easy as: 
+ 
+str = "Hello" + " World"; 
+ 
+Yes, it's THAT simple in Java, JavaScript and Flash ActionScript! 
+ 
+Visual Basic is more or less the same, apart from the operator: 
+ 
+str = "Hello" & " World"; 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+strcat()
+ 
+ 
+ 
+ 
+ 
+strcat takes two char * arguments and returns the concatenated string as a char *. Here's a simple use of 
+ strcat: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char str1[50] = "Hello ";
+ char str2[] = "World";
+ strcat(str1, str2);
+ 
+ printf("str1: %s\n", str1);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+str1: Hello World 
+ 
+This only works if you've defined the str1 array to be large enough to hold the characters of your string. If you don't specify 
+ a size, the program may crash. 
+ 
+In some cases, you'd probably want to use char * variables. 
+ 
+ 
+ 
+To perform a successful concatenation without the program crashing or complaining about memory, it's best to calculate and allocate 
+ enough memory to hold the resulting string. 
+ 
+You can do this with either calloc or malloc. 
+ 
+Now, the way I concatenate a string in this example may seem weird at first, but it demonstrates the difference between calloc 
+ and malloc: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+#include 
+int main() {
+ char *str1 = "Hello ";
+ char *str2 = "World";
+ char *str3;
+ str3 = (char *)calloc(strlen(str1) + strlen(str2) + 1, sizeof(char));
+/* Try: str3 = (char *)malloc((strlen(str1) + strlen(str2) + 1)*sizeof(char)); */
+ strcat(str3, str1);
+ strcat(str3, str2);
+ 
+ printf("str3: %s\n", str3);
+ free(str3);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+With 
+ calloc I get: 
+ 
+str3: Hello World 
+ 
+But if I'd used malloc: 
+ 
+str3: ------------²²²²Hello World
+ 
+Recall that calloc allocates a clean chunk of memory. 
+ 
+Here's a better version of the last example: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+#include 
+int main() {
+ char *str1 = "Hello ";
+ char *str2 = "World";
+ char *str3;
+ str3 = (char *)malloc((strlen(str1) + strlen(str2) + 1)*sizeof(char));
+/* str3 = (char *)calloc(strlen(str1) + strlen(str2) + 1, sizeof(char)); */
+ strcpy(str3, str1);
+ strcat(str3, str2);
+ 
+ printf("str3: %s\n", str3);
+ free(str3);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+The output in both cases is: 
+ 
+str3: Hello World 
+ 
+The amount of memory to allocate is worked out by finding the lengths of str1 and str2 and adding 1 (to allow for 
+ the NULL character). 
+ 
+The difference between the two examples is the strcpy function call in the second example. str1 is copied into str3, 
+ then str2 is concatenated onto the end of str3. After displaying str3, the allocated memory is freed manually 
+ by passing the pointer into the free function. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ C Version of str1 += str2;
+ 
+ 
+ 
+ 
+ 
+In Java, JavaScript and ActionScript, you can concatenate a string onto the end of an existing one by saying str1 = str1 + str; 
+ or even better, str1 += str2; 
+ 
+Unfortunately in C, += is used for numerical values. 
+ 
+If you wanted to achieve the same result using char * variables, you'll have to allocate memory for a temporary variable, 
+ perform the concatenation, allocate more memory for the original variable, copy the temporary value into it, and free the memory allocated! 
+ 
+ 
+Here's one way that you might go about doing this: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+#include 
+int main() {
+ char *str1 = "Hello ";
+ char *str2 = "World";
+ char *str3;
+ str3 = (char *)calloc(strlen(str1) + strlen(str2) + 1, sizeof(char));
+ strcpy(str3, str1);
+ strcat(str3, str2);
+ 
+ printf("str3: %s\n", str3);
+ str1 = (char *)calloc(strlen(str3) + 1, sizeof(char));
+ 
+ strcpy(str1, str3);
+ printf("str1: %s\n", str1);
+ free(str1);
+ free(str3);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+str3: Hello World 
+ str1: Hello World 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+strncat()
+ 
+ 
+ 
+ 
+ 
+This function's almost the same as strcat - it takes a third attribute, which is the number of characters to concatenate from 
+ the source string. 
+ 
+I'll demonstrate it using char * variables first: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+#include 
+int main() {
+ char *str1 = "It is ";
+ char *str2 = "raining sunny snowing foggy";
+ char *str3;
+ str3 = (char *)calloc(strlen(str1) + strlen(str2), sizeof(char));
+ strcpy(str3, str1);
+ strncat(str3, str2+8, 5);
+ printf("str3: %s\n", str3);
+ free(str3);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+str3: It is sunny
+ 
+Notice how I referenced the 8th character from the str2 pointer, to access the beginning of "sunny". str2 
+ still points to "raining sunny snowing foggy" though. 
+ 
+You can do a similar thing with char arrays too: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+#include 
+int main() {
+ char str4[] = "The time is ";
+ char str5[] = "9PM 10AM 6.47";
+ strncat(str4, str5+4, 4);
+ printf("str4: %s\n", str4);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+str4: The time is 10AM
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ The C Preprocessor 
+ Main Menu 
+ Creating Header Files and
+ Library Functions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

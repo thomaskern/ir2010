@@ -1,0 +1,154 @@
+
+ 
+online C++ tutorial: What is an Object?
+ 
+ 
+ 
+ Section 6: Introduction to Objects 
+Section 6.1: What is an Object?
+ Objects defined 
+So what is an object? An object is a component of a program
+that knows how to perform certain actions and to interact with
+other pieces of the program. Functions have previously been 
+described as "black boxes" that take an input and spit out an
+output. Objects can be thought of as "smart" black boxes. 
+That is, objects can know how to do more than one specific
+task, and they can store their own set of data. Designing a 
+program with objects allows a programmer to model the program
+after the real world. A program can be broken down into
+specific parts, and each of these parts can perform fairly
+simple tasks. When all of these simple pieces are meshed together
+into a program, it can produce a very complicated and useful
+application.
+Let's say that we are writing a text-based medieval video game. 
+Our video game will have two types of characters: the players 
+and the monsters. A player has to know the values of certain 
+attributes: health, strength, and agility. A player must also 
+know what type of weapon and what type of armor they possess.
+A player must be able to move through a maze, attack a monster,
+and pick up treasure. So, to design this "player object", we 
+must first separate data that the player object must 
+know from actions that the player must know how to 
+execute. The definition for a player object could be:
+Player Object:
+data:
+ health
+ strength
+ agility
+ type of weapon
+ type of armor
+actions:
+ move
+ attack monster
+ get treasure
+END;
+ Member Data and Member Functions 
+Data that an object keeps track of is called member data
+and actions that an object knows how to do are called 
+member functions. Member data is very similar to variables
+in a regular function in the sense that no other object
+can get access to that data (unless given permission by 
+the object). Member data keeps its values over the life of
+an object.
+ Objects and Instances 
+There is a very important distinction between an object
+and an instance of an object. An object is actually 
+a definition, or a template for instances of that object. 
+An instance of an object is an actual thing that can be 
+manipulated. For instance, we could define a Person object,
+which may include such member data as hair color, eye color,
+height, weight, etc. An instance of this object could be
+"Dave" and Dave has values for hair color, eye color, etc.
+This allows for multiple instances of an object to be created.
+Let's go back to the medieval video game example and define 
+the monster object. 
+Monster Object:
+data:
+ health
+ skin thickness
+ claws
+ tail spikes
+actions:
+ move
+ attack player with claws
+ attack player with tail
+END;
+Now, our game could have one instance of a player:
+Player Instance #1:
+data:
+ health = 16
+ strength = 12
+ agility = 14
+ type of weapon = "mace"
+ type of armor = "leather"
+END;
+and our game could have two instances of monsters:
+ a tough one: and a weak one: 
+ 
+Monster Instance #1:
+data:
+ health = 21
+ skin thickness = 20
+ claws = "sharp"
+ tail spikes = "razor sharp"
+END;
+ 
+Monster Instance#2:
+data:
+ health = 9
+ skin thickness = 5
+ claws = "dull"
+ tail spikes = "quite dull"
+END;
+ 
+Notice how an instance of an object contains information
+on member data, but holds nothing about member functions.
+Every instance of the Monster object performs "attack player"
+the same way. There is a series of steps in this member
+function. But each instance of the monster has its own
+value for the member data. In the preceding example, we 
+can tell the two monsters in our game apart, because of 
+their member data. One monster is tough and the other monster
+is weak.
+Let's say that we had a "Battle" function in our game. The
+pseudocode for it may go something like the following:
+Function Battle(parameters: _player = the Player Object instance
+ _monster = the Monster Object instance)
+ turn = PLAYER; 
+ while ((_player's health > 0) AND (_monster's health > 0)) {
+ if (turn == PLAYER){ 
+ player attack's monster;
+ turn = MONSTER;
+ }
+ else {
+ monster attack's player
+ turn = PLAYER;
+ }
+ }
+} // END FUNCTION Battle
+ In the "attack" phase, the attacking person would
+somehow deduct points from the defending person. Let's say that
+the player was fighting with the weaker monster. The weaker 
+monster's health value is 9. If the player attacked the monster
+and did 5 points of damage to the monster, the monster's new
+health value would be 4. The monster keeps this value as its 
+health value until it is undated again. So if the monster ran
+away at this point, and later in the game, the player discovered
+the weaker monster again, it's health value would still be 4.
+ Summary 
+Objects are ways of bundling parts of programs into small,
+manageable pieces. Objects are simply a definition for a type
+of data to be stored. An instance of an object contains 
+meaningful information, these are manipulated by the program.
+There can be more than one instance of an object. Instances of
+objects keep
+track of information, called member data, or instance variables.
+This data is kept track of by the instance until it no longer
+exists. Object instances also know how to perform certain 
+functions, called member functions, or class functions. Every
+instance of an object performs the same steps when carrying
+out a member function, although the steps can be influenced
+by the instances' present member data.
+ 
+ 
+ 

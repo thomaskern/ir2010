@@ -1,0 +1,280 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Elementary Use of the Program "make"
+This article was contributed by
+Luigi Santillo.
+Environment: DOS/Unix console
+These days, programmers generally develop using some GUI IDE; however, it may happen that one is given only traditional command-line tools. In this case, using the classic program "make" to generate/update a program, especially when source code is spread across many unit files, may be a solution.
+I will briefly show where "make" fits in the process of developing an application and introduce a simple "makefile" for a C++ program made of three unit files; finally, I will outline a simple method to automate the generation of makefiles.
+The approach I suggest is aimed towards the development of C++ console applications, and is presented using the GNU tools on Windows; however, it can be adapted to other compiled programming languages/tools/systems as long as a compiler and a "make" are available.
+Index:
+- Doing it all by hand
+- Using "make"
+- Automatically generating simple makefiles
+- Some extra thoughts
+- About the program gm
+- About the GNU tools
+- Downloads
+- History
+Doing It All by Hand
+Consider the following program (it is a multi-source program consisting of three unit files. hello.cpp and print.cpp are source files; print.hpp is a user header file):
+// hello.cpp // print.hpp // print.cpp
+#include "print.hpp" #ifndef print_hpp #include 
+ #define print_hpp #include "print.hpp"
+/////////////////////// /////////////////////// ///////////////////////
+int void void
+main() print(const char*); print(const char* s)
+{ /////////////////////// {
+ print("Hello world!"); #endif std::cout 
+internet.commerce
+ 
+Be a Commerce Partner
+Build Flash Online
+Tech Magazines-Free
+EMedia Mag Free Sub
+Comparison Shopping
+Computer Training
+For Web Graphics
+Promote Your Website
+FlashMX Tools/Bundles
+Find a Consultant
+Compare Prices
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

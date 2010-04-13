@@ -1,0 +1,239 @@
+
+ Variables: Scalars, Lists and Hashes
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+and Code Corner Present
+Steve Litt's PERLs of Wisdom:
+Variables: Scalars, Lists and Hashes
+(With Snippets)
+Copyright (C) 1998 by Steve Litt
+Contents
+- Contents
+- Introduction
+- Variables Default to Global
+- Scalars
+- Lists
+- Hashes
+- Syntax Review
+Introduction
+Perl is a weakly typed language, meaning that a "variable"
+could hold many different forms of data. This is perfectly legal in Perl:
+$var1 = "3.14159";
+$var1 += 7.0;
+print "$var1\n"; #prints 10.14159
+Notice that $var1 was never declared as a variable of any type. It started
+life as a string, then became a number in an arithmetic operation. If you
+had wanted to concatenate 7.0 on the end instead of adding it, here's what
+you would have done:
+$var1 = "3.14159";
+$var1 = "$var1" . "7.0";
+print "$var1\n"; #prints 3.141597.0
+The advantage of weak typing is it saves many intermediate steps. No
+more declaring variables. No more variable conversion (itoa(), atoi(),
+etc). No more using 2 different variables for the same thing just because
+it's expressed in different formats. Of course, theres a price.
+Without type checking, logical errors get a "social promotion"
+to the runtime, where if you're lucky there will be a runtime error. More
+likely, there will simply be hard to catch faulty output. Check this out:
+$salaryBudget = 440000.00; #amount before benefits
+$partsBudget = 10000.00;
+$totalBudget = 1.5 * $salaryBudget + $partsbudget; #note wrong capitalization of partsBudget
+print $totalBudget\n; #prints 660000.00, should print 670000.00.
+C++ would never let you get away with this. The moment you compiled,
+it would blow you off on undeclared partsbudget and you'd capitalize the
+B. PERL, on the other hand, would merrily assign 0 to $partsbudget, and
+add it to the rest. Such a small error might not be caught for months.
+The moral of the story is to use some of the time you gained from weak
+typing to check your work. You should also use the -w command line argument
+when running PERL. This is kind of a Lint utility which will find obvious
+errors like adding 10.0 to "ABC", and slightly more subtle ones
+like the uninitialized $partsbudget above.
+All the variables in the above examples are scalar variables. PERL has
+three kinds of variables: scalars, lists and hashes. All three are discussed
+on this page.
+Variables Default to Global
+No language is perfect. Perl's variables are global unless the programmer
+specifically codes them as my($var). (There's also a hybrid local($var)
+syntax which I won't describe).
+Now here's the problem. Global variables are the kiss of death to any
+app taking more than a few hours to code. They're a horrid violation of
+encapsulation. Check this out:
+sub getName
+ {
+ $name = ;
+ chomp($name);
+ return($name);
+ }
+sub doLabel
+ {
+ print "What is your name?==>";
+ $name = $getName();
+ print "\nWhat is your spouses name?==>";
+ $spousename = $getName();
+ print "\n";
+ print PRINTERDEVICE "Hi. I'm $name.\n";
+ print PRINTERDEVICE "My spouse is $spousename.\n";
+ }
+This program prints your spouse's name on *both* lines, because $name
+is global, so the second
+call to getName() resets global $name to your spouses name (after you typed
+it in). To get the
+program to act as intended, in subroutine getName() replace this:
+$name = ;
+with this:
+my($name) = ;
+Better yet, make them both local. I ALWAYS use the my($var) construct,
+even if in fact the variable is at the top of the source file and global
+to the program. You never know when what is presently the whole program
+will become a large subroutine. The only time I don't use my($var) is when
+$var is intended to be global and I want to document that fact.
+Using my($var) is a great habit to get into. 
+Scalars
+A scalar is simply a variable which contains exactly one piece of information.
+That information can be a string, a real, or an integer. It can even switch
+between the above. But it contains only one piece of information. Lists
+and hashes can contain multiple pieces of information.
+Scalars ALWAYS start with a dollar sign ($). If you see a variable starting
+with a dollar sign, and it does NOT have a subscript, it's a scalar. Scalars
+were discussed pretty thoroughly in the introduction.
+Here are some scalar examples:
+$circumference = 3.14159 * $diameter;
+$wholename = "$firstname $lastname";
+Lists
+Lists are just arrays. But imagine an array in a weakly typed language.
+The elements don't need to be the same type. Some can be strings, some
+numbers. The strings don't need to be the same length. Some of the numbers
+can be floating point while others are integer.
+If the elements of a list are the same type, it resembles an array in
+C or C++. If the elements are of different types it probably makes more
+sense to think of it like a struct in C or C++.
+Note: List variables begin with an at sign (@). Single
+elements of a list begin with a dollar sign ($) and have a subscript in
+square brackets. Scalars begin with a dollar sign ($) and DO NOT have
+a subscript. 
+Creating a List
+Lists can acquire their data in several ways. The list can be pre-declared
+like this:
+@daysOfWeek = ("Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat");
+Lists can be initialized from the lines of a text file like this:
+open(CONFIG, "c:\\config.sys");
+@configLines = ;
+Lists can be assembled one element at a time:
+#**** ADD TO THE END OF THE LIST ****
+my(@kids); #empty list
+push(@kids, "Brett"); #add to end of list
+push(@kids, "Rena"); #add to end of list
+push(@kids, "Valerie"); #add to end of list
+#**** ADD TO THE START OF THE LIST ****
+my(@cities); #empty list
+unshift(@cities, "Los Angeles"); #add to front of list
+unshift(@cities, "San Diego"); #add to front of list
+unshift(@cities, "Bakersfield"); #add to front of list
+unshift(@cities, "Riverside"); #add to front of list
+Lists can be created from a string
+$szCarCompanies = "Chrysler,Ford,GM";
+@carCompanies = split(/,/, $szCarCompanies);
+Using List Elements
+For the examples in this section, we're using the days of week list:
+@daysOfWeek = ("Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat");
+The simplest way to refer to an element is a subscript. Note the $ replaces
+the @, and the subscript. Note that Sun's subscript is 0, not 1.
+print "$daysOfWeek[0]; #prints Sun
+print "$daysOfWeek[1]; #prints Mon
+print "$daysOfWeek[6]; #prints Sat
+You can remove the first element from a list and use it with the shift()
+command:
+#**** PRINT DAYS OF WEEK IN ORDER ****
+while(@daysOfWeek)
+ {
+ print(shift(@daysOfWeek));
+ print "\n";
+ }
+You can remove the last element from a list and use it with the pop()
+command:
+#**** PRINT DAYS OF WEEK IN reverse ORDER ****
+while(@daysOfWeek)
+ {
+ print(pop(@daysOfWeek));
+ print "\n";
+ }
+You can transform a list into a single string:
+my($szDays) = join("...", @daysOfWeek);
+print "$szDays\n"; #prints all days, separated by elipses
+Remember: List variables begin with an at sign (@). Single
+elements of a list begin with a dollar sign ($) and have a subscript in
+square brackets. Scalars begin with a dollar sign ($) and DO NOT have
+a subscript. 
+Hashes
+Hashes are associative arrays. They're two-dimensional arrays where
+the first dimension is a "key value" whose purpose is to look
+up the record. The second dimension is presumably the "data".
+Note: Hash variables begin with a percent sign (%). TheSingle
+elements of a hash begin with a dollar sign ($) and have a subscript in
+curly brackets { }. Scalars begin with a dollar sign ($) and DO NOT
+have a subscript.
+A hash assignment is a comma delimited series of keys and values in
+PARENTHESES (not curly brackets). Each key preceeds its value and is separated
+from its value with => or a comma. For readability, the => is preferred.
+Creating a Hash
+Hashes can acquire their data in several ways. The hash can be pre-declared
+like this:
+%officers = ("president"=>"Bill Clinton","vice president"=>"Al Gore",
+ "intern"=>"Monica Lewinsky");
+Note that in the above the => symbols could have just as easily been
+commas. The => is a substitute for readability purposes.
+Hashes can be built an item at a time:
+my(%officers);
+$officers{"president"} = "Bill Clinton";
+$officers{"vice president"} = "Al Gore";
+$officers{"intern"} = "Monica Lewinsky";
+print $officers{"vice president"}; #this prints "Al Gore"
+Accessing Hash Elements
+You can get an element by its key value:
+print $officers{"president"};
+You can get them in a loop:
+while (($key, $val) = each(%officers))
+ {print "$key\t$val\n"}
+You can get all the key values:
+@keys = keys(%officers);
+You can get all the values:
+#*** PRODUCE LIST SORTED BY NAME ***
+@values = sort(values(%officers));
+You can delete an item:
+delete($officers{"president"});
+Syntax Review
+- Scalar
+- $president = "Bill Clinton";
+- print $president;
+- List
+- @presidents = ("Ronald Reagan", "George Bush",
+"Bill Clinton");
+- print $presidents[0];
+- push(@presidents, "Al Gore");
+- unshift(@presidents, "Jimmy Carter");
+- print pop(@presidents);
+- print shift(@presidents);
+- foreach $president (@presidents){print "$president\n"}
+- Hash
+- %officers = ("president"=>"Bill Clinton", "vice
+president"=>"Al Gore");
+- print $officers{"president"};
+- unless (exists($officers{"president"})) {print "not
+an officer\n"}
+- $officers{"intern"} = "Monica Lewinsky"; #add
+an item
+- delete($officers{"president"});
+- while (($key, $val) = each(%officers)) {print PERSISTANCE "$key\t$val\n"}
+ [ Troubleshooters.com | Code
+Corner | Email Steve Litt
+] 
+Copyright (C)1998 by Steve Litt --
+Legal
+ 

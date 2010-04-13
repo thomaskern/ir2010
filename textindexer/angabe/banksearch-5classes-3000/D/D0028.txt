@@ -1,0 +1,282 @@
+
+Hoskinson's Button Menu Applet
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+Hoskinson's Button
+Menu Applet 
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Sorry, your browser does not support Java
+ 
+Hoskinson's Button Menu Applet allows
+you to create your own customized web site button bar. With the Button Menu
+Applet, you can: 
+ 
+- Display a customized web site button bar arrayed in any
+ combination of rows and columns. 
+ 
+- Assign each button it's own hyperlink and browser frame
+ target. Hyperlinks can be defined as either absolute or relative URLs. 
+ 
+- Define a custom font name, style, and size for your button
+ bar. 
+ 
+- Specify a custom foreground and background color for your
+ button bar. 
+ 
+- Specify a custom "hot spot" color for your button
+ bar. Each button label changes to this color when the mouse is moved over the
+ button. 
+This is what the mark-up looks like to implement the Button
+Menu applet in your HTML page (Note: this assumes that buttonMenu_andyhosk.class and
+supporting files are in the same directory as their parent HTML page). The
+parameters, by the way, correspond to the instance that is running at the top of this
+page: 
+ 
+Sorry, your browser does not support Java 
+ 
+ 
+ Parameter 
+ Default Value 
+ Possible Values 
+ 
+ 
+ buttonlabels 
+ Hoskinson's Home Page 
+ A carat ("^") delimited string representing the
+ button labels. Please note that the number of buttonlabels must match the number of
+ URLs. 
+ 
+ 
+ URLs 
+ http://members.aol.com/andyhosk/ 
+ A carat ("^") delimited string representing the
+ URLs that are loaded when their respective button is clicked. These URLs can be
+ either absolute or relative URLs. If you want to use a relative URL, your URL should be
+ relative to the URL of the document in which the applet is running. Please note that
+ the number of URLs must match the number of buttonlabels. 
+ 
+ 
+ targets 
+ _self for all buttons 
+ This is anoptional parameter representing the
+ target browser windows in which the aforementioned URLs are loaded when their respective
+ button is clicked. You can use this parameter in one of three ways: 
+ 
+- Omit this parameter in it's entirety. If this
+ parameter is not present, the TARGET attribute will default to _self (the current
+ browser window or frame) for all hyperlinks. 
+ 
+- Specify one (and only one) frame target. All
+ hyperlinks will default to this frame target. Allowable values include _top (the
+ top level browser window), _self (the current browser window or frame), _blank (a
+ new browser window), or the name of any open browser frame. 
+ 
+- Specify a carat ("^") delimited string
+ representing the target browser windows in which the aforementioned URLs are loaded when
+ their respective button is clicked. Allowable values include _top (the top
+ level browser window), _self (the current browser window or frame), _blank (a
+ new browser window), or the name of any open browser frame. If you use this option,
+ the number of targets must match the number of buttonlabels and URLs. 
+ 
+ 
+ 
+ 
+ fontname 
+ Arial 
+ Any installed font. 
+ 
+ 
+ fonttype 
+ bold 
+ plain, bold, or italic. 
+ 
+ 
+ fontsize 
+ 12 
+ Any valid point size. 
+ 
+ 
+ bgcolor 
+ white 
+ The applet's background color. Legal values include white,
+ black, red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, orange, or
+ an integer representing the RGB value (See Note Below). 
+ 
+ 
+ fgcolor 
+ blue 
+ The applet's foreground color. Legal values include white,
+ black, red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink, orange, or
+ an integer representing the RGB value (See Note Below). 
+ 
+ 
+ buttoncolor 
+ defaults to the background color 
+ The color of the individual buttons. This is an
+ optional parameter; if it is not used, it defaults to the background color. Legal
+ values include white, black, red, blue, green, yellow, lightGray, gray, darkGray, magenta,
+ cyan, pink, orange, or an integer representing the RGB value (See Note Below). 
+ 
+ 
+ linkcolor 
+ red 
+ The "hot spot" color to which each
+ button label changes when the mouse is moved over the button. Legal values include
+ white, black, red, blue, green, yellow, lightGray, gray, darkGray, magenta, cyan, pink,
+ orange, or an integer representing the RGB value (See Note Below). 
+ 
+ 
+ rows 
+ 1 
+ The number of rows you want to use in arraying your button
+ bar. For best results, (rows * cols) should equal the number of buttons. 
+ 
+ 
+ cols 
+ 1 
+ The number of columns you want to use in arraying your
+ button bar. For best results, (rows * cols) should equal the number of buttons. 
+ 
+ 
+ buffer 
+ 10 
+ The buffer (in pixels) between buttons. Defaults to
+ 10. 
+ 
+ 
+ raisedborder 
+ 0 
+ The 3D raised border of each button (in pixels). Defaults
+ to 0 (no border). 
+ 
+ 
+ xcoord 
+ center 
+ Upper left x coordinate of the button labels, or
+ "center" (if you want the button labels centered horizontally). 
+ 
+ 
+ ycoord 
+ center 
+ Upper left y coordinate of the button labels, or
+ "center" (if you want the button labels centered vertically). 
+ 
+ 
+ cabbase 
+ 
+None 
+ This is an optional parameter used to identify the Java
+ Cabinet file that Microsoft Internet Explorer 3.x uses to find the applet .class files. I
+ have provided a Cabinet file called buttonMenu_andyhosk.cab
+ which contains the applet's three class files (buttonMenu_andyhosk.class
+ , buttonMenu_lib.class, and menuButton_andyhosk.class). 
+I emphasize that this is an optional parameter. It is not required
+ that you use the Cabinet file, even for your Internet Explorer users. It does improve
+ performance for your MSIE users, though, by decreasing download times. 
+ 
+If the cabbase parameter is used, the Cabinet file
+ must be located in the CODEBASE directory. If you use the cabinet file, you should still
+ include the .class files in the CODEBASE directory for Netscape Navigator users. 
+ 
+Troubleshooting Note: If you have problems implementing this applet in your HTML page, take
+a look at your browser's Java log......the applet logs all error and warning messages
+there, and will most likely log the cause of your problem (BTW, a vast majority of
+problems implementing this applet are due to syntax errors in the APPLET tag parameters,
+so please double-check your mark-up). 
+Background and Foreground Color Attributes 
+Most people will find the thirteen basic colors sufficient.
+However, you can set the background and foreground color of the applet to any one of the
+16+ million colors in the 24 bit RGB (Red-Green-Blue) spectrum. But first, you must
+calculate the value of your custom color. To facilitate this, please use this calculator. 
+To use this applet, download the following three files: 
+Download buttonMenu_andyhosk.class
+, buttonMenu_lib.class, and menuButton_andyhosk.class, and place all three
+files in the same directory). 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

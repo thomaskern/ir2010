@@ -1,0 +1,55 @@
+
+Absolute Java - Swing
+Modal Dialogs Block Calling Thread
+When you create a modal Dialog (or JDialog) 
+ object, the thread that calls setVisible(true) (or show()) 
+ on the Dialog object will block until the dialog is hidden. As 
+ usual, Sun's javadoc documentation barely alludes to this behavior. Here's what 
+ the javadoc for java.awt.Dialog says about modal dialogs:
+"A dialog can be either modeless (the default) or modal. A modal dialog is one which blocks input to all other toplevel windows in the application, except for any windows created with the dialog as their owner."
+Displaying a modal dialog does indeed block input to all top-level windows. It will also, however, block the thread that calls the setVisible(true) method on the dialog and this fact is not documented in the javadocs.
+The code below creates and displays a modal dialog. When the setVisible(true) call is made to display the dialog on line 32, the main thread is suspended until the dialog is dismissed. You can see this by watching when the output is generated: line 34 will not be executed until the dialog is dismissed.
+The code below also creates another thread in the sillyWorkerThread() method. This thread simply illustrates the fact that not all threads are suspended when a modal dialog is displayed.
+1 import java.awt.*; 
+2 import javax.swing.*; 
+3 import java.awt.event.*; 
+4 
+5 public class Tester { 
+6 static JFrame mainFrame = new JFrame("Main Frame"); 
+7 
+8 public static void main(String[] a) throws Exception { 
+9 mainFrame.getContentPane().add(new JButton("Can you press me?"), BorderLayout.CENTER); 
+10 mainFrame.setLocationRelativeTo(null); // center the JFrame 
+11 mainFrame.pack(); 
+12 mainFrame.setVisible(true); 
+13 
+14 sillyWorkerThread(); 
+15 
+16 // When this modal dialog is displayed it will block the thread 
+17 // that called setVisible(true). 
+18 JDialog dialog = new JDialog(mainFrame, "AAA", true); 
+19 JButton btn = new JButton("Press AAA"); 
+20 btn.addActionListener(new ActionListener() { 
+21 public void actionPerformed(ActionEvent evt) { 
+22 System.out.println("AAA Button was pressed, current thread is " + 
+23 Thread.currentThread().getName()); 
+24 } 
+25 }); 
+26 dialog.getContentPane().add(btn, BorderLayout.CENTER); 
+27 dialog.setLocationRelativeTo(mainFrame); 
+28 
+29 System.out.println("About to display the modal dialog, current thread is " + 
+30 Thread.currentThread().getName()); 
+31 dialog.pack(); 
+32 dialog.setVisible(true); 
+33 
+34 System.out.println("The modal dialog has been displayed, current thread is " + 
+35 Thread.currentThread().getName()); 
+36 System.out.println("The main thread is ending..."); 
+37 } // main() 
+38 
+39 
+40 private static void sillyWorkerThread() { 
+41 new Thread() { 
+42 public void run() { 
+43 for(int i = 0; i 

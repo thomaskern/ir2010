@@ -1,0 +1,115 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6
+Cascading all windows on a machine without using API's.
+ID: 791
+Author: Abstractvb
+Date: 9/3/2000 4:58:47 PM
+VB6
+You will need to add a reference to the Microsoft Shell Controls and Automation Library. (SHELL32.DLL) Then drop this code in a button and try it out.
+Dim objShell As New Shell32.Shell
+ 
+objShell.CascadeWindows
+ Want More Source Code? You May Also Be Interested In This: 
+Ejecting a PC from it's docking station.
+How to Eject your PC though code from it's docking station without using API's.
+VB6
+Rank:
+Difficulty:
+ 
+Opening the Date / Time Properties window without using API's.
+Shows how to launch the Date / Time Properties window from VB without using API's.
+VB6
+Rank:
+Difficulty:
+ 
+Using the ControlPanelItem Function to display control panel items without having to use API's.
+Shows how to use the SHELL32.DLL's ControlPanelItem function to launch control panel items without using the Windows API. Also gives a list of the various ControlPanelItems and their filenames.
+VB6
+Rank:
+Difficulty:
+ 
+Shows how to minimize all Windows on a computer.
+This code shows how to use the SHELL32.DLL to minimize all open windows on a system.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

@@ -1,0 +1,595 @@
+
+VBWM Forums
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login: 
+ 
+ 
+ 
+ 
+ 
+ 
+ password: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ Resources
+ Code & Tip Library
+ Message Board
+ Articles
+ News
+ LearnVB
+ Tutorials
+ Vendors
+ Job Market
+ Advertising
+ About Us
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Active Topics
+ |
+ Members
+ |
+ Search
+ |
+ FAQ
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 All Forums
+	
+	
+	
+	
+	 Database programming (VB6)
+	 "Couldn't find installable ISAM" error
+ 
+ 
+ 
+ New Topic
+ Reply to Topic
+ 
+ Printer Friendly
+ 
+ Add Topic to My Favorites
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Author 
+ Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 	
+	rpeetjr
+ 
+ 
+Starting Member
+ 
+ 
+ 
+ 
+5 Posts 
+ 
+	Posted - 06/20/2002 : 10:45:28
+	 
+ 
+ 
+ 
+ 
+ When trying to access Excel files with the Data control I set the Connect property to Excel 8.0, the DataBaseName to the file name. Next I try and set the RecordSource. At this pointI get "Couldn't find installable ISAM" error. What am I missing? 
+ 
+ 
+ 
+	
+	
+	null
+ 
+ 
+Senior Member
+ 
+ 
+United Kingdom
+ 
+286 Posts 
+ 
+	
+	Posted - 06/20/2002 : 11:10:22
+	 
+ 
+ 
+ 
+ 
+ Hello,
+The pc you are working on does not have an available ISAM driver installed. Goto http://www.microsoft.com/data/download.htm and download the MDAC update for your system. This should fix your problem.
+HTH
+Null
+p.s. Sorry! Just realised, didnt tell you what it was! MDAC is Microsoft Data Access Components, and contains the files and drivers required for accessing information through ADO,ODBC etc etc. This includes ISAM drivers for the pc, along with others such as sql,access and foxpro.
+Edited by - null on 06/20/2002 11:13:04 
+ 
+ 
+ 
+	
+	
+	rpeetjr
+ 
+ 
+Starting Member
+ 
+ 
+ 
+ 
+5 Posts 
+ 
+	
+	Posted - 06/22/2002 : 13:24:43
+	 
+ 
+ 
+ 
+ 
+ Thanks for the information. I found and installed MDAC 2.7 RTM Refresh. I also came across information that indicated I might need VB6 S.P.5 and Jet Drives S.P. 3. I've installed both of these and still have the same problem. The MDAC installation said it was making changes to Control Panel. Do I have to change any settings for this installation to take effect?
+ 
+ 
+ 
+ 
+	
+	
+	nparray
+ 
+ 
+New Member
+ 
+ 
+Trinidad and Tobago
+ 
+54 Posts 
+ 
+	
+	Posted - 06/22/2002 : 13:46:08
+	 
+ 
+ 
+ 
+ 
+ Open the Control Panel. In there you should see an applet called Data Sources. In Windows 2000 i's in Administrative tools. Open that applet. Click on the Drivers tab. In there you should see "Microsoft Excel Driver (*.xls)". If it's there create a new text document on your desktop. Rename it to to "test.udl". Open this and try to create a connection to your excel file. Once the connection is created click on the "Test Connection" button. 
+All these are steps to identify where the problem stems from. You should have an Excel driver listing in the Data Sources applet if it isn't there that would be the source of the problem. You'll need to get that installed. I'm not sure how. But you would have identified the problem source. 
+Try these steps and post your results and then further solutions could be made.
+Navin
+ 
+ 
+ 
+ 
+	
+	
+	Willie
+ 
+ 
+Starting Member
+ 
+ 
+Philippines
+ 
+19 Posts 
+ 
+	
+	Posted - 06/24/2002 : 04:36:45
+	 
+ 
+ 
+ 
+ 
+ Hi!
+Search the Msexcl35.dll in your hard drive (normally it stores in C:\windows\system32) then rename or delete it. Install again one of the application that Null mentioned (with ISAM drivers) such as MSAccess, Foxpro and etc.
+Regards,
+Willie
+ 
+ 
+ 
+ 
+	
+	
+	rpeetjr
+ 
+ 
+Starting Member
+ 
+ 
+ 
+ 
+5 Posts 
+ 
+	
+	Posted - 06/25/2002 : 07:43:12
+	 
+ 
+ 
+ 
+ 
+ nparray and Willie:
+Thanks for your input. I will try your suggestions. Meanwhile, I note Willie's mention of MSAccess. I do not have Access installed. Could this be my problem?
+Rod Peet, Jr.
+ 
+ 
+ 
+ 
+	
+	
+	nparray
+ 
+ 
+New Member
+ 
+ 
+Trinidad and Tobago
+ 
+54 Posts 
+ 
+	
+	Posted - 06/25/2002 : 21:44:32
+	 
+ 
+ 
+ 
+ 
+ I doubt very much. You should only need drivers from Excel to access data from Excel.
+Navin
+ 
+ 
+ 
+ 
+	
+	
+	Willie
+ 
+ 
+Starting Member
+ 
+ 
+Philippines
+ 
+19 Posts 
+ 
+	
+	Posted - 06/27/2002 : 20:02:15
+	 
+ 
+ 
+ 
+ 
+ Hi Rod,
+Not only MSaccess has ISAM Drivers.
+In my case it works. A missing file or corrupt registry entry are the usual causes behind this error.
+Regards,
+Willie
+ 
+ 
+ 
+ 
+	
+	
+	rpeetjr
+ 
+ 
+Starting Member
+ 
+ 
+ 
+ 
+5 Posts 
+ 
+	
+	Posted - 07/02/2002 : 08:08:01
+	 
+ 
+ 
+ 
+ 
+ OK, here's what I've done lately:
+1. Opened Data Sources in the Control Panel and found I DO have "Microsoft Excel Driver (*.xls)".
+2. Used Data Sources to create a new data source using an .xls file
+3. Created a new blank text document using notepad and saved to desktop as "test.udl". It has an icon that looks like a spreadsheet and a computer.
+4. Opened test.udl, created connection to .xls file, Tests OK.
+5. Still getting ISAM error message when trying to open .xls database with Visual Data Manager, or setting Data Control RecordSource to .xls file.
+6. I DO NOT have Msexcl35.dll on my machine. I DO have Msexcl40.dll. Any relation?
+ 
+ 
+ 
+ 
+	
+	
+	nparray
+ 
+ 
+New Member
+ 
+ 
+Trinidad and Tobago
+ 
+54 Posts 
+ 
+	
+	Posted - 07/02/2002 : 14:19:02
+	 
+ 
+ 
+ 
+ 
+ You are supposed to have msexcl35.dll somewhere on your machine. Normally in the system folder. Run your office installation. You'll not be re-installing but adding new features. Check the Data Access components and make sure the right ones are checked. Setup should then copy the file and register it. Try again. If that does not work. You could do a reinstallation of Office.
+Navin
+ 
+ 
+ 
+ 
+	
+	
+	rajarani
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+11 Posts 
+ 
+	
+	Posted - 07/03/2002 : 11:01:24
+	 
+ 
+ 
+ 
+ 
+ Hi 
+Please check this out. May be it will help you.
+http://search.support.microsoft.com/search/default.aspx?Catalog=LCID%3D1033%26CDID%3DEN-US-KB%26PRODLISTSRC%3DON&Product=msall&Query=couldn%2527t%2520find%2520ISAM&Queryc=couldn%27t+find+ISAM&REF=false&srchstep=0&KeywordType=ALL&Titles=false&numDays=&maxResults=25
+ 
+ 
+ 
+ 
+	
+	
+	rajarani
+ 
+ 
+Starting Member
+ 
+ 
+USA
+ 
+11 Posts 
+ 
+	
+	Posted - 07/03/2002 : 14:04:43
+	 
+ 
+ 
+ 
+ 
+ I was getting same error, when trying to access "Access Database" with the Data control. I set the Connect property to Access 2000, the DataBaseName to the .mdb file name. Then I was trying and set the RecordSource. At this point I got "Couldn't find installable ISAM" error. 
+As a solution, I install Visual Studio Service Pack 5.o, and guess what, it solved my problem.
+I'm not sure, may be you can try this also.
+Thanks
+ 
+ 
+ 
+ 
+	
+	
+	rpeetjr
+ 
+ 
+Starting Member
+ 
+ 
+ 
+ 
+5 Posts 
+ 
+	
+	Posted - 07/04/2002 : 11:00:28
+	 
+ 
+ 
+ 
+ 
+ SUCCESS!
+rajarani's link led to a list of articles related to this problem. This one:
+http://support.microsoft.com/default.aspx?scid=kb;en-us;Q257819#RetrieveExcel
+gave specific instructions on how to connect using the ADO DataControl and why the error occurs. I was able to connect to an Excel database but have not yet attempted to use it in a program. I still cannot get the intrinsic Data control to connect even though the online documentation says its possible and gives steps for doing so. It does say that the ADODC is the preferred control to use, however, so I guess that's what I'll do.
+Thank you all for your help.
+Rod Peet, Jr.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ New Topic
+ Reply to Topic
+ 
+ Printer Friendly
+ 
+ Add Topic to My Favorites
+ 
+ 
+ 
+ 	Jump To:
+	 
+	 Select Forum
+ VB .NET
+ Controls and Components (VB.NET)
+ Database Programming (VB.NET)
+ General Coding Techniques/Questions (VB.NET)
+ Web Forms and other Web development (VB.NET)
+ Web Development
+ ASP (Classic) - General Forum
+ ASP.NET General Forum
+ Visual Basic 6.0
+ Controls and Components (VB6)
+ Database programming (VB6)
+ General Coding Techniques/Questions (VB6)
+ Internet development (VB6)
+ Miscellaneous
+ General Discussion
+ Installation and Setup
+ Site Administration & Future Direction
+ Site Announcements
+	 --------------------
+	Home
+	Active Topics
+	Frequently Asked Questions
+	Member Information
+	Search Page
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+VBWM Forums
+ 
+ 
+ 
+© 2002 BowmanSoft, Inc.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Snitz Forums 2000cronym>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+ 
+ 
+ 

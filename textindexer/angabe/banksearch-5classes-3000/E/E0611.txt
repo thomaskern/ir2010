@@ -1,0 +1,87 @@
+
+	Listing 8
+	
+ 	
+	
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	
+	
+ 
+	
+ 
+	 
+	
+	
+	
+	 
+	 
+	
+ 
+	
+	
+	 
+	
+	
+	
+	Listing 8: View Text Customizing Code. The setup code disables the edit control and updates it to whatever text was received through SetText(). The Print button is also enabled. Note that the message map code that's been added for the Print button "links" this class to the parent class, CTextDlg. This allows CViewTextDlg to receive event messages.
+ 
+	
+	
+	
+ 
+#include "stdafx.h"
+#include "ViewTextDlg.h"
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+//////////////////////////////////////////////////////////////////////
+// Construction/Destruction
+//////////////////////////////////////////////////////////////////////
+CViewTextDlg::CViewTextDlg()
+{
+}
+CViewTextDlg::~CViewTextDlg()
+{
+}
+// Manually added this message map code
+BEGIN_MESSAGE_MAP(CViewTextDlg, CTextDlg)
+ ON_BN_CLICKED(IDC_PRINT, OnPrintBtnCtrl)
+END_MESSAGE_MAP()
+void CViewTextDlg::Setup()
+{
+ SetWindowText("View Text");
+ // don't allow user to edit text
+ CTextDlg::m_EditCtrl.SetReadOnly();
+ // show print button
+ CTextDlg::m_PrintBtnCtrl.ShowWindow(SW_SHOW);
+ // Update edit control with text received from call to SetText().
+ UpdateData(FALSE);
+}
+void CViewTextDlg::DoOK()
+{
+ // No need to do anything here.
+}
+void CViewTextDlg::DoCancel()
+{
+ // No need to do anything here.
+}
+void CViewTextDlg::SetText(CString Text)
+{
+ CTextDlg::m_Text = Text;
+}
+void CViewTextDlg::OnPrintBtnCtrl()
+{
+ // show that message handling code gets called
+ ::AfxMessageBox("Dummy print dialog.", MB_ICONINFORMATION);
+}

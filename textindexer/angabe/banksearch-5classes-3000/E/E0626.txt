@@ -1,0 +1,81 @@
+
+ 
+ C++ Programming HOW-TO: String Class Varieties 
+ 
+ 
+ 
+Next
+Previous
+Contents
+ 3. String Class Varieties 
+The string class is the one of the most vital objects in programming, and
+string manipulations are most extensively used.
+There is a lot of varieties of
+string classes. Of course, you can build your own string class by simply
+inheriting from these string classes -
+- String class given in this document
+Appendix A String.h
+- Standard C++ Library string class (ANSI/ISO string class at 
+http://www.msoe.edu/eecs/cese/resources/stl/string.htm and 
+http://www.sgi.com/tech/stl/basic_string.html
+- The external library Qt, has a Qt String class at 
+http://doc.trolltech.com/qstring.html mirror at 
+http://www.cs.berkeley.edu/~dmartin/qt/qstring.html
+- If none of these are suitable, you can build 
+your own string class. You can start with one or more of the 
+pre-built classes listed above (by using single or multiple inheritance.)
+3.1 Multiple Inheritance - Sample Custom String class 
+As mentioned above, you can build your own custom string class from the
+pre-built classes by single or multiple inheritance. In this section we
+will build a sample custom string class by using multiple inheritance,
+inheriting the standard C++ library string class and the String class
+presented in Appendix A.
+Start by downloading the sample file 'string_multi.h' from 
+Appendix A
+.
+That file is reproduced below:
+// ******************************************************************
+// Sample program to demonstrate constructing your own string class
+// by deriving from the String class and stdlib's "string" class
+// ******************************************************************
+#ifndef __STRING_MULTI_H_ALDEV_
+#define __STRING_MULTI_H_ALDEV_
+#include 
+#include "String.h"
+#include "StringBuffer.h"
+#ifdef NOT_MSWINDOWS
+#else
+using namespace std; // required for MS Visual C++ compiler Version 6.0
+#endif
+// Important Notes: In C++ the constructors, destructors and copy 
+// operator are NOT inherited by the derived classes!!
+// Hence, if the operators like =, + etc.. are defined in
+// base class and those operators use the base class's contructors
+// then you MUST define equivalent constructors in the derived 
+// class. See the sample given below where constructors mystring(), 
+// mystring(char[]) are defined.
+//
+// Also when you use operator as in atmpstr + mstr, what you are really
+// calling is atmpstr.operator+(mstr). The atmpstr is declared a mystring
+class mystring:public String, string
+{
+ public:
+ mystring():String() {} // These are needed for operator=, +
+ mystring(char bb[]):String(bb) {} // These are needed for operator=, +
+ mystring(char bb[], int start, int slength):String(bb, start, slength) {}
+ mystring(int bb):String(bb) {} // needed by operator+
+ mystring(unsigned long bb):String(bb) {} // needed by operator+
+ mystring(long bb):String(bb) {} // needed by operator+
+ mystring(float bb):String(bb) {} // needed by operator+
+ mystring(double bb):String(bb) {} // needed by operator+
+ mystring(const String & rhs):String(rhs) {} // Copy Constructor needed by operator+
+ mystring(StringBuffer sb):String(sb) {} // Java compatibility
+ mystring(int bb, bool dummy):String(bb, dummy) {} // for StringBuffer class
+ int mystraa; // customizations of mystring
+ private:
+ int mystrbb; // customizations of mystring
+};
+#endif // __STRING_MULTI_H_ALDEV_
+Next
+Previous
+Contents

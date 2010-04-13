@@ -1,0 +1,212 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What's Wrong With This Code? Volume #4
+Base class destructors
+Let's show the output of this program one more time.
+base constructor
+Foo constructor
+derived constructor
+Foo constructor
+base destructor
+If you look at the code for the Foo class, you will notice that the Foo destructor is supposed
+print the message "Foo destructor". However, the output listing does not contain the destructor message for Foo.
+What's going on? Why doesn't the program print the foo destructor message? It should print two of them because there were
+two Foo objects created in the code. Take one more look at the output from the program. Notice that the Derived
+destructor is also supposed to print a message, but that message is not shown in the program's output either.
+The program never prints the foo destructor message because the foo objects are not being deleted. At first glance, this does not
+appear to be correct. One of the Foo objects is a member object of the Derived class. It should be deleted automatically
+when the Derived object is destroyed. The other Foo object is a member pointer. The Derived destructor deletes
+it, so that Foo object ought to be destroyed as well.
+The Foo objects are not being deleted because the Derived object is not being deleted. Well, actually it is being
+partially deleted. The Base part of the object is being deleted. We can see this in the output of the program. The Base
+destructor prints the message "base destructor". When the
+main function calls delete, the Base part of the object is destroyed, but the Derived part of the
+object is not.
+The code contains a critical design flaw. The destructor in the base class is not declared as virtual. As a result, when the code calls
+delete on the Base *, only the destructor for the base class gets called. Because there is no vtable entry for the destructor,
+operator delete has no way of knowing that you are really deleting a Derived object. As far as it is concerned, you are deleting
+a plain Base object.
+To fix the code, declare the base class destructor to be virtual. The following code listing illustrates how to correct the code.
+class Base
+{
+public:
+ Base()
+ {
+ cout "base constructor" endl;
+ }
+ virtual ~Base()
+ {
+ cout "base destructor" endl;
+ }
+};
+There is a bit of irony to how we fixed the code. The original problem was that the Foo objects were not being
+destroyed, and the destructor for the Derived class was not getting called. So who do we blame? We can't blame the
+Derived class, and we certainly can't pin any blame on Foo. It's just an innocent bystander. The culprit
+is embedded deep down in the base class.
+There is a rule of thumb that should be followed here (in my opinion anyway). Base class destructors should always be declared
+virtual. This may not be news to you, especially if you are familiar with Scott Meyer's "Effective C++" series. Some people argue
+that you don't always have to make the base class destructor virtual. If you don't delete the object by using a pointer to a base class,
+then the problem disappears. For example, if the main function was coded like this, then the Derived destructor would have
+been called.
+int main()
+{
+ //Base *b = new Derived;
+ Derived *b = new Derived;
+ delete b;
+ return 0;
+}
+I think this is a poor argument. As a designer of a base class, how can you be certain how people are going to use your class?
+Forcing your users to always use a pointer to a derived object severely limits their ability to use your class. You have effectively
+prevented them from using polymorphism, one of the key ingredients of object oriented programming.
+To drive home this argument, let's pretend that we have a base class and two classes that derive from it called Derived1 and
+Derived2. Both derived classes share some common functionally in the Base class. This common base may consist of
+shared code, or the common base could provide only an interface that the derived classes have to support.
+class Base
+{
+ ...
+ public:
+ virtual void DoSomething();
+ ~Base();
+};
+class Derived1 : public Base
+{
+ ... // private members
+ public:
+ virtual void DoSomething();
+};
+class Derived2 : public Base
+{
+ ... // private members
+ public:
+ virtual void DoSomething();
+};
+Now let's say that you want to store some of these objects in a container. The container should be able to store all three types
+of objects. You intend to iterate the container and call the DoSomething method on each object. When you are done, you will
+need to loop through the container and delete each object. Here is how you might go about it.
+vector base_vector;
+base_vector.push_back( new Base);
+base_vector.push_back( new Base);
+base_vector.push_back( new Derived1);
+base_vector.push_back( new Derived2);
+vector::iterator iter = base_vector.begin();
+for(; iter != base_vector.end(); ++iter)
+{
+ iter->DoSomething();
+}
+... more stuff
+iter = base_vector.begin();
+for(; iter != base_vector.end(); ++iter)
+{
+ delete *iter;
+}
+Because the container holds Base pointers, the container takes on a polymorphic form. It can hold Base
+objects, or derived objects. It really doesn't care. Because DoSomething is virtual, the correct member function
+gets called. But what about the destruction of the objects? Because the Base destructor is not virtual, the derived
+destructors will never run. If you design a base class and you don't make the destructor virtual, you are essentially preventing
+users of your class from ever putting objects of your class into a container. Ouch!
+I have also heard some people argue that if the derived class does not allocate any additional memory by calling operator new,
+that there is no need for its destructor to be called. Hence, the base destructor need not be virtual. This is complete hogwash. Look back
+at the original code for this article. The Derived class contained two Foo objects. One of them was a pointer, and one
+of them was not. Neither of them were destroyed properly. It makes no difference whether or not they are pointers. The reason for this is
+clear. When you write the Derived destructor, the compiler silently inserts code to destroy all non-pointer member objects. You can step
+through this code in assembler if you want. This code is part of the Derived destructor. If the Derived destructor
+is not called, neither is the silent code that cleans up non-pointer objects.
+Ok, ok, but what if the Derived object does not contain any member objects? Then its OK not to have a virtual destructor
+in the base class, right? Well, maybe. But if you are designing a base class, do you have any right to prevent all derived classes
+from having any member variables (other than integral types, such as int). People are not going to want to use your class as a base
+if you try to force that rule on them.
+There is only one situation where it is acceptable for a base class destructor to not be virtual: the class is a concrete class and it is
+should not be derived from. In reality, its not a base class at all. No classes derive from it.
+Note : The example code for this article contained a class hierarchy that was only two levels deep. When the hierarchy is more than
+two classes deep, the deepest base class should declare a virtual destructor (ie, the one at the top). For example:
+class Base
+{
+ ...
+ public:
+ virtual ~Base();
+};
+class Middle : public Base
+{
+ ...
+ public:
+ ~Middle();
+};
+class End : public Middle
+{
+ ...
+ public:
+ ~End();
+};
+Recall that once a function is declared as virtual in a base class, it is considered virtual in all derived classes. This is why the
+Middle and End classes do not have to list virtual before their destructors. Some people like to list virtual anyway,
+to avoid confusion.
+Note : Chris Uzdavinis sent me this note:
+I read the new "w3tc" article, on virtual destructors in the base class of
+polymorphic hierarchies. You explain it well, but I think that your warning
+is too soft. :) The ANSI standard says that if you call delete on a pointer
+that points to a derived type, then the destructor SHALL be virtual or
+behavior is undefined. You cannot even count on the base part being deleted
+correctly.
+See Ansi 5.3.5 p3 for details.
+Chris Uzdavinis
+Note : If you do not provide a destructor for your base class, the compiler will generate a default one for you.
+This default destructor is not virtual. Omitting a destructor in the base class is equivalent to adding a non-virtual destructor.
+In order to follow the advice in this article, you may have to add empty, virtual destructors to your base classes. In fact,
+this is how many people fall victim to this problem. They forget to provide a destructor in a base class that does not contain
+any members.
+Note : This is also a problem in Object Pascal and Delphi. Well sort of. The same problem exists, but Borland's version of
+Object Pascal essentially squashes it before it has a chance to surface. In Object Pascal, all classes are derived from TObject.
+It does not matter whether you list TObject as a base class or not. The TObject class contains a virtual
+destructor, which prevents the problem from surfacing. If Borland ever changes Delphi so that classes are not automatically derived from
+TObject, then the problem would become more serious for Object Pascal programmers.
+Note : If you are thinking of deriving from a class that someone else wrote, check to make sure that it has a virtual
+destructor. If it does not, then you can't derive from it. The STL classes fall into this category. Their destructors are
+not virtual, so you may not want to derive from them.
+Note : Scott Meyers discusses the importance of making base class destructors virtual in his book
+"Effective C++".
+He discusses something in his book that I thought was worth mentioning here. While it is important to make the destructor
+of a base class virtual, it is equally important that you don't overdo it. If a class will not and should not be used as a
+base class, then do not make the destructor virtual. In fact, if the class is not a suitable base class, then it should not
+contain any virtual methods.
+Meyers gives some good examples of classes that should not have a virtual destructor. One example was a point class, similar to the
+TPoint class in C++Builder. TPoint represents an x-y point in a Cartesian coordinate system. The declaration
+for TPoint is in windows.hpp
+struct TPoint
+{
+ TPoint() {}
+ TPoint(int _x, int _y) : x(_x), y(_y) {}
+ TPoint(POINT& pt)
+ {
+ x = pt.x;
+ y = pt.y;
+ }
+// ...
+ int x;
+ int y;
+};
+This version of TPoint contains two integer member variables. Since the structure does not contain any virtual functions, the
+class won't have a vtable. The absence of a vtable means that the total size of a TPoint object will equal 8 bytes, 4 bytes
+for each integer member variable. If we add a virtual destructor to TPoint, then the size of the class grows by four bytes,
+making the total size 12. In addition to the extra four bytes, the code size of the class also grows because the compiler has to insert
+extra code to initialize and cleanup the vtable.
+The extra four bytes for the vtable pointer is uneeded bloat if the class does not serve as a base class. In "Effective C++", Meyers
+advice is simple: if a class serves as a base class, then it should have a virtual destructor. If a class functions as a stand alone,
+concrete class, such as TPoint, then it should not have virtual destructor. Furthermore, if someone gives you class that
+does not have a virtual destructor, then it means that either the class should not be derived from, or that person has not read "Effective
+C++". Either way, you probably should not derive from that class. (PS- If you don't already own a copy of
+"Effective C++", you should buy one. This
+book is well worth the money).
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

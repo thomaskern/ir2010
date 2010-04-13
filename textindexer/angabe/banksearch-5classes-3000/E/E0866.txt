@@ -1,0 +1,80 @@
+
+C++ Tutorial: 5.2, Namespaces
+ Section 5.2 
+ Namespaces
+ 
+ 
+ 
+ 
+Namespaces allow us to group a set of global classes, objects and/or functions under a
+name. To say it somehow, they serve to split the global scope in sub-scopes known
+as namespaces.
+The form to use namespaces is:
+namespace identifier
+{
+ namespace-body
+}
+Where identifier is any valid identifier and
+namespace-body is the set of classes, objects and functions that are
+included within the namespace. For example:
+namespace general
+{
+ int a, b;
+}
+In this case, a and b are normal variables integrated
+within the general namespace. In order to access to these variables
+from outside the namespace we have to use the scope operator ::.
+For example, to access the previous variables we would have to put:
+general::a
+general::b
+The functionality of namespaces is specially useful in case that there is a possibility
+that a global object or function can have the same name than another one, causing a
+redefinition error. For example:
+// namespaces
+#include 
+namespace first
+{
+ int var = 5;
+}
+namespace second
+{
+ double var = 3.1416;
+}
+int main () {
+ cout 
+namespace first
+{
+ int var = 5;
+}
+namespace second
+{
+ double var = 3.1416;
+}
+int main () {
+ using namespace second;
+ cout 
+namespace first
+{
+ int var = 5;
+}
+namespace second
+{
+ double var = 3.1416;
+}
+int main () {
+ {
+ using namespace first;
+ cout 
+int main () {
+ std::cout 
+using namespace std;
+int main () {
+ cout 
+ Previous:
+5-1. Templates. 
+ 
+ index 
+ 
+ Next:
+5-3. Exception handling.
+ 

@@ -1,0 +1,65 @@
+
+VBExplorer
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 10/28/99,
+ last update: 10/28/99 
+ 
+Home 
+ 
+ 
+ VB TreeView and ListView
+ Explorer demo
+ 
+ Well, I guess this demo has been due out for a while... It's basically the EnumDeskVB demo stripped of much of its complicated (and
+ excessive) code that is not only required to create and operate the real treeview and
+ listview common controls, but also the code used for the complicated IShellFolder
+ reference handling as well. The demo is honed into the tightest and most compact possible
+ and emulates almost complete Explorer treeview and listview window functionality, but
+ using VB controls. Though it does less than EnumDeskVB, and with less than one half of the
+ code, it actually does a lot more, and does it better...
+ 
+ As with EnumDeskVB, this demo utilizes both the IShellFolder interface, and the
+ IShellFolder's child interface, the IEnumIDList interface, while processing the
+ notification messages sent by the TreeView and ListView controls; it also enumerates the
+ shell's namespace and displays the names and icons of any and all file system objects in
+ each control. Other interesting Explorer-like behavior is thrown in, including right-click
+ shell context menu functionality with help from the IContextMenu interface, and for good
+ measure, a deceivingly simple little splitter bar is used to simultaneously adjust the
+ size of both control windows within their parent Form. Other various (and subtle) Explorer
+ view functionality is also demonstrated.
+ 
+ But unlike EnumDeskVB, this demo does a few other things as well. First, notification
+ messages sent by the TreeView and ListView controls are received directly within the
+ controls' subclassing window procedures via the OCM_NOTIFY message, eliminating the need
+ to subclass the controls' parent window, typically a Form. The system imagelist is
+ assigned directly to both the TreeView and ListView controls, as is demonstrated in both
+ the VB Directory TreeView and System
+ Imagelist demos, respectively. Directional sort icons are also displayed in ListView
+ column headers as is demonstrated by the ListView Header Sort Icons
+ demo.
+ 
+ But where things really begin to get interesting is the demo's use of the IShellDetails
+ interface, which provides ListView column information for the contents of most shell
+ folders, without the need to explicitly extract the details with the FindFirst/NextFile
+ APIs. Also, item details are sorted in the respective ListView columns by passing the
+ column's index value to the IShellFolder CompareIDs member function, functionality that
+ was just recently discovered in this part of the universe.
+ 
+ As always, the source code is fairly adequately documented, and has been tested and run
+ successfully without incident using controls from both Comctl32.ocx and Mscomctl.ocx in
+ VB5 and VB6 on Win95/IE3, Win98, WinNT4 SP3 and SP5, and Win2K rc2. Note that the
+ Mscomctl.ocx ListView exhibits unusual behavior when ListItems are selected in large icon
+ view. This may be due to directly setting ListItem icon indices with the listview's
+ LVM_SETITEM message, but the exact cause has yet to be determined...
+ 
+ Download vbexplorer.zip (65kb) 
+ 

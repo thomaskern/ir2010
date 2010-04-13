@@ -1,0 +1,188 @@
+
+Free Java Help --- Tutorials --- Components --- Buttons
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Buttons 
+ 
+ We are going to start with what is probably
+the most important Graphical User Interface component, the button. There are a
+few constructors for buttons, all listed below:
+Button objectnamegoeshere=new Button("text for button goes here");
+Button objectnamegoeshere=new Button();
+ The first constructor is probably more
+common, because it automatically puts text on the button. (The text that goes
+on the button goes inside the parentheses. Remember that unless it is a
+variable, it has to be in quotes!) 
+ If you choose to use the second
+constructor, and want some text to appear on the button, you need to use
+the setLabel() method after the constructor. For example:
+Button test=new Button();
+test.setLabel("Hello");
+ This would make a button, and then put the
+text Hello on it. The setLabel method can be used as many times as you would
+like however, at any point in the code.
+ An example of buttons in java is listed in
+the following applet:
+ Here is the code for the applet above:
+//-----------------------------/
+//Copyright 2000 FreeJavaHelp.com/
+//-------------------------------/
+//This applet will teach you how to use buttons
+//and their methods
+//the next line imports the class so this program can be an applet
+import java.applet.Applet;
+//this imports the AWT components so you can make your
+//Graphical User Interface
+import java.awt.*;
+//this makes a program called usingbuttons which is an applet
+public class usingbuttons extends Applet{
+ //makes a simple run of the mill button
+ Button norm=new Button("Run of the Mill");
+ //makes a normal button, but uses the setLabel()
+ //method to set the text, who's name is lab
+ Button lab=new Button();
+ //makes a button who's name is color
+ Button colo=new Button("This Button is Red");
+ //public void init() occurs when the applet is initialized
+	public void init(){
+ add(norm);
+ add(lab);
+ add(colo);
+ //this is the method that actually sets the
+ //label of the lab button
+ lab.setLabel("setLabel() Method");
+ //this method set the background color of the
+ //button named color
+ colo.setBackground(Color.red);
+ //The Color class contains some default colors
+ // one of which is red
+ }
+}
+ Remember that on any given line, if you see
+//, then the rest of the line is comments. For example, the line
+ //The Color class contains some default colors, one of which is red
+ is simply there to tell you what is happening in the next few lines
+of code. This example simply explains the the Color.red in the code above is
+simply the color red!
+Tutorials Contents
+ 
+ 
+Lessons in the Components Section 
+ 
+Beginning
+Buttons
+Labels
+Checkboxes
+Choice
+Text
+List
+Scrollbar
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

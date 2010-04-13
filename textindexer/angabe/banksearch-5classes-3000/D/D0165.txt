@@ -1,0 +1,854 @@
+ 
+ 
+ 
+ Devicetop.com - Contests
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ login
+ 
+ password
+ 
+ 
+ 
+ logout 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ join devicetop! 
+ 
+ 
+ 
+ 
+ 
+ 
+ home > contest 
+ 0 pts 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+   
+ 
+ 
+ 
+   
+ 
+   
+ 
+ 
+   
+ 
+   
+ 
+ 
+   
+ 
+ 
+ 
+   
+ 
+ 
+   
+   
+   
+ 
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ INTERACTIVE 
+ SHOPPING SERVICES (T-Commerce Application)
+ 
+(1) 
+ Product Overview
+ 
+ 
+ 
+- High 
+ level product description
+ 
+ 
+Interactive 
+ Shopping Services for iTV is an application, which allows users to purchase 
+ products while watching their favorite television programs or channels.
+ 
+ 
+ 
+- Solution 
+ this product provides 
+ 
+ 
+ 
+End-user 
+ - Offers viewers the option to purchase items they see in television programs. 
+ This offers an alternative to purchasing items over the Internet, catalog 
+ shopping, and even to the traditional television shopping network. Viewers 
+ are able to purchase merchandise while watching a television program that 
+ already targets their interests. 
+ 
+For example, 
+ if a viewer is watching the popular sitcom "Friends" and they 
+ admire the sweater Ross is wearing, they could click on the "shopping 
+ mode" icon and see how much the sweater costs, which store it is 
+ sold at, and purchase it at that very moment. Likewise, if a sports fanatic 
+ is watching the Golf Channel, they could possibly buy the golf clubs that 
+ Tiger Woods uses in his US PGA Tournament if they choose to watch television 
+ in "shopping mode".
+ 
+This application 
+ drives impulse buying (see stats needed on Home Shopping Network below).
+ 
+ Advertisers -This application offers advertisers a powerful tool 
+ since viewers actually choose to view advertising. For example, a person 
+ watching a television program and clicks on the "shopping mode" 
+ button would actually want to be exposed to the advertised merchandise 
+ and branding material. It is very easy for advertisers to see more direct 
+ results. Advertising can be extremely targeted to each television program 
+ as advertisers typically know the details of the target audience of each 
+ television program. When they find the appropriate target audience, they 
+ typically purchase a 20 second commercial spot. They can't guarantee that 
+ their audience isn't getting up from the television on commercial break. 
+ The Interactive Shopping Services, allows viewers to request to view their 
+ information and perhaps make an impulse buy while watching the show. The 
+ reaction time from advertisement to point of sale is almost real-time.
+ 
+ Service Providers - This is a favorable application to service 
+ providers. First of all, this application doesn't take the viewer away 
+ from the television, which is important criteria to service providers. 
+ Second, it offers great revenue potential since the service provider could 
+ charge a minimal administration fee (1% or 2%) to the merchant for each 
+ order placed.
+ 
+This application 
+ would be easy for service providers to implement, which makes this a very 
+ attractive application to service providers. The effort required on their 
+ end to put this type of application together is as simple as using authoring 
+ tools for a web page. It is low cost to maintain, making this application 
+ very appealing to them. 
+ 
+ 
+ 
+- Target 
+ end user and customer of this product
+ 
+ 
+ 
+The primary 
+ target end users for the Interactive Shopping Services are all adult viewers 
+ of television. This target audience varies in ages (must be 18+), with 
+ different backgrounds and interests. 
+ 
+ The target customer for this product is a service provider. There are 
+ two different types of business models for this application, which are 
+ offered to service providers (see Customer Profile section).
+ 
+ 
+ (2) Product Profile
+ 
+ 
+ 
+- High-level 
+ product objectives of this product
+ 
+ 
+1. Allow 
+ viewers the ability to purchase merchandise from the television programs 
+ they watch.
+ 2. Enable users to access proper product information in order for them 
+ to make purchasing decisions - product description, image, pricing, and 
+ branding information.
+ 3. Allow users the ability to use such a service, while there are security 
+ measures in place in order to restrict it from children and other members 
+ of their household.
+ 4. Enable advertisers an option that entices potential customers to choose 
+ to be exposed to their advertising/branding information.
+ 5. Enables advertisers the ability to sell their merchandise to the viewer 
+ throughout the television program. 
+ 6. Offer service providers a lucrative new service, which will offer great 
+ new revenue potential.
+ 
+ 
+ 
+- Overall 
+ functionality 
+ 
+ 
+ 
+The following 
+ are functionality items, which at a minimum needs to be in your application. 
+ You are more than welcome to add more functionality into your game application 
+ if you so choose. 
+ 
+ 
+(1) View 
+ merchandise for sale
+ (2) View information about merchandise for sale
+ (3) Purchase merchandise for sale
+ (4) Confirmation of purchase
+ 
+ 
+ 
+- Details 
+ of each functionality 
+ item (both primary and secondary) 
+ 
+ 
+ 
+View 
+ Merchandise for Sale
+ 
+ This function allows viewers the ability to enter into "shopping 
+ mode", while watching their favorite television programs. Once a 
+ viewer is in shopping mode, they are exposed to any merchandise for sale 
+ throughout the duration of the television program. 
+ 
+ The service provider would add several xlets to the carousel at the beginning 
+ of the television program to encourage people to click on the "shopping 
+ mode" icon. After x number of minutes, the service provider would 
+ take several of the xlets off the carousel to replace data spots with 
+ product information (pricing, description, image, branding, etc). The 
+ xlet would continue to be on the carousel in order to encourage new viewers 
+ throughout the program to click on "shopping mode". 
+ 
+ View Information about Merchandise for Sale
+ 
+ This function allows viewers to access all relevant information in order 
+ to make an educated purchasing decision. Information such as product description, 
+ product pricing, branding information, and an image would be of interest 
+ to the viewer. 
+ 
+ During the program, the xlet reads the sequence script and retrieves information 
+ from the carousel in time to display the notification that an item is 
+ available for sale. At that time, the xlet should have already read the 
+ data needed to display the proper content if the viewer is to click on 
+ the "more" button (pricing information, image, product description, 
+ branding information, etc). It is mandatory for the xlet to have read 
+ all data needed before displaying a notification.
+ 
+ When building this application, the sequence of items shown, must be in 
+ context with the television programming. For instance, don't show pots 
+ unless you are in a kitchen scene in the television program. 
+ 
+ The data should be delivered to the viewer seamlessly. If the xlet misses 
+ a piece of merchandise on the carousel, the xlet should not give any indication 
+ to the viewer that an item has been missed. 
+ 
+ An example script could include the following:
+ 
+ 1:00, add kettle, ID#412356, show image, show price, show description
+ 5:35, add sweater, ID#415262, show image, show price, show description
+ 10:00, remove all 
+ 16:20, add pots, ID#526142, show image, show price, show description
+ 
+Need data 
+ for each piece of the script, which could include product description, 
+ pricing, image, branding information, etc. 
+ 
+ There must be some indication to the viewer when a new item of merchandise 
+ is added to the carousel to be viewed. 
+ 
+ It is also important to note that you do not want to interrupt the viewers 
+ experience too much throughout the television program. Perhaps there would 
+ only be five pieces of merchandise showcased throughout the duration of 
+ a 30-minute television program. The viewer will not have control over 
+ the items available for sale. This will be handled through the advertisers, 
+ service providers, and content providers. 
+ 
+ 
+Purchase 
+ Merchandise for Sale
+ 
+ 
+This function 
+ allows the user to purchase merchandise while watching a television program.
+ 
+The xlet 
+ would tell the set-top box to add the product ID# to smart card. When 
+ the set-top box uses its modem at midnight to connect to the service provider, 
+ it would say "bill me for X items purchased", with the associated 
+ product ID#s. The service provider would then do the administration function 
+ of contacting the appropriate stores to ensure the purchases go through. 
+ 
+ 
+It is important 
+ that the viewer is exposed to the entire pricing structure before hitting 
+ the "Buy Now" button. The full price should include price, taxes, 
+ and shipping fees. 
+ 
+ Confirmation of Purchase 
+ 
+This function 
+ allows the viewer to receive a confirmation receipt of their purchases. 
+ This could be done through email or an iTV function. 
+ 
+Additional 
+ Functionality Note: Security measures are needed for this application 
+ in order to control children and other people in the household from making 
+ unapproved purchases. The final stages of the purchasing process should 
+ include the viewer typing in a password. The password protection procedure 
+ will need to be handled by another application, since it wouldn't be appropriate 
+ for the Interactive Shopping Services application to have access to the 
+ viewers' password.
+ 
+(3) 
+ Design Considerations
+ 
+There is 
+ no server side aspect to this application. The xlets, scripts, and merchandise 
+ information is all stored on the carousel, which is transmitted alongside 
+ normal TV programming. 
+ 
+SEE FLOW 
+ OF CONTENT (LINK NEEDED)
+ This diagram indicates the flow of content from the carousel and video 
+ stream right down to the television. 
+ 
+SEE CAROUSEL 
+ OVERVIEW (LINK NEEDED)
+ This diagram is a more detailed look of the data included in the carousel 
+ for the Interactive Shopping Services application. Information would include 
+ xlets, scripts, product pricing, product descriptions, product order numbers, 
+ product images, and branding information.
+ 
+SEE PURCHASE 
+ OVERVIEW (LINK NEEDED)
+ This diagram is a detailed look of the purchase process. Once the viewer 
+ decides to purchase an item, that product ID# and other information is 
+ stored on the smart card. At midnight, when the set-top box uses the modem 
+ to connect to the service provider, the information is then transmitted 
+ from the smart card to the service provider. The service provider then 
+ places the order. 
+ 
+SEE EXAMPLE 
+ UI DIAGRAM (LINK NEEDED)
+ An example UI of the Interactive Shopping Services on a TV. 
+ 
+Sun's 
+ JavaTV&#153; Framework
+ 
+The JavaTM 
+ platform along with the Java TVTM API provides an ideal development and 
+ deployment platform for this emerging class of interactive services. The 
+ Java programming language provides developers with a high degree of control 
+ and flexibility over the "look and feel" of their applications, 
+ enabling them to deliver the most dynamic and compelling interactive television 
+ experiences to their audience. In addition, interactive television applications 
+ written in the Java programming language offer security, extensibility, 
+ and portability across a diverse array of television receivers, saving 
+ content developers time and money getting their interactive applications 
+ to market. Download a copy of the JavaTV 
+ API today. 
+ 
+ 
+iTV 
+ Reference Platform
+ 
+The iTV reference 
+ platform supports a subset of the DVB-MHP specification, which allows 
+ developers to test iTV applications, xlets, in a device scenario. We encourage 
+ you to download this reference platform if you are building iTV applications.
+ 
+Download 
+ the iTV Reference Platform in the Dev 
+ Tools area on devicetop.com.
+ 
+Overview 
+ of a Carousel
+ 
+ 
+- A carousel 
+ is a way of organizing information that set-top box applications might 
+ need from the digitalTV stream. This information is collected together 
+ and transmitted alongside normal TV programming. 
+ 
+- Data rotates 
+ around the carousel, and is transmitted to the viewer at a specific 
+ time. 
+ 
+- Data is 
+ usually included many times in one rotation (i.e xlets could be on the 
+ carousel more than once in a rotation)
+ 
+- Information 
+ is one-way and read-only.
+ 
+- An xlet 
+ is to a TV set-top box as an applet is to a web browser.
+ 
+ 
+ 
+(4) 
+ End-User Profile
+ 
+ 
+ 
+- Demographic 
+ characteristics
+ 
+ 
+The primary 
+ target end users for the Interactive Shopping Services are all adult viewers 
+ of television. This target audience varies in ages (must be 18+), with 
+ different backgrounds and interests. 
+ 
+ 
+Statistics 
+ on the Home Shopping Network demographics:
+ 
+ 
+- Viewership- 
+ 77% female, Age: 35+, Average Income: $61,000
+ 
+- Reach 
+ - +154 million households worldwide
+ 
+- 2000 Sales 
+ - $1.8 Billion
+ 
+- Customer 
+ Relations- A customer relations staff fulfills more than 1500 processes 
+ and 75 million calls per year.
+ 
+- Products 
+ - HSN offers more than 21,000 unique products
+ 
+- Mission 
+ Statement - Our business at HSN is to make people feel good. We do this 
+ by creating a shopping experience that is: fun, entertaining, informative, 
+ convenient &#133; and worth it. We're live on TV and online, around 
+ the world. We live our mission 24/7.
+ 
+ 
+ 
+- Expectations 
+ & Familiarity
+ 
+ 
+ 
+The majority 
+ of TV viewers are familiar with a remote controlled TV. There will be 
+ a good percentage of these viewers who have had similar shopping experience 
+ either with the Home Shopping Network or with online purchasing. 
+ 
+ 
+- Objectives
+ 
+ 
+ 
+- Gain 
+ more entertainment value by viewing the pricing, branding, and product 
+ information on many of the products seen in favorite television programs.
+ 
+- The opportunity 
+ to purchase favorable merchandise seen on actors, sports professionals, 
+ other tv personalities, or on the set of specific television programs.
+ 
+- An alternative 
+ means of buying gifts. Viewers are often aware of the interests or favorite 
+ television programs of friends and family. This application gives viewers 
+ a new channel to purchase gifts. 
+ 
+ 
+ 
+(5) 
+ Customer Profile
+ 
+The customer 
+ of the Interactive Shopping Services is a service provider. Service providers 
+ have two business models they can implement for this type of application. 
+ They are likely to implement a combination of both options. 
+ 
+Viewers will 
+ be able to access the Interactive Shopping Services as part of their basic 
+ iTV functions. The service provider will want to encourage the developer 
+ to use this application as often as possible, and therefore offer this 
+ service for free.
+ 
+Build in 
+ a business model that reflects one of the two options below, a combination 
+ of both, or your own business model. 
+ 
+Advertising 
+ model - The service provider is able to generate revenue on the Interactive 
+ Shopping Service by selling advertising placements. Throughout a television 
+ program, all of the merchandise presented could be sponsored by one company. 
+ For instance, all clothing merchandise that is presented could be from 
+ Eddie Bauer. 
+ 
+ 
+Revenue 
+ Generating Model - The service provider is able to generate revenue 
+ on the Interactive Shopping Service by charging the merchant on each purchase 
+ made. For instance, on a purchase made, the service provider could charge 
+ a 1%-3% transactional fee to the merchant, similar to what credit card 
+ companies do to merchants. 
+ 
+ 
+(6) 
+ Market Profile
+ 
+ 
+iTV 
+ Projections
+ 
+ 
+- The number 
+ of set-top boxes purchased will jump from 6.9 million in 2000 to over 
+ 74 million in 2005. [Cahners In-Stat Group]
+ 
+- American 
+ digital cable subscription looks set to rise by an annual rate of 32%. 
+ Digital cable subscription will overtake analogue cable within the next 
+ 6 years, with the number of digital cable subscribers increasing from 
+ 9M in 2000 to 35M by the end of 2004. By 2006 it will reach 50M subscribers, 
+ which equals 67% of total cable subscriptions. VOD and other services 
+ will attract analogue cable and DBS viewers [The Strategis Group]
+ 
+- By the 
+ end of 2001, 38 million homes worldwide will have access to interactive 
+ digital television services, up from 20 million today. Western Europe 
+ accounts for 62% of the audience this year, North America 18%, Asia-Pacific 
+ 10% and Latin America 1%. 74% of viewers use a satellite-based service, 
+ 21% cable and 5% terrestrial. [Strategy Analytics]
+ 
+- In 2002, 
+ the FCC requires that all commercial broadcast stations in the U.S. 
+ must have digital TV facilities in operation. [Sun]
+ 
+ 
+ 
+iTV 
+ Advertising Projections
+ 
+ 
+- Three-quarters 
+ of all television commercials will be interactive within five years 
+ [Forrester Research]
+ 
+- Interactive 
+ television advertising revenues are expected to reach $11 billion in 
+ the U.S. by 2004 [Forrester Research]
+ 
+- Interactive 
+ television provides marketers with the means to personalize and collate 
+ customer data and the opportunity to engage with customer for more than 
+ the traditional 30-econd spot. Niche TV channels mean better targeting 
+ of consumers, and ability to measure individual customer response. [BMPtvi]
+ 
+- Forrester 
+ predicts that by 2005 more than 16 million UK homes will use their electronic 
+ program guide (EPG) for around 15 minutes per day, exposing them to 
+ more than 10,000 impressions per year. As audiences fragment across 
+ a flood of new digital channels, EPGs will become the last stand of 
+ mass-media marketing. [Forrester Research]
+ 
+ 
+ 
+T-Commerce 
+ Projections
+ 
+ 
+- T-commerce 
+ or interactive TV (iTV) shopping will grow at a much faster rate in 
+ the US than iTV advertising over the next 4 years. [Jupiter Media Metrix]
+ 
+- Where 
+ as iTV shopping will account for 44 percent of total US TV-based shopping 
+ by 2005 iTV advertising will comprise only seven percent of US TV advertising 
+ in the same year. [Jupiter Media Metrix]
+ 
+- The $4.3 
+ billion in t-commerce revenue will come from three main sources: 
+ · ITV Shopping Programs ($3.4 billion)-Viewers use a remote control 
+ instead of a phone to buy items showcased on infomercials or shopping 
+ channels such as QVC or USA Networks' Home Shopping Network. 
+ · ITV Malls ($0.7 billion)-Viewers tune in to a Web-like catalog 
+ or store that carriers and their merchant partners provide within their 
+ own areas. 
+ · Integrated iTV Shopping ($0.3 billion)-Viewers interact with 
+ offers embedded in commercials or programs, timed to take advantage 
+ of impulse buying
+ 
+ 
+Market 
+ trends including industry challenges and customer adoption rates
+ 
+ 
+- Set-top 
+ boxes will not work until broadband penetration rates increase. On the 
+ other hand, however, service providers are balking at offering interactive 
+ services until they see a demonstration of consumer demand. [Cahners 
+ In-Stat Group]
+ 
+- TVs will 
+ send you commercials targeted specifically to your household, with, 
+ for example, a home with young children getting toy and detergent ads 
+ while that of a retired couple getting commercials for denture care 
+ and Depends. They will also allow parents to have far more control than 
+ currently over the TV programming their kids can tune in to. [Jupiter 
+ Media Metrix]
+ 
+- One of 
+ the biggest stumbling blocks for iTV are fears that the technology will 
+ compromise viewers' privacy. Those fears were fanned when one of the 
+ pioneers of interactive TV - digital set-top provider TiVo - found itself 
+ embroiled this year in criticism over its collection of data about viewing 
+ habits. [Jupiter Media Metrix]
+ 
+- Analysts 
+ say that short-term economic and funding concerns focus on applications 
+ that have proven their viability with consumers, especially those demonstrating 
+ revenue-generating potential. [Cahners In-Stat Group]
+ 
+ 
+ 
+Online resources 
+ used to collect market research: 
+ Interactive 
+ TV: Tailored to Your Wishes
+ Set-Top 
+ Box Market Is Ready to Explode
+ iTV Marketer
+ Sun's 
+ Site
+ Digital 
+ Impact 
+ Digital Now Inc.
+ Shop 
+ NBC
+ Home 
+ Shopping Network
+ 
+ 
+(7) 
+ Product Use Profile
+ 
+ 
+- Device 
+ Characteristics
+ 
+ 
+The device 
+ that the viewer's Interactive Shopping Services is running on is a set-top 
+ box. The viewer will interact with the service using the remote control. 
+ The developer of this application must keep this in mind; and therefore, 
+ must create navigation and features to be simple.
+ 
+ 
+- Inter-working 
+ with other applications
+ 
+ 
+The Interactive 
+ Shopping Application will need to correspond with the content on the television 
+ program. The sequence of merchandise shown, must be in context with the 
+ television programming. For instance, only post towel information when 
+ you are in the bathroom scene in the television program. 
+ 
+The application 
+ is in the form of an xlet on the carousel, which is transmitted alongside 
+ normal TV programming. 
+ 
+ 
+ 
+- Use 
+ Scenarios 
+ 
+ 
+ 
+(1) 
+ You are watching "Friends" and you love the sweater Jennifer 
+ Aniston is wearing. You notice that it's for sale and would like to at 
+ least check out how much it costs. You click on the sweater icon and are 
+ able to find out it costs $49 at The Gap. You find out that it is a pre-shrunk, 
+ 100% cotton sweater. You decide to purchase it. You click on the "buy 
+ now" button are taken to a screen which gives the full price, which 
+ includes the price of the sweater, taxes, and shipping fees. You click 
+ "buy now" to confirm you agree with purchasing the sweater including 
+ all of the costs involved. You then continue watching "Friends". 
+ The next day you turn on your computer you receive a an email saying "Gap 
+ Sweater #45201 Purchased! Total $56.50 ($49 + $2.50 taxes + $5 shipping 
+ and handling), Delivered by Friday". The sweater arrives at your 
+ doorstep four days later.
+ 
+ 
+(2) 
+ Your father loves to fish and hasn't bought any new gear in a while. Father's 
+ Day is coming up and you want to buy him some fishing gear but don't have 
+ a clue what to buy him. You decide that instead of heading out to a store, 
+ you will watch the Fishing Channel on TV to see if you get any hints on 
+ what to buy. You also have the Interactive Shopping Service as part of 
+ your basic iTV package, so at least you know you have the option to purchase 
+ an item for his gift while watching TV. You head to the Fishing Channel 
+ and watching "Fishing with Dave & Mike". While watching 
+ the show, really like one of the fishing rods that come up and it's the 
+ right price. You also notice there is a special Father's Day promotion 
+ on, where you will get an additional 10% off any purchase made today. 
+ You decide to buy it. You click on "buy now" where you are exposed 
+ to the total price, including the cost of the rod, less 10%, plus taxes, 
+ and shipping fees. You click on the "Gift" icon, which allows 
+ you to type in the address of your father. You click on "buy now" 
+ again you are once again exposed to the total price since it changed due 
+ to the your father's address (delivery fee). You must click on "buy 
+ now" one last time, which is completed upon typing in your password. 
+ A week later, your father phones to thank you for the great fishing rod 
+ for Father's Day. 
+ 
+ 
+(8) 
+ Documentation Profile
+ 
+ 
+The following 
+ documents will need to be provided:
+ 
+ 
+· 
+ Getting Started Guide - Provide users a clear overview of what 
+ the product is. The document should clearly indicate who is the intended 
+ audience and what is included in the product. 
+ 
+ 
+· 
+ User's Guide - An overview of how the viewer can get started in 
+ "shopping mode" where television programs provide this service. 
+ There should be a detailed overview of the content provided (image, product 
+ description, product ID#, pricing). There should be a detailed description 
+ of the purchasing process, which should include pricing involved (product 
+ price, delivery fee, and taxes). There should also be an overview on security 
+ measures put in place to ensure people under the age of 18 do not use 
+ the service. 
+ 
+(9) 
+ Additional Comments
+ 
+ 
+ 
+- This application 
+ idea actually values reruns. New items can be available in reruns, including 
+ collector items. 
+ 
+- Another 
+ variation of this application is to target it specific to commercials. 
+ While viewers watch traditional 20-second commercial spots, there could 
+ be an option to click on "buy now" and purchase the advertised 
+ product.
+ 
+- Not all 
+ products in each television program are for sale. This is determined 
+ by the service providers and content providers before the show goes 
+ on air. 
+ 
+- It is 
+ important to note that you should not put too much content on the screen 
+ because you do not want viewers to be too distracted while watching 
+ their favorite television programs. An image, brief description, pricing 
+ information, branding information, and a "Buy Now" button 
+ should be all that is needed
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CREATE &#8226; CODE &#8226; UPLOAD
+ 
+HOME l USER 
+ l FORUMS l NEWSWIRE 
+ l CONTEST l TOOLS 
+ l APPLICATIONS
+ 
+ABOUT DEVICETOP.COM PRIVACY 
+ STATEMENT CONTACT US CONTEST RULES PARTNERS
+NEED A JAVA BROWSER?
+ 
+© 2000 Espial Group Inc. Espial and devicetop.com 
+ are trademarks of Espial Group 
+Inc. All other trademarks belong to their 
+ respective owners.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

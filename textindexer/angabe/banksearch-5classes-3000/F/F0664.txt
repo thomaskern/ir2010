@@ -1,0 +1,517 @@
+
+VB Helper Tutorials
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+	 
+	
+	 
+	 
+	
+	
+	
+	
+	
+	
+	
+	New Home 
+	Old Home 
+	What's New 
+	Site Map 
+	 
+	Books 
+	How To 
+	Tips & Tricks 
+	Tutorials 
+	Stories 
+	Performance 
+	Essays 
+	Links 
+	Q & A 
+	New in VB6 
+	Free Stuff 
+	Pictures 
+	 
+	Awards Received 
+	Banners 
+	 
+	News Letter 
+	
+	Feedback
+	 
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	Tutorials
+The links below lead to magazine articles and chapters from books written by me (Rod Stephens). These articles are tutorial and in much greater depth than the HowTo example programs. They also include links that let you download the example source code.
+If you like what you read, click on the Source links to learn more about the book or magazine where this material was first published.
+	 
+	
+	 
+	
+	
+	
+	Title
+	Description
+	Source
+	
+	
+	
+	 Discovering Database Structure with VB .NET
+	 
+	
+When you build a database yourself, you know what you've put in it. But what do you do if you have a legacy database thrust upon you? How do you figure out what tables are present? What fields are in the tables? How are the tables related? This article explains some useful techniques for learning about the structure of an MSDE or SQL Server database using Visual Basic .NET.
+ 
+ See also my book Visual Basic .NET Database Programming.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Executing Ad Hoc Queries with VB .NET
+	 
+	
+Database applications typically include an assortment of prepackaged queries and reports, but no application can anticipate every user's needs. An ad hoc query system allows an application to meet unforeseen requirements. Rod Stephens explains how to use VB .NET database objects to perform queries and manipulate the database by executing SQL scripts.
+ 
+ See also my book Visual Basic .NET Database Programming.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Twos Complement Numbers
+	 
+	
+	 This article explains twos complement representations for numbers. This information can help you understand which bits are set to represent integer values.
+	 
+	
+ VB Helper
+	 
+	
+	
+	
+	 Using Floating Point Numbers
+	 
+	
+	 This article explains some obscure and puzzling bugs that can occur when you use floating point numbers.
+ 
+ See also my book Bug Proofing Visual Basic.
+	 
+	
+ VB Helper
+	 
+	
+	
+	
+	 Introduction to DataSets with Visual Basic .NET
+	 
+	
+	 ADO stores data in a relatively simple Recordset object. ADO.NET, on the other hand, uses a bewildering assortment of classes including DataSet, DataTable, DataColumn, and various constraint objects. Rod Stephens provides an introduction to the most basic of these classes, and shows how you can use them to manage data in a simple database application.
+ 
+ See also my book Visual Basic .NET Database Programming.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 S. Ibaraki Interviews Rod Stephens
+	 
+	
+	 In this interview, Stephen Ibaraki asks for tips, things I've learned in past projects, development topics to watch, and more.
+	 
+	
+ Canadian Information Processing Society
+	 
+	
+	
+	
+	 Binding Controls with VB .NET
+	 
+	
+	 Would you believe that you can make a program that lets the user view, insert, update, and delete records in a database table with only two lines of code? You can by using bound controls. Rod Stephens explains how you can bind controls to data at design time or at runtime to provide simple but powerful database access with no muss or fuss.
+ 
+ See also my book Visual Basic .NET Database Programming.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Getting Started with MSDE and VB .NET
+	 
+	
+ Access databases are cheap, but they work well only for small, single-user applications. SQL Server is powerful enough to support huge databases with multiple simultaneous users, but it is very expensive. What if you're stuck somewhere in between? Rod Stephens explains how you can use MSDE to build small multiuser applications while preparing to scale up if your database needs increased performance. 
+ 
+ See also my book Visual Basic .NET Database Programming.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Automating the build process of a Visual Basic project
+	 
+	
+ This tutorial explains how to use Windows Scripting Host to run the scripts, and use nmake to compile the project 
+	 
+	
+ Sridhar Natarajan
+	 
+	
+	
+	
+	 Getting Started with VB 6 and XML
+	 
+	
+ VB.NET includes a lot of built-in support for XML but there's no reason to wait for VB.NET to use XML. This article explains how you can take advantage of XML in your VB 6 applications right now!
+ 
+ See also my book Visual Basic.NET and XML.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 VB.NET + XML = Object DB
+	 
+	
+ When most programmers think about databases, they think of relational databases. Other kinds of databases are also sometimes very useful. This article explains how you can use XML to build your own object databases.
+ 
+ See also my book Visual Basic.NET and XML.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 VB.NET + XML = Undo/Redo
+	 
+	
+ Undo and redo features are de rigueur in high-quality professional applications, yet no one tells you how to build them. This article explains how to use XML to add undo and redo features to your applications with ease.
+ 
+ See also my book Visual Basic.NET and XML.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Where Was I? Restoring Application State with VB and XML
+	 
+	
+ In complex applications, users spend a lot of time arranging forms, opening windows, and performing other startup chores. You can make this easier by having the application store and restore its state when it stops and restarts. This article shows how to use XML to save and restore program state quickly and easily.
+ 
+ See also my book Visual Basic.NET and XML.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Reasons to Prototype in Visual Basic
+	 
+	
+ Aircraft and automobile manufacturers don't start a multi-million dollar project without prototyping first. Why should you? This article explains some of the reasons you might want to build a prorotype before starting a software project. Once you know what's at stake, you can learn more about prototyping in Visual Basic from my book coincidentally named Prototyping with Visual Basic.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Query By Example
+	 
+	
+ The most useful prototypes are up and running quickly so users can provide feedback early on. This article, based on my book Prototyping with Visual Basic, explains how you can add a query by example feature to your database prototype quickly and easily.
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Making a Splash
+	 
+	
+ First impressions can make or break a project. This article, based on my book Prototyping with Visual Basic, shows how to make eye-catching splash screens that will make your application the talk of the water cooler!
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	 Tales from the Trenches
+	 
+	
+ Prototyping with Visual Basic uses amusing true stories to make a lot of important points. This article contains some of the more interesting stories. Have a chuckle at my expense!
+	 
+	
+ InformIT
+	 
+	
+	
+	
+	Steganography: Hidden in Plain Sight
+	 
+	This article explains basic steganography: the art of hiding information within other information. It shows a simple method for hiding text in an image.
+	 
+	
+	 
+	
+	
+	
+	Building Property Pages
+	 
+	This article explains the basic steps to building property pages for a new ActiveX control.
+	 
+	
+	 
+	
+	
+	
+	Screen Resolution
+	 
+	This article discusses several different ways to handle screens with different resolutions.
+	 
+	
+	 
+	
+	
+	
+	Cryptography
+	 
+	A series of articles on interesting topics in cryptography.
+	 
+	
+	 
+	
+	
+	
+	More on error handling
+	 
+	Lots of discussion of error handling by Per Sjoborg, based in part on my book Bug Proofing Visual Basic.
+	 
+	PUCC Multimedia
+	 
+	
+	
+	
+	Using Direct3D with VB
+	 
+	An introduction to using Direct3D for higher performance three-dimensional graphics.
+	 
+	VB Explorer
+	 
+	
+	
+	
+	International Character Sets
+	 
+	Describes character sets and shows how to select them for different languages.
+	 
+	Chris Wagg
+	 
+	
+	
+	
+	Background Color
+	 
+	Notes on background colors and a routine that sets background color for the TreeView control.
+	 
+	Mike Klein
+	 
+	
+	
+	
+	Direct3D
+	 
+	I'm writing this ongoing series of articles on Direct3D. The final goal is to build a 3-D maze war game.
+	 
+	VB Explorer
+	 
+	
+	
+	
+	Internationalization
+	 
+	Tips and tricks for building international applications.
+	 
+	
+	 
+	
+	
+	Sorting Viewer 
+	This program on Rick Meyer's Web site demonstates several different sorting algorithms. 
+	Makai's VISUAL BASIC & HTML Programming 
+	
+	
+	
+	Does P = NP?
+	 
+	This article describes the sets P and NP, asks the question "does P = NP?" and explains why that question is of profound philosophical and practical importance.
+	 
+	
+	 
+	
+	
+	
+	ADO Tools
+	 
+	This is a talk I gave to the Denver Area Visual Basic User's Group metting on 1/24/00.
+	 
+	
+	 
+	
+	
+	
+	Constructors in VB
+	 
+	This article on the PUCC Multimedia Web site explains how to use constructors to initialize objects in VB.
+	 
+	PUCC Multimedia
+	 
+	
+	
+	
+	Introduction to ADO
+	 
+	This is a PowerPoint presentation I gave to the Denver Area Visual Basic User's Group lab metting on 9/20/99.
+	 
+	
+	 
+	
+	
+	
+	Working With Remote Database Times
+	 
+	This article on SmithVoice.com explains how to use GMT times to coordinate data access from different locations around the world.
+	 
+	Robert Smith
+	 
+	
+	
+	
+	Drawing Platonic Solids
+	 
+	This article explains how to calculate the
+	coordinates of the corners of the Platonic solids:
+	tetrahedron, cube (hexahedron), octahedron,
+	dodecahedron, and icosahedron.
+	 
+	For more information on three-dimensional graphics, see
+	Visual Basic Graphics Programming
+	 
+	
+	
+	
+	
+	An Introduction to Visual Basic
+	
+(Leads to a different Web site)
+	 
+	Provides an introduction to Visual Basic, explaining fundamentals such as loops, subroutines, etc. Compares VB to Delphi. 
+	
+	Peter McMahon, CEO, !Run Software 
+	
+	
+	
+	Error Handling Fundamentals
+	 
+	Explains the basics of using error handlers to protect a
+	program from unexpected errors. 
+	Bug Proofing Visual Basic book 
+	
+	
+	
+	Object Serialization
+	 
+	Make complex objects save and restore themselves
+	quickly and easily. 
+	Microsoft Office & Visual Basic for Applications Developer (MOD) magazine 
+	
+	
+	Beyond Flatland 
+	3-D graphics and 3-D surface drawing in Visual Basic. 
+	Visual Basic
+	Developer magazine 
+	
+	
+	FlappingFlag Control 
+	An ActiveX control demonstrating image processing and animation in VB5/6 
+	Custom Controls Library book 
+	
+	
+	Slightly Irregular 
+	Irregular and sparse arrays, and other memory-saving data structures 
+	Microsoft Office & Visual Basic for Applications Developer (MOD) magazine 
+	
+	
+	Sorting It Out 
+	Sorting algorithms 
+	Visual Basic
+	Developer magazine 
+	
+	 
+	 
+	 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+ Subscribe to the VB Helper newsletter 
+	
+	
+	
+	Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc.
+	 All rights reserved.
+	 
+	www.vb-helper.com/tutorial.htm 
+	Updated 
+	
+	 
+	
+	
+	
+	 
+	
+	 
+ 

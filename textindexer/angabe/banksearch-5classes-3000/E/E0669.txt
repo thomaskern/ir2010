@@ -1,0 +1,405 @@
+
+ 
+The Archive
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+The Archive
+ 
+ This area has files 
+ and source code for programs I make. If you have any questions about 
+ programming in , Pascal(DOS), or C/C++(DOS or Windows), feel free to contact me.
+ 
+Keep in mind that most programs 
+ here require CWSDPMI to run in pure DOS mode. Windows does not require 
+ it, however. You can download it from this 
+ link to ftp.Simtel.net or the DJGPP page.
+ 
+All items here have been tested with DJGPP. 
+ Most, if not all should work on any ANSI standard compiler (if it doesn't 
+ use Allegro.) Programs saying "Alleg req" need DJGPP and Allegro 
+ to COMPILE, but not to run the EXE.
+ 
+Back to main page
+ 
+Contents
+ 
+Libraries
+ 
+Random numbers library 
+ -- Portable RNG. v2.1. 3/8/00. Finished.
+ *LinkList Library -- templates, linklists for large data. 3/8/00. v2.1 FINAL. Complete.
+ Includes the *LinkList program -- example program for Linklist.h. 4/1/99. 
+ v1.3. Complete.
+ TextGUI -- CWindow and CTextBox. 8/16/99. Example Program.
+ QuickGUI -- addon to BGUI. 11/8/99. v1. Working.
+ JPEG for Allegro -- by Eric Vannier. Linux/Dos/Windows. 2/3/98. v1.03.
+ BGui -- 1.0 by Dan Huizenga, 2.0 by Jason Winnebeck. 10/18/00. v2.0.2. Complete
+ 
+Networking
+ 
+Chat Server/Client Programs 
+ -- Chat direct IP to IP! 7/19/99. Scrapped.
+ MUUDPIC -- 2nd generation to above program. 8/16/99. Preview Release.
+ 
+Profiling
+ 
+fixtest.cpp -- Allegro fixed var vs float vs double speed test, important results! 
+ 3/25/00. Finished.
+ Array Test -- Comparision of arr[c] vs *(ptr++).
+ LinkList Test -- Comparision of arr[100000] vs LinkList. Amazing results!
+ Fixed Trig Test 
+ -- Comparasion of fixed trigs and fix trig to float trig. 3/13/99.
+ 
+Screensavers/Misc
+ 
+Stars Screensaver 
+ -- 3d points, classes. 173k, Alleg. v1. 3/27/98. Finished.
+ Snow Screensaver -- For the season. 120k, Alleg. v1. 1/11/99. Finished.
+ Shipdriv -- classes, Allegro, grfx, coord systems. Alleg. 200k. v1. 4/18/98. 
+ Finished.
+ 
+Back to main 
+ page
+ 
+ 
+Libraries
+ 
+jrnd.zip -- header file required to compile 
+ most of my programs. v2.1. Last updated: 3/8/00
+ 
+It's been over a year since I've last updated this library, 
+ and now with the new portable Allegro I have been finding it more and 
+ more difficult to use the ANSI random functions as they yield different 
+ results and in different ranges. So now jrnd has gotten a lot better in 
+ version 2.1. The most notable change in the system is that it comes with 
+ its own public domain RNG, so it will yield identical results on any ANSI 
+ compiler on any platform. Also jrnd is now C compatable. If you are running 
+ C++ you can take advantage of the overloaded functions but now C users 
+ can still use it through alternately named calls (since there are no overloaded 
+ funcs in C). The last change is that jrnd.h and jrnd2.h have been merged 
+ together, so you can get random numbers in 32-bit integer, floating point, 
+ or fixed point formats all from the same include.
+ 
+Version 2.1 fixes major bugs in version 2.0 when 
+ using with Allegro and other includes and code, and now has .cpp version 
+ of rndalgor to add to your project if you prefer not to use jrndglob.h.
+ 
+Back to top
+ 
+Linklist.zip -- Templated library for use with 
+ large data. v2.1 Updated: 3/8/00
+ 
+This class primarily uses pointers, but 
+ it also has alternate functions for returning by reference. Has comments 
+ for nearly EVERY LINE, good for learning a lot of c++. Overloaded functions, 
+ operators, reference, returning by reference, templates, pointers, memory 
+ allocations, inline optimized functions.
+ 
+Latest Changes:
+ Added Save and Load functionality to save or load your place 
+ in the list.
+ 
+I want to caution you that I made 
+ this lib two years ago, and although it does work perfectly and very fast, 
+ it is not very robust -- If you do something wrong then the list will 
+ not pick it up, like when using Save or Load, or the _* functions. I recommend 
+ using the std::list C++ class now if you can.
+ 
+Back to top
+ 
+QuickGUI -- Easy to create dialogs. v1. Updated: 
+ 11/8/99
+ 
+This very small library works over the 
+ BGUI and Allegro libraries to help with creating a more interactive GUI 
+ program in Allegro. This was made for the MUUDPIC GUI chat interface, 
+ but is releasable seperately. Includes .a file compiled on 11/8/99 
+ with latest DJGPP, BGUI, and Allegro on those dates.
+ 
+Features:
+ self-updating GUI textbox, just use the insertion operator. (TextBox > data;)
+ A simple wrapper for the alert dialog when you just want that one-lined 
+ quick OK box.
+ 
+NOTE: Rhide project files 
+ are included but if you use them change the directories properly. Right 
+ now there is no documentation, but everything DOES work right and well. 
+ Look at the example file and .h file to see how to use the lib. This library 
+ requires BGUI and Allegro libraries to work.
+ 
+Back to top
+ 
+JPEG library by Eric Vannier. 2/3/98. v1.03
+ 
+THIS IS THE UNOFFICAL FILE.
+ 
+Linux Version 
+ -- Windows/DOS Version
+ 
+This is because the official site has been 
+ gone for months. Previously I liked to another site but it's been reported 
+ broken. Since I literally can't find any other place this been released 
+ at, I'm placing the file here since it's needed for some of my games, 
+ and also for people looking for it to use. It's provided as-is. This is 
+ the source distribution, unzip to a new directory and run make on it. 
+ It requires Allegro to work. This library also works with Allegro in its 
+ other forms, and I have personally used it on MSVC.
+ 
+Back to top
+ 
+ 
+Networking
+ 
+Chat.zip -- Chat on the internet. Last Updated: 
+ 7/19/99
+ 
+Note: This program is going to 
+ be pretty much scrapped in the next few days because it might has a bug 
+ in it (it may have been the VXD?) and I forgot to include the VXD needed! 
+ (lame me). However, the source is still good to look at for beginning 
+ BSD sockets. MUUDPIC will basically replace this program and outperform 
+ it in every way possible.
+ 
+This zip includes both a chat server, chatserv, 
+ and a chat client, chatcli. In order to use these across the internet, 
+ you need to know your IP address, which can be found be using winipcfg.exe 
+ in Windows 95/98. This program will NOT work in Windows NT because of 
+ the differences in the Winsock interface. If you have Windows 98, or a 
+ later version of Windows 95 (that has Winsock 2 installed), copy the csock.vxd 
+ file into the Windows/System directory. This is a virtual device driver 
+ that is run ONLY when this program runs, so it won't take up memory.
+ 
+To use, one computer runs chatserv, and 
+ the other chatcli where is the server's IP address. 
+ To test it over one computer, open two windows, chatserv in one and chatcli 
+ 127.0.0.1 in the other. The only major bug is that it is VERY slow, and 
+ that is due to a serious bug in the libsocket library that I test, but 
+ do not program.
+ 
+This includes the source files since it 
+ is primarly for a learning tool for BSD sockets.
+ 
+Back to top
+ 
+ 
+Profiling
+ 
+Fixtest.cpp -- Allegro's fixed vars with important 
+ results! v1. 12/9/98.
+ 
+This test program shows very interesting 
+ results concerning Allegro's fixed math routines, and their speed in C++. 
+ Seems the fix class in C++ is useless speed-wise as compared to floating 
+ point!!! But the C-style fixed typedef is MUCH MUCH faster!!! This compares 
+ floats to doubles to Allegro's fixed in various ways. The results are 
+ in the comments at the top of the code so click the link to see them and 
+ the code below it.
+ 
+Back to top
+ 
+ 
+Screensavers/Misc
+ 
+StarSaver.zip -- A "starfield" screensaver 
+ that runs in DOS Size: 173K Last 
+ updated: 3/27/98
+ 
+Requirements: A sound card if you want to hear the music(wavetable 
+ MIDI recommended)
+ 
+Instructions: unzip into own directory and run STARS.EXE. 
+ The STARS.CFG file has some variables you can change in it, especially 
+ the screen resolution and background stars color and number. This was 
+ my first project in C++, and in Allegro. This was virtually just for exploration, 
+ and a lot of the 3d point theory came from the allegro game demo.
+ 
+Back to top
+ 
+Snow.zip -- For the season. Size: 120k. Last 
+ updated: 1/11/99
+ 
+Requirements: 486
+ Recommended: Pentium with SVGA VESA compatable card.
+ 
+This will run on virtually all 486 and 
+ above computers. Simply, it is a small screen saver where snow falls everywhere. 
+ As in the Stars screensaver, there are many editable variables. If I ever 
+ update this program, I might put some music in it and a good background 
+ picture (which only would take a few minutes if I had the art/music.)
+ 
+Back to top
+ 
+Shipdriv.zip -- A spaceship that flys around 
+ joyfully Size: 200K Last updated: 
+ 4/18/98
+ 
+This spaceship acts just like its real counterpart--it 
+ zooms around with speed, acceleration, and many other attributes set by 
+ the SHIP.CFG file. It has intertia--it can turn and it'll still 
+ keep on going the same direction unless you thrust and it slowly changes. 
+ Guns and engines have sounds that pan in stereo as you go accross the 
+ screen!
+ 
+This used to be in the tutorials section, but it's not 
+ commented and was when I was first starting -- so it's a little trashy 
+ and hard to follow. But I'm leaving it here for nostalgia purposes.
+ 
+Back to top
+ 
+ 
+ 
+ 

@@ -1,0 +1,34 @@
+
+Visual Basic Section 3: Scaling Coordinates to a Visual Basic Object
+Scaling Coordinates to a Visual Basic Object
+The Algorithm
+- Calculate the Min & Max X & Y coordinates
+- 
+- 
+- 
+- 
+- 
+- 
+The Code
+Sub XY_MinMax ()
+'#########################################################
+' Finds the Min and Max X & Y Coords
+'#########################################################
+Dim i As Integer, j As Integer
+XCoordMin = Poly(1).X(1)
+XCoordMax = Poly(1).X(1)
+YCoordMin = Poly(1).Y(1)
+YCoordMax = Poly(1).Y(1)
+For i = 1 To PolyNum
+ For j = 1 To CoordNum(i) - 1
+ If XCoordMin > Poly(i).X(j) Then
+ XCoordMin = Poly(i).X(j)
+ ElseIf XCoordMax Poly(i).Y(j) Then
+ YCoordMin = Poly(i).Y(j)
+ ElseIf YCoordMax 
+Forward: BASIC & Visual Basic
+Back: Custom GIS
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

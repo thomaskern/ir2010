@@ -1,0 +1,12 @@
+
+Components
+TextArea
+This applet shows a TextArea component
+Essence
+	TextArea ta ;
+	ta = new TextArea ( 4, 20 ) ;
+	ta.append ("Uno") ;
+	ta.append ("\n") ;
+WWW.JAVALESSONS.COM
+Copyright © 2000 System Exclusive & Multi Midi (NL) All rights
+reserved

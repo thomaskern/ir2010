@@ -1,0 +1,343 @@
+
+VB Helper: Prototyping With Visual Basic: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Prototyping With Visual Basic: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Example Code 
+ 
+ 
+ Related Articles 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Part I: Introduction to Prototyping 
+ 
+ 
+ The chapters in this part of the book provide an overview of the prototyping process. They explain what
+prototypes are and how you can use them to help control development. Later parts of the book focus on
+more specific prototyping issues.
+1. Reasons to Prototype
+This chapter explains why you should build prototypes. It explains how a prototype can help you define
+application functionality, test application architecture, determine project feasibility, build the development team,
+and more.
+2. Kinds of Prototypes
+This chapter describes different kinds of prototypes. It tells what evolutionary, throwaway, and other kinds
+of prototypes are and what you can learn from each.
+3. Prototypes in the Lifecycle
+This chapter tells how you can incorporate prototypes into different kinds of development lifecycles. It explains
+how to use prototypes to control development in waterfall, successive refinement, staged delivery, and
+other lifecycle models.
+ 
+ 
+ Part II: The Prototype Lifecycle 
+ 
+ 
+ The chapters in this part of the book explain how developers can use prototypes during the main
+phases of application development: analysis, design, development, and testing.
+4. Analysis
+The first step in building an application is understanding the customers' needs. This chapter explains how
+you can use prototypes to refine and validate your understanding of those needs. The prototypes built during
+this phase of development can become a living specification, showing how the application should behave during
+later stages of development.
+5. Design
+The design phase is often the most neglected phase of application development. In their rush to start writing code and
+produce a visible result, developers often throw a design together in haste and assume they can work out the
+details later. This chapter explains how you can use early prototypes to check user interface and system designs to
+make sure they will work before developers waste a huge amount of time building an application that doesn't satisfy
+the customers' needs.
+6. Development
+Development is what most programmers think of when they think of application development. This is when the
+programmers actually write the code. This chapter explains how you can use prototypes to keep the coding effort
+focused and on track during the development phase. By holding the programmers to the application's design,
+the prototype can keep them from wasting effort on unproductive dead ends and unnecessary features that
+would make the final result less usable.
+ 
+ 
+ Part III: Prototyping Techniques 
+ 
+ 
+ The chapters in part III describe specific prototyping tips you can use to make prototyping smoother.
+8. Wizards
+This chapter describes some of Visual Basic .NET's more useful Wizards. It explains the advantages and
+disadvantages of Wizards in general and the Visual Basic .NET Wizards in particular. It gives extra attention to the
+Data Form Wizard and the Data Link Properties dialog that you can use as a database connect string Wizard.
+9. Loading Data
+This chapter explains different ways you can load data into a prototype. Even if the final application needs
+to use a full-featured database, you can save time and effort in the prototype using compiled-in data,
+the Registry, resource files, and other techniques for loading data.
+10. ADO Versus ADO.NET
+This chapter discusses some of the tradeoffs between two important database technologies: ADO and ADO.NET.
+Visual Basic .NET provides many features that are more focused on Web applications than previous versions
+of Visual Basic were. ADO.NET includes features that make building scaleable Web-based applications easier.
+Most prototypes, however, do not need Web features. This chapter explains some of the issues you should
+consider when you decide whether to use the newer ADO.NET or the more mature ADO technology in your prototypes.
+11. Database Tips and Tools
+This chapter explains some specific techniques for manipulating databases in a prototype. It tells how you
+can keep your application as separate from the database as possible so you can change database products
+if necessary. It also tells how you can implement standard user privilege and record reservation systems.
+12. Generating Reports
+This chapter describes different methods for providing reports in a prototype. It tells how you can display
+prebuilt reports, reports generated at runtime and displayed in a DataGrid control, and how to execute
+database scripts to perform ad hoc queries.
+13. Error Handling
+This chapter explains basic error handling in a Visual Basic prototype. Visual Basic .NET provides a
+completely new error handling mechanism using Try Catch Finally. At the same time, it still supports
+the "unstructured" error handling provided by previous versions of Visual Basic. This chapter tells how to
+use these different error handling approaches in a prototype, where to place error handling code, and how to
+use standard error loggers to capture error information without terrifying the customer with cryptic error
+messages.
+14. Wrapping Up
+This chapter explains the things you should do after the prototyping effort is "finished." This includes such
+tasks as performing a postmortem analysis of the prototype, evaluating the developers' performances,
+adjusting the project scope, and holding a wrap party. If you don't follow through with these tasks,
+you will not learn as much as possible from the prototype and you will probably repeat some of the
+mistakes you made during this project. In the words of philosopher and novelist
+George Santayana:
+Those who cannot remember the past are condemned to repeat it.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Prototyping With Visual Basic: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Example Code 
+ 
+ 
+ Related Articles 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

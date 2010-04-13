@@ -1,0 +1,566 @@
+
+ 
+C >> atoi, itoa, sprintf and sscanf ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Strings 2 
+ Main Menu 
+ strcmp, strncmp and strcpy 
+ 
+ 
+ 
+ 
+atoi, itoa, sprintf and sscanf
+ 
+ 
+ 
+ 
+ 
+ 
+Converting a String Into an int Using atoi()
+ 
+ 
+ 
+ 
+ 
+Before I leave the string section, I'd like to talk about two useful functions that could come in handy later on. Both of these require 
+ the stdlib.h header file. 
+ 
+First of all, atoi. This converts strings, like "23" or even "29dhjds" into integers 
+ (returning 23 and 29 respectively in this case). 
+ 
+atoi requires one char * argument and returns an int (not a float!). 
+ 
+If the string is empty, or first character isn't a number or a minus sign, then atoi returns 0. 
+ 
+If atoi encounters a non-number character, it returns the number formed up until that point. 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char str1[] = "124z3yu87";
+ char str2[] = "-3.4";
+ char *str3 = "e24";
+ printf("str1: %d\n", atoi(str1));
+ printf("str2: %d\n", atoi(str2));
+ printf("str3: %d\n", atoi(str3));
+ return 0;
+}
+ 
+Output:
+ 
+str1: 124 
+ str2: -3 
+ str3: 0 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Converting 
+ an int Into a String Using itoa() (NOT ANSI 
+ C) 
+ 
+ 
+ 
+ 
+ 
+Before I continue, I must warn you that itoa is NOT an ANSI function, (it's not a standard C function). You should use sprintf 
+ to convert an int into a string, which I'll show you in a moment. 
+ 
+I'll cover itoa in case you've ever wondered what it does. 
+ 
+itoa takes three arguments. 
+ 
+The first one is the integer to be converted. 
+ 
+The second is a char * variable - this is where the string is going to be stored. My program crashed if I pass in a char 
+ * variable I've already used, so I passed in a normal sized char array and it worked fine. 
+ 
+ 
+ 
+The last one is NOT the size of the array, but it's the BASE of your number - base 10 is the one you're most likely to use. Base 2 
+ is binary, 8 is octal and 16 is hexadecimal. 
+ 
+For a small lesson on bases, go back to the Hexadecimal section. 
+ 
+itoa is a very useful function, which is supported by some compilers - shame it isn't support by all, unlike atoi. 
+ 
+ 
+Maybe converting a base 10 number into binary format as a string isn't so hard after all... 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char str[10]; /* MUST be big enough to hold all 
+ the characters of your number!! */
+ 
+ printf("15 in binary is %s\n", itoa(15, str, 2));
+ printf("15 in octal is %s\n", itoa(15, str, 8));
+ printf("15 in decimal is %s\n", itoa(15, str, 10));
+ printf("15 in hex is %s\n", itoa(15, str, 16));
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+15 in binary is 1111 
+ 15 in octal is 17 
+ 15 in decimal is 15 
+ 15 in hex is f 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+... itoa can be useful when you know your program doesn't have to be ANSI C only. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+sprintf()
+ 
+ 
+ 
+ 
+ 
+You can use this function as an alternative to itoa. It's only half as good as itoa because you can't specify the 
+ base of your number to be converted. 
+ 
+sprintf takes three arguments. 
+ 
+The first has to be a char * variable, which means you can use a char array, but make sure it's big enough to hold 
+ the converted number. 
+ 
+ 
+ 
+The second argument is a string containing a format specifier, depending on the format of the number you want to convert. 
+ 
+The third argument is the number you want to convert into a string. 
+ 
+sprintf returns the number of characters in the string (not included the null character). 
+ 
+This example convert a few numbers into string format, and prints out the result: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char str[10]; /* MUST be big enough to hold all 
+ the characters of your number!! */
+ int i;
+ i = sprintf(str, "%o", 15);
+ printf("15 in octal is %s\n", str);
+ printf("sprintf returns: %d\n\n", i);
+ i = sprintf(str, "%d", 15);
+ printf("15 in decimal is %s\n", str);
+ printf("sprintf returns: %d\n\n", i);
+ i = sprintf(str, "%x", 15);
+ printf("15 in hex is %s\n", str);
+ printf("sprintf returns: %d\n\n", i);
+ i = sprintf(str, "%f", 15.05);
+ printf("15.05 as a string is %s\n", str);
+ printf("sprintf returns: %d\n\n", i);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+15 in octal is 17 
+ sprintf returns: 2 
+ 
+ 15 in decimal is 15 
+ sprintf returns: 2 
+ 
+ 15 in hex is f 
+ sprintf returns: 1 
+ 
+ 15.05 as a string is 15.050000 
+ sprintf returns: 9 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+sscanf()
+ 
+ 
+ 
+ 
+ 
+For completeness, I'm going to cover sscanf, seeing that it's paired with sprintf. 
+ 
+You could've guessed that it converts a string into various formats. 
+ 
+sscanf takes three arguments, for example: 
+ 
+sscanf(str, "%d", %num); 
+ 
+The first is a char * variable that contains data to be converted. 
+ 
+The second is a string containing a format specifier that determines how the string is converted. 
+ 
+ 
+ 
+The third is a memory location to place the result of the conversion. Most of the time, you'll need the "address of" operator 
+ (&), then a variable name, or you can place a char * variable here. 
+ 
+Now, if the string you pass into sscanf contains a space, only the data up until that space is converted. 
+ 
+sscanf returns the number of items converted. 
+ 
+This example performs conversions in several formats: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char* ints = "20, 40, 60";
+ char* floats = "10.4, 24.66";
+ char* hex = "FF, F";
+ int i;
+ int n;
+ float f;
+ int h;
+ char* s;
+ 
+ i = sscanf(ints, "%d", &n);
+ printf("n: %d\n", n);
+ printf("sscanff returns: %d\n\n", i);
+ i = sscanf(floats, "%f", &f);
+ printf("f: %f\n", f);
+ printf("sscanff returns: %d\n\n", i);
+ i = sscanf(hex, "%x", &h);
+ printf("h: %d\n", h);
+ printf("sscanff returns: %d\n\n", i);
+ i = sscanf(ints, "%s", s);
+ printf("s: %s\n", s);
+ printf("sscanff returns: %d\n\n", i);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+n: 20 
+ sscanff returns: 1 
+ 
+ f: 10.400000 
+ sscanff returns: 1 
+ 
+ h: 255 
+ sscanff returns: 1 
+ 
+ s: 20, 
+ sscanff returns: 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Notice how sscanf ignores the comma when converting to a number (see the result for the string variable, s). 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Strings 2 
+ Main Menu 
+ strcmp, strncmp and strcpy 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

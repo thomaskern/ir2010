@@ -1,0 +1,512 @@
+
+Java(TM) Boutique - 
+The Java Game Development Tutorial - Page 13
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+Compare Prices
+Software Store
+Build Flash Online
+Find a Consultant
+Internet Jobs
+For CGI Scripts
+Search the Web
+Search Marketplace
+Anti-Virus Software
+Find A Web Developer
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+Tutorials :
+The Java Game Development Tutorial :
+Contents 
+Introduction 
+	Basic structure of an applet 
+	Move a ball 
+	Double buffering 
+	Ball bouncing and change the direction 
+	Using sound in applets 
+	Using pictures in applets 
+	Mouse events 
+	Keyboard events 
+	The first complete game 
+	Artificial intelligence for a pong like game 
+	Generation of random 2D landscapes 
+ Leveleditor 
+Leveleditor
+	In this chapter we discuss how to program a leveleditor 
+	that can used in any arraybased game. An arraybased game might be a 
+	Breakout clon, Boulderdash, PacMan or a Nibbles clone like our 
+	game 
+	Snakin, 
+	where we 
+	used this leveleditor too. Before you start reading this article 
+	you should know something about arrays in Java (just basics), 
+	a little bit about applet parameters, and of course you 
+	should download the sourcecode at the end of the chapter!
+Why do we need a leveleditor?
+	Even though the answer to this question might be clear I want 
+	to write a few lines about it. To program a leveleditor and to 
+	make your game work with any level build with this editor 
+	is much harder and costs you much more time than to write a game 
+	that has one or two static levels. But this is worth the price 
+	if you want to program a game with many different levels. If 
+	you programmed the game that way, that it works with a leveleditor, 
+	then it costs you just a few minutes to add a new level. But if 
+	you programmed your game just for static levels it will be hard 
+	and maybe even impossible to add a new level. So the hard work 
+	at the start of your game design was really worth the price! Well, 
+	let's start with the real problem!
+The basic idea
+	Before we find a solution to the problem of where and how to 
+	define our levels, we have to think about something else. We have 
+	to find a way to represent a level in our game.
+	Imagine the applet area with a grid over it. Next we place the 
+	elements included in our level, (walls, stones, enemies...), in 
+	the fields of this grid (just one element per field). This means 
+	that the position of every level element is defined by the row 
+	and the column number of the grid field in which the level 
+	element is placed. The easiest way to represent such a two 
+	dimensional matrix in Java is to use a two dimensional array. 
+	So every level consits of a 2D array. This array holds the 
+	different level elements and these elements can differ from level 
+	to level. Everytime we read in our levels we will place different 
+	level objects at different positions in our 2D array. Everytime 
+	we want to draw our level to the screen we go through the array 
+	and paint every object in it at the position in our grid which 
+	is represented by the column and row number of the array. Using 
+	this pretty simple idea we will now try to solve the problem of 
+	where and how we want to define our levels so that it is possible 
+	to fill the level array later.
+Where and how will we define the levels?
+	We are programming applets so we have basicly three possibilities 
+	where we can define the levels:
+	
+	
+- In an external file
+	
+- In the source code of the game
+	
+- In the HTML - page of the applet (with help of applet 
+	parameters)
+	
+	The first and the second solution are for different reasons 
+	worse than the third one. To read in an external file into an 
+	applet is possible but not that easy, so we won't do it. To 
+	define the different levels in the sourcecode is a good solution 
+	if the player should not be able to take a look at a level 
+	before he has reached it, for example if the goal of the game 
+	is to find a way out of a labyrint. But you can't use this 
+	solution if the player should be able to write a level by himself. 
+	So there is just the third alternative left and we will use this 
+	idea now in our editor.
+	So we will use applet parameters to define our levels. Every 
+	applet parameter has a value and a name (for details see below) 
+	and we can get the value of a parameter by calling the 
+	getParameter(parametername) - method of the applet class. Then 
+	the value of the parameter with the specific name is returned as 
+	a string. Applet parameter can be defined between the opening 
+	and the closing applet tag and look always the same just like: 
+	
+ 
+	Well, now we know where we will write our levels, but we still 
+	don't know what a level will look like. Ok, here comes my 
+	solution. Every level we'll write will consist of 11 parameters: 
+	3 information parameters that hold information about the author 
+	of the level, the level description and the level name. 
+	The other 8 parameters will represent the 8 rows of the level 
+	array that represents our level in the example. The parameter 
+	names will always look like this: 
+	"Level" + "Levelnumber" + "_" + "Id". Id can have the values 
+	"Author", "Name", "Comment" or "Line" + "Rownumber". The value 
+	strings of the information parameters can have any length, the 
+	values of the level defining parameters have to consist of a 
+	string with length 10. Every character of the string represents 
+	one level element, in our case, stones with different colors. 
+	These colors/character pairs will be r = red, g = green, b = blue, 
+	y = yellow and another character ":" that represents grid 
+	fields in the level where no level element shall be placed. 
+	So the names of parameters of different levels will look all the 
+	same execpt for the levelnumber. Because of this structure of 
+	the parameter names it is really easy to read in the different 
+	levels using a while or a for loop, counting from 1 to the in 
+	the "Levels_in_total" defined integer (for details see readLevel 
+	- method further down this chapter). Now you can take a look 
+	at a level, which can be read by the leveleditor:
+// Start of the applettag including the normal applet information
+// This line tells the editor how many levels are defined 
+// These lines include the level information parameters
+// This is the "real" level
+// End of the applet tag
+Class design of our editor
+	Now we'll start with the class design of our leveleditor, that 
+	will make it possible to read in a level.
+- LevelReader: 
+	This class will read in a certain number 
+	of levels defined in the "Levels_in_total" - parameter using the 
+	getParameter(parametername) - method. For every level in the 
+	HTML - file it will create an instance of the class Level 
+	(see below), and stores this created level in an array of 
+	instances of the class Level. Then the method readLevels(), 
+	which is doing the job of reading in all the levels, returns 
+	this array of Level instances to the calling class.
+- Level: 
+	This class saves the values of the information strings Author, 
+	Levelname and description and holds the 2D array (stone_map) 
+	with the level elements. As I've already said, this array saves 
+	instances of the class Stone and, according to the definition 
+	of the level, in different colors. Each stone "knows" its color 
+	and its position in the grid. The class level has also a method 
+	to paint the whole level to the screen.
+- Stone: 
+	This class holds the color and the position of the stone in the 
+	applet area. The position (in pixel) is calculated in the 
+	constructor of the class, using the information in which column 
+	and row, the stone is placed in the stone_map array of the level 
+	instance. A stone instance also has it's own paint method to 
+	paint the stone in the right color and at the right position.
+- Main: 
+	This class holds an array of instances of the class level. A level 
+	can be chosen out of this level array using the cursor keys and 
+	then the chosen level is painted to the screen. This is just a 
+	test class and has absolutly no meaning for the leveleditor.
+- C_LevelEditor: 
+	To make the leveleditor more flexible without needing to change 
+	the sourcecode in general, all constant values (number of lines 
+	in one level, number of columns in one level, grid size...) are 
+	stored in the class C_LevelEditor. If you want to use more lines 
+	in your level... you just have to change the values of the 
+	corosponding constant. So this class holds some static constants 
+	and nothing else!
+ 
+ 
+ 
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+<IMG SRC="/img/URL.gif" ALT="http://www.internet.com/" WIDTH="161" HEIGHT="18" BORDER="0">
+ 

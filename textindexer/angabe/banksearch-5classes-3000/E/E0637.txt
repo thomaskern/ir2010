@@ -1,0 +1,230 @@
+
+Stroustrup: Errata for The Design and Evolution of C++
+Errata for The Design and Evolution of C++
+Errata for
+Bjarne Stroustrup:
+The Design and Evolution of C++,
+Addison-Wesley 1995,
+ISBN 0-201-54330-3
+This is errata for the first printing. All but corrections
+marked with * are fixed for the current (3rd) printing.
+You find the printing number as the first number on the last line
+of the copyright page.
+I only list things that can affect understanding. Spelling mistakes
+you can fix yourself if you spot them.
+I very much appreciate reports of errors and constructive comments
+on the contents in general.
+For brevity, I use the old replacement syntax: s/old/new/
+	- Bjarne
+Errata to the first printing:
+pg32	s/(_temp.impl.rest_)/(sec15.11.3)/
+pg64	s/Stratchey/Strachey/
+pg67	s/McClusky/McCluskey/
+pg78	at the end of sec3.5.3 add
+	See sec17.5.2 for a way to explicitly request overloading
+	of base and derived class functions.
+pg99	replace the last paragraph of 3.11.5.1 with
+	This rule was the subject of much discussion and was eventually
+	revised to match the rule for declarations in conditions (sec3.11.5.2).
+	That is, a name introduced in a for-statement initializer goes out
+	 of scope at the end of the for-statement.
+pg165	s/Sing/Singh/
+pg190	s/Erathostenes/Eratosthenes/
+pg228	s/and surprising/and less surprising/
+pg 255	change the definitions of true and TRUE to
+	const true = 1;
+	#define TRUE 1
+pg343	add after sec15.3.1
+	Class templates as template arguments were approved at the March
+	1994 meeting in San Diego.
+pg 349	s/lookup
+pg 359	replace body of compare function with
+	for(int i=0; i
+pg360	s/compare(swede1,swede2,LITERATE)/compare(swede1,swede2)/
+	s/compare(s1,s2,NOCASE)/compare(s1,s2)/
+pg362	replace the last sentense of 15.9.1 by
+	Member templates are described in sec15.9.3.
+pg364	first line s/aren't allowed/weren't allowed/
+	third line from bottom: s/I hope to see member templates in C++.//
+pg375	write should be defined like this:
+	void write(int vv) { v=vv; }
+pg389	in comment s/close/open/
+pg426	s/syntactically correct/syntactically correct and type check/
+Errata to the second printing:
+pg5	change
+	1994	Sep	Draft ANSI/ISO standard due
+	to
+	1994	Aug	ANSI/ISO Committee Draft registered
+pg6	move CLOS to 1988
+pg80	at the end of 3.6.1 add
+	Naturally, I realized that not all constructors defined
+	meaningful and unsurprising implicit conversions. For example, a
+	vector type usually has a constructor taking an integer argument
+	indicating the number of elements. It was an unfortunate sideefect
+	to have v=7 construct a vector of seven elements and assign it to
+	v . I didn't consider this problem urgent, though. Several members
+	 of the C++ standards committee (sec6.2), notably Nathan Myers,
+	suggested that a solution was necessary. In 1995, the problem was
+	solved by allowing the prefix explicit to be added to the declaration
+	of a constructor. A constructor declared explicit is used for explicit
+	construction only and not for implicit conversions. For example,
+	declaring vector's constructor ``explicit vector(int);'' makes v=7
+	an error while the more explicit v=vector(7) as ever constructs and
+	assigns a vector.
+pg129	add footnote
+	In July 1994, the committee voted for ``CD registration'' as the
+	first step of the completion of the ISO process is now called.
+	Scheduling a standard isn't easy. In particular, ``details'' such
+	as what a standard is and how you must make one aren't standardized
+	and seem to change every year.
+pg131	add and modify list entries
+- Declarations in conditions (sec3.11.5.2)
+- Mutable (sec13.3.3)
+- Member templates (sec15.8.2)
+- Class templates as template arguments (sec15.3.1)
+- A const static member of integral type can be initialized by a
+	 constant-expression within a class declaration.
+- Explicit constructors (sec3.6.1)
+- Static checking of exception specifications (sec16.9).
+pg150-152 replace sec6.4.2 with 
+	So how is the committee doing? We won't really know until the
+	standard appears because there is no way of knowing how new proposals
+	will fare. This summary is based on the state of affairs after the
+	November 1994 meeting in Valley Forge.
+	Proposing extensions for C++ seems to be popular. For example:
+- Extended (international) character sets (sec6.5.3.2)
+- Various template extensions (sec15.4, sec15.9.3)
+- Garbage collection (sec10.7)
+- NCEG proposals (for example, sec6.5.2)
+- Discriminated unions
+- User-defined operators (sec11.6.2)
+- Evolvable/indirect classes
+- Enumerations with predefined ++ , 
+- Overloading based on return type
+- Composite Operators (sec11.6.3)
+- Keyword for the null pointer (NULL , nil, etc.) (sec11.2.3)
+- Pre- and post-conditions
+- Improvements to the Cpp macros
+- Rebinding of references
+- Continuations
+- Currying.
+	There is some hope of restraint and that accepted features will be
+	properly integrated into the language. Only a few new features have
+	been accepted so far:
+- Exception handling (``mandated'') (sec16)
+- Templates (``mandated'') (sec15)
+- European character set representation of C++ (sec6.5.3.1)
+- Relaxing rule for return types for overriding functions (sec13.7)
+- Run-time type identification (sec14.2)
+- Declarations in conditions (sec3.11.5.2)
+- Overloading based on enumerations (sec11.7.1)
+- User-defined allocation and deallocation operators for arrays (sec10.3)
+- Forward declaration of nested classes (sec13.5)
+- Namespaces (sec17)
+- Mutable (sec13.3.3)
+- Boolean type (sec11.7.2)
+- A new syntax for type conversion (sec14.3)
+- An explicit template instantiation operator (sec15.10.4)
+- Explicit template arguments in template function calls (sec15.6.2)
+- Member templates (sec15.9.3)
+- Class templates as template arguments (sec15.3.1)
+- A const static member of integral type can be initialized by a
+	 constant-expression within a class declaration
+- Explicit constructors (sec3.6.1)
+- Static checking of exception specifications (sec16.9).
+	Exceptions and templates stand out among the extensions as being
+	mandated by the original proposal and described in the ARM, and also
+	by being a couple of orders of magnitudes more difficult to define
+	and to implement than any of the other proposals.
+	To contrast, the committee has rejected many proposals. For example:
+- Several proposals for direct support for concurrency
+- Renaming of inherited names (sec12.8)
+- Keyword arguments (sec6.5.1)
+- Several proposals for slight modifications of the data hiding rules
+- Restricted pointers (``son of noalias'') (sec6.5.2)
+- Exponentiation operator (sec11.5.2)
+- Automatically generated composite operators
+- User-defined operator.() (sec11.5.2)
+- Nested functions
+- Binary literals
+- General initialization of members within a class declaration.
+	Please note that a rejection doesn't imply that the proposal was
+	deemed bad or even useless. In fact, most proposals that reach the
+	committee are technically sound and would help at least some subset
+	of the C++ user community. The reason is that most ideas never make
+	it through the initial scrutiny and effort to make it into a proposal.
+pg157	s/color(green)/Color(green)/
+pg194	add footnote
+	Here, I have the great pleasure of eating my words!
+	The committee did raise to the occasion and approved a splendid
+	library of containers, iterators, and fundamental algorithms
+	designed by Alex Stepanov. This library, often called the STL,
+	is an elegant, efficient, formally sound, and well-tested framework
+	for containers and their use (Alexander Stepanov and Meng Lee:
+	The Standard Template Library, HP Labs Technical Report HPL-94-34
+	(R. 1), August, 1994. Mike Vilot: An Introduction to the STL Library.
+	The C++ Report, October 94). Naturally, the STL includes map and
+	list classes, and subsumes the dynarray, bits, and bitstring
+	classes mentioned above. In addition, the committee approved vector
+	classes to support numeric/scientific computation based on a proposal
+	from Ken Budge from Sandia Labs.
+pg239	s/struct {/struct Y {/
+pg241	s/someone sitting on my right/Jim Howard/
+	delete sentence beginning /Unfortunately, I have forgotten/
+pg244	the last code fragment should be
+	void h(RefNum r, Num& x)
+	{
+	r.bind(x); // error: no Num::bind
+	(&r)->bind(x); // ok: call RefNum::bind
+	}
+pg245	s/RefX/RefNum/
+pg246	in example 1,2,3, and 5 swap X and X& in the return types.
+	in example 4 swap postfix and prefix in the comments.
+pg263	s/D { g }/D { g() }/
+pg265	s/f(2)/f(2);/
+pg274	s/int go_draw/void go_draw/
+pg278	end of paragraph near middle of page:
+	s/this simple notion/this simple notion directly/
+pg283	declare members of B and C public.
+pg304	s/S::f/S::mf/
+	s/p->*pf/p->*pmf/
+*pg322	s/}/return p; }/
+	s/the usual way except/the usual way by/
+pg332	Replace sentense near the middle by
+	pd2 will point to the start of the D object passed, whereas
+	pd1 will point to the start of D 's B sub-object.
+pg333	replace example by
+	const char cc = 'a';
+	const char* pcc = &cc;
+	const char** ppcc = &pcc;
+	void* pv = ppcc; // no cast needed:
+	 // ppcc isn't a const, it only points to one,
+	 // but const vanished!
+	char** ppc = (char**)pv; // points to pcc
+	void f()
+	{
+	**ppc = 'x'; // Zap!
+	}
+pg352	s/(B*)d/(B*)pd/
+pg359	s/lt()/lt(char a, char b)/
+*pg374	replace the definition Comparable by:
+	template class Comparable {
+	T val;
+	// ...
+	bool operator==(const Comparable& r)
+	{ return val==r.val; }
+	};
+pg389	at the end of the declaration of FilePtr: s/}/};/
+pg396	add to just beforethe start of sec16.9.1
+	In 1995, we found a scheme that allows some static checking of
+	exception specifications and improved code generation without
+	causing the problems described above. Consequently, exception
+	specifications are now checked so that pointer to function assignments,
+	initializations, and virtual function overriding cannot lead to
+	violations. Some unexpected exceptions can still occur, and those
+	are caught at run time as ever.
+Comments:
+	
+D&E was awarded one of ``Software Development'' Magazine's Productivity awards.
+You can find reviews in Dr. Dobbs Journal, August 1994 (by Al Stevens)
+and The C++ Report, October 1994 (by Keith Gorlen)

@@ -1,0 +1,141 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BCB6 Header file fixes
+Disclaimer
+The download section of this article contains patched BCB6 header files. These header files come
+with no guarantees. The supplied files could introduce bugs into your programs, crash your
+system, corrupt your BCB installation, reformat your hard drive, and/or cause your dog to walk funny.
+If you decide to use the files supplied in the download, you do so at your own risk.
+Note
+This article discusses BCB6 header file problems. Specifically, it covers problems in the initial,
+unpatched version of C++Builder 6.0. If and when Borland issues a patch for BCB6, it will probably
+render this article obsolete.
+Summary of header file problems
+BCB6 contains a couple of header file problems. They are:
+- The header files pshpack*.h and poppack.h contain
+serious defects regarding structure alignment (originally discovered by Alex Bakaev)
+- The header files hash_map.h and hash_set.h are missing.
+- cstring.h and oldstl/cstring.h contain preprocessor typos.
+- _str contains a logic error (#ifndef problem found by Arne Weise).
+The download for this article includes patched versions of the pshpack and poppack files, and patched versions of
+cstring.h and _str.h. It also contains the missing
+files for the hash containers. To patch your system, download the ZIP file and extract the files to a temp directory. Compare the patched
+files with the files in your $(BCB)\include directory. If you are satisfied with the changes, copy the patched files over to the
+include directory, overwriting the original files with the same name.
+pshpack and poppack bugs
+The pshpack header files set the structure alignment compiler setting (-a) to a specific value. This is done with a
+#pragma pack() directive. The file pshpack1.h switches to byte alignment (-a1). The digit '1' in pshpack1
+corresponds to the -a1 compiler switch. The files pshpack2.h, pshpack4.h, and pshpack8.h, correspond to the
+-a2, -a4, and -a8, switches respectively. The header file poppack.h resets the alignment to
+the original compiler setting. Together, these files help ensure that the compiler always aligns API structures the same way, regardless of what
+compiler setting you use to build your program.
+Unfortunately, the pshpack header files that ship with BCB6 contain a flaw. Each pshpack file contains two #pragma
+directives, one at the beginning and one at the end of the file, that interfere with the #pragma pack command. For example, the
+file pshpack1.h ends up looking like this when you sift through all of the conditional defines:
+// contents of $(BCB)\include\pshpack1.h in BCB6
+#pragma option push -b -a8 -pc -A- /*P_O_Push*/
+#pragma pack(1)
+#pragma option pop /*P_O_Pop*/
+The bug comes from the two #pragma option directives that appear at the top and bottom of the file. The first #pragma option command
+pushes the original alignment setting onto the compiler's internal stack and then sets the alignment to -a8. The #pragma pack(1) command
+sets the packing to -a1 without using the internal stack (it just sets it). However this setting is short lived. When the compiler reaches the
+last #pragma option pop directive, it pops from the internal stack and restores the compiler settings that were in force at the beginning of the
+file. The #pragma pack() command is essentially wiped out.
+The code fragment below demonstrates the flaw in the pshpack header files.
+#pragma hdrstop
+// To test pshpack.h and poppack.h, compile this file with the -a2 compiler
+// option. The check below ensures that this was done.
+#pragma checkoption -a2
+// include pshpack1.h and verify that alignment is -a1. If pshpack1.h works
+// correctly, the checkoption should not generate an error
+#include 
+#pragma checkoption -a1
+// include poppack.h and verify that alignment is back to -a2. This initially
+// succeeds in BCB6, but only because pshpack1.h is broken. If you fix
+// pshpack1.h, then you will see that poppack.h also has the bug.
+#include 
+#pragma checkoption -a2
+int main()
+{
+ return 0;
+}
+To fix the problem, delete the #pragma option directives from pshpack1.h, pshpack2.h, pshpack4.h, and
+pshpack8.h. The header file poppack.h contains the same problem, so you should fix it as well. The download for this article
+contains patched versions of each of these files.
+Missing includes for hash_map and hash_set
+BCB6 includes two STL implementations: STLport and Rogue Wave. You can use either library in your projects. To support both
+libraries, Borland has reorganized the STL header files into various subdirectories. The RW files reside in the oldstl subdirectory of
+$(BCB)\include. The STLport files are spread out across several subdirectories, but the most important files reside in the stlport
+and stl subdirectories. The include files in $(BCB)\include directory act as wrapper files. They detect which STL you are using,
+and then pull in the correct file from either the RW or STLport subdirectories.
+The file vector.h from the BCB include directory demonstrates what these wrapper files look like.
+// a snippet of code from $(BCB)\include\vector.h
+#ifdef _USE_OLD_RW_STL
+# include 
+#else
+# include 
+#endif
+One of the nice features of STLport is that it provides common, non-standard extensions to the STL. These include hash based containers, a single linked
+list container, and the rope string class. Unfortunately, the wrapper header files for the hash containers is missing (the STLport files are
+there, but the wrappers are not). There are two solutions to this problem. First, you could add the directory $(BCB)\include\stlport to your
+include path. The second option is to create wrapper files yourself and put them in the $(BCB)\include directory with the other wrappers.
+The first option works, but it requires that you violate Borland's guidelines (see $(BCB)\help\bcb6_stlport.html). Because the wrapper files
+are so simple, the second option may be the better approach.
+The download for this article includes wrapper header files for hash_set and hash_map. Extract them to your $(BCB)\include
+directory. The include for hash_map looks like this:
+/**************************************************************************
+ * Wrapper header file used to select STL via defines.
+ * Default is STLport.
+ **************************************************************************/
+/* HJH Note: BCB6 did not include a wrapper header file for hash_map
+ * This file was created to act as one.
+ */
+#ifdef _USE_OLD_RW_STL
+# error hash_map is not available with the RW STL.
+#else
+# include 
+#endif
+#if !defined(__USING_STD_NAMES__) && defined(__cplusplus)
+using namespace std;
+#endif /* __USING_STD_NAMES__ */
+Problems with cstring.h and oldstl/cstring.h
+The file $(BCB)\include\cstring.h contains this set of conditional code:
+# ifdef __USE_OLD_RW_STL
+# include 
+# else
+# include 
+The file $(BCB)\include\oldstl\cstring.h contains a similar conditional. The problem is the
+define for using the old RW STL. In all of the other BCB6 header files, the define is listed as _USE_OLD_RW_STL
+(only one underscore in front). cstring.h and oldstl\cstring.h are the only two files that list the two
+underscore version.
+The solution to this problem is to remove the first underscore.
+ 
+Note:
+This bug will only impact you if you use the old RW STL with BCB6. However, if you do use the RW STL, you should strongly consider making this change.
+ 
+_str.h bug
+$(BCB)\include\_str.h contains this:
+#ifndef _USE_OLD_RW_STL
+# include 
+#else
+# include 
+#endif
+This logic should be reversed. The code should include oldstl/locale.h if RW is detected. The conditional test should be an
+ifdef instead of an ifndef.
+Downloads
+ Downloads for this article 
+ bcb6headers.zip Supplies patched and missing header files for BCB6 
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

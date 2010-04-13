@@ -1,0 +1,171 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+ 
+ 
+Databases
+ 
+In short, Databases hold 
+ data. You can retrieve data, add data, delete data, edit data etc, etc. There 
+ are many different types of Databases around, especially today. Many common 
+ ones include MS Access, dBASE, Excel, FoxPro, Lotus, Paradox and Text files 
+ (we will be dealing with MS Access and text databases). Not only can we create 
+ databases in MS Access (which has VBA in it; VB for Applications) and of coarse 
+ all of the rest of the mentioned apps above, but there is also a way to create 
+ databases in VB... And that would be through the "Visual Data Manager," 
+ which is located under the "Add-Ins" menu in VB.
+ 
+The 'Data' 
+ Control
+ In order for us to get access to data in databases we will use 
+ the 'Data' control, which can be found on a standard VB toolbox. You should 
+ be familiar with some of the data control's properties as they can be found 
+ in some of the common controls (i.e. textbox, command button etc.). However, 
+ there are a quite a few other properties for this control, as one would expect... 
+ Take a peek below.
+ 
+ 
+ 
+ Property:
+ 
+ 
+ Description:
+ 
+ 
+ 
+ BOFAction 
+ Determines what will happen 
+ when the user moves to the beginning of the file 
+ 
+ 
+ Connect 
+ Determines what type of database 
+ you will be using 
+ 
+ 
+ DatabaseName 
+ Determines the 
+ databases location 
+ 
+ 
+ EOFAction 
+ Determines what will happen 
+ when the user moves to the end of the file 
+ 
+ 
+ Exclusive 
+ Determines wether 
+ the database being used is exclusive or not (i.e. so nobody else can use 
+ it) 
+ 
+ 
+ ReadOnly 
+ Determines if data 
+ accessed can be edited or not 
+ 
+ 
+ RecordsetType 
+ Determines the 
+ Recordset type (each have pro/con to it, press F1) 
+ 
+ 
+ RecordSource 
+ Determines the recordsource 
+ you want to access in the database 
+ 
+ 
+ 
+OK, so we're going to have to switch 
+ the following properties to hook the control up to a database:
+ 
+- Connect - Select the database type you want 
+ to connect to
+ 
+- DatabaseName - Locate a database file you want 
+ to access in your project
+ 
+- RecordSource - Select a table/SQL/QueryDef
+Since you've basically setup the data control, 
+ your now going to bind the data control with other controls, so we can actually 
+ view data from the data base, edit it, etc. We'll use the text box control for 
+ this, and the properties you will have to modify are below:
+ 
+- DataSource - Select the data controls name
+ 
+- DataField - Select the field you would like 
+ to view
+Tip: 
+ The more DataFields you want to view, 
+ the more text boxes you should bind and use.
+Now you would be 
+ able to access the data base, and even edit values. You can scroll through the 
+ database, move to the last record, jump back to the first record, etc. Check 
+ out the Database example here (requires 'Nwind.mdb' 
+ file, if you don't have it; your screwed =). Also might want to check out the 
+ second example as well (requires 'Biblio.mdb' 
+ file, if you don't have it; your screwed, again =). I would upload them, but 
+ they're heavy weights, weighing in at 1.6 and 3.45 megs respectively, besides, 
+ I think they come w/ all editions of VB.
+The 
+ Visual Data Manager
+ So you want to make a database, but don't have 
+ a database program? No problem, VB got ya covered, as you can make a database 
+ with the Visual Data Manager. Of coarse, don't expect to get all the functionality 
+ of database programs such as MS Access, we'll make a basic database with some 
+ cool features...
+Load up VB, and start 
+ VDM (read: actually load VB up!) because you will find this easier as 
+ the VDM may look a bit complex at first glance.
+ 
+- Start a new database, go into 
+ File > New > Text files
+ 
+- Enter a directory name which 
+ will be created in your VB dir, to store your database
+ 
+- In the 'Database Window,' right 
+ click 'Properties' and create a 'New Table'
+ 
+- You should be in the 'Table 
+ Structure' window, write 'VB' in the 'Table Name' text box
+ 
+- Then click the 'Add Field' 
+ button and in the new forms 'Name' text box write 'Version' & select 'Integer' 
+ below and click OK
+ 
+- In the same form write 'Edition' 
+ in the text box and then click 'OK' and then 'Close'
+ 
+- Hit 'Build the Table'
+ 
+- You should see 'VB' in the 
+ database window, double click it
+ 
+- In the Version text box write 
+ 5, and in the Edition text box write LE and hit the Update command button
+ 
+- Click Add, and write 6 in the 
+ version textbox, and Pro in the Edition text box and hit Close
+ 
+- In the Utility menu hit 'Data Form Designer'
+ 
+- Write down a form name, and in the combo, select 
+ 'VB'
+ 
+- Include both fields (hit '>') and build 
+ the form, and close VDM
+ 
+- Remove 'Form1' from your project
+ 
+- Run it
+SQL
+ SQL, or Structured Query Language lets you 
+ access certain databases... You can use it to get data, add data, delete data, 
+ update data in databases. The language itself is not that hard, but I wont be 
+ getting into it right now. For more info check out the MS Knowledge Base.
+And that's it. You made a database that is scrollabe, 
+ updateable, w/o a single damn line of code!
+ 
+ 
+ 
+ Back 
+ 

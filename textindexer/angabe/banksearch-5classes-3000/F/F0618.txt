@@ -1,0 +1,25 @@
+
+Visual Basic: Hello World Example
+FIRST.BAS
+The first example of week 1 illustrated some of the arithmetic operations in Basic.
+First.bas
+A = 2
+B = 5
+C = A + B
+PRINT A , "PLUS", B, "EQUALS", C
+C = B - A
+PRINT A , "MINUS", B, "EQUALS", C
+C = A * B
+PRINT A , "MULTIPLIED BY", B, "EQUALS", C
+C = A / B
+PRINT A , "DIVIDED BY", B, "EQUALS", C
+END
+A Visual Basic Version
+' This is a Simple Hello World Program
+Dim $String as String * 12
+Dim i as Integer
+$String = "Hello World"
+For i = 1 to 5
+Print $String
+Next i
+End

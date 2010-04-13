@@ -1,0 +1,232 @@
+
+Copyright (c) Landon Curt Noll & Larry Bassel, 1994.
+All Rights Reserved. Permission for personal, education or non-profit use is
+granted provided this this copyright and notice are included in its entirety
+and remains unaltered. All other uses must receive prior permission in writing
+from both Landon Curt Noll and Larry Bassel.
+ABOUT THIS FILE:
+ This file is intended to help people who wish to submit entries to
+ the International Obfuscated C Code Contest (IOCCC for short).
+ This is not the IOCCC rules, though it does contain comments about
+ them. The guidelines should be viewed as hints and suggestions.
+ Entries that violate the guidelines but remain within the rules are
+ allowed. Even so, you are safer if you remain within the guidelines.
+ You should read the current IOCCC rules, prior to submitting entries.
+ The rules are typically sent out with these guidelines.
+ Changes from the original 1993 rules are denoted by change bars. ---> |
+WHAT IS NEW IN 1994:	 |
+ It now appears that most ANSI C compilers allow indexes to be of |
+ non-integral type. Unlike last year, we now allow one to use |
+ constructs such as:	 |
+	int h;	 |
+	char *i;	 |
+	...	 |
+	h[i] = (h+3)["string"];	 |
+ The ---build--- section may use "gcc" or "cc" commands. However, your |
+ entry should be compilable with any ANSI C compiler. You should not |
+ depend on a gcc specific feature.	 |
+ The order of your entry's sections must be the same as the order of |
+ the rule template or the example below.	 |
+ We have added a new rule regarding rule abuse. The guidelines expand |
+ on the rule abuse aspect of the contest.	 |
+ A suggestion regarding VTxxx/ANSI escape sequences has been given.	 |
+HINTS AND SUGGESTIONS:
+ You are encouraged to examine the winners of previous contests. See
+ FOR MORE INFORMATION for details on how to get previous winners.
+ Keep in mind that rules change from year to year, so some winning entries
+ may not be valid entries this year. What was unique and novel one year
+ might be 'old' the next year.
+ An entry is usually examined in a number of ways. We typically apply
+ a number of tests to an entry:
+	* look at the original source
+	* convert ANSI tri-graphs to ASCII
+	* C pre-process the source ignoring '#include' lines
+	* C pre-process the source ignoring '#define' and '#include' lines
+	* run it through a C beautifier
+	* examine the algorithm
+	* lint it
+	* compile it
+	* execute it
+ You should consider how your entry looks in each of the above tests.
+ You should ask yourself if your entry remains obscure after it has been
+ 'cleaned up' by the C pre-processor and a C beautifier.
+ Your entry need not do well under all, or in most tests. In certain
+ cases, a test is not important. Entries that compete for the
+ 'strangest/most creative source layout' need not do as well as
+ others in terms of their algorithm. On the other hand, given
+ two such entries, we are more inclined to pick the entry that
+ does something interesting when you run it.
+ We try to avoid limiting creativity in our rules. As such, we leave
+ the contest open for creative rule interpretation. As in real life
+ programming, interpreting a requirements document or a customer request
+ is important. For this reason, we often award 'worst abuse of the
+ rules' to an entry that illustrates this point in an ironic way.
+ We do realize that there are holes in the rules, and invite entries
+ to attempt to exploit them. We will award 'worst abuse of the rules'
+ and then plug the hole next year. Even so, we will attempt to use
+ the smallest plug needed, if not smaller. :-)
+ Check out your program and be sure that it works. We sometimes make
+ the effort to debug an entry that has a slight problem, particularly
+ in or near the final round. On the other hand, we have seen some
+ of the best entries fall down because they didn't work.
+ We tend to look down on a prime number printer, that claims that
+ 16 is a prime number. If you do have a bug, you are better off
+ documenting it. Noting "this entry sometimes prints the 4th power
+ of a prime by mistake" would save the above entry. And sometimes,
+ a strange bug/feature can even help the entry! Of course, a correctly
+ working entry is best.
+ People who are considering to just use some complex mathematical	 |
+ function or state machine to spell out something such as "hello,	 |
+ world!" may want to try and be more creative.	 |
+ Ultra-obfuscated programs are in some cases some cases easier to	 |
+ deobfuscate than subtly-obfuscated programs. Consider using	 |
+ misleading or subtitle tricks layered on top of or under an	 |
+ appropriate level of obfuscation.	 |
+ Programs that use VTxxx/ANSI sequences that are NOT limited to a |
+ specific terminal brand and that can also work in a standard xterm 	 |
+ are considered portable.	 |
+OUR LIKES AND DISLIKES:
+ Doing masses of #defines to obscure the source has become 'old'. We
+ tend to 'see thru' masses of #defines due to our pre-processor tests
+ that we apply. Simply abusing #defines or -Dfoo=bar won't go as far
+ as a program that is more well rounded in confusion.
+ Many ANSI C compilers dislike the following code, and so do we:
+	#define d define
+	#d foo	 <-- don't expect this to turn into #define foo
+ When declaring local or global variables, you should declare the type: |
+	int this_is_ok;	 |
+	this_is_not;	 <-- don't use such implicit type declaration |
+ We suggest that you compile your entry with an ANSI C compiler. If you
+ must use non-ANSI C, such as K&R C, you must avoid areas that result in
+ compile/link errors for ANSI C compilers.
+ If your entry uses functions that have a variable number of
+ arguments, be careful. Systems implement va_list as a wide variety
+ of ways. Because of this, a number of operations using va_list are
+ not portable and must not be used:
+	* assigning a non-va_list variable to/from a va_list variable
+	* casting a non-va_list variable into/from a va_list variable
+	* passing a va_list variable to a function expecting a non-va_list arg
+	* passing a non-va_list variable to a function expecting a va_list arg
+	* performing arithmetic on va_list variables
+	* using va_list as a structure or union
+ In particular, do not treat va_list variables as if they were a char **'s.
+ Avoid using . Use instead.
+ If you use C preprocessor directives (#define, #if, #ifdef, ...),
+ the leading '#' must be the first character on a line. While some
+ C preprocessors allow whitespace the leading '#', many do not.
+ Because the exit() function returns void on some systems, entries
+ must not assume that it returns an int.
+ Small programs are best when they are short, obscure and concise.
+ While such programs are not as complex as other winners, they do
+ serve a useful purpose. They are often the only program that people
+ attempt to completely understand. For this reason, we look for
+ programs that are compact, and are instructional.
+ One line programs should be short one line programs, say around 80
+ bytes long. Getting close to 160 bytes is a bit too long in our opinion.
+ We tend to dislike programs that:
+	* are very hardware specific
+	* are very OS or Un*x version specific
+	 (index/strchr differences are ok, but socket/streams specific
+	 code is likely not to be)
+	* dump core or have compiler warnings
+	 (it is ok only if you warn us in the 'remark' header item)
+	* won't compile under both BSD or SYS V like Un*x systems	 |
+	* abusing the build file to get around the size limit
+	* obfuscate by excessive use of ANSI tri-graphs
+	* are longer than they need to be
+	* are similar to previous winners
+	* are identical to previous losers :-)
+ Unless you are cramped for space, or unless you are entering the
+ 'best one liner' category, we suggest that you format your program
+ in a more creative way than simply forming excessively long lines.
+ The build file should not be used to try and get around the size
+ limit. It is one thing to make use of a several -D's to help out,
+ but it is quite another to use 200+ bytes of -D's in order to
+ try and squeeze the source under the size limit. You should feel
+ free to make use of the build file space, but you are better off
+ if you show some amount of restraint.
+ We want to get away from source that is simply a compact blob of |
+ characters. To help, we give a break to source that contains |
+ whitespace, and in certain cases ; { or } characters. While the |
+ number of characters excluding whitespace (tab, space, newline), |
+ and excluding any ; { or } followed by either whitespace or end of |
+ file, must be 7)I9VAT("AC*2!,86YD;VX@0W5R="!.;VQL+"`Q.3DS+@I!;&P@4FEG
+M:'1S(%)E"X@($%L;"!O=&AE
+M"!I"`@(&ES(&YO="!T:&%T('1H870@;F]T(&ES
+M+@I4:&%T(&ES+"!T:&%T('1H870@:7,@;F]T+"!I"!U"@``
+`
+end
+---build---
+begin 444 build
+99V-C("UA;G-I('!R;V"%D969I;F5D*$Y/5%]!7U)%1TE35$52141?5D]415)?
+M24Y?4U5.3EE604Q%7T-!3$E&3U).24%?55-!*0H@("`@"!T;R!A(#0@>65A79A;&5"!4:&%N
+M:R!Y;W4A7&Y"`@&ET*#(Q-S`Q("4@,3(W*3L*?0H`
+`
+end
+---end---
+ Your entry's sections must be the same order as in the above example. |
+ Typically the build file should assume that the source is prog.c
+ and will compile into prog. If an entry wins, we will rename
+ its source and binary to avoid filename collision. By tradition,
+ we use the name of the entry's title, followed by an optional
+ digit in case of name conflicts.
+ If the above entry somehow won the 'least likely to win' award,
+ we would use chonglab.c and chonglab.
+ If your entry depends on, or requires that your build, source
+ and/or binary files be a particular name, please say so in the
+ ---remark--- section. If this case applies, it would be be helpful
+ if you did one of the following:
+	* Tell us how to change the filename(s) in your entry.
+	* Have the build file make copies of the files. For example:
+	cc prog.c -o special_name	 	 |
+	 or rm -f special_src.c	 	 |
+	cp prog.c special_src.c
+	cc special_src.c -o special_name
+	 or rm -f special_build	 	 |
+	tail +4 build > special_build
+	sh 
+ We do not limit ourselves to this list. For example, a few entries are so
+ good/bad that they are declared winners at the start of the final round.
+ We will invent awards categories for them, if necessary.
+ In the final round process, we perform the difficult tasks of
+ reducing the remaining entries (typically about 25) down to 8 or 10
+ winners. Often we are confident that the entries that make it into
+ the final round are definitely better than the ones that do not
+ make it. The selection of the winners out of the final round, is
+ less clear cut.
+ Sometimes a final round entry good enough to win, but is beat out
+ by a similar, but slightly better entry. For this reason, it is
+ sometimes worthwhile to re-enter an improved version of an entry
+ that failed to win in a previous year. This assumes, of course,
+ that the entry is worth improving in the first place!
+ More often that not, we select a small entry (usually one line), a
+ strange/creative layout entry, and an entry that abuses the contest
+ rules in some way.
+ In the end, we traditionally pick one entry as 'best'. Sometimes such
+ an entry simply far exceeds any of the other entry. More often, the
+ 'best' is picked because it does well in a number of categories.
+ANNOUNCEMENT OF WINNERS:
+ The first announcement, occurs at a Summer Usenix conference. By tradition,
+ this is done during the latter part of the UUNET/IOCCC BOF, just prior to
+ the Berkeley BSD, and BSDI BOF.
+ Winning entries will be posted in late June to the following groups:
+	 comp.lang.c	 comp.unix.wizards	alt.sources
+ In addition, pointers to these postings are posted to the following
+	 comp.sources.d	 alt.sources.d	misc.misc
+	 comp.sources.misc	 comp.windows.x
+ Winning entries will be deposited into the uunet archives. See
+ below for details.
+ Often, winning entries are published in selected magazines. Winners
+ have appeared in books ("The New Hackers Dictionary") and on T-Shirts.
+ Last, but not least, winners receive international fame and flames! :-)
+FOR MORE INFORMATION:
+ You may contact the judges by sending EMail to the following address:
+	...!{apple,pyramid,sun,uunet}!hoptoad!judges	(not the address for
+	judges@toad.com	 submitting entries)
+ Questions and comments about the contest are welcome. Comments about |
+ confusing rules and guidelines are also welcome.	 |
+ The rules and the guidelines may (and often do) change from year to	 |
+ year. You should be sure you have the current rules and guidelines	 |
+ prior to submitting entries.
+chongo /\cc/\ 	{chongo,noll}@{toad,sgi}.com
+Larry Bassel	 	lab@sun.com

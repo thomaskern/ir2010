@@ -1,0 +1,614 @@
+
+VB Helper: Books: Reader Reviews
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Books: Reader Reviews 
+ 
+ 
+ 
+ 
+ 
+ This page contains reviews submitted by readers just like you. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Software Engineering 
+ Database 
+ Other 
+ 
+ 
+ Non Visual Basic 
+ Controls 
+ VB.NET 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Software Engineering 
+ 
+ 
+ Code Complete
+$35.00, 857 pages, paperback.
+Brian P. Duckworth:
+The topic that I have found to be most ignored by both my colleagues and book authors has been
+that of software construction. For this reason, books which deal with the fine details and "art"
+of coding are among my most valued volumes. My two favorites are Code Complete and
+Bug Proofing Visual Basic.
+Code Complete should be required reading for all programmers of any language and 
+at any experience level.
+I like this book because it comprehensively deals with the topic of software 
+construction. Nowhere else have I found a book that covers so many aspects 
+of coding. The breadth of important topics covered is so vast; it would be 
+an injustice to name only a few.
+Although more than ten years old, this book is still published and can be 
+found on the shelves of many bookstores - clear indications of its value. 
+It's the only book I've ever twice read cover-to-cover (and at over 800 
+pages, that's no small investment of time :-)
+ 
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Bug Proofing Visual Basic
+$39.99, 397 pages, paperback.
+Brian P. Duckworth:
+Although primarily a beginner's book, there are so many useful tidbits 
+throughout as to make it valuable to all but the most experienced VB 
+programmer. It reflects many of the same principles found in Steve's 
+McConnell's book, Code Complete, applied specifically to Visual Basic.
+BTW, I love the fly swatter on the front cover!
+ 
+ 
+[Learn more - Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Programming Microsoft Visual Basic 6.0
+$59.99, 1400 pages, paperback with CD.
+Bob Ceccarelli:
+My wife says that I like Francesco because
+he is Italian like me. That's not true. I don't care if he is a Martian. His book is the
+best all purpose VB reference book available. I've used my
+copy so frequently it is now held together by duct tape.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Beginning Visual Basic 6 Objects
+$39.99, 450 pages, paperback.
+Bob Ceccarelli:
+From this book I learned to design first, program later. I do not have Visual
+Modeler or Rational Rose. Instead I use Word, a notebook and a white board to plan 
+everything before ever turning on the computer. I get my projects done in a lot less 
+time and with far fewer design flaws and bugs thanks to Peter Wright.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Platinum Edition Using Visual Basic 6
+$49.99, 1120 pages, paperback with CD.
+Ian:
+[Note: Ian wrote this review about the previous edition of this book,
+"Using Visual Basic 5 Platinum Edition," but I cannot find it at Amazon any more.
+This may be a little unfair to the current edition which may have been improved, though
+other readers' reviews at Amazon give the impression that it hasn't. -- Rod]
+I am not good at reading books but am keen to learn. I find a lot of the examples in this book are too
+complicated and do not start at a low enough level.
+An example of why this book is bad. As I write this E-mail I looked in the index for the Tab Strip control. 
+It gives me the page ok but once I start reading it does 
+not tell me where to find the Tab Strip Control, that's my first problem because if I
+can not find it I can not use it! Now I want to add code to it but the book does not give 
+an example of the Tab Strip by itself but includes a Tree View control.
+Having read the section I would be unable to work out how to use the control to run different routines.
+My code below may not be written correctly but it works and I can tell how to use it to run different routines.
+Private Sub TabStrip1_Click()
+If TabStrip1.SelectedItem.Index = 1 Then
+MsgBox ("1")
+Else
+If TabStrip1.SelectedItem.Index = 2 Then
+MsgBox ("2")
+Else
+If TabStrip1.SelectedItem.Index = 3 Then
+MsgBox ("3")
+End If
+End If
+End If
+End Sub
+The book for me has been a waste of money as the examples are to complicated. Books need to start at a very basic
+level and then build up into complicated examples but I need to learn how to walk before I am taught how to run. 
+Simple things are often missed from books. I have a database about cars, models etc. If I double click 
+the database it will give me a picture of the car. If I have a car but do not know what it is, I can 
+search the database for all the options. If I search the database by make, say Ford, the books tell 
+me how to search a database to find the first, next, last and previous but not how to find all. I want
+the database to show all Fords that match my search criteria so that I can look at each one in turn. 
+The books do not tell me how to find all. Books are all very good but often written by people that 
+know a lot about a subject and they seem to forget about the novice and how little they may know.
+In summary I can not recommend the book. Examples are to complicated.
+Instructions are not given as to where to find a tool. In the year I have had the book I 
+do not recall having learnt anything from it!
+Where possible I try to get books from the library. If they prove useful then buy them but with 
+books you can not sit and read them all the way through before buying them, basically you buy a 
+book with out knowing if it is any good. When you
+buy a car you test drive it but with a book its pot luck.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Practical Visual Basic 6
+$29.99, 838 pages, paperback with CD.
+Phil McCarthy:
+This was the first book I bought on VB. I was looking for something as simple and easy as was humanly possible. The authors informed me that it would tell me everything I needed to know, that it would brush over nothing, that it provided step-by-step guidance - and on and on. Well, of-course, they were hardly going to say "Ah, it ain't a bad book but, boy did we screw up in chapter 7".
+I think if authors did write something like the above I may be well inclined to actually buy the thing. As it stands, a complete beginner faces a daunting prospect when looking for that all important first book and whatever that great first book is - I don't believe it is this one.
+If there is one thing that I cannot forgive in a technical book - it is mistakes. I was a complete beginner, I was trying to get my head around the mind numbing, I was looking at code and wondering why on earth it wasn't working, I patiently copied out the code a dozen times - infuriating! It was months later that I discovered the code was simply wrong. How many hours had I wasted because these authors or this publisher had not correctly tested the code? I realize that no-one is perfect, but when you've paid $30 for a book ($50 actually as I had to buy it in Japan) you do expect that which is written to be correct.
+One mistake is bad enough, and though I wouldn't go as far as saying the book is riddled with mistakes, there are a number of very misleading passages, explanations and examples which cannot serve the authors well if their object is to get good recommendations.
+I read in another note an opinion I share strongly. Experts are not necessarily the best people to write books. Practical Visual Basic 6 is a good example of that. Quite clearly these writers simply know too much to write a book for beginners. They have no idea how often concepts need to be repeated and reinforced. They have that infuriating technique of suddenly dumping new keywords into a procedure where you are already struggling with the current subject. The new keywords are brushed aside with (at best) one line comments and the user is assured that the subject will be covered in greater detail some 20 chapters down the road. What possible function can this technique serve?
+Now that I have become a fairly advanced-complete-beginner, I have some better ideas as to what to look for in a first book. I am certainly not good enough to write a book on VB, but perhaps for that very reason, it should be people like me that are writing those beginners books. If I were offering advice to someone looking for that first book then I would suggest they looked up the section on public and private variables.
+I suggest this because, as I see it, learning how to use public variables in the general declarations section of the form is a programmer's first shaky step on the ladder of VB progress. Practical Visual Basic 6 waltzes through this in a few lines and gives another of its dubious examples.
+Finally, I also have to feel somewhat angered when I have spent a few days working through a section of a book - in this case ActiveX controls and then later building stand alone projects - only to find that the VB disc coming with the book does not actually allow the user to use such functions - a detail neatly brushed over by the authors. Surely, if half the chapters in the book cannot be used with the disc supplied then the writers have an obligation to make that fact very clear.
+Having said all this, I will freely admit that I have learnt a great deal from this book and it is far from the worst thing I have ever had to study from. Nevertheless, if this is the best beginners book on the market then would-be VB programmers will certainly have their work cut out for them. In short, not recommended.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ The Visual Basic Style Guide
+$39.99, 384 pages, paperback with CD.
+Martyn Sutcliffe:
+This book deals less with code and more with the "Professional Mindset"
+required to program well. Much of the book is devoted to user interface,
+code layout, nomenclature and standards for coding. Much thought is put into
+the development of and reasoning behind standards. A large section also
+deals with the appropriate use of keywords and controls in VB, with
+recommendations on their use, along with common traps.
+I believe that the book is ideal for a programmer like myself, who has a
+reasonable grasp on VB but finds that their coding lacks standards, is messy
+or confusing. If I had read (and applied) this book 12 months ago, It could
+of saved me a LOT of problems debugging. I have noticed that that over the
+passed few weeks my code is certainly a lot easier to read, and contains
+fewer silly errors and runs smoother!!! (something about the increased
+thought processes involved in design).
+I would recommend this book to anyone who like me feels a need to improve
+his/her programming standards. The style given in the book may not be to
+your liking, however if it makes you think about your own style, then this
+is also a good thing. It is probable that if you already consider that you
+have a good programming style that this book would be of little use. The
+book is probably also not for the complete novice as it may confuse, better
+to have at least gained a basic grasp of the language before grappling with
+some of the concepts.
+ 
+ 
+[Amazon.com - Amazon.co.uk]
+ 
+ Database 
+ 
+ 
+ 
+ Hitchhiker's Guide to Visual Basic & SQL Server
+$49.99, 1024 pages, paperback with CD.
+James Moore:
+Both [editions] have provided valuable insights into the many faces of accessing
+data on SQL Server. I have used both books many times to help me with a
+particularly perplexing problems pertaining to performance (the 5 p's). I
+highly recommend both books to anybody developing client/server
+applications, although the 5th edition does not cover ADO technology it
+covers every other method of accessing data on SQL Server including the ODBC
+API.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ SQL Server 7 Developers Guide
+$49.99, 975 pages, paperback.
+James Moore:
+This book provides a good all around foundation for setting up SQL Server 7
+and developing client/server applications targeted at SQL Server. The book
+is divided into two parts managing SQL Server and Database Development with
+SQL Server. The management section is good but not as in depth as Ron Talmage's
+SQL Server 7 Administrators Guide.
+The development section is very good providing many examples, although I did
+find some typos they are fairly obvious.
+Thou shall not follow the NULL pointer for therein lies madness.
+ 
+ 
+[Amazon.com - Amazon.co.uk]
+ 
+ Other 
+ 
+ 
+ Visual Basic Graphics Programming
+$49.99, 677 pages, paperback with CD.
+Bob Ceccarelli:
+I developed a diagramming program for our home restoration business using the
+algorithms from this book. I never would have succeeded without it. The mathematical 
+underpinnings of graphics programming are complex enough to confuse Einstein never
+mind little old me. Anyone doing graphics with VB needs this book.
+ 
+ 
+ 
+[Learn more - Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Ready-to-Run Visual Basic Algorithms
+$59.95, 416 pages, paperback with CD.
+Bob Ceccarelli:
+This book forever altered the way I view programming problems. It gave me a
+new perspective, a new level of confidence. It gave me the tools to become a
+software engineer not just someone who writes code. A must read for anyone serious
+about mastering this craft.
+ 
+ 
+[Learn more - Amazon.com - Amazon.co.uk] 
+ 
+ 
+ Dan Appleman's Visual Basic Programmer's Guide to the Win32 API
+$59.99, 1548 pages, paperback with CD.
+Bob Ceccarelli:
+And here is my current study project with only three chapters completed so far ...
+ 
+I got tired of cutting and pasting other people's api declarations. I haven't put much
+of a dent in this "tome" but I am enjoying the insights into the C language, Boolean
+algebra and the like - pretty heady stuff. No way on earth I'll remember it all.
+I'll have this volume close at hand when doing API's. Unless you are from the C world
+or a rocket scientist (is there a difference?) this book is a must have.
+ 
+ 
+[Amazon.com - Amazon.co.uk]
+ 
+ Non Visual Basic 
+ 
+ 
+ 
+ Beginning Visual C++ 6.0
+$49.99, 1184 pages, paperback.
+Bob Ceccarelli:
+An opportunity came up to do a Win CE project. The bulk of the application is being written in Visual Basic. While
+VBCE can host ActiveX controls, it does not support their creation. This meant learning VC++. My goal was to
+learn the core language, a little about MFC and then focus hard on ATL for building our ActiveX controls. I chose
+"Beginning Visual C++ 6.0" to get me through the core langauge and up to the point where I could focus on ATL.
+I give "Beginning Visual C++ a rock-solid 5 star rating. Horton uses all the teaching methods that work for me,
+namely, start with the basics and then progressively add to them using lots of illustrative code examples. Horton's
+book is not an easy read. The truth be known, I agonized over some of the material. Nevertheless, I believe it made
+a difficult task, learning VC++, as easy as possible. An added unexpected bonus is I find myself writing better VB
+code. Go figure! Learn another language and get better at the one I already know. I highly recommend "Beginning
+VC++ 6.0" to VB programmers who want to get into VC++.
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ Programming Perl
+$49.95, 1067 pages, paperback.
+Yaron Budowski:
+Poorly organized, but a great reference.
+The book itself, used as a Reference and for mastering Perl, is a 
+five star book. But there are quite a few disadvantages:
+- The book is not intended to be read by someone who has no 
+programming experience at all. The reader should be at least an 
+intermediate programmer, because the basic programming 
+concepts of the language (Variables, Subs and etc..) are poorly 
+explained.
+- Because of Perl's C Like Syntax, it is recommended that the 
+reader will be familiar with C, Awk, or Grep and he should have 
+some experience in the Unix Environment.
+- The Book itself is poorly organized, certain complicated terms 
+are shown in examples and explanations, and those terms are 
+taught many pages afterwards.
+For Example: An Example of a perl program is shown on page 10, 
+and that example contains subs and pattern matching, which are 
+taught 100 Pages later!
+These are the 3 Main Disadvantages.
+In Conclusion, if you're new to programming, or want to learn Perl 
+easliy, buy "Learning Perl", but if you're a somewhat experienced 
+programmer, and want to master Perl, this book is the best one 
+you'll find for that purpose.
+ 
+ 
+ 
+[Amazon.com - Amazon.co.uk]
+ 
+ Controls 
+ 
+ 
+ WebZinc
+$199.00.
+Yaron Budowski:
+WebZinc, an Activex DLL provided by www.webzinc.net, has the following features:
+- Web Mining. Using a class called "WebParser" you can grab 
+text, links and images by specifying the text's paragraph number, 
+location in a table (if one exists) or by identifying it by the 
+paragraph before\after the text. It also has more methods of 
+grabbing text\links from the HTML code, but I won't mention them 
+here. In addition to these text grabbing functions, you can also 
+retrieve field's information of forms (in case there is a form in the 
+HTML page), and submit forms to their destination (useful when 
+filling out forms for feedback and searching).
+- String Manipulation. The WebParser class also contains string 
+manipulation functions which can come handy in certain cases. 
+Besides the built-in string manipulation functions, the WebParser 
+class can be customized using special "rules" which can be added 
+using the RulesAdd function. These rules are text editing rules 
+which can be applied automatically to all web mining functions. 
+Meaning, you can add a rule for ignoring any text which includes 
+the words "CLICK HERE", and this way, when using the web 
+mining functions to retrieve links, advertising links will automatically 
+be ignored.
+- Page Management. Using a class called "PageManager", you 
+can upload, download and execute other function in HTTP\FTP 
+servers. This class is useful when uploading HTML pages to server 
+or when downloading binary files from a FTP server.
+- Internet Connection. A class called "NetConnection" is used for 
+connecting to the net, disconnecting from the net and checking for 
+a connection.
+Well, that's about all the features...
+In conclusion, the WebZinc has a lot a features related to web 
+mining, string manipulation, page management and internet 
+connection. Even though it's a useful DLL, it has a few 
+disadvantages: It's too expensive for the average programmer 
+($199), it was written in VB (meaning, it's slower than other web 
+mining activex controls which were written in C and are available on 
+the web) and in my opinion, it's not flexible enough for advanced 
+web mining. Perhaps it's flexible for other purposes which require 
+less complicated web mining, but still, it's a very good ActiveX DLL 
+after all.
+P.S. I recommend surfing to WebZinc's Code Base page,
+which includes code snippets for use with WebZinc. This way, you can 
+actually see what the WebZinc is capable of.
+ 
+ 
+ 
+[Learn more]
+ 
+ VB.NET 
+ 
+ 
+ VB.NET Programming With the Public Beta
+$24.99, 433 pages, paperback.
+Rod Stephens:
+This book is designed to help experienced VB 6 programmers get up and running quickly using the VB.NET beta.
+It is not a how-to book and doesn't cover a lot of specifically useful topics. It does cover some of the
+trickier differences between VB6 and VB.NET and it explains how to use the development environment.
+Note that this version was written in Beta 1 and some of it is already outdated in beta 2.
+It may still save you enough time to justify getting it.
+ 
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ ADO.NET Programmer's Reference
+$27.99, 950 pages, paperback.
+Rod Stephens:
+ADO.NET is very different from ADO in many ways. Even if you are an experienced ADO programmer,
+there is a lot of new material to learn. This huge tome coves ADO.NET programming in VB.NET.
+It explains connection, command, DataSet, DataReader, DataAdapter, DataTable, and other objects you
+can use to fetch and modify data. It explains data DataRelations, DataViews, and mapping table and field names.
+While the typos and grammer are occasionally distracting, this book is filled with useful and, as far as I can tell,
+correct information.
+ 
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ Database Programming with Visual Basic.NET
+$13.49, 504 pages, paperback.
+Rod Stephens:
+This book also covers ADO.NET programming. It spends more time on using the development
+environment to build a database and less time on using objects (connection, DataSet, DataTable, etc.)
+than "ADO.NET Programmer's Reference." Unfortunately some of the tools it describes don't seem to
+be available in all versions of VB.NET if you don't have SQL Server. The book also spends two chapters
+on hierarchical databases and message queues which seem like odd topics for this book.
+Overall I preferred "ADO.NET Programmer's Reference" but for $13.49, you only need to gain a few
+insights to make this book pay for itself (at least until my book comes out ;-) Just skim the sections
+that you don't find interesting so the book doesn't exact a toll in time.
+ 
+ 
+ 
+[Amazon.com - Amazon.co.uk] 
+ 
+ 
+ VB.NET
+$18.89, 352 pages, paperback.
+Fred Thorlin:
+This review is very well written but a bit long so it has its own page.
+Click here to read it. In case you just can't want,
+the end results is yes, Fred likes the book.
+ 
+ 
+[Amazon.com - Amazon.co.uk]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,88 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Exercises
+Beginning ASP Databases - Chapter 3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+Exercises
+These exercises use one or both of the two sample databases
+available from the Wrox Press website, at http://webdev.wrox.co.uk/books/2726.
+Appendices A and B contain a description of the structure of (respectively) the
+"Times New Roman";color:black'>Sailors
+database and the "Times New Roman";
+color:black'>Clothier database.
+<![if !supportEmptyParas]> <![endif]>
+1
+Use "Times New Roman";color:black'>Sailor.mdb
+to create a list of sailors with one sailor per line (no table)
+2
+Use Sailor.mdb to
+create a table of all of the boats.
+3
+Use Sailor.mdb to
+make a list of the yacht clubs; not in a table but separated by horizontal
+lines.
+Exercises -
+Answers
+Note: answers are also presented in C01-Exercise.asp
+available from the WROX site.
+<![if !supportEmptyParas]> <![endif]>
+1 Use "Times New Roman";color:black'>Sailors.mdb
+to create a list of sailors with one sailor per line (no table).
+<![if !supportEmptyParas]> <![endif]>
+Chapter 3 Simple
+Recordsets
+Exercise 1 Use Sailors.mdb
+to create a list of sailors with one sailor per line
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+2 Use "Times New Roman";color:black'>Sailors.mdb
+to create a table of all of the boats.
+<![if !supportEmptyParas]> <![endif]>
+Chapter 3 Simple
+Recordsets
+Exercise 2 Use Sailors.mdb
+to create a table of all the boats
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+3 Use "Times New Roman";color:black'>Sailors.mdb
+to make a list of the yacht clubs; not in a table but separated by horizontal
+lines.
+<![if !supportEmptyParas]> <![endif]>
+Chapter 3 Simple
+Recordsets
+Exercise 3 Use Sailors.mdb
+to make a list of the yacht clubs; not in a table
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

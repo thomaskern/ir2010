@@ -1,0 +1,110 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq15_9.html 
+ 
+search 
+ 
+Node:Stack size,
+Next:Windows 98,
+Previous:Swap out,
+Up:Memory
+15.9 How much stack can I have in DJGPP programs?
+Q: My program bombs when I use very large automatic arrays.
+Q: How much stack space do I have in my program?
+Q: My program seems to overflow the stack, but only when I run it
+under a debugger....
+Q: My program crashes with SIGSEGV, but the traceback makes no
+sense: it points to something called ___djgpp_exception_table...
+When I try to debug this, the traceback mysteriously changes to some
+innocent library function, like getc(). What is going on??
+A: DJGPP v2 programs get fixed-size stack which is allocated by the
+startup code and then stays fixed for the entire lifetime of the
+program; this is due to a bug/feature of the DPMI 0.9
+specification26. By default,
+you have a 512KB-long stack (DJGPP v2.01 and earlier used 256KB stack),
+but some programs which use large automatic arrays, or are deeply
+recursive, might need more. If the default stack size is not enough,
+you can change it with the STUBEDIT program (change the parameter
+"Minimum amount of stack space"), or by setting the global variable
+_stklen in your program. Example:
+ unsigned _stklen = 1048576; /* need a 1MB stack */
+The DJGPP startup code checks both the value in the stub (that can be
+changed by STUBEDIT) and the value of _stklen, and uses
+the larger of these two. Therefore, programs that are known to require
+large stack size should set _stklen to make sure they will always
+work, even if somebody stub-edits them to a lower value. Setting
+_stklen is also safer to ensure sufficient stack size during
+debugging (see below). However, you might be left with STUBEDIT
+as your only option of enlarging the stack with programs for which you
+don't have the sources handy, or rebuilding which is not practical.
+Alternatively, you could rewrite your code to declare large arrays with
+the static qualifier, or put their declaration outside any
+function (thus making them static by default). Static arrays don't use
+stack space at all.
+Programs that need an unusually large stack might crash with bogus
+stack traces, because part of the static data gets overwritten by the
+overflowing stack. To see if that is the cause of such crashes, run
+STUBEDIT on your program and crank up the stack size to a large
+value (like 4 MBytes). If that makes the problem go away, tune the
+stack limit to the minimum value your program can live with, then set
+_stklen to an appropriate value as explained above and recompile
+the program. (Some DPMI hosts will actually allocate the entire stack,
+even if not all of it is used, so leaving it at unnecessarily large
+value will hurt the program on low-memory machines.)
+Some users have reported that they needed to enlarge the stack size of
+the C++ compiler, cc1plus.exe, to prevent it from crashing when
+compiling some exceedingly large and complex C++ programs. Another
+program that was reported to need a stack larger than the default is
+bccbgi.exe from the BCC2GRX package.
+After you've used STUBEDIT to change the stack size, run it again
+to make sure it displays as default the value you thought you entered. 
+This is because STUBEDIT will sometimes silently set the stack
+size to 0 (and then you will get the default 512K stack) if it doesn't
+like the value you type (e.g. if it has a wrong syntax).
+When you run a raw COFF image under a debugger, the stack size is taken
+from the debugger's stack size, which might not be appropriate for your
+program . So the only way to change the default stack size in these
+cases is to set _stklen. You can also stubedit the debugger, to
+achieve the same effect, albeit at a price of more memory used by the
+debugger.
+Under Windows 3.X, be sure you've allocated a sufficiently large swap
+file (let's say, 40MBytes) from the Windows' Control Panel, and make
+sure the .PIF file for your program doesn't have too low limit on
+EMS/XMS usage (better make them both -1). What's that? You don't
+have a .PIF file for this program? Then Windows uses the default
+file DOSPRMPT.PIF, which almost surely defines very low limits on
+these two, and your program might have problems getting the memory it
+needs for its stack.
+DJGPP v2.0 has a subtle bug in its startup code that is seen very
+rarely, and that manifests itself by a program crashing with Page Fault
+or SIGSEGV. If you are using v2.0 and enlarging the stack and the
+CWSDPMI heap size didn't help, try adding some (e.g., 4KB) static data
+to your program and see if that helps. But the best way to overcome
+this is to upgrade to DJGPP v2.01 or later.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

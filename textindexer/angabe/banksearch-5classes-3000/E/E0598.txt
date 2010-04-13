@@ -1,0 +1,169 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Create custom TCollection/TCollectionItem classes
+Answer
+The VCL uses TCollection's in many of its classes. For example, the Items
+property of TListView is a TCollection. This FAQ describes how you can
+create a custom collection in your code. The FAQ describes how to create a
+TCollection that contains an array of DWORD's.
+Step 1: Derive a class from TCollectionItem
+Derive a class from TCollectionItem that will store the data that you
+want to keep in the collection. The collection will store an array of objects
+for the class that you derive. The class shown here stores an internal DWORD, and
+provides a property to manipulate the data. Your derived class should provide a
+constructor that takes a TCollection pointer as an argument.
+class TDWORDItem : public TCollectionItem
+{
+ private:
+ DWORD FValue;
+ public :
+ __fastcall TDWORDItem(TCollection *Collection);
+ __property DWORD Value = {read = FValue, write = FValue};
+};
+Step 2: Derive a class from TCollection
+Your TCollection derivative will host a collection of
+TCollectionItem derived objects. The TCollection subclass
+must provide methods for adding, deleting, and manipulating the collection. The
+base class TCollection already contains some functionality for manipulating
+the collection, and in fact, your TCollection subclass could get by without adding
+any new functionality. However, I have chosen to add functions and properties that
+make the DWORD collection easier to maintain from outside the class.
+The class shown here contains a array property called Items that allows
+read and write access to the collection. Notice that the property
+is an array of DWORD's, and not an array of TDWORDItem's or
+TCollectionItem's. The TCollection class already contains an
+Items array property that provides direct access to the
+TCollectionItem pointers, but in my case, an array of DWORD's is
+more useful than an array of TDWORDItem's. In your code, you may want to
+just stick with the Items property that is provided by TCollection.
+Likewise TCollection also provides an Add method that returns a
+newly constructed TCollectionItem. You initialize the item after calling
+Add (see the FAQ on
+Adding items to a ListView from code at runtime
+to see what I mean). I decided to provide a new Add method that
+takes a DWORD as an argument. As you will see in the next step, my
+Add function merely calls the base class Add function, and
+then initializes the item. You could omit the Add method in your class
+if you prefer to initialize the collection item outside of the collection class (just
+like TListView).
+class TDWORDList : public TCollection
+{
+ private:
+ DWORD __fastcall GetItem(int Index);
+ void __fastcall SetItem(int Index,DWORD AValue);
+ public:
+ __fastcall TDWORDList();
+ void __fastcall Add(DWORD AValue);
+ void __fastcall Delete(int Index);
+ __property DWORD Items[int Index] = {read = GetItem, write = SetItem};
+};
+Step 3: Code the functions for both classes
+The block of code below provides the implementation for the TDWORDItem and
+TDWORDList classes. TDWORDItem only has one function, its constructor.
+TDWORDList has a constructor, an Add function, a Delete
+function, and read and write methods for its Items array property.
+// The only function for TDWORDItem is it's constructor. Pass the
+// TCollection pointer to the base class, and then initialize FValue.
+__fastcall TDWORDItem::TDWORDItem(TCollection *Collection)
+ : TCollectionItem(Collection),
+ FValue(0)
+{
+}
+// The TDWORDList must pass the name of the item class to the base class
+// TCollection constructor. This is done using BCB's __classid keyword
+__fastcall TDWORDList::TDWORDList()
+ : TCollection(__classid(TDWORDItem))
+{
+}
+// Add should create a new TDWORDItem and add it to the collection.
+// The base class function TCollection::Add can do this for us.
+// After adding the item, assign its Value property. Observe that my
+// custom Add function merely moves the statement Item->Value = AValue
+// inside the collection class.
+void __fastcall TDWORDList::Add(DWORD AValue)
+{
+ TDWORDItem *Item = (TDWORDItem *) TCollection::Add();
+ Item->Value = AValue;
+}
+// To implement a Delete function, you must code the function by hand.
+// TCollection won't help you out with the Delete function. You can code
+// Delete however you want. I create a copy of the old list, clear out
+// all items, and then add the old items back in, skipping the index that
+// should be removed. This could be probably be improved somewhat.
+void __fastcall TDWORDList::Delete(int Index)
+{
+ DWORD *OldList = new DWORD[Count];
+ int OldCount = Count;
+ // create a copy of the old values
+ for (int j=0; j Value;
+}
+// SetItem is the write method for the Items array property. SetItem
+// calls TCollection::GetItem to return the TDWORDItem for the given
+// Index. SetItem then assigns the Value property of that item.
+void __fastcall TDWORDList::SetItem(int Index,DWORD AValue)
+{
+ TDWORDItem *Item = (TDWORDItem *) TCollection::GetItem(Index);
+ Item->Value = AValue;
+}
+Step 5: Use the collection in you code
+ TDWORDList *list = new TDWORDList;
+ list->Add(502);
+ list->Add(29);
+ list->Add(100);
+ list->Add(0);
+ list->Add(30);
+ list->Items[3] = list->Items[0] * 10;
+ list->Delete(2);
+ // The code below shows what the code above would look like if
+ // TDWORDList did not contain a customized Add method or Items
+ // property.
+ TDWORDList *list = new TDWORDList;
+ TDWORDItem *item;
+ item = (TDWORDItem *)list->Add();
+ item->Value = 502;
+ item = (TDWORDItem *)list->Add();
+ item->Value = 29;
+ item = (TDWORDItem *)list->Add();
+ item->Value = 100;
+ item = (TDWORDItem *)list->Add();
+ item->Value = 0;
+ item = (TDWORDItem *)list->Add();
+ item->Value = 30;
+ ((TDWORDItem *)list->Items[3])->Value =
+ ((TDWORDItem *)list->Items[0])->Value*10;
+Note: The TCollection destructor calls the Clear function if
+the collection contains any items. Clear automatically deletes the array of
+TCollectionItem's. As long as you properly delete your TCollection
+object, you don't need to worry about deleting the collection items.
+Note: You should consider using the STL vector or list
+templates instead of using TCollection. The code from this FAQ could be
+duplicated using the vector template without deriving any new classes.
+STL templates are more portable than the TCollection class. You should
+consider using STL templates whenever your collection doesn't need to be
+published in the form of a property. A collection based on TCollection
+might be preferrable when you are designing a component that needs a collection
+as a property. The code below shows how the vector template could
+have been used in this FAQ.
+#include 
+using namespace std;
+vector dVector;
+dVector.push_back(502);
+dVector.push_back(29);
+dVector.push_back(100);
+dVector.push_back(0);
+dVector.push_back(30);
+dVector[3] = dVector[0] * 10;
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

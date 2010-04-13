@@ -1,0 +1,353 @@
+
+ 
+ Java security evolution and concepts, Part 5
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java security evolution and concepts, Part 5
+ 
+ J2SE 1.4 offers numerous improvements to Java security
+ 
+ 
+ 
+Summary
+In Parts 1 through 4 of this series on Java security, Raghavan N. Srinivas discussed network and Java security concepts; Part 3 took a detailed look at applet security and optional packages. In this article, Raghavan introduces J2SE (Java 2 Platform, Standard Edition) 1.4's new security packages for certificate chain manipulation, along with Generic Security Services, which includes a single sign-on framework over the network. (3,200 words; December 21, 2001)
+ 
+ By Raghavan N. Srinivas
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ Page 1 of 3
+ 
+Advertisement 
+ 
+ 
+ 
+arly on, Java security focused on resisting executable content threats -- security risks caused by malicious or poorly designed code. From that beginning, Java security measures evolved to provide security based on where code came from and who signed it. More recently, Java security has improved further to provide user and pluggable authentication, as well as SSL (Secure Socket Layer) and other key management and cryptography support. 
+Java security evolution and concepts: Read the whole series! 
+ 
+- Part 1: Learn computer security concepts and terms in this introductory overview 
+- Part 2: Discover the ins and outs of Java security 
+- Part 3: Tackle Java applet security with confidence 
+- Part 4: Learn how optional packages extend and enhance Java security 
+- Part 5: J2SE 1.4 offers numerous improvements to Java security 
+This article, the last of five in the Java security series, follows the examples introduced in Part 3 and briefly revisits the optional packages covered in Part 4. By revisiting the examples from earlier articles, we can reinforce concepts and understand what has changed in the interim. 
+After an overview of those security features that have changed between J2SE (Java 2 Platform, Standard Edition) 1.3 and the upcoming J2SE 1.4, this article digs deeper into the new packages included in 1.4. The first of the newer packages is the Java Certification Path (CertPath) API, which supports certificate chain manipulation. Second is the Java GSS-API (JGSS), which contains the Java bindings for the Generic Security Services Application Program Interface (GSS-API) for standardized access to a variety of security services and a framework for a single sign-on. 
+ Overview of changes 
+First, let's quickly look at the changes between J2SE 1.3 and 1.4. 
+ Optional packages move into the 1.4 core 
+As the most obvious change between J2SE 1.3 security and 1.4, the optional packages (examined in Part 4) will move into 1.4's core security structure: 
+ 
+- Java Authentication and Authorization Service (JAAS): A framework for performing user-based authentication 
+- Java Cryptography Extension (JCE): A framework for using strong ciphers on a global basis 
+- Java Secure Socket Extension (JSSE): Support for SSL and TLS (Transport Layer Security) 
+Each of the aforementioned packages will be available on every J2SE 1.4 installation, obviating the need to install them explicitly.
+ New 1.4 packages 
+Besides moving the optional packages into the J2SE core, J2SE 1.4 will also feature two new security packages: 
+ 
+- Java CertPath API: Classes, methods, and interfaces to build and validate certificate chains 
+- JGSS API: Java bindings for the Generic Security Services API 
+The bulk of this article will be devoted to looking into these two packages. 
+ Other changes 
+As a result of JAAS becoming an integral part of core security, access control is no longer solely based on code source (i.e., where the code is from and who signed it), but also on who is running the code. As a result, both the Policy files and the graphical Policy tool have been enhanced to accommodate the changes. 
+Next, strong cipher support is available via JCE and JSSE, albeit with some important control restrictions. In JCE, the cryptographic strengths are limited through the jurisdiction files by default. JSSE, for its part, now restricts the replacement of the default SSLSocketFactory and SSLServerSocketFactory classes. 
+Moreover, you'll find support for dynamic policies. Prior to J2SE 1.4, the security policy was associated at the time of class loading. In 1.4, the security policy association is deferred until the security check becomes necessary. 
+In addition, J2SE 1.4 includes some changes to the functionality of the security classes. As an example, the javax.security.cert class is available only for backward compatibility, with its functionality carried forward by the java.security.cert class. Newer applications should use this class. 
+Finally, applet security as enforced by 1.4 is different, which we'll look into in the next section. 
+ Java Plug-in enhancements 
+You'll see some changes in security between the J2SE 1.3 Java Plug-in and the 1.4 Java Plug-in (for more, see Sidebar 1: Java Plug-in Primer). Since we are interested in security, I explore the changes by revisiting the signed applets developed in Part 3. 
+ Security in the J2SE 1.3 Java Plug-in 
+To illustrate how the J2SE 1.3 Plug-in handles applet security, let's first look at the writeFile applet from Part 3 of this series. Execute the writeFile signed applet under the J2SE 1.3 Java Plug-in. Make sure that the policy files do not allow the temp file (/tmp/foo on Unix systems and c:\tmpfoo on Windows) to be modified. If the clock on your system is set correctly, the signed applet's signature should not validate because it has expired; therefore, the applet will not initialize. If you set your system's clock back to a date between December 13, 2000 and December 21, 2001 (that is, to a time when the certificate is valid), the signature validates, and you should see a dialog box asking whether the applet should run or not. 
+As another example, run the signed applet discussed in "JDK 1.2 -- Signed Applet Example" under the J2SE 1.3 Java Plug-in. The applet has been signed by a key -- Duke -- whose public key has been self-certified. That means the Certification Authority (CA) used to sign the certificate is not trusted by default in the environment. As a result, the signature validation fails again, and the dialog box again fails to pop up. 
+ Security in the J2SE 1.4 Java Plug-in 
+Now, let's run the same applet examples under the J2SE 1.4 Java Plug-in. 
+When executing the example from Part 3, the signed applet with the expired certificate, the user sees a dialog box clearly indicating that the certificate is expired, as shown in Figure 1. Here, the ultimate decision to execute the applet is left to the user's discretion. 
+Figure 1. Signed applet with an expired certificate 
+ 
+Likewise, in the second example of the signed applet with the untrusted certificate, the user sees a dialog box, this time indicating that the CA cannot be trusted. The applet can still be executed if the user so chooses, as seen in Figure 2.
+Figure 2. Signed applet with a certificate signed by an untrusted CA. (Source: Sun Microsystems Inc.) 
+ 
+To summarize the differences between security in the J2SE 1.3 and 1.4 Java Plug-ins: In 1.4, if the signature validates successfully, the dialog box pops up with a message indicating that the certificate is valid, as shown in Figure 3. 
+Figure 3. Signed applet with a valid certificate 
+ 
+Under the J2SE 1.4 Java Plug-in, if the signature does not validate, the dialog box still pops up under the cases we've seen above. The dialog box clearly warns against potential security holes but leaves the final decision of initializing the applet to the user. With the J2SE 1.3 Java Plug-in, the applet fails to initialize unless the user does something explicitly, such as setting the policies or adjusting the system clock.
+Clearly, the J2SE 1.4 Java Plug-in offers the user greater flexibility. Moreover, in an intranet environment, you may no longer be required to sign applets with an external CA; a company-wide CA would suffice. The downside of this flexibility is that some responsibility for validating the signature now shifts to the user. That shift is probably all right, since technology can only so go far to validate a signature. The aspect of trusting a user based on the signature is an interpersonal issue and is left to the user anyway. Technology cannot address this important issue (and I hope it never will).
+Now that we have covered some familiar ground, let's move on to J2SE 1.4's new packages. In the examples we looked at above, the Java Plug-in had to validate a certificate or a certificate chain. If, however, we had to build or validate a certificate chain in a program, we would use the Java CertPath API. 
+ Next page >
+Page 1 Java security evolution and concepts, Part 5
+Page 2 Java CertPath API
+Page 3 JGSS API
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- "Java Security Evolution and Concepts," Raghavan N. Srinivas (JavaWorld):
+- Part 1: Learn computer security concepts and terms in this introductory overview (April 2000)
+- Part 2: Discover the ins and outs of Java security (July 2000)
+- Part 3: Tackle Java applet security with confidence (December 2000)
+- Part 4: Learn how optional packages extend and enhance Java security (May 2001)
+- Part 5: J2SE 1.4 offers numerous improvements to Java security (December 2001)
+Java security resources from java.sun.com:
+- For comprehensive Java security information, read Sun Microsystems' Java Security API page: 
+http://java.sun.com/security
+- For the latest documentation on Java security, read the documentation from Java 2 1.4: 
+http://java.sun.com/j2se/1.4/docs/relnotes/features.html#security
+- "Java 2 Platform, Standard Edition, v 1.4.0 API Specification": 
+http://java.sun.com/j2se/1.4/docs/api/index.html
+- "Java Cryptography Extension (JCE) Reference Guide": 
+http://java.sun.com/j2se/1.4/docs/guide/security/jce/JCERefGuide.html
+- "Java Secure Socket Extension (JSSE) Reference Guide": 
+http://java.sun.com/j2se/1.4/docs/guide/security/jsse/JSSERefGuide.html
+- For "Archives of java-security@sun.com," see: 
+http://archives.java.sun.com/archives/java-security.html
+- "Frequently Asked Questions -- Java Security": 
+http://java.sun.com/sfaq/
+- Java 2 SDK platform security tools: 
+http://java.sun.com/j2se/1.4/docs/tooldocs/tools.html#security
+- "Default Policy Implementation and Policy File Syntax": 
+http://java.sun.com/j2se/1.3/docs/guide/security/PolicyFiles.html
+- "JDK 1.2 - Signed Applet Example,": 
+http://java.sun.com/security/signExample12/
+- Java Plug-in documentation and download: 
+http://java.sun.com/products/plugin/index.html
+- "Java Certification Path API Programmer's Guide," Sean Mullan: 
+http://java.sun.com/j2se/1.4/docs/guide/security/certpath/CertPathProgGuide.html
+- "Java Authentication and Authorization Service (JAAS) Reference Guide": 
+http://java.sun.com/j2se/1.4/docs/guide/security/jaas/JAASRefGuide.html
+- "Introduction to JAAS and Java GSS-API Tutorials": 
+http://java.sun.com/j2se/1.4/docs/guide/security/jgss/tutorials/index.html
+Security-related Java Specification Requests at the Java Community Process:
+- Java Certification Path API (JSR 000055): 
+http://jcp.org/jsr/detail/055.jsp
+- Java GSS-API (JSR 000072): 
+http://www.jcp.org/jsr/detail/72.jsp
+Other important Java security resources:
+- A list of CAs for obtaining code-signing certificates: https://certs.netscape.com/client.html
+- Netscape's security tools, including signtool: 
+http://developer.netscape.com/docs/manuals/index.html?content=security.html
+- A comprehensive list of security-related problems with suggested remedial action, known as CERT advisories: 
+http://www.cert.org/
+- Applied Cryptography: Protocols, Algorithms, and Source Code in C, Second Edition, Bruce Schneier (John Wiley and Sons, 1996; ISBN: 0471117099) -- a fascinating book on the science and politics of cryptography: 
+http://www.amazon.com/exec/obidos/ASIN/0471117099/javaworld
+- RSA Labs' FAQ about today's cryptography (in PDF format): ftp://ftp.rsasecurity.com/pub/labsfaq/labsfaq4.pdf
+- X.509 standard for certificates: 
+http://www.ietf.org/rfc/rfc2459.txt
+- Generic Security Service API Version 2: Java Bindings: 
+http://www.ietf.org/rfc/rfc2853.txt
+- Kerberos information, including source code and binaries: 
+http://web.mit.edu/kerberos/www/
+JavaWorld's Java security resources:
+- "Construct Secure Networked Applications with Certificates," Todd Sundsted (JavaWorld):
+- Part 1: Certificates add value to public-key cryptography (January 2001)
+- Part 2: Learn to use X.509 certificates (February 2001)
+- Part 3: Use the Java CRL and X509CRL classes (March 2001)
+- Part 4: Authenticate clients and servers, and verify certificate chains (April 2001)
+- For more Java security stories, visit the Security section of JavaWorld's Topical Index: 
+http://www.javaworld.com/channel_content/jw-security-index.shtml
+- Discuss Java security in our Java Security discussion: 
+http://forums.idg.net/webx?50@@.ee6b80e
+- JavaWorld's Java Bookstore security page can point you to numerous security-related books: 
+http://www.javaworld.com/javaworld/books/jw-books-security.html
+- Sign up for JavaWorld's free Enterprise Java newsletter: 
+http://www.javaworld.com/subscribe
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ Sidebar 1: Java Plug-in primer 
+A plug-in program adds functionality to a Web browser (or any other program). The Java Plug-in enables Java applets to run using the Java 2 Runtime Environment, Standard Edition (JRE), rather than the browser's default runtime. The Java Plug-in delivers several capabilities on different versions of Netscape Navigator and Internet Explorer, using the respective browsers' plug-in architecture and extension mechanisms. The capabilities include: 
+ 
+- Full Java 2 SDK support: Enables development and deployment of applets using the latest Java 2 SDK features, such as fine-grained security 
+- Free download and install: Upon encountering a Webpage that specifies Java Plug-in software, the browser will download and install all the necessary files and render the applet, requiring minimal user intervention 
+- Free Java Plug-in HTML converter: A simple command-line tool to modify HTML pages to specify the use of Java Plug-in software rather than the browser's default Java runtime 
+In summary, the Java Plug-in provides a common framework for running Java applets across multiple browsers and versions. 
+Sidebar 2: Kerberos made easy 
+At many enterprises, firewalls serve as a primary defense mechanism, although they often prove inadequate: they're unable to guard against insider computer crime, and they may restrict network usage even for legitimate users. The network authentication protocol Kerberos -- named after a three-headed dog from Greek mythology -- answers some of these problems. 
+Kerberos provides mutual client-server authentication across an insecure connection, as well as privacy and data integrity. Services can be written to take advantage of Kerberos's secure features. 
+MIT, responsible for the development of Kerberos, offers several free versions of the protocol. You'll find it also available in source code form, as well as in several commercial implementations. 
+Return to article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

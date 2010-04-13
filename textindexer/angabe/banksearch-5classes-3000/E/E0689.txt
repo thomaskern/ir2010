@@ -1,0 +1,243 @@
+
+GotW #78: Operators, Operators Everywhere
+ 
+ 
+ GotW #78 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Operators, Operators Everywhere
+ Difficulty: 4 / 10
+How many operators can you put together, when you really put
+your mind to it? This issue takes a break from production coding to get some
+fun C++ exercise.
+Problem
+JG Question
+1. What is the greatest number of plus signs (+) that can appear consecutively, without whitespace, in a valid C++ program?
+Note: Of course, plus signs in comments, preprocessor directives and macros,
+and literals don't count. That would be too easy.
+Guru Question
+2. Similarly, what is the greatest number of
+each the following characters that can appear consecutively, without whitespace,
+outside comments in a valid C++ program?
+ 
+a) &
+ 
+b) >
+is always interpreted as a single token, the stream extraction (right-shift)
+operator, and never as two individual >
+tokens even when the characters appear in a situation like this:
+ template>
+...
+That's why such code has to be written with an extra space, as:
+ template
+> ...
+Similarly, >>> is always interpreted
+as >> >, never as >
+>>, and so on.
+Some Fun With Operators
+1. What is the greatest number of plus signs
+(+) that can appear consecutively, without whitespace, in a valid C++ program?
+It is possible to create a source file containing arbitrarily long sequences
+of consecutive + characters, up to a compiler's
+limits (such as the maximum source file line length the compiler can handle).
+If the sequence has an even number of +
+characters, it will be interpreted as ++ ++ ++ ++ ...
+++, a sequence of binary ++ tokens. To
+make this work, and have well-defined semantics because of sequence points, all
+we need is a class with a user-defined prefix ++
+operator that allows chaining. For example:
+ // Example 1(a)
+ //
+ class A
+ {
+ public:
+ A& operator++() { return *this; }
+ };
+Now we can write code like:
+ A a;
+ ++++++a; // meaning: ++ ++ ++ a;
+which works out to:
+ a.operator++().operator++().operator++()
+What if the sequence has an odd number of +
+characters? Then it will be interpreted as ++ ++ ++ ++
+... ++ +, a series of binary ++ tokens
+ending with a final unary +. To make this work,
+we just need to additionally provide a unary +
+operator. For example:
+ // Example 1(b)
+ //
+ class A
+ {
+ public:
+ A& operator+ () { return *this; }
+ A& operator++() { return *this; }
+ };
+Now we can write code like:
+ A a;
+ +++++++a; // meaning: ++ ++ ++ + a;
+which works out to:
+ 
+a.operator+().operator++().operator++().operator++()
+This trick is fairly simple. Creating longer-than-usual sequences of other
+characters turns out to be a little more challenging, but still possible.
+Abuses of Operators
+The code in Examples 1(a) and 1(b) don't especially abuse the ++
+and + operators' usual semantics. What we're
+going to do next, however, really goes beyond anything you'd ever want to see in
+production code; this is for fun only.
+2. Similarly, what is the greatest number of
+each the following characters that can appear consecutively, without whitespace,
+outside comments in a valid C++ program?
+For this question, we'll create and use the following helper class:
+ // Example 2
+ //
+ class A
+ {
+ public:
+ void operator&&( int ) { }
+ void operatorCopyright ©
+2002 Herb Sutter
+ 

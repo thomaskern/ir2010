@@ -1,0 +1,490 @@
+
+The Java Boutique: The Ultimate Java Applet Resource: Tutorials - Page 5
+	
+	
+	
+	
+	
+	
+ 
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+For Web Graphics
+Secure Business IM
+Find Annual Reports
+Comparison Shopping
+Search the Web
+Anti-Virus Software
+Software Store
+USA Mailing Address
+Business Search
+Internet Jobs
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	JavaBoutique : 
+	Tutorials : 
+	Tutorial Index 
+	Advanced Developers 
+	Some Experience required 
+	New to Java 
+	Other internet.com sites 
+Tutorials for everyone, from experienced programmers to the novice. 
+Advanced Developers
+	
+	
+	
+	Using SOAP with Java
+	Brush up on how to use Java and SOAP together in this three part
+	series. In Part 1, Samudra Gupta discusses the basic anatomy of 
+	SOAP, the installation of Apache SOAP 2.2 and configuration 
+	issues with Jakarta Tomcat 3.2.1 as well as how to develop, 
+	deploy and execute a very basic SOAP application.
+	
+	
+	Coding your second Jakarta Struts Application
+	Keld Hansen takes another step up the Struts ladder. This month 
+	he shows you how to build a classic list-detail application with 
+	the well-known CRUD-actions: Create, Read, Update, and Delete. 
+	
+	
+	J2EE and XML Development
+ Geared toward experienced developers, this reference demonstrates how Java 2 Platform, Enterprise Editi
+	on (J2EE), and XML technologies can be used together to create more robust distributed applications and softwar
+	e systems. The use of XML technology to extend and enhance the capabilities of the J2EE platform is covered in
+	detail.	
+	
+ 
+ Stepping through Jakarta Struts
+ Struts, from the Jakarta
+ Project, is a development framework for Java servlet applications
+ based upon the Model-View-Controller (MVC) design paradigm. Keld
+ Hansen gives a quick intro to Struts, covering the necessary details
+ to make it possible to build a simple one-page example containing an
+ HTML form. In Part 2 Keld will refine the example to show additional features
+ of Struts.
+	
+	Using Chained Exceptions in JDK 1.4
+	The new JDK 1.4, which was released a few months ago, contains several very useful features which will help the programmer making more robust applications. In this article Keld Hansen looks at one of the features--the extension to the Throwable class which makes "exception chaining" possible.
+	
+	
+Java Web Services
+	Java Web Services shows you how to use SOAP to perform remote method calls and message passing; how to use WSDL to describe the interface to a web service or understand the interface of someone else's service; and how to use UDDI to advertise (publish) and look up services in each local or global registry. From O'Reilly & Associates, Inc.
+	
+Web Services with Axis
+An introduction to web services for those 
+of you who think that web services are only for computer nerds. They're not. If 
+you think otherwise it might be because of the many difficult-to-read articles 
+that have tried to address the subject, often in very technical terms. Web 
+services are nothing but two programs interchanging data on the Internet--or an 
+intranet--in the XML-based format called SOAP.
+	
+	
+	Jython for Java Programmers
+	Jython for Java Programmers provides a brief introduction to show the differences between Java and 
+	Jython, but focuses on utilizing Jython with Java by covering the following: extending Python with 
+	java classes, modules, compiling, interpreters, design integration, etc. The Chapter 12 excerpt covers 	Server-Side Web Programming. From New Riders
+	
+	Java and JDOM: the perfect couple 
+	In this article Keld Hansen shows you how to read and write 
+	an XML file, focusing on how to edit the document tree: adding, 
+	changing, or deleting the elements. If you hang on until the end 
+	of the article you'll be rewarded with a complete web application 
+	to manage your DVD library. 
+...More
+Some Experience Required
+	
+	The Java Game Development Tutorial
+	Fabian Birzele presents a very detailed introduction into the development of online games using Java. 
+	
+Working with files and directories in Java (2)
+Keld Hansen builds on last months tutorial, showing us this month how to make a nice graphical view of our files and directory listings.
+	
+Working with files and directories in Java
+Java contains a lot of useful utility packages. One is java.util with its lists, 
+maps, and calendar stuff--a lot to look into and use in your applications. 
+Another package, java.io, contains what you need for reading and writing files 
+and handling data streams in general. 
+...More
+New to Java
+	
+Making the Switch to Java
+Graeme Kerry's tutorials are aimed at complete beginners to programming. Part 1 covers what you will need, a description of the main parts of the Java SDK, and walks you through, (what else), HelloWorld.java.
+	
+Brush Up on Basics
+What is the point of Java, who needs it and does it come in a bag or jar? Ben Black's motto is once you have learned the basics, you have conquered the language. Join Ben as he begins this series on Java basics.
+...More
+More Tutorials at internet.com
+Gamelan: 
+The Essence of OOP using Java, Array Objects, Part 3
+Richard Baldwin discusses various details regarding array objects in Java,
+including: members of an array object, interfaces implemented by array
+objects, Class objects and array objects, and the classes named Array and
+Arrays.
+WebRef: 
+Book Excerpt: Beginning Java 2 SDK, Pt. 2
+Creating and using constructors is the key topic 
+of this excerpt. You can use the default constructor, 
+create your own, or, with the help of method overloading, 
+create multiple unique constructors for the same Java 
+class. From Wrox Press.
+Gamelan: 
+Serializing Java Objects as XML
+Until the release of Java 2 Standard Edition (J2SE) Version 1.4, Java
+objects could only be serialized to a proprietary, binary format. Now,
+discover how Java objects can be serialized as XML documents, a feature of
+the new long-term persistence API for JavaBeans.
+Gamelan: 
+Programming with Enumerators
+Having experience in a procedural language provided a developer with the
+underlying idea of enumerators; however, there is a small gap to cover if
+using them with .NET.
+allnetdevices: 
+Safe,Small, Speedy Mobile Java
+NTRU claims its Neo for Java is a a secure solution that overcomes size, speed constraints on mobile devices, w
+ith accelerated time to market.
+Gamelan: 
+Real-time Specification for Java (RTSJ)
+Discover how RTSJ extends the Java Platform with an industry standard set of
+extensions that enables the construction of systems that exhibit real-time
+behaviour.
+Gamelan: 
+Understanding the Buffer class in Java
+By Richard G. Baldwin
+The newly released version 1.4 of Java 2 provides new features and improved
+performance in the areas of buffer management, scalable network and file
+I/O, character-set support, and regular-expression matching. The Buffer
+class is fundamental to many of these new features.
+Gamelan: 
+The Essence of OOP using Java, Array Objects, Part 2
+By Richard G. Baldwin
+Discover the programming details involved in the use of array objects.
+Richard Baldwin presents three ways to emulate traditional two-dimensional
+rectangular arrays, and also shows how to create and use ragged arrays.
+IPW: 
+.NET Enable Your Java Applications
+Convert your existing Java classes to Web services 
+instantly, without extensive knowledge of SOAP, XML, 
+WSDL, or UDDI.
+...More
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+ 

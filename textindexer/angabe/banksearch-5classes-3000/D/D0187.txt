@@ -1,0 +1,151 @@
+
+Java 3D - What does it promise
+ 
+Java 3D - What does it promise? What does it
+offer? What is missing?
+ 
+Java 3D is an API which extends the Java platform with
+advanced capabilities for three-dimensional graphics. After eight
+months since the launching of the Java 3D 1.0 API Specification,
+Sun has made available early access Java 3D 1.1 implementation
+(Alpha) for JavaOne Developer Conference on March 24, 1998. (Beta
+version is already available.) What makes unique this API is the
+combination between Java power, high quality object oriented
+design and the number of target platforms: Java 3D will be
+layered over the widely spread low-level 3D APIs: OpenGL,
+Direct3D, QuickDraw3D.
+ 
+What does it promise? 
+> (Java 3D API Specification, Chapter 8,
+"View Model")
+Another big promise is high performance. In the current
+implementation, Java 3D is mixing a lot of Java code with OpenGL
+calls. Many of the existent Windows machines emulate Direct3D and
+OpenGL with pure software drivers. In such a configuration Java
+3D is very slow, so next implementations should contain much more
+native optimizations. It shouldn't be neglected that IDEs like
+SuperCede and Symantec Visual Cafe offers the option to build
+native code. Such a facility will be very appreciated by the Java
+developers of the applications using 3D graphics.
+ 
+What does it offer? 
+When I started to learn about Java, one of my first applets
+was Browser 3D. Its engine was pure Java and was calling the
+methods of the java.awt.Graphics class to put flat shaded
+polygons on screen. By analyzing its performances, I understood
+it was almost hopeless to improve it with texture mapping or a
+lighting model because these would have implied the computing of
+the image pixel by pixel. Java 3D makes possible texture mapping
+and the use of light sources in Java applets.
+The most tempting offer of Java 3D is being easy-to-use:
+> (Java 3D API
+Specification, Chapter 1, "Introduction to Java 3D")
+The programmer creates objects containing geometric data,
+attribute information and viewing information and he connects
+them to form a treelike structure called "scene graph."
+The Java 3D API specification doesn't include indications for
+visual building of 3D worlds, but it is expected that
+third-parties will create applications which will allow rapid
+development of Java 3D applets. 
+The structure of the scene graph is very flexible. Node and
+NodeComponent derive from the SceneGraphObject class. The
+instances of the subclasses of the Group and Leaf classes (which
+inherit from Node) will form the scene graph and will contain
+references to instances of the subclasses of NodeComponent.
+> (Java 3D API Specification, Chapter 2, "Scene
+Graph Basics") In addition the subgraphs can be shared and
+cloned.
+The scene graph can contain nodes that define the behavior of
+the 3D objects. > (Java 3D API Specification, Chapter 9,
+"Behaviors and Interpolators") The Interpolators are a
+subclass of the Behavior nodes. They offer a quick way to animate
+a scene. > (Java 3D API Specification, Chapter 9,
+"Behaviors and Interpolators") For example, if you want
+to give a continuos rotation to an object then you can use
+RotationInterpolator. The specialized, frequently used classes
+can decrease the size of the applets.
+The Java 3D features don't stop here. It offers support for
+collision detection, picking and spatial sound. There are three
+rendering modes: immediate mode, retained mode, and
+compiled-retained mode, which can be even mixed.
+From the user's perspective, Java 3D will make possible the
+mixing of the text with high quality 3D graphics in HTML pages.
+Besides 3D logos, the articles might contain animations which
+will make them more easy to understand. But Java 3D isn't only
+for applets. The CAD applications will integrate much better with
+the Internet and the multi-player games will have something to
+gain too. 
+If the performances will be good enough then the developers of
+the graphics applications will choose Java 3D for portability and
+low development cost.
+ 
+What is missing?
+Java 3D hasn't a file format. This is right. Let the
+applications define their own graphics file formats. However,
+imagine you work for a tool that allows the user to create
+Virtual Universes in a visual mode, using Java 3D of course.
+After he finishes to build the scene the tool will generate the
+source code for an applet. The user closes the application and
+goes home. Next day he decides a few changes in the 3D scene are
+necessary. If the tool doesn't offer persistency for Virtual
+Universes then the user must either start it all over again or
+modify the source code of the applet. I wouldn&#146;t like to be
+in his place. Unfortunately, the classes of Java 3D aren't
+serializable, so you may not use a technique like that used by
+BeanBox. (BeanBox can serialize JavaBeans for later modifications
+of their interrelations, and generates source code for applets,
+which may be inserted in Web pages.) In a future version, the
+Java 3D classes might be serializable.
+The success of a 3D API can be assured by the game market.
+Games like Quake use Binary Space Partitioning Trees and data
+structures like Potentially Visible Sets. For each leaf of the
+BSP-tree, a list of potentially visible leafs (a PVS) is
+precalculated. The PVSs are coded at bit-level and they use RLE
+compression. Java 3D doesn't offer any support for something like
+this, and traversing these data structures using Java code will
+be very slow. The same thing is true for Artificial Intelligence,
+which must be incorporated in Behavior nodes. Moreover, the large
+files that define the levels and the textures make the download
+of complex games very difficult. However, if somebody releases an
+API for games layered on top of Java 3D then creative people
+could make great things.
+Java 3D is designed for real-time animations so it shouldn't
+be a surprise that there is no support for printing and
+off-screen rendering. These would be necessary especially for
+rendering of photo-realistic images, which is not the case.
+ 
+Conclusion
+Sun succeeded with Java 1.0 where many failed: AWT abstracted
+the APIs for User Interface of the widely used operating systems.
+With JavaBeans from Java 1.1, Sun gave a multi-platform model for
+software components. The history is repeating itself. Java 3D,
+which is an extension of Java 1.2 is layering over the mostly
+spread 3D APIs to bring same 3D graphics everywhere. I'm
+wondering: What will be in Java 1.3?
+ 
+Resources
+Java 3D Home Page
+http://java.sun.com/products/java-media/3D/index.html
+Download Java 3D 1.1 Software (Runtime and Samples)
+http://java.sun.com/jdc/earlyAccess/java3d.html
+Java 3D API Specification (online)
+http://java.sun.com/products/java-media/3D/forDevelopers/j3dguide/j3dTOC.doc.html
+Java 3D API Documentation (online)
+http://java.sun.com/products/java-media/3D/forDevelopers/j3dapi/packages.html
+Java 3D Programming Contest
+http://www.sun.com/desktop/java3d
+Browser 3D Home Page (applet & source code)
+http://www.geocities.com/SiliconValley/Horizon/6481/Browser3d.html
+Quake Developer's Page
+http://www.gamers.org/dEngine/quake
+Java One Developer Conference
+http://java.sun.com/javaone
+ 
+The author of this page can be reached at andcio@hotmail.com. 
+Back to Java Developer's Page (Visit
+this page every month) 
+URL:
+http://www.geocities.com/SiliconValley/Horizon/6481/Java3D.html
+Last updated: December 30, 1998
+This page hosted by Get your
+own Free Homepage 

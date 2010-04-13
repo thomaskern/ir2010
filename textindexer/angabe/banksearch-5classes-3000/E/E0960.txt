@@ -1,0 +1,114 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq8_14.html 
+ 
+search 
+ 
+Node:Large executable,
+Next:DJGPP and DLLs,
+Previous:Large image,
+Up:Compiling
+8.14 Why are DJGPP .exe files so large?
+Q: I compiled a trivial "Hello world" program and got a 280KB
+executable file. That's ridiculously bloated!
+Q: I switched to GCC 2.95.1, and my C++ executables are
+considerably larger than when compiled with GCC 2.7.2.1!
+A: Did you link with -s switch to gcc, or run
+strip on the output of the linker? If not, the executable
+includes the debugging symbols, which makes it quite a lot larger. (It
+is not recommended to strip the symbols except when distributing
+production programs, because this makes debugging very hard indeed; that
+is why -s is not passed to gcc by default.)
+A stripped "Hello world" program written in C should be about 42KB on
+disk; an analogous program written in C++ should be about 140KB on
+disk (the additional overhead is due to the C++ classes that are
+linked in to support cout).
+C++ programs could be further bloated because the release of
+Binutils 2.8.1 was configured in a way that caused the assembler to put
+into the symbol table local labels generated when compiling code that
+uses exceptions. Later uploads of GNU Binutils should solve this
+problem, so consider upgrading to the latest bnuNNNb.zip.
+Some other compilers with which people keep comparing the size of DJGPP
+programs use shared libraries or DLLs, so the size of the executable
+doesn't include the libraries. If you have an immediate question "Why
+won't DJGPP use DLLs as well", read the following section.
+In general, judging code sizes by looking at the size of "Hello"
+programs is meaningless, because such programs consist mostly of the
+startup code. The DJGPP startup code does many things in preparation
+for running a protected-mode program in a Posix-compliant environment. 
+This includes switching the processor to protected mode (which requires
+a lot of code), wildcard expansion, long command-line support, and
+loading the environment from a disk file; these usually aren't available
+with other DOS compilers. Exception and signal handling (not available
+at all in v1.x), FPU detection and emulator loading (which were part of
+go32 in v1.x), are now also part of the startup code.
+Most of the power of all these features goes wasted in "Hello"
+programs. There is no point in running all that code just to print a
+15-byte string and exit. However, the overhead induced by the code
+needed to set up the DJGPP run-time environment is additive; the larger
+the program, the smaller the overhead relative to the program size. For
+non-trivial programs, the code produced by DJGPP is usually smaller than
+what other compilers produce. For example, the DJGPP version of the
+Povray program is smaller by about 200KB than the same program
+compiled with the Watcom compiler.
+If your program doesn't need parts of the startup code, it can be made
+smaller by defining certain functions with empty bodies. These
+functions are __crt0_glob_function,
+__crt0_load_environment_file, and __crt0_setup_arguments.
+If you define empty substitutes for all three of these, and compile with
+-O2 -s, you can make the "Hello" program be 31KB on disk. 
+These functions are documented in the DJGPP libc reference, which see. 
+Here's an example of definitions for these functions that will make the
+startup code as small as it gets15:
+ #include 
+ char **__crt0_glob_function (char *arg) { return 0; }
+ void __crt0_load_environment_file (char *progname) { }
+ void __crt0_setup_arguments (void) { }
+(To do this in a C++ program, prepend the extern "C"
+qualifier to each one of the three lines that define the substitute
+functions.)
+Note that if you define an empty substitute for
+__crt0_setup_arguments, your program will not be able to access
+its command-line arguments via the argv[] array. So this is only
+recommended for programs which don't accept any arguments at all.
+You can make your program image still smaller by compressing it with
+a compressor called DJP. DJP is
+a DJGPP-specific executable file compressor. It is fast and has no
+memory overhead. It also knows about DJGPP Dynamically Loaded
+Modules (DLM) technology. (Note that DJP before version 1.06 was
+incompatible with Binutils 2.8.1 and later16, so
+you should always use the latest DJP version available on
+SimTel.NET mirrors.)
+DJP is not actively developed anymore; its successor is the
+UPX compressor, currently in beta testing. UPX is written by
+the same people who wrote DJP, compresses better, and supports a
+broader class of executable formats, including DOS .exe,
+.com and .sys, DJGPP's COFF, Watcom's LE, Win32 PE, and
+Linux's ELF. UPX is available via the Web.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

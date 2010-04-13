@@ -1,0 +1,17 @@
+
+	VBUG News Group
+	
+If you are posting code, surround it with [code] [/code] tags - it helps preserve the formatting and spacing.
+I have seen that it can be very important from a cost ($$) standpoint.
+I have an application that I support. This was an old, clunky client-server application that opened connection when first run and kept the connection open for the entire time the program was running. This was obvisouly very expensive in terms of server resources and also $$. I re-wrote the app with an object methodology that only opens a connection when it needs to do something against the database. Usage was 50-150 concurrent users (old version of the program). Usage under the new version is at max 25 concurrent users. Because of the way the licensing agreement (Sybase) works we are able to free up 170 licenses per year. I'm not too sure of the cost (it's very hard to get an 'exact' cost from these guys) but we've estimated the savings at 75K per year (I'll take that as my bonus 0:)
+jim b
+	Name 
+ 
+	Email Address 
+ 
+	Subject: 
+	 
+	 
+	 
+	
+	

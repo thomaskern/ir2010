@@ -1,0 +1,51 @@
+
+ 
+ 
+ 
+ Collision Detection
+Collision Detection
+One of the most important aspects
+that may be considered in a game is collision detection. Most tutorials
+over the Internet try to explain it using the IntersectRect API - but here
+we'll use a different method.
+Image we have a Sprite type
+simillar to this:
+Type
+Sprite
+X
+As Integer
+Y
+As Integer
+Width
+As Integer
+Height
+As Integer
+End Type
+Now take a look at the following
+code:
+Public
+Function Collision(spr1
+As Sprite, spr2 As
+Sprite) As Boolean
+Collision
+= True 
+' Sets the collision as True
+'Now we
+see if the collision is impossible:
+If
+spr1.X + spr1.Width spr2.X + spr2.Width Then
+Collision = False
+If spr1.Y
++ spr1.Height spr2.Y + spr2.Height Then
+Collision = False
+End Function
+Well, that's it! If you want
+to check if two sprites collide, just use the function above as shown below:
+If
+Collision(Hero, Enemy) Then
+' Code
+if Hero and Enemy collide
+Else
+'Code
+if don't
+End If

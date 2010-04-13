@@ -1,0 +1,1733 @@
+
+libc.a reference - Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/libc/ 
+ 
+search 
+ 
+libc.a reference
+- Introduction
+- Functional Categories
+- bios functions
+- conio functions
+- cpu functions
+- ctype functions
+- debugging functions
+- dos functions
+- dpmi functions
+- environment functions
+- file system functions
+- go32 functions
+- io functions
+- locale functions
+- math functions
+- memory functions
+- misc functions
+- mono functions
+- posix functions
+- process functions
+- profiling functions
+- random number functions
+- shell functions
+- signal functions
+- sound functions
+- startup functions
+- stdio functions
+- string functions
+- sys functions
+- termios functions
+- time functions
+- unistd functions
+- unix functions
+- Alphabetical List
+- _8087
+- abort
+- abs
+- access
+- acos
+- acosh
+- addmntent
+- alarm
+- alloca
+- asctime
+- asin
+- asinh
+- assert
+- atan
+- atan2
+- atanh
+- atexit
+- atof
+- atoi
+- atol
+- _atold
+- basename
+- bcmp
+- bcopy
+- bdos
+- bdosptr
+- _bios_disk
+- _bios_equiplist
+- _bios_keybrd
+- _bios_memsize
+- _bios_printer
+- _bios_serialcom
+- _bios_timeofday
+- bioscom
+- biosdisk
+- biosequip
+- bioskey
+- biosmemory
+- biosprint
+- biostime
+- blinkvideo
+- brk
+- bsearch
+- bzero
+- calloc
+- cbrt
+- ceil
+- cfgetispeed
+- cfgetospeed
+- cfmakeraw
+- cfree
+- cfsetispeed
+- cfsetospeed
+- cfsetspeed
+- cgets
+- chdir
+- _check_v2_prog
+- chmod
+- _chmod
+- chown
+- chsize
+- cleanup_client
+- _clear87
+- __clear_fd_properties
+- clearerr
+- clock
+- close
+- _close
+- closedir
+- clreol
+- clrscr
+- confstr
+- _conio_gettext
+- _conio_kbhit
+- _control87
+- cos
+- cosh
+- cprintf
+- cputs
+- creat
+- _creat
+- _creatnew
+- crlf2nl
+- __crt0_glob_function
+- __crt0_load_environment_file
+- __crt0_setup_arguments
+- _crt0_startup_flags
+- cscanf
+- ctermid
+- ctime
+- delay
+- delline
+- _detect_80387
+- difftime
+- dirname
+- disable
+- div
+- __djgpp_exception_toggle
+- __djgpp_map_physical_memory
+- __djgpp_memory_handle
+- __djgpp_memory_handle_list
+- __djgpp_nearptr_disable
+- __djgpp_nearptr_enable
+- __djgpp_set_ctrl_c
+- __djgpp_set_page_attributes
+- __djgpp_set_sigint_key
+- __djgpp_set_sigquit_key
+- __djgpp_share_flags
+- __djgpp_spawn
+- __djgpp_traceback_exit
+- _djstat_describe_lossage
+- _djstat_fail_bits
+- _djstat_flags
+- _doprnt
+- _dos_close
+- _dos_commit
+- _dos_creat
+- _dos_creatnew
+- _dos_findfirst
+- _dos_findnext
+- _dos_getdate
+- _dos_getdiskfree
+- _dos_getdrive
+- _dos_getfileattr
+- _dos_getftime
+- _dos_gettime
+- _dos_lk64
+- _dos_lock
+- _dos_open
+- _dos_read
+- _dos_setdate
+- _dos_setdrive
+- _dos_setfileattr
+- _dos_setftime
+- _dos_settime
+- _dos_unlk64
+- _dos_unlock
+- _dos_write
+- _doscan
+- _doserrno
+- __dosexec_find_on_path
+- dosexterr
+- dosmemget
+- dosmemgetb
+- dosmemgetl
+- dosmemgetw
+- dosmemput
+- dosmemputb
+- dosmemputl
+- dosmemputw
+- dostrerr
+- DPMI Overview
+- DPMI Specification
+- __dpmi_allocate_dos_memory
+- __dpmi_allocate_ldt_descriptors
+- __dpmi_allocate_linear_memory
+- __dpmi_allocate_memory
+- __dpmi_allocate_real_mode_callback
+- __dpmi_allocate_shared_memory
+- __dpmi_allocate_specific_ldt_descriptor
+- __dpmi_clear_debug_watchpoint
+- __dpmi_create_alias_descriptor
+- __dpmi_discard_page_contents
+- __dpmi_free_dos_memory
+- __dpmi_free_ldt_descriptor
+- __dpmi_free_memory
+- __dpmi_free_physical_address_mapping
+- __dpmi_free_real_mode_callback
+- __dpmi_free_serialization_on_shared_memory
+- __dpmi_free_shared_memory
+- __dpmi_get_and_disable_virtual_interrupt_state
+- __dpmi_get_and_enable_virtual_interrupt_state
+- __dpmi_get_and_set_virtual_interrupt_state
+- __dpmi_get_capabilities
+- __dpmi_get_coprocessor_status
+- __dpmi_get_descriptor
+- __dpmi_get_descriptor_access_rights
+- __dpmi_get_extended_exception_handler_vector_pm
+- __dpmi_get_extended_exception_handler_vector_rm
+- __dpmi_get_free_memory_information
+- __dpmi_get_memory_block_size_and_base
+- __dpmi_get_memory_information
+- __dpmi_get_multiple_descriptors
+- __dpmi_get_page_attributes
+- __dpmi_get_page_size
+- __dpmi_get_processor_exception_handler_vector
+- __dpmi_get_protected_mode_interrupt_vector
+- __dpmi_get_raw_mode_switch_addr
+- __dpmi_get_real_mode_interrupt_vector
+- __dpmi_get_segment_base_address
+- __dpmi_get_segment_limit
+- __dpmi_get_selector_increment_value
+- __dpmi_get_state_of_debug_watchpoint
+- __dpmi_get_state_save_restore_addr
+- __dpmi_get_vendor_specific_api_entry_point
+- __dpmi_get_version
+- __dpmi_get_virtual_interrupt_state
+- __dpmi_install_resident_service_provider_callback
+- __dpmi_int
+- __dpmi_lock_linear_region
+- __dpmi_map_conventional_memory_in_memory_block
+- __dpmi_map_device_in_memory_block
+- __dpmi_mark_page_as_demand_paging_candidate
+- __dpmi_mark_real_mode_region_as_pageable
+- __dpmi_physical_address_mapping
+- __dpmi_relock_real_mode_region
+- __dpmi_reset_debug_watchpoint
+- __dpmi_resize_dos_memory
+- __dpmi_resize_linear_memory
+- __dpmi_resize_memory
+- __dpmi_segment_to_descriptor
+- __dpmi_serialize_on_shared_memory
+- __dpmi_set_coprocessor_emulation
+- __dpmi_set_debug_watchpoint
+- __dpmi_set_descriptor
+- __dpmi_set_descriptor_access_rights
+- __dpmi_set_extended_exception_handler_vector_pm
+- __dpmi_set_extended_exception_handler_vector_rm
+- __dpmi_set_multiple_descriptors
+- __dpmi_set_page_attributes
+- __dpmi_set_processor_exception_handler_vector
+- __dpmi_set_protected_mode_interrupt_vector
+- __dpmi_set_real_mode_interrupt_vector
+- __dpmi_set_segment_base_address
+- __dpmi_set_segment_limit
+- __dpmi_simulate_real_mode_interrupt
+- __dpmi_simulate_real_mode_procedure_iret
+- __dpmi_simulate_real_mode_procedure_retf
+- __dpmi_simulate_real_mode_procedure_retf_stack
+- __dpmi_terminate_and_stay_resident
+- __dpmi_unlock_linear_region
+- __dpmi_yield
+- DTTOIF
+- dup
+- dup2
+- __dup_fd_properties
+- _dxe_load
+- ecvt
+- ecvtbuf
+- edi_init
+- enable
+- endgrent
+- endmntent
+- endpwent
+- errno
+- exec*
+- __exit
+- _exit
+- exit
+- exp
+- exp10
+- exp2
+- expm1
+- fabs
+- _far*
+- fclose
+- fcntl
+- fcvt
+- fcvtbuf
+- fdopen
+- feof
+- ferror
+- fflush
+- ffs
+- fgetc
+- fgetgrent
+- fgetpos
+- fgets
+- File System Extensions
+- __file_exists
+- __file_tree_walk
+- filelength
+- fileno
+- findfirst
+- findnext
+- _fixpath
+- flock
+- floor
+- _flush_disk_cache
+- fmod
+- _fmode
+- fnmatch
+- fnmerge
+- fnsplit
+- fopen
+- fork
+- fpathconf
+- _fpreset
+- fprintf
+- fpurge
+- fputc
+- fputs
+- fread
+- free
+- freopen
+- frexp
+- fscanf
+- fseek
+- fsetpos
+- __FSEXT_add_open_handler
+- __FSEXT_alloc_fd
+- __FSEXT_call_open_handlers
+- __FSEXT_get_data
+- __FSEXT_get_function
+- __FSEXT_set_data
+- __FSEXT_set_function
+- fstat
+- fsync
+- ftell
+- ftime
+- ftruncate
+- ftw
+- _fwalk
+- fwrite
+- gcvt
+- _get_dev_info
+- _get_dos_version
+- __get_extended_key_string
+- _get_fat_size
+- _get_fs_type
+- _get_volume_info
+- getc
+- getcbrk
+- getch
+- getchar
+- getche
+- getcwd
+- getdate
+- getdfree
+- getdisk
+- getdtablesize
+- getegid
+- getenv
+- geteuid
+- getftime
+- getgid
+- getgrent
+- getgrgid
+- getgrnam
+- getgroups
+- gethostname
+- getitimer
+- getkey
+- getlogin
+- getlongpass
+- getmntent
+- getopt
+- getpagesize
+- getpass
+- getpgrp
+- getpid
+- getpwent
+- getpwnam
+- getpwuid
+- getrlimit
+- getrusage
+- gets
+- gettext
+- gettextinfo
+- gettime
+- gettimeofday
+- getuid
+- getw
+- getwd
+- getxkey
+- glob
+- globfree
+- gmtime
+- _go32_conventional_mem_selector
+- _go32_dpmi_allocate_dos_memory
+- _go32_dpmi_allocate_iret_wrapper
+- _go32_dpmi_allocate_real_mode_callback_iret
+- _go32_dpmi_allocate_real_mode_callback_retf
+- _go32_dpmi_chain_protected_mode_interrupt_vector
+- _go32_dpmi_free_dos_memory
+- _go32_dpmi_free_iret_wrapper
+- _go32_dpmi_free_real_mode_callback
+- _go32_dpmi_get_free_memory_information
+- _go32_dpmi_get_protected_mode_interrupt_vector
+- _go32_dpmi_get_real_mode_interrupt_vector
+- _go32_dpmi_lock_code
+- _go32_dpmi_lock_data
+- _go32_dpmi_remaining_physical_memory
+- _go32_dpmi_remaining_virtual_memory
+- _go32_dpmi_resize_dos_memory
+- _go32_dpmi_set_protected_mode_interrupt_vector
+- _go32_dpmi_set_real_mode_interrupt_vector
+- _go32_dpmi_simulate_fcall
+- _go32_dpmi_simulate_fcall_iret
+- _go32_dpmi_simulate_int
+- _go32_info_block
+- _go32_interrupt_stack_size
+- _go32_my_cs
+- _go32_my_ds
+- _go32_my_ss
+- _go32_rmcb_stack_size
+- _go32_want_ctrl_break
+- _go32_was_ctrl_break_hit
+- gotoxy
+- gppconio_init
+- hasmntopt
+- highvideo
+- htonl
+- htons
+- hypot
+- inb
+- index
+- initstate
+- inp
+- inportb
+- inportl
+- inportsb
+- inportsl
+- inportsw
+- inportw
+- inpw
+- insline
+- insque
+- int386
+- int386x
+- int86
+- int86x
+- intdos
+- intdosx
+- intensevideo
+- __internal_readlink
+- _invent_inode
+- ioctl (DOS)
+- ioctl (General description)
+- ioctl (UNIX)
+- _is_cdrom_drive
+- _is_executable
+- _is_fat32
+- _is_ram_drive
+- _is_remote_drive
+- _is_remote_handle
+- isalnum
+- isalpha
+- isascii
+- isatty
+- iscntrl
+- isdigit
+- isgraph
+- islower
+- isprint
+- ispunct
+- isspace
+- isupper
+- isxdigit
+- itoa
+- kbhit
+- kill
+- labs
+- lchown
+- ldexp
+- ldiv
+- lfilelength
+- _lfn_gen_short_fname
+- _lfn_get_ftime
+- __libc_termios_exist_queue
+- __libc_termios_init
+- libm
+- link
+- llabs
+- lldiv
+- llockf
+- llseek
+- load_npx
+- localeconv
+- localtime
+- lock
+- lock64
+- lockf
+- log
+- log10
+- log1p
+- log2
+- longjmp
+- lowvideo
+- lseek
+- lstat
+- mallinfo
+- malloc
+- malloc hook functions
+- malloc_debug
+- malloc_verify
+- mallocmap
+- matherr
+- mblen
+- mbstowcs
+- mbtowc
+- _media_type
+- memalign
+- memccpy
+- memchr
+- memcmp
+- memcpy
+- memicmp
+- memmove
+- memset
+- mkdir
+- mkfifo
+- mknod
+- mkstemp
+- mktemp
+- mktime
+- modf
+- modfl
+- moncontrol
+- _mono_clear
+- _mono_printf
+- _mono_putc
+- monstartup
+- movedata
+- movedatab
+- movedatal
+- movedataw
+- movetext
+- mprotect
+- _my_cs
+- _my_ds
+- _my_ss
+- nice
+- normvideo
+- nosound
+- ntohl
+- ntohs
+- open
+- _open
+- opendir
+- outb
+- outp
+- outportb
+- outportl
+- outportsb
+- outportsl
+- outportsw
+- outportw
+- outpw
+- pathconf
+- pause
+- pclose
+- perror
+- pipe
+- popen
+- pow
+- pow10
+- pow2
+- powi
+- _preserve_fncase
+- printf
+- psignal
+- _put_path
+- putc
+- putch
+- putchar
+- putenv
+- puts
+- puttext
+- putw
+- qsort
+- raise
+- rand
+- rand48
+- random
+- rawclock
+- read
+- _read
+- read_child
+- read_sel_addr
+- readdir
+- readlink
+- realloc
+- redir_cmdline_delete
+- redir_cmdline_parse
+- redir_debug_init
+- redir_to_child
+- redir_to_debugger
+- regcomp
+- regerror
+- regexec
+- regfree
+- remove
+- remque
+- _rename
+- rename
+- rewind
+- rewinddir
+- rindex
+- rmdir
+- run_child
+- save_npx
+- sbrk
+- scanf
+- Screen Variables
+- ScreenClear
+- ScreenCols
+- ScreenGetChar
+- ScreenGetCursor
+- ScreenMode
+- ScreenPutChar
+- ScreenPutString
+- ScreenRetrieve
+- ScreenRows
+- ScreenSetCursor
+- ScreenUpdate
+- ScreenUpdateLine
+- ScreenVisualBell
+- searchpath
+- seekdir
+- select
+- __set_fd_properties
+- _set_screen_lines
+- setbuf
+- setbuffer
+- setcbrk
+- _setcursortype
+- setdate
+- setdisk
+- setenv
+- setftime
+- setgid
+- setgrent
+- setitimer
+- setjmp
+- setlinebuf
+- setlocale
+- setmntent
+- setmode
+- setpgid
+- setpwent
+- setrlimit
+- setsid
+- setstate
+- settime
+- settimeofday
+- setuid
+- setvbuf
+- sigaction
+- sigaddset
+- sigdelset
+- sigemptyset
+- sigfillset
+- sigismember
+- siglongjmp
+- signal
+- sigpending
+- sigprocmask
+- sigsetjmp
+- sin
+- sincos
+- sinh
+- sleep
+- snprintf
+- __solve_dir_symlinks
+- __solve_symlinks
+- sound
+- spawn*
+- sprintf
+- sqrt
+- srand
+- srandom
+- sscanf
+- stackavail
+- stat
+- statfs
+- _status87
+- _stklen
+- stpcpy
+- stpncpy
+- strcasecmp
+- strcat
+- strchr
+- strcmp
+- strcoll
+- strcpy
+- strcspn
+- strdup
+- strerror
+- strftime
+- stricmp
+- strlen
+- strlwr
+- strncasecmp
+- strncat
+- strncmp
+- strncpy
+- strnicmp
+- strpbrk
+- strrchr
+- strsep
+- strspn
+- strstr
+- strtod
+- strtok
+- strtol
+- _strtold
+- strtoll
+- strtoul
+- strtoull
+- strupr
+- strxfrm
+- swab
+- symlink
+- syms_init
+- syms_line2val
+- syms_listwild
+- syms_module
+- syms_name2val
+- syms_val2line
+- syms_val2name
+- sync
+- sys_errlist
+- sys_nerr
+- sysconf
+- system
+- tan
+- tanh
+- tcdrain
+- tcflow
+- tcflush
+- tcgetattr
+- tcgetpgrp
+- tcsendbreak
+- tcsetattr
+- tcsetpgrp
+- tell
+- telldir
+- tempnam
+- Termios functions
+- textattr
+- textbackground
+- textcolor
+- textmode
+- time
+- times
+- tmpfile
+- tmpnam
+- toascii
+- tolower
+- toupper
+- _truename
+- truncate
+- ttyname
+- tzset
+- tzsetwall
+- uclock
+- umask
+- uname
+- ungetc
+- ungetch
+- unlink
+- unlock
+- unlock64
+- _use_lfn
+- usleep
+- utime
+- utimes
+- v2loadimage
+- valloc
+- varargs
+- vfork
+- vfprintf
+- vfscanf
+- vprintf
+- vscanf
+- vsnprintf
+- vsprintf
+- vsscanf
+- wait
+- waitpid
+- wcstombs
+- wctomb
+- wherex
+- wherey
+- wild
+- window
+- write
+- _write
+- write_child
+- write_sel_addr
+- xfree
+- xmalloc
+- xrealloc
+- Unimplemented Functions
+This document was generated on 31 July 2001 using
+texi2html 1.56k.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by DJ Delorie 
+ 
+ 
+Updated Jul 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)
+libc.a reference - Table of Contents
+libc.a reference
+Introduction
+Functional Categories
+bios
+conio
+cpu
+ctype
+debugging
+dos
+dpmi
+environment
+file system
+go32
+io
+locale
+math
+memory
+misc
+mono
+posix
+process
+profiling
+random number
+shell
+signal
+sound
+startup
+stdio
+string
+sys
+termios
+time
+unistd
+unix
+Alphabetical List
+_8087
+abort
+abs
+access
+acos
+acosh
+addmntent
+alarm
+alloca
+asctime
+asin
+asinh
+assert
+atan
+atan2
+atanh
+atexit
+atof
+atoi
+atol
+_atold
+basename
+bcmp
+bcopy
+bdos
+bdosptr
+_bios_disk
+_bios_equiplist
+_bios_keybrd
+_bios_memsize
+_bios_printer
+_bios_serialcom
+_bios_timeofday
+bioscom
+biosdisk
+biosequip
+bioskey
+biosmemory
+biosprint
+biostime
+blinkvideo
+brk
+bsearch
+bzero
+calloc
+cbrt
+ceil
+cfgetispeed
+cfgetospeed
+cfmakeraw
+cfree
+cfsetispeed
+cfsetospeed
+cfsetspeed
+cgets
+chdir
+_check_v2_prog
+chmod
+_chmod
+chown
+chsize
+cleanup_client
+_clear87
+__clear_fd_properties
+clearerr
+clock
+close
+_close
+closedir
+clreol
+clrscr
+confstr
+_conio_gettext
+_conio_kbhit
+_control87
+cos
+cosh
+cprintf
+cputs
+creat
+_creat
+_creatnew
+crlf2nl
+__crt0_glob_function
+__crt0_load_environment_file
+__crt0_setup_arguments
+_crt0_startup_flags
+cscanf
+ctermid
+ctime
+delay
+delline
+_detect_80387
+difftime
+dirname
+disable
+div
+__djgpp_exception_toggle
+__djgpp_map_physical_memory
+__djgpp_memory_handle
+__djgpp_memory_handle_list
+__djgpp_nearptr_disable
+__djgpp_nearptr_enable
+__djgpp_set_ctrl_c
+__djgpp_set_page_attributes
+__djgpp_set_sigint_key
+__djgpp_set_sigquit_key
+__djgpp_share_flags
+__djgpp_spawn
+__djgpp_traceback_exit
+_djstat_describe_lossage
+_djstat_fail_bits
+_djstat_flags
+_doprnt
+_dos_close
+_dos_commit
+_dos_creat
+_dos_creatnew
+_dos_findfirst
+_dos_findnext
+_dos_getdate
+_dos_getdiskfree
+_dos_getdrive
+_dos_getfileattr
+_dos_getftime
+_dos_gettime
+_dos_lk64
+_dos_lock
+_dos_open
+_dos_read
+_dos_setdate
+_dos_setdrive
+_dos_setfileattr
+_dos_setftime
+_dos_settime
+_dos_unlk64
+_dos_unlock
+_dos_write
+_doscan
+_doserrno
+__dosexec_find_on_path
+dosexterr
+dosmemget
+dosmemgetb
+dosmemgetl
+dosmemgetw
+dosmemput
+dosmemputb
+dosmemputl
+dosmemputw
+dostrerr
+DPMI Overview
+DPMI Specification
+__dpmi_allocate_dos_memory
+__dpmi_allocate_ldt_descriptors
+__dpmi_allocate_linear_memory
+__dpmi_allocate_memory
+__dpmi_allocate_real_mode_callback
+__dpmi_allocate_shared_memory
+__dpmi_allocate_specific_ldt_descriptor
+__dpmi_clear_debug_watchpoint
+__dpmi_create_alias_descriptor
+__dpmi_discard_page_contents
+__dpmi_free_dos_memory
+__dpmi_free_ldt_descriptor
+__dpmi_free_memory
+__dpmi_free_physical_address_mapping
+__dpmi_free_real_mode_callback
+__dpmi_free_serialization_on_shared_memory
+__dpmi_free_shared_memory
+__dpmi_get_and_disable_virtual_interrupt_state
+__dpmi_get_and_enable_virtual_interrupt_state
+__dpmi_get_and_set_virtual_interrupt_state
+__dpmi_get_capabilities
+__dpmi_get_coprocessor_status
+__dpmi_get_descriptor
+__dpmi_get_descriptor_access_rights
+__dpmi_get_extended_exception_handler_vector_pm
+__dpmi_get_extended_exception_handler_vector_rm
+__dpmi_get_free_memory_information
+__dpmi_get_memory_block_size_and_base
+__dpmi_get_memory_information
+__dpmi_get_multiple_descriptors
+__dpmi_get_page_attributes
+__dpmi_get_page_size
+__dpmi_get_processor_exception_handler_vector
+__dpmi_get_protected_mode_interrupt_vector
+__dpmi_get_raw_mode_switch_addr
+__dpmi_get_real_mode_interrupt_vector
+__dpmi_get_segment_base_address
+__dpmi_get_segment_limit
+__dpmi_get_selector_increment_value
+__dpmi_get_state_of_debug_watchpoint
+__dpmi_get_state_save_restore_addr
+__dpmi_get_vendor_specific_api_entry_point
+__dpmi_get_version
+__dpmi_get_virtual_interrupt_state
+__dpmi_install_resident_service_provider_callback
+__dpmi_int
+__dpmi_lock_linear_region
+__dpmi_map_conventional_memory_in_memory_block
+__dpmi_map_device_in_memory_block
+__dpmi_mark_page_as_demand_paging_candidate
+__dpmi_mark_real_mode_region_as_pageable
+__dpmi_physical_address_mapping
+__dpmi_relock_real_mode_region
+__dpmi_reset_debug_watchpoint
+__dpmi_resize_dos_memory
+__dpmi_resize_linear_memory
+__dpmi_resize_memory
+__dpmi_segment_to_descriptor
+__dpmi_serialize_on_shared_memory
+__dpmi_set_coprocessor_emulation
+__dpmi_set_debug_watchpoint
+__dpmi_set_descriptor
+__dpmi_set_descriptor_access_rights
+__dpmi_set_extended_exception_handler_vector_pm
+__dpmi_set_extended_exception_handler_vector_rm
+__dpmi_set_multiple_descriptors
+__dpmi_set_page_attributes
+__dpmi_set_processor_exception_handler_vector
+__dpmi_set_protected_mode_interrupt_vector
+__dpmi_set_real_mode_interrupt_vector
+__dpmi_set_segment_base_address
+__dpmi_set_segment_limit
+__dpmi_simulate_real_mode_interrupt
+__dpmi_simulate_real_mode_procedure_iret
+__dpmi_simulate_real_mode_procedure_retf
+__dpmi_simulate_real_mode_procedure_retf_stack
+__dpmi_terminate_and_stay_resident
+__dpmi_unlock_linear_region
+__dpmi_yield
+DTTOIF
+dup
+dup2
+__dup_fd_properties
+_dxe_load
+ecvt
+ecvtbuf
+edi_init
+enable
+endgrent
+endmntent
+endpwent
+errno
+exec*
+__exit
+_exit
+exit
+exp
+exp10
+exp2
+expm1
+fabs
+_far*
+fclose
+fcntl
+fcvt
+fcvtbuf
+fdopen
+feof
+ferror
+fflush
+ffs
+fgetc
+fgetgrent
+fgetpos
+fgets
+File System Extensions
+__file_exists
+__file_tree_walk
+filelength
+fileno
+findfirst
+findnext
+_fixpath
+flock
+floor
+_flush_disk_cache
+fmod
+_fmode
+fnmatch
+fnmerge
+fnsplit
+fopen
+fork
+fpathconf
+_fpreset
+fprintf
+fpurge
+fputc
+fputs
+fread
+free
+freopen
+frexp
+fscanf
+fseek
+fsetpos
+__FSEXT_add_open_handler
+__FSEXT_alloc_fd
+__FSEXT_call_open_handlers
+__FSEXT_get_data
+__FSEXT_get_function
+__FSEXT_set_data
+__FSEXT_set_function
+fstat
+fsync
+ftell
+ftime
+ftruncate
+ftw
+_fwalk
+fwrite
+gcvt
+_get_dev_info
+_get_dos_version
+__get_extended_key_string
+_get_fat_size
+_get_fs_type
+_get_volume_info
+getc
+getcbrk
+getch
+getchar
+getche
+getcwd
+getdate
+getdfree
+getdisk
+getdtablesize
+getegid
+getenv
+geteuid
+getftime
+getgid
+getgrent
+getgrgid
+getgrnam
+getgroups
+gethostname
+getitimer
+getkey
+getlogin
+getlongpass
+getmntent
+getopt
+getpagesize
+getpass
+getpgrp
+getpid
+getpwent
+getpwnam
+getpwuid
+getrlimit
+getrusage
+gets
+gettext
+gettextinfo
+gettime
+gettimeofday
+getuid
+getw
+getwd
+getxkey
+glob
+globfree
+gmtime
+_go32_conventional_mem_selector
+_go32_dpmi_allocate_dos_memory
+_go32_dpmi_allocate_iret_wrapper
+_go32_dpmi_allocate_real_mode_callback_iret
+_go32_dpmi_allocate_real_mode_callback_retf
+_go32_dpmi_chain_protected_mode_interrupt_vector
+_go32_dpmi_free_dos_memory
+_go32_dpmi_free_iret_wrapper
+_go32_dpmi_free_real_mode_callback
+_go32_dpmi_get_free_memory_information
+_go32_dpmi_get_protected_mode_interrupt_vector
+_go32_dpmi_get_real_mode_interrupt_vector
+_go32_dpmi_lock_code
+_go32_dpmi_lock_data
+_go32_dpmi_remaining_physical_memory
+_go32_dpmi_remaining_virtual_memory
+_go32_dpmi_resize_dos_memory
+_go32_dpmi_set_protected_mode_interrupt_vector
+_go32_dpmi_set_real_mode_interrupt_vector
+_go32_dpmi_simulate_fcall
+_go32_dpmi_simulate_fcall_iret
+_go32_dpmi_simulate_int
+_go32_info_block
+_go32_interrupt_stack_size
+_go32_my_cs
+_go32_my_ds
+_go32_my_ss
+_go32_rmcb_stack_size
+_go32_want_ctrl_break
+_go32_was_ctrl_break_hit
+gotoxy
+gppconio_init
+hasmntopt
+highvideo
+htonl
+htons
+hypot
+inb
+index
+initstate
+inp
+inportb
+inportl
+inportsb
+inportsl
+inportsw
+inportw
+inpw
+insline
+insque
+int386
+int386x
+int86
+int86x
+intdos
+intdosx
+intensevideo
+__internal_readlink
+_invent_inode
+ioctl (DOS)
+ioctl (General description)
+ioctl (UNIX)
+_is_cdrom_drive
+_is_executable
+_is_fat32
+_is_ram_drive
+_is_remote_drive
+_is_remote_handle
+isalnum
+isalpha
+isascii
+isatty
+iscntrl
+isdigit
+isgraph
+islower
+isprint
+ispunct
+isspace
+isupper
+isxdigit
+itoa
+kbhit
+kill
+labs
+lchown
+ldexp
+ldiv
+lfilelength
+_lfn_gen_short_fname
+_lfn_get_ftime
+__libc_termios_exist_queue
+__libc_termios_init
+libm
+link
+llabs
+lldiv
+llockf
+llseek
+load_npx
+localeconv
+localtime
+lock
+lock64
+lockf
+log
+log10
+log1p
+log2
+longjmp
+lowvideo
+lseek
+lstat
+mallinfo
+malloc
+malloc hook
+malloc_debug
+malloc_verify
+mallocmap
+matherr
+mblen
+mbstowcs
+mbtowc
+_media_type
+memalign
+memccpy
+memchr
+memcmp
+memcpy
+memicmp
+memmove
+memset
+mkdir
+mkfifo
+mknod
+mkstemp
+mktemp
+mktime
+modf
+modfl
+moncontrol
+_mono_clear
+_mono_printf
+_mono_putc
+monstartup
+movedata
+movedatab
+movedatal
+movedataw
+movetext
+mprotect
+_my_cs
+_my_ds
+_my_ss
+nice
+normvideo
+nosound
+ntohl
+ntohs
+open
+_open
+opendir
+outb
+outp
+outportb
+outportl
+outportsb
+outportsl
+outportsw
+outportw
+outpw
+pathconf
+pause
+pclose
+perror
+pipe
+popen
+pow
+pow10
+pow2
+powi
+_preserve_fncase
+printf
+psignal
+_put_path
+putc
+putch
+putchar
+putenv
+puts
+puttext
+putw
+qsort
+raise
+rand
+rand48
+random
+rawclock
+read
+_read
+read_child
+read_sel_addr
+readdir
+readlink
+realloc
+redir_cmdline_delete
+redir_cmdline_parse
+redir_debug_init
+redir_to_child
+redir_to_debugger
+regcomp
+regerror
+regexec
+regfree
+remove
+remque
+_rename
+rename
+rewind
+rewinddir
+rindex
+rmdir
+run_child
+save_npx
+sbrk
+scanf
+Screen Variables
+ScreenClear
+ScreenCols
+ScreenGetChar
+ScreenGetCursor
+ScreenMode
+ScreenPutChar
+ScreenPutString
+ScreenRetrieve
+ScreenRows
+ScreenSetCursor
+ScreenUpdate
+ScreenUpdateLine
+ScreenVisualBell
+searchpath
+seekdir
+select
+__set_fd_properties
+_set_screen_lines
+setbuf
+setbuffer
+setcbrk
+_setcursortype
+setdate
+setdisk
+setenv
+setftime
+setgid
+setgrent
+setitimer
+setjmp
+setlinebuf
+setlocale
+setmntent
+setmode
+setpgid
+setpwent
+setrlimit
+setsid
+setstate
+settime
+settimeofday
+setuid
+setvbuf
+sigaction
+sigaddset
+sigdelset
+sigemptyset
+sigfillset
+sigismember
+siglongjmp
+signal
+sigpending
+sigprocmask
+sigsetjmp
+sin
+sincos
+sinh
+sleep
+snprintf
+__solve_dir_symlinks
+__solve_symlinks
+sound
+spawn*
+sprintf
+sqrt
+srand
+srandom
+sscanf
+stackavail
+stat
+statfs
+_status87
+_stklen
+stpcpy
+stpncpy
+strcasecmp
+strcat
+strchr
+strcmp
+strcoll
+strcpy
+strcspn
+strdup
+strerror
+strftime
+stricmp
+strlen
+strlwr
+strncasecmp
+strncat
+strncmp
+strncpy
+strnicmp
+strpbrk
+strrchr
+strsep
+strspn
+strstr
+strtod
+strtok
+strtol
+_strtold
+strtoll
+strtoul
+strtoull
+strupr
+strxfrm
+swab
+symlink
+syms_init
+syms_line2val
+syms_listwild
+syms_module
+syms_name2val
+syms_val2line
+syms_val2name
+sync
+sys_errlist
+sys_nerr
+sysconf
+system
+tan
+tanh
+tcdrain
+tcflow
+tcflush
+tcgetattr
+tcgetpgrp
+tcsendbreak
+tcsetattr
+tcsetpgrp
+tell
+telldir
+tempnam
+Termios
+textattr
+textbackground
+textcolor
+textmode
+time
+times
+tmpfile
+tmpnam
+toascii
+tolower
+toupper
+_truename
+truncate
+ttyname
+tzset
+tzsetwall
+uclock
+umask
+uname
+ungetc
+ungetch
+unlink
+unlock
+unlock64
+_use_lfn
+usleep
+utime
+utimes
+v2loadimage
+valloc
+varargs
+vfork
+vfprintf
+vfscanf
+vprintf
+vscanf
+vsnprintf
+vsprintf
+vsscanf
+wait
+waitpid
+wcstombs
+wctomb
+wherex
+wherey
+wild
+window
+write
+_write
+write_child
+write_sel_addr
+xfree
+xmalloc
+xrealloc
+Unimplemented Functions
+libc.a reference - Introduction
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/libc/libc_1.html 
+ 
+search 
+ 
+Go to the first, previous, next, last section, table of contents.
+Introduction
+The standard C library, `libc.a', is automatically linked into your
+programs by the `gcc' control program. It provides many of the
+functions that are normally associated with C programs. This document
+gives the proper usage information about each of the functions and
+variables found in `libc.a'. 
+For each function or variable that the library provides, the definition
+of that symbol will include information on which header files to include
+in your source to obtain prototypes and type definitions relevant to the
+use of that symbol. 
+Note that many of the functions in `libm.a' (the math library) are
+defined in `math.h' but are not present in libc.a. Some are, which
+may get confusing, but the rule of thumb is this--the C library
+contains those functions that ANSI dictates must exist, so that you
+don't need the -lm if you only use ANSI functions. In contrast,
+`libm.a' contains more functions and supports additional
+functionality such as the matherr call-back and compliance to
+several alternative standards of behavior in case of FP errors.
+See section libm, for more details.
+Debugging support functions are in the library `libdbg.a'; link
+your program with `-ldbg' to use them.
+Go to the first, previous, next, last section, table of contents.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by DJ Delorie 
+ 
+ 
+Updated Jul 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

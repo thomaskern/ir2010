@@ -1,0 +1,309 @@
+
+ 
+BGui2
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+BGui Version 2.0.2
+ 
+This is a rerelease of the BGui library 
+ 1.0 originally made by Dan Huizenga (Skis), released on 9/30/98. His webpage 
+ is located at http://www.concentric.net/~Skis/, and his most recent email address is skis@concentric.net.
+ 
+Section 
+ Contents
+ 
+Why I released the 
+ new code unofficially
+ What is BGui?
+ Screenshot
+ What are some of the exact 
+ changes I have made to the original BGUI?
+ Latest Changes
+ Download BGui
+ 
+Back 
+ to Main Page
+ 
+Why I released the new code unofficially:
+ 
+The reason why I've decided to do this is because the 
+ latest version of BGui 1.0 works only in the DJGPP version of Allegro 
+ 3.0. Even in the 1.0 original release the drop boxes segfaulted, and there 
+ were memory leaks and dereferenced NULL pointers, and the moving windows 
+ were very inefficient. I managed to fix these things, and optimize some 
+ things here and there as well, which included a total rewrite of the window 
+ moving system which now includes buffering and updating options to tweak 
+ the performance to your needs.
+ 
+I've had the code fixed all along as Allegro was updated 
+ to the WIP so basically it has been sitting on my hard drive since the 
+ summer of 2000 unmodified. I receive requests often when people hear I 
+ have a working version -- so now I have decided to formally package and 
+ distribute BGui as the author has been unresponsive to my attempts to 
+ get him to release an official version.
+ 
+Note that my main priority was to keep the library functioning 
+ correctly (as per its original functions ) and relatively efficent as 
+ Allegro moved from DOS to the multi-platform WIP. So although the library 
+ functions properly, the quality/correctness/accuracy of the documentation 
+ and the "style" of the code have not been improved much since 
+ the original version.
+ 
+Back to the Section 
+ Contents
+ 
+What is BGui?
+ 
+BGui is a Windows 95 look and feel replacement for the 
+ Allegro GUI. The BGui functions are identical in function to their Allegro 
+ counterparts (except UNICODE text is not supported in many objects), but 
+ the objects appear with a Windows 95 look and feel, rather than the Allegro 
+ standard.
+ 
+Added features include more widgets, including the drop 
+ box, and moveable windows with customizable buffering options.
+ 
+Back to the Section 
+ Contents
+ 
+Screenshot
+ 
+This screenshot is taken from the BGui 
+ test/example program included in the download.
+ 
+ 
+Back to the Section 
+ Contents
+ 
+What are some of the exact changes I made to the original BGUI?
+ 
+I brought the code to the WIP standards by using gui_mouse_x 
+ and gui_mouse_y, and using acquire and release screen functions as these 
+ are needed under Windows. The author stated 80% of the code was copied 
+ out of Allegro, and this is true, but I removed code where I could and 
+ called Allegro routines rather than having their copied code, although 
+ I have not catched all of this. Also the widgets I had to work greatly 
+ on or rewrite not have unicode support -- BUT NOTE: MANY OF THE BGUI FUNCTIONS STILL DO 
+ NOT HAVE UNICODE SUPPORT. They will have to be all edited to support it. If anyone wants to take 
+ on this task, free free to do so, but my main motivation for this project 
+ was to get and keep BGUI working.
+ 
+See the readme.txt file in the download package for more details.
+ 
+Back to the Section 
+ Contents
+ 
+Latest Changes
+ 
+ 
+ changes.txt
+ 
+ 
+ BGui v2.0.2 -- 20 Jan 2001:
+ Jason Winnebeck:
+	Quickly added ability for editboxes and listboxes to be D_DISABLED
+BGui v2.0.1 -- 19 Oct 2000:
+ Jason Winnebeck:
+ Reformatted the text files -- they were wrapped to 88 characters, not
+ 78. Added .sh and .bat files to convert text types and copy the
+ proper makefile to Makefile.
+ Fixed btest.c to not lock up in Windows when taking a screen shot.
+ Chris de Sousa:
+ Added 2 makefiles, 1 for dos and 1 for linux.
+ Made a few changes to btest.c to make it compile with glibc,
+ the itoa function is not standard, so i used sprintf instead.
+ Also changed the structure a bit, sources in src/, docs in /docs,
+ libs in /libs.
+ 
+Download BGui
+ 
+If you don't have a makefile for 
+ your platform:
+ 
+All of the C source files besides btest.c should be compiled into 
+ a static library. The header file you need to include is called tdgui.h.
+ 
+I am naming the statically linked library "lib/???bgui.???" 
+ and "lib/???bguid.???" for the optimized and debug versions, 
+ respectively, if you wish to contribute a makefile.
+ 
+Thanks go out to Chris de Sousa (his website) for the UNIX makefile and the DOS makefile.
+ 
+BOTH FILES contain 
+ the same things:
+ 
+source code
+ example/test program
+ documentation
+ installation files
+ MSVC 6 project files
+ DOS and UNIX makefiles
+ scripts/batfiles for converting between DOS and UNIX format text
+ 
+Download files, MS-DOS format text:
+ This version works on Linux too with fixunix.sh!
+ bgui2.zip version 2.0.2 (55k)
+ 
+Back to the Section 
+ Contents
+ 
+Back 
+ to Main Page
+ 
+ 
+ 
+ 

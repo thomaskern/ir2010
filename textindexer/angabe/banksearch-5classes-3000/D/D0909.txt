@@ -1,0 +1,456 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : The Wireless Web is Approaching Adolescence 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+	 
+ 
+ 
+ 	 
+ 
+ 
+ 	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+The Wireless Web is Approaching Adolescence
+	
+	
+	by Keith Bates -12/20/2001
+	
+	
+Wireless content is heading towards adolescence. Namely, those awkward times when uncertainty, change and expectations rule the day. As technology continues to advance and customer acceptance increases, so come the demands for better looking, engaging content and exciting wireless experiences. Much like the social demands made on teenagers who are trying to stand out and seek acceptance from the "in crowd", wireless content must now move beyond static, text-based offerings to "eye-catching", engaging, exciting and relevant customer experiences.
+Content developers, carriers, mobile operators and content owners recognize that the evolution of the wireless Internet presents a host of new opportunities and challenges. Many of which come from the excitement and anxiety of developing business models that harness the promise of wireless while delivering value to the customer.
+The wireless Web is at a similar stage to the pre graphically based Internet browsers we know, and online experiences we expect. Today, content on wireless devices is static, text-based information that is simply uninteresting. However, advancements in wireless devices, network capabilities and software products are helping transform the face of wireless to one loaded with richly animated content. Much like how the Internet evolved from the introduction of text browsers like Mosaic to those of Netscape Navigator and Internet Explorer, so too will the wireless Internet experience.
+This point becomes an important juncture for the future of the wireless Web. A crossroads, if you will, where wireless communications and content development technologies meet head on with the customer's expectations and desire for more compelling and interactive experiences.
+The Challenges
+From a technology perspective, this reality presents a call-to-action. There exists the need to create new technology models that are open-standards based, flexible and scalable for the delivery of content to wireless devices over today's [2G] and tomorrow's [3G] networks. It is in this defined reality that the true technological challenges of the maturing wireless Web come to light. 
+Let's take a look.
+First, wireless content must be able to be easily created for today's wireless devices. Easy to use wireless content creation tools that speed development, time to market and leverage existing programming skills will strike a chord with content developers. Getting them to spend less time programming and more time creating exciting content will help accelerate the development community's interest in taking advantage of the opportunities the wireless Web has to offer.
+Next, wireless content must be able to deliver on the promise of real time, personalized customer experiences because nobody cares about yesterday's news or trying to identify with brand gimmicks. Interactive, fresh and relevant content that is easy to browse and navigate is key to building a strong wireless following. Content owners and carriers need the ability to create and deliver time sensitive, dynamic content on-the-fly to a large wireless audience. Equally important is making this process cost-effective, saving them time and thereby shortening development cycles.
+And finally, parallel to creating and deploying content is the need for an industry standard media player to render rich wireless content on mobile devices. A downloadable or embedded interactive media player opens the door for millions of mobile devices to display rich graphics, respond to user inputs and deliver animation capabilities that can be likened to those on multimedia PCs. Peak customer interest in the wireless experience and watch wireless service and application subscription rates skyrocket.
+The Needed Solution
+These realities have created an urgent need to swiftly, comprehensively and economically address the following technological requirements:
+Currently there exists the need for an onboard media player that can be downloaded or embedded onto the new generation of JavaTM-powered mobile handsets. A small footprint media player is ideally suited for today's memory constrained handsets, ensuring wireless subscribers are not only captivated, informed and entertained by what they see but are likely to access the content, services and applications over and over again.
+Delivering dynamic and engaging information on-the-fly for display on a wireless media player is critical. Furthermore, if such a solution can't scale to grow and support increased customer demand for services and applications then you might as well throw in the towel now. An architecture design based on open-standards like Scalable Vector Graphics [SVG], XML and Java ensures that such a solution is flexible, modular and robust for large-scale deployment of rich wireless content.
+And finally, the content creation tools need to be able to bring to life the images and ideas from the depths of the developer's imagination. Providing developers with easy-to-use, open standards based graphical authoring tools means content can get to market quickly and efficiently, eliminating complicated programming altogether.
+Conclusion
+Returning now to "the approach of the adolescent years" analogy, it's apparent that wireless content needs to "stand out in the crowd to get noticed". Accelerating the adoption of wireless services and applications can only be made possible if the content is compelling, timely and can be accessed easily.
+According to Dan Gardiner, Ovum analyst and lead author of the report Third Generation Mobile: Market Strategies, "Whoever delivers a compelling package of personalized content, in other words succeeds with the 'wireless portal', will own the customer."
+One such company that has risen to this call is Walt Disney Internet Group Japan. The company recently reinforced its position as a leader in the wireless content revolution with the launch of the enhanced Magical Fortune service on NTT DoCoMo's i-mode network. The ability of this new service to offer users an enhanced interactive, graphically rich and animated wireless experience is a clear indication of the maturing and evolution of this medium.
+So here we are.
+The wireless Internet is maturing in front of our very eyes and growing into something exciting from its uneventful early beginnings - kind of like a caterpillar before it transforms into a butterfly. The wireless Web will enjoy many growth cycles, some good and some difficult. The responsibility of those companies that parent its evolution is to harness the power of emerging technologies, advancing the wireless experience for customers on the wireless Web and beyond.
+As Chief Executive Officer of Plazmic Inc., Keith Bates leads the company's strategic development, partnerships, senior recruitment and financing. Prior to joining Plazmic, Mr. Bates was a venture capitalist at Ventures West, a premiere venture capital firm in Canada. While at Ventures West, Mr. Bates focused on early stage start-ups and companies developing Java technology solutions. He led the original venture investments in Plazmic and in Jaldi Semiconductor. He also worked closely with Ventures West portfolio companies including Java technology developer AudeSi Technologies (acquired by Wind River Systems Inc.). Mr. Bates has substantial experience in the creation and building of start-up opportunities.
+For more information about Plazmic please visit www.plazmic.com. 
+ 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	 
+	
+	 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

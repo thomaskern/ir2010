@@ -1,0 +1,69 @@
+
+ 
+ 
+ 
+ lesson11
+Lesson 11: Introduction to VB Functions- Part II
+11.1 Creating Your Own Functions
+The general format of a function is as follows:
+Public Function functionName (Arg
+As dataType,..........) As dataType
+or
+Private Function functionName (Arg
+As dataType,..........) As dataType
+* Public indicates that the function is applicable
+to the whole program and
+ Private indicates that the function
+is only applicable to a certain module or procedure.
+ 
+Example 11.1
+In this example, a user can calculate future value of a certain amount
+of money he has today based on the interest rate and the number of years
+from now(supposing he will invest this amount of money somewhere).
+The calculation is based on the compound interest rate.
+ 
+Public Function FV(PV As Variant, i As Variant, n As Variant) As Variant
+'Formula to calculate Future Value(FV)
+'PV denotes Present Value
+FV = PV * (1 + i / 100) ^ n
+End Function
+Private Sub compute_Click()
+'This procedure will calculate Future Value
+Dim FutureVal As Variant
+Dim PresentVal As Variant
+Dim interest As Variant
+Dim period As Variant
+PresentVal = PV.Text
+interest = rate.Text
+period = years.Text
+FutureVal = FV(PresentVal, interest, period)
+MsgBox ("The Future Value is " & FutureVal)
+End Sub
+Example 11.2
+The following program will automatically compute examination grades
+based on the marks that a student obtained.
+Public Function grade(mark As Variant) As String
+Select Case mark
+Case Is >= 80
+grade = "A"
+Case Is >= 70
+grade = "B"
+Case Is >= 60
+grade = "C"
+Case Is >= 50
+grade = "D"
+Case Is >= 40
+grade = "E"
+Case Else
+grade = "F"
+End Select
+End Function
+Private Sub compute_Click()
+grading.Caption = grade(mark)
+ 
+End Sub
+Private Sub End_Click()
+End
+End Sub
+[Back to contents 
+page]

@@ -1,0 +1,424 @@
+
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 6
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ July 2002 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Serve clients' specific protocol requirements with Brazil, Part 6
+ 
+ Plug Jini, BeanShell, and JAXM into Brazil 
+ 
+ 
+ 
+Summary
+In this conclusion to his series on Brazil, Rinaldo Di Giorgio demonstrates how to use the following technologies with the Brazil toolkit: Jini, BeanShell, and the Java API for XML Messaging (JAXM). You can also use Brazil with many other technologies, including Xalan-Java, servlets, Velocity, and LDAP (the lightweight directory access protocol); Di Giorgio shows you how to get started with those as well. He'll also discuss the larger purpose of this series: to demonstrate how to use Brazil to support new technologies and APIs in ways that API developers might not have considered. For example, you would not commonly consider using the above technologies in a Web server. By understanding how these technologies work, you can better determine the right tool for your job. (2,900 words; July 12, 2002)
+ 
+ By Rinaldo Di Giorgio
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ Page 1 of 3
+ 
+Advertisement 
+ 
+ 
+ 
+razil is a third-generation HTTP server that provides an extensible, understandable framework for building small, application-specific HTTP servers. In Parts 1 through 5 of this series, I discussed how to use Brazil technology to process content from various nontraditional sources, how to add to that content, and how to deliver that content to users via different delivery mechanisms and networks, such as applets, Java Reliable Multicast Service (JRMS), wireless clients, and plain HTML. In this final article of the series, I illustrate how to use the following technologies with Brazil:
+- Jini 
+- BeanShell 
+- JAXM (Java API for XML Messaging) 
+I also walk you through the first steps involved in integrating Brazil with Xalan-Java, servlets, Velocity, and LDAP (lightweight directory access protocol).
+In some ways, this article resembles a shopping trip to Home Depot, where you purchase tools and gadgets not because you need them now, but because you might need them later. Many of you will not need the technologies listed above all at once or ever; however, you should know about them. So consider this article a short stroll down a short aisle in the open source world.
+Read the whole series on Brazil technology:
+ 
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols 
+- Part 2: How to support XML applications with the Brazil project 
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project 
+- Part 4: Build multicast-aware apps with JRMS 
+- Part 5: Manage users and content with Brazil 
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil 
+In this article's examples, we will employ the Brazil server as a robust back plane to plug in various technologies using a combination of filters, handlers, and templates. Handlers provide basic functionality for accepting HTTP requests and dispatching to methods handling those requests; filters capture handlers' output and optionally modify the input for other filters, templates, or handlers to continue processing; and templates send HTML content through an HTML/XML parser to a set of templates. Each HTML/XML tag can dynamically invoke a Java method present in the templates. The dynamically generated content from the HTML/XML tag evaluation returns to the caller.
+ Use Jini with Brazil 
+I frequently run 10 to 20 instances of Brazil on my servers and often lose track of them. The last thing I want to do is remember where they are and what they do. I looked for a solution that provided basic services for locating and determining the servers' status and capabilities, as well as services for administering many Brazil servers. I wanted a solution that didn't require special bash scripts and monitor daemons, as traditional Unix/Linux/Windows approaches often do. Those solutions don't scale well when you have thousands of servers and you forget what they do.
+Jini's lookup and discovery features combined with leasing can provide more dynamic and accurate solutions. The basic idea is to use the Jini lookup services provided via reggie, so interested users can find and interact with various Web servers without knowing the servers' URLs and services. reggie is Sun Microsystems' implementation of the Jini lookup service and is an activatable service that rmid (Java RMI Activation System Daemon) controls.
+The example I provide in this article deals only with a simple case and does not describe the services in great detail. Interested readers might consider expanding the example to support UDDI (Universal Description, Discovery, and Integration) and WSDL (Web Services Description Language).
+ Develop the application components 
+To register with the Brazil lookup service, we need a Jini lookup service and some client code. I provided some code to look up the registered services. In that example, which appears later in this section, I developed some additional scripts that allow you to start and stop reggie and rmid. You could also create a facility in Brazil that uses a reggie as a handler (an area requiring further research), allowing you, via a script or an ExecHandler interface, to start and manage the service without going to the operating system. Because the ExecHandler allows the services to automatically start up, it ensures fewer errors in the deployment of many servers providing reggie services (see the Brazil documentation for more information).
+I wrote the reggie and rmid services in BeanShell. Before we move on, let's take a look at this tool in more detail. 
+ BeanShell 
+Written in Java, BeanShell is a small, free, embeddable Java source interpreter with object-scripting language features. It executes standard Java statements and expressions in addition to obvious scripting commands and syntax. BeanShell supports scripted objects as simple method closures like those in Perl and JavaScript (see Resources for more information).
+In prior JavaWorld articles, I discussed how to use Python and Tcl with Brazil technology. I like to program in one language everywhere; BeanShell allows me to use Java in yet another application space&#8212;in this case, scripting content on a Webpage&#8212;formerly occupied by languages like Tcl, Python, Perl, PHP (hypertext preprocessor), and Velocity. (I will discuss Velocity later in this article.)
+The following documentation from the Brazil toolkit explains how BeanShell interfaces with Brazil as well as some of the configuration options available: 
+ The BeanShellServerTemplate looks for one of the starting tags , , or in an HTML page and treats the following data up to the corresponding ending tag (, , or ) as a BeanShell script to evaluate. 
+The reason that BeanShell scripts are included in an HTML page is usually to generate dynamic, server-side content. After running this template, everything between and including the starting tag and the ending tag is replaced by all output written to the BeanShell output stream (if any). 
+All BeanShell fragments within a given page are evaluated in the same BeanShell interpreter. The BeanShell interpreter actually lives for the entire duration of this Template object, so the user can implement persistence across requests. 
+Later in this article, I will introduce two additional methods for transforming and/or scripting content on a Webpage: using XSLT (Extensible Stylesheet Language Transformations) and XML; and, separately, Velocity. 
+The two BeanShell scripts below demonstrate how to register and look up a service. The services we use are written for Brazil Web servers so they can register themselves with a Jini lookup and provide a service for facilitating management and control as well as distributed computing environments that offer Web server features and Jini abilities.
+To register the Jini Brazil service in our example, we use BeanShell to script a lookup discovery and subsequent registration on a Webpage. In other words, the Brazil server interprets the Webpage as containing BeanShell code, first processing the BeanShell code and then returning the page to the browser. This offers tremendous value for advanced developers and provides a powerful scripting language, powerful enough to script Jini directly. 
+The BeanShell code that follows registers a service with a running Jini lookup service such as reggie. Let's go over the code in detail.
+The tag informs the server that BeanShell code follows. You code your import statements as you would with Java. I have not used any wild cards, so you can see the classes that we're using: 
+ 
+ import java.io.IOException;
+ import java.rmi.RemoteException;
+ import net.jini.core.lookup .ServiceRegistration;
+ import net.jini.core.entry.Entry;
+ import net.jini.core.lookup.ServiceID;
+ import net.jini.core.lookup.ServiceItem;
+ import net.jini.core.lookup.ServiceTemplate;
+ import net.jini.discovery.DiscoveryManagement;
+ import net.jini.lease.LeaseRenewalManager;
+ import net.jini.lookup.ServiceItemFilter;
+ import net.jini.lookup.ServiceDiscoveryManager;
+ import net.jini.core.lookup.ServiceRegistrar;
+Set some parameters for the lease duration and other attributes: 
+ long LEASE_DUR = 60*1000;
+ String PRODUCT = "Brazil Registration Service";
+ String MANUFACTURER = "Rinaldo DiGiorgio";
+ String VENDOR = MANUFACTURER;
+ String VERSION = "Jini 1.2";
+BrazilAttribute.java contains the code for the Brazil attribute, which the lookup service uses. The example is simple. BrazilAttribute.java allows applications, other services, and users to look up services by requesting specific attributes.
+The code below tells the lookup service that one of the attributes of the entity currently being registered is a location attribute: 
+ Entry[] serviceAttrs = new Entry[] {
+ new BrazilAttribute("location"),
+ };
+This silly little print method prints some diagnostics: 
+ msg(String s) {
+ System.err.println(s);
+ }
+ msg("Creating ServiceDiscoveryManager ...");
+ DiscoveryManagement discoveryMgr = null;
+ LeaseRenewalManager leaseMgr = null;
+ ServiceDiscoveryManager sdm = null;
+As of Jini 1.2, the preferred mechanism for discovering services is the ServiceDiscoveryManager: 
+ try {
+ sdm = new ServiceDiscoveryManager(discoveryMgr, leaseMgr);
+ } catch (IOException ioe) {
+ msg("Trouble creating ServiceDiscoveryManager: " + ioe);
+ return;
+ }
+ discoveryMgr = sdm.getDiscoveryManager();
+ msg ( discoveryMgr.toString() );
+Once we have a valid DiscoveryManager instance, register a Brazil service with the attributes supplied above in serviceAttrs: 
+ try {
+ Thread.sleep(1000*5);
+ } catch ( Exception e ) {
+ if ( discoveryMgr != null ) {
+ ServiceRegistrar[] regs = discoveryMgr.getRegistrars();
+ for ( int k = 0; k BrazilService provides an example of some rudimentary interactions with a single instance of a Brazil server (there could be thousands of servers running).
+Register the Brazil service with the lookup: 
+ ServiceItem srvcItem = new ServiceItem(null,bs,serviceAttrs);
+ for ( int h=0; h "Service: +service+"\n"+e.toString());
+ e.printStackTrace();
+ }
+ }
+ }
+ sdm.terminate();
+At the end of the above code, we register the BrazilService and terminate the ServiceDiscoveryManager. In our example, the BrazilService is associated with a running instance of a Brazil server. When the Brazil server starts, it registers itself with a Jini lookup service so that the other servers can find it using Jini lookup services. You can work with the leases to ensure that the registered servers are still up and operational, and enhance the BrazilService to include additional functionality.
+Now that we have registered a service, how do we find it? To find a service matching the attributes we specified above, we can run our next example anywhere we wish. 
+In this example, we look up and store the properties into the Brazil server's namespace, thereby making those properties available on a request, session, or server scope. When the user selects the URL for the code below, that code is processed along with the BSL (Brazil Scripting Language). Afterwards, Brazil's filter generates output.
+Use BeanShell to look up the BrazilService:
+ 
+import java.io.IOException;
+import BrazilService;
+import net.jini.core.entry.Entry;
+import net.jini.core.lookup.ServiceID;
+import net.jini.core.lookup.ServiceItem;
+import net.jini.core.lookup.ServiceTemplate;
+import net.jini.discovery.DiscoveryManagement;
+import net.jini.lease.LeaseRenewalManager;
+import net.jini.lookup.ServiceItemFilter;
+import net.jini.lookup.ServiceDiscoveryManager;
+msg(String s) {
+ System.out.println(s);
+}
+Create ServiceDiscoveryManager with null arguments for default behavior: 
+ msg("Creating ServiceDiscoveryManager ...");
+ DiscoveryManagement discoveryMgr = null;
+ LeaseRenewalManager leaseMgr = null;
+ ServiceDiscoveryManager sdm = null;
+ try {
+ sdm = new ServiceDiscoveryManager(discoveryMgr, leaseMgr);
+ } catch (IOException ioe) {
+ err("Trouble creating ServiceDiscoveryManager: " + ioe);
+ }
+ discoveryMgr = sdm.getDiscoveryManager();
+ Create ServiceTemplate for an anything based lookup
+ ServiceID serviceID = null;
+ Class[] serviceTypes = { null };
+ Entry[] attrSetTemplates = null;
+ ServiceTemplate tmpl = new ServiceTemplate(null, null, null);
+Perform nonblocking lookup with no local filtering; sleep just before lookup to give the discovery process time to find any available lookup services: 
+ try {
+ Thread.sleep(5000);
+ } catch (InterruptedException ie) { }
+ ServiceItem[] item = null;
+ ServiceItemFilter filter = null;
+ item = sdm.lookup(tmpl, 50, filter);
+Display results, if any: 
+ System.out.println("Length:" + item.length );
+ request.props.put("jini.lookup.number" , Integer.toString(item.length));
+ String ids = "";
+ String key = "jini.lookup.srvcs.";
+ for ( int k = 0; k 
+Once the BeanShell code processes, the following BSL generates some output for a user. We could also have generated XML or taken other actions. Here's the generated code: 
+ 
+ 
+Found services
+ 
+ 
+ Service ID
+ Name
+ Location
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ a href=
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+No service found, activation system or reggie is 
+down
+Brazil instances can register themselves with a Jini lookup service by scripting the code required for registration with BeanShell and using the two classes BrazilService.java and BrazilAttribute.java for the required Jini attribute class and the actual service. In our example, the BrazilService returns only a URL to get to this service. Serious applications can expand upon this approach to retrieve more complex objects.
+ Next page >
+Page 1 Serve clients' specific protocol requirements with Brazil, Part 6
+Page 2 Use JAXM with Brazil
+Page 3 Use Brazil with even more technologies 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+- "Serve Clients' Specific Protocol Requirements with Brazil," Rinaldo Di Giorgio (JavaWorld):
+- Part 1: Learn how to build an application server that can deliver data to clients requiring different protocols (August 2000)
+- Part 2: How to support XML applications with the Brazil project (October 2000)
+- Part 3: Economically sustain PQA, UP.SDK, and J2ME with the Brazil project (January 2001)
+- Part 4: Build multicast-aware apps with JRMS (April 2001)
+- Part 5: Manage users and content with Brazil (August 2001)
+- Part 6: Plug Jini, BeanShell, and JAXM into Brazil (July 2002)
+- Code examples for this article: 
+http://www.brazilhandlers.com:9090 
+- Jini docs, examples, and downloads: 
+http://www.jini.org/
+- BeanShell docs, examples, and downloads: 
+http://www.beanshell.org/
+- JAXM docs, examples, and downloads: 
+http://java.sun.com/xml/jaxm/
+- Xalan homepage: 
+http://xml.apache.org/xalan-j/index.html
+- Velocity docs, examples, and downloads: 
+http://jakarta.apache.org/velocity/index.html
+- Brazil download site, which includes a description of how to use the Brazil toolkit with BeanShell and Xalan: 
+http://www.experimentalstuff.com/Technologies/Brazil/index.html
+- "Start Up the Velocity Template Engine," Geir Magnusson Jr. (JavaWorld, December 2001): 
+http://www.javaworld.com/javaworld/jw-12-2001/jw-1228-velocity.html 
+- Read more from Java Developer: 
+http://www.javaworld.com/columns/jw-developer-index.shtml
+- For more articles on servers, browse the Java Application Servers section of JavaWorld's Topical Index: 
+http://www.javaworld.com/channel_content/jw-appserv-index.shtml
+- For more articles on Jini, check out the following resources:
+- Browse the Jini section of JavaWorld's Topical Index: 
+ http://www.javaworld.com/channel_content/jw-jini-index.shtml
+- Search through articles in JavaWorld's Jiniology column: 
+ http://www.javaworld.com/columns/jw-jiniology-index.shtml 
+- Browse the Servlets section of JavaWorld's Topical Index: 
+http://www.javaworld.com/channel_content/jw-servlets-index.shtml
+- Browse the Java and XML section of JavaWorld's Topical Index: 
+http://www.javaworld.com/channel_content/jw-xml-index.shtml 
+- Sign up for JavaWorld's free weekly Enterprise Java email newsletter: 
+http://www.javaworld.com/jw-subscribe
+- Get under the hood of the technologies shaping the future in our Enterprise Java discussion: 
+http://forums.idg.net/webx?50@@.ee6b80a 
+- You'll find a wealth of IT-related articles from our sister publications at IDG.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

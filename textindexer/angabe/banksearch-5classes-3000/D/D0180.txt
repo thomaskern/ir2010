@@ -1,0 +1,99 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+JSP Tutorial
+	
+	
+ 
+Beans and Form processing
+Forms are a very common method of interactions in web sites. JSP
+makes forms processing specially easy.
+The standard way of handling forms in JSP is to define a "bean". 
+This is not a full Java bean. You just need to define a class that
+has a field corresponding to each field in the form. The class fields
+must have "setters" that match the names of the form fields. For
+instance, let us modify our GetName.html to also collect email
+address and age.
+The new version of GetName.html is
+What's your name? 
+What's your e-mail address? 
+What's your age? 
+To collect this data, we define a Java class with fields "username",
+"email" and "age" and we provide setter methods "setUsername",
+"setEmail" and "setAge", as shown. A "setter" method
+is just a method that starts with "set" followed by the name of
+the field. The first character of the field name is upper-cased. 
+So if the field is "email", its "setter" method will
+be "setEmail". Getter methods are defined similarly, with
+"get" instead of "set". Note that the setters (and getters)
+must be public.
+public class UserData {
+ String username;
+ String email;
+ int age;
+ public void setUsername( String value )
+ {
+ username = value;
+ }
+ public void setEmail( String value )
+ {
+ email = value;
+ }
+ public void setAge( int value )
+ {
+ age = value;
+ }
+ public String getUsername() { return username; }
+ public String getEmail() { return email; }
+ public int getAge() { return age; }
+}
+The method names must be exactly as shown. Once you have defined
+the class, compile it and make sure it is available in the web-server's
+classpath. The server may also define special folders where you can
+place bean classes, e.g. with Blazix you can place them in the "classes"
+folder. If you have to change the classpath, the web-server would
+need to be stopped and restarted if it is already running. (If you
+are not familiar with setting/changing classpath, see notes
+on changing classpath.)
+Now let us change "SaveName.jsp" to use a bean to collect the
+data.
+ 
+Continue
+All we need to do now is to add the jsp:useBean tag and the jsp:setProperty
+tag! The useBean tag will look for an instance of the "UserData"
+in the session. If the instance is already there, it will update
+the old instance. Otherwise, it will create a new instance of UserData
+(the instance of the UserData is called a bean), and put it in
+the session.
+The setProperty tag will automatically collect the input data, match
+names against the bean method names, and place the data in the bean! 
+Let us modify NextPage.jsp to retrieve the data from bean..
+ 
+You entered
+Name: 
+Email: 
+Age: 
+Notice that the same useBean tag is repeated. The bean is available
+as the variable named "user" of class "UserData". 
+The data entered by the user is all collected in the bean.
+We do not actually need the "SaveName.jsp", the target of GetName.html
+could have been NextPage.jsp, and the data would still be available
+the same way as long as we added a jsp:setProperty tag. 
+But in the next tutorial, we will actually use SaveName.jsp as
+an error handler that automatically forwards the request to NextPage.jsp,
+or asks the user to correct the erroneous data.
+Exercise: 1) Write a JSP/HTML set that allows a user
+to enter the name of a system property, and then displays the value returned
+by System.getProperty for that property name (handle errors appripriately.) 
+2) Go back to the exercises where you manually modified boolean variables. 
+Instead of a boolean variable, make these come from a HIDDEN form field
+that can be set to true or false.
+ 
+Next tutorial: Tag Libraries 
+Contents
+ 
+ 
+ 

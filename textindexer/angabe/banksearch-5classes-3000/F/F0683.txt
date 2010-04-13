@@ -1,0 +1,446 @@
+
+VB Helper: Advanced Visual Basic Techniques: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Visual Basic Techniques: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The chapters in this book center around specific example applications. 
+The applications demonstrate advanced programming techniques, 
+fully implemented and ready to run (in VB5).
+ 
+ 
+ Part One: Application Basics 
+ 
+ 
+ 
+1. ExpenseReporter
+(show me)
+The ExpenseReporter application allows the user to fill out 
+and print a simple expense report. This example demonstrates:
+- Scrolling areas
+- Dynamic controls and enhanced navigation
+- SDI and MDI interfaces
+- Loading and saving data
+- Recent file list
+2. ExpenseReporter (continued)
+Chapter 2 continues the discussion of the ExpenseReporter application. It demonstrates:
+- Validating data and forms
+- High resolution printing
+- Print preview at different scales
+- Help
+- Context-sensitive help
+- About dialogs
+- Splash screens
+3. AppointmentBook
+(show me)
+AppointmentBook is a meeting and appointment planning calendar that demonstrates:
+- Using bitmasks
+- MVC paradigm for complex interactions
+- Creating rotated fonts
+- Alarms
+- Nonrectangular forms
+- HTML help
+ 
+ 
+ Part Two: Add-Ins 
+ 
+ 
+ Note that Microsoft changes the way Add-Ins work so much from release to release
+that the details described here for installing an Add-In won't work unless you have VB5.
+4. PropertySetter
+PropertySetter 
+(show me)
+is an add-in that allows a developer to quickly examine and 
+modify the properties of many controls on a form. It demonstrates:
+- Creating, testing, and installing add-ins
+- Modifying control properties in an add-in
+5. Aligner
+The Aligner 
+(show me)
+add-in allows a developer to easily arrange controls in 
+rows, columns, or rows and columns. It demonstrates:
+- Arranging controls
+6. Scroller
+The Scroller 
+(show me)
+add-in allows a developer to easily create a scrolling area. 
+The designer simply selects the controls that should be scrolled, and invokes the 
+Scroller add-in. Scroller does the rest. This add-in demonstrates:
+- Creating add-in submenus
+- Creating scrolling areas
+7. AddInMaker
+AddInMaker 
+(show me)
+is an add-in that creates other add-ins. Using AddInMaker a developer
+can build complex add-ins in a matter of minutes. Creating an add-in to make other 
+add-ins provides a good review of add-in creation.
+ 
+ 
+ Part Three: Databasics 
+ 
+ 
+ 
+8. PeopleWatcher
+PeopleWatcher
+(show me)
+is a simple corporate personnel system that demonstrates:
+- Using databases
+- Using the Data control
+- Using Data Access Objects (DAO)
+- Customizing user interfaces for users with different privileges
+9. Query
+The Query
+(show me)
+application is an ad hoc database reporting tool.
+It allows the user to enter and execute SQL database 
+manipulation statements. This example demonstrates:
+- Creating databases
+- Composing SQL commands
+- Processing SQL statements
+10. PeopleWatcher Remote
+PeopleWatcher Remote is a version of PeopleWatcher that runs
+remotely on a network. By centralizing the database, this application
+makes database management much easier in a multi-user setting. This version demonstrates:
+- Accessing remote databases
+- Improving network performance
+ 
+ 
+ Part Four: Client/Server Applications 
+ 
+ 
+ 
+11. TimeSync
+TimeSync
+(show me)
+is a client/server application that allows the user to synchronize 
+the system clocks on two computers. This application demonstrates:
+- Testing client/server applications within the client
+- Testing client/server applications locally
+- Testing client/server applications remotely
+- Trouble shooting client/server applications
+12. QueryServer
+The QueryServer
+(show me)
+application provides remote database reporting and
+ad hoc query services. This application demonstrates:
+- Building a report list
+- Building a librarian to list reports
+- Creating query servers to generate reports
+13. AsyncServer
+AsyncServer provides remote reporting and ad hoc 
+query services asynchronously. The user can request
+several reports and, if they are served by different computers, 
+all of the reports can execute at the same time. This version demonstrates:
+- Building asynchronous servers in Visual Basic
+- Requesting reports
+- Generating reports
+- Displaying results
+ 
+ 
+ Part Five: ActiveX 
+ 
+ 
+ 
+14. The Alarm Control
+Visual Basic's Timer control can schedule events at most roughly 60 
+seconds in advance. The Alarm control allows an application to wait 
+for a events much farther in the future. This control demonstrates:
+- Control creation basics
+- Reading and writing property values
+- Delegating properties
+- Raising events
+15. Bar Gauge
+The BarGauge
+(show me)
+control allows the user to graphically view and 
+modify a numeric value. This control demonstrates:
+- Drawing the BarGauge
+- Handling mouse events
+- Handling keyboard events
+- Enhancing the BarGauge
+16. Histogram
+The Histogram
+(show me)
+control uses BarGauges to display several data values. 
+It provides its own scrolling area if necessary to display more data than
+will fit at one time. This control demonstrates:
+- Control arrays in custom controls
+- Scrolling data
+- Delegating to a control array
+- Supporting indexed properties
+- Raising indexed events
+ 
+ 
+ Part Six: ActiveX on the Web 
+ 
+ 
+ 
+17. ActiveX Controls on the Web
+This chapter tells how Web pages can take advantage of ActiveX controls. It explains:
+- Ensuring safe use
+- Displaying ActiveX controls
+- Learning class IDs
+- Selecting colors
+- Loading data asynchronously
+18. WebSurvey
+The WebSurvey application presents a Web user with a survey form.
+When the user fills out the form, the results are sent to a Visual Basic
+program that stores them in a file. This example demonstrates:
+- Building a survey form
+- Sending data across the Web
+- Receiving data across the Web
+- Packing and unpacking data
+19. SiteMapper
+SiteMapper explores all of the Web pages it can reach from an initial location.
+It creates a list of the pages it visited and the graphic files they include. This example demonstrates:
+- Retrieving Web documents
+- Parsing Web URLs
+- Mapping Web sites
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Visual Basic Techniques: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

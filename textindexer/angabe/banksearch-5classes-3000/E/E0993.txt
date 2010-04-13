@@ -1,0 +1,169 @@
+
+Stroustrup: Errata for 5th/15th printing of The C++ Programming Language
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+Errata for 5th/15th printing of The C++ Programming Language
+Modified July 8, 2002
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (special edition),
+Addison-Wesley, 2000. ISBN0-201-70073-5.
+Errata for the 5th printing.
+Also for the 15th printing of "The C++ Programming Language (3rd edition)".
+Errors and Clarifications
+Chapter 1:
+pg 13	s/(sec B.2)/(with a few minor exceptions; see sec B.2)/
+Chapter 2:
+Chapter 3:
+pg 62	s/we search that list/we search that sequence/
+Chapter 6:
+pg 134	s/``does p point to a valid object,''/
+	``does p point to a valid object (assuming proper initialization),''/
+Chapter 8:
+pg 190	A better Error:
+	namespace Error {
+	int no_of_errors;
+	struct Zero_divide {
+	Zero_divide() { no_of_errors++; }
+	};
+	struct Syntax_error {
+	const char* p;
+	Syntax_error(const char* q) { p = q; no_of_errors++; }
+	};
+	}
+Chapter 10:
+pg 251	replace the middle example with
+	void g()
+	{
+	vector v(10);	// no need for a delete
+	vector* p = new vector(10);	// use plain "delete" rather than "delete[]"
+	delete p;
+	}
+Using a container, such as vector, is simpler than writing a new/delete
+pair. Furthermore, vector provides exception safety (Appendix E).
+Chapter 11:
+pg 290	replace the example using Y at the middle of the page by:
+"Given a class Y for which ->, *, and [] have their default meaning and a
+Y* called p then
+	p->m == (*p).m	// is true
+	(*p).m == p[0].m	// is true
+	p->m == p[0].m	// is true
+"
+Chapter 13:
+pg 335	s/const char[12]/const char v[12]/
+Chapter 14:
+pg 369	better:
+	X* p3 = new(&buffer[10]) X;	// place X in buffer (no deallocation needed)
+	X* p4 = new(&buffer[11]) X[10];
+Chapter 16:
+pg 433 correct entry in Input/Output table:
+	character classification functions	sec20.4.2
+Chapter 18:
+pg 538	replace the second example with
+	For a call random_shuffle(b,e,r), the generator is called with
+	the number of elements in the sequence as its argument.
+	For example, for a call r(e-b) the generator must return a value
+	in the range [0,e-b). If My_rand
+	is such a generator, we might shuffle a deck of cards like this:
+	void f(deque& dc, My_rand& r)
+	{
+	random_shuffle(dc.begin(),dc.end(),r);
+	// ...
+	}
+Chapter 19:
+pg 570 add "template":
+	typedef typename A:: template rebind::other Link_alloc;	// allocator
+pg 573 s/an implementation of a standard may take advantage of that./
+	an implementation of a standard container may take advantage of that./
+Chapter 20:
+pg 581	s/The difference is .../The difference is that move()
+	works correctly even if [s,s+n[ and [s2,s2+n[ overlap./
+pg 582	s/wstreamoff/streamoff/
+pg 582	s/Such functions are most easily utilized/
+	Such instructions are most easily utilized/
+pg 599	replace the last two declarations with:
+	size_t strspn(const char* p, const char* q);	// number of char in p before a char not in q
+	size_t strcspn(const char* p, const char* q);	// number of char in p before a char in q
+Appendix A:
+Appendix B:
+Appendix C:
+pg 895	s/: num_put/std::num_put/
+pg 898	s/my_numpunct/My_punct/
+pg 910	add before D.4.4.4:
+	A _byname version (D.4, D.4.1) of time_put is also provided:
+	template >
+	class std::time_put_byname : public time_put { /* ... */ };
+pg 912	s/time_put()/time_put::put()/ twice
+pg 912	replace the last paragraph with:
+A _byname version (D.4, D.4.1) time_get is also provided:
+	template >
+	class std::time_get_byname : public time_get { /* ... */ };
+pg 915	s/Date_format::/Date_format::/
+pg 918	s/dateorder()/date_order()/
+pg 919	s/order = dateorder();/order = date_order();/
+pg 919	s/tmp->tm_mday = val[1];/tmp->tm_mday = val[2];/
+pg 924	s/widen(narrow('x')) == 'x'/widen(narrow('x',0)) == 'x'/
+pg 926	s/out() encountered/in() encountered/
+pg 928	add "char ch;" before the while-statement
+Appendix D:
+Appendix E:
+Typos
+Chapter 4:
+pg 80	s/a vector/an array/
+Chapter 11:
+pg 288	s/of the array/of the vector/
+Chapter 17:
+pg 488	s/the m/m/ on the first line
+Appendix B:
+pg 817	s/Direction d = 1;/enum Direction d = 1;/
+Appendix D:
+pg 817	s/Grenwich/Greenwich/
+Appendix E:
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

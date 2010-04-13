@@ -1,0 +1,142 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class LotteryNumbers
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class LotteryNumbers
+java.lang.Object
+ |
+ +--javax.servlet.GenericServlet
+ |
+ +--javax.servlet.http.HttpServlet
+ |
+ +--coreservlets.LotteryNumbers
+public class LotteryNumbersextends HttpServlet
+Example using servlet initialization and the
+ getLastModified method.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Constructor Summary 
+LotteryNumbers()
+ 
+ 
+Method Summary 
+ void 
+doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ 
+ long 
+getLastModified(HttpServletRequest request)
+ The standard service method compares this date
+ against any date specified in the If-Modified-Since
+ request header. 
+ void 
+init()
+ The init method is called only when the servlet
+ is first loaded, before the first request
+ is processed. 
+ 
+Methods inherited from class javax.servlet.http.HttpServlet 
+doDelete, 
+doOptions, 
+doPost, 
+doPut, 
+doTrace, 
+service, 
+service 
+ 
+Methods inherited from class javax.servlet.GenericServlet 
+destroy, 
+getInitParameter, 
+getInitParameterNames, 
+getServletConfig, 
+getServletContext, 
+getServletInfo, 
+getServletName, 
+init, 
+log, 
+log 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+LotteryNumbers
+public LotteryNumbers()
+Method Detail 
+init
+public void init()
+ throws ServletException
+The init method is called only when the servlet
+ is first loaded, before the first request
+ is processed.
+Overrides:init in class GenericServlet
+doGet
+public void doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+Overrides:doGet in class HttpServlet
+getLastModified
+public long getLastModified(HttpServletRequest request)
+The standard service method compares this date
+ against any date specified in the If-Modified-Since
+ request header. If the getLastModified date is
+ later, or if there is no If-Modified-Since header,
+ the doGet method is called normally. But if the
+ getLastModified date is the same or earlier,
+ the service method sends back a 304 (Not Modified)
+ response, and does not call doGet.
+ The browser should used its cached version of
+ the page in such a case.
+Overrides:getLastModified in class HttpServlet
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

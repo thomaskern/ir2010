@@ -1,0 +1,150 @@
+
+Welcome to JResources.com
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+ Welcome to JResources.comTM
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	Introduction 
+	News 
+	
+	
+	
+ 
+Welcome to JResources.com. This site contains a variety of different Java applets and applications. 
+You may use these applets and applications free of 
+charge for non-commercial use, subject to this license agreement. Also, make sure 
+you read the disclaimer before using any of this 
+software. If you are interested in licensing these applets for commercial use, you can do so via 
+Amazon.com. 
+This site contains three basic categories of 
+products: 
+Applets
+These applets are written completely in Java. They use 
+classes from the core API only (as defined by the Sun JDK 1.02, for maximum 
+browser reach), and do not use any third party add-ons or class libraries. 
+Consequently, these applets should run on any platform to which a 
+reasonable implementation of the Java virtual machine has been ported. Please 
+note that performance will vary based on the quality of the underlying Java 
+virtual machine.
+Servlets
+These servlets are written completely in Java, to the JDK 1.1 and servlet API 2.1 spec. 
+They have been developed and tested with Tomcat 3.1 (beta), 
+but should run in any compliant servlet container.
+Standalone Applications
+These stand-alone applications are written completely in Java, 
+to the JDK 1.1 spec. They should run in any JDK 1.1 - compliant VM. 
+Performance will, of course, vary based on the quality of the underlying Java 
+virtual machine.
+Applets that use Microsoft-specific 
+technologies
+Some of 
+the applets/applications are written using Microsoft-specific technologies, such as J/Direct and Authenticode. Hence, 
+they will only run in Microsoft Internet Explorer 4.0x or higher. I 
+have noted this, where appropriate, in the documentation.
+Incidentally, if you are interested in Visual J++ 6.0 server-side Code-behind HTML, you should read this article on the subject, entitled Developing
+ data-driven Web sites with Code-behind HTML (Part 1 and 
+Part 2), published by ZD Journals.
+Legal Info
+This web site and all of its content is copyright© 1996-99, Andy Hoskinson, all rights reserved. Use of the software 
+on this web site is subject to this license agreement. Please read and agree to all terms before using any of the software on this Web site.
+Contact Info
+Please report any 
+problems to the JResources.com team. 	
+	
+ 
+	
+JResources.com applet collection source code -- Sunday, April 21, 2002
+The JResources.com applet collection source code bundle is now available via Amazon.com. If you are:
+- A developer looking to make custom modifications to one or more of the JResources.com applets for use in your web applications
+- A commercial web site operator in need of a commercial license for the JResources.com applet collection
+- A student who wants to find out how we implemented the various special effects
+You can now purchase the JResources.com applet collection Java source code bundle via Amazon.com for the low price of $19.95. Click here for more details.
+Professional XML Databases -- Wednesday, December 20, 2000
+If you are looking for a good book on developing XML-enabled database applications, you should check out Professional XML Databases.
+This is an outstanding book. Of course, I'm biased, because I'm one of the authors. I wrote chapter 16, JDBC. In this chapter, I walk through how to develop an XML Gateway Architecture for JDBC. I also discuss how to use XML to create distributed JDBC applications using the javax.sql.Rowset interface and the WebRowSet class. Check it out, and let me know what you think.
+Professional Java Server Programming, J2EE Edition -- Thursday, August 17, 2000
+If you are looking for a good book on developing J2EE applications, you should check out Professional Java Server Programming, J2EE Edition.
+This is an outstanding book. Of course, I'm biased, because I'm one of the authors. I wrote chapter 16, An XML-Based JDBC Connector Servlet Framework. Check it out, and let me know what you think.
+Web Server Query Tool recognized by JARS -- Wednesday, June 07, 2000
+Hoskinson's Web Server Query Tool recently received a top 25% rating from JARS.com. JARS.com, an Earthweb site, is the number one Java review service. Click here for more details. 
+ 
+	
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

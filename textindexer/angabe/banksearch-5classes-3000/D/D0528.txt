@@ -1,0 +1,239 @@
+
+Creating a Client Program
+The JavaTM Tutorial
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Trail: RMI
+Creating a Client Program
+The compute engine is a pretty simple program: it runs tasks that are
+handed to it. The clients for the compute engine are more complex. A
+client needs to call the compute engine, but it also has to define the
+task to be performed by the compute engine.
+Two separate classes make up the client in our example. The first
+class, ComputePi, looks up and calls a
+Compute object. The second class, Pi,
+implements the Task interface and defines the work to be
+done by the compute engine. The job of the Pi class is to
+compute the value of
+ to some number of decimal places.
+As you recall, the nonremote
+Task
+interface is defined as follows:
+package compute;
+public interface Task extends java.io.Serializable {
+ Object execute();
+}
+The Task interface extends
+java.io.Serializable so that an object that implements the
+interface can be serialized by the RMI runtime and sent to a remote
+virtual machine as part of a remote method invocation. We could have
+chosen to have our implementation classes implement both the Task
+interface and the Serializable interface and gotten the
+same effect. However, the whole purpose of the Task
+interface is to allow implementations of that interface to be passed to
+a Compute object, so having a class that implements the
+Task interface that does not also implement the
+Serializable interface doesn't make sense. Therefore we
+associate the two interfaces explicitly in the type system, ensuring
+that all Task objects are serializable.
+The code that calls a Compute object's methods must obtain
+a reference to that object, create a Task object, and then
+request that the task be executed. The definition of the task
+Pi is shown later. A Pi object is constructed
+with a single argument, the desired precision of the result. The result
+of the task execution is a java.math.BigDecimal
+representing
+ calculated to the specified precision.
+The client class
+client.ComputePi
+is as follows.
+package client;
+import java.rmi.*;
+import java.math.*;
+import compute.*;
+public class ComputePi {
+ public static void main(String args[]) {
+ if (System.getSecurityManager() == null) {
+ System.setSecurityManager(new RMISecurityManager());
+ }
+ try {
+ String name = "//" + args[0] + "/Compute";
+ Compute comp = (Compute) Naming.lookup(name);
+ Pi task = new Pi(Integer.parseInt(args[1]));
+ BigDecimal pi = (BigDecimal) (comp.executeTask(task));
+ System.out.println(pi);
+ } catch (Exception e) {
+ System.err.println("ComputePi exception: " + 
+ e.getMessage());
+ e.printStackTrace();
+ }
+ }
+}
+Like the ComputeEngine server, the client begins by
+installing a security manager. This is necessary because RMI could be
+downloading code to the client. In this example the
+ComputeEngine's stub is downloaded to the client. Any time
+code is downloaded by RMI, a security manager must be present. As with
+the server, the client uses the security manager provided by the RMI
+system for this purpose.
+After installing a security manager, the client constructs a name used
+to look up a Compute remote object. The value of the first
+command line argument, args[0], is the name of the remote
+host on which the Compute object runs. The client uses the
+Naming.lookup method to look up the remote object by name
+in the remote host's registry. When doing the name lookup, the code
+creates a URL that specifies the host where the compute server is
+running. The name passed in the Naming.lookup call has the
+same URL syntax as the name passed in the Naming.rebind
+call, which was discussed earlier.
+Next, the client creates a new Pi object, passing to the
+Pi constructor the second command line argument,
+args[1], which indicates the number of decimal places to
+use in the calculation. Finally, the client invokes the
+executeTask method of the Compute remote
+object. The object passed into the executeTask call
+returns an object of type java.math.BigDecimal, so the
+program casts the result to that type and stores the return value in
+the variable result. Then, the program prints out the
+result. The following figure depicts the flow of messages among the
+ComputePi client, the rmiregistry, and the
+ComputeEngine.
+Finally, let's look at the reason for all of this in the first place:
+the Pi class. This class implements the Task
+interface and computes the value of
+ to a specified number of decimal places. For this example the actual
+algorithm is unimportant except, of course, for the accuracy of the
+computation. All that is important is that the computation is
+numerically rather expensive and thus the sort of thing that you would
+want to have occur on a more capable server.
+Here is the code for the class client.Pi, which implements
+Task.
+package client;
+import compute.*;
+import java.math.*;
+public class Pi implements Task {
+ /** constants used in pi computation */
+ private static final BigDecimal ZERO = 
+ BigDecimal.valueOf(0);
+ private static final BigDecimal ONE = 
+ BigDecimal.valueOf(1);
+ private static final BigDecimal FOUR = 
+ BigDecimal.valueOf(4);
+ /** rounding mode to use during pi computation */
+ private static final int roundingMode = 
+ BigDecimal.ROUND_HALF_EVEN;
+ /** digits of precision after the decimal point */
+ private int digits;
+ 
+ /**
+ * Construct a task to calculate pi to the specified
+ * precision.
+ */
+ public Pi(int digits) {
+ this.digits = digits;
+ }
+ /**
+ * Calculate pi.
+ */
+ public Object execute() {
+ return computePi(digits);
+ }
+ /**
+ * Compute the value of pi to the specified number of 
+ * digits after the decimal point. The value is 
+ * computed using Machin's formula:
+ *
+ * pi/4 = 4*arctan(1/5) - arctan(1/239)
+ *
+ * and a power series expansion of arctan(x) to 
+ * sufficient precision.
+ */
+ public static BigDecimal computePi(int digits) {
+ int scale = digits + 5;
+ BigDecimal arctan1_5 = arctan(5, scale);
+ BigDecimal arctan1_239 = arctan(239, scale);
+ BigDecimal pi = arctan1_5.multiply(FOUR).subtract(
+ arctan1_239).multiply(FOUR);
+ return pi.setScale(digits, 
+ BigDecimal.ROUND_HALF_UP);
+ }
+ /**
+ * Compute the value, in radians, of the arctangent of 
+ * the inverse of the supplied integer to the speficied
+ * number of digits after the decimal point. The value
+ * is computed using the power series expansion for the
+ * arc tangent:
+ *
+ * arctan(x) = x - (x^3)/3 + (x^5)/5 - (x^7)/7 + 
+ * (x^9)/9 ...
+ */ 
+ public static BigDecimal arctan(int inverseX, 
+ int scale) 
+ {
+ BigDecimal result, numer, term;
+ BigDecimal invX = BigDecimal.valueOf(inverseX);
+ BigDecimal invX2 = 
+ BigDecimal.valueOf(inverseX * inverseX);
+ numer = ONE.divide(invX, scale, roundingMode);
+ result = numer;
+ int i = 1;
+ do {
+ numer = 
+ numer.divide(invX2, scale, roundingMode);
+ int denom = 2 * i + 1;
+ term = 
+ numer.divide(BigDecimal.valueOf(denom),
+ scale, roundingMode);
+ if ((i % 2) != 0) {
+ result = result.subtract(term);
+ } else {
+ result = result.add(term);
+ }
+ i++;
+ } while (term.compareTo(ZERO) != 0);
+ return result;
+ }
+}
+The most interesting feature of this example is that the
+Compute object never needs Pi's class
+definition until a Pi object is passed in as an argument
+to the executeTask method. At that point the code for the
+class is loaded by RMI into the Compute object's virtual
+machine, the execute method is called, and the task's code
+is executed. The resulting Object, which in the case of
+the Pi task is a java.math.BigDecimal object,
+is handed back to the calling client, where it is used to print out the
+result of the calculation.
+The fact that the supplied Task object computes the value
+of Pi is irrelevant to the ComputeEngine
+object. You could also implement a task that, for example, generated a
+random prime number by using a probabilistic algorithm. That would also
+be numerically intensive and therefore a candidate for being shipped
+over to the ComputeEngine, but it would involve very
+different code. This code could also be downloaded when the
+Task object was passed to a Compute object.
+In just the way that the algorithm for computing Pi is
+brought in when needed, the code that generates the random prime would
+be brought in when needed. The Compute object knows only
+that each object it receives implements the execute
+method; it does not know, and does not need to know, what the implementation does.
+ 
+Start of Tutorial
+>
+Start of Trail
+>
+Start of Lesson
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

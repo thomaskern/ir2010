@@ -1,0 +1,84 @@
+
+VB Techniques: Unified Modeling Language for VB 6.0
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+Unified Modeling Language for VB 6.0
+Written by Paul Harmon and Brian Sawyer
+Published by AP Professional
+Table of Contents
+ 
+- Introduction
+ 
+- The Vocabulary of Object Technology
+ 
+- A Simple Object-Oriented Methodology
+ 
+- The Unified Modeling Language
+ 
+- Developing Applications in VB 6.0
+ 
+- Development with a Visual Modeling Tool
+ 
+- Use Case Diagrams and Ideal Object Models
+ 
+- CRC Cards
+ 
+- UML Class and Object Diagrams
+ 
+- UML Sequence and Collaboration Diagrams
+ 
+- UML State and Activity Diagrams
+ 
+- Designing an Object-Oriented System
+ 
+- Choosing an Object-Oriented Architecture
+ 
+- Expanding Your Design
+Appendices
+ 
+- Visual Basic Example Program
+ 
+- UML Job Aid
+ 
+- Comparison of UML, OMT, and Booch Notations
+ 
+- Products Mentioned in this Book
+ 
+Our Review
+If you're not aware that Visual Basic supports objects and object-oriented programming, you've probably been living under a rock somewhere. Everything in VB relates to objects, somehow, whether the object is a text box or a custom-designed MTS component. There have also been a number of different methodologies for designing objects for a variety of languages. The three main "gurus" of object technology now all work at Rational Software, and the result is a new language called Unified Modeling Language. This language is essentially a combination of all the previous object methodologies, and UML is gaining wide acceptance in the software industry. This book explains what UML is, how to design objects with it, and how that relates to using Visual Modeler (included with Visual Studio). 
+The first three chapters are designed to provide an introduction to the concepts involved in object-oriented programming. There is also coverage of how typical applications are built using the various phases of development. This is useful for programmers who haven't been through a project done on a large scale. 
+Chapter 4 covers UML at an introductory level and shows how it fits into the development process. Chapter 5 jumps back and covers the Microsoft-specific object technologies, such as OLE, COM, and COM+. There is also coverage of how MTS and ActiveX fits into the whole mix of technologies. 
+Chapter 6 provides not much more than an overview of the Rational Rose and Visual Modeler tools. There's not a lot of hands-on instruction in this chapter, so for a new user of these tools, it's not particularly useful. The real instruction of how to use these tools comes in later chapters, such as chapter 7, which shows how to build use case diagrams. Use Case diagrams were introduced by Ivar Jacobsen, who was part of the UML team. Use cases can be used to help you identify how objects are used, what they do, and how they interact. 
+Chapter 8 gets into another object methodology: CRC Cards. This methodology actually involved putting object characteristics on index cards and then using them within a group to further refine the object model. This chapter also goes through the steps you should follow when refining your objects. Regardless of the methodology you use, these steps are important to follow to make sure you don't miss anything in your objects. 
+Chapters 9-11 will show you the meat of the UML language. Chapter 9 covers class and object diagrams, 10 covers collaboration/interaction diagrams, and 11 handles state diagrams. Each chapter is easy to understand and includes the steps needed to create each type of diagram in Visual Modeler. There are also good examples used in these chapters that provide a simple business model that is easy to understand, even if you're a beginner. 
+Chapter 12-14 get into more advanced topics. Chapter 12 goes through all the steps in building, from scratch, an object-oriented application. It starts after you have the requirements for the application identified, and goes all the way through testing and deployment. These steps are going to be done, whether or not the application actually is object-oriented, so this is helpful information for anyone. Chapter 13 covers how applications can be broken into separate tiers, such as the three tiers commonly used for large-scale applications. This chapter covers how to logically break the objects into tiers and how to set up communications between the tiers. The last chapter, chapter 14, explains how to continue expanding your object model so that it is a living model of your application as it is enhanced over time. This is important, since many developers stop documenting when the code starts. If you don't keep the object model up to date, it's useless. 
+The Bottom Line
+This book provides a VB-specific look into how UML can help you develop applications. If you've ever read books by Jacobsen, Rumbaugh, or Booch, they can be somewhat intimidating and academic-oriented. This book comes from a developer who is teaching you how to exploit this technology as it exists in Rational Rose and Visual Modeler. It's also a good book for general OO development tips and techniques. 
+Written by Eric Smith on 8/21/1999
+Categories
+VB Techniques Reviews, Book Reviews Category
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

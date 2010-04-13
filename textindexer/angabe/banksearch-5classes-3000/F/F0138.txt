@@ -1,0 +1,155 @@
+
+VB TreeView
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Last update: 11/30/99
+ (TVOverlayIcons) 
+ 
+Home 
+ 
+ 
+ Extending the
+ functionality of the VB TreeView controls
+ 
+ Overview...
+ 
+ The "TreeView" control in both Comctl32.ocx and Mscomctl.ocx is simply a wrapper
+ that superclasses (encapsulates) the real "treeview" common control in
+ Comctl32.dll. This allows the real treeview common control messages and definitions to be
+ used to override almost every aspect of the VB TreeView control.
+ 
+ The treeview common control messages and definitions can be found in a C header file named
+ Commctrl.h. This file used to have a friendly URL on the MS site, but doesn't anymore for
+ some reason. It appears that the only alternatives for obtaining this file are to either
+ grab a copy of Visual Studio, or download either of the fairly huge INetSDK or PlatformSDK
+ at http://msdn.microsoft.com/developer/sdk/
+ 
+ But, instead of going to all of the trouble to find the darned download that contains
+ Commctrl.h (wherever it is), and then having to convert the C definitions to VB, well, you
+ can get the whole shebang right here. The follow zip contains *every* treeview definition
+ and macro converted to VB, through Comctl32.dll v4.72 (IE4, the treeview's
+ CustomDraw definitions are not included). Each treeview example below uses just the
+ necessary subset of these definitions, keeping each example as clear and understandable as
+ possible.
+ 
+ Download tvdefs_472.zip (8kb)
+ Last update: 08/20/98
+Example of how to both obtain an item handle (hItem) from any given
+ Node, and a Node object reference from a given item handle.
+ 
+ Unlike the listview control that uses sequential indices to uniquely identify
+ each item it contains, the treeview uses a different scheme to identify treeview items,
+ refereed to the item "handle" or "hItem". The trick
+ with doing anything really interesting API-wise with the TreeView" control in
+ Comctl32.ocx is obtaining an item handle for a respective node, since "hItem" is
+ obviously not a Node property.
+ 
+ So that's simply what this demo is all about, how to get a Node's hItem, and visa versa.
+ It's easier said than done though. The only accurate method of matching the hItem to a
+ particular Node, is by retrieving the handle of the item whose relative position in the
+ treeview equals that of the desired Node. The same approach is taken when retrieving a
+ Node reference from the corresponding hItem. It all takes a bit of doing. Do note though,
+ the code in this demo is the foundation for all subsequent demos, whose elements and
+ concept should be understood before proceeding.
+ 
+ Download tvnode-hitem.zip (6kb)
+ Last update: 08/03/98
+ 
+TVCheckBoxesEx: Example of how to add and use
+ custom checkboxes in VB's TreeView control
+ 
+ The easy way to do checkboxes in the TreeView is by simply applying the
+ TVS_CHECKBOXES treeview window style, or to just use the VB6 TreeView that does its own
+ checkboxes (though not very well, see the MS kb). But we don't do things like that around
+ here, at all. This demo is about treeview (the real one) item state images.
+ 
+ This demo does it all. It includes 12 custom checkbox icons, compiled into a resource
+ file, that are loaded into both a VB ImageList control, and a real imagelist common
+ control window created in code, either of which can be assigned to the TreeView as its
+ state imagelist. From there we show how to set any checkbox icon to any Node, how to
+ toggle the checkbox's state (we have to do that), and how to retrieve which icon any given
+ Node is currently using. A couple of other treeview item state image related topic are
+ covered as well.
+ 
+ Note, this is a major update to the previous checkbox demo found here.
+ 
+ Download tvcheckboxesex.zip (17kb)
+ Last update: 04/2/99
+ 
+TVEventCancel: Demonstrates how to prevent a Node
+ selection change, expand, and collapse in the Comctl32.ocx TreeView control. 
+ 
+ The TreeView's specific events AfterLabelEdit, BeforeLabelEdit, Collapse, Expand and
+ NodeClick are a raised as a result of the treeview's window procedure responding to
+ certain treeview specific notification messages: TVN_ENDLABELEDIT, TVN_BEGINLABELEDIT,
+ TVN_ITEMEXPANDED (for both Collapse and Expand), and TVN_SELCHANGED respectively. The only
+ one of these the *can* be canceled is AfterLabelEdit, which in turn tells the treeview to
+ return C TRUE (or 1) in response to the TVN_BEGINLABELEDIT notification message.
+ 
+ Now, to cancel either a NodeClick, Expand or Collapse, a value of 1 must be returned in
+ response to the TVN_SELCHANGING and TVN_ITEMEXPANDING notifications respectively (both
+ happen right before TVN_SELCHANGED and TVN_ITEMEXPANDED respectively). The hitch is that
+ the only way to tell the treeview this is by subclassing it's parent window, where the
+ notification messages are sent, and return 1 yourself. So this example gets a bit more
+ involved because it does the subclassing itself.
+ 
+ To help assist in the understanding of treeview notification messages, and what specific
+ treeview events cause them to occur, a code module is included that not only returns the
+ corresponding constant string of any specified treeview notification message value
+ (TVN_*), but also the corresponding constant string of any window message (WM_*) and any
+ general common control notification message (NM_*).
+ 
+ Note that because of the inherent instabilities incurred as a result of subclassing, care
+ must be taken not only when stepping through code, but most of all, to allow the
+ subclassing to be removed on it is applied (i. e. never using VB's End command to end the
+ project's execution). Consider either going to the VB Owner's area on the
+ MS site, picking up the "Debug Object for AddressOf Subclassing", or grabbing
+ the subclassing control at http://www.softcircuits.com/,
+ and plugging either into the demo's code. Doing so will allow things to go much smoother.
+ 
+ Download tveventcancel.zip (11kb)
+ Last update: 08/20/98
+ 
+TVItemData: Treeview item data (or how undocumented
+ can you get?)
+ 
+ After the many hours spent with both the real common control treeview and VB's
+ TreeView control, something finally occurred to me: How do both controls store internal
+ data for their respective items (Nodes)? And, is this item data accessible? Well, as it
+ just so turns out, it is...
+ 
+ For instance it was discovered that a treeview item handle (HTREEITEM) is nothing more
+ that a pointer to a treeview internal data structure that describes the item:
+ 
+Public Type TREEITEM ' ti
+ hitemParent As Long ' handle of the item's parent, can be 0 (root's
+ ' parent is a dummy item, whose only valid member
+ ' is the hitemChild, the root itself)
+ hitemNextSibling As Long ' handle of the item's next sibling, can be 0
+ hitemChild As Long ' handle of the item's first child, can be 0
+ lpszText As Long ' pointer to the item's text, allocated in DWORD
+ ' chunks, can be LPSTR_TEXTCALLBACK, is Unicode
+ ' on NT4 Comctl32.dll v4.xx, and all v5.xx
+ wState As Integer ' item's state flags, 1st byte is state, low
+ ' nibble of 2nd byte is overlay image index,
+ ' high nibble of 2nd byte is state image index
+ wImage As Integer ' normal icon index, can be I_IMAGECALLBACK
+ wSelectedImage As Integer ' selected icon index, can be I_IMAGECALLBACK
+ cxItem As Integer ' item's label width (TVM_GETITEMRECT/TRUE)
+ wIndex As Integer ' visible item's 0-based physical tree position,
+ ' is -1 if in collapsed parent, can change
+ bLevel As Byte ' item's 0-based hierarchical level in the tree
+ bChildren As Byte ' TVITEM.cChildren (can't be I_CHILDRENCALLBACK?)
+ lParam As Long ' TVITEM.lParam, can point to allocated data
+#If (WIN32_IE >= &H400) Then
+ dwID As Long ' always &HABCD0001 ?
+#End If
+End Type ' / 36 bytes (WIN32_IE 

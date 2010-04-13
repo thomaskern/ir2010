@@ -1,0 +1,848 @@
+
+Visual C++ Technology Preview FAQ
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 5.0
+	
+	 > Frequently Asked Questions
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Visual C++ Technology Preview FAQ
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How can I get it? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Visual C++ 5.0 owners will also be able to order the preview on CD-ROM (North America only) for US $14.95 (CDN $19.95) plus shipping and handling charges of US $ 7.50 (CDN $12.00). The Technology Preview is also available on the Owner's Area for download (Worldwide).
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How large is the Technology Preview download? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Technology Preview download is made up of three files of about 10MB each for total size of approximately 30 MB. Expanding the download files takes another 68MB of disk space. Once the Technology Preview is installed it takes an additional 110 MB of disk space. Due to the requirements for using the Technology Preview (see next question) and the subsequent large size of the download files, we recommend ordering the CD version, but we want to make the files available for download for those who prefer it. The CD version contains all the requirements outlined in the next question, except Visual C++ 5.0.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What are the requirements for using the Technology Preview? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Visual C++ 5.0 Technology Preview for Internet Explorer 4.0 requires that Visual C++ 5.0 is installed on your machine. (Note: The Technology Preview is not compatible with the German Visual C++ 5.0.) If you intend to order the CD-ROM containing the Visual C++ Technology Preview, there is no need to download any items from this site; everything you will need is included on the CD. However, if you plan download the Visual C++ 5.0 Technology Preview now, you will need to download and install the following three items beforehand if you haven’t already done so: 
+- Visual Studio Service Pack 2 
+- Windows NT Service Pack 3 (only needed for Windows NT 4.0 Server or Workstation) 
+- Internet Explorer 4 
+ 
+Additionally: 
+- The Internet Client SDK (also known as the Internet Explorer 4.0 Author’s Toolkit) is highly recommended if you are doing Internet Explorer 4.0 development. 
+- The OLE DB templates require the OLE DB SDK to be installed in order to work correctly. The OLE DB SDK is available on your Visual C++ 5.0 CD. 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Will the Technology Preview be made available to MSDN subscribers? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Technology Preview will be sent automatically to all current MSDN Universal subscribers.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Is there technical support? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+This is a preview, and as with all preview technology, Microsoft will offer no technical support.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What version of Visual C++ is the Technology Preview compatible with? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Technology Preview is compatible with Visual C++ 5.0.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Is the Technology Preview compatible with future releases of Visual C++? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+The Technology Preview is specifically targeted at Visual C++ 5.0, but full support for the Internet Explorer 4.0 features and OLE DB templates that comprise the Technology Preview will be integrated into the next major release of Visual C++. Please be aware that features introduced in the Technology Preview may change by the next major release.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>What does a &#147;Preview&#148; mean, and what are the limitations? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Previews are intended to let developers explore new technologies as they become available. The software in previews is not as thoroughly tested as the software 'release' grade products. For the Visual C++ Technology Preview, known issues are documented in the Readme; reading this document before using the product is highly recommended.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>How do I report bugs that I discover in the Technology Preview? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Bugs can be reported on the Visual C++ Bug Reporting Page. Select Technology Preview as the product.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Is there any forum for discussion of the Technology Preview? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+A public newsgroup, microsoft.public.vcbeta.tech_preview, will be available for discussions when the Technology Preview is released.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Can I distribute applications that I build with the features in the Technology Preview? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Because this is a preview intended to let developers explore these new technologies rather than a released product, you can not use the Technology Preview to develop release quality applications. You should not distribute applications built with it. Additionally, the common controls contained in the preview can only be used with a statically linked version of the Microsoft Foundation Classes (MFC).
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>If I can&#146;t distribute what I build with the Technology Preview, why did you make it available? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+We wanted you to be able to start developing with it as soon as Internet Explorer 4.0 became available, so that when the next version of Visual C++ is shipping you will be familiar with the technologies and ready to distribute. This applies to Common Controls, Dynamic HTML (DHTML) and the OLE DB Templates. This is why we made sure that everything works with your current version of Visual C++ 5.0.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>When will the next version of Visual C++ be available? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Microsoft makes it a policy never to comment on future ship dates, but as mentioned above, you will see full support for the Technology Preview features in the next major release of Visual C++.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>Does Microsoft&#146;s new Universal Data Access strategy with OLE DB mean ODBC is dead? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+Not at all, Microsoft actively supports ODBC for connections to SQL data. OLE DB works seamlessly with ODBC, and allows you to access any other types of data that can be expressed in a tabular format.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>When do I use ADO and when do I use the OLE DB Consumer Templates? What is ADO anyway? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+ADO, Active Data Objects, is the object model interface to the OLE DB drivers that provide access to data (not unlike RDO or DAO). ADO gives you language-independent access to OLE DB, and is a fast, easy way to access data from any application. The OLE DB Consumer Templates are available for C++ developers who want the control they will get when they go directly to OLE DB.
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ 
+ 
+ Q. 
+ 
+ 
+ <![if ! IE]>The Technology Preview Setup reports, &#147;Setup was unable to detect any updateable Visual Studio applications on this machine&#148; but I have Visual C++ 5.0 installed? <![endif]>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ A. 
+ 
+ 
+	
+You may experience problems with the Technology Preview installation if you have deleted the Visual C++ 5.0 registry key or the registry entries are pointing to the incorrect location. If you have Visual C++ 5.0 installed and the Technology Preview Setup reports, "Setup was unable to detect any updateable Visual Studio applications on this machine" the following registry keys may have been deleted or contain incorrect information. If the keys exist please delete them.
+Registry Keys:
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevStudio\5.0\Directories\Install Dirs
+and
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\DevStudio\5.0\Directories\ProductDir
+These keys are used by Setup to detect and locate the installation of Visual C++ 5.0. The IDE does not regenerate these registry keys after the registry has been deleted. Re-installing Visual C++ 5.0 with the /F switch can solve this problem.
+ 
+If you're installing from the Visual C++ 5.0 CD-ROM:
+1. Insert CD-ROM #1 into the CD-ROM Drive
+2. CD (change directory) to DevStudio
+3. Type Setup /F
+4. Press Enter
+If you're installing from the Visual Studio '97 CD-ROM:
+1. Insert CD-ROM #3 into the CD-ROM Drive
+2. CD to DevStudio
+3. Type Setup /F
+4. Press Enter
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

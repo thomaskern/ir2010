@@ -1,0 +1,192 @@
+
+Free Java Help --- E-zines --- Past Issues --- Rounded Rectangles
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Rounded Rectangles
+ 
+The FreeJavaHelp Reporter
+-------------------------
+December 9, 2000
+------------------------------------------------------------
+ THIS WEEKS ARTICLE: Rounded Rectangles
+------------------------------------------------------------
+	The Graphics class is really great. It lets us draw circles,
+rectangles, lines, text, and some other cool stuff. The Graphics
+class also has a method which allows you to draw rounded
+rectangles. (i.e. rectangles with curves instead of sharp
+corners.) Here is the basic format for the method, assuming
+that the name of your Graphics class is g:
+g.fillRoundRect(x,y,width,height,arcwidth,archeight);
+	In the format above, replace x with the the x coordinate
+of the upper left corner of the rectangle. Replace y with
+the y coordinate of the upper left corner of the triangle.
+Replace width with the number of pixels wide you want your
+triangle to be, and replace height with the number of
+pixels tall that you want your rectangle to be.
+	As I said before, the corners of the the rectangle can
+be made into curves instead of sharp corners. Think of each
+curve just as a simple arc. You need to tell the computer how
+tall and wide to make your arc. Replace arcwidth the width
+the you want your arc to be in pixels, and archeight with the
+number of pixels tall you want your arc to be. These two
+numbers in the method tell the computer how much of a curve
+you want on each corner. 
+	As I said, the fillRoundRect() method is part of the
+Graphics class. Most often you use the method inside the
+paint or update method. If you don't want your rounded 
+rectangle to be filled, but merely an outline, do everything
+the same, except use "drawRoundRect" in place of "fillRoundRect".
+	
+------------------------------------------------------------
+ Contribute to FreeJavaHelp
+------------------------------------------------------------
+	We are always looking for people to help us with our
+site. If you think you possess knowledge that would benefit
+our growing community and would like to contribute an article
+or tutorial, follow the following steps!
+1. Go to http://www.freejavahelp.com/contribute , and follow
+the instructions given there.
+BENEFITS FOR YOU
+	In return for your contribution, you will get a link
+at the top of the article or tutorial, plus a five line 
+description at the bottom of the article or tutorial.
+	We welcome all suggestions!
+------------------------------------------------------------
+ Recent FreeJavaHelp News
+------------------------------------------------------------
+	One of our goals over the last few weeks was to get the
+BURST! Media ads up on our website. Finally, after a long wait,
+they are up! We highly recommend BURST! to any webmaster looking
+for a little revenue from his or her site. 
+	Another section of our tutorial was started on the
+first of December. It is the Input/Output Section. Right now we
+only have One tutorial in it, but more will hopefully come soon!
+Check out the new section at:
+http://www.freejavahelp.com/tutorial/io
+LAST EZINE ISSUE
+November 25
+	http://www.freejavahelp.com/ezine/past/00nov25.html
+NEW ARTICLES
+Fonts
+	http://www.freejavahelp.com/articles/fonts.html
+NEW TUTORIALS
+Reading And Writing
+	http://www.freejavahelp.com/tutorial/io/readwrite.html
+------------------------------------------------------------
+	 LAST WORDS
+------------------------------------------------------------
+	We now have over 100 subscribers! YAY! :) Give us some
+feedback at:
+http://www.freejavahelp.com/feedback.html
+Thanks!
+	The FreeJavaHelp Staff
+ 
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

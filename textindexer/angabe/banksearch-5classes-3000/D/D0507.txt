@@ -1,0 +1,210 @@
+
+Free Java Help --- Tutorials --- Threads --- Java Animation
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+Java Animation
+ 
+ If you know how to use Threads as tought in
+the last lesson, animation will be a piece of cake. Of course, you do need to
+know the information in the Graphics section, as was stated earlier in the
+Threads section. If you don't know the Graphics information, read it, it is
+VERY easy to understand.
+ The thing that makes animation different
+from just normal painting is that things move in animation. Coordinates change.
+So one of the first things to have to do with animation is create a variable
+that you will increase in the run method. Then you have to increase it in the
+run method, then put a repaint() in the run method. The other thing that you
+obviously have to do is have a statement in the paint() method that uses the
+variable that is changing :). Check out the applet, then I will explain a
+little more.
+//-------------------------------//
+//Copyright 2000 FreeJavaHelp.com//
+//-------------------------------//
+//the next line imports the GUI components
+import java.awt.*;
+//the next line imports the Applet class
+import java.applet.Applet;
+//the next line begins a class named animation that extends Applet
+//and implements Runnable
+public class animation extends Applet implements Runnable{
+ //the next line creates a Thread named main
+ Thread main=new Thread(this);
+ //the next line creates an integer named x
+ int x=0;
+ //the next line creates two integer, named y and z
+ int y=0,z=0;
+ //the init() method occurs when the Applet is initialized(loaded)
+ public void init(){
+ //the next line starts the Thread named main, which
+ //makes it execute the run() method
+ main.start();
+ }
+ //the run method() occurs while a Thread is running
+ public void run(){
+ //the following while loop makes the code in the loop
+ //repeat so that higher and higher numbers will be printed
+ while(main!=null){
+ //the following try and catch attempts to make the
+ //Thread named main sleep for 50 milleseconds
+ try{
+ main.sleep(50);
+ }
+ catch(Exception e){}
+ //the next line adds one to the value of x
+ x++;
+ //the next line adds one to the value of z
+ z++;
+ //the line line adds one to the value of y
+ y++;
+ //the next line tells the Applet to run the paint()
+ //method again
+ repaint();
+ }
+ }
+ //the stop() method occurs when the Thread stops
+ public void stop(){
+ if(main!=null){main.stop();}
+ }
+ //the paint() method paints different things to the Applet
+ public void paint(Graphics g){
+ //the next lines draw a filled rectangle with the
+ //x value of the upper left hand corner the same as the
+ //value of the integer we called x. However, it only
+ //draws if the rect is off the screen. If it IS of the screen,
+ //x is set to 0
+ if(x
+ As you can see from above, I created an
+applet that makes a square move to the right, and a circle move down and to the
+right. I realized that to make it move to the right, I needed to increase the x
+value of the square. So, to do this, I created a variable named x. Then, in the
+run method, I did x++; Then I repainted the applet with the new x
+value.
+ For the circle, I realized that increasing
+the x and y values of the circle at the same interval would move it perfectly
+down and to the right. So I created two variables, called y and z, which I
+increased in the run method using y++ and z++. Then I repainted the applet so
+that the circle has new coordinates.
+ Another thing that you have to do with
+animation is choose the speed of the things that are moving. You can speed it
+up or slow it down by changing the amount of milleseconds in the sleep time.
+Another way you could do it is increase the amount by which the variables
+increase or decrease. But the sleep() method is the real control of the speed.
+Remember, 1000 milleseconds equals 1 second :) .
+Tutorial Contents
+ 
+ 
+Lessons in the Threads Section 
+ 
+Beginning
+Threads
+Animation
+Double Buffering
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

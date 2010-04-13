@@ -1,0 +1,697 @@
+
+What's New and What's Old? The History of the Tutorial
+What's 
+and What's Old? The History of the Tutorial
+Magha Puja Day (Thailand), 4 March 02 -- 
+- The 1.4 version of the 
+ Java 2 Platform Standard Edition was released recently. We're in the
+ process of updating the 
+ Creating a GUI with JFC/Swing trail to 1.4.
+ The Full-Screen Exclusive Mode API 
+ covers a brand new API in the 1.4 release; programmers who write games or 
+ other graphic-intensive applications should read this trail.
+ 
+- Lots of miscellaneous fixes to broken links and typos. 
+Underdog Day (World), 19 December 01 -- Maintenance Release
+- We removed our survey from the Web site. We want to thank everyone for their
+ thoughtful responses. Your feedback will help us improve the Tutorial 
+ and plan for the future. 
+ 
+- Lots of miscellaneous fixes to broken links and typos, including updates
+ in the Creating a GUI with JFC/Swing trail.
+Chulalongkorn Day (Thailand), 23 October 01 --
+- New survey! Please spend a few minutes 
+ filling out our survey. Your feedback will help us improve the Tutorial 
+ and plan for the future. We've also included some localization 
+ questions to help us learn what languages you'd like us to provide
+ translations in.
+- Lots of miscellaneous fixes to broken links and typos.
+Golden Week (Japan), 3 May 01 --
+- New lesson! 
+ User Interfaces that Swing: A Quick Start Guide. 
+ is a quick start guide to using Swing components to build user interfaces. 
+ It is built around several progressively complicated examples. (This lesson started life 
+ as a chapter in our latest book, The Java Tutorial, Third Edition.)
+- Another new lesson! For programmers who write games or other graphic-intensive apps, check out
+ the new Full-Screen Exclusive Mode API lesson. 
+ This API will be included in the 1.4 release of the Java 2 Standard Edition. 
+- Miscellaneous fixes to broken links and typos.
+Glarius Festival (Switzerland), 1 April 01 --
+- Completely updated the 
+ I/O: Reading and Writing (but no 'rithmetic) lesson.
+- Reorganized the order of lessons in the Essential trail.
+- Miscellaneous fixes to broken links and typos.
+Minor Update, 28 Feb 01 --
+- Miscellaneous fixes to broken links and typos.
+Rolling Blackouts Release, 3 Feb 01 --
+- Added Questions and Exercises for all trails included in the new book, 
+ The Java Tutorial Third Edition.
+- Added new book pages to support the new book, 
+ The Java Tutorial Third Edition. (The TOC includes a handy set of links
+ to all the answers for the Questions & Exercises.)
+- Updated the 
+ Getting Started trail.
+ We updated the material for 1.3 and added Questions and Exercises.
+- Updated the 
+ Interfaces and Packages lesson.
+ We updated the material for 1.3 and added Questions and Exercises.
+- Miscellaneous fixes to broken links and typos.
+Edvard Munch's Birthday, 12 Dec 00 --
+- Updated the 
+ Learning the Java Language trail.
+ We updated the material for 1.3 and added Questions and Exercises
+ to the Language Basics section.
+- Updated the
+ servlets trail
+ to refer to the Tomcat 3.x and 4.0 implementations. These releases support 
+ the 2.2 and 2.3 versions of Java Servlet technology.
+- The Tomcat version of the Servlets Bookstore Example can now be 
+ downloaded as a zip file.
+- Miscellaneous fixes to broken links and typos.
+Friday the 13th, 13 Oct 00 --
+- Added information to the
+ IDL trail
+ about the idlj compiler, 
+ which is part of the 1.3 release.
+ Updated links to the idlj compiler, its documentation, and the OMG site.
+- Updated the
+ servlets trail
+ to refer to Java Servlet 2.2 API Docs.
+- Updated the 
+ Bingo example
+ to fix some thread safety issues.
+- Updated the API links in most of the basic trails
+ to point to the 1.3 versions (instead of 1.2).
+- Miscellaneous fixes to broken links and typos.
+Tutorial Fifth Anniversary, 31 May 00 --
+- Added Werner van Mook's Mac adaptation of the
+ instructions for writing and compiling your first programs:
+ First Cup of Java (Mac OS).
+- Added questions and exercises to the end of the 
+ Getting Started trail
+ and to the first three lessons in the 
+ Learning the Java Language trail.
+- Rewrote portions of the first lessons in the
+ Learning the Java Language trail.
+- Miscellaneous fixes to broken links and typos.
+Zeppo Marx's Birthday (1901), 25 February 00 --
+- Did reconstructive work on the Learning the Java Language trail.
+ Lots of new examples added. Cleaned up.
+- Fixed a subtle bug in SwingWorker source code.
+ See How to Use Threads
+ in the Swing trail.
+- Adjusted JTable page, examples to reflect 1.3.
+ See How to Use Tables
+ in the Swing trail.
+- Miscellaneous fixes to broken links and typos.
+Thanksgiving (USA), 24 November 99 --
+- Added a new lesson to the JavaBeans(tm) trail,
+ Using the BeanContext API,
+ that covers The Extensible Runtime Containment and Services Protocol.
+- Added some information about JTable in 1.3 in the Swing trail.
+ Also, added a new 1.3 JTable example.
+- Began updating and rewriting the Learning the Java Language trail.
+ This work includes adding exercises and questions to each section.
+- Added the glossary
+ from the java.sun.com website and began linking
+ terms to it.
+- Did a partial conversion to our new icon scheme for identifying
+ the target of our links.
+ 
+ 
+- 
+ looks up a glossary term
+ 
+- 
+ links to a .java file
+ 
+- 
+ link to a page within the javadocs hosted at java.sun.com
+ 
+- 
+ links to a page outside of the tutorial
+ 
+- 
+ links to a page in a different lesson within the tutorial
+ 
+ Intra-tutorial links (black) update the page in the current browser window,
+ while extra-tutorial links (colored links) bring up a new browser window.
+Vegetarian Day (World), 1 October 99 --
+- Removed the survey. Thank you for your responses.
+- Added a really big index
+ that lists every content page in the tutorial in order.
+- Added a resources page
+ that lists Java programming resources outside of the tutorial.
+- Added Your First Cup of Java (for UNIX).
+- Added feedback form.
+ Please use this form to contact us instead of sending mail directly.
+ It will help direct your mail to the right person.
+- Modified our tools to provide automatic next and previous links,
+ automatic page titles, and automatic page headers and footers.
+ This change should be largely unnoticeable to readers except that
+ these page elements should contain fewer errors and inconsistencies.
+- Created a tool that automatically generated trail-level TOC pages.
+ This change should be largely unnoticeable to readers except that
+ these pages should contain fewer errors and inconsistencies.
+- Fixed various broken links, typographical, and other errors.
+- Put all of the images on the
+ Swing Components Visual Index.
+- Updated API links to point to Java 2 SDK docs.
+- Thanks to our two delightful summer interns, Ray and Indra,
+ we were able to do a lot of clean up including fixing omissions,
+ making clarifications, adding examples, and so on.
+- We did a pass and cleaned up most of the pending issues.
+ The only remaining pendings are in the BINGO lesson,
+ which has not been completed,
+ and in one of the book pages for the Second Edition.
+ We hope, but do not promise, to clean up the remaining ones
+ for the next tutorial update.
+National Smile Week :), 3 August 99 --
+- Added the 2D applets to the
+ list of applets
+ page, for a total of 77 applets in the Tutorial.
+ Also, provided Java Plug-in tags for running the 2D applets.
+- Added detailed instructions
+ for compiling and running a Java program in Windows.
+- Posted a survey.
+- Created a tutorial announcements mailing list to which tutorial
+ readers can subscribe. See
+ Get Announcements about The java Tutorial.
+- Added common problems pages to some trails that didn't have them.
+- Clarified and fixed various errors reported by readers.
+Fiesta de San Fermin (Spain), 7 July 99 --
+- Fixed most of the pending issues in the Swing trail.
+ Fixed a few pending issues in other trails.
+- Fixed some problems with one example in the security trail.
+- Made some minor modifications to the page format
+ and did some clean up on our tools.
+ This has minor repercussions for API links.
+- Cleaned up the image directories and removed unused images.
+ This reduced the size of the tutorial by about 1.5 Meg.
+- Added coverage of JSDK 2.1 in the servlets trail.
+- Modified our coverage of finalization in the
+ Java language trail and in effected examples.
+- Fixed typos, broken links, a couple of broken applets,
+ and other reader reported problems.
+- Updated the instructions for running the BINGO program.
+- Became a mirror for WinHelp version of tutorial.
+Memorial Day (USA), 28 May 99 --
+- Announced the Swing book.
+- Due to overwhelming reader feedback,
+ we changed our format again.
+ We removed the left-hand border and modified the headers
+ and footers to include a link to the search page.
+- Fixed typos and other errors in the Learning Java,
+ Essential Classes, and Custom Networking
+ trails in response to reader e-mail.
+Lei Day (Hawaii) update, 5 May 99 --
+We made some changes to our new page format in resonse to reader feedback.
+- Because of reader feedback, we added
+ a navigation area to the bottom of each page.
+- Implemented a max width of 460 for images to prevent
+ large images from creating a page that is too wide.
+Lei Day (Hawaii), 1 May 99 --
+- Modified our page format. It now includes
+ search on every content page.
+- Created examples indexes for all examples in the Swing trail.
+ If readers like it, we plan to do this for all trails.
+- Reviewed the code for all example programs in the Swing trail.
+- Did a final pass in preparation for converting from HTML to
+ book format. This included everything from fixing typos to
+ tweaking comments in source files to adding a few paragraphs
+ of new information. 
+- Added a second custom layout manager example: GraphPaperLayout.
+- Added new examples and content to the 2d trail.
+World Culture Day, 12 March 99 --
+We marched through the Swing trail preparing for copyedit.
+Here's what we did:
+- Internally reviewed and edited all .html pages in the Swing trail
+ in the first 7 lessons. In some cases, this amounted to a major
+ rewrite.
+- Added *a lot* of material to the component how-to pages
+ that covers aspects of the components that had previously been omitted.
+ Typically, the additional material covers more advanced component
+ features.
+- Reviewed example code, ran all examples,
+ and modified as appropriate.
+- Researched and resolved many pending issues. (Some still remain.)
+- Performed "example audits" and updated the tables of examples.
+- Reviewed and updated API tables everywhere.
+- Fixed various bugs and clarity issues reported by readers.
+- Filled in "glue" pages.
+- Added information about common problems in many places.
+- Tied sections together better by adding links.
+- Made the layout and events sections similar to how-to
+ pages by adding API and examples tables.
+Joe's 40th Birthday, 21 Jan 99
+- Updated the drawing lesson to Swing.
+- Made various improvements to the Swing trail.
+- Some front page cleanup.
+Winter Solstice, 21 Dec 98
+- Added Search Capability!
+- Added preliminary draft of Converting to Swing lesson.
+- Added links to resources and examples for Drag 'n Drop.
+- Some image clean up, which shrunk the tutorial by about .75 Megs.
+- Made various improvements to the Swing trail,
+- Fixed various broken link and typos.
+Enlightenment of the Buddha (Japan), 8 Dec 98
+- Minor typo and broken link fixes.
+- Getting first two lessons in Swing trail ready for copyedit.
+- Removed all .class files from tutorial except those necessary
+ for running applets. This shrank the tutorial by 1.5 Megs.
+Day of the Artisans (Mexico), 4 Dec 98
+- Note: CD-ROM build.
+ This is the version of the tutorial
+ that appears on the CD-ROM for
+ The Java Tutorial Continued.
+- Integrated all copyedits and other changes from the
+ continued book into 5 trails:
+ overview, internationalization,
+ sound, 2D, and RMI.
+- Made lots of little improvements to the Swing trail,
+ especially in swingOverview and swingStart.
+ Reorganized material about text.
+- Updated programs to use Swing 1.1
+ (from Swing 1.0.3 and Swing 1.1 Beta 3)
+ and JDK 1.2.
+Aron's Birthday, 6 Nov 98
+- Substantially reorganized the
+ Creating a GUI with JFC/Swing trail.
+ The Swing-based User Interface trail replaces
+ the old AWT-based User Interface trail,
+ which is available only by download.
+ We still have some work to do to complete the transition.
+ Please bear with us during construction!
+- Miscellaneous fixes to typos, broken links, and program bugs.
+Universal Children's Day, 5 Oct 98
+- Converted the examples and text in
+ Laying Out Components within a Container
+ to use Swing.
+- Several updates to the Using Swing Components lesson.
+- Converted many applets to use Java Plug-in.
+- Updated to JDK 1.1.7 and Swing 1.1 Beta 3.
+- Converted old UI trail to a downloadable archive.
+- Removed reference objects trail.
+- Miscellaneous fixes to typos, broken links, and program bugs.
+Labor Day Release, 7 Sept 98
+- Added Overview of the JDK.
+- Added Java Sound trail.
+- Added Working with Java 2D Graphics trail.
+- Added JDBC Database Access trail.
+- Added Using Java RMI trail.
+- Reviewed and edited Programming with Java IDL trail.
+- Added new material and examples to the
+ Using Swing Components
+ lesson.
+Laine's Birthday Release, An Update, 14 Aug 98
+- Added Programming with Java IDL trail.
+- Added Security in JDK 1.2 trail.
+- Reviewed and edited various trails and lesson.
+- Added new material and examples to the
+ Using Swing Components
+ lesson.
+- Fixed miscellaneous typos and broken links.
+ Made minor improvements to text and examples all over the place.
+Laine's Birthday Release, 3 Aug 98
+- Added Collections trail.
+- Added Servlets trail.
+- Added The Java Extensions Mechanism trail.
+- Added Reference Objects trail.
+- Added new material and examples to the
+ Using Swing Components
+ lesson.
+ Completed technical reviews for many pages and integrated
+ engineering feedback.
+- Reviewed and edited
+ javabeans and
+ jar trails.
+- Fixed miscellaneous typos and broken links.
+ Made minor improvements to text and examples all over the place.
+The Summer Solstice Release, 26 June 98
+- Added a lot of new material and examples to the
+ Using Swing Components
+ lesson.
+- Updated information about
+ hashCode and
+ equals.
+- Added a bios page that contains
+ information about our contributing authors.
+- Reviewed and edited
+ internationalization,
+ reflection, and
+ native trails.
+- Fixed miscellaneous typos and broken links.
+ Improved some text and some examples.
+Nettle Day (UK), 29 May 98
+- Added JAR trail.
+- Added 4 new topics to the internationalization trail:
+ comparing strings,
+ text boundaries,
+ conversions, and a
+ checklist for
+ internationalizing existing programs.
+- Added demo programs to the date and number formatting lessons.
+- Reorganized JavaBeans trail.
+- Added a lot of new material and examples to the
+ Using Swing Components
+ lesson.
+- Reviewed native methods
+ trail and made associated changes and fixes.
+- Fixed miscellaneous typos and broken links.
+ Improved some text and some examples.
+Arbor Day, 24 April 98
+- WooHoo! New front page!
+ New Trail map!
+- New look for trail-level TOC.html files.
+ Also, removed lesson-level TOC.html files. Instead
+ we now provide a link to the appropriate place within
+ the trail-level TOC.html files.
+- Continued to add new pages to the
+ Using Swing Components
+ lesson.
+- Added a new lesson to the internationalizaton trail
+ covering formatting.
+- Added trail on reflection.
+- Added some information to the
+ native methods trail for
+ Mac programmers.
+- Fixed typos, broken links,
+ and various other minor problems with content
+- Removed the old internationalization trail.
+- Removed old native methods trail...provide a
+ downloadable archive instead.
+- Updated errata page
+ for second edition of the book.
+The Vernal Equinox, 20 March 98
+- 
+Changed the background color to white.
+- 
+Finished integrating figures from the new, second, edition of the book.
+Figures and images are now kept together at the top-level instead of
+sprinkled throughout the lesson directories.
+- 
+Added book.html
+and related pages for the second editon of the book.
+Changed the page design of the book.html
+and related pages for the first edition to match the second edition.
+- 
+Did a bunch of work behind the scenes on our tools and processes.
+This is the first update of the tutorial from our new workspace
+with our new makefiles and build process.
+- 
+Because of our lovely new tools, we can now easily
+provide a downloadable archive of all of the examples
+in the book.
+See Download the Tutorial
+for the ftp links.
+- 
+Fixed various typos and other minor problems with content.
+- 
+Updated the 
+Swing
+material relating to the JDK 1.2.
+Saturnalia, 22 December 97
+ The long awaited update!--
+ this is a major update of the tutorial.
+ Almost every file has been touched in some way.
+ 
+ This release of the online tutorial corresponds with the
+ release of the 2nd edition of The Java Tutorial book
+ and is the version of the online tutorial that appears on
+ the CD-ROM that accompanies that book.
+ 
+ The changes are in progress, but to a large extent
+ we have integrated 1.1 information into
+ the existing trails, lessons, and examples. This is
+ in sharp contrast to the 1.1 notes that were littered
+ throughout the previous version of the tutorial and
+ were, admittedly, somewhat confusing.
+ 
+ Also, we are in the process of integrating copyedit and
+ other changes made to the book version, into the online version.
+ This has been completed thoroughly in some areas of the online
+ tutorial, and spottily in other areas. We will continue
+ with this process throughout the coming months.
+ 
+ New lessons in this tutorial that first appeared in print
+ in the 2nd edition of The Java Tutorial book:
+ 
+ 
+- 
+ The Java Phenomenon
+ 
+- 
+ Migrating to 1.1
+ 
+- 
+ A Preview of Things to Come
+ 
+ New trails for this version of the tutorial
+ that haven't yet made it to print:
+ 
+ 
+- 
+ Added a Putting It All Together trail
+ that provides a large, real-world, client/server example and analyzes it.
+ 
+- 
+ Got a totally new JavaBeans Tutorial
+ by Andy Quinn!
+ 
+8 July 97
+- One of the goals of the tutorial is to document the latest and greatest
+ from JavaSoft as it is released.
+ To this end, we've added a lesson about
+ Using Swing Components.
+ The Swing release is an early release of part of the JFC.
+ This information is only available from the Java Tutorial.
+- Added a trail, Java Security 1.1,
+ covering the new 1.1 security APIs.
+- Updated the The JavaBeans(tm) Tutorial by Greg Voss.
+- Promoted Writing Global Programs to
+ a trail. This trail is still in progress, but it contains new material
+ including several excellent demos from
+ Taligent.
+- Added information about the 1.1 release in our
+ To 1.1 -- And Beyond! trail.
+- Made the usual fixes to broken links, typos, and other errata.
+14 May 97
+We improved and added more 1.1 information in existing sections.
+We added more examples of and information about
+the various types of event listeners to 
+Handling Events.
+We also fixed the AroundTheWorld applet used in
+Writing Global Programs.
+28 April 97
+We added a new trail,
+To 1.1 -- And Beyond!,
+which is the headquarters for features added to the JDK after 1.0.
+Also, the Learning the Java Language
+and Essential Java Classes trails
+now have notes that point out material that is affected by 1.1.
+And finally, we reorganized our top-level files to make them more
+accessible.
+3 March 97
+Added a brand new trail introducing JavaBeans!
+This trail, JavaBeans Tutorial, written by Greg Voss,
+shows you the ins and outs of developing programs
+using the JavaBeans technology.
+19 February 97
+- 
+Our new "guest author" program debuts in this release of the tutorial
+with a completely new trail about
+writing native methods by Beth Stearns. Check it out:
+Using the Java Native Interface (JNI).
+- 
+Merged copyediting changes from the book into the on-line version in
+these two trails:
+Getting Started and
+Writing Applets.
+- 
+Updated
+Writing Global Programs
+to work with the FCS JDK 1.1 release.
+- 
+The usual miscellaneous fixes.
+24 December 96
+Miscellaneous fixes.
+Also, added a new lesson describing new features of the JDK for 
+Writing Global Programs.
+6 June 96 -- Released the Sixth DRAFT.
+This draft is the version on which the book version is based.
+The book and online versions aren't exactly the same --
+for example, none of the copyeditor's changes 
+have made it into the online tutorial yet.
+Also, the online tutorial's figures haven't been updated
+to be the same as those in the book.
+Notable content changes since the fifth draft include:
+- Finished the Common Problems pages.
+- Added information on the Macintosh JDK.
+- Added an applet anatomy section to Getting Started.
+- Improved the talk server example in the applet communication lesson.
+28 Mar 96 -- Released the Fifth DRAFT.
+Many pages in this draft have been rewritten
+or expanded upon.
+(If you've sent us comments and don't see them reflected in this draft,
+please don't be insulted -- 
+we haven't finished incorporating reviewer comments.)
+Some of the notable changes include:
+- Revised Application Anatomy lesson
+ and moved it to the Getting Started trail:
+ The Anatomy of a Java Application.
+ We plan to write an equivalent section
+ for applets.
+- Did major rewrites of the following lessons in the Java trail:
+ The Nuts and Bolts of the Java
+ Language and
+ Objects and Classes in Java.
+- Added new pages to the applet overview:
+ Adding an Applet to an HTML Page
+ and
+ Summary.
+- Beefed up the applet threads pages:
+ Threads in Applets.
+- Added a discussion of peers to the UI trail:
+ Details of the Component Architecture.
+- Added material to the native methods trail,
+ Integrating Native Methods into Java Programs,
+ including passing data into and out of native methods
+ and accessing Java objects.
+- Removed some trails: comparison to C/C++, troubleshooting, and tools.
+ This information has been (or will be) incorporated into other
+ trails/lessons.
+4 Mar 96 -- Released the Fourth DRAFT
+Among the normal bug, typo and broken link fixes, this draft includes
+revisions to many of our old trails and lessons, plus this new material:
+- Added a new lesson to 
+ Integrating Native Methods into Java Programs
+ trail.
+- Added new material to and/or wrote from scratch 4 lessons in the
+ Writing Applets
+ trail. Including:
+ Creating an Applet User Interface,
+ Communicating with Other Programs,
+ Understanding Applet Capabilities and Restrictions,
+ and
+ Finishing an Applet.
+ (The first three have since been reorganized into two trails:
+ Taking Advantage of the Applet API
+ and
+ Practical Considerations when Writing Applets.
+24 Feb 96 -- Released the Third DRAFT
+Among the normal bug, typo and broken link fixes, this draft includes
+revisions to many of our old trails and lessons, plus this new material:
+- Added a lot of new material to 
+ Creating an Applet User Interface.
+- Added new lessons to the 
+ Creating a User Interface
+ trail. Including:
+ 
+ 
+- Laying Out Components within a Container
+ Please note that 3 pages are still under construction.
+ 
+- Using Components, the GUI Building Blocks
+ Each component now has a page describing how to use it.
+ 
+- Working with Graphics
+ There's now information on how to draw primitive graphics (including text)
+ and images, plus information on performing animation. The animation pages
+ include information on how to eliminate flashing, using update() and double
+ buffering. They also have information on using MediaTracker.
+ 
+- Added a new trail:
+ Custom Networking
+- Added a new lesson,
+ Input and Output Streams
+ to the
+ Essential Java Classes trail.
+23 Jan 96 -- Updated the Second DRAFT
+- Updated links to point to new FCS1.0 JDK release.
+- Fixed bugs where some applets and sources files were missing.
+- Miscellaneous fixes of typos, bugs, and broken links. 
+18 Jan 96 -- Updated the Second DRAFT
+- Changed the Creating a User
+ Interface
+ trail to reflect the event changes introduced in Beta2.
+ Specifically, keyboard event handlers now have to return false,
+ unless they want the event to be dropped.
+ The Conversion example program and the overview were affected.
+- Revised the structure of the tutorial 
+ to reflect what we're going to be able to finish
+ by the time the book version is due to the printer.
+- Added a very preliminary lesson on Java's object features--
+ Java Objects.
+- Fixed various typos, bugs and broken links.
+12 Dec 95 -- Updated the Second DRAFT
+- 
+Made the few changes necessary to reflect Beta2 instead of Beta.
+- 
+Fixed various typos, bugs and broken links.
+- 
+Added a new lesson,
+Handling Errors using Exceptions, in the
+Essential Java Classes
+trail.
+13 Nov 95 -- Updated the Second DRAFT
+- 
+Made the few changes necessary to reflect Beta instead of Pre-Beta.
+- 
+Changed the name of this document from
+"The Java Programmer's Guide" to
+"The Java Language Tutorial: Object-Oriented Programming for the Internet."
+Why the long name?
+This document is going to be published as a book,
+and we wanted to make sure the title
+was as descriptive as possible,
+without requiring much prior knowledge of the potential buyer.
+- 
+Added ALT text to our link graphics, 
+so that people using non-graphical browsers
+can understand the information the graphic was conveying.
+- 
+Added a new lesson,
+Laying Out Components Within a Container, in the
+Creating a User Interface
+trail.
+2 Oct 95 -- Released the Second DRAFT
+- 
+Everything was updated to reflect the new APIs (except for The "run:"
+Protocol Handler and The "text/plain" Content Handler
+in the Getting Started
+trail).
+- 
+We fixed many typos, clarified many obfuscations, fixed
+broken links and miscommunications.
+- 
+We got a face-lift with new icons and a new page design.
+- 
+And, we added these trails and lessons:
+- 
+The
+Writing Applets
+trail has a new lesson:
+Overview of Applets
+which describes
+how applets work and how you use the Applet class to create an applet.
+- 
+The new
+Creating a User Interface
+trail has two new lessons:
+Overview of UI Elements which
+introduces you to the objects that the Java development environment
+provides for building UIs, and 
+Laying Out Components within a Container
+which tells you how to use each of the Components provided in the AWT.
+- 
+We've also added the
+Integrating Native Methods into Java Programs
+trail that shows you how to integrate native methods
+into your Java programs.
+- 
+And finally, we've added two new lessons:
+Threads of Control
+and
+Object-Oriented Programming Concepts.
+18 May 95
+Released the First DRAFT

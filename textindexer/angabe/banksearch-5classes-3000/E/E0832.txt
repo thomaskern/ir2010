@@ -1,0 +1,130 @@
+
+Improving GCC's Infrastructure (Central Flow Graph)
+- GNU Project - Free Software Foundation (FSF)
+Improving GCC's Infrastructure
+(Control Flow Graph)
+This page describes ongoing work to improve GCC's infrastructure
+for RTL based optimizers. The work is done on a branch in GCC's CVS
+tree called cfg-branch, which is available to experiment
+in. As the patches stabilize, they will be submitted for review and
+acceptance into the mainline development tree. Please contact Jan Hubicka if you
+would like to contribute.
+Background & Rationale
+The purpose of work on the CFG branch is to update GCC's older
+optimization passes to use the modern infrastructure which was not
+available when they were written. A second purpose is to continue
+improving the infrastructure for RTL-based optimizations.
+Currently, work concentrates on the control flow graph (CFG) data
+structure, originally contributed by Richard Henderson. We would like
+to convert all of the RTL-based optimizer passes to use it and keep it
+accurate. This will allow us to store more information directly in
+this structure, instead of using "notes" in the instruction stream
+which are difficult to keep accurate during optimization.
+Goals
+In addition to improving the infrastructure and updating the
+existing RTL-based optimization passes, we are implementing new
+optimization passes. We plan to implement optimizations that perform
+code duplication first such as superblock formation and loop
+peeling. We also plan to reimplement the loop unrolling pass.
+Detailed Description
+Some ideas that the cfg-branch will implement are known only in the
+compiler research literature but are new concepts for GCC. We'd like
+to explain the concepts briefly, give an overview of what we want to
+achieve in GCC and describe the current status.
+Loop Peeling
+This work is done by Jan Hubicka.
+Theory
+Loop Peeling is a form of loop unrolling where the
+first iterations from a loop are unrolled. It removes
+i iterations from the beginning of a loop and adds
+i copies of the loop body directly before the start of
+the loop.
+Implementation in GCC
+The loop peeling optimization will be done as part of the
+superblock formation. The tracer should peel as many iterations as
+can be predicted. Zdenek has also implemented simple loop peeling
+as part of the new loop optimizer.
+Status
+The code is on the branch.
+The tracer peels loops with one predicted iteration. We should try
+to peel more than one iteration.
+Loop optimizer re-implementation
+This work is done by Zdenek Dvorak.
+Theory
+The current loop optimizer uses information passed by frontend
+to discover loop constructs to simplify flow analysis.
+It is dificult to keep the information up-to-date and nowday
+it is easy to implement the loop discovery code on CFG.
+Implementation in GCC
+We want to use the Michael Hayes' loop discovery code and slowly
+replace existing features of loop optimizer by new one.
+So far Zdenek has modified the datastructure to allow easier
+updating and implemented loop unrolling, peeling and unswitching
+on the top of it.
+Status
+The main changes the loop infrastructure has been merged to mainline.
+Rest is being tunned on the branch.
+Software Trace Cache
+This work is done by Josef Zlomek.
+Theory
+Software Trace Cache is a basic block layout algorithm
+that also does code duplication during the process. While optimal
+code layout is an NP complete problem, allowing a limited amount of
+duplication should eliminate the common drawbacks of current
+algorithms and keep code size under control. The purpose of this pass
+is to minimize the number of branches and cache misses. It uses code
+duplication to avoid jumps. An trivial example is copying the return
+instruction instead of jumping to it. See [6] for a
+detailed description.
+Implementation in GCC
+The implementation will only do intraprocedural optimizations since
+interprocedural optimizations are out of reach of current GCC.
+Status
+The code is in the branch. The exact benefits needs to be measured
+but on non-PDO runs it brings 5% to eon benchmark (from CPU2000).
+Web Construction Pass
+This pass constructs webs as commonly used for register allocation
+purposes. After that each web gets assigned individual pseudo. This
+allows our register allocation pass to operate on pseudos directly,
+but also strengthens several other optimization passes, such as CSE,
+loop optimizer and trivial dead code remover.
+While future SSA passes will have same effect on the low-level RTL
+generation, we still believe this pass to be useful right before the
+register allocation pass or after the code duplication passes that
+need to unshare temporaries, such as tracer or loop unroller.
+Implementation in GCC
+The implemention of the web pass uses Michael Hayes's dataflow
+module to construct du-chains and unionfind to produce webs.
+Status
+The code is on the branch.
+This pass improves SPECint2000 performance by roughly 1%. We need
+to work on updating debug information in this pass.
+Register coalescing Pass
+This pass coalesces multiple registers into single one in order to
+avoid register to register copies that our register allocator is not
+able to deal with very well. It is a kind of temporary solution until
+the new register allocator is in place. At that point, the benefits are
+questionable, but still it is more effective (and probably less
+expensive) than the current copy propagation implementation.
+Implementation in GCC
+It is designed as stand alone pass constructing conflict graph and
+coalescing registers run after GCSE.
+Status
+The code is on the branch.
+This pass improves some of SPECint2000 tests and degrades others basically
+because of lack of live range splitting and increased register pressure in
+final program. It helps by about 1 point on peak SPECint runs.
+Jump Combining Pass
+This work is done by Jan Hubicka.
+Theory
+This optimization is very close to instruction combining. The
+compiler discovers conditionals with common expression like patterns
+(a || b) and (a && b) and attempts
+to create compound conditions.
+When using condition registers arithmetics this is always possible,
+but not always profitable for all architectures. Trivial, still
+common, cases can be handled. Some examples for these conversions
+are: (a || b) can be converted to (a | b),
+(a == b || c == d) to (a^b)|(c^d) and,
+(a == 3 || a == 4) to ((unsigned)(a - 3) 
+ 

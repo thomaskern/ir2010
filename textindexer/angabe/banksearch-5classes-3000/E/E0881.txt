@@ -1,0 +1,462 @@
+
+ 
+C >> The Basics ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Introduction 
+ Main Menu 
+ Hello World 
+ 
+ 
+ 
+ 
+The Basics
+ 
+ 
+ 
+ 
+ 
+Syntax
+ 
+ 
+ 
+ 
+ 
+The C code you write is called the SYNTAX. 
+ 
+Syntax is a mixture of: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+C keywords like int, for and return. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Constants and variables.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Operators like + (arithmetic "addition"), || (logical "or") and & (the "address of" operator). 
+ 
+ 
+ 
+ 
+ 
+ 
+ Note that C is CASE SENSITIVE! For example, words like cat, Cat, cAt and CAT are all considered different 
+ from one another. 
+ 
+Also, the amount of "white space" you use in a C program does not affect the way it's compiled. Use extra spaces to make your programs 
+ more readable - indentation of code is very common. Obviously, you can NOT put spaces or line breaks in the middle of keywords like 
+ this: str uct !! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Compilers
+ 
+ 
+ 
+ 
+ 
+At home, I used to use a Borland C++ compiler. 
+ 
+ 
+Nowadays, I use Microsoft's Visual C++ 
+ 6.0. This is a powerful package and is suitable for people who are interested in software engineering. 
+ 
+However, I found MSVC++ a little complex to use, so I turned to Borland C++ Builder 4.0 for my software engineering project. I have 
+ the standard edition of Version 4.0 - the latest version is Borland 
+ C++ Builder Version 5.0. The Builder series are excellent for creating DOS or Windows applications. 
+ 
+In general, C++ packages are fine for compiling C programs - the compiler executed depends on the extension of your source file(s). 
+ My book on C++, SAMS Teach Yourself C++ 
+ In 24 Hours, comes free with the DJGPP compiler - visit http://www.delorie.com 
+ 
+ 
+Whilst at university, I used a UNIX-based compiler (gcc I think it was called). The command for compiling was of the form: cc world.c 
+ -o world , where cc ran the gcc compiler. The filename after cc is the file to be compiled, which is "world.c" 
+ in this case, the filename after -o is the output file, which is "world". The output filename is the word you type to run the 
+ program. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Commenting 
+ Your Code
+ 
+ 
+ 
+ 
+ 
+You can add comments to your code by enclosing your remarks within /* and */. However, nested comments aren't allowed. 
+ 
+ 
+ 
+A few properties of comments: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+They can be used to inform the person viewing the code what the code does. This is helpful when you revisit the code at a later 
+ date. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The compiler ignores all the comments. Hence, commenting does not affect the efficiency of the program. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You can use /* and */ to comment out sections of code when it comes to finding errors, instead of deletion. 
+ 
+ 
+ 
+ 
+ 
+Here are examples of commented code: 
+ 
+ 
+ /* Comments spanning several */
+/* lines can be commented*/
+/* out like this!*/
+/* But this is a
+ simpler way
+ of doing it! */
+// These are C++
+// style comments
+// and should NOT 
+// be used with C!!
+/* /* NESTED COMMENTS
+ARE ILLEGAL!! */ */
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creating 
+ Executable Programs
+ 
+ 
+ 
+ 
+ 
+There are several tasks that need to be performed before you can run a program: coding, compiling and linking. 
+ 
+ 
+ 
+ 
+ 1. 
+ 
+ 
+ 
+You have to write the source code in C. You declare which header files you want to include within the 
+ source code. The source code must be saved with the extension .c. 
+ 
+ 
+ 
+ 
+ 
+2. 
+ 
+ 
+ 
+Then you run the compiler, which translates the source code into machine, or binary code, which the 
+ computer can understand. Computers do NOT understand C! 
+ 
+ 
+ 
+ 
+ 
+3. 
+ 
+ 
+ 
+Sometimes the source code is still lacking some parts, so after going through the compiler, the code is passed through a LINKER. 
+ This basically "links" the source code to other library or object files so that the final binary code is produced. Don't worry, 
+ I'll explain compiling and linking in greater detail in a later section. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer 
+ Friendly Version
+ 
+ 
+ 
+ Introduction 
+ Main Menu 
+ Hello World 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

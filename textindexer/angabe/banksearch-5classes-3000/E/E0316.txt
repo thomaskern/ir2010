@@ -1,0 +1,567 @@
+
+ 
+C >> Unions ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Structs 3 
+ Main Menu 
+ File Input And Output 1 
+ 
+ 
+ 
+ 
+Unions
+ 
+ 
+ 
+ 
+ 
+ 
+What is a union?
+ 
+ 
+ 
+ 
+ 
+A union, is a collection of variables of different types, just like a structure. However, with unions, you can only store 
+ information in one field at any one time. 
+ 
+ 
+ 
+You can picture a union as like a chunk of memory that is used to store variables of different types. Once a new value is 
+ assigned to a field, the existing data is wiped over with the new data. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Declaring a union
+ 
+ 
+ 
+ 
+ 
+Declaring a union is exactly the same as declaring a struct, except you use the union keyword: 
+ union human { 
+ char *name; 
+ int age; 
+ float height; 
+}; /* don't forget this semi colon!!!! */ 
+ 
+ 
+ 
+Once again, you can use a typedef statement to simply the declaration of union variables. 
+ 
+The size of an union is the size of its largest field. This is because a sufficient number of bytes must be reserved for the 
+ largest sized field. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initializing 
+ Unions 
+ 
+ 
+ 
+ 
+ 
+Now, this is where things get a little different to structures. Like I said before, with a union, fields share the same memory 
+ space, so fresh data replaces any existing data. This example demonstrates what happens if you initialize all the data for a union 
+ variable, all at once: 
+ 
+ 
+ 
+ 
+ #include 
+typedef struct robot1 ROBOT1;
+typedef union robot2 ROBOT2;
+struct robot1 {
+ int ammo;
+ int energy;
+};
+union robot2 {
+ int ammo;
+ int energy;
+};
+int main() {
+ ROBOT1 red = {10,200};
+/* ROBOT2 blue = {15,100}; DOESN'T WORK WITH UNIONS */
+ ROBOT2 blue;
+ blue.ammo = 15;
+ blue.energy = 100;
+ printf("The red robot has %d ammo ", red.ammo);
+ printf("and %d units of energy.\n\n", red.energy);
+ printf("The blue robot has %d ammo ", blue.ammo);
+ printf("and %d units of energy\n.", blue.energy);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The red robot has 10 ammo and 200 units of energy. 
+ 
+ The blue robot has 100 ammo and 100 units of energy. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+First notice how similar the declaration of a union is to a struct. 
+ 
+Things get a little different inside main. You can't initialize fields of a union variable all at 
+ once - try removing the correct initialization above and see what your compiler says. So I initialized each field separately... 
+ 
+ 
+ 
+The first printf statement displays the expected for the struct version of our robot. 
+ 
+The second printf shows you that the program has overwritten data in the ammo field with data of 
+ the energy field - this is how unions work. All fields share the same address, where as with structs, each field has its own 
+ address. 
+ 
+This example is similar to the last, except I used printf before initializing the energy field 
+ of the union: 
+ 
+ 
+ 
+ 
+ #include 
+typedef struct robot1 ROBOT1;
+typedef union robot2 ROBOT2;
+struct robot1 {
+ int ammo;
+ int energy;
+};
+union robot2 {
+ int ammo;
+ int energy;
+};
+int main() {
+ ROBOT1 red = {10,200};
+ ROBOT2 blue;
+ printf("The red robot has %d ammo ", red.ammo);
+ printf("and %d units of energy.\n\n", red.energy);
+ blue.ammo = 15;
+ printf("The blue robot has %d ammo", blue.ammo);
+ blue.energy = 100;
+ printf(" and %d units of energy.", blue.energy);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The red robot has 10 ammo and 200 units of energy. 
+ 
+ The blue robot has 15 ammo and 100 units of energy. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Data in the energy field has still overwritten the ammo field though - rearranging the printfs 
+ has changed made the outcome different from that of the last example. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Arrays of Union Variables
+ 
+ 
+ 
+ 
+ 
+The concept is the same as that of structs. However, because of the problem of new data overwriting existing data in the other fields, 
+ the struct version of the following example won't work if you simply replace all instances of struct with union. 
+ 
+ 
+ 
+ 
+ 
+ #include 
+typedef union robot ROBOT;
+union robot { 
+ char *name; 
+ int energy; 
+};
+int main() {
+ int i;
+ 
+ ROBOT robots[3];
+ robots[0].name = "Lunar Lee";
+ robots[0].energy = 50;
+ robots[1].name = "Planetary Pete";
+ robots[1].energy = 20;
+ robots[2].name = "Martian Matt";
+ robots[2].energy = 30;
+ for(i=0 ; i 
+ Unions Inside Structures
+ 
+ 
+ 
+ 
+ 
+I can't see any obvioud reasons why one might use unions, but here's a case when they could be useful. Suppose we want a field of a 
+ structure to contain a string or an integer, depending on what the user specifies. Take this example: 
+ 
+ 
+ 
+ 
+ #include 
+struct choice {
+ union {
+ char *name;
+ int age;
+ };
+ int number;
+};
+int main() {
+ struct choice example;
+ char d[4];
+ printf("You can enter a name OR an age.\n");
+ printf("Would you like to enter a name? (Yes or No) : ");
+ gets(d);
+ if(d[0]=='y' || d[0]=='Y') {
+ printf("\nWhat's your name? ");
+ gets(example.name);
+ }
+ else {
+ printf("\nWhat's your age? ");
+ scanf("%d", &example.age);
+ }
+ printf("\nWhat's you favourite number? ");
+ scanf("%d", &example.number);
+ if(d[0]=='y' || d[0]=='Y') {
+ printf("\nYour name is %s ", example.name);
+ }
+ else {
+ printf("\nYour age is %d ", example.age);
+ }
+ printf("and your favourite number is %d.\n", example.number);
+ printf("The size of the struct is %d\n", sizeof(example));
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output varies on what you entered, but I'll run through the program: 
+ 
+You can have an INLINE declaration of union within a struct declaration (inline is a term 
+ meaning "embedded within"). So the first field of choice can either be a char * or an int. 
+ 
+Once inside main, a struct choice variable called example is declared, as well as a sized char 
+ array called d. 
+ 
+The used is told to make a Yes / No choice - the response gets stored into d. 
+ 
+Now the program checks to see if the first character of d is Y or y - if so, the user can enter a name, 
+ else an age. Entering a favourite number is compulsory. 
+ 
+Then the program prints out what the user has entered. 
+ 
+The last printf displays the size of the struct: 8 bytes in all cases. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Final Remarks on Unions
+ 
+ 
+ 
+ 
+ 
+Firstly, nested unions are possibly, but are a little pointless. One union has the same memory space for all fields. If one 
+ of your fields is a union, that union would also let its fields share memory space - the same memory space reserved 
+ for the first union!! 
+ 
+ 
+ 
+Pointing to unions, passing unions to functions and passing pointers to unions to function are all done in the same way as that of 
+ structs. 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Structs 3 
+ Main Menu 
+ File Input And Output 1 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

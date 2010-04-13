@@ -1,0 +1,1065 @@
+
+Visual Basic Internet Programming
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Last Modified: May-22-2002 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ DNS Inside Out (DNS 
+ Client sample application)
+ Tutorial for the Visual Basic programmer
+ Today we are going to find out what is going on behind 
+ the scenes when our application calls such Winsock API functions as 
+ gethostbyname and gethostbyaddr. In other words, we’ll explore the 
+ communication session model between a client application and a DNS 
+ server. Afterwards, you’ll be able to develop the utility that does 
+ the same things as a well-known program - nslookup.exe. You will no 
+ doubt know how this resolving process works. Also, you’ll find out 
+ how DNS is used in order to locate the mail server where an e-mail 
+ message should be sent.
+ (Tutorial 
+ and Source code. Published: May 22, 
+ 2002) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Review of "Network Programming 
+ for Microsoft® Windows®”
+ from the Visual Basic programmer's perspective
+ If you are, as I was, looking for the book that covers the Winsock 
+ API and gives examples of how to use it with Visual Basic, you have 
+ found what you were looking for. That is, this title is a single one 
+ on the market today that keeps in mind that there are thousands of 
+ the Visual Basic programmers who want to know but have almost no 
+ information on how to utilize the Winsock API in order to develop 
+ network applications...
+ (Book review. Published: February 12, 
+ 2002) 
+ 
+ 
+ 
+ 
+ CSocket 
+ class - replacement for the MS Winsock Control
+ Winsock API - Step by step tutorial for the 
+ Visual Basic developers
+ This is an attempt to simulate functionality and behavior of the MS 
+ Winsock ActiveX Control. Why do I call it "an attempt"? Because I 
+ don't know what exactly is going on inside that control. I can 
+ suppose which Winsock API functions are called by the control's 
+ methods but I don't know a lot of other things in the control 
+ implementation. Anyway the class does work. To prove it, I just have 
+ ported the existing project - FTP Client Sample Application. 
+ Download and see it yourself.
+ (Source code. Published: February 08, 
+ 2002)
+ 
+ 
+ 
+ Binary download with the Internet Transfer Control by Mikael Oestberg
+ Have you ever wanted to retrieve information automatically from another 
+ web page and display it on your own web page? There are a couple of ways 
+ to do this. One way, which I am going to show you in this article, is 
+ using the Microsoft Internet Transfer Control, also known as the Inet 
+ Control. It is extremely easy to use and if you want to retrieve textual 
+ data only, you do not even need any compiled component, you could use 
+ this directly in your ASP application.
+ (Tutorial 
+ and Source code. Published: February 06, 
+ 2002)
+ 
+ 
+ 
+ Implementing a Distributed Algorithm in Visual Basic
+ Govindarao Sathyamoorthi and Sandhya 
+ Sathyamoorthi
+ An illustrative algorithm is implemented in Visual Basic, 
+ emphasizing all the four fundamental aspects of distributed 
+ computing systems: resource sharing, computation speedup, 
+ reliability, and communication. Winsock control is used to provide 
+ effective communication and resource sharing between the distributed 
+ server and its clients...
+ (Article 
+ and Source code. Published: January 24, 
+ 2002)
+ 
+ 
+ DirectoryInfo
+ by Terry Hutt
+ Displaying the directory tree using the TreeView control in VB.NET
+ This project was created using the .Net Beta 2 Release. It was 
+ originally written in VB6 and then rewritten in VB.Net. It teaches 
+ how to browse the directory structure and display it using the 
+ TreeView control. I make a point of highlighting differences between 
+ the VB6 and the VB.Net solutions. Some of them were quite a 
+ surprise.
+ (Tutorial 
+ and Source code. Published: January 10, 
+ 2002)
+ 
+ 
+ FTP Client sample 
+ application is updated
+ Using the MS Winsock 
+ Control
+ This sample application is an example of how to implement FTP client 
+ with the MS Winsock Control and Visual Basic. It is a complete FTP 
+ client that allows you to browse FTP directories, download and 
+ upload files, resume broken file transfer, create and remove 
+ directories, delete and rename files. All the operations execute in 
+ an asynchronous mode with the progress indication.
+ (Source code. Updated: January 08, 
+ 2002)
+ 
+ 
+ Listening 
+ for and accepting connection requests
+ 
+ Winsock API Test Bench sample application
+ What the title of this article is talking about? Who is listening? 
+ Why should it accept any requests? To answer these questions just 
+ imagine that you are going to develop a server application that 
+ servers one or many client applications via a network. You'll find 
+ out that you know nothing about how to create "a server side socket" 
+ and how it works at all. Let's try to discover what is going on 
+ behind the scene when the client application is trying to establish 
+ a connection, and see the server behavior...
+ (Tutorial 
+ and Source code. Published: December 28, 
+ 2001)
+ 
+ 
+ Sending Data
+ 
+ Winsock API Test Bench sample application
+ In the previous article we learned the recv Winsock API function 
+ which is used to read incoming data from the Winsock buffer. Today 
+ we'll see how to write data to the Winsock buffer for sending that 
+ data to a remote host. That is, actually, the send Winsock API 
+ function is not to send data. It just writes data to the buffer, and 
+ then the transport service retrieves that data, split it up to 
+ packets and sends those packets to the peer...
+ (Tutorial 
+ and Source code. Published: December 12, 
+ 2001)
+ 
+ 
+ 
+ Developing with a new standard in UI by 
+ John T. Yung
+ Miscellaneous articles and tutorials
+ In this article, John will "introduce some neat coding techniques 
+ that can make your program users think you or your company are/is 
+ bigger than actuality". Here’s a list of what you will read in 
+ this article: 
+ 
+ 
+- Screen Edge Snapping for the your Form 
+ 
+- Program Taskbar alert 
+ 
+- Always stay on Top
+ 
+ 
+(Tutorial. Published: December 10, 2001)
+ 
+ SOAP Basics
+ Sample Chapter from 
+ Professional XML Web Services
+ At the core of the Web Services model is SOAP (Simple Object Acc 
+ Protocol), the protocol that allows messages to be transmitted as 
+ XML documents and invokes the capabilities of Web Services. The SOAP 
+ standard is the key to Web Services. 
+ This chapter delves into SOAP 1.1, and the concepts needed to start 
+ using SOAP in applications. We will cover the fundamentals of SOAP 
+ and its design, and then we will drill down into the details of SOAP 
+ messages, transports, and conventions. 
+ (Sample chapter. Published: December 06, 2001)
+ 
+ 
+ Receiving Data
+ 
+ Winsock API Test Bench sample application
+ Today we'll learn how to use the recv Winsock API function with Visual 
+ Basic in order to read data from the Winsock buffer that collects all 
+ the bytes arrived through the network for our application.
+ (Tutorial 
+ and Source code. Published: December 04, 
+ 2001)
+ 
+ 
+ XML2Access
+ by Terry Hutt
+ Creation of an Access database from an XML file
+ This class was originally part of a larger project to extract data 
+ from a mainframe and present it to Crystal Reports. I selected XML 
+ as the data format because it is so flexible and yet easy to 
+ generate from COBOL. The code to transport the data from the 
+ mainframe and generate the reports has been removed. What remains is 
+ a class that will create and populate an Access database from an XML 
+ file. You can do anything you want with the database, not just use 
+ it for reports...
+ 
+ (Tutorial and Source code. Published: December 03, 
+ 2001)
+ 
+ 
+ Building Objects
+ Sample Chapter from Beginning Visual Basic 
+ .NET
+ In the time you've been using computers, you may well have heard the 
+ term, object-oriented. You may also have heard that it's a scary 
+ subject and tricky to understand. Whilst this was true about ten or 
+ fifteen years ago, today, object-orientation (or OO) is a 
+ wonderfully easy-to-understand concept that brings massive benefits 
+ to software developers. This is mainly due to the fact that 
+ development tools like VB, C++, and of course Visual Basic .NET and 
+ C# have matured to a point where the tools make creating objects and 
+ software that uses them very easy indeed. I'm confident that you'll 
+ have no problem understanding even the most advanced object-oriented 
+ concepts and using them to build exciting object-based applications. 
+ In this chapter, we're going to be looking at object-orientation in 
+ great detail and building on the foundations of the last chapter to 
+ start producing some cool Visual Basic .NET applications.
+ (Sample chapter. Published: November 19, 2001)
+ 
+ 
+ Retrieving 
+ socket's status - Part I - The select Winsock API function
+ 
+ Winsock API Test Bench sample application
+ Before to dive into the most interesting thing - sending and 
+ receiving data through a socket, we have to know how to determine 
+ status of a socket. In other words, we should know when a socket is 
+ ready to receive or send any data. The select function from the 
+ Winsock API can provide us with basic information about socket's 
+ status, but using this function we can't get comprehensive info 
+ about how the socket is doing at any moment of its life. That is the 
+ reason of why this article is just the first part of the Socket's 
+ Status Saga.
+ (Tutorial and Source code. Published: November 16, 
+ 2001)
+ 
+ 
+ Binding a socket
+ 
+ Winsock API Test Bench sample application
+ Today we will learn how to use the bind Winsock API function that allows 
+ to associate a local address with a socket. We'll modify the Winsock API 
+ TestBench sample application in order to give the user of the program to 
+ specify local host address and port number for a socket.
+ (Tutorial and Source code. Published: November 12, 
+ 2001)
+ 
+ 
+ End points of the connection
+ 
+ Winsock API Test Bench sample application
+ This part of the tutorial series is about how to use the getpeername 
+ and getsockname Winsock API functions in Visual Basic in order to 
+ determine parameters of the TCP connection's end-points.
+ (Tutorial and Source code. Published: October 29, 
+ 2001)
+ 
+ 
+ 
+ Connecting to the remote host
+ 
+ Winsock API Test Bench sample application
+ Most of the Internet application protocols used today (HTTP, FTP, 
+ SMTP, POP3, NNTP and so on) use connection oriented sockets in order 
+ to exchange data. That means that two hosts must establish 
+ connection before any chunk of data will be sent. As a rule, the 
+ initiator of the establishing of the connection is a client 
+ application that creates a connection oriented socket and then call 
+ the connect Winsock API function on that socket. Today we will 
+ explore the connect function, in particular, how to call that 
+ function in your Visual Basic application.
+ (Tutorial and Source code. Published: October 
+ 11, 2001)
+ 
+ 
+ Working with Data in 
+ .NET
+ Sample Chapter from Professional .NET 
+ Framework
+ Throughout this chapter you will see how the System.Data namespace 
+ is structured and how to utilize many of the classes within it. As 
+ well, we'll go over the pros and cons of using ADO.NET, and then 
+ compare and contrast current ADO functionality with that of ADO.NET. 
+ After that we'll go into using the System.Xml namespace. While 
+ reading this chapter, keep in mind that this is a high-level 
+ overview of working with data in .NET. What this chapter hopes to 
+ accomplish is to present the idea that we have yet again returned to 
+ the days where people think of data as data without regard for the 
+ physical means by which that data is obtained. By the time you 
+ complete this chapter, you should: 
+ 
+ 
+- Be familiar with the basic architecture of ADO.NET 
+ 
+- Know the benefits and drawbacks for using ADO.NET 
+ 
+- Know when to use ADO versus ADO.NET and why 
+ 
+- Be familiar with the core XML classes provided by the 
+ framework 
+ 
+- Be aware of how the System.XML and System.Data namespaces are 
+ intertwined
+ 
+ 
+ (Sample chapter. Published: October 09, 2001)
+ 
+ 
+ Socket's transport protocol and other options
+ Winsock API Test Bench sample application
+ In the previous article we have learned how to create and close 
+ sockets. All we know about the socket, at this moment, is only its 
+ handle - integer value that is used by the Winsock service and our 
+ application just to recognize it. But the socket is not just an 
+ integer value - some memory, system resources are allocated for it, 
+ and many properties of the socket are initializing with default 
+ values as you call the socket Winsock API function. Since a new 
+ socket is created, you can retrieve and set socket's options using 
+ the getsockopt and setsockopt Winsock API functions... 
+ (Tutorial and Source code. Published: October 
+ 03, 2001)
+ 
+ 
+ 
+ Creating and closing a socket
+ Winsock API Test Bench sample application
+ We continue to learn the Winsock API developing the Winsock API 
+ TestBench sample application. In this article you'll find out how to 
+ use the socket and closesocket Winsock API functions in order to 
+ create and close sockets.
+ (Tutorial and Source Code. Published: 
+ September 25, 2001)
+ 
+ 
+ Inheritance and 
+ Interfaces
+ Sample Chapter from Professional VB.NET
+ Inheritance is the idea that we can create a class that reuses 
+ methods, properties, events, and variables from another class. We 
+ can create a class with some basic functionality, then use that 
+ class as a base from which to create other, more detailed, classes. 
+ All these classes will have the same common functionality from that 
+ base class, along with new, enhanced or even completely changed 
+ functionality. In this chapter we'll cover the syntax that supports 
+ inheritance within VB.NET. This includes creating the base classes 
+ from which other classes can be derived, as well as creating those 
+ derived classes.
+ (Sample chapter. Published: September 24, 2001)
+ 
+ 
+ Introduction to the 
+ Winsock API Test Bench sample application
+ Winsock API - Step by step tutorial for the 
+ Visual Basic developers
+ The second part of the Winsock API tutorial is to introduce the 
+ following functions: accept, bind, closesocket, connect, getpeername, 
+ getsockname, getsockopt, listen, recv, select, send, setsockopt, socket. 
+ We'll learn these functions by creating the Winsock API Test Bench 
+ sample application.
+ (Tutorial and Source Code. Published: 
+ September 18, 2001)
+ 
+ 
+ Getting Started With 
+ ASP.NET
+ Sample Chapter from Beginning ASP.NET using 
+ VB.NET
+ In this first chapter we'll be mainly concerned with ASP.NET's 
+ installation process. We'll start with a quick introduction to the 
+ world of web servers, dynamic web pages, and a little bit about what 
+ ASP.NET is, but what we really aim to achieve is to get you running 
+ a fully functional web server, with a fully functional ASP.NET 
+ installation. By the end of the chapter you'll have created a short 
+ ASP.NET test page, to check that both the web server and ASP.NET are 
+ working as intended. Don't worry we'll have a look at some of the 
+ most common pitfalls encountered, just in case things don't go as 
+ planned!
+ (Sample chapter. Published: September 10, 2001)
+ 
+ 
+ Developing 
+ Client-Server Applications with MS Winsock 
+ Control by S.S. Ahmed
+ In this article, I am going to show how to use the Winsock in a 
+ client server environment, we will create two separate applications, 
+ one of which will be a server and the other will be a client. Both 
+ client and server will interact with each other to exchange data. 
+ Client will send a request to the server and the server which will 
+ be connected to a database will retrieve the information requested 
+ by the client from the database and will return the requested 
+ information back to the client....
+ (Tutorial and Source Code. Published: August 
+ 9, 2001)
+ 
+ 
+ Introduction to SQL
+ Sample chapter from Beginning SQL Programming
+ This introductory chapter covers topics that students usually ask in 
+ the first hour of classes; essentially, just what do we mean by SQL? 
+ We start by explaining what SQL is and also what it is not, and we 
+ provide a brief overview of the history of the language. We'll also 
+ clarify some confusing terminology at this point. Next we look at 
+ the types of system set-up in which SQL may be used; discussing 
+ front ends, back ends and how they connect. We then demonstrate some 
+ common implementations. We spend some time explaining why SQL, as a 
+ declarative language, is so different from procedural languages like 
+ Visual Basic, C++ or COBOL. We analyze when to move to using SQL, 
+ and finally we examine the human roles within a large data center.
+ (Sample chapter. Published: July 31, 2001)
+ 
+ 
+ Your First TAPI Program
+ by S.S. Ahmed
+ This sample application shows you how you can use the TAPI 3.0 
+ functions to create a TAPI application of your own. This application 
+ uses the Windows Phone Dialer utility that comes with Windows and 
+ can be found under the Accessories group. That program will act as 
+ the call manager and will handle the dialing of the phone number 
+ that is passed to the tapiRequestMakeCall function.
+ (Source Code. Published: July 26, 
+ 2001)
+ 
+ 
+ Retrieving Partial Content 
+ via HTTP
+ HTTP with MS Winsock Control - Part VIII
+ The current specification of the HTTP, RFC 2616, defines the method 
+ to download any part of the file located on a web server. What have 
+ we got with this feature of the protocol? We can resume a broken 
+ data transfer, we can retrieve specific parts of documents to 
+ explore its properties...
+ (Article + Source Code. Published: July 23, 
+ 2001)
+ 
+ 
+ Third-Party Solutions 
+ for Payment, Tax & Shipping 
+ Sample chapter from Wrox's Professional 
+ Commerce Server 2000
+ In this chapter, we will discuss extending the pipeline architecture 
+ for additional payment processing, tax calculation, and shipping 
+ calculation functionality through the use of third party components, 
+ in conjunction functionality exposed by a service provider.
+ (Sample chapter. Published: July 19, 2001)
+ 
+ 
+ 
+ Writing Your First 
+ Speech Recognition Program by John T. Yung
+ I recently came upon a project where a program can take 
+ in voice commands and perform tasks like opening a program or a file 
+ in Windows without any mouse or keyboard input. At first, I thought 
+ that was some fancy coding stuff going on that was out of my league. 
+ Well guess what, on a closer investigation its not. In fact, 
+ programming voice recognition into a software is very simple and I 
+ am going to demonstrate how in this article.
+ (Tutorial. Published: July 17, 2001)
+ 
+ 
+ Read 
+ chapter 1 from Professional ASP.NET
+ This chapter gives a whistle-stop tour of ASP.NET. It begins with a 
+ guide to how to install .NET, and how to configure and run the samples 
+ applications. Next it looks at Visual Studio.NET and gives a quick 
+ overview of how ASP.NET applications can be created using it. It then 
+ moves on to discuss the differences between ASP.NET and ASP 3.0, showing 
+ how ASP.NET has overcome many of the short comings of classic ASP. 
+ Before briefly overviewing a few of the most important aspects of 
+ ASP.NET: the languages it supports (including the new C#), its Server 
+ Control Hierarchy, and how to Configure and Deploy solution sites. 
+ Finally you will get to take a look at the anatomy of an ASP.NET sample 
+ page. Read it here...
+ 
+ 
+Review 
+ of VB.NET Programming with the Public Beta
+ First of all, if you want to learn to program from scratch and have 
+ chosen VB.NET as your language this title is not for you. The authors of 
+ the book assume that the reader is an experienced Visual Basic developer 
+ keen to learn about new advancements in the area. If you are looking for 
+ a book about ALL the new features of the .NET framework I would 
+ recommend another of Wrox’s titles ‘Introducing .NET’ this covers more 
+ common .NET features such as Common Language Runtime, Common Type 
+ System, .NET Class Framework and so on. However, if you already have 
+ used VB to develop Windows applications...
+ Click to read more
+ 
+ 
+The Internet 
+ Transfer Control section of the website is launched
+ Read new two tutorials in our new section of the website devoted to the 
+ Internet Transfer Control:
+ 
+ 
+ HTTP Transfer Component Written By S.S. Ahmed
+ This article will show you how to create a server component using 
+ Internet Transfer Control. I shall talk about the ITC (Internet Transfer 
+ Control) in more detail shortly but first of all let’s see ...
+ 
+ How 
+ to track the download progress
+ The Internet Transfer Control (ITC) provides us with a very easy way to 
+ retrieve web resources. But unfortunately the control doesn't have any 
+ means to track the progress of data transfer. It could be nice if the 
+ control ...
+ 
+ 
+New 
+ examples in the Winsock API section
+ The sample applications show you how to retrieve the service information 
+ by port number or a name of the service, how to get information about 
+ all the transport protocols, installed on the local system. Also you'll 
+ find new version of the TCP Table sample that retrieves info about all 
+ the TCP connections of the local system.
+ 
+ 
+Winsock API - 
+ Step by step tutorial for the VB developers
+ We've added three new examples for the tutorial that demonstrate how to 
+ call the name resolution Winsock API functions:
+ 
+ 
+- 
+ How to get an IP-address of
+ the remote host
+ 
+- 
+ How to get name and IP address 
+ of the local system
+ 
+- 
+ How to get 
+ host name by IP 
+ address
+ 
+ 
+ 
+ Winsock API section launched
+ We've launched a new section of the web site - Windows Sockets API. 
+ You'll find there a step by step tutorial for the Visual Basic 
+ developers that will cover almost all the functions of the API. At this 
+ time there are three articles in that section:
+ 
+ 
+- Creating the Visual Basic project template
+ 
+- Starting up the Winsock service
+ 
+- Changing the byte ordering
+ 
+ 
+ 
+New
+ Object-Oriented Capabilities of VB.NET 
+ When Visual Basic 4.0 was released, it introduced a whole new era of
+ programming for VB. Object-oriented (OO) programming was finally a
+ possibility. Unfortunately, few OO features were included in the VB
+ language at that point. Most notably lacking were inheritance
+ capabilities, one of the key defining criteria for any OO language. VB
+ was also missing a large number of secondary features such as method
+ overloading and overriding, and constructors. With VB.NET, the VB
+ language finally completes the transition to a fully OO language. We now
+ have full inheritance, along with all of the associated features we’d
+ expect. In this chapter we’ll discuss all these new features and what
+ they mean to us as VB developers.
+ 
+ 
+Well-Formed
+ XML - sample chapter from Beginning XML
+ This chapter will cover all you need to know to create
+ "well-formed" XML. You will learn:
+ 
+ 
+ 
+- How to create XML elements using start- and end-tags
+ 
+- How to further describe elements with attributes
+ 
+- How to declare your document as being XML
+ 
+- How to send instructions to applications that are processing the
+ XML document
+ 
+- Which characters aren't allowed in XML, and how to put them in
+ anyway
+ 
+ 
+ 
+Visual
+ Basic and IP Helper API: Retrieving network interface information
+ Use the GetIfTable function to get very useful
+ information such as all network adapters info with their type, speed,
+ physical address and so on. Moreover, it seems to me that using this
+ function is the only simple way to get the traffic numbers - the amount
+ of received and sent bytes by the local system...
+ 
+ 
+.NET
+ Overview - sample chapter from Introducing .NET
+ This first chapter will summarize many of the most
+ important aspects of .NET. We'll start by looking at some of the serious
+ drawbacks of current software development that prompted Microsoft to
+ rethink their entire development structure. Then we'll progress to an
+ overview of the overall vision and the major elements in the .NET
+ Framework.
+ 
+ Introducing .NET is designed to tell you exactly what you
+ need to know, to cut through the fog and to bring you a clear picture of
+ what .NET is, and what you can expect to be able to do using it. 
+ 
+ This
+ book is for experienced developers at the leading edge, or for
+ businesses that have to already be developing solutions on the latest
+ platform as soon as it comes out. The different sections of .NET are in
+ various stages of completion, and all are in beta programs and therefore
+ a high degree of technical competence and awareness of technologies such
+ a COM, COM+, ASP, and VB is required on the part of the reader. Some
+ experience of C, C++ or Java would be advantageous to anyone new to C#,
+ although it's not essential.
+ 
+ 
+Internet
+ Protocol Helper API (IP Helper API)
+ We have launched new section of the website - IP Helper
+ API. While the IP Helper API is designed for use by C/C++ programmers,
+ it is possible to use this API in Visual Basic. In this section you will
+ find out how to use some functions of that API. At this time there are
+ two articles: "How to get all
+ the IP addresses and opened TCP ports on the local system" and
+ "How to retrieve TCP
+ statistics". 
+ 
+ 
+Oracle8
+ and Oracle8i - sample chapter from Professional ASP Data Access
+ In this chapter we will cover the basics of configuring a web server to
+ connect to a remote Oracle8 or Oracle8i database, although many of the
+ techniques apply equally well to previous versions of Oracle 7.x. We'll
+ show you how to use the common ODBC Drivers and OLE DB Providers in
+ conjunction with ActiveX Data Objects (ADO) to manipulate data stored
+ within an Oracle database from within an ASP application.
+ 
+ 
+SQL
+ Server and XML
+ Read the sample chapter from a new book released by Wrox Press, "Begining
+ SQL Server 2000 for Visual Basic Developers". This chapter
+ explores new XML features in SQL Server 2000 and takes a look at how you
+ can exploit them to your benefit. We will also take a look at how we can
+ use XSL (Extensible Stylesheet Language) to format and display XML data.
+ 
+So, this chapter will cover:
+ 
+ 
+- 	A brief introduction to XML and its related technologies
+ 
+- 	Accessing data using a URL
+ 
+- 	Creating and using stored procedures that return XML formatted data
+ 
+- 	Creating and using XML templates
+ 
+- 	Creating and using XSL templates
+ 
+- 	Creating and using annotated XDR schemas
+ 
+ 
+Simple Object
+ Access Protocol: A Step-By-Step Approach by Syd Egan
+ 
+ In the article, we will create a simple SOAP service, and a client to
+ access that service. The service will be in the form of an Active Server
+ Page, which I have called soap.asp - it will need to live in the root
+ directory of your Personal Web Service (by default c:\inetpub\wwwroot\)
+ Our service will accept and process SOAP requests made by our client - a
+ VB exe, with a single module, and a start-up Sub Main().
+ 
+ 
+Simple
+ Mail Sender by Ian Williams
+ 
+ 
+ Revised and improved version of the Simple Mail Sender. Many
+ thanks to Ian!
+ 
+ 
+HTTP
+ with MS Winsock Control - Part VII - Handling HTTP redirection
+ There are a lot of reasons why the web developer decides to
+ redirect HTTP request. All the web browsers used today handle the
+ redirection automatically, without interaction with a user. So it is
+ time to add the similar functionality to our Simple HTTP Reader sample
+ application.
+ 
+ 
+HTTP
+ with MS Winsock Control - Part VI - Receiving chunked data
+ At this stage we add to the Simple HTTP Reader sample
+ application the ability to read chunked data.
+ 
+ 
+HTTP
+ with MS Winsock Control - Part V - Retrieving binary files from the Web
+ In this tutorial we'll bring to the Simple HTTP Reader sample the
+ ability to handle binary files retrieved from the Web, particularly
+ image files such as gifs and jpgs. The sample will determine type of the
+ retrieved resource and then pass the downloaded data to a picture box,
+ if that resource is an image, otherwise the data will be passed to the
+ rich text box control.
+ 
+ 
+HTTP
+ with MS Winsock Control - Part IV - Retrieving secured resources from
+ the Web
+ In this tutorial I'll show you how to access protected
+ resources on the Web using the Basic Authentication scheme. Also you
+ find out how to work with a proxy server that requires authorization of
+ the client.
+ 
+ 
+HTTP
+ with MS Winsock Control - Part III
+ How to retrieve a file from the Web through a proxy server
+ In the previous tutorials we have learned how to communicate with a web
+ server via direct connection. In that scenario the client application
+ establishes connection to the web server by the specified server address
+ (or IP address) and IP-port 80. But there are a lot of cases where a
+ client has an access to the web only via a proxy server. These two
+ different types of the connection demand different ways of
+ implementation...
+ 
+ 
+ 
+Professional
+ Visual Basic 6 XML
+ Professional Visual Basic 6 XML shows the VB community how to take
+ advantage of XML technology and the available (free-to-use)
+ implementations. The flexible and standards-based data description that
+ XML provides can be used in a myriad of places where VB programmers are
+ active. 
+ 
+To learn more about the book read Summary
+ of Contents and Sample
+ Chapter: Using XML Queries and Transformations
+ 
+ 
+HTTP
+ with MS Winsock Control - Part II - How to track the progress of data
+ transfer
+ In this tutorial we'll improve the HTTP Reader sample
+ application, you will learn how to track the connection state with the State property of the MS Winsock
+ Control, and how to show the progress of the downloading with the ProgressBar
+ control.
+ 
+ 
+Handling
+ URLs with WinInet API (CWinInet_URL class)
+ The WinInet API provides several functions to handle Uniform Resource
+ Locators (URL). These functions give us the ability to create, combine,
+ break down, and canonicalize URLs...
+ 
+ 
+HTTP
+ with MS Winsock Control - Part I - How to download a file from the Web
+ The tutorial shows how to use the MS Winsock Control in
+ order to retrieve resources from the WWW. You will create the Simple
+ HTTP Reader sample application.
+ 
+ 
+Secrets of FTP
+ Read our practical introduction to the File Transfer
+ Protocol for Visual Basic developers. You'll find out how to retrieve
+ listings of FTP directories, download and upload files, and how to
+ resume broken file transfer. FTP
+ Quick Reference will help you to learn all the FTP commands and
+ server reply codes.
+ 
+ 
+Sending
+ files inside e-mail messages
+ We
+ have published the introduction to UUCode algorithm and tutorial that
+ shows how to add new feature of dealing with attachments to our sample
+ applications Simple MailSender and MailChecker.
+ 
+ 
+ 
+ 
+Create
+ your own POP3 client application
+ We recently have published three new articles that help you
+ to build the application for receiving e-mail messages with MS Winsock
+ Control. 
+ 
+ How to receive an e-mail is quick introduction to the POP3
+ protocol. 
+ 
+ Standard format of e-mail message describes the parts of e-mail
+ message.
+ 
+ Mail Checker Sample Application - the tutorial that shows you all
+ the steps of creating of the simple application for receiving e-mail.
+ 
+ 
+CWinInetConnection
+ class
+ Check up CWinInetConnection class that, encapsulating the calls of
+ WinInet API, allows you to detect the Internet connection and its
+ properties, establish and hang up the connection, switch the system
+ state known as Online/Offline mode.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual
+ Basic Programmers Ring
+ 
+ 
+ 
+ [ Next
+ | Next
+ 2 | Next
+ 5 | Back
+ | Back
+ 2 ] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Last Modified: May-22-2002 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

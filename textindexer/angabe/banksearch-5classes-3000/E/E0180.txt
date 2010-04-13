@@ -1,0 +1,359 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Compiling the IJG JPEG library with BC55
+The Independent JPEG Group (IJG) provides a free and open source code library for
+compressing and decompressing JPEG images. The library is written in C, and is
+designed to be portable between many compilers and platforms.
+The IJG library is designed to be compiled from the command line with make. The
+library includes several makefiles for various compilers and platforms, although
+it does not provide a makefile for BC55, the free C++ command line compiler
+from Borland. The purpose of this article is to provide a makefile that will
+work with BC55, to list what changes have to be made in order to compile the
+JPEG source code, and to provide an example program that shows how to link with
+the JPEG library once you have compiled it.
+Before you get started with the IJG JPEG library, you need to download the
+source. You can download the IJG library from
+here.
+Extract the contents of the zip file to a convenient location, such as c:\jpeg.
+ 
+Note:
+If you use C++Builder, and if you use the pascal based VCL, then I suggest that you rely on the TJPEGImage class to handle
+JPEG images in your programs. It is easier to use than working with the JPEG library directly. TJPEGImage is actually a wrapper
+for the free IJG JPEG library. See the faq on JPEG images for an example of how to use
+TJPEGImage.
+On the other hand, you should use the IJG JPEG library if you are using the free
+command line compiler from Borland instead of using C++Builder. You might also
+want to use the IJG library if you are writing a pure C/C++ app, or if you need
+the added flexibility that the IJG library affords.
+ 
+- Introduction to the IJG library
+- The JPEG library makefile
+- Changing the IJG source code so it will compile with BC55
+- Compiling the JPEG library
+- Using the compiled JPEG library in a project
+- Notes
+- Downloads
+Introduction to the IJG library
+When you unzip the JPEG library, you should see a host of C files, header files, sample makefiles, and some DOC files. Before you attempt
+to use the library, you should browse through the DOC files, especially libjpeg.doc. These DOC files explain how the JPEG library
+is structured, and how you perform a compression or decompression step. I am not going to cover how the library works,
+because the DOC files already explain that, and they explain it better than I could. Instead, I am going to discuss how to compile the
+library, and specifically, how to compile the library with BC55. For more information on JPEG compression principles, visit the following
+FAQs and websites:
+- JPEG FAQ
+- comp.compression FAQ
+- IJG website
+- Download the free BC55 compiler
+The JPEG library makefile
+The JPEG library contains makefiles for several compilers and platforms. The makefiles are named using the format makefile.XXX
+where XXX is the platform that you are targeting. Some of the names include makefile.ansi, makefile.unix,
+makefile.vc, and makefile.bcc. Two of the more interesting ones are makefile.ansi and makefile.bcc.
+makefile.bcc works with older versions of Borland C++ for DOS and OS/2. Despite the fact that the makefile is for an older
+version of Borland C++, it still serves as a good starting ground for BC55. makefile.ansi is a generic makefile that serves as a
+good starting point for almost any platform.
+Using the older makefile.bcc as a starting point, I have created a makefile called makefile.bc55 that works with the
+free BC55 C++ compiler from Borland. You can download the makefile here.
+The makefile for the JPEG library does several things. It compiles the JPEG source code into a library called libjpeg.lib (or
+libjpeg.a depending on your OS and compiler). The makefile also compiles a compression example and a decompression example.
+These examples link with the JPEG library that was built from the source. Lastly, the makefile also contains targets for cleaning up
+intermediate files and for running the example programs.
+Let's take a quick look at some of these targets in the makefile:
+all: libjpeg.lib cjpeg.exe djpeg.exe jpegtran.exe wrjpgcom.exe rdjpgcom.exe
+libjpeg.lib: $(LIBOBJECTS)
+cjpeg.exe: $(COBJECTS) $(JPEGLIB)
+djpeg.exe: $(DOBJECTS) $(JPEGLIB)
+jpegtran.exe: $(TROBJECTS) $(JPEGLIB)
+rdjpgcom.exe: rdjpgcom.c
+wrjpgcom.exe: wrjpgcom.c
+jconfig.h: jconfig.doc jconfig.bc55
+clean:
+test: cjpeg.exe djpeg.exe jpegtran.exe
+The all target specifies what happens by default when you do a make. The default targets are the JPEG static library
+(libjpeg.lib), the compression and decompression examples (cjpeg.exe and djpeg.exe), and the utility programs.
+The clean target deletes intermediate files, such as OBJs, and the test target exercises cjpeg.exe and
+djpeg.exe.
+ 
+Note:
+Beware that the clean target also deletes the LIB file and the sample EXEs. If you only want the clean
+target to delete OBJs, then you will need to edit the makefile.
+ 
+The jconfig.h target is an interesting item. jconfig.h is an important header file for the JPEG library. It determines
+various platform specific issues. This header file helps the JPEG library achieve its cross platform status. To support various
+platforms, the JPEG library provides several versions of jconfig.h (jconfig.mac, jconfig.vc,
+jconfig.bcc, etc). The makefile actually determines which configuration to use by copying the correct jconfig.xxx file
+to jconfig.h. In order to support BC55, we have to supply a BC55 friendly version of jconfig.h. We'll look at this in
+the next step.
+That's all I'm going to say about the JPEG library makefile for BC55. You may want to sift through the makefile that I provide,
+makefile.bc55, to learn more about how it works.
+Changing the IJG source code so it will compile with BC55
+For the most part, the JPEG source compiles fine with BC55. However, you do need to change two header files in order to compile the
+library cleanly. The two files are jpeglib.h, and jmorecfg.h. You also need to provide a BC55 friendly version of
+jconfig.h. You can download the modified files here
+(along with the makefile).
+The changes to jpeglib.h and jmorecfg.h are listed below. If you don't understand what these changes are doing, don't
+worry about it. As long as you use the modified header files from my FTP site,
+you will be fine.
+/******************* Changes to jpeglib.h **************************/
+#ifndef JPEGLIB_H
+#define JPEGLIB_H
+/* HJH modification: added extern "C" { when __cplusplus detected */
+#ifdef __cplusplus
+extern "C" {
+#endif
+...
+/* near bottom of the file */
+/* HJH modification: add closing } for extern "C" { */
+#ifdef __cplusplus
+}
+#endif
+#endif /* JPEGLIB_H */
+/******************* Changes to jmorecfg.h **************************/
+/* jmorecfg.h line 160 */
+/* X11/xmd.h correctly defines INT32 */
+/* HJH modification: jmorecfg.h already contained a test for XMD_H and xmd.h
+ My change adds a test for _BASETSD_H_ because the windows header file
+ basestd.h already defines INT32 */
+#if !defined(XMD_H) && !defined(_BASETSD_H_)
+typedef long INT32;
+#endif
+/* jmorecfg.h line 220 */
+/* HJH modification: several of the windows header files already define FAR
+ because of this, the code below was changed so that it only tinkers with
+ the FAR define if FAR is still undefined */
+#ifndef FAR
+ #ifdef NEED_FAR_POINTERS
+ #define FAR far
+ #else
+ #define FAR
+ #endif
+#endif
+The first change was to jpeglib.h. This is the main header file that client programs include in order
+to use the library. The change is to add an extern "C" wrapper around the entire header file. The reason for doing this is
+that the JPEG library is written in C, but you may want to use the library from a C++ file. Without the extern "C", you might
+see unresolved external linker errors when trying to make JPEG calls from a C++ file.
+The second change is to jmorecfg.h. This header file plays a crucial role in making the JPEG library cross platform. I had to
+make two changes to jmorecfg.h, and both were because the Windows header files from Microsoft already declare a type or a define
+that jmorecfg.h also defines. My modifications prevent jmorecfg.h from clashing with the Microsoft headers.
+The last file that you have to modify is jconfig.h. Actually, you don't modify jconfig.h, rather, you provide a BC55
+compatible version of jconfig.h called jconfig.bc55. To create a BC55 compatible version of jconfig.h, I
+started with jconfig.bcc, which is tailored with Borland C++ for DOS in mind. This file works as is, except for the
+following addition that I had to make:
+/* HJH Note: Here is one key addition that I had to make. The jpeg library uses
+ * a type called boolean. It defines boolean here. However, RPCNDR.H
+ * yet another Microsoft header, also defines boolean. The ifndef
+ * ensures that we don't attempt to redefine boolean if rpcndr.h has
+ * already defined it. Note that we use unsigned char instead of int
+ * like jmorecfg.h does, because we want to match what's in the SDK
+ * header. See jconfig.vc for more info, it does the same thing. */
+#ifndef __RPCNDR_H__	/* don't conflict if rpcndr.h already read */
+typedef unsigned char boolean;
+#endif
+#define HAVE_BOOLEAN	/* prevent jmorecfg.h from redefining it */
+The JPEG library defines and uses a type called boolean. The typedef occurs in jmorecfg.h. Unfortunately, one
+of the Microsoft headers, rpcndr.h, also defines the boolean type. Furthermore, the Microsoft headers define
+boolean differently than the JPEG library defines it. My solution was to make sure that we define boolean the same way
+that the Microsoft header does, and we only define it if the Microsoft header has not already done so. Next, we define the
+HAVE_BOOLEAN constant, which tells jmorecfg.h not to define the boolean type.
+ 
+Note:
+I discovered this issue regarding rpcndr.h and boolean from the configuration file for Microsoft Visual C++,
+jconfig.vc. MSVC and Borland C++ provide essentially the same set of Microsoft SDK header files. Users of MSVC suffer from the
+same typedef clashes that Borland C++ users suffer from.
+ 
+Those are the only source code changes that have to be made in order to compile the JPEG library. Its nice to see that we don't have to
+muck around in the C files in order to get the library to compile. Although it is disheartening when you consider that most of our
+changes were to work around type clashes with the Microsoft header files.
+Compiling the JPEG library
+To compile the JPEG library, simply download makefile.bc55 and the
+changes to the JPEG header files, unzip them over the existing files from the JPEG library, and run make.exe from the command
+line. Make sure that you pass it the BC55 compatible makefile, makefile.bc55.
+ > make -f makefile.bc55
+Don't forget the -f switch. It tells make the name of your makefile. Some people forget the -f switch, and do this:
+ // Error!!!!!
+ > make makefile.bc55
+When you build the project, you should get a LIB file called libjpeg.lib, and some EXEs. The JPEG makefile is designed to
+create both the library and the example programs. The two main example programs are cjpeg.exe, for compression, and
+djpeg.exe for decompression. The makefile also has a clean target that will erase OBJs and other intermediate files.
+This target is not called by default, you must explicitly invoke it. There is also a target for running the example programs.
+ > make -f makefile.bc55 clean
+ > make -f makefile.bc55 test
+Beware of what the clean target actually does! It deletes the LIB files, and the sample programs, as well as the executables. You might
+want to edit the makefile if you do not like this behavior.
+The default makefiles from the IJG assume that you want to build the jpeg library in release mode. This makes sense. However, you may
+want to build a debug library if you will need to debug into the JPEG source code. The makefile that I produced allows you to build a
+debug library as well as a release library. To build the debug library, define DEBUG using the -D switch when you
+invoke make.
+ > make -B -f makefile.bc55 -DDEBUG
+The extra -B switch ensures that all C files are rebuilt. If there are release OBJs lying around, make won't rebuild
+them just because you define DEBUG. You don't want any release OBJs making it into your debug JPEG library.
+When you define DEBUG, make will produce a LIB file with a different name, jpegd.lib. I decided that the debug library
+should have a different name then the release library. If you don't like this practice, or if you don't like the filename that I chose,
+then you can alter the makefile. The library filename is stored in the JPEGLIB macro.
+Of course, you don't need to bother with a debug library just to step into the JPEG source when debugging. Another easy way to debug
+the JPEG source is to simply add the JPEG source files to your project and compile them straight in. Your projects won't compile as
+quickly as they would if you used the LIB file, but the JPEG files compile pretty fast anyway, so its not much of an issue.
+Using the compiled JPEG library in a project
+Once you have built the JPEG library, you should not need to compile the JPEG source after that. When you need to use the JPEG
+library, just link with the LIB file (libjpeg.lib or jpegd.lib). When you compile, tell the compiler where the JPEG
+header files are by using the -I switch.
+To demonstrate how to do this, I have put together a simple example project. This project creates a JPEG from a 24 bit RGB test pattern.
+You can download the example here.
+I won't show the source code for this project, as its pretty boring. But I will show the makefile.
+BORLAND=$(MAKEDIR)\..
+CC= bcc32
+LINK=ilink32
+JPEGPATH=c:\jpeg\borland
+INCLUDEPATH=$(BORLAND)\include;$(JPEGPATH)
+LIBPATH=$(BORLAND)\lib;$(JPEGPATH)
+!if $d(DEBUG)
+CFLAGS= -tWC -tWM- -Od -H- -v -vi- -c -y -w-par -w-stu \
+ -w-ccc -w-rch -I$(INCLUDEPATH)
+LFLAGS= -Tpe -ap -x -Gn -L$(LIBPATH)
+# name the jpeg library something different for debug builds.
+JPEGLIB=jpegd.lib
+!else
+CFLAGS= -tWC -tWM- -O2 -H- -c -w-par -w-stu -w-ccc -w-rch -I$(INCLUDEPATH)
+LFLAGS= -Tpe -ap -x -Gn -L$(LIBPATH)
+JPEGLIB=libjpeg.lib
+!endif
+OBJS = c0x32.obj
+LIBS = cw32.lib import32.lib $(JPEGLIB)
+all: bccjpeg.exe
+main.obj: main.cpp
+ $(CC) $(CFLAGS) main.cpp
+bccjpeg.exe: main.obj
+ $(LINK) $(LFLAGS) $(OBJS) main.obj, bccjpeg.exe,, $(LIBS) $(JPEGLIB), ,
+clean:
+	- del *.obj
+ - del *.tds
+ - del *.\#0?
+ - del *.csm
+ - del *.~??
+There are two points of interest in this makefile. First, notice that I have added the path c:\jpeg\borland to the include path
+that gets passed to both the linker and the compiler. This allows the compiler to locate the JPEG header files, and it allows the linker
+to locate the JPEG LIB file. You will need to edit the JPEGPATH macro if you installed the JPEG header files to a location other
+than c:\jpeg\borland. Second, we have to pass the JPEG lib file to the linker. This is done through the JPEGLIB macro.
+Other than these two items, this is a pretty standard makefile.
+Notes
+Note 1: It is important that you compile your program with the same compiler options that you used to compile the JPEG library.
+Specifically, the compiler options for structure alignment (the -a family of options), and enum size (-b) must match. There may be other
+options that have to match too. If these compiler options do not match, then your client program and the JPEG library will not agree on how
+big the JPEG structures should be. The structures increase or decrease in size depending on the -a and -b switches.
+This structure alignment issue can be a major pain. Ideally, you should not be forced to use the same alignment options that the JPEG
+library uses. To rectify the problem, you have a couple of choices. First, you could forget about the LIB file altogether, and just compile
+the JPEG source files right into your projects. When you do this, you guarantee that the JPEG source is compiled with the same options that
+the rest of your project is compiled with.
+Another way to solve this problem is to place a #pragma option push statment in jpeglib.h. This is called a compiler
+option guard. It ensures that the JPEG source is compiled with a given set of compiler options, and it ensures that clients of the LIB
+file know about those compiler options. Here is how you would edit jpeglib.h
+#ifndef JPEGLIB_H
+#define JPEGLIB_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+/* HJH modification: protect compiler options for structure alignment and enum
+ * size if the compiler is Borland C++ */
+#pragma option push -b
+#pragma option push -a1
+// ...
+// body of file
+// ...
+#pragma option pop /* pop -a switch */
+#pragma option pop /* pop -b */
+#ifdef __cplusplus
+}
+#endif
+#endif /* JPEGLIB_H */
+Keep in mind that you don't have to use -b and -a1. You could use -b- and -a4. It doesn't really matter. The key is to protect the
+structures and the enums in the library so they always compile to the same size, regardless of the compiler options in the makefile. The
+-a4 might actually result in slightly better performance.
+Note 2: If you do place compiler option guards in the JPEG header file, you might want to use a #ifdef __BORLANDC__
+statement. This way, the #pragmas only play a role if the compiler is BC55 or Borland C++Builder. You might not want to have these
+#pragma's in your code if you need to compile the source with another compiler.
+The ANSI C++ standard promises that compilers are supposed to ignore #pragma statements that they don't understand. However,
+many compilers will interpret #pragma option push the same way Borland does. But there is a catch. On another compiler, -a and
+-b might mean totally different things. For this reason, it makes sense to only compile in the #pragma's if you detect that
+the code is being compiled with the Borland compiler. Here is how you would change the header file.
+#ifndef JPEGLIB_H
+#define JPEGLIB_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+/* HJH modification: protect compiler options for structure alignment and enum
+ * size if the compiler is Borland C++ */
+#ifdef __BORLANDC__
+#pragma option push -b
+#pragma option push -a1
+#endif
+// ...
+// body of file
+// ...
+#ifdef __BORLANDC__
+#pragma option pop /* pop -a switch */
+#pragma option pop /* pop -b */
+#endif
+#ifdef __cplusplus
+}
+#endif
+#endif /* JPEGLIB_H */
+Note 3: The jpeglib.h file for BC55 has been updated to
+include the #pragma option guards.
+Note 4: When you compress an image, you pass rows of image data to the JPEG compressor by calling
+jpeg_write_scanlines. Probably the most common way to pass in data is to send the compressor 24-bit RGB data.
+There is one important item to watch out for when you are working on the Windows platform. On Windows, the first byte of
+a 24-bit RGB pixel is the blue intensity. However, the JPEG library expects the first byte to be the red intensity. Both
+Windows and the JPEG library agree that the second byte should be green. But they disagree on the third byte. In a
+Windows bitmap the third byte is red, whereas the JPEG library expects the third byte to be blue. In other words, the
+JPEG library and Windows have swapped the meaning of the first and third bytes in a 24-bit RGB pixel.
+Before we continue, let's clarify some terminology. When I say the first byte should be blue, what I really mean is that
+the lowest memory address of the pixel should contain the blue intensity. Let's say that you have a row of image data in
+an unsigned char array, like this:
+unsigned char buff[640*3]; // a buffer of 24-bit RGB data
+Each pixel in the buffer consumes 3 bytes. The first pixel spans across buff[0], buff[1], and
+buff[2]. The first byte of the first pixel is buff[0], the byte at the lowest address. In a Windows bitmap,
+buff[0] would contain the blue intensity of the first pixel, and buff[2] would contain the red. When
+you pass buff to jpeg_write_scanlines, the JPEG library expects these two bytes to be reversed. buff[0]
+should contain the red intensity, and buff[2] should contain the blue.
+This fact is incredibly easy to miss. If you forget to take this into account, your images will compress just fine, but
+the resulting JPEG will not look right. On some real world images, it can be difficult to notice the difference,
+especially if the image contains a lot of green. On other images, the problem stands out more clearly (ie a blue car
+would suddenly become red when compressed into a JPEG).
+There are a couple ways to deal with this problem. First, you can loop through your 24-bit RGB bitmap data and swap the
+red and the blue bytes before passing the data to the JPEG compressor. Make sure that you do this in an offscreen
+buffer, and that you don't paint the bitmap on the screen (it won't look right because you just messed up every pixel in
+the bitmap). You must also perform this reversal if you decompress a JPEG in your program. The red and blue pixels
+coming out of the decompressor should be swapped before you display the RGB data on the screen.
+Another option is to modify three defines in jmorecfg.h. The IJG designed the JPEG library to allow you to
+specify the ordering of bytes in an RGB pixel. The defines are RGB_RED, RGB_GREEN, and RGB_BLUE.
+The default implementation of jmorecfg.h looks like this:
+#define RGB_RED	0	/* Offset of Red in an RGB scanline element */
+#define RGB_GREEN	1	/* Offset of Green */
+#define RGB_BLUE	2	/* Offset of Blue */
+To force the JPEG library to treat RGB pixels the same way Windows does, change the defines to:
+#define RGB_RED	2	/* Offset of Red in an RGB scanline element */
+#define RGB_GREEN	1	/* Offset of Green */
+#define RGB_BLUE	0	/* Offset of Blue */
+Keep in mind that these indexing problems play a role when you are compressing a 24-bit RGB image into a color JPEG
+(YCbCr) or a grayscale JPEG. However, if you are compressing a grayscale image, then you don't have to worry about it.
+See jmorecfg.h for more information.
+ 
+Downloads
+ Downloads for this article 
+ bc55 Free C++ compiler from Borland. 
+ jpegsr6b.zip JPEG source from IJG (version 6b). 
+ bc55jpeg.zip Makefile and modified JPEG source for BC55 
+ bc55jpegdemo.zip BC55 demo project that uses the JPEG library 
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

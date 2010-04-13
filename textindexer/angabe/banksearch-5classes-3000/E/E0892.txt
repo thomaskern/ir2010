@@ -1,0 +1,134 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Customize the system menu of a form
+Answer
+Before you attempt to modify the system menu of your program, you might want to
+ask yourself why you want to do this. Modifying the system menu of a program is
+not a standard practice. While testing the code for this FAQ, I ran various programs
+on my computer to see which programs customize their system menus. None of the following
+programs modify their system menus: RegEdit, Explorer, Word, Excel, Outlook, MS Dev Studio,
+Internet Explorer, Netscape 4.0, the Windows Calc program, BC++ 5, C++Builder, Delphi,
+MS Paint, Notepad, MS Hearts, Laplink, MSDN InfoViewer, and InstallShield. In fact, I could
+only find two programs that did modify the system menu: the character map utility, and the
+window that surrounds a DOS box. If you feel that modifying the system menu makes sense in
+your program, then read through the following set of steps.
+Step 1: Modifying the system menu requires that you use direct API calls.
+The VCL does not encapsulate the system menu (although
+you might be able to find a freeware control for the system menu). Use the
+GetSystemMenu API function to obtain a menu handle to the system menu. Then use the
+API functions to add or delete your menu items. This code modifies the system menu of the
+main form at startup.
+#define IDS_CUSTOMID 0x1000 // menu ID
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ const AnsiString MenuString = "Custom Menu";
+ MENUITEMINFO info = { sizeof(MENUITEMINFO),
+ MIIM_TYPE | MIIM_STATE | MIIM_ID ,
+ MFT_STRING, // menu type is string
+ MFS_ENABLED, // menu item is enabled
+ IDS_CUSTOMID, // id of menu item
+ NULL, // no sub menu
+ NULL, // no check bitmap
+ NULL, // no uncheck bitmap
+ 0, // no item data
+ MenuString.c_str(), // string of menu item
+ 0}; // last item not used
+ // obtain the menu handle for the system menu
+ HMENU SysMenu = GetSystemMenu(Handle, FALSE);
+ // Insert the new menu item just after the close menu item. If the TRUE
+ InsertMenuItem (SysMenu, SC_CLOSE, TRUE, &info);
+}
+Step 2: Now you need to add code that will respond to the message that is
+sent when the user selects the new menu item from the system menu. Add a message
+map and a function prototype to the include file of your form. Then code the
+function body in the source file.
+//-------------------------------------------------------------
+// Inside the header file
+//
+class TForm1 : public TForm
+{
+__published:	// IDE-managed Components
+private:	// User declarations
+ void __fastcall WMSysCommand(TWMSysCommand &Msg);
+public:	// User declarations
+ __fastcall TForm1(TComponent* Owner);
+BEGIN_MESSAGE_MAP
+ MESSAGE_HANDLER(WM_SYSCOMMAND,TWMSysCommand,WMSysCommand)
+END_MESSAGE_MAP(TForm)
+};
+//-------------------------------------------------------------
+//-------------------------------------------------------------
+// Inside the CPP file
+//
+void __fastcall TForm1::WMSysCommand(TWMSysCommand &Msg)
+{
+ if( Msg.CmdType == IDS_CUSTOMID)
+ {
+ Width -=5;
+ Height -=5;
+ Msg.Result = true;
+ }
+ else
+ TForm::Dispatch(&Msg);
+}
+Note: When you add menu items to the system menu, use menu IDs that are lower
+than 0xF000 to avoid conflicting with the IDs of the default system menu items.
+Note: Once you obtain the HMENU handle to the system menu, you can use that
+handle to call any of the API menu functions. These include DeleteMenu,
+SetMenuItemInfo, and the functions that check, highlight, and put bitmaps on menu
+items.
+Note: Menu items from the main menu of your program send WM_COMMAND messages
+to your window when the user selects an item. The system menu sends WM_SYSCOMMAND
+messages.
+Note: The wParam parameter of the WM_SYSCOMMAND message contains
+the menu ID for the item that was clicked. The TWMSysCommand message structure maps
+wParam to the CmdType structure item.
+Note: The system menu will initially contain the default system menu items for
+a form. These include minimize and close commands. These commands have built in IDs
+(SC_CLOSE, SC_MINIMIZE, etc). Normally, you will want to pass messages for
+the default system menu items on to the default handler. The default items will not function
+if you forget to pass the message on. If you want to intercept on of the default menu
+handlers, you will need to mask off the lower for bits of the CmdType parameter.
+According to the MSDN documentation, the last 4 bits in the wParam parameter in a
+WM_SYSCOMMAND message are reserved for internal use. This applies only to the
+default system menu items that are created by windows. You don't need to mask CmdType
+when handling commands sent by items that you have added to the menu. Here is a modified
+version of the handler to show what I mean:
+void __fastcall TForm1::WMSysCommand(TWMSysCommand &Msg)
+{
+ if( Msg.CmdType == IDS_CUSTOMID)
+ {
+ Width -=5;
+ Height -=5;
+ Msg.Result = true;
+ }
+ else if ( (Msg.CmdType & 0xFFF0) == SC_CLOSE)
+ Application->MessageBox("I don't want to close.","test",MB_OK);
+ else
+ TForm::Dispatch(&Msg);
+}
+Note: The technique above works, but keep in mind that the minimize, restore,
+and close push buttons on the title bar of a program also send WM_SYSCOMMAND messages.
+Intercepting the SC_CLOSE command from the system menu also prevents the user from
+closing the program via the close button.
+Note: The system menu for the hidden application window is different from
+the system menu for a form. This plays a role when the user activates the system
+menu of the application while the application is minimzed. When the user brings up
+the system menu by right clicking on the program's taskbar icon, the system menu
+of the application window will appear, which differs from the system menu of a form.
+ 
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

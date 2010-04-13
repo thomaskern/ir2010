@@ -1,0 +1,539 @@
+
+ 
+C >> Arithmetic Operators ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Type Modifiers 
+ Main Menu 
+ Arithmetic Operators Quiz 
+ 
+ 
+ 
+ 
+Arithmetic Operators
+ 
+ 
+ 
+ 
+ 
+Five and Not Four...
+ 
+ 
+ 
+ 
+ 
+ 
+Arithmetic operators are commonly used in a variety of programming languages. In C, there are five of them, and they all take two OPERANDS. 
+ Recall that an operand is an expression that is required for an operator to work. For example, for 8 + 4, 8 
+ and 4 are considered as the operands. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Operator Name
+ 
+ 
+ 
+Symbol
+ 
+ 
+ 
+ 
+ 
+Multiplication
+ 
+ 
+ 
+*
+ 
+ 
+ 
+ 
+ 
+Division
+ 
+ 
+ 
+/
+ 
+ 
+ 
+ 
+ 
+Modulus
+ 
+ 
+ 
+%
+ 
+ 
+ 
+ 
+ 
+Addition
+ 
+ 
+ 
++
+ 
+ 
+ 
+ 
+ 
+Subtraction
+ 
+ 
+ 
+-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Let me explain why I listed the five operators in this particular order... 
+ 
+ 
+ 
+The multiplication, division and modulus operators have higher PRECEDENCE over the addition and subtraction 
+ operators. This means that if an expression contains a mixture of arithmetic operators, multiplication, division and modulus will be 
+ carried out first in a LEFT TO RIGHT order, then any addition and subtraction. 
+ 
+Brackets (also known as PARENTHESES) can be used to change precedence, as everything enclosed within brackets 
+ is always evaluated first. 
+ 
+For example, 2*4+3 returns 11 because 2*4 is 8, and 8+3 is 11. 
+ 
+On the other hand, 2*(4+3) returns 14 because 4+3 is 7, and 2*7 is 14. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What's With the % ?!
+ 
+ 
+ 
+ 
+ 
+Multiplication, addition and subtraction are the simplest to use. Division is also easy, but watch out for the truncation of an int 
+ divided by an int! Use casting if necessary. Now, the one that confuses novices is the modulus 
+ operator, sometimes known as the remainder operator. 
+ 
+To keep things simple, a%b returns the REMAINDER that occurs after performing a/b. For this 
+ operator, a and b MUST be integers! 
+ 
+ 
+ 
+For example, 6%3 returns 0 because 3 goes into 6 EXACTLY. Similarly, 4%4, 8%2 and 16%8 
+ all return 0. 
+ 
+So why does 3%4 return 3? Picture it this way: you have 3 holes to fill, but you can only fill 4 holes at a time. 
+ You can't fill a group of 4 holes, therefore the 3 holes you had are still empty. Similar story for 7%4 because you can fill 
+ in one group of 4 but still have 3 holes remaining. 
+ 
+ 
+ 
+If it helps, play around with this: 
+ 
+ 
+ 
+ 
+ 
+ 
+ % 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Note that anything modulus with zero returns infinity because anything divided by zero is infinity. In JavaScript, 
+ NaN means "Not a Number" - either it's infinity, or you entered something daft! 
+ 
+Anything modulus with itself is always zero because that number goes into itself exactly. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Arithmetic 
+ Assignment Operators
+ 
+ 
+ 
+ 
+ 
+Sometimes you'd find yourself writing something like: x = x + 2; 
+ 
+There is a better (and efficient) way of writing expressions like these by combining the operator with an equals sign, as shown in 
+ the table opposite. 
+ 
+Be careful with these though: 
+ x *= y+z is the same as: 
+ x = x*(y+z) NOT: 
+ x = (x*y) + z. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Long Hand
+ 
+ 
+ 
+Short Hand
+ 
+ 
+ 
+ x = x * y; 
+ 
+ 
+x *= y;
+ 
+ 
+ 
+ x = x / y; 
+ 
+ 
+x /= y;
+ 
+ 
+ 
+ x = x % y; 
+ 
+ 
+x %= y;
+ 
+ 
+ 
+ x = x + y; 
+ 
+ 
+x += y;
+ 
+ 
+ 
+ x = x - y; 
+ 
+ 
+x -= y;
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Increment 
+ and Decrement Operators
+ 
+ 
+ 
+ 
+ 
+Increasing an integer variable by 1 is a common process. I've seen people write statements like x+=1; or even worse, x=x+1; 
+ 
+ 
+There is an easier way: x++; 
+ (POST-INCREMENT) 
+ 
+Alternatively, you can use ++x; 
+ (PRE-INCREMENT) 
+ 
+So what's the difference? They both increase x by 1 (note that x MUST be an integer), and I tend to use 
+ post-increment. They differ when it comes to statements like these: 
+ 
+y = x++;
+ y = ++x;
+ 
+ 
+ 
+If x was 5, y = x++; would assign x to y, THEN increase x by 1. The 
+ end result is that y equals 5 and x equals 6. 
+ 
+If x was 5, y = ++x; would increase x by 1, THEN assign x to y. The 
+ end result is that y equals 6 and x equals 6. 
+ 
+As their names suggest, post-incrementing is done AFTER the assignment, pre-incrementing is done BEFORE the assignment. 
+ 
+Similar rules apply for decrementing. If you wanted to decrease x by 1 you're free to write x--; (POST-DECREMENT) 
+ or --x; (PRE-DECREMENT), as opposed to: x-=1; or x=x-1; 
+ 
+ 
+ 
+Printer 
+ Friendly Version
+ 
+ 
+ 
+ Type Modifiers 
+ Main Menu 
+ Arithmetic Operators Quiz 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

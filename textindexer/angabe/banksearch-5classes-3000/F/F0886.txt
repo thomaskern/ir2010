@@ -1,0 +1,173 @@
+
+VB Square - Using the Registry - Chaning the registered owner
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Using the Registry > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Chaning the registered owner
+Tip by Sam Huggill
+ 
+Tip description 
+ 
+Change the Windows registered owner in the registry. 
+ 
+Tip Code 
+ 
+Public Const HKEY_LOCAL_MACHINE = &H80000002
+Declare Function RegCreateKey Lib _
+"advapi32.dll" Alias "RegCreateKeyA" _
+(ByVal Hkey As Long, ByVal lpSubKey As _
+String, phkResult As Long) As Long
+Declare Function RegCloseKey Lib _
+"advapi32.dll" (ByVal Hkey As Long) As Long
+Declare Function RegSetValueEx Lib _
+"advapi32.dll" Alias "RegSetValueExA" _
+(ByVal Hkey As Long, ByVal _
+lpValueName As String, ByVal _
+Reserved As Long, ByVal dwType _
+As Long, lpData As Any, ByVal _
+cbData As Long) As Long
+Public Const REG_SZ = 1
+Public Const REG_DWORD = 4
+Public Sub savestring(Hkey As Long, strPath As String, _
+strValue As String, strdata As String)
+Dim keyhand As Long
+Dim r As Long
+r = RegCreateKey(Hkey, strPath, keyhand)
+r = RegSetValueEx(keyhand, strValue, 0, _
+REG_SZ, ByVal strdata, Len(strdata))
+r = RegCloseKey(keyhand)
+End Sub
+Private Sub cmdChange_Click()
+'Prompts for the new name of the Registered Organization
+strOrganization$ = txtCompany.Text
+If strOrganization$ = "" Then
+ MsgBox "Empty String", vbCritical, "Error"
+ Exit Sub
+End If
+'Saves string (Organization) to the registry
+Call savestring(HKEY_LOCAL_MACHINE, _
+"Software\Microsoft\Windows\CurrentVersion", _
+"RegisteredOrganization", strOrganization$)
+'Prompts for the new name of the Registered Owner
+strOwner$ = txtOwner.Text
+If strOwner$ = "" Then
+ MsgBox "Empty String", vbCritical, "Error"
+ Exit Sub
+End If
+'Saves string (Owner) to the registry
+Call savestring(HKEY_LOCAL_MACHINE, _
+"Software\Microsoft\Windows\CurrentVersion", _
+"RegisteredOwner", strOwner$)
+End Sub 
+ 
+Question, Query, Criticism?
+Post your feedback now! 0 comments. 
+ 
+ 
+Related
+ 
+- 
+Service your applications 
+- 
+Create a registry control 
+- 
+W2K Registry Hack 
+- 
+Chaning the registered owner 
+- 
+Using the GetSetting and SaveSetting commands 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

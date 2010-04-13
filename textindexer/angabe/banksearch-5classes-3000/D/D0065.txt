@@ -1,0 +1,270 @@
+
+ 
+ 
+ 
+ Java Lessons overview
+JAVALESSONS.COM
+Free Lessons
+You may view these lessons if you agree to Our
+Terms
+ 
+Lessons best viewed in the order given,
+most lessons extend preceding ones
+In this lesson .....
+ 
+....you can learn about :
+ 
+Simplest Applet
+ 
+- 
+paint method
+- 
+Graphics class, drawing
+- 
+HTML APPLET tag
+- 
+naming conventions
+- 
+bytecodes
+- 
+JVM
+- 
+browsers
+- 
+fully qualified names
+ 
+Compile and run an applet
+ 
+- 
+using Sun's SDK
+- 
+source file
+- 
+class file
+- 
+publishing applet
+ 
+Mouse click
+ 
+- 
+constructor
+- 
+initializing
+- 
+event handling
+- 
+implementing the MouseListener interface
+- 
+keyword 'this'
+- 
+incrementing numeric instance variable
+- 
+concatenating Strings
+- 
+repaint
+ 
+Mouse coordinates
+ 
+- 
+the MouseEvent argument
+- 
+click coordinates
+ 
+TextArea
+ 
+- 
+import
+- 
+keyword 'new'
+- 
+reference variable
+- 
+AWT TextArea component
+- 
+new-line character
+- 
+adding to Container
+ 
+Button action
+ 
+- 
+AWT Button
+- 
+handling button event
+- 
+ActionListener interface
+- 
+changing button label
+ 
+Button and TextArea
+ 
+- 
+if ... else ...
+- 
+statement block
+- 
+boolean instance variable
+ 
+Which Button ?
+ 
+- 
+handling multiple button events
+- 
+ActionEvent source
+- 
+comparing reference variables
+- 
+the Object superclass
+ 
+Numerical limits
+ 
+- 
+Fundamental numerical data types
+- 
+conversion to String
+- 
+returning from method
+- 
+AWT TextField
+ 
+Repetition and painting
+ 
+- 
+while
+- 
+local variables
+- 
+casting
+- 
+paint method
+- 
+pseudo-random numbers
+ 
+Using an array
+ 
+- 
+arrays
+- 
+new, memory allocation
+- 
+for
+- 
+painting logic
+ 
+Language
+ 
+- 
+calling methods
+- 
+parameter type, return type
+- 
+return type as part of expression
+- 
+method positions in class
+- 
+applet's init and start methods
+- 
+calculate remainder
+ 
+Continue
+ 
+- 
+continue
+ 
+Break
+ 
+- 
+break
+- 
+NOT operator
+- 
+AND operator
+ 
+Timing
+ 
+- 
+current time
+- 
+measuring elapsed time
+- 
+constant
+ 
+Environment
+ 
+- 
+System Properties
+- 
+tab character
+- 
+System.out
+- 
+browser's Java console
+- 
+browser's status bar
+ 
+Strings
+ 
+- 
+java.lang.String
+- 
+immutable
+- 
+garbage collection
+- 
+freeing up memory
+ 
+String methods
+ 
+- 
+searching a String
+- 
+substring
+- 
+testing for String equality
+- 
+method overloading
+- 
+character literal
+- 
+convenient String methods
+ 
+StringBuffer
+ 
+- 
+java.lang.StringBuffer
+- 
+manipulate characters in string
+- 
+conversion to String
+- 
+convenient methods
+ 
+Instances
+ 
+- 
+creating instances
+- 
+reference variables
+- 
+NullPointer Exception
+- 
+where do classes reside ?
+- 
+jar files
+ 
+HTML Parameters
+ 
+- 
+HTML APPLET parameters
+- 
+checking reference variable for validity
+- 
+keyword 'null'
+ 
+Want more ? Lessons for licensees
+Copyright © 2000-2002 System Exclusive & Multi Midi (NL) All rights
+reserved
+Suggestions for improvement ? Let
+us know
+Problems viewing the lessons ? Tell
+us

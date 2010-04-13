@@ -1,0 +1,24 @@
+
+VBA51 - Plug in
+VBA51 - Plug-In 
+Updated February 20, 2000 
+ 
+Adding plug-in support to your Visual Basic applications
+Download plug-in.zip.
+Basically :
+- Your application provides a "dummy" CFilter class.
+- Plug-in files are using the Implements CFilter statement. This way, those plug-in classes (Filter.LCase and Filter.UCase) are "compliant" with the CFilter class object used within your application.
+Then :
+- Your application lists the DLLs available in the current directory (UCase.dll and LCase.dll)
+- The user can then select one of those DLLs and your application uses then CreateObject("Filter." & FileName) to create either a Filter.LCase or a Filter.UCase object. The reference to this newly created object is hold using a CFilter class object (as both LCase and UCase are "compliant" with CFilter). Note that despite the use of CreateObject, we are still using early binding.
+- You could even add a GetInfo function. This way you could enumerate available plug-ins at initialization time (by creating an object for each DLL, calling the GetInfo method and releasing the object) and provide the user with a friendly name. Then once the user choosed a plug-in, you create finally an object for this particular plug-in...
+To use the demo files :
+- Compile Client.vbp to Client.exe.
+- Load LCase.vbp, add a reference to Client.exe and compile LCase.dll
+- Load UCase.vbp, add a reference to Client.exe and compile UCase.dll
+- Run Client.exe, select a plugin and press the transform button
+- Write your own plug-in. Note that you don't have to recompile Client.exe to use this new plug-in.
+See also : Q188659 - HOWTO: Use a Satellite DLL for Localization Purposes that shows how to use a similar mechanism to select a resource file at runtime.
+ 
+Patrice Scribe 
+. 

@@ -1,0 +1,542 @@
+
+ 
+ News and New Product Briefs (12/2/98)
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 1998 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ News and New Product Briefs (12/2/98)
+ 
+ 
+ 
+ 
+Summary
+Kane Scarlett delivers the latest and greatest in Java-related news and new product announcements, including the juicy details on Microsoft's legal battles: Intel's grievance against Microsoft, how AOL's acquisition of Netscape may affect Microsoft's antitrust trial and Java itself, an economist's take on the Microsoft monopoly, Microsoft's removal of Java from IE, and much more!
+ 
+ By 
+Kane Scarlett
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+Index
+- Microsoft lawyer grills Intel witness 
+- Court quote of the week
+- Netscape's next-generation client to be more modular
+- DirectDraw foundation classes have crash bug 
+- Gates says Microsoft put no pressure on Intel 
+- Vendors complain about Sun's embedded Java standards process 
+- XML Extractor learns and accesses databases
+- IBM's Soyring cross-examined 
+- Microsoft on injunction: Won't hurt us, and we don't have to keep using Java
+- Economist testifies 'yes' on Microsoft monopoly 
+- Novell, Cisco demo NDS Java agent
+- Judge grants injunction motion against Microsoft 
+- Boeing employee testifies 
+- Gates the comedian
+- A sign of distress? Microsoft hires a legal spokesperson
+- Sun demos Java chips at Comdex 
+- Judge thinks Gates not "responsive" 
+- MS sees Linux and Netscape as threats
+- Ross wants Sun to open Java control even wider 
+- Ross comments on Microsoft's Java moves
+- Avitek kicks off Authorized Java Center
+- picoJava plans at Comdex
+- ETRI offers NetTheater set-top
+- IBI upgrades ECB to support servlets 
+- IBM AS/400s to run Intentia 64-bit Java ERP apps
+- alphaWorks releases 9 new XML Java tools
+- Netroscope study profiles Java in the enterprise
+- Insurance agency gets secure, high-performance site
+- Planetweb snaps up Java with acquisition of Novita
+- InfoWorld forum on Java future
+- How Microsoft intends to comply
+- Microsoft doesn't lose one in Japan
+- DevTech SiteSurfer in preview edition
+- Activerse releases its DingBot SDK
+- GTS Java products used to broadcast Oracle conference sessions
+- Gefion InstantOnline Java servlet get new features
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+Microsoft lawyer grills Intel witness 
+On November 10, 1998, Microsoft attorney Steven Holley initiated cross-examination of Intel VP Steven McGeady, the person who claimed Microsoft pressured OEMs to stop adopting Intel's multimedia-enhancing native signal processing technology (NSP). 
+McGeady claimed the NSP technology would increase the speed and reliability of multimedia applications on NSP-equipped PCs. He noted that Intel prepped NSP for Windows 3.1, and when the lawyer produced a memo from Grove to Gates claiming that preparing NSP for Windows 3.1 was a mistake, McGeady explained the tact by the fact that at the time, Windows 95 was already late, with no clear delivery date. 
+McGeady also quoted Intel Chairman Andrew Grove on the matter: "We caved . . . under pressure from Microsoft." 
+When the lawyer asked why Intel didn't inform Microsoft of NSP early in its development, McGeady responded that the company was afraid Microsoft would start to discredit it before it even had a chance, which is what, according to McGeady, it ended up doing: "It was the fear that was ultimately realized . . . that Microsoft would stomp it out of existence." 
+Questioning by DOJ lawyer David Boies brought out several of McGeady's points about the pressure tactics Microsoft was allegedly using to stop NSP, including the introduction of a portion of Gates's testimony. In it, the lawyer asked Gates, "Did Microsoft make any effort to convince Intel not to help Sun and Java?" Gates replied, "Not that I know of." Boies then introduced a June 1996 memo by Gates to Microsoft VP Paul Maritz that contradicted Gates's testimony. After referring to this exchange, Boies asked McGeady the same question, to which the response was, "Repeatedly and on multiple occasions." 
+McGeady testified that a Microsoft official had told Intel Microsoft "owned software to the metal," and when Intel attempted to develop OS-independent device drivers, that Microsoft told Intel that it had no business writing software at that level. 
+McGeady noted also that Microsoft pressured Intel not to develop a Java implementation modeled on Sun's version. In an April 1996 memo from Maritz to Gates, Maritz wrote, "We need Intel to realize that ActiveX is [the] best antidote to Sun/Java." Maritz also wrote, "In general... [Intel] see[s] Sun/Java as their big issue since Sun is not only trying to hijack the OS but the chip as well. I explained our strategy of 'optimizing' Java for ActiveX and Windows, and how we should be working together on this, but I fear that McGeady will try to obviate this (unfortunately he has more IQ than most there)." 
+Back to index
+Court quote of the week 
+During the November 10 questioning of Intel VP Steven McGeady by DOJ lawyer David Boies, the courtroom burst into laughter when McGeady recounted notes he took in a July 1995 meeting with Bill Gates (and others). According to McGeady, Gates allegedly said, "This antitrust thing will blow over." 
+Then, he added, "We may change our e-mail retention policy." 
+Back to index
+Netscape's next-generation client to be more modular 
+Netscape unveiled its next-generation technology, code-named NGT, that will be at the core of all Netscape products after Communicator 4.5. According to the company, NGT will make it easier to develop smaller, faster, and more portable modular applications designed for multiple computing platforms and devices. 
+According to Netscape Client Product Marketing Director Chris Saito, the central part of NGT is a browser layout engine that interprets data from Internet sites and quickly displays the content on a user's screen. Features of NGT are: 
+ 
+- Support for such standards as HTML 4.0, Cascading Style Sheets (CSS1 and CSS2), Document Object Model (DOM), Resource Description Framework (RDF), and Extensible Markup Language (XML) 
+- Extensive modularity and a small footprint 
+- The ability to build platform-independent Web-standard application interfaces 
+- A table layout speed four to five times faster than any product that currently exists
+- Open source code, developed with mozilla.org. 
+Find the source code for NGT technologies (as well as the opportunity to contribute to its direction) at the mozilla.org Web site. More on NGT should be available from Netscape before the end of 1998. 
+http://www.mozilla.org/source.html 
+Back to index
+DirectDraw foundation classes have crash bug 
+Italian programmer Fabio Ciucci discovered a computer-crashing bug in Microsoft's DirectDraw foundation classes for Java. 
+DirectDraw classes are found in Internet Explorer, Windows 95/98/NT, and Microsoft's Java SDK. (However, Microsoft officials note the possibility of having the bug crash your system is slim, since very few Java applets are created with DirectDraw.) 
+According to Microsoft Product Manager Joe Herman, "There is a bug in some of the Java classes we ship for DirectDraw functionality. You're drawing graphics, and in that it's similar to DirectX . . . the route most people take." He added that Microsoft will probably offer a fix for the bug in its next service pack (for Windows 98 or IE). 
+Ciucci wrote and posted a demonstration applet that exploits the bug. 
+Demonstration: http://www.anfyjava.com/iebug 
+Back to index
+Gates says Microsoft put no pressure on Intel 
+In a 15-minute segment of the videotaped testimony by Microsoft Chairman Bill Gates played on Monday, November 9, 1998, Gates denied trying to pressure Intel to stop planning and developing Internet software. 
+Gates also denied that Microsoft tried to keep Intel from helping Sun and Netscape, then went on to describe Intel's software as being of "low quality" and "incompatible" with Windows. 
+When DOJ attorney David Boies asked Gates during the deposition, "Did you or, to your knowledge, anyone at Microsoft try to convince Intel that it should not engage in any software activity unless Microsoft was involved in that activity?," Gates answered, "I'm sure we pointed out sometimes how sometimes a lack of communications between the two companies on various subjects including software development led to unfortunate unreliability and mismatch, which led to bad customer experiences." 
+Back to index
+Vendors complain about Sun's embedded Java standards process 
+At the recent Embedded Systems Conference West, as Sun announced its intent to develop realtime extensions for Java for embedded systems, a group of 15 vendors poured cold water on the announcement by touting the formation of a group to open up Sun's allegedly exclusive standards process for embedded Java devices and systems. 
+The group's chief complaint was that Sun is excluding nonlicensees from the standards process. The group also believes the use of embedded systems Java will be accelerated by the contributions of more parties to the evolution of Java standards. 
+With that in mind, the Real Time Java Working Group, spearheaded by Hewlett-Packard and affiliated with the National Institute of Standards and Technologies, announced it has formed a more open, vendor-independent embedded Java standards process to create Java realtime extensions. 
+The group includes Access, Aonix, Cyberonix, Enea OSE Systems AB, HP, Intermetrics, Lynx Real-Time Systems, Microsoft, NewMonics, OMRON, Plum Hall, Rockwell Collins, Siemens AG, TeleMedia Devices, and Yokogawa Electric. 
+The vendors involved claim that embedded Java extensions for their JVM implementations don't show up in the specification and cannot be tested for compliance, since they are not licensees. In addition, the vendors claim that their industry needs (for smart rings, factory robotics, and automobiles) are different from those for workstations and servers. 
+Soon after the announcement, Sun, in an effort to quell the dissent, allegedly offered an embedded Java participation agreement, but the group chose to reject it. HP Embedded Software Standards Manager Wendy Fong said, "Sun is strongly encouraging their own process for specifications. HP has not signed up to the Sun process." She added, "In discussions with Sun, it is still apparent Sun retains significant control and veto power over their entire process. In addition, Sun's role and everyone else's is asymmetrical in the participation and contribution of intellectual property." 
+IBM and Rockwell didn't quite follow HP's version. According to IBM Java Software Director Jan Jackman, "We haven't seen HP announce a process, and we continue to work to make sure the industry can come to an agreement on a common, open, standard API. Sun has a lot more meat to what they're doing," And from Rockwell Collins engineer Christopher Legan "You [HP] speak of choice, but give no details on your definition of process. Misdirection, ambiguity, and division of effort are your enemy, not Sun. You need developers in your camp ASAP...they don't care what process you use to generate the spec. They want something that is not a moving target." 
+By November 9, 1998, Sun agreed to soon announce a new process that gives nonlicensees a place in defining the embedded APIs throughout the range of Java classes. According to Sun VP Jim Mitchell, "We're making it possible for anyone who wants to be involved in early development to get in. They just need to sign a participation agreement that they will work in Java's best interests, and pay an annual fee." 
+The new process would make it impossible to incorporate patented technology into Java (so developers won't have to consider royalty fees when deciding to use Java). Mitchell also noted that "there will be more opening around JVM implementations," indicating that Sun will redefine how licensed partners can create and test JVMs. The process may be enabled by December, with annual fees to climb to no more than $5,000 (discounts for nonprofits). 
+These concessions by Sun do have the effect of making Java more open, but they don't make it open source code. And with the open source Linux OS making big waves (and possibly even bigger headlines) in today's technology sector, Sun may see more pressure to further open Java. 
+The Real Time Java Working Group's goal is to create its own specifications for integrating Java in embedded systems or devices. It plans to have this completed sometime within the next six months. 
+More on this story as it unfolds. 
+Info on the RTJW group: http://www.newmonics.com/webroot/rtjwg.html 
+Back to index
+XML Extractor learns and accesses databases 
+News Internet Services announced the XML Extractor, a Java applet that studies the basic structure of the data contained in a user's database, then outputs specific data with XML-based syntax. 
+This gives developers the ability to use the features of XML without rebuilding existing systems (databases, servers, protocols, and so on). 
+The Extractor supports the Java Database Connectivity protocol (JDBC) for accessing and extracting information. The open nature of Java allows the applet to learn and extract data from SQL, Access, or other relational databases. The applet uses templates that let developers build their own tag names (which can differ from the database's field names). 
+The product will be distributed as open source software; developers who make changes to it must publish their source online for others to use. 
+News Internet Services CTO Laird Popkin said the company plans to expand the Extractor's focus to the filesystem, but the delivery date is undetermined. 
+http://www.newsinternet.com/demos.htm 
+Back to index
+IBM's Soyring cross-examined 
+On Wednesday, November 18, 1998, Microsoft attorney Steven Holley launched into his cross-examination of IBM Network and Computer Services director John Soyring by introducing an e-mail correspondence from IBM VP John Thompson to Sun CEO Scott McNealy. 
+In the e-mail, also copied to Netscape CEO James Barksdale, Thompson suggested the companies cooperate to "minimize the performance gap" between Microsoft's Java and the Navigator version (Sun's version). He also mentioned that the companies should open a performance optimizing center to make the pure version of Java more competitive with the Microsoft version. 
+Thompson also noted that, "We must engage our other partners to bundle the [JVM] with their products. We should start with Oracle and Novell." He added, "Perhaps Ellison [at Oracle] can help us with Apple." Holley then asked Soyring, "Do you think it is appropriate for six of the largest software companies in the world to agree with each other to collude with one another against Microsoft?" Soyring was saved by a sustained objection. 
+On Tuesday, November 17, 1998, Soyring testified that agreements with Microsoft made it difficult for application developers to port and adapt Windows applications to IBM's OS/2 operating system. 
+Back to index
+Microsoft on injunction: Won't hurt us, and we don't have to keep using Java 
+Microsoft reps' first official comments on the injunction ruling by Judge Ronald Whyte indicate company officials are reviewing their options to see what the ruling will potentially mean to the company's marketing and distribution plans. 
+According to a lawyer for Microsoft, Tom Burt, "We'll be reviewing our options over the next several days and will be making a decision over which legal options to pursue sometime in the near future." Burt characterized the judge's order as highly technical and narrow. He added that he didn't think the ruling would have any effect on the antitrust case against the company. 
+Microsoft Group VP Paul Maritz said the injunction would have no impact on software that had already shipped. He added that required changes wouldn't be noticed by the typical user: "We don't anticipate any disruption to any of our products, especially Windows 98." 
+Maritz then made what could be considered a veiled threat pertaining to something that would certainly affect typical users: He noted that the Java license does not require that Microsoft continue to include Java in any of its products. 
+Back to index
+Economist testifies 'yes' on Microsoft monopoly 
+On Wednesday, November 18, 1998, the Justice Department enlisted the testimony (an 89-page report) of Frederick R. Warren-Boulton, the chief federal antitrust economist under the Reagan regime, to bolster its case against Microsoft. 
+Warren-Boulton testified that Microsoft has a monopoly in the desktop PC operating system market, and that maintenance of that monopoly (as well as the likely establishment of a new monopoly in Internet browsers, established through what he describes as "exclusionary" practices) would cost consumers. 
+He said, "Consumers will be significantly harmed if Microsoft succeeds in crushing the cross-platform threat that independent browsers pose to the Windows operating system monopoly. There is no guarantee, of course, that independent browsers will bring these benefits or reduce the monopoly power of Microsoft in the operating system market, even if Microsoft did not engage in exclusionary conduct. That is a matter for the market -- not monopolists or engineers or economists -- to decide." 
+Warren-Boulton added, "The important point is that the market should not be prevented by Microsoft's anticompetitive practices from making that decision." Warren-Boulton cited an IDC study that placed Microsoft's OS marketshare at 92 percent, and increasing, since 1991. 
+Warren-Boulton also noted that there are substantial barriers to market entry (one of the contentious points). He used testimony from IBM about OS/2 to demonstrate how difficult it is to break into that market. 
+Warren-Boulton also commented that Microsoft's integration of Internet Explorer with Windows 98 cannot be justified on the grounds that it is more efficient, since he claims they are two different products. He added that in his opinion Microsoft's decision to give the browser away for free (regardless of the cost to the company) constitutes "predatory" behavior. 
+A statement issued by Microsoft characterized Warren-Boulton's testimony as "clearly that of an ivory tower consultant with little or no direct experience in the day-to-day business and competitiveness of the US software industry." It continues: "It is well established as a matter of both law and economics that high market share does not necessarily establish the existence of monopoly power." 
+Microsoft is expected to call the testimony of economist Richard Schmalansee, the interim dean of the Sloan School of Management at MIT and a member of the Council of Economic Advisers during the Bush presidency. 
+(For expediency's sake, the judge has asked witnesses to submit direct testimony in written form.) 
+Back to index
+Novell, Cisco demo NDS Java agent 
+Novell recently demonstrated at Comdex Java-based agent technology designed to configure routers and switches that use Novell Directory Services (NDS). Such routers include those from Lucent, Nortel, and Cisco Systems. 
+This is the first time NDS technology has been applied to Cisco's network hardware; until now, Cisco had been supporting only the Microsoft Active Directory technology in NT/2000. It should work with all current routers and with Cisco's embedded network operating system. The agents are designed to allow administrators to set router/switch priorities by application, user, groups of users, and to configure them through NDS from a single console. 
+Cisco is going a step further by assuring that NDS and its Assure, User Registration and Tracking, and Network registrar products will seamlessly interoperate. 
+Back to index
+Judge grants injunction motion against Microsoft 
+On Tuesday, November 17, 1998, US District Court Judge Ronald Whyte granted Sun's motion for a preliminary injunction against Microsoft, which would cause Microsoft to make changes in Windows 98, Internet Explorer 4.0, and its Java toolkit products, SDK for Java 2.0 and 3.0, and Visual J++ 6.0. 
+Whyte's order found that Sun is likely to win the case based on its merit, and goes on to order Microsoft to change its products to include a version of Java that will pass Sun's compatibility test suite within 90 days. This is not the final word, but it does force Microsoft to alter the products during the remainder of the trial. The order does not require Microsoft to recall any products -- that would be a decision left for the trial. The judge also left the order open so Microsoft can extend the 90-day deadline if it can show just cause. 
+Java Software Division President Alan Baratz called this decision a "win for Java, for Java licensees, and for consumers." 
+Back to index
+Boeing employee testifies 
+On Tuesday, November 17, 1998, the Justice Department played excerpts of Boeing Windows Product Manager Scott Vesey's videotaped testimony to back up earlier testimony of Glenn Weadock, a computer consultant and author. 
+Weadock had argued that corporations want to choose the browser technology they use. He said, "Companies do want to be able to choose what sort of software they want to put on their machines." In fact, Boeing had decided to standardize on a version of Windows 95 that didn't include Internet Explorer. 
+Vesey testified that Boeing standardized on Netscape 2.02 because it ran across more platforms than Internet Explorer. He also said it provides a common user experience when viewing documents. "In the same way that we would want to be able to choose what graphics editor, or what HTML editing product, or what word processor we're using, we would want to be able to choose what Web browser we're using." An internal Boeing memo also quoted Vesey as commenting that Boeing did "not have a choice. Internet Explorer will be installed as a component of our next-generation desktop operating system." 
+Vesey also admitted that an integrated browser, such as IE, could deliver advantages. 
+On Monday, November 16, 1998, Microsoft attorney Robert Pepperman questioned witness Glenn Weadock, president of Independent Software, as to his qualifications as an expert witness. Weadock, who has authored several books in the IDG "Dummies" series (including Windows 98 Registry for Dummies), admitted that he had no programming experience and acknowledged that the 13 companies he interviewed before testifying could have had a bias. 
+Back to index
+Gates the comedian 
+On Monday, November 16, 1998, US District Court Judge Thomas Penfield Jackson got a chuckle from watching portions of Bill Gates's videotaped testimony, introduced by the Justice Department. 
+The excerpts were of questioning sessions with DOJ lead attorney David Boies. Boies was attempting to question the elusive Gates over the allegation that Microsoft was conducting a holy war against Netscape. 
+In short, Gates refused to concede that Microsoft focused its efforts on Netscape in a "jihad" over browser marketshare. 
+Boies introduced a January 5, 1996 e-mail from Gates to a subordinate that said, "Winning Internet browser share is a very, very important goal for us." Gates's counter: He didn't remember writing that specifically. Boies asked what companies Gates would include in the term "browser share." Gates's response: "There's no companies included in that." 
+Boies then asked, "Well, if you're winning browser share, that must mean that some other company is producing browsers and you're comparing your share of browsers with somebody else's share of browsers. Is that not so, sir?" 
+Gates's dodge: "You asked me if there are any companies included in that and now --- I'm very confused about what you're asking. It doesn't appear I'm talking about any other companies in that sentence." 
+When confronted with a document sent to him by VP Brad Chase that said, "We need to continue our jihad next year. Browser share needs to remain a key priority for our field and marketing efforts," Gates said, "It doesn't say Microsoft." Boies then asked, "Well, when it says 'we' there, do you understand that means something other than Microsoft sir?" Gates eluded, "It could mean Brad Chase's group." 
+And as for the definition of the word jihad, well Gates is no better at defining terms than President Clinton. His reply, "I think he is referring to our vigorous efforts to make a superior product and to market that product." 
+Several further exchanges involved Gates forgetting the question, and sometimes forgetting the meaning of common English words. 
+Back to index
+A sign of distress? Microsoft hires a legal spokesperson 
+After the laughable Gates deposition episode (see "Gates the comedian" in this section), Microsoft spokesperson Mark Murray called the replay of those sections of the deposition a government attempt to embarrass Gates. 
+Murray said, "Virtually none of that hour-long videotape had any relevance in this case. Mr Gates early in the segment said he viewed Netscape as a competitor. And that the company sought to improve its browser technology to compete head-to-head." He added, "The remainder of that tape was word games." 
+As to why Gates was being so evasive, Murray replied that Gates was being precise, and was "not going to allow the government to put words in his mouth." 
+And just to prove to the press that this deposition was not unusual, that the combative and evasive nature was typical, Microsoft hired former US Attorney Joseph di Genova, now a media legal pundit. His take, "A deposition is fundamentally a very ugly thing. This is not a work of art." 
+Back to index
+Sun demos Java chips at Comdex 
+Sun Microsystems, IBM, NEC, Fujitsu, and LG Semiconductor demonstrated the first ICs that contain Java bytecode burned into the silicon at Comdex. 
+Up for show were such consumer devices as set-top Web boxes, Web phones, and other handhelds, including a thin client, that all contain picoJava-core chips. The companies expect the first commercially available prototypes of the devices to hit the market early in 1999, to be followed by factory-floor versions (robot control, communication devices, specialized thin clients). 
+Siemens also announced plans to license the picoJava core to build a derivative chip to use in smart cards, due to Java's relatively large number of functions able to execute in such a small space. 
+Sun has no plans, beyond production of validation chips, to produce these chips. 
+Back to index
+Judge thinks Gates not "responsive" 
+After DOJ attorney David Boies showed the "confused" excerpts from Bill Gates videotaped deposition, US District Court Judge Thomas Penfield Jackson invited the lawyers into a closed-door session to comment on Gates' deposition. (For more on the deposition, see "Gates the comedian" in this section.) 
+Jackson said, "I think it's evident to every spectator that, for whatever reasons, in many respects Mr. Gates has not been particularly responsive to his deposition interrogation." 
+Microsoft lead attorney John Warden earlier complained about the Justice Department's tactics of playing several short segments of the deposition -- segments that show Gates' denying that he remembered writing or sending potentially damaging email and arguing over definitions of routine terms. Warden said that there was "no legitimate purpose vis-a-vis the trial in playing this deposition in bits and pieces," and that Boies had done this "for the purpose of creating news stories day after day after day." 
+Boies response was that Gates' deposition showed an "astonishing lack of recall limited to issues of critical relevance to this case." 
+In an Associated Press interview, Gates stood behind the truthfulness and accuracy in his answers to the prosecutor's questions, alleging that the disjointed design of the tape segments were "more about government PR than the substance of the case.'' 
+Warden sought a motion to limit the play of the segment tape, but the judge denied it, saying, "If anything, I think the problem is with your witness, not with the way in which his testimony is being presented." (The DOJ attorneys have been showing portions of Gates' deposition before witnesses took the stand, presumably to compare and contrast Gates' testimony with that of the individual witnesses.) 
+Back to index
+MS sees Linux and Netscape as threats 
+In Microsoft attorney Michael Lacovara's cross-examination on Thursday, November 19, 1998, he attempted to counter the testimony of the government's expert witness and economist Frederick R. Warren-Boulton by showing that he was not in touch with the software industry. (For more on his testimony, see "Economist testifies 'yes' on Microsoft monopoly" in this section.) 
+Lacovara tested Warren-Boulton's knowledge of Linux. Warren-Boulton responded by describing Linux as an operating system generally used for server applications, to which Lacovara countered by citing Corel's recent Linux port of WordPerfect, as well as Red Hat's Linux applications. Lacovara said, "You haven't really looked into the evolution of Linux desktop products?" 
+Warren-Boulton replied by simply stating that Linux was not a constraint to Microsoft's monopoly. He answered, when asked, that even though the growth rate of Linux-equipped PCs had exploded in the last year, only a small number of PCs were shipping with Linux currently. The reason for the explosive growth rate was because the number of Linux-installed PCs was zero a year ago: "When you go from zero to a small number, the growth rate is high," he noted. 
+When Lacovara attempted to build a parallel case between Linux and Netscape, Warren-Boulton commented that he didn't know if he could have determined whether Netscape's browser was a threat to Microsoft's monopoly if asked that question in January 1995. And when Lacovara asked him to predict Linux's status six months or two years from now, he said it depended on financial market forces. 
+Back to index
+Ross wants Sun to open Java control even wider 
+At Comdex, Java Lobby founder and president Rick Ross asked Sun to release its current level of control over the Java standard because he sees a threat that corporate rivalry may eliminate Java's cross-platform abilities. 
+Ross called Sun's current Java open-development process "broken" since "only licensees can participate. It's broken because Sun's control is too arbitrary. There is too much not-invented-here syndrome at Sun." Ross added, "Sun claims its process is more open than any other process, but to me this sounds like a benevolent dictator saying I treat my subjects better than any other dictator. As developers, we're not looking for a dictator, we're looking for a partner." 
+Ross cited the number of Java developers that don't work for Sun or Microsoft as the basis for asking for more outside participation in the language's development. "There are hundreds of thousands Java developers. Their cumulative numbers dwarf the number of people working on Java for Sun or MS. Those people at these companies represent about one percent of the total Java community. Our cumulative investment also dwarfs Sun's investment." 
+Ross also cited already made decisions that were not in Java developers' best interests, such as ignoring QuickTime streaming-multimedia tools even though it is the most popular multimedia platform today. He notes too that Sun still hasn't submitted a Java standard specification to ISO. He also notes that Sun could head off future conflicts; if Sun doesn't control the process so closely, Ross reasons, then members like IBM and Oracle couldn't be suspicious of Sun building and marketing a Java-based applications server that might have an inside edge over their offerings. 
+Ross is asking for a three-tier standards process for Java, one of Sun, for-profit companies, and nonprofit companies. 
+Various developers agree and disagree with Ross to varying degrees, including such views as 
+ 
+- completely opening the Java process, but retaining control at the EJB level. 
+- allowing multiple-implementation standards. 
+- allowing the untidy free-market process to sort it out. 
+Back to index
+Ross comments on Microsoft's Java moves 
+Java Lobby president Rick Ross commented with concern on Microsoft's direction with Java. 
+Ross said, "Fear is driving Microsoft's approach to Java, not vision. Microsoft has lopped all Java developers with Sun, and in so doing they foolishly made enemies of the loyal developers. Microsoft should adopt a 'runs anywhere but runs best on Windows' strategy, instead of the embrace, extend, and extinguish strategy we're currently seeing."
+Back to index
+Avitek kicks off Authorized Java Center 
+Avitek announced the opening of an Authorized Java Center in Boulder, CO, one of the 14 Authorized Java Center service locations in the US. 
+As an Authorized Java Center, Avitek has representative that are trained to provide education, training, integration, and consulting services to business customers who want to integrate Java into existing systems. They will deliver assessment and mentoring services through a demonstration facility that runs Java on a variety of platforms. They can also offer demonstrations of the latest Java technology advances. 
+The company plans to celebrate the opening with a day-long Java Technology Harvest event with presentations on the latest Java technology developments. It's scheduled panel discussions and presentations, as well as case studies of successful Java application implementations. 
+Back to index
+picoJava plans at Comdex 
+At one session of Java University at Comdex, four picoJava licensees disclosed their plans for the Java chip core technology. 
+Korea's ETRI demonstrated NetTheater, an Internet set-top box reference design developed with a picoJava-based chip (from LG Semiconductor) and completed with all-Java software. The box supports multimedia applications that run in a PersonalJava 1.1 environment. 
+Fujitsu plans to use its LSI technology as the centerpiece of its picoJava products. It will offer a picoJava core to deliver high-speed Java bytecode execution. It plans to introduce an evaluation kit for picoJava in 1999. 
+NEC plans to focus on building a picoJava core for the embedded controller market, as well as using the picoJava core as an IP core in its "System on a Chip" (SOC) concept (for adding high functionality to embedded device controllers). 
+Siemens Semiconductors will develop the 88-series, high-end controllers for smart cards. The 88-series is designed to speed the execution of the Java Card Instruction Set and at the same time, covers the requirements of multi-application cards. It will also develop smart card chips for banking, electronic commerce, mobile communications, and health care applications. 
+Sun demonstrated JDK 1.1.4 running on the microJava 701 chip, which is based on the picoJava-II core. It will be deployed as an evaluation platform for OEMs. 
+Back to index
+ETRI offers NetTheater set-top 
+The Korea-based Electronics and Telecommunications Research Institute (ETRI) demonstrated NetTheater 0.5, an Internet set-top box that contains an embedded Java processor manufactured by LG Semiconductor. 
+NetTheater lets users execute Java applications over the Net. It comes with its own software package that includes a Web-top manager, an online news service client, a browser, and an email client. The included PersonalJava 1.1 environment runs atop the Teapot RTOS, and all software is implemented in Java. 
+NetTheater's system software is stored in flash memory, so it upgrades easily by downloading new software from various ISPs. It includes a MicroJava-1 33MHz microprocessor (MJ-1). And, according to the company, if LG Semiconductor releases a stable 100MHz MicroJava-2 processor (MJ-2), ETRI promises a faster product by the middle of 1999. 
+Back to index
+IBI upgrades ECB to support servlets 
+Information Builders Inc. announced that the upgrade to its Java application server, Enterprise Component Broker 2.0, has added support for Java servlets as well as Enterprise JavaBeans. 
+With servlet support, ECB users can access data from sources from anywhere in an enterprise; the servlets connect to each other and data sources through Information Builders' middleware, EDA. The servlets can save state information on the status of a session between a Web application and a client. 
+The EDA/ECB combination includes Symantec's Visual Cafe for Java and JavaBean development. 
+Prices range from $7,500 to $115,000.
+http://www.IBI.com/products/eda/ecb.html 
+Back to index
+IBM AS/400s to run Intentia 64-bit Java ERP apps 
+IBM and Intentia announced that IBM's AS/400e server series will run AS/400 business partner Intentia's Movex 11, the only enterprise resource planning application written completely in Java. 
+Intentia is the Europe's third largest supplier of enterprise management systems behind SAP and Baan. the Movex product was developed with eight industry-specific applications: 
+ 
+- food and beverage, 
+- aviation, 
+- pulp and paper, 
+- steel, 
+- automotive, 
+- furniture, 
+- service, and 
+- rental. 
+Right now, the Movex application is optimized for AIX, but the company has plans to certify it for other operating systems. 
+http://www.intentia.com/liston/2701_2.lxml 
+Back to index
+alphaWorks releases 9 new XML Java tools 
+The busy-as-a-bee developers at IBM's alphaWorks have delivered nine new XML/Java tools. 
+XML TreeDiff 
+XML TreeDiff is a package of Beans that deliver the ability to easily differentiate and update DOM trees, much like diff and patch differentiate and update data files. 
+XML TreeDiff: http://www.alphaWorks.ibm.com/formula/xmltreediff 
+DataCraft 
+DataCraft delivers an XML view of databases and facilitates publishing XML forms to the Web. 
+DataCraft: http://www.alphaWorks.ibm.com/formula/datacraft 
+PatML 
+PatML is a rule-based pattern match and replace Java processor for XML. 
+PatML: http://www.alphaWorks.ibm.com/formula/patml 
+XML BeanMaker 
+BeanMaker is a utility that takes an arbitrary schema (DTD) for an XML instance and automatically generates JavaBean classes for the code. 
+XML BeanMaker: http://www.alphaWorks.ibm.com/formula/xmlbeanmaker 
+Bean Markup Language 
+The Bean Markup Language (BML) is an XML-based component configuration or wiring language customized for the JavaBean model. 
+Bean Markup Language: http://www.alphaWorks.ibm.com/formula/bml 
+TeXML 
+TeXML delivers a path from XML to the TeX formatting language. 
+TeXML: http://www.alphaWorks.ibm.com/formula/texml 
+Dynamic XML for Java 
+Dynamic XML for Java is a processor designed to seamlessly embed Java with XML. 
+Dynamic XML for Java: http://www.alphaWorks.ibm.com/formula/dynamicxmlforjava 
+XML Productivity Kit for Java 
+The XML Productivity Kit is a companion to the XML Parser in Java which provides programming resources for quickly building and deploying XML applications using Java. 
+XML Productivity Kit for Java: http://www.alphaWorks.ibm.com/formula/xmlproductivity 
+XML EditorMaker 
+XML EditorMaker takes an XML schema and lets developers automatically generate visual editors for building XML documents. 
+XML EditorMaker: http://www.alphaWorks.ibm.com/formula/xmleditormaker 
+ 
+Back to index
+Netroscope study profiles Java in the enterprise 
+Market-research firm Netroscope has published a detailed study, "Getting Down to Business: Enterprise Java Computing," that highlights the factors that move Java into the enterprise. 
+Some of the highlights of the report: 
+ Although Netroscope calls EJBs a "cornerstone of Java computing," it believes that such issues as legacy and other component integration, common security model development, and robust management components need to be addressed before a full-fledged Java computing architecture is realized. 
+The company believes IBM, Sun, and Microsoft are still the most significant Java players, albeit with different approaches and motives. It notes that Microsoft's strategy to link Java and Windows is creating divisions in the enterprise. 
+The report predicts that IBM may emerge as the real leader when it comes to the practical implementation of Java. It cites IT professionals and ISVs perceptions that IBM does now and will continue to have the largest investment (and interest) in Java, with less political concerns than Sun (in contention not only with Microsoft's altering of Java, but also with HP and others over its Java standardization process) and Microsoft (trying to tie Java too tightly to Windows). 
+The report analyzes the Java adoption rate in the enterprise, the readiness of Java enterprise applications, market barriers, opportunities and benefits, and the competitive and strategic issues around the major players. 
+It is available for $895. 
+http://www.netroscope.com/ 
+Back to index
+Insurance agency gets secure, high-performance site 
+Cafesoft has used server-side Java technology to build a secure Web site for Arrowhead General Insurance, one that lets field agents, employees, and business partners access policy holder data on its automotive insurance customers. 
+Cafesoft's model uses a middleware application to provide the business rules to communicate requests from the user through HTML forms. It then generates queries to an SQL database. The results are formatted by the application in HTML and returned to the browser. 
+Cafesoft selected HTML as the client presentation for fast Internet response and compatibility with browsers. 
+In the old way of doing things, agents called Arrowhead customer service representatives to get current policy holder information which was returned by phone, fax, or snailmail. Now, using a browser and secure login, agents can pull current automotive policy billing, driver, vehicle, and coverage information. And Arrowhead business partners and employees can do the same. 
+Arrowhead expects to get a complete return on its investment within six months by reducing personnel costs and response times. 
+Back to index
+Planetweb snaps up Java with acquisition of Novita 
+Planetweb announced that it has acquired Novita Communications, which means it adds Novita's Java-based multimedia applications, LiveLetter and LivePage, to its products. The acquisition of Java technologies also gives Planetweb the opportunity to develop a Java strategy. 
+The all-Java LiveLetter gives users fully graphical email capabilities. LivePage lets users quickly build their own Web pages. 
+Part of Planetweb's new Java strategy includes incorporating Java into future small-footprint software for consumer devices, as well as adding Java to its existing browser, email, and chat applications.
+Back to index
+InfoWorld forum on Java future 
+InfoWorld author Bob O'Donnell is hosting a forum on whether a revitalized Java (starting with Judge Ronald Whyte's recent ruling of "yes" on Sun's preliminary injunction motion) can break the Microsoft operating system stranglehold and live up to its original promises. 
+http://forums.infoworld.com/threads/get.cgi?83824 
+Back to index
+How Microsoft intends to comply 
+Since the court didn't order Microsoft to remove any technology from its products (only to add support for Sun's Java), the company plans to modify Visual J++ 6.0 development tool so that developers have to choose to turn on the Microsoft "enhancements." When developers choose the Microsoft option, a message will appear that warns developers that the application they are about to write may run only on Windows. 
+The company will post patches to its Web site and issue a service pack release so existing customers can modify the products. It will ship upgraded versions to OEMs and retailers as soon as possible. 
+Back to index
+Microsoft doesn't lose one in Japan 
+The Japan Fair Trade Commission recently ended a probe into anti-competitive practices by Microsoft that begun a little over a year ago. 
+The JFTC started the probe in November 1997 after consulting with the US Department of Justice about complaints that Microsoft was engaging in anti-competitive practices in Japan, including allegations that it was discouraging computer manufacturers from installing Netscape's browser, that it was bundling Word and Excel, and that it was offering restrictive licenses to ISPs. 
+The JFTC determined that Microsoft's practices "cannot be immediately found to have tended to impede fair competition in Japan's distribution market for Web browsers." 
+A Microsoft spokesperson said the ISP contracts have been changed, and that the company will follow a JFTC recommendation that it make Excel available on a standalone basis for pre-installation by PC manufacturers in Japan. 
+Back to index
+DevTech SiteSurfer in preview edition 
+DevTech announced a free preview edition of SiteSurfer, a Java-based information navigation and search tool. 
+With SiteSurfer, users can easily navigate complex single Web sites or through a jumble of different sites to locate information. SiteSurfer can also be used by providers to deliver these abilities to visitors on their sites. SiteSurfer can work on a Web site, information stored on a network, CD-ROMs, or documents on a hard disk. 
+The client-side product comes with an intelligent users guide, highly compressed search indexes, customizable indexing fields, and interactive site map and table of contents, and a customizable applet interface. 
+The free preview edition of SiteSurfer is supposed to have expired December 1, 1998, but maybe if you ask nicely, the company will extend the preview. 
+http://www.devtech.com/SiteSurfer/ 
+ 
+Back to index
+Activerse releases its DingBot SDK 
+Activerse announced the DingBot SDK, the DingBot presence-management software's developer's kit. 
+Software developers can create customized DingBots with the SDK. DingBots are applets designed for specific purposes and that can easily integrate with the Ding! online presence system. Customized DingBots can be built to perform routine functions such as managing online meetings, searching specific information, or monitoring online devices. 
+The DingBot SDK can be used to wrap existing communications software, such as third-party Internet messaging, audio/video tools, and telephony gateways. The SDK also supports such third-party applications as Microsoft NetMeeting or Netscape Conference. 
+Users can interact with the protocol-independent DingBots like they do with other Ding! users. 
+DingBot SDK 1.0 costs $1,295 for a developer's license (but is free for non-commercial use). 
+http://www.activerse.com/product/dingbotsdk/sdk.html 
+Back to index
+GTS Java products used to broadcast Oracle conference sessions 
+The general sessions of the recent Oracle OpenWorld conference were Webcasted using Graham Technology Solutions (GTS) GTS' Internet Broadcast Service and the Java-based GTS Server suite. 
+According to GTS CEO and president Jerry Bugajski, "Oracle chose the GTS products and services for two major reasons. The first is that the GTS Server suite is fully compliant with the Oracle's network computing architecture model. The second reason is that the GTS Server suite provides a scalable solution that can deliver thousands of simultaneous audio and video streams to browsers on the Internet and on corporate intranets." 
+GTS specializes in Java-based products for video monitoring and remote device control, data-center surveillance, intranet-event broadcasting, distance learning, and collaboration. 
+http://www.graham.com/ 
+Back to index
+Gefion InstantOnline Java servlet get new features 
+Gefion Software announced InstantOnline Technology Preview 1.0, a preview of new components and enhancements to the InstantOnline Java servlets suite. 
+InstantOnline is a set of Java servlets that are embedded in HTML files using HTML-like tags. The servlets are executed on the server and the dynamic HTML they generate is merged with the static HTML in the page where they are embedded. 
+The InstantOnline technology preview adds extended variable handling, debug features, and enhanced error handling to the existing components. It also contains a set of new servlets that handle file upload and server-side file manipulation, dynamic Web forms, and sending email. 
+http://www.gefionsoftware.com/InstantOnline/ 
+Back to index
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+About the author
+ 
+Kane Scarlett comes to JavaWorld from such magazines as Advanced Systems, Digital Video, NC World, Population Today, and National Geographic. He's not a platform fanatic -- he just likes systems that work (i.e., don't issue a beta as a final version) and systems you don't have to upgrade every six months (upgrades should be new features, not bug fixes).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

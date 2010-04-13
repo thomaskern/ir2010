@@ -1,0 +1,133 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq18_6.html 
+ 
+search 
+ 
+Node:Fat DS,
+Next:Above 1MB,
+Previous:Move structs,
+Up:Low-level
+18.6 Fast access to absolute addresses
+Q: The "farptr" functions are too slow for my application which
+MUST have direct access to a memory-mapped device under DPMI. 
+How can I have this in DJGPP? My entire optimized graphics library is at
+stake if I can't! :-(
+A: The following so-called Fat DS, or "nearptr" method was
+suggested by Junaid A. Walker
+(he also posted a program which uses this technique to access the video
+RAM; you can look it up by searching the mailing list archives). But
+first, a word of warning: the method I'm about to describe effectively
+disables memory protection, and so might do all kinds of damage if used
+by a program with a wild pointer. It is depressingly easy, e.g., to
+overwrite parts of DOS code or data with "Fat DS" on. Or, as Stephen Turnbull
+has put it when he read the description of this trick:
+Surgeon General's WARNING: The description below uses the
+"Fat DS hack", a steroid derivative which gives your program great
+strength, a thick neck, baldness, and is known to be closely linked with
+the Alzheimer's disease. 
+In addition to the above warning, experience shows that many programs
+which use the safer "farptr" functions do not sacrifice performance at
+all. So, with the exception of a small number of programs, "nearptr"
+is really a convenience trick: it allows you to treat memory-mapped
+devices with usual C pointers, rather than with function calls. 
+Therefore, I would generally advise against using "nearptr"
+due to speed considerations, unless your program absolutely needs the
+last percent of speed.
+Having said that, here is the trick: you change the limit of the segment
+descriptor stored in DS to 0xffffffff (i.e., -1), using
+library function __djgpp_nearptr_enable. After that, you have
+access to all the memory which is currently mapped in. This works due to
+32-bit wrap-around in the linear address space to access memory at, say,
+linear address 0xa0000 (which belongs to the VGA), or any other address
+on your memory-mapped device, by adding the value of the global variable
+__djgpp_conventional_base to the target address. 
+__djgpp_conventional_base is the negated base address of the
+DS selector that you program is using to access its data. By
+adding the value of __djgpp_conventional_base, you effectively
+subtract the DS base address, which makes the result
+zero-based, exactly what you need to access absolute addresses.
+You should know up front that this trick won't work with every DPMI
+host. Linux's DOSEmu and Windows/NT won't allow you to set such a huge
+limit on the memory segment, because these operating systems take memory
+protection seriously; in these cases __djgpp_nearptr_enable will
+return zero--a sign of a failure. CWSDPMI, QDPMI, Windows 3.X and
+Windows 9X all allow this technique (OS/2 Warp seems to allow it too, at
+least as of version 8.200), but some events break this scheme even for
+those DPMI hosts which will allow it. A call to malloc or any
+other library function which calls sbrk might sometimes change
+the base address of the DS selector and break this method unless
+the base address is recomputed after sbrk call. (The "nearptr"
+functions support this recomputation by providing you with the
+__djgpp_conventional_base variable, but it is your
+responsibility to recompute the pointers using it.) The same change can
+happen when you call system, and as a result of some other events
+external to the executing code thread, like multitasking or debugger
+execution.
+You should also know that the __djgpp_nearptr_enable function
+in DJGPP v2.0 didn't verify that the limit was properly set. So if the
+DPMI server would fail the call silently, the function won't
+detect it and will not return a failure indication. DJGPP v2.01
+corrects this omission by always verifying that the DPMI host has
+honored the request, and returns a failure indication if it hasn't.
+If you are aware of these limitations, and don't need your code to run
+under all DPMI hosts, it might be the fix to your problems.
+Confused about how exactly should you go about using this technique in
+your program? Look at the docs of the "nearptr" functions in
+the Info file libc.info (node __djgpp_nearptr_enable).
+Another possibility is to use the DPMI function 0x508 (a wrapper
+function __dpmi_map_device_in_memory_block is available in the
+DJGPP library) that can map any range of physical memory addresses into
+a block that you allocate. Note that this is a DPMI 1.0 functionality
+which is not supported by most DPMI 0.9 hosts (CWSDPMI does
+support it). There is a convenience helper function
+__djgpp_map_physical_memory in the DJGPP C library that you can
+use to call these services.
+If you need a nearptr-style access to a certain region of memory which
+is above the base address of the DS selector, you can enlarge the
+limit of the DS selector just enough to cover the highest address
+you need to access. To this end, use the library function
+__dpmi_set_segment_limit like this (thanks to Eric Rudd for posting this code):
+ unsigned long new_limit;
+ if (__dpmi_set_segment_limit (_my_ds (), new_limit) == 0)
+ {
+ if (__dpmi_get_segment_limit (_my_ds ()) != new_limit)
+ /* The DPMI host ignored the call. Fail. */
+ else
+ {
+ __dpmi_set_segment_limit (__djgpp_ds_alias, new_limit);
+ __dpmi_set_segment_limit (_my_cs (), new_limit);
+ _crt0_startup_flags |= _CRT0_FLAG_NEARPTR;
+ }
+ }
+ else
+ /* The call failed. */
+Remember that new_limit should have all its lower 12 bits set,
+otherwise the above snippet will not work!
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

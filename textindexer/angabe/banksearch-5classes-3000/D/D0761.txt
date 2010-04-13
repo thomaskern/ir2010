@@ -1,0 +1,124 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class DBResultsTableModel
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class DBResultsTableModel
+java.lang.Object
+ |
+ +--javax.swing.table.AbstractTableModel
+ |
+ +--coreservlets.DBResultsTableModel
+public class DBResultsTableModelextends AbstractTableModel
+Simple class that tells a JTable how to extract
+ relevant data from a DBResults object (which is
+ used to store the results from a database query).
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Fields inherited from class javax.swing.table.AbstractTableModel 
+listenerList 
+ 
+Constructor Summary 
+DBResultsTableModel(DBResults results)
+ 
+ 
+Method Summary 
+ int 
+getColumnCount()
+ 
+ String 
+getColumnName(int column)
+ 
+ int 
+getRowCount()
+ 
+ Object 
+getValueAt(int row,
+ int column)
+ 
+ 
+Methods inherited from class javax.swing.table.AbstractTableModel 
+addTableModelListener, 
+findColumn, 
+fireTableCellUpdated, 
+fireTableChanged, 
+fireTableDataChanged, 
+fireTableRowsDeleted, 
+fireTableRowsInserted, 
+fireTableRowsUpdated, 
+fireTableStructureChanged, 
+getColumnClass, 
+isCellEditable, 
+removeTableModelListener, 
+setValueAt 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+DBResultsTableModel
+public DBResultsTableModel(DBResults results)
+Method Detail 
+getRowCount
+public int getRowCount()
+Overrides:getRowCount in class AbstractTableModel
+getColumnCount
+public int getColumnCount()
+Overrides:getColumnCount in class AbstractTableModel
+getColumnName
+public String getColumnName(int column)
+Overrides:getColumnName in class AbstractTableModel
+getValueAt
+public Object getValueAt(int row,
+ int column)
+Overrides:getValueAt in class AbstractTableModel
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

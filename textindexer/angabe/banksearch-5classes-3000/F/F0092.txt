@@ -1,0 +1,336 @@
+
+ 
+ 
+ VB CodeGuru: [an error occurred while processing this directive]FTP Access through a Class Module for VB5/6 - Requires WinInet.DLL
+Codeguru - Visual Basic
+" CONTENT="global">
+ 
+ 
+ 
+ 
+ 
+Enterprise IM: A Baseline Study of Business Trends
+ISP Evolution: Providing Services for the 21st Century
+VoiceXML for Business Managers
+Dissecting the.NET Framework
+Search Engine Submission Essentials
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+CodeGuru Sites
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+Interact
+ 
+ Discussion Board
+ Open FAQ
+ What's Cool!
+ Recommend Us!
+ Guest Book
+ 
+ 
+Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+VB Resources 
+ 
+ 
+ add resource
+ modify resource
+ new resource
+ 
+ 
+ 
+ Visual Basic
+Article Sections 
+ 
+ Controls
+ 
+ controls
+ 
+Articles and sections are being moved here! Stay tuned!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+internet.commerce 
+Be a Commerce Partner
+Comparison Shopping
+Compare Prices
+For Web Graphics
+Free DNS Offer
+Find Annual Reports
+Search Marketplace
+Internet Jobs
+Anti-Virus Software
+Find A Web Developer
+Free Barter Account
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+FTP Access through a Class Module for VB5/6 - Requires WinInet.DLL
+Author: Chris Eastwood
+Author's WebSite: http://www.eastwood60.freeserve.co.uk
+FTP Access through a Class Module - Requires WinInet.DLL 
+ 
+The attached project contains a re-usable class module that encapsulates the FTP API commands available through the WinInet.DLL. 
+ 
+It should be pointed out that this class module uses a Disconnected Recordset and therefore requires a reference to Microsoft ActiveX Data Objects Recordset Library 2.1 Library. You could remove this dependancy by simply returning a collection of Objects for each file found in the FTP directory. 
+All of the FTP work is carried out in the class module supplied with the project. The cFTP class can be dropped into any project that needs FTP access, and exposes the properties : 
+- Host 
+- User 
+- Password 
+- Directory 
+- Connected - (returns True/False depending on connection state) 
+The following methods are also provided : 
+public Function Connect(optional Host as string, _
+ optional User as string, _
+ optional Password as string) as Boolean
+ 
+- This function connects to the required FTP server using the User and Password parameters (if supplied - otherwise, the standard properties are used). 
+public Function GetFile(byval ServerFileAndPath as string, _
+	byval DestinationFileAndPath as string, _
+	optional TransferType as FileTransferType = ftAscii) as Boolean
+ 
+- Downloads a file from the FTP server 
+public Function PutFile(byval LocalFileAndPath as string, _
+	byval ServerFileAndPath as string, _
+	optional TransferType as FileTransferType) as Boolean
+ 
+- Uploads a file to the FTP server 
+public Function RenameFile(byval ExistingName as string, _
+	byval NewName as string) as Boolean
+ 
+- renames a file on the FTP server 
+public Function DeleteFile(byval ExistingName as string) as Boolean
+ 
+- delete's a file from the FTP server 
+public Function GetDirectoryList(optional Directory as string, _
+	optional FilterString as string) as ADOR.Recordset
+ 
+- this routine returns a disconnected RecordSet containing the current
+directory listing from the FTP server. You could easily change the code 
+in this routine to identify Directories, different file types etc. I've 
+left the recordset containing just the Name of the file entry so that 
+it can be modified as required. 
+If you don't have ADO 2 installed on your machine, you can remove the 
+reference and simply return a collection of filenames / objects / 
+whatever from this routine. 
+public Function Disconnect() as Boolean
+ 
+- Disconnects from the FTP server 
+ 
+A sample of using the code in another project could be : 
+Dim oFTP as cFTP
+'
+set oFTP = new cFTP
+oFTP.Connect "ftp.somewhere.com", "anonymous", "chris@here.now"
+oFTP.Directory = "downloads"
+oFTP.GetFile "test.zip", "c:\downloads\test.zip"
+oFTP.Disconnect
+set oFTP = nothing
+That's really all there is to it - Enjoy the code !
+Download Zipped Project File (20k) 
+Posted On: 30-Jul-1999
+Comments:
+- Code for timeout on connection - Olav Alexander Mjelde (2002/06/20)
+- Code for going into the folders (with listbox) - Olav Alexander Mjelde (2002/06/20)
+- Download function with ascii/binary detector - Olav Alexander Mjelde (2002/06/20)
+- I will make a download function - Olav Alexander Mjelde (2002/06/20)
+- Here is code for going up one folder - Olav Alexander Mjelde (2002/06/20)
+- Many Thanks - Allen (2002/06/07)
+- How generous! - Bill (2002/06/05)
+- how to stop a transfer in progress - sandeep (2002/05/19)
+- FTP Access through a Class Module for VB5/6 - Requires WinInet.DLL - Datta Shetty (2002/05/02)
+- Great class - DaveMack (2002/04/24)
+- How can i get the Information of Special File in the FTP Site? - HJ, Yoo (2002/04/19)
+- Proxy - Frank (2002/04/12)
+- How do I download? Anyone know a code? - Evil X Genie (2002/03/21)
+- How do I download? Anyone know a code? - Evil X Genie (2002/03/21)
+- Date and Time of A File - Rajan Bansal (2002/01/25)
+- Cannot download!! [Could not get file.....] - Timpi (2002/01/19)
+- File date time information - Cyprien de Cosson (2002/01/15)
+- Ca marche ! - Thierry (2002/01/15)
+- Need Guidance for using this code on VSAT links, 100 users simultns... - Rohit (2002/01/13)
+- FTP-Upload/Download Buttons - Vijay (2001/12/28)
+- Thanks - Rita (2001/12/11)
+- Error during downloading - Anindita (2001/12/10)
+- userid and password - Anindita (2001/12/07)
+- Image Files - claue (2001/12/04)
+- Wildcards with FTPGetFile - FeReNZCy (2001/11/27)
+- Progress and or Status. - Niels Middeldorp (2001/11/26)
+- Some code not supported in Excel 97? - Texrat (2001/11/15)
+- Access in Password File!? - KaTsAriDaS (2001/11/11)
+- Change port - Gein (2001/09/30)
+- Downloading a file from Web - Kavuri (2001/09/29)
+- Can i create an ftp user account for a user programatically - deepak Narain (2001/09/26)
+- Cannot connect through Proxy Server. HELP! - Melvin Brooks (2001/09/20)
+- Seema Sharma - Seema Sharma (2001/09/18)
+- None - ehong (2001/08/23)
+- and what about passive mode...??? - matmaxx (2001/07/23)
+- How to set timeout??? If connection hangs the whole prog hangs too - Walli (2001/06/30)
+- ADOR.Recordset Help - Jason Grover (2001/06/29)
+- Como puedo hacer un get de varios archivos a la ves.. - JEAN CARLOS (2001/05/30)
+- Progess Bar - Jason (2001/05/29)
+- Como puedo hacer un get de varios archivos a la ves.. - JEAN CARLOS (2001/05/26)
+- can some one please help me - Gavin (2001/05/21)
+- cFTP - excellent code - Eben Yong (2001/05/21)
+- HELP !!! unable to download files - philred (2001/05/16)
+- Error code - Alberto (2001/05/11)
+- How can I set the time-out of the connection? - gerardo (2001/05/08)
+- Can't Delete the file after GET - William Chan (2001/05/03)
+- Sorting by Date - Ben Hobgood (2001/04/30)
+- Keep getting Error User Define type not Define - Mike Vasquez (2001/04/29)
+- HELP - server address, username and password as variable? - Kyle (2001/04/28)
+- How do you use a Progress bar with this? - Darren (2001/04/18)
+- Dont forget to patch the code - Afd (2001/04/10)
+- Great code !!! - gerardo (2001/04/10)
+- How to run this as a com object - jt (2001/04/09)
+- Does anyone know if there is a remote command routine in winInet - Robert Pope (2001/04/05)
+- Append function/command - Peter Bui (2001/04/04)
+- Good class but..... some bugs?? - Jorge (2001/04/03)
+- cFTP - Robert Pope (2001/04/03)
+- Really great class - webspezi (2001/04/02)
+- Really great class - webspezi (2001/04/02)
+- URGENT - Files get truncated during upload.... - Avin (2001/03/23)
+- Excellent but binary....solution! - x.villamuera (2001/03/22)
+- Great class, but .... !!! - Riad (2001/02/18)
+- FTP: GET How to clear cache? - Andreas Goering (2001/02/02)
+- Upload Complete? - Michael Rosola (2001/01/18)
+- Error events - Sherman (2001/01/10)
+- Problem with WinInet.DLL - Manish Vij (2001/01/09)
+- How can others upload to my computer me being the server, then the client - Ben (2001/01/06)
+- Error Trapping - Robb (2001/01/05)
+- Awsum! Thanks - Pixote (2000/12/28)
+- How can you delineate between files and directories on the server side in a list box - Tony Foster (2000/12/21)
+- Great class! - KiTuTaNa (2000/12/12)
+- GetFile flags: cache problem - Roberto de Fernex (2000/12/05)
+- Get directory listing with filter string not working - natarajan Krishnan (2000/12/05)
+- Great class!!! Added ftpCommand method - Suzanne (2000/12/01)
+- using FTP - Sendil (2000/11/22)
+- Potential problems - Nicolas LeBlanc (2000/11/18)
+- How to add resume capability for download and upload? - Jason (2000/11/08)
+- Does it work with Access 97 - chris (2000/10/16)
+- Error " 'retained' is an invalid Key" etc - Earl Brown (2000/10/12)
+- Cutting Files? - Cgcomp (2000/10/11)
+- CFtp grapping a ghost file?? - Cgcomp (2000/10/05)
+- FTPCommand implementation with Wininet.dll question???? - Leon (2000/09/29)
+- Error trapping for incorrect username, password or connection. - GeoAlfa (2000/09/20)
+- How can i get a progressbar for uploading files - GeoAlfa (2000/09/20)
+- need help!!how i use VB component or command to dail up modem. - kamphol (2000/09/20)
+- Help! GetFile Function adds 3 bytes to the end of received file... - Hydr0P0nix (2000/08/31)
+- Help FTP Access through a Class Module for VB5/6 - Requires WinInet.DLL - cooro (2000/08/26)
+- Getting File size on a server - Derek (2000/08/18)
+- Sweet!!! - Joe Myrick (2000/08/10)
+- How to use this download multiple files - Gaby5_5 (2000/08/02)
+- Again, Problem - Paul (2000/05/30)
+- Help Needed - Paul (2000/05/25)
+- Help Needed - Paul (2000/05/25)
+- Calling it from an ASP... - Sunil D'Monte (2000/05/20)
+- Exelent! - Fredrik (2000/05/17)
+- Exactly what I was looking for - Jeremie (2000/05/12)
+- ProgressBar For Downloading More Files In One Progress - MAGiC MANiAC^mTo (2000/05/06)
+- HELP desperaetely wanted - Nilanjan (2000/05/01)
+- This actually works!! - Stevie Howard (2000/04/27)
+- FTP Server - Martin Cloutier (2000/04/20)
+- FTP problem on web server - Nilanjan (2000/04/18)
+- How to use ftp in Browser - anand (2000/04/15)
+- I don't know about WIN32_FIND_DATA - ninetom (2000/03/07)
+- Disconnecting from the ISP - Valluri (2000/02/09)
+- Recursion - Darren (2000/01/28)
+- GetFile problem with large files. - H.J. Baard (2000/01/12)
+- What about proxy connections? - Mateusz Kierepka (2000/01/03)
+- ftp delete..., and can you do mdelete? - lana (1999/12/14)
+- How to know FTP_server is Connected or Disconnected?? - BYungKEuk (1999/12/07)
+- Careful with the boolean return type - Eran Gerstenfeld (1999/12/01)
+- mistake in cFTP. - genki (1999/11/23)
+- so useful for inet memory crash - gwnki (1999/10/01)
+- Progress Bar - Sang il Han (1999/09/27)
+- FTPCommand - Zintis Petersons (1999/09/15)
+- Downloading progress - Sang (1999/08/05)
+Add Comment
+ 
+ 
+ 
+ 
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.
+ 
+ 
+ 

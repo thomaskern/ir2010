@@ -1,0 +1,37 @@
+
+Absolute Java - Threads
+The Ugly Secrets of Java Threads
+Many programmers are unaware of the fact that Java makes no guarantees regarding
+thread priorities. Contrary to popular belief, it is not the case that
+a thread with a higher priority will necessarily run before a thread with a lower
+priority (JLS 2,
+§17.12).
+Furthermore, Java makes no guarentees as to how or when a thread is chosen to
+run. Specifically, you are not guaranteed that the Java thread scheduling mechanism
+will implement time-slicing, or any other thread schedulaing technique for that
+matter.
+ 
+To ensure all threads get an opportunity to execute, use Thread.yield().
+I think it's rather sad that Java does not guarantee preemptive time-slicing as
+this reduces the Java platform to a cooperative multi-tasking environment.
+InterruptedException Clears the Interrupted Status
+When an InterruptedException is thrown, the exception status
+of the thread that was interrupted will automatically be cleared. For example,
+the following snippet of code will always print "Its's false"
+whenever an InterruptedException is thrown:
+ 
+ 
+1 try { 
+2 Thread.sleep(10000); 
+3 } catch(InterruptedException e) { 
+4 if(Thread.currentThread().isInterrupted()) 
+5 System.out.println("It's true"); 
+6 else 
+7 System.out.println("It's false"); 
+8 } 
+Has that Thread Finished or Hasn't it Been Started?
+Before a thread's start() method is called, its isAlive() method will return false. After a thread's run() method has completed execution, its isAlive() method will again return false. So, if the isAlive() method returns false, how can you know if it indicates the thread has not yet been start()ed or the thread has already completed execution &#151; in either case isAlive() returns false?
+The solution is to call the thread's getThreadGroup() method. If this method returns null, the thread has completed execution.
+ 
+ Copyright © 1999-2002, Tony LaPaso
+ All Rights Reserved.

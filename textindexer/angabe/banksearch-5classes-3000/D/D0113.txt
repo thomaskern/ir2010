@@ -1,0 +1,291 @@
+
+Java Microbenchmark - Old Results
+Java Microbenchmark - Old Results
+[ index
+ | benchmarks
+ | speed
+ | size
+ | maintainability
+ | rules
+ | tools
+ | compilers ]
+v1.01, August 4
+The first released version of the benchmarks. JIT compilers could hide cheap
+operations such as integer assignment and increment in empty slots in the
+timing loop, resulting in meaninglessly low benchmark times for those
+operations (marked with a *).
+ Browser
+ CPU
+& speed
+ Null
+Loop
+ Local
+i=n
+ this.
+i=n
+ Array
+a[0]=n
+ Byte
+b++
+ Short
+s++
+ Int
+i++
+ Long
+l++
+ Float
+f++
+ Doub.
+d++
+ New
+obj.
+ Call
+f()
+ Sync
+f()
+ Math
+abs()
+ Inline
+abs()
+ 
+ NN
+3.0b6 
+ 80486
+120 MHz 
+ 0.059 
+ 0.007 
+ 0.043 
+ 0.110 
+ 0.057 
+ 0.057 
+ 0.025 
+ 0.049 
+ 0.180 
+ 0.190 
+ 30.0 
+ 0.180 
+ 17.0 
+ 0.52 
+ 0.120 
+ IE
+3.0b2 
+ 80486
+120 MHz 
+ 0.066 
+ 0.00* 
+ 0.009 
+ 0.034 
+ 0.033 
+ 0.033 
+ 0.00* 
+ 0.040 
+ 0.160 
+ 0.190 
+ 14.0 
+ 0.130 
+ 3.8 
+ 0.46 
+ 0.040 
+ 
+ NN
+2.02 
+ Pentium
+133 MHz 
+ 1.100 
+ 0.430 
+ 0.720 
+ 1.100 
+ 1.200 
+ 1.200 
+ 0.250 
+ 1.100 
+ 1.200 
+ 1.000 
+ 21.0 
+ 1.900 
+ 24.0 
+ 4.60 
+ 0.460 
+ NN
+3.0b6 
+ Pentium
+133 MHz 
+ 0.030 
+ 0.013 
+ 0.031 
+ 0.053 
+ 0.045 
+ 0.045 
+ 0.015 
+ 0.023 
+ 0.053 
+ 0.099 
+ 14.0 
+ 0.120 
+ 7.3 
+ 0.38 
+ 0.076 
+ NN
+3.0b7 
+ Pentium
+133 MHz 
+ 0.030 
+ 0.016 
+ 0.030 
+ 0.054 
+ 0.046 
+ 0.046 
+ 0.014 
+ 0.023 
+ 0.054 
+ 0.052 
+ 15.0 
+ 0.097 
+ 8.1 
+ 0.25 
+ 0.031 
+ IE
+3.0b2 
+ Pentium
+133 MHz 
+ 0.030 
+ 0.00* 
+ 0.015 
+ 0.030 
+ 0.022 
+ 0.022 
+ 0.00* 
+ 0.022 
+ 0.052 
+ 0.120 
+ 8.1 
+ 0.075 
+ 2.4 
+ 0.34 
+ 0.061 
+ 
+ NN
+2.0 
+ R4600
+132 MHz 
+ 
+ 0.390 
+ 0.600 
+ 0.810 
+ 0.820 
+ 0.830 
+ 0.200 
+ 0.790 
+ 0.710 
+ 0.790 
+ 16.0 
+ 1.500 
+ 12.0 
+ 3.10 
+ 0.390 
+ 
+ NN
+2.02 
+ 21064
+125 MHz 
+ 1.000 
+ 0.520 
+ 0.800 
+ 1.100 
+ 1.700 
+ 1.300 
+ 0.290 
+ 0.220 
+ 1.200 
+ 1.200 
+ 28.0 
+ 2.600 
+ 22.0 
+ 7.30 
+ 0.750 
+ 
+ NN
+2.02 
+ UltraSPARC
+143 MHz 
+ 0.630 
+ 0.340 
+ 0.540 
+ 0.730 
+ 0.870 
+ 0.900 
+ 0.200 
+ 0.780 
+ 0.690 
+ 1.000 
+ 5.5 
+ 1.100 
+ 5.90 
+ 3.20 
+ 0.360 
+ JDK
+1.0.1 
+ UltraSPARC
+167 MHz 
+ 0.500 
+ 0.240 
+ 0.510 
+ 0.560 
+ 0.610 
+ 0.620 
+ 0.140 
+ 0.660 
+ 0.520 
+ 0.560 
+ 3.7 
+ 0.900 
+ 7.5 
+ 2.10 
+ 1.200 
+ Guava
+(proto) 
+ UltraSPARC
+167 MHz 
+ 0.024 
+ 0.00* 
+ 0.006 
+ 0.048 
+ 0.048 
+ 0.048 
+ 0.036 
+ 0.066 
+ 0.160 
+ 0.280 
+ 45.0 
+ 0.200 
+ 4.5 
+ 1.00 
+ 0.830 
+ 
+Contributors
+ 
+- Sanjay Bhatia: Pentium 133, 16MB, 256kB.
+ 
+- Keith Edwards: Sparc Ultra 1 Model 140, 96MB, 512kB.
+ 
+- Jeremy Fitzhardinge: Sparc Ultra Enterprise 1, Solaris 2.5.1.
+ 
+- Jonathan Hardwick: AMD DX4-120, Windows 95, 24MB, 256kB.
+ 
+- Masaaki Kikuzawa: Pentium 133, Windows 95, 32MB, 256kB.
+ 
+- Lavrentios
+ Servissoglou: DEC 3000 AXPLX,
+ OSF/1 3.2, 64MB, 256kB.
+ 
+- Sly Supah: SGI Indy, 132 MHz R4600, Irix 5.3, 64MB, 512kB.
+ 
+- Mark Warren: Pentium 133, Windows NT 3.51, 32MB. 
+ 
+ http://www.cs.cmu.edu/~jch/java/microbenchold.html 
+ Java Microbenchmark Results 
+ 
+ 
+ Last modified: Wed 21 May 1997 
+ Copyright &#169 1996 Jonathan Hardwick 
+ 

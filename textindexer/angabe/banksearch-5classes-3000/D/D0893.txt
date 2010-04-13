@@ -1,0 +1,195 @@
+ 
+ 
+	 
+	 7.1) Thread creation
+	 
+	 
+	 
+	 
+	 
+ 
+ 
+	 
+	 
+	 
+	 
+ 
+	 
+	 
+	 
+	
+ 
+	 
+	 
+	 
+Java2 Certification 
+Tutorial 
+ 
+	 
+	 
+ 
+	
+ 
+	 
+	 
+You can discuss this topic with others at
+	http://www.jchq.net/discus
+Read
+	reviews and buy a Java Certification book at
+	http://www.jchq.net/bookreviews/jcertbooks.htm
+	 
+	 
+Recommended book on this topic
+ 
+	 
+Java Thread Programming by Paul Hyde
+ 
+	 
+I own this Threading book and the O'Reilly Threading book. Paul Hydes
+	book is better. Thread questions come up frequently on the exam and it is a
+	complex topic. I recommend you buy this book (and if you buy it from these
+	links I'll get a small commission). 
+	 
+Buy from
+	Amazon.com
+	or from Amazon.co.uk
+	 
+	 
+7) Threads 
+ 
+	 
+Objective 1) 
+ 
+	 
+Write code to define, instantiate and start new threads using both
+	java.lang.Thread and java.lang.Runnable 
+	 
+What is a thread? 
+ 
+	 
+Threads are lightweight processes that appear to run in parallel with
+	your main program. Unlike a process a thread shares memory and data with the
+	rest of the program. The word thread is a contraction of "thread of execution",
+	you might like to imagine a rope from which you have frayed the end and taken
+	one thread. It is still part of the main rope, but it can be separated from the
+	main and manipulated on its own. An example of where threads can be useful is
+	in printing. When you click on a print button you probably don't want the main
+	program to stop responding until printing has finished. What would be nice is
+	that the printing process started running "in the background" and allowed you
+	to continue using the main portion of the program. 
+It would also be
+	useful if the main program would respond if the printing thread encountered a
+	problem. A common example used to illustrate threads is to create a GUI
+	application that launches a bouncing ball every time a button is clicked.
+	Unlike most language threading is embedded at the heart of the Java language,
+	much of it at the level of the ultimate ancestor class called Object. 
+	 
+The two ways of creating a thread 
+ 
+	 
+Of the two methods of creating a new thread the use of Runnable is
+	probably more common, but you must know about both for the purpose of the exam.
+	Here is an example of a class created with the Runnable interface. 
+	 class MyClass implements Runnable{
+ public void run(){//Blank Body}
+}
+	 
+ Creating the thread of execution. 
+	 MyClass mc = new MyClass();
+	 
+ 
+Any class that implements an interface must create a method to
+	match all of the methods in the interface. The methods need not do anything
+	sensible, i.e. they may have blank bodies, but they must be there. Thus I
+	include the method run even in this little example, because you must
+	include a run method if you implement Runnable. Not including a run method will
+	cause a compile time error. 
+	 
+To do anything useful when you create a thread of execution from a class
+	you would, of course need to put something where I have put 
+	 //Blank Body.
+	 
+ The other method for creating a thread is to create a class that is
+	descended from Thread. This is easy to do but it means you cannot inherit from
+	any other class, as Java only supports single inheritance. Thus if you are
+	creating a Button you cannot add threading via this method because a Button
+	inherits from the AWT Button class and that uses your one shot at inheritance.
+	There is some debate as to which way of creating a thread is more truly object
+	oriented, but you do need to go into this for the purpose of the exam. 
+	 
+Instantiating and starting a Thread 
+ 
+	 
+Although the code that runs in your thread is in a method called run,
+	you do not call this method directly, instead you call the start method of the
+	thread class. The Runnable interface does not contain a start method, so to get
+	at this and the other useful methods for threads (sleep, suspend etc etc), you
+	pass your class with the Runnable interface as the constructor to an instance
+	of the Thread class. 
+	 
+Thus to cause the thread to execute from a class that implements
+	Runnable you would call the following 
+	 MyClass mc = new MyClass();
+Thread t = new Thread(mc);
+t.start();
+Again note that was a call to start, not a call to run, even 
+ though it is the code in the run method in your class that actually executes.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Although it is the run method code that 
+ executes, a thread is actually started via the start method
+ 
+ 
+ If you create your class as a sub class of Thread you can simply call the start 
+ method. The drawback of sub classing the Thread class is that due to only supporting 
+ single inheritance you cannot inherit the functionality of any other class.
+ 
+	 
+	 
+	 
+	 
+ 
+	 
+	 
+ 
+	
+ 
+	 
+	 
+Questions
+ 
+	 
+Question 1)
+ 
+	 
+What will happen when you attempt to compile and run this code? 
+	 public class Runt implements Runnable{
+public static void main(String argv[]){
+ Runt r = new Runt();
+ Thread t = new Thread(r);
+ t.start();
+ }
+ public void start(){
+ for(int i=0;i
+http://www.Geocities.com/Athens/Acropolis/3797/Java058.htm#two
+	ways to thread
+Jyothi Krishnan on this topic at 
+http://www.geocities.com/SiliconValley/Network/3693/obj_sec7.html#obj22
+Thread
+	part of of Elliot Rusty Harolds Tutorial Course
+http://www.ibiblio.org/javafaq/course/week11/index.html
+	 
+	 
+Last updated
+9 November 2000
+copyright © Marcus Green
+	2000 
+	 
+ 
+	 
+ 

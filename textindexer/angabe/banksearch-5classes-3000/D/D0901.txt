@@ -1,0 +1,346 @@
+
+ 
+ Letters to the editor 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2000 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Letters to the editor 
+ 
+ 
+ 
+ 
+Summary
+ This month, readers and authors discuss the merits of C#, Sun's new printing features, transmission-method APIs, the javax.crypto API, and file naming. (2,200 words)
+ 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+ C# vs. Java 
+'C#: A language alternative or just J--?, Part 1'
+Mark Johnson 
+ Prescription for the C# headache
+Mark,
+Regarding your question and answer:
+"Q. What's more of a headache than a bug in a compiler?
+A. Bugs in six compilers."
+I don't think that anyone working on C# will compile code in six compilers. As for the Microsoft specification, developers will compile code in one compiler, but six other compilers will use that code. Consider msxml.dll "XML DOM interface"; it is created in C++. If C++ can use that, developers will have to create one component for VB, one for VJ, one for Delphi, and so on. And that will be an additional headache.
+Change is a sign of development.
+Urvesh Patel
+Mr. Patel,
+Will you agree that programmers might use four languages instead of six, since you name four yourself: C++, VB, Delphi, VJ?
+Maybe I need to clarify the point I was trying to make. Your point (if I understand it correctly) is that code written in one language can be packaged into a dll and used in other languages. I agree that's a good thing, and that's not the concern I have about .Net and the "any-language-except-Java" approach Microsoft is taking. See "Microsoft Tells Java Converts -- Don't Bother" (ComputerWeekly.com, November 2000) if you still think Microsoft will try to support Java in any way.
+Anders Hejlsberg's view (see O'Reilly's "Deep Inside C#:
+An Interview with Microsoft Chief Architect Anders Hejlsberg," by John Osborn) is that programmers should be free to work in whatever language they wish, and the platform should allow languages to interoperate. Classes defined in one language can be subclassed in another language, and further subclassed in a third language. So programmers won't just be writing C# programs and using other languages' modules. They could potentially write modules in all of those languages (each with its own compiler), and cross-link them (via MSIL) at runtime.
+That may sound cool to programmers, but programmer preferences are only part of the big picture of the software lifecycle. I think the value that .Net's multiple-language capability provides hardly makes up for the complexity it introduces. I'm not convinced that it's good for code stability, clean design, and especially maintainability. Here are some reasons why:
+- Maintainability: Code testers and maintainers will have to be fluent in every language programmers choose.
+- Teamwork: Programmers will have to spend extra time training each other in different languages as they collaborate on design and implementation.
+- Hiring and training: "Sorry, boss, our only Haskell programmer quit today, and a quarter of our app is written in Haskell. But don't worry, I bought a book. We'll put out another release in 6 months or so."
+- Lock-in: .Net is a single-vendor platform. While you're deciding where you want to go today, think about who decides where you'll go tomorrow.
+- Compiler version compatibility: Will there be compatibility problems between versions of the compilers you're using? If so, just work it out with the compiler vendors: all "n" of them.
+- Debuggability: Do you think popping back and forth between languages as methods call inherited methods will make debugging easier?
+I believe that the multiple language platform that .Net touts sounds good -- as long as you don't give it too much thought. I think organizations that follow that route will eventually find themselves in an unmanageable morass of code chunks written in different languages; essentially, a "Big Ball of Mud," full of chunky little code pieces that bear no comprehensible relation to one another.
+Having said this, I could certainly be wrong. I've been a big fan of Tcl (a lightweight, embeddable scripting language) for years, and have always liked embedded interpreters, command patterns, and the like. And .Net will probably help to create systems that cleanly partition language responsibilities. But I wouldn't bet any folding money that most designs will be that clean. For the most part, I believe .Net will give designers just enough rope to hang themselves.
+Not all change is progress.
+Mark Johnson
+:
+ Why use Vector and not the Collection API?
+Mark,
+First, I must say that your article is excellent and gives good insight into the differences and similarities in C# and Java. I'm looking forward to future articles.
+However, I was disappointed with your comparison of iterating in the two languages. I like Java a lot, but have never been satisfied with the use of Vector. Therefore, I was very happy with the Collection API -- I'm sure you were too. So why didn't you chose to use ArrayList and Iterator? This makes the power of the Collection API clear, instead of using a special language construct as in C#.
+To conclude, I would replace:
+import java.util.Vector;
+public static int sum(Vector v) {
+ int sum = 0;
+ for (int j = 0; j 
+ int i = (Integer)v.elementAt(j);
+ sum = sum + i.intValue();
+ }
+ return sum;
+}
+with:
+import java.util.ArrayList;
+public static int sum(ArrayList list) {
+ int sum = 0;
+ Iterator iterator = list.iterator();
+ while(iterator.hasNext()) {
+ Integer value = (Integer) iterator.next();
+ sum = sum + value.intValue();
+ }
+ return sum;
+}
+This certainly looks cleaner and gives Java a fair chance. The for construct should be compared with the C# variant as well.
+Martin Bravenboer
+Martin,
+I wish all questions were so easy. The reason I used Vector instead of the Collection was simply force of habit. I use the Collection API all the time, but for some reason (maybe the late hour), when I wrote the comparison, I reverted to using Vector. 
+Your solution is definitely superior; it demonstrates that anything done in a language can often be done (almost) as easily from outside the language, and provides one more piece of evidence that I need more sleep!
+Mark Johnson
+:
+Java Print API 
+'Printing in Java'
+Part 1: Acquaint yourself with the Java printing model
+Part 2: Print your first page and render complex documents
+ Jean-Pierre Dube 
+ What about Sun's new printing features?
+Jean-Pierre,
+This tutorial is useful and appropriate in presentation. But Sun has introduced new features to enhance Java's printing programmability. The article should also focus on issues like enumerating the available printer's name, selecting a tray, and printing to a network printer using a URL without the printing dialog.
+Hasan
+Hasan,
+First, almost every feature you mentioned will be part of the next version of Java; Sun will add the javax.print package, which will support printer discovery, stream printer discovery, translation of 2D graphics to printer language, etc. Some new printing features were added to JDK 1.3, but are not worth mentioning because they were served to us as "side orders." The new JobAttributes class can only be linked to a PrintJob object -- not to a PrinterJob object. If you try to print with a PrintJob object, you will lose all of the functionality provided by the Pageable (Books) printing model. 
+My second point concerns the objective of this series. My main goal is to provide the reader with a framework that will simplify the creation of printed output in Java. All of the new features you cited are irrelevant at this time, since they can be easily integrated into the framework when Sun releases JDK 1.4. However, Java programmers need to know how to generate contents; that's what this series focuses on.
+Jean-Pierre
+:
+ Legacy Systems 
+'Leverage legacy systems with a blend of XML, XSL, and Java'
+ Michael Koch 
+ Using transmission-method APIs with mainframe applications
+Mr. Koch,
+You detailed a wonderful transaction framework for accessing data via mainframe applications. However, you purposefully did not delve into any transmission methods that could invoke the mainframe application. I am researching full solutions for interfacing 3270 mainframe applications with Java, and I hope you can comment on your experience with possible transmission methods. More specifically, I think the OHIO API, drafted by the Internet Engineering Task Force, would fit nicely in your transaction framework. I found three vendors that provide an implementation of the OHIO API:
+- Eicon Technology: Aviva for Java
+- Platypus Partners: Jet API
+- Zephyr: Eclipse Host Integration Server
+ 
+I also discovered that IBM developed a seeming competitor to the OHIO standard with its HACL (host access class libraries). 
+Do you have any experience with these transmission-method APIs? If not, could you detail the transmission methods you have used in the past? 
+Eric Simmerman
+ 
+Mr. Simmerman,
+Thank you for your comments on my article. Since I have used many different transmission methods, and so many are available, I did not want to pick one and I omitted that topic from my article.
+I have frequently used an IBM product called MQSeries. You can install MQ on a wide variety of legacy systems, and it has many benefits.
+MQSeries has a Java API (among others) that ties into the server. I completed most of my work on an NT platform, but Unix versions do exist -- the API is identical. MQSeries can also be configured to eliminate much of the grunt work that would typically be involved, such as character-set conversions and numeric conversions. Simply configure your queues, push in the data, and voila. 
+Basically, install an MQSeries server on the host and legacy system, and set up the servers to talk to each other. The legacy system can retrieve messages using products that act as listeners on the queues. They pick up and dispatch messages to the appropriate region of the mainframe, and return the results to the other system. You can write code to do that; it is not difficult.
+Visit the IBM Website for more information on MQSeries. It is not expensive -- not cheap, either -- if cost is a consideration.
+In another case, I had to talk to a proprietary HP3000. The only way to penetrate it and execute transactions from the outside was with a Web server application built specifically for that system. It used CGI scripts that could execute the COBOL transactions. In that case, I used the same framework and Java sockets, emulated a Web browser by sending HTTP requests to fire off the CGI scripts, and passed the data as post parameters. That also worked pretty well.
+I am somewhat familiar with CICS Gateway for Java (another IBM product), although I have never used it.
+In some cases, I was fortunate that the underlying database was relational and could use JDBC. That didn't stop me from using the framework; I just created an SQL markup language in XML and completed it that way.
+I hope this helps.
+Mike Koch
+:
+ How-To Java 
+'Signed and sealed objects deliver secure serialized content'
+Todd Sunsted
+ Does transmitting objects through javax.crypto affect performance?
+Todd,
+How does the performance of transmitting objects via the javax.crypto API differ from, say, HTTPS?
+When using an object as a parameter in an EJB remote interface method call, would it be faster to use a Sealed object? 
+Also, do any security compromises quickly come to mind?
+Alex
+Alex,
+You asked good questions. 
+Here's how I'd make the decision: HTTPS encrypts everything that passes over the wire. This may not be necessary; depending on the application, it may be too expensive. On the other hand, if you have Sun's SSL libraries installed, creating an HTTPS connection is as easy as creating a URL. 
+So, you should decide whether all of the data needs to be encrypted, whether the application can afford to encrypt it, and whether ease of use is a factor.
+Todd
+:
+ J2EE Framework 
+'Frameworks save the day'
+ Humphrey Sheil 
+ Errors in file naming 
+Humphrey,
+I downloaded the code and tried to run it (without the EJB material). While doing so, I discovered two small errors handling filenames in your code:
+- In framework.manager.FrameworkComponent l. 54, you lowerCase() the inPropertiesFileName. At that point, inPropertiesFileName is the complete path+filename. If you have a Unix path /With/some/Capitals, you are lost.
+I removed .toLowerCase().
+- In framework.manager.FrameworkManager l. 141, you construct the Constructor args. Here you must lowerCase() your ClassName, i.e.: getClassName(tempClass).toLowerCase().
+I added these steps to my code, and all went well.
+Are you beaten by Microsoft's filename handling?
+Andreas Moeller
+Andreas,
+Thanks for finding that! I tested on Windows 2000, so case sensitivity wasn't an issue for filenames.
+In your second example, it looks like you've moved the case-altering functionality to affect only the filename and not the fully qualified file path too. Looks good.
+To answer your question: Well, not really! I wanted to enforce a naming convention of lowercase >.properties for all property files -- basically, I was too eager to begin enforcing that. Actually, JDK 1.2+ makes cross-platform file handling and IO rather painless.
+Humphrey
+:
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

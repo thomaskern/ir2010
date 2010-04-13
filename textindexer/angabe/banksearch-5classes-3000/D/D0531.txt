@@ -1,0 +1,257 @@
+
+ 
+ 
+4.5) Range of primitives and declaring literals
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+4) Language
+Fundamentals 
+Objective 5) 
+State the range of all primitive data types
+and declare literal values for String and all primitive types using all
+permitted formats, bases and representations.
+Note on this objective 
+This is one of the slightly annoying but fairly easy to cover objectives.
+You can write a large amount of Java without knowing the range of primitive
+types but it should not take long to memorise these details. Beware of the
+requirement to be able to use all formats, don't overlook the octal form 
+The size of integral primitives 
+When this objective asks for the range of primitive data types I assume it
+is only required as representing the number 2 raised to the appropriate power
+rather than the actual number this represents. In my brain there are only three
+integral types to learn as the size of a byte is intuitively, in my PC based
+experience, 8 bits.
+ 
+ 
+Range of Integral Primitives 
+ 
+Name 
+Size 
+Range 
+byte 
+8 bit 
+-27 to 2 7-1 
+short 
+16 bit 
+-215 to 215-1 
+int 
+32 bit 
+-231 to 231-1 
+ long 
+ 64 bit 
+ -2 63 to 2 
+ 63-1 
+Declaring integral literals 
+There are three ways to declare an integral literal. The
+default, as you might expect is decimal. Here are the options
+Declaring 18 as an integral literal 
+ 
+Decimal 
+18 
+Octal 
+022 (Zero not letter O) 
+Hexidecimal 
+0x12 
+ 
+If you compile and run this little class you will get the value
+18 output each time.
+public class Lit{
+public static void main(String[] argv){
+ int i = 18;
+ int j = 022;//Octal version: Two eights plus two 
+ int k = 0x12;//Hex version: One sixteen plus two
+ System.out.println(i);
+ System.out.println(j);
+ System.out.println(k);
+ }
+}
+Roberts and Heller describe 6 ways of declaring integral literals, because
+unusually for Java letter X is not case sensitive, nor are the letters A
+through F for hexadecimal notation. I find it easier to remember the three ways
+and that it the letters are not case sensitive. 
+The size of floating point primitives 
+Floating point numbers are slightly strange beasts as calculations can have
+some unexpected results. Thus to quote Peter Van Der Linden "The exact
+accuracy depends on the number being represented". As compensation for
+this variable accuracy, you do get to play with numbers large almost beyond
+imagination. Thus the largest double can store a number that corresponds to 17
+followed by 307 zeros. So you can even store the value of the financial paper
+worth of Bill Gates (until Linux reaches reaches total world domination, then
+an integer may do the job nicely).
+ 
+ 
+Range of floating point types 
+ 
+float 
+32 bit 
+double 
+64 bit 
+Bear in mind that the default type for a literal with a decimal component is 
+ a double and not a float. This is slightly confusing as you might 
+ think that the default type for a "floating point number" would be 
+ a float. You may get questions in the exam in a similar form to the following. 
+Will the following compile?
+float i = 1.0;
+Intuition would tell you that this should compile cleanly. Unfortunately the
+exam is not designed to test your intuition. This will cause a compile time
+error because it attempts to assign a double to a float type. You can fix this
+code as follows
+ 
+float i = 1.0F;
+Or even
+float i = (float) 1.0;
+Indicating data type with a trailing letter 
+As demonstrated in the previous section you can tell Java that a numeric literal 
+ is of a particular type by giving it a trailing letter. These following are 
+ available
+ 
+ Suffix to indicate Data type 
+ 
+ float 
+ F 
+ 
+ 
+ long 
+ L 
+ 
+ 
+ double 
+ D 
+ 
+ 
+boolean and char 
+The boolean and char primitives are a little odd. If you have
+a background in C/C++ pay attention particularly to the boolean and make
+sure you do not bring any "false friends" from these languages. A
+boolean can not be assigned any other value than true or false. The
+values true or false do not correspond to 0, -1 or any other number.
+ 
+ 
+A boolean can only be true or false,
+it cannot be assigned a number such as -1 or 0 
+ 
+The char primitive is the only unsigned primitive in Java, and is 16
+bits long. The char type can be used to denote a Unicode character.
+Unicode is an alternative to ASCII that stores characters in 2 bytes instead of
+the 1 byte of ASCII. This gives you 65K worth of characters, which although not
+enough to cover all world scripts, is an improvement of the 255 characters of
+ASCII. Internationalisation is a whole subject on its own, and just because you
+can represent characters from Chinese or Vietnamese, it does not mean that they
+will display correctly if you have a standard English style operating system. 
+A char literal can be created by enclosing the character in single
+quotes thus
+char a = 'z';
+Note that single quotes ' are used not double ".
+This works fine in my English centered little world but as Java is a world
+system a char may contain any of the characters available in the Unicode
+system. This is done by using four hex digits preceded by \u, with the whole
+expression in single quotes.
+Thus the space character can be represented as follows
+char c = &#145;\u0020&#146; 
+If you assign a plain number to a char it can be output as a alphabetic
+character. Thus the following will print out the letter A (ASCII value 65) and
+a space.
+public class MyChar{
+public static void main(String argv[]){
+ char i = 65;
+ char c = '\u0020';
+ System.out.println(i);
+	System.out.println("This"+c+"Is a space");
+ }
+}
+Declaring string literals 
+The String type is not a primitive but it is so important that in
+certain areas Java treats it like one. One of these features is the ability to
+declare String literals instead of using new to instantiate a copy of
+the class. 
+String literals are fairly straightforward. Make sure you remember that
+String literals are enclosed in double quotes whereas a char literal
+takes single quotes.
+Thus
+String name = "James Bond" 
+See Objective 9.3 and 5.2 for more on the String class. 
+ 
+ 
+Question 1)
+ 
+Which of the following will compile correctly?
+1) float f=10f;
+2) float f=10.1;
+3) float f=10.1f;
+4) byte b=10b;
+Question 2)
+ Which of the following will compile correctly?
+1) short myshort=99S;
+2) String name='Excellent tutorial Mr Green';
+3) char c=17c;
+4) int z=015;
+Question 3)
+ Which of the following will compile correctly?
+1) boolean b=-1;
+2) boolean b2=false;
+3) int i=019;
+4) char c=99;
+Answers 
+Answer 1)
+ 1) float f=10f;
+3) float f=10.1f; 
+There is no such thing as a byte literal and option 2 will cause an error
+because the default type for a number with a decimal component is a double.
+ 
+Answer 2)
+ 4)int z=015;
+The letters c and s do not exist as literal indicators and a String must
+be enclosed with double quotes, not single as in this example.
+ 
+Answer 3)
+2) boolean b2=false;
+4) char c=99;
+Option 1 should be fairly obvious as wrong, as a boolean can only be
+assigned the values true of false. Option 3 is slightly more
+tricky as this is the correct way to declare an octal literal but you cannot
+use the numeric 9 if you are in base 8 where you have numbers 0 through 7. A
+little tricky one there perhaps.
+Other sources on this topic
+ 
+This topic is covered in the Sun Tutorial at 
+http://java.sun.com/docs/books/tutorial/java/nutsandbolts/datatypes.html
+ The JLS 
+http://java.sun.com/docs/books/jls/second_edition/html/typesValues.doc.html#9151
+ Jyothi Krishnan on this topic at
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec4.html#obj13
+Bruce Eckel's Thinking in Java
+Chapter 2 "Special case: Primitive Types"
+Chapter 3 "Literals" 
+Last updated
+ 23 Aug 2001
+ copyright © Marcus Green 2001
+ 
+ 
+ 
+ 

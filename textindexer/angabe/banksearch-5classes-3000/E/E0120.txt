@@ -1,0 +1,465 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Non volatile variables and configuration settings for MFC applications
+This article was contributed by
+Ruben Joensson.
+Environment: VC6 sp5 tested on W95 and W98
+This article describes two classes for storing and retrieving string, numeric and BOOL variables to/from files in ASCII text format - much like INI files. The first class - CTxtVar, is used to dynamically add and remove variables in the text file. The second class - CCfg, which is derived from CTxtVar, is used as a base class to map a fixed set of variables or configuration settings in the text file to constant ID's which are used anywhere in the application to access (read and write) the actual variables/settings in the text file.
+The CTxtVar class
+I have chosen to put the variables in text files in human readable format instead of a binary format in order to make it easy to examine and modify the variables from any text editor. The format of the text file is divided into sections, items and variables:
+[SECTION_HEADER]
+ITEM VAR,VAR,VAR
+ITEM VAR
+ITEM VAR,VAR,VAR,VAR,VAR
+[SECTION_HEADER]
+ITEM VAR
+ITEM VAR,VAR,VAR
+Every item can have up to 20 variables attached to it (this is #defined to 20 in the CTxtVar header file for now - in the future this may be changed to a dynamic CStringList instead of a fixed array as now). For a real example, see the edit box on the right in the picture of the demo app above.
+All variables are handled as strings in the CTxtVar class. Each line in the text file (item and section headers) are stored in a CStringList in the CTxtVar class. Items are accessed with a section header name and an item name. There are also functions to split the item and it's variables from a single
+string to an array of strings, one for each variable, which makes it possible to extract a single variable from an item. String variables and item names that contains white spaces or commas must be embedded within double quotes to be treated as one single variable. The items and it's variables are written back to the string list as one complete string. It is up to the calling function to build this string before it is written back.
+Other functions in the CTxtVar class is: Read stringlist from file, write stringlist to file, find section, find item in section, add item, remove item, remove section and iterate through a section getting the items one by one.
+The CTxtVar class is used when the number of items in a section is dynamic - items are added and removed on the fly, or when the item name and number of variables for an item is unknown at design time. Even the section name could be unknown. Example of this is list or combo boxes which could have it's contents manipulated by the user. The demo app demonstrates this example.
+The functions SetItem() and SetSectionItem() has a BOOL parameter called bAdd which, if set to TRUE, allows items with identical names to be added to one section as separate items. An example where this could be useful is where the item represents a graphical object of some sort in a view. The name of the item is given by the user - not known at design time. The graphical object could be displayed on several places, perhaps in different modes on the same view. The item is the name supplied by the user, variable 1 could be the drawing mode, variable 2 the x position, variable 3 the y position and so on. This would mean that the item name would show up for every object of this type that is placed in the view. To retrieve the variables for these items FindItem() and FindSectionItem() would only find the first item with this name after the section header. In this case it is more useful to use the function FindSectionHeader() for the section with the items of interest and then iterate through every item of this section with GetNextItem(), perhaps
+building a linked list or an array of objects for these items, which is then used to access the objects within the application. One way to write back changed settings for the objects (added/removed objects, changed position) is to simply remove all items from the section in the string list with the function EmptySection() and then iterate through the list or array of objects in the app and for each one build the item string and write it back with SetSection() or SetSectionItem(). 
+There is a BOOL member variable in the CTxtVar, m_bChanged, that is set to TRUE whenever a string is added, removed or changed in the string list. This value is checked in the destructor of the class which, if TRUE, automatically updates the text file. This means that there is generally no need to write the stringlist back to the text file manually (with Flush()) unless another class needs to read the text file during the lifetime of the CTxtVar class. This is the case in the demo app since the text file itself is displayed in a rich edit control and updated whenever there has been a change in the string list of the CTxtVar class. Of course, if the app exits unnaturally the destructor Flush() may not work so it will be a good idea Flush() critical changes back to the text file right after they are changed.
+See the CTxtVar.cpp file for more information about member functions and variables.
+The CCfg class
+Whenever I do an MFC app I have a lot of variables and settings that should be saved between sessions. 
+Call me old fashioned but I rather save these variables in a separate file in my app's directory than
+in the registry for several reasons: It is easy to read and modify (if it is in text format),
+it is easy to clean up, the same app can have several settings by simply starting it in different
+directories, just to mention some. The variables used for configuration settings are all known at design
+time. The CCfg class associates every setting/variable (and section and item) with an ID which is used
+instead of the section name and item name to access it's value. Furthermore, the variables can be of type
+string, numeric, limited numeric (limited by a max and min value) and BOOL. Every variable also has a
+default value which is used if the setting isn't found in the text file (which it isn't the first time the
+app starts or if the text file is deleted). If a value for a setting isn't found in the text file the
+default value will be written to the text file.
+The CCfg class holds the information for every variable, item and section in a list of CCfgNode derived
+classes. These classes have information about the ID, the current value, the default value and a maximum
+and minimum value for the limited numeric type. The CCfg class uses the string list of the CTxtVar to load 
+the CCfgNodes with current values for the settings. The CCfgNode list is written back to the text file in
+two steps, first the CCfgList is converted back to the string list in CTxtVar and then the base class CTxtVar
+writes back the string list to the text file. This isn't done until the Flush() function is called which
+could be as late as in the destructor of the CCfg and CTxtVar classes. The CCfg class dynamically builds the
+CCfgNode list upon initialization from information in an array of structures typedefed as CFGDEF.
+The CFGDEF array is where the programmer specifies what section names, item names types of variables, 
+default values and ID's should be used for the settings. In order to keep things simple and not having
+to remember too much about how this CFGDEF structure works I have created a set of macros that does most
+of the job during compile time. Also, these macros automatically assigns the ID a unique number which
+makes it impossible to have two ID's of the same number by mistake. How can this be done, you may ask,
+how can a macro both define a structure array and declare a constant with a different value at the same time?
+Well it can't, but by putting the macros for the definition of the CFGDEF structure in the header file of the
+CCfg derived class (the user class) and redefining the macros and including this header file twice from the
+implementation file (.cpp file) of the CCfg derived class it can. The macros that generate the unique ID's and
+builds the CFGDEF array can look something like this:
+BEGIN_CFGDEF(cfgdef)
+ CFG_SECTION(CFGID_SETTINGS,"Settings")
+ CFG_WINDOWPOS(CFGID_INITWINDOWPOS,"MainWindowPos",
+ 100,100,620,510,0)
+ CFG_FONT(CFGID_FONT,"Font","System",12,FW_NORMAL,FALSE)
+ CFG_ITEM(CFGID_CURRENTCOMBOLIST,1,"Currentcombolist")
+ CFG_STRING(CFGID_CURRENTCOMBOLIST_NAME,"")
+ CFG_ITEM(CFGID_BOOL,1,"Bool")
+ CFG_BOOL(CFGID_BOOLVALUE,0)
+ CFG_ITEM(CFGID_NUM,1,"Numeric")
+ CFG_NUM(CFGID_NUMVALUE,0)
+ CFG_ITEM(CFGID_DIR,1,"Directory")
+ CFG_STRING(CFGID_DIRSTRING,"")
+END_CFGDEF
+The resulting text file with default values for this CFGDEF looks like this:
+[Settings]
+MainWindowPos 100,100,620,510,0
+Font "System",12,400,0
+Currentcombolist ""
+Bool 0
+Numeric 0
+Directory ""
+The order of the items in the section may vary though.
+I have chosen to make the CCfg derived class global in order to make it accessible from all classes that has
+included the header file of the CCfg derived class. I think this is one case where a global variable is a good
+thing in a C++ application. This way it is easy for the objects that needs to access non volatile variables or
+configuration settings themselves without obtaining a pointer from another (global) class.
+The variables/settings can be read by the following functions: GetBool(int VariableId), GetString(int VariableId) and 
+GetNum(int VariableId) or GetBool(int ItemId, int VariableIndex), GetString(int ItemId, int VariableIndex) and
+GetNum(int ItemId, int VariableIndex) where VariableIndex is the indexnumber for a variable in an Item. Index 0 is the
+first varaible. Use the following functions to write variables/settings: SetBool(int VariableId,BOOL Value),
+SetString(int VariableId,CString Value) and SetNum(int VariableId,long Value) or SetBool(int ItemId, int VariableIndex, BOOL Value), SetString(int ItemId, int VariableIndex, CString Value) and SetNum(int ItemId, int VariableIndex, CString Value).
+To check the integrity of the CFGDEF array the debug version fails ASSERT macros if something is wrong. This could be: A CFG_SECTION isn't the first macro after BEGIN_CFGDEF or an item has more or less variables than
+specified. ASSERT also fails if the application is trying to use the wrong access function for a variable ID, for example trying to read a string variable with the GetNum() function.
+How the CFGDEF macros work
+When the header file (the declaration file) for the CCfg derived class is included from the cpp file (the implementation file) for the CCfg derived class the first time or whenever it is included from another class the
+macros generate a typedef of an enumerated variable that include all ID's from the CFGDEF macros. This way the ID's have been assigned unique consecutive numbers which is known by all classes that includes the declaration
+file. Before the header file is included a second time from the cpp file of the CCfg derived class it has defined an identifier to tell the header file that this time the macros should generate the implementation of the CFGDEF
+structure array. To accomplish this the macros are redefined. The definition and redefinition of the macros takes place in the header file for the CCfg class. 
+How to use it
+In order to use the CCfg class you have to derive a class from it and put the macros for the CFGDEF structure array in the derived class' header file. The only function needed is the constructor which has to generate
+the CfgNode list with a call to MakeCfgList(const CFGDEF *cfg_def). It may be easiest to use the following implementation and declaration files as a template and change the names as you want.
+The declaration file (header file)
+// CfgDem.h: interface for the CCfgDem class.
+//
+///////////////////////////////////////////////////////
+#if !defined( \
+AFX_CFGDEM_H__20008C44_F97E_11D5_8C08_B343B9E2DD77__INCLUDED_)
+#define \
+AFX_CFGDEM_H__20008C44_F97E_11D5_8C08_B343B9E2DD77__INCLUDED_
+#define __CFG_FIRST_RUN__ 
+#endif
+#if defined(__CFG_FIRST_RUN__)
+#define __INCLUDE_CFGDEF__
+#elif defined(__CFG_IMPLEMENTATION__)
+#define __INCLUDE_CFGDEF__
+#endif
+#if defined(__INCLUDE_CFGDEF__)
+#include "Cfg.h"
+/*
+ This file must be #included twice from the CCfg 
+ derived class, once to enumerate the ID's 
+ (definition) and once to implement the array of 
+ CFGDEF structures (declaration).
+ The CFG_... macros are redefined when 
+ __CFG_IMPLEMENTATION__ is defined.
+ When this file is included from the CCfg derived 
+ class and __CFG_IMPLEMENTATOIN__ is defined the 
+ following macros generate the array of CFGDEF 
+ structures used to access the cfg file.
+ When this file is included without 
+ __CFG_IMPLEMENTATION__ defined (the first time
+ it is included in the CCfg derived class and 
+ whenever it is included in another cpp file) all 
+ ID's are enumerated to generate unique numbers 
+ for all cfg ID's.
+*/
+ BEGIN_CFGDEF(cfgdef) // cfgdef is the name 
+ //for the CFGDEF structure 
+ // array - CFGDEF cfgdef[]={
+ // Put the rest of the CFGDEF macros here
+ END_CFGDEF
+#endif
+#if defined(__CFG_FIRST_RUN__)
+class CCfgDem : public CCfg 
+{
+public:
+ CCfgDem();
+ virtual ~CCfgDem();
+};
+extern CCfgDem cfg; // Make the global cfg 
+ // variable visible to 
+ // other classes that 
+ // includes this .h file.
+#endif
+#undef __INCLUDE_CFGDEF__
+#undef __CFG_FIRST_RUN__
+#undef __CFG_IMPLEMENTATION__
+ 
+Note that the #pragma once can not be used in this header file. Rename all instances of CCfgDem to whatever
+name you want the derived class to have. 
+The implementation file (cpp file)
+// CfgDem.cpp: implementation of the CCfgDem class.
+//
+//////////////////////////////////////////////////
+#include "stdafx.h"
+#include "CfgDemo.h"
+#include "CfgDem.h"
+#ifdef _DEBUG
+#undef THIS_FILE
+static char THIS_FILE[]=__FILE__;
+#define new DEBUG_NEW
+#endif
+#define __CFG_IMPLEMENTATION__
+#include "CfgDem.h" // When __CFG_IMPLEMENTATION__ is 
+ // defined 
+ // CfgDem.h actually defines the CFGDEF
+ // structure array
+CCfgDem cfg; // Global CCfgDem class.
+/////////////////////////////////////////////////////////
+// Construction/Destruction
+/////////////////////////////////////////////////////////
+CCfgDem::CCfgDem()
+{
+ MakeCfgList(cfgdef); // Make the cfg node list from 
+ // the cfgdef struct array.
+}
+CCfgDem::~CCfgDem()
+{
+}
+Rename all instances of CCfgDem to whatever name you want the derived class to have. 
+See the source files for more information about the CCfg class.
+About the demo app
+The view class together with some custom controls handles all the functionality of the CfgDemo app. The document class is not used at all.
+All controls on the left side is used to show and manipulate settings in the 
+text file. The CRichEditCtrl on the right side is used to show the actual contents of the text file itself and is updated whenever the text file is changed.
+There are two combo boxes which are used to enter and display data of three lists. The first combo box is of type drop list which selects one of three lists. The other combo box is a drop down type used to select and enter data into the list selected by the first combo box. The selection of an item in the second combo doesn't do anything in this demo, though. There is also a button to delete the currently selected list. The lists are updated and accessed in the text file by CTxtVar (base class of the CCfg class) functions that directly reads and writes to and from the CStringList representing the text file in the CTxtVar class. This is done to demonstrate that dynamic sections and items can be read and written to the same text file as CFGID linked sections and items.
+There is a read only edit box which displays a directory selection done with a 
+SHBrowseForFolder dialog through a button next to the edit box.
+There is an edit box with a spin control used for entering a numeric value.
+There is a check box used for a BOOL value.
+There is a button which opens up a modal font selection dialog box to set the
+font for the CRichEditCtrl. The font setting is also stored in the text file.
+The app also uses a custom class derived from CFormView called CMyFormView as a base class for the view. This class automatically handles resizing and repositioning of controls on the form when the main frame is resized. The size, position and maximized/normal state is saved in the text file when the app closes and is restored when the app is loaded the next time. 
+Use the source as you want. If you do - please send me a mail to tell me.
+Downloads
+Download demo project - 21 Kb
+Download source - 47 Kb
+History
+Date Posted: January 24, 2002
+ 
+Comments:
+- Thanks, works great - gatman (2002/02/05)
+- interest - Moth (2002/01/27)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Promote Your Website
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+For Web Graphics
+Free DNS Offer
+Find Annual Reports
+Search Marketplace
+Internet Jobs
+Anti-Virus Software
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

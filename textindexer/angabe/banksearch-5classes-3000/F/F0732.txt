@@ -1,0 +1,180 @@
+
+VB Square - Windows API - Extract Icons
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Windows API > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Extract Icons
+Tip by Sam Huggill
+ 
+Tip description 
+ 
+Extract icons from files. 
+ 
+Tip Code 
+ 
+Public Const MAX_PATH = 260
+Public Const SHGFI_DISPLAYNAME = &H200
+Public Const SHGFI_EXETYPE = &H2000
+Public Const SHGFI_SYSICONINDEX = &H4000 ' System icon index
+Public Const SHGFI_LARGEICON = &H0 ' Large icon
+Public Const SHGFI_SMALLICON = &H1 ' Small icon
+Public Const ILD_TRANSPARENT = &H1 ' Display transparent
+Public Const SHGFI_SHELLICONSIZE = &H4
+Public Const SHGFI_TYPENAME = &H400
+Public Const BASIC_SHGFI_FLAGS = SHGFI_TYPENAME _
+Or SHGFI_SHELLICONSIZE Or SHGFI_SYSICONINDEX _
+Or SHGFI_DISPLAYNAME Or SHGFI_EXETYPE
+Public Type SHFILEINFO
+hIcon As Long
+iIcon As Long
+dwAttributes As Long
+szDisplayName As String * MAX_PATH
+szTypeName As String * 80
+End Type
+Public Declare Function SHGetFileInfo Lib "shell32.dll" Alias "SHGetFileInfoA" _
+(ByVal pszPath As String, _
+ByVal dwFileAttributes As Long, _
+psfi As SHFILEINFO, _
+ByVal cbSizeFileInfo As Long, _
+ByVal uFlags As Long) As Long
+Public Declare Function ImageList_Draw Lib "comctl32.dll" _
+(ByVal himl&, ByVal i&, ByVal hDCDest&, _
+ByVal x&, ByVal y&, ByVal flags&) As Long
+Public shinfo As SHFILEINFO
+Private Sub Command1_Click()
+Dim hImgSmall As Long ' The handle to the system image list
+Dim FileName As String ' The file name to get icon from
+Dim r As Long
+FileName$ = Text1.Text
+' Get the system icons associated with the file
+hImgSmall& = SHGetFileInfo(FileName$, 0&, shinfo, Len(shinfo), _
+BASIC_SHGFI_FLAGS Or SHGFI_SMALLICON)
+hImgLarge& = SHGetFileInfo(FileName$, 0&, shinfo, Len(shinfo), _
+BASIC_SHGFI_FLAGS Or SHGFI_LARGEICON)
+' Fill in the labels with the image's file data
+label1.Caption = Left$(shinfo.szDisplayName, _
+InStr(shinfo.szDisplayName, Chr$(0)) - 1)
+Label2.Caption = Left$(shinfo.szTypeName, _
+InStr(shinfo.szTypeName, Chr$(0)) - 1)
+' Set the pictureboxes to receive the icons.
+Picture1.Picture = LoadPicture()
+Picture2.Picture = LoadPicture()
+' Draw the associated icons into the picture boxes
+r& = ImageList_Draw(hImgSmall&, shinfo.iIcon, picSmall.hDC, 0, 0,_
+ILD_TRANSPARENT)
+r& = ImageList_Draw(hImgLarge&, shinfo.iIcon, picLarge.hDC, 0, 0,_
+ILD_TRANSPARENT)
+End Sub
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 3 comments. 
+ 
+ 
+Related
+ 
+- 
+Dreams do come true - The MS Office Object Models: Part 2 
+- 
+Dreams do come true - The MS Office Object Models 
+- 
+Subclassing: What's it all about 
+- 
+Size up your applications with subclassing 
+- 
+Create a hotkey for your application 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

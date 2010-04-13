@@ -1,0 +1,219 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Type-safe TList Objects.
+The VCL contains a class called TList that provides an easy way to maintain a list of pointers. Unfortunately,
+TList has a handful of serious shortcomings. The most serious shortcoming is the lack of type safety.
+This article demonstrates a type-safe derivative of TList. The derived class addresses some of the
+defincicies of TList by providing type safety and automatic deletion of the objects contained in the list.
+- The problem with TList
+- An improved list class
+- Code examples
+- Notes
+The problem with TList
+TList is a handy class for storing a list of pointers to objects, but the class has some problems. The main
+problem with TList is that the class is not type-safe. TList maintains the list as a set of void
+pointers. Take a look at the prototype for the Add method of TList in CLASSES.HPP. It looks
+something like this:
+int __fastcall Add(void * Item);
+The compiler can implicitly convert any pointer to a void pointer. As a result, the Add function will accept
+any pointer that you pass it. This presents a problem when you want to maintain a list of objects that are the same
+type. The following code example illustrates the problem. Imagine that you want to maintain a list of TButton
+pointers. TList can handle the job, but it doesn't perform any type checking to ensure that only button
+objects are added to the list.
+TList *ButtonList = new TList; // create a list of buttons
+ButtonList->Add(Button1); // add some buttons to the list
+ButtonList->Add(Button2); //
+ButtonList->Add( new TButton(this)); // OK so far
+ButtonList->Add(Application); // Application is not a button
+ButtonList->Add(Form1); // neither is Form1
+ButtonList->Add((void *)534);
+ButtonList->Add(Screen);
+The code example above compiles and runs without a hitch. TList does nothing to enforce what types of objects
+are added to the list. Any pointer type will be accepted.
+The type safety issue becomes more serious when you start dereferencing the objects in the list. Because the list
+contains void pointers, you must cast the elements from the list to their proper types. The code example below
+shows how that is typically done:
+TList *ButtonList = new TList;
+ButtonList->Add(Button1);
+ButtonList->Add(Button2);
+ButtonList->Add(Application);
+TButton *button = reinterpret_cast(ButtonList->Items[1]);
+button->>Caption = "I hope it's really a button";
+delete ButtonList;
+The Items array property of TList returns a void pointer. If you are trying to maintain a list of
+TButton pointers, then a value from the Items array will need to be cast to a TButton
+pointer. This presents a problem. You must assume that the returned item is a button. There is no way to ask the object
+if it really is a button. You may be inclined to use the type safe dynamic_cast operator to perform the cast.
+Unfortunately, that won't work. Void pointers don't maintain any type information, which means that you can't use
+dynamic_cast to cast a void pointer. The compiler won't allow you to.
+Since dynamic_cast can't be used, the only way to convert the void pointer is to use reinterpret_cast.
+Unfortunately, reinterpret_cast is no different than the old C style of casting. reinterpret_cast never
+fails, which allows you cast a pointer to any other type of pointer. As a result, you have no way of knowing if the
+item from the list is really the type of object you expect it to be. In the previous code segment, we took the second
+button in the list and changed its Caption property. What if we tried to do that with the third item in the
+list, which isn't really a TButton object? The code would still work, but instead of changing the caption of
+a button, the caption of the program's taskbar icon would change.
+Another problem with TList is that it doesn't automatically delete the pointers that are contained in the list.
+This is a feature that would sometimes come in handy. In order to properly clean up the list, it is necessary to loop
+through the list and delete each object. Here is some code that attempts to deallocate the pointers:
+TList *ButtonList = new TList; // create a list of buttons
+ButtonList->Add(new TButton(Handle)); // add some buttons to the list
+ButtonList->Add(new TButton(Handle));
+ButtonList->Add(new TButton(Handle));
+ButtonList->Add(new TButton(Handle));
+...
+...
+int nCount = ButtonList->Count;
+for (int j=0; jItems[j];
+delete ButtonList;
+On the surface, this code seems just fine. But dig a little deeper and you will find a sinistair flaw. Focus on the
+line that deletes an item from the list. Since Items[j] returns a void pointer, the delete statement
+deletes a void pointer. Deleting a void pointer is vastly different than deleting a TButton pointer.
+Deleting a void pointer does not execute the objects destructor. As a result, any deallocation that the class does in
+its destructor will not occur, which causes a memory leak.
+In order to properly delete objects from the list, you must cast them so the compiler knows that it should call the
+destructor of the class. Since all destructors in the VCL are virtual, you can survive by casting the items to a common
+base. For example, if the list contains buttons and combo boxes, you can delete the items by casting them to a
+TComponent, TControl, or TWinControl. Here is a code example:
+TList *ControlList = new TList;
+ControlList->Add(new TButton(Handle));
+ControlList->Add(new TEdit(Handle));
+ControlList->Add(new TComboBox(Handle));
+int nCount = ControlList->Count;
+for (int j=0; j(ControlList->Items[j]);
+delete ControlList;
+This code will properly delete any object in the list that is derived from TWinControl, but what happens if
+someone sneaks a TDataSet pointer into the list? TDataSet is not derived from TWinControl.
+The code will delete the dataset by calling the destructor of TWinControl. This will certainly cause run time
+havoc.
+Lastly, TList could make life easy if it provided an option for automatically deleting the pointers in the
+list when we delete the list itself. But, since TList internally maintains a list of void pointers, we now know that
+it couldn't delete the objects properly anyway.
+An improved list class
+The problems outlined in the previous section demonstrate the need for an improved TList. If TList
+knew what types of objects it was dealing with, most of its problems would disappear. The code listing below provides a
+new class that solves many of the problems introduced by TList. The class is a template class derived from
+TList. The code works by providing a type safe layer around the existing methods of TList. These
+type safe wrappers allow the compiler to enforce type safety at compile time. The class also provides an option for
+automatically deleting the pointers in the list when the list itself is deleted.
+//--------------------------------------------------------------
+#ifndef TTYPEDLIST_H
+#define TTYPEDLIST_H
+#include 
+template 
+class TTypedList : public TList
+{
+private:
+ bool bAutoDelete;
+protected:
+ T* __fastcall Get(int Index)
+ {
+ return (T*) TList::Get(Index);
+ }
+ void __fastcall Put(int Index, T* Item)
+ {
+ TList::Put(Index,Item);
+ }
+public:
+ __fastcall TTypedList(bool bFreeObjects = false)
+ :TList(),
+ bAutoDelete(bFreeObjects)
+ {
+ }
+ // Note: No destructor needed. TList::Destroy calls Clear,
+ // and Clear is virtual, so our Clear runs.
+ int __fastcall Add(T* Item)
+ {
+ return TList::Add(Item);
+ }
+ void __fastcall Delete(int Index)
+ {
+ if(bAutoDelete)
+ delete Get(Index);
+ TList::Delete(Index);
+ }
+ void __fastcall Clear(void)
+ {
+ if(bAutoDelete)
+ {
+ for (int j=0; j *ButtonList = new TTypedList (false);
+ ButtonList->Add(new TButton(this));
+ ButtonList->Add(new TButton(this));
+ ButtonList->Add(new TButton(this));
+ // ButtonList->Add(Application); Count; j++)
+ {
+ ButtonList->Items[j]->Caption = "Button" + IntToStr(j);
+ ButtonList->Items[j]->Left = 250;
+ ButtonList->Items[j]->Top = 50 + j*25;
+ ButtonList->Items[j]->Parent = this;
+ }
+ delete ButtonList;
+}
+//----------------------------------------------------------------------------
+// Code Example 2: Cleaning up template syntax
+#incude "typedlist.h"
+void __fastcall TForm1::CreateButtons()
+{
+ typedef TTypedList TButtonList;
+ TButtonList *ButtonList = new TButtonList(true);
+ ButtonList->Add(new TButton(this));
+ ...
+ delete ButtonList;
+}
+//----------------------------------------------------------------------------
+// Code Example 3: A list of tables and queries
+#incude "typedlist.h"
+void __fastcall TForm1::OpenDataSets()
+{
+ typedef TTypedList TDataSetList;
+ TDataSetList *list = new TDataSetList(false);
+ list->Add(Table1);
+ list->Add(Table2);
+ list->Add(Table3);
+ list->Add(Query1);
+ for (int j=0; jCount; j++)
+ list->Items[j]->Active = true;
+ delete list;
+}
+Notes:
+No need to cast: Notice that the code examples above do not contain any casting. Casting is unecessary because
+TTypedList provides a type safe Items property. The read method for the Items array property
+is the Get function. Notice that Get returns a pointer to a template T object instead of returning a
+void pointer. When you create a list of TButton pointers, Get returns a TButton pointer.
+When you create a list of TDataSet pointers, Get returns a TDataSet pointer. The
+Get function returns the type of object that you need, which makes casting unecessary.
+Compile time safety: TTypedList contains an Add function that replaces the Add
+function of the base class. The Add function takes the template type as its argument, instead of taking a
+void pointer. When you create a list of TButton pointers, the compiler only allows you to pass
+TButton pointers to the Add function. If you attempt to pass anything else, the compiler will
+generate an error.
+Little Overhead: Because the member functions of TTypedList are defined inline, the class incurs no
+additional overhead. The compiler enforces type safety when you call a method of TTypedList. Once the compiler
+is satisfied that you have passed the correct type of object, it inserts code that calls the methods of TList
+directly (you can prove this by viewing the assembly code that is generated for a call to the Add
+method of TTypedList). TTypedList provides compile time safety without sacrificing runtime
+performance.
+Consider using STL templates instead: TTypedList is awesome. Awesome, that is, in comparison to what it
+replaces; the relatively wimpy and unsafe TList. That said, I encourage you not to overuse the class. Consider
+using STL containers whenever possible. STL containers are more portable and more flexible than TTypedList,
+plus they provide type safety that is just as good, if not superior to, that of TTypedList. A good STL replacement
+for TList is the vector template.
+Altering the way TTypedList deletes items: Notice that the Remove and Put methods
+will delete an item if the auto delete flag is set. You may not want the class to behave this way. Perhaps you only
+want the list to delete an object when the list itself is deleted. I have taken the approach that if auto delete is on,
+then the list assumes ownership of the pointer, and the list will be responsible for deleting that pointer. You may want
+to alter this behavior, especially in the Put method.
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

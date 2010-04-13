@@ -1,0 +1,710 @@
+
+GNE Namespace Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE Namespace Reference
+The namespace in which all of GNE resides in. 
+More...
+Compounds
+ 
+class GNE::Address 
+ A wrapper class for the HawkNL NLaddress. More...
+ 
+class GNE::ClientConnection 
+ A class that can connect to a remote target. More...
+ 
+class GNE::ClientConnectionParams 
+ Simply just a class to temporarily hold connection parameters until the ClientConnection is connected, then it is useless. More...
+ 
+class GNE::ConditionVariable 
+ A class for a conditional variable. More...
+ 
+class GNE::Connection 
+ A class resembling any type of connection to a remote computer. More...
+ 
+class GNE::Connection::Listener 
+class GNE::ConnectionEventGenerator 
+ A class used internally by GNE to generate the events in Connection. More...
+ 
+class GNE::ConnectionListener 
+ This is an abstract base class representing an interface to the Connection, ClientConnection, and ServerConnection classes. More...
+ 
+struct GNE::ConnectionStats 
+ A struct holding values returned by getStats. More...
+ 
+class GNE::Counter 
+ An implementation of a TimerCallback that provides a simple counter. More...
+ 
+class GNE::CustomPacket 
+ Many times, espically during connection, you want to send some more "free-form" data that may or may not all be related and will only be sent once. More...
+ 
+class GNE::Error 
+ This class resembles some sort of error in GNE, with the ability to obtain a textual description of the error. More...
+ 
+class GNE::EventThread 
+ Each Connection has an EventThread. More...
+ 
+class GNE::ExitPacket 
+ The ExitPacket is sent automatically by GNE when you disconnect in a proper manner. More...
+ 
+struct GNE::ListServerConnection::GameListData 
+ Data about each game. More...
+ 
+struct GNE::GNEProtocolVersionNumber 
+class GNE::ListServerConnection 
+ A Client-side connection to a game list server for retriving a list of games. More...
+ 
+class GNE::LockMutex 
+ A small helper class for Mutex which locks the mutex in its ctor and unlocks it in its destructor. More...
+ 
+class GNE::LowLevelError 
+ Adds low level HawkNL and possibly system error information to any other error. More...
+ 
+class GNE::Mutex 
+ The mutex class models a simple mutex. More...
+ 
+class GNE::Packet 
+ The base packet class, used for dealing with all types of packets at a fundamental level. More...
+ 
+class GNE::PacketStream 
+ This class resembles a packet stream through a connection. More...
+ 
+class GNE::PacketTypeMismatch 
+ An error thrown by SyncConnection when you get a packet other than the one you are trying to receive. More...
+ 
+class GNE::PingPacket 
+ Using the PingPacket is one way to measure ping. More...
+ 
+class GNE::ProtocolViolation 
+ An error that occurs during the connection process if the remote machine sends incorrect or corrupted packets to us. More...
+ 
+class GNE::RateAdjustPacket 
+ The RateAdjustPacket is sent automatically by GNE when you change rates in the PacketStream. More...
+ 
+class GNE::RawPacket 
+ A utility class for creating a raw block of data that is used to directly send data through the socket, and on the other side, parse it into system-dependant data. More...
+ 
+class GNE::ReceiveEventListener 
+ A class to act as an interface between ConnectionEventGenerator and its listeners. More...
+ 
+class GNE::ServerConnection 
+ A GNE "internal" class. More...
+ 
+class GNE::ServerConnectionListener 
+ A connection that listens for other connections. More...
+ 
+class GNE::ServerConnectionParams 
+ Simply just a class to temporarily hold connection parameters until the ClientConnection is connected, then it is useless. More...
+ 
+class GNE::ServerConnectionListener::ServerListener 
+class GNE::SocketPair 
+ A class used to centralize shared elements between Connection and SyncConnection. More...
+ 
+class GNE::SyncConnection 
+ A class for performing syncronous connections. More...
+ 
+class GNE::Thread 
+ A class resembling a thread. More...
+ 
+class GNE::Time 
+ A class representing a time relative to a point in the past. More...
+ 
+class GNE::Timer 
+ The timer class is used to get the current time and to provide callbacks. More...
+ 
+class GNE::TimerCallback 
+ A pure interface class for usage in the Timer class. More...
+ 
+class GNE::UserVersionMismatch 
+ An error that occurs during the connecting process if the user versions are different. More...
+ 
+class GNE::WrongGame 
+ An error that represents a mismatch in the games during the connection process. More...
+ 
+Typedefs
+ 
+typedef signed char gint8 
+ Typedefs for the variable types that are common to all GNE implementations (as defined in the GNE protocol document). More...
+ 
+typedef unsigned char guint8 
+typedef guint8 gbyte 
+typedef guint8 gbool 
+ A gbool is 'false' only when its value is 0, else it is 'true'.
+ 
+typedef signed short gint16 
+typedef unsigned short guint16 
+typedef signed int gint32 
+typedef unsigned int guint32 
+typedef float gsingle 
+ A single precision 32-bit IEEE 754 floating point variable.
+ 
+typedef double gdouble 
+ A double precision 64-bit IEEE 754 floating point variable.
+ 
+Functions
+ 
+bool initGNE (NLenum networkType, int(*atexit_ptr)(void(*func)(void))) 
+ Initalizes GNE and HawkNL. More...
+ 
+void shutdownGNE () 
+ Shutsdown GNE and HawkNL. More...
+ 
+Address getLocalAddress () 
+ Use this function to get the address of the default networking device on this system, if possible. More...
+ 
+ConnectionStats getGlobalStats () 
+ Gets the global stats. More...
+ 
+void enableStats () 
+ Enables stats gathering, which is off by default. More...
+ 
+void disableStats () 
+ Disables stats gathering, which is the default mode.
+ 
+void clearStats () 
+ Clears all global stats.
+ 
+int getOpenConnections () 
+ Returns the number of open low-level connections GNE has opened.
+ 
+GNEProtocolVersionNumber getGNEProtocolVersion () 
+ Returns the GNE Protocol version number. More...
+ 
+const char * getGameName () 
+ This function is used internally by GNE to get the name that you set in setGameInformation.
+ 
+guint32 getUserVersion () 
+ This function is used internally by GNE to get the version that you set in setGameInformation.
+ 
+void setGameInformation (std::string gameName, guint32 version) 
+ The user's game information. More...
+ 
+void checkVersions (const GNEProtocolVersionNumber &otherGNE, std::string otherName, guint32 otherUser) 
+ Compares other versions against this library. More...
+ 
+bool initDebug (int levelMask, const char *fileName=NULL) 
+ Function to initalize debugging. More...
+ 
+void killDebug () 
+ Function to deinitialize debugging. More...
+ 
+void doTrace (int level, const char *fn, int lineno, const char *msg,...) 
+ A function available in a debug compile that does trace logging to a file. More...
+ 
+Variables
+ 
+const int MINLEN = 8 
+const int REFLEN = 44 
+const int CAPLEN = 12 
+const std::string ErrorStrings [] 
+const std::string ViolationStrings [] 
+char gameNameBuf [32] = {0} 
+guint32 userVersion = 0 
+ConnectionEventGenerator * eGen = NULL 
+ The global event generator. More...
+ 
+const int CRPLEN = 48 
+const int MAX_GAME_NAME_LEN = 31 
+ The maximum number of ASCII characters in game name that is passed into the setGameInformation function.
+ 
+const double VER = 0.46 
+ A numeric representation of the current version of this library.
+ 
+const std::string VER_STR = "GNE v0.46 alpha CVS" 
+ A string representation of the name of the library and the current version.
+ 
+const int UDP_HEADER_SIZE = 28 
+ The low-level header size of a UDP header, which is used with the HawkNL internet driver that GNE uses. More...
+ 
+const NLenum NO_NET = 128 
+ Normally you would pass a network type to GNE::init, but passing this value means that no network should be initalized. More...
+ 
+const int DLEVEL1 = 1 
+ Debugging level constants for the levelMask.
+ 
+const int DLEVEL2 = 2 
+const int DLEVEL3 = 4 
+const int DLEVEL4 = 8 
+const int DLEVEL5 = 16 
+const gbool gTrue = 1 
+ One possible true value for a gbool.
+ 
+const gbool gFalse = 0 
+ The only false value for a gbool.
+ 
+Detailed Description
+The namespace in which all of GNE resides in.
+The namespace consists of a few global functions, some constants, classes, and the GNE::Console namespace, which holds the console IO functions. 
+Typedef Documentation
+ 
+ 
+ 
+ 
+ typedef signed char GNE::gint8
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Typedefs for the variable types that are common to all GNE implementations (as defined in the GNE protocol document).
+"u" type variables denote unsigned versions. 
+ 
+Function Documentation
+ 
+ 
+ 
+ 
+ void GNE::checkVersions 
+ ( 
+ const GNEProtocolVersionNumber & 
+ otherGNE, 
+ 
+ 
+ 
+ 
+ std::string 
+ otherName, 
+ 
+ 
+ 
+ 
+ guint32 
+ otherUser 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Compares other versions against this library.
+This is used internally by GNE to compare versions. It checks the GNE version numbers first, then the game name, then the user versions.
+Exceptions: 
+Error 
+ if the GNE versions did not match. 
+WrongGame 
+ if the game is of the wrong type. 
+UserVersionMismatch 
+ if the user versions are different. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void doTrace 
+ ( 
+ int 
+ level, 
+ 
+ 
+ 
+ 
+ const char * 
+ fn, 
+ 
+ 
+ 
+ 
+ int 
+ lineno, 
+ 
+ 
+ 
+ 
+ const char * 
+ msg, 
+ 
+ 
+ 
+ 
+ ... 
+ 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+A function available in a debug compile that does trace logging to a file.
+This function is thread-safe. 
+Parameters: 
+level 
+the "level" of detail for this trace statement, 1 being the most basic and should always be displayed. The higher you go, the more detailed the trace should get. This is so to allow debugging but not totally flood the logfile unless you need to get this detailed.
+ These general standards are followed:
+ 1 - startup, shutdown, and explicit error messages.
+ 2 - connection, disconnection, and other "normal" operation.
+ 3 - average level. packet registration, socket registration
+ 4 - events like onReceive and such, and some reporting.
+ 5 - very low level -- thread creation, memory allocation. 
+fn 
+The file name this trace was called from 
+lineno 
+The line number in the file 
+msg 
+The message to display to the logfile, in printf style, followed by the data. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::enableStats 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Enables stats gathering, which is off by default.
+When stats is not enabled, the get function's results is undefined. 
+ 
+ 
+ 
+ 
+ 
+ ConnectionStats GNE::getGlobalStats 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Gets the global stats.
+Very similar to Connection::getStats, but this gets cumulative stats for all sockets, user-created ones and GNE ones too you may not know about. 
+ 
+ 
+ 
+ 
+ 
+ GNEProtocolVersionNumber GNE::getGNEProtocolVersion 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the GNE Protocol version number.
+This is different from the library version number. This number is specified by the GNE protocol document on the GNE web site. Versions of this library obtained from CVS might have the build number non-zero. Non-beta public releases of GNE will have a build number of zero and a version and subVersion number strictly defined by the GNE protocol specification. Public alpha or beta releases might have a non-zero build number. 
+ 
+ 
+ 
+ 
+ 
+ Address GNE::getLocalAddress 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Use this function to get the address of the default networking device on this system, if possible.
+The port in the resulting address will be zero. The returned address is invalid if an error occured. 
+ 
+ 
+ 
+ 
+ 
+ bool initDebug 
+ ( 
+ int 
+ levelMask, 
+ 
+ 
+ 
+ 
+ const char * 
+ fileName = NULL 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Function to initalize debugging.
+This is safe to call before initialization of GNE, but can be called at any time (but not multiple times). No debugging messages will be displayed until this function is called, and it is save to use the debugging macros and doTrace before calling this -- just nothing will be displayed. 
+Parameters: 
+fileName 
+an optional fileName to log to. If you pass NULL for this parameter, then GNE will pick a temp file name that is safe for multiple instances. The filename will be based on time: gneHH'MM'SS.log 
+levelMask 
+sets just how detailed the trace is, and will display all messages that match this parameter. You should bitwise OR together the levels you want to see. 
+Returns: 
+false on error 
+ 
+ 
+ 
+ 
+ 
+ bool GNE::initGNE 
+ ( 
+ NLenum 
+ networkType, 
+ 
+ 
+ 
+ 
+ int(* 
+ atexit_ptr)(void(*func)(void)) 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initalizes GNE and HawkNL.
+Call this before using any HawkNL or GNE functions. Pass it the atexit function so shutdown will be called on exit. A call to any other GNE function before this function succeeds is undefined. 
+Parameters: 
+networkType 
+a HawkNL network driver, such as NL_IP or NL_IPX 
+Returns: 
+true if GNE or HawkNL could not be initalized. 
+ 
+ 
+ 
+ 
+ 
+ void killDebug 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Function to deinitialize debugging.
+This will be called automatically on program exit, and the GNE user need not call it. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::setGameInformation 
+ ( 
+ std::string 
+ gameName, 
+ 
+ 
+ 
+ 
+ guint32 
+ version 
+ 
+ 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The user's game information.
+This information is used during the connection process to check if the versions and games match. This function should only be called once before making any connections.
+Parameters: 
+gameName 
+the name of your game, or any other unique string identifier in ASCII format with a length not exceeding MAX_GAME_NAME_LEN ASCII characters. 
+version 
+a 4-byte value with the current game version in any format. 
+ 
+ 
+ 
+ 
+ 
+ 
+ void GNE::shutdownGNE 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Shutsdown GNE and HawkNL.
+This function should be called only after all connections are individually shutdown to properly deinitalize the library. However, this function is acceptable enough to be used on an "emergency" shutdown due to some error -- just don't try to call any other GNE or HawkNL function after calling this.
+Note that it is possible that this function may block for a short time (500ms or less), while the event generators shut down. 
+ 
+Variable Documentation
+ 
+ 
+ 
+ 
+ ConnectionEventGenerator * GNE::eGen = NULL
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The global event generator.
+The library uses this internally to register and unregister connections. The end-user will not have to use this object under any normal cirumstances. 
+ 
+ 
+ 
+ 
+ 
+ const std::string GNE::ErrorStrings[]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initial value: {
+ "No error.",
+ "The remote end did not follow the specifications of the GNE protocol.",
+ "The remote end uses an earlier version of the GNE protocol.",
+ "The remote end uses a later version of the GNE protocol.",
+ "The connecting game names differ.",
+ "The user protocol version numbers do not match.",
+ "Could not open a network socket.",
+ "Could not contact the host due to connection timeout.",
+ "The remote end decided to refuse your connection request.",
+ "Remote computer suddenly disconnected without warning, or dropped.",
+ "The operation was canceled because the SyncConnection is released.",
+ "The remote end sent a connection close notice.",
+ "Network error when trying to read from connection.",
+ "Network error when trying to write to connection.",
+ "Unknown packet type encountered or corrupted data received -- possible additional data loss.",
+ "Packet type received does not match next packet type expected.",
+ "Other GNE (not a low-level network) error.",
+ "Low-level HawkNL error:"
+} 
+ 
+ 
+ 
+ 
+ 
+ const NLenum GNE::NO_NET = 128
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Normally you would pass a network type to GNE::init, but passing this value means that no network should be initalized.
+This is useful only in the example programs that don't use networking and do not need to initalize everything. 
+See also: 
+initGNE 
+ 
+ 
+ 
+ 
+ 
+ const int GNE::UDP_HEADER_SIZE = 28
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The low-level header size of a UDP header, which is used with the HawkNL internet driver that GNE uses.
+A number that I always have trouble finding and might be useful in getting stats or calculating actual bandwith. 
+ 
+ 
+ 
+ 
+ 
+ const std::string GNE::ViolationStrings[]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initial value: {
+ "",
+ " Client sent an invalid request packet.",
+ " Server sent an invalid connection response packet.",
+ " Client sent an invalid or corrupted unreliable information packet."
+} 
+ 
+Generated on Fri Mar 8 03:03:22 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

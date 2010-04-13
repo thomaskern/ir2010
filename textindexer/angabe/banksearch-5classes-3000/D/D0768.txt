@@ -1,0 +1,213 @@
+
+Free Java Help --- E-zines --- Past Issues --- keyDown()
+ 
+July 16 ,2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertise | 
+Feedback | 
+Link To
+Us | 
+Legal | 
+Links | 
+Glossary
+ | 
+Privacy
+ | 
+BURST! Survey 
+ 
+ 
+	
+	 NeoProfile
+	
+	
+NeoProfile is a new website by the makers of FreeJavaHelp. It enhances the capabilities
+and powers of AOL Instant Messenger Profiles.
+	 
+	 Tutorials
+	
+	
+We provide detailed yet easy to understand Java and JavaScript
+tutorials which will speed along your learning process.
+	 
+	 Articles
+	
+	 
+Our articles discuss common topics and questions about Java or JavaScript. Many
+articles are written by the requests of users.
+	 
+	 Forums
+	
+	
+Have a question which you need answered? Come to our forums and ask away! We'll answer
+them to the best of our ability!
+	 
+	 Applets
+	
+	 
+The applets section contains a variety of interesting applets with source code for studying or your
+personal use.
+	 
+	 E-zine
+	
+	 
+Our e-zine section is where we post previous issues of The FreeJavaHelp Reporter for you to read.
+	 
+	 Contribute
+ 
+	
+	 
+The contribute section allows you to submit articles, tutorials, or other content to be posted on
+Free Java Help.
+	 
+ 
+	
+	
+ 
+	
+	
+keyDown() 
+ 
+The FreeJavaHelp Reporter
+-------------------------
+February 9, 2001
+------------------------------------------------------------
+ THIS WEEKS ARTICLE: keyDown()
+------------------------------------------------------------
+	You have to love the mouseDown(), mouseMove(), and 
+other methods like it that let you handle events without 
+importing classes or doing anything too painful. This week
+I'm going to show you another one of these methods. It is
+keyDown() . I came across it when a user submitted a game to
+the site, and was instantly hooked. It provides a very simple
+way to use even the arrow keys (which I had no clue how to do
+before in an applet). Anyways, here is the basic format.
+public boolean keyDown(Event evt, int key) {
+ //Code goes here
+ return true;
+}
+	Those are the basics. You put the code to handle your
+event after the beginning of the method but before the "return
+true;" line. An applet was made to go along with this article,
+and it will be posted in the tutorials section soon. For now,
+I will explain the code. Here is the code for the applet:
+import java.awt.*;
+import java.applet.*;
+public class keydownt extends Applet {
+	int x=20,y=20;
+	public void init() {
+ 
+	}
+	public boolean keyDown(Event evt, int key) {
+ 	if(key==Event.LEFT){x-=5;}
+ 	if(key==Event.RIGHT){x+=5;}
+ 	if(key==Event.UP){y-=5;}
+ 	if(key==Event.DOWN){y+=5;}
+ 	repaint();
+ 	return true;
+	}
+	public void paint(Graphics g){
+ 	g.setColor(Color.red);
+ 	g.fillRect(x,y,10,10);
+	}
+}
+	I hope that comes out readable through the email! 
+Anyways, what this applet basically does is draw a red
+square, and the square moves when you press the arrow keys.
+The if statements in the keyDown() method are used to decide
+which key was pressed. The "key" variable is an integer which
+represents a numeric code for a certain key. The Event class
+stores the integer for the arrow keys in the LEFT, RIGHT, UP
+and DOWN variables of the Event class.
+	
+	
+------------------------------------------------------------
+ Contribute to FreeJavaHelp
+------------------------------------------------------------
+	We are always looking for people to help us with our
+site. If you think you possess knowledge that would benefit
+our growing community and would like to contribute an article
+or tutorial, follow the following steps!
+1. Go to http://www.freejavahelp.com/contribute , and follow
+the instructions given there.
+BENEFITS FOR YOU
+	In return for your contribution, you will get a link
+at the top of the article or tutorial, plus a five line 
+description at the bottom of the article or tutorial.
+	We welcome all suggestions!
+------------------------------------------------------------
+ Recent FreeJavaHelp News
+------------------------------------------------------------
+	I'm really sorry it has been so long! I happened to
+become ill for a while, but am feeling better now. 
+We are thinking of getting advertisers for freejavahelp.com
+ourselves, so if you are interested, check out:
+http://www.freejavahelp.com/media.html
+	The prices there are very negotiable, so if you think 
+they are too high, but would be interested in advertising,
+please contact us and we can work out the prices. Here is the
+new stuff from the last few weeks:
+LAST EZINE ISSUE
+	January 20, 2001
+	http://www.freejavahelp.com/ezine/past/01jan20.html
+NEW APPLETS
+	Ticker	
+	http://www.freejavahelp.com/apps/webtools/ticker/ticker.html
+NEW TUTORIALS
+	mouseDown()
+	http://www.freejavahelp.com/tutorial/events/mousedown.html
+------------------------------------------------------------
+	 LAST WORDS
+------------------------------------------------------------
+	Thanks for subscribing, and we hope you enjoyed this
+issue! We are looking for an assistant webmaster or two, so
+if you are interested, let us know! Send us feedback at :
+http://www.freejavahelp.com/feedback.html
+Thanks!
+	The FreeJavaHelp Staff
+ 
+ 
+ 
+ 
+Email
+ 
+Username
+Password
+ sign up 
+ 
+Search 
+Search for:
+Search:
+Entire Document
+Title Only
+Match:
+Any Terms
+Exact Phrase
+ 
+ 
+Partners 
+NeoProfile
+Webmaster Lane
+Ivewon.com
+Hitler Was Wrong
+That was Random!
+ 
+ 
+FreeJavaHelp E-Zine 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+© 2000 FreeJavaHelp.com . All
+Rights Reserved.

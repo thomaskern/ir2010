@@ -1,0 +1,25 @@
+
+ 
+ 
+ Gradient Background
+ 
+Checking
+if a sound card exists
+ 
+This
+tip shows how to detect if a sound card exists in your system. The function
+returns True if a sound card exists in your system: 
+' This
+code must be inside a module: 
+Declare
+Function auxGetNumDevs Lib "winmm.dll" Alias "auxGetNumDevs" () As Long 
+Public
+Function SoundCardExists() As Boolean 
+'This
+function returns True if a sound card is present 
+Dim
+i As Integer 
+i
+= auxGetNumDevs() 
+If
+i 

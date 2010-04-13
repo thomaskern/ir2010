@@ -1,0 +1,200 @@
+
+VB Square - Graphics and Multimedia - Record/Play Sound
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Graphics and Multimedia > 
+Tips
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Record/Play Sound
+Tip by Sabu
+ 
+Tip description 
+ 
+This is a very simple yet affective example, this example shows you how to record then play your chosen sounds, but you can go over the limit of this example and even create a sound recorder that can save onto sound formats. 
+ 
+Tip Code 
+ 
+Declare Function mciSendString Lib "winmm.dll" _
+ Alias "mciSendStringA" _
+ (ByVal lpstrCommand As String, _ 
+ ByVal lpstrReturnString As String, _ 
+ ByVal uReturnLength As Long, _
+ ByVal hwndCallback As Long) As Long
+Declare Function mciGetErrorString Lib "winmm.dll" _ 
+ Alias "mciGetErrorStringA" _ 
+ (ByVal dwError As Long, _ 
+ ByVal lpstrBuffer As String, _ 
+ ByVal uLength As Long) As Long
+Sub CloseSound()
+ Dim Result&
+ Dim errormsg%
+ Dim ReturnString As String * 1024
+ Dim ErrorString As String * 1024
+ Result& = mciSendString("close mysound", ReturnString, 1024, 0)
+End Su
+ub RecordSound()
+'records sound aliased as mysound to memory for six seconds
+ Dim Result&
+ Dim errormsg%
+ Dim ReturnString As String * 1024
+ Dim ErrorString As String * 1024
+ CloseSound
+ Result& = mciSendString("open new type waveaudio alias mysound", ReturnString, 1024, 0)
+ If Not Result& = 0 Then
+ errormsg% = mciGetErrorString(Result&, ErrorString, 1024)
+ MsgBox ErrorString, 0, "Error"
+ Exit Sub
+ End If
+ Result& = mciSendString("set mysound time format ms bitspersample 8 samplespersec 11025", ReturnString, 1024, 0)
+ If Not Result& = 0 Then
+ errormsg% = mciGetErrorString(Result&, ErrorString, 1024)
+ MsgBox ErrorString, 0, "Error"
+ Exit Sub
+ End If
+'Record for 60000 milliseconds
+ Result& = mciSendString("record mysound to 60000", ReturnString, 1024, 0)
+ If Not Result& = 0 Then
+ errormsg% = mciGetErrorString(Result&, ErrorString, 1024)
+ MsgBox ErrorString, 0, "Error"
+ Exit Sub
+ End If
+End Sub
+Sub PlayRecSound()
+'plays the recoreded sound aliased by mysound
+ Dim Result&
+ Dim errormsg%
+ Dim ReturnString As String * 1024
+ Dim ErrorString As String * 1024
+ Result& = mciSendString("stop mysound", ReturnString, 1024, 0)
+ If Not Result& = 0 Then
+ errormsg% = mciGetErrorString(Result&, ErrorString, 1024)
+ MsgBox ErrorString, 0, "Error"
+ End If
+ 
+ Result& = mciSendString("play mysound from 1 wait", ReturnString, 1024, 0)
+ If Not Result& = 0 Then
+ errormsg% = mciGetErrorString(Result&, ErrorString, 1024)
+ MsgBox ErrorString, 0, "Error"
+ End If
+ 
+End Su
+Private Sub Command1_Click()
+RecordSound
+End Sub
+Private Sub Command2_Click()
+Call PlayRecSound
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+CloseSound
+End Sub
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 10 comments. 
+ 
+ 
+Related
+ 
+- 
+Digital Imaging Through VB 
+- 
+Image Effects 
+- 
+Image Compression Using VB 
+- 
+Image Negations 
+- 
+Diffuse Filtering Images 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sabu 
+ 
+Post Feedback 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Discuss
+ 
+- 
+Using Cd Drive Id To Open/close... 
+- 
+Create Table In Ado DB 
+- 
+Layout 
+- 
+Due Date 
+- 
+Automating Excel Spreadsheets... 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

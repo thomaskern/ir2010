@@ -1,0 +1,660 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Win32 Resource API C++ Wrapper
+This article was contributed by 
+Peter Chiu.
+Download Source Code and Example
+Click here for larger image
+ 
+Environment: VC6 95/98/Me/NT/2000/XP
+Overview
+ I personally find the Win32 Resource API to be overly complex for performing 
+ simple operations such as enumerating and copying resources. Some operations 
+ like deleting resources is even missing from the standard Win32 API set. The 
+ classes presented in this article provides a simple interface for enumerating, 
+ adding and removing resources from Win32 image files (.dll/.exe).
+Understanding Win32 Resources
+ This section gives you a conceptual overview of the Win32 resource layout. We 
+ will not go into details about the format of the .rsrc section here. 
+The diagram above shows an example of a conceptual view of the Win32 resource 
+ tree. Each resource instance (leaf-level) contains the following attributes:
+ 
+ Type 
+ cursors, 
+ dialogs, bitmaps, etc 
+ 
+ 
+ Name 
+ a 
+ Unicode string or a 2-byte numeric identifier 
+ 
+ 
+ Language 
+ a 
+ 2-byte numeric value indicating the language of the resource instance. E.g., 
+ English (U.S.) = 1033, Chinese (Traditional) = 1028 
+ 
+ 
+ Data 
+ the 
+ actual data of the resource (e.g. a bitmap image) 
+ 
+These resource instances live in a Win32 image file as a tree structure. Top 
+ level of the tree hosts the resource types. For each resource type, there can 
+ be multiple resources with the same name, but different language IDs. Those 
+ are organized at the 2nd and 3rd levels of the resource tree. At the leaf-level 
+ is the actual resource data itself.
+The Win32 Resource API
+Windows NT (Yes, and I mean only NT/2000/XP. Windows 95/98/Me do not support 
+ these APIs. To get cross-platform functionality, check out the Geeworks 
+ Win32 Resource Library) provides some useful APIs for modifying resources 
+ in Win32 image files. For instance, to copy resources from one image file to 
+ another involves the following step:
+ 
+ 1. 
+ Set 
+ up a recursive loop (using EnumResourceTypes, EnumResourceNames, EnumResourceLanguages) 
+ to navigate the resource tree of the source image file and collect the resource 
+ attributes. 
+ 
+ 
+ 2. 
+ Use 
+ BeginUpdateResource to open the destination iamge file (not supported on 
+ Win9x). 
+ 
+ 
+ 3. 
+ Load 
+ resource data into memory using FindResource and LoadResource (partially 
+ supported on Win9x). 
+ 
+ 
+ 4. 
+ Copy 
+ the resource data using UpdateResource (again, not supported on Win9x). 
+ 
+ 
+ 5. 
+ Close 
+ the destination image file to write the changes to the destination image 
+ file. 
+ 
+Not only are they overly complicated, they are not even supported on Win9x 
+ platforms. Details see Microsoft KB article Q271442 and documentation for BeginUpdateResource(), 
+ UpdateResource(), or EditUpdateResource().
+The Win32 Resource API C++ Wrapper
+Two C++ classes are presented here for manipulating Win32 resources. CWin32ResourceSrc 
+ encapsulates a read-only source for resource copying. It provides a simple, 
+ non-recursive interface for resource enumeration. CWin32ResourceDest provides 
+ functions for adding and removing resources from a Win32 image file.
+ 
+ 
+ 
+ 
+ 
+ 
+CWin32ResourceSrc
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Open(LPCTSTR 
+ Image);
+ 
+ 
+ 
+ 
+ 
+Open 
+ a Win32 image file for resource enumeration.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Close();
+ 
+ 
+ 
+ 
+ 
+Close 
+ an opened image file.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL EnumTypes(RSRC_TYPE_ARRAY 
+ & Array);
+ 
+ 
+ 
+ 
+ 
+Returns 
+ all the types in a RSRC_TYPE_ARRAY which is defined as a LPCTSTR 
+ vector. The caller of the function passes in a RSRC_TYPE_ARRAY 
+ and is also responsible for cleaning up the array with EmptyIdArray 
+ when done using the array.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL EnumNames(LPCTSTR 
+ Type, RSRC_NAME_ARRAY & Array);
+ 
+ 
+ 
+ 
+ 
+Returns 
+ all the names for a particular type in a RSRC_NAME_ARRAY which 
+ is defined as a LPCTSTR vector. The caller of the function 
+ passes in a RSRC_NAME_ARRAY and is also responsible for cleaning 
+ up the array with EmptyIdArray when done using the array.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL EnumLangs(LPCTSTR 
+ Type, LPCTSTR Name, RSRC_LANG_ARRAY & Array);
+ 
+ 
+ 
+ 
+ 
+Returns 
+ all the language IDs for a particular resource with the given 
+ type and name in a RSRC_LANG_ARRAY which is defined as a WORD 
+ vector . The caller of the function passes in a RSRC_LANG_ARRAY. 
+ This array does not require cleanup.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+CWin32ResourceDest
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Open(LPCTSTR 
+ Image, BOOL bDeleteExistingResources = FALSE);
+ 
+ 
+ 
+ 
+ 
+Open 
+ a Win32 image file for resource editing. bDeleteExistingResources 
+ specifies whether to delete the pFileName parameter's existing 
+ resources.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Close(BOOL 
+ DiscardChanges);
+ 
+ 
+ 
+ 
+ 
+Close 
+ an opened image file. fDiscard specifies whether to write 
+ resource updates to an executable file.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Add(CWin32ResourceSrc 
+ & Resource, LPCTSTR lpType, LPCTSTR lpName, WORD wLang);
+ 
+ 
+ 
+ 
+ 
+Takes 
+ a CWin32ResourceSrc as a parameter, the Add function copies 
+ the resource specified by lpType, lpName and wLang from Resource. 
+ Resource must be a reference to an opened CWin32ResourceSrc.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+BOOL Del(LPCTSTR 
+ lpType, LPCTSTR lpName, WORD wLang);
+ 
+ 
+ 
+ 
+ 
+As 
+ the name implies, the Del function allows you to delete resources 
+ from an image file. This function requires Geeworks 
+ Win32 Resource Library.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Example
+See how simple it can be to copy Win32 resources...
+void CopyResources(LPCTSTR
+Source, LPCTSTR Dest)
+{
+ CWin32ResourceSrc src;
+ CWin32ResourceDest dest;
+<![if !supportEmptyParas]> <![endif]>
+ if
+(!src.Open(Source)) // open the source file for resource enumeration
+ {
+ HandleError("unable
+to open source file for copying\n");
+ return;
+ }
+ 
+ if
+(!dest.Open(Dest)) // open the target file for
+resource copying
+ {
+ HandleError("unable
+to open destination file for copying\n");
+ return;
+ }
+<![if !supportEmptyParas]> <![endif]>
+ RSRC_TYPE_ARRAY types;
+ src.EnumTypes(types); // get a list of all the
+types
+<![if !supportEmptyParas]> <![endif]>
+ // go through each
+type in the source image file
+ for
+(RSRC_TYPE_ITOR iType = types.begin(); iType != types.end(); iType++)
+ {
+ RSRC_NAME_ARRAY names;
+<![if !supportEmptyParas]> <![endif]>
+ //
+get a list of names for the particular type
+ src.EnumNames(*iType, names);
+<![if !supportEmptyParas]> <![endif]>
+ //
+go through each name within this type
+ for
+(RSRC_NAME_ITOR iName = names.begin(); iName != names.end(); iName++)
+ {
+ 
+RSRC_LANG_ARRAY langs;
+<![if !supportEmptyParas]> <![endif]>
+ // get a list of all the language IDs
+ 
+src.EnumLangs(*iType, *iName, langs);
+ 
+ // go through each lang ID
+ for (RSRC_LANG_ITOR iLang = langs.begin(); iLang !=
+langs.end(); iLang++)
+ 
+{
+ 
+LPCTSTR type = *iType;
+ 
+LPCTSTR name = *iName;
+ 
+WORD lang = *iLang;
+<![if !supportEmptyParas]> <![endif]>
+ 
+// Add each resource instance with a
+particular lang ID
+ 
+dest.Add(src, type, name, lang);
+ 
+}
+ }
+<![if !supportEmptyParas]> <![endif]>
+ //
+clean up the names array
+ EmptyIdArray(names);
+ }
+<![if !supportEmptyParas]> <![endif]>
+ // clean up the types
+array
+ EmptyIdArray(types);
+<![if !supportEmptyParas]> <![endif]>
+ dest.Close(FALSE);
+}
+<![if !supportEmptyParas]> <![endif]>
+Downloads
+Download - 11 Kb
+History
+Date Posted: October 31, 2001
+ 
+Comments:
+- Compilation Instructions - Peter Chiu (2001/11/02)
+- How to get this to work for NT, MSVC6 - Larry Leonard (2001/11/01)
+- Error - Sikander Rafiq (2001/11/01)
+- Alrite - Alrite! (2001/12/14)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Find Annual Reports
+Search Marketplace
+Internet Jobs
+Freelance Projects
+Find A Web Developer
+Free Barter Account
+Web Design
+Software Store
+Search the Web
+USA Mailing Address
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

@@ -1,0 +1,69 @@
+
+ 
+ 
+ 
+ VB Center API Tutorial
+ 
+This tutorial shows some of
+the most commonly used API functions. Check this section with frequency,
+as we'll be updating it often. If you want to send other functions, e-mail
+the webmaster, and your code will be posted here (with any credits). 
+ 
+ 
+1 - The PaintDesktop Function
+This one is very simple! The
+syntax is the following:
+Declare
+Function PaintDesktop Lib
+"user32" (ByVal
+hdc As Long)
+As Long
+Afer you place it in a module,
+just use Call
+PaintDesktop(Form1.hdc) ---- 
+where Form1
+can be replaced by any Form or PictureBox.
+Your desktop image will be painted to the control specified.
+ 
+2 -
+To get the Desktop DC
+Place
+this code at a module:
+Declare
+Function GetDesktopWindow Lib
+"user32" ()
+As Long
+Declare
+Function GetWindowDC
+Lib "user32"
+(ByVal
+hwnd As Long)
+As Long
+- GetDesktopWindow
+returns the handle of the desktop window (Microsoft Windows uses handles
+to identify each form and control - but never store them for much time,
+as they change very often).
+-
+GetWindowDC returns
+the hDC of any window you request.
+OK...
+So then you use this code:
+Dim
+Desktop As Long 
+' Variable that will store the Desktop handle
+Dim
+DesktopDC As Long 
+' Variable that will store the Desktop hDC
+Desktop
+= GetDesktopWindow()
+DesktopDC
+= GetWindowDC(Desktop)
+And now
+you have the Desktop DC! You can alter it using SetPixel or BitBlt functions
+(soon at the GDI32 Guide), or create a transparent form effect (see the
+Tutorials section). Use your imagination!
+p.s:
+try using GetWindowDC(object.hwnd) - where object can be
+a button, a form, an image control, and mostly all other VB controls. You'll
+get their DCs and will be able to change them all, printing text, BitBlting,
+or using SetPixel.

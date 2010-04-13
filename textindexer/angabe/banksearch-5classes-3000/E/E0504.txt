@@ -1,0 +1,57 @@
+
+ clock()
+ 
+ 
+clock-Measure program processor time
+Synopsis
+ #include &#060;time.h&#062;
+ x = clock(void);
+ clock_t x;
+Description
+ The clock function returns an approximation of the amount of
+ processor time used by the program, relative to the base point.
+ The base point for the clock function is the time the program's
+ startup code was run. clock approximates the amount of processor
+ time used by the program by calculating the elapsed time since the
+ base point.
+ You can use the clock function to determine the amount of
+ processor time used by calling the clock function twice in the
+ same program and calculating the difference between the values
+ returned.
+ The value returned is of type clock_t. The value returned is
+in
+ fractions of a second, where a value of CLOCKS_PER_SEC represents
+ one second of processor time. (clock_t and CLOCKS_PER_SEC are
+ defined in the file time.h.) In this implementation, clock_t is
+ defined as an unsigned long integer and CLOCKS_PER_SEC is 1,000.
+ The value returned by the clock function is of relatively low
+ accuracy and depends on the extent of other system activity.
+ Values returned by the clock function are likely to be
+ inconsistent from one execution of a program to another.
+ To get more accurate values, make sure your program is the only
+ one running in the system.
+Returns
+ The clock function returns the number of seconds since the base
+ time. If an accurate value cannot be returned, (clock_t)-1 is
+ returned.
+Example
+ /* This example determines the processor time */
+ /* required to compute 1000 logarithms. */
+ #include &#060;stdio.h&#062;
+ #include &#060;time.h&#062;
+ #include &#060;math.h&#062;
+ void main(void)
+ {
+ clock_t start, end;
+ double index;
+ /* Time used before start of computation */
+ start = clock();
+ for (index = 1.0; index &#060;= 1000.0; ++index )
+ (void)log (index);
+ end = clock();
+ /* Calculate the difference in time and print */
+ printf("Processor time used = %dn",
+ (end - start)/CLOCKS_PER_SEC);
+ }
+See Also
+ time 

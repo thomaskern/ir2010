@@ -1,0 +1,504 @@
+
+Latest Platform, Internet, and Component Support
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Evaluation Guide
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Latest Platform, Internet, and Component Support
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Download 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6evalguide.exe 
+ 
+ 
+	 
+ 1000 KB file 
+	
+	
+ 
+	 
+ 5 min @ 28.8 Kbps 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Windows 2000 Ready 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Developer Productivity 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Highest Performance and Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest Platform, Internet, and Component Support 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Enterprise Application Development 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	 
+	Community and Training 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+As professional developers work to solve more business problems with innovative development, comprehensive tools like Visual C++ must provide the latest functionality. First and foremost, developers want to take advantage of the richness and functionality offered by the Windows platform to make the end user's experience as intuitive as possible. Of course, an ever greater number of developers are writing code for Internet or intranet solutions. And development for both Windows and the Internet are increasingly looking to component architectures like the Component Object Model (COM) to enable distributed applications, code reuse, and additional flexibility.
+Windows platform, Internet, and COM support are encompassed in two libraries included with Visual C++: the Microsoft Foundation Classes (MFC) and the Active Template Library (ATL), which form the basis for most professional Windows development. These libraries provide extensive platform support, ranging from the latest user interface elements to emerging operating system technologies like clustering. Of course, Visual C++ 6.0 supports a wide range of Internet technologies for developers interested in building Internet applications, easily downloadable ActiveX controls, or Web server extensions.
+Because Microsoft continually refines and adds new functionality to these libraries, developers already using MFC or ATL can add significant new features to their applications without learning a new framework.
+Underlying the platform and Internet support in Visual C++ is COM, the technology that makes the merging of Windows and the Internet a reality (see Windows DNA information in the Enterprise Application Development section below). Thus, with MFC and ATL, developers have the frameworks they need to create the widest possible range of applications, all the while ensuring that the code they generate performs well and is suited to their challenges.
+Microsoft Foundation Classes (MFC)
+MFC is a framework for building applications, a hierarchy of classes that encapsulate the functionality provided by the operating system. MFC makes Windows programming easier for developers by abstracting the Windows Application Programming Interface (Win32 API) to provide a consistent and intuitive usage model for developers using the C++ language. MFC addresses the broadest range of applications on the Windows platform: controls, Internet applications, database applications, and full-featured, desktop applications for Windows.
+MFC Internet Support
+Internet technologies and interfaces are accessible not only for use in Internet-focused applications or connected scenarios but also when Internet technology makes sense for the task at hand; for example, in a stand-alone application where document display and multimedia effects are required. The Internet support present in the version of MFC shipping with Visual C++ 6.0 includes:
+- Common Controls. Internet Explorer 4.0 has ushered in a new era of intuitive and flexible user interface elements. Now developers can make applications that have the familiar look of Internet Explorer 4.0 (or higher) because these controls are part of MFC in Visual C++ 6.0. They can be dragged from the controls palette, dropped onto any type of dialog, and manipulated through the Resource Editor. Some of the new Common Controls include:
+- Extended Combo Box-a combo box that can also display an image list (icons, for example). The address portion of the Internet Explorer 4.0 (or higher) toolbar is an example of an extended combo box.
+- Date Time Picker-a drop-down calendar or time picker control for user input.
+- IP Address Control-a special edit box designed for Internet Protocol (IP) addresses.
+- Month Calendar Control-a graphical month calendar for user date input. 
+- Rebar Control-a "banded" toolbar like those in Internet Explorer 4.0 (or higher).
+Figure 7: The new Common Controls can be graphically placed and manipulated from the Controls pallette in the Visual C++ Resource Editor.
+- WinInet classes. The Win32 Internet API makes it easy to add Internet browser-like features to corporate client applications, including HTTP browsing, FTP file transfer, ActiveX controls, and Gopher searching. 
+- ISAPI. The Internet Server API (ISAPI) Extension Wizard makes it easy for developers to customize Internet servers like Internet Information Server (IIS) by enabling the creation of extensions for Internet server applications and filters to screen data.
+Dynamic HTML
+The latest Web standard to revolutionize the Internet is Dynamic HTML. Visual C++ 6.0 supports the Document Object Model of Dynamic HTML through the new CHtmlView view class in MFC. Using this class, MFC applications can render HTML and Dynamic HTML. Dynamic HTML goes beyond active multimedia content to provide data binding and data display functionality, as well as significant procedural processing and manipulation capabilities that allow client applications to process and change retrieved data. Because data often needs to be retrieved only once, Dynamic HTML can be used to optimize for the network connection of the client by reducing server round trips. The new Dynamic HTML support in Visual C++ 6.0 extends the existing data manipulation, user interface, and animation capabilities of MFC and Visual C++. Because Dynamic HTML has procedural capabilities on par with simple programming languages, developers using Visual C++ can capitalize on their coding skills to combine pages and integrate controls to create rich Web sites. And of course, the Visual C++ editor is fluent in both HTML and Dynamic HTML, providing color highlighting and intelligent indenting so developers can create content right in Visual C++.
+Figure 8: Adding Web functionality to an MFC application is as simple as selecting ChtmlView as the base view class.
+Data Access
+Data access for MFC developers has also been enhanced for Visual C++ 6.0 through the high-performance data access provided by OLE DB. A new class, COleDBRecordView, has been added to MFC to wrap the OLE DB consumer and provider templates (for more information on OLE DB, see the Universal Data Access section of the Enterprise Application Development design theme).
+Active Template Library
+ATL is a set of template-based C++ classes that simplifies the programming of Component Object Model (COM) objects. The thorough COM support in Visual C++ 6.0 allows developers to easily create a variety of COM objects, Automation servers, and ActiveX controls. Because of the economy of C++ template code, ATL-built COM objects tend to be very efficient-they have small footprints and execute quickly. Developers use ATL when they don't need all of the built-in functionality that MFC automatically provides.
+ATL Object Wizard
+The ATL Object Wizard allows developers to easily add a variety of ATL-built COM objects to their projects. This wizard has many additions for Visual C++ 6.0 to support the most advanced platform, Internet, and component programming:
+- OLE DB consumers and providers. Under the Data Access selection of the ATL Object Wizard, these wizard types dramatically simplify the construction of COM-based data access through OLE DB.
+- Composite Controls. Existing ActiveX and other Windows-based controls can now be combined into composite controls through ATL, allowing maximum code reuse. This technology allows developers to create a form-based ActiveX control using the ATL class library. Developers use a wizard to create a dialog resource for the composite control and then graphically add Windows and ActiveX controls. 
+- HTML Controls. These controls add support for HTML/Dynamic HTML to ATL projects by hosting the WebBrowser control. This control allows Dynamic HTML interfaces to be used inside ATL. Additionally, the control manages the communication between the C++ code and the HTML/Dynamic HTML.
+- Lite Controls. "Lite" versions of the Composite Control and HTML control are available to developers who want the absolute leanest controls. Lite controls are specifically designed to be downloaded and implement only the interfaces necessary to provide their functionality inside Internet Explorer 4.0 (or higher).
+- Microsoft Management Console (MMC) Snap-Ins. Making systems and software manageable in a consistent way in distributed scenarios is the goal of the Microsoft Management Console. MMC Snap-ins define the specific management interfaces of an entity.
+Figure 9: Many new controls have been added to the ATL Object Wizard to simplify COM-based development. Other new objects have been added to the Objects and Data Access categories.
+Component Object Model (COM)
+Component-based development is more important than ever for Internet and intranet deployment and for building scalable client/server architectures with distributed components. Both MFC and ATL make COM programming much more accessible to developers by simplifying the creation of ActiveX controls and other COM objects through wizards and abstraction, but developers still need the power offered by low-level access to COM interfaces. Visual C++ 6.0 has the most thorough COM support available in a development tool. With native COM support in the compiler, developers can write less code; interfaces to COM objects are imported into source files with the addition of a single line of code. For imported COM objects and COM-enabled classes, methods are visually displayed in the Visual C++ IDE and used as member functions; properties are used as member variables. Both methods and properties can be created and manipulated in ClassView, and developers can edit COM in the Visual C++ editor. Once a component approach has been decided upon for a project, effective management of components is critical to achieving the code reuse that all development organizations seek.
+Visual Component Manager
+The Visual Component Manager (VCM) makes it easy for teams of developers to share a wide range of component types, enabling effective component and code reuse both within a development team and across an entire organization. The VCM allows developers to easily publish, find, and catalog components, including ActiveX controls, COM components, Java applets, HTML and ASP pages, and source code projects and snippets.
+The Visual Component Manager's native store is the Microsoft Repository 2.0, which allows components to be stored on either SQL Server or Microsoft Access databases. The VCM allows many repository databases to be open simultaneously, so developers can maintain a set of component repositories. For example, a personal component repository on Microsoft Access, a project team component repository on SQL Server, and an organization-wide repository on SQL Server. Both the VCM and the Repository will be extensible through SDKs, allowing third parties and end users to build repository applications and VCM handlers to manage their specific component types.
+The VCM allows developers to manage components using the familiar Explorer UI: a tree view of components, the component list view, the properties pane, and the component properties dialog. The Publish and Export Wizard enables the publishing, republishing, and extraction of components. Developers can also search for an existing component in the Repository through the VCM. The Visual Component Manager enables teams of developers to reuse components in large development projects by being the "librarian" of components.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

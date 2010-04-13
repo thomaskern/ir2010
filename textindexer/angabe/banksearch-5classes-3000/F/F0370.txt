@@ -1,0 +1,802 @@
+
+HTTP Transfer Component - Create a Server Component using Internet Transfer Control
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies -
+ ITC - 
+ HTTP Transfer Component
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+HTTP Transfer Component
+ 
+ 
+ 
+ Create a Server Component using Internet Transfer Control 
+ 
+ 
+ Written By S.S. Ahmed 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Download
+ HTTPComponent sample project 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+This article will show you how to create a server component using 
+ Internet Transfer Control. I shall talk about the ITC (Internet Transfer 
+ Control) in more detail shortly but first of all let’s see why do we 
+ need this component. This component can be used to download files from 
+ the Internet especially the image files. You might find some download 
+ components on the Internet which will allow you to download text or html 
+ files but have you ever tried to download a binary file with such 
+ components? This component will show you how to download binary files 
+ from the Internet. The component was created in VB and has been tested 
+ in both VB and ASP. You can download images from your local intranet as 
+ well as from the remote sites. Today’s applications are expected to 
+ extend their reach globally. An application should be able to download 
+ files from any computer connected to the Internet. Luckily, Microsoft 
+ has created an ActiveX control that makes accessing files on the 
+ Internet much easier.
+ 
+Internet Transfer Control
+ 
+Internet Transfer Control can be used to send and retrieve documents 
+ across the net. This control uses File Transfer Protocol (FTP) and 
+ Hypertext Transfer Protocol (HTTP). Using FTP, the user can send and 
+ retrieve files from any system connected to the Internet. Users can 
+ perform actions such as rename and delete files, create and remove 
+ directories, etc. ITC is a very handy control for the VB programmers. 
+ Basically, Internet is used for transferring data and ITC helps 
+ programmers to utilize Internet in a better way. All of the 
+ functionality of ITC is implemented through it’s methods, and it 
+ requires no interface.
+ 
+ITC supports both synchronous and asynchronous transfers. In 
+ synchronous transfer, you can make the system wait until the transfer is 
+ complete and in asynchronous transfer, the system can work as usual 
+ while at the back end the file is transferred. ITC has many methods and 
+ properties which we can not discuss here in detail; you can refer to 
+ MSDN for complete documentation.
+ 
+I will show you how to create and test this component in steps which 
+ will make it easier for you to understand the functionality. Through out 
+ the article, I will discuss methods and properties used in the 
+ component.
+ 
+Step 1: Creating the project
+ 
+Start a new "ActiveX DLL” project. Assign a valid name to the 
+ project; I have named it "HTTP”. Assign a name to the class module. I 
+ have named the class "DLoad”.
+ 
+Step 2: Adding a form
+ 
+Add a form to the current ActiveX project. This step was necessary so 
+ that we could place the Internet Transfer Control on a form. Through 
+ this form, we will access the control’s methods and properties. I have 
+ done this to make programming simpler and it would be much easier for 
+ the beginners to understand and use the control. Remember, we could have 
+ accessed the control directly in the DLL project and accessed its 
+ methods but to keep the task simpler, I have included a form to place 
+ the ITC on.
+ 
+Step 3: Adding functionality
+ 
+First of all, we are going to add some properties to the class 
+ module. You can use class builder utility for this purpose. Add the 
+ following properties to the class:
+ 
+ 
+- Status
+ 
+- ProxyAddress
+ 
+- RemotePort1
+ 
+- RemoteHost1
+ 
+- Protocol1
+ 
+ 
+Let’s discuss these properties one by one. The first property will be 
+ used to display the status of the file transfer. The following messages 
+ are displayed:
+ 
+ 
+- URL not provided 
+ This message is displayed if the correct URL is not provided or is not 
+ provided at all. 
+ 
+ 
+- Timed Out 
+ This message is displayed when the time out occurs. 
+ 
+ 
+- Server not found 
+ If the computer from where the file is to be downloaded is not found 
+ then this error message is displayed. 
+ 
+ 
+- File not found 
+ If the file is not found on the remote computer, then this message 
+ will tell the user that the file could not be found. 
+ 
+ 
+- File was downloaded successfully 
+ This message is displayed if the file is successfully retrieved and 
+ downloaded to the system.
+ 
+ 
+The second property is used to get proxy address from the user. ITC’s 
+ this property is used to set or get the name of the proxy server used to 
+ access the Internet.
+ 
+The third property will be used to connect to the remote port of the 
+ server. ITC’s this property is used to set or get the port number of the 
+ remote system to which the control connects.
+ 
+The fourth property is used to access the remote host. ITC’s this 
+ property is used to set or get the address of the remote system to which 
+ the control sends and/or receives data.
+ 
+The fifth property is used to set the protocol that we are going to 
+ use in this component. As already discussed, there are two protocols 
+ used in the ITC. We shall use the HTTP protocol in our component.
+ 
+Now let’s move on to the main function. Declare the function as 
+ below:
+ 
+ 
+ 
+ 
+Public Function DLoad(ByVal strURL
+ As String, Optional ByVal sOutPutFile
+ As String)
+ 
+ 
+ 
+Two parameters are passed to the function, the first one is the 
+ string containing the address of the file to be downloaded and the 
+ second parameter is the string containing the name and path of the 
+ output file to be generated. File handling routine is not included in 
+ this component; this will have to be incorporated in the ASP script or 
+ the VB application, which ever is used as a test driver.
+ 
+Next, declare variables that will be used through out the class 
+ module, these are following:
+ 
+ 
+ 
+ 
+Dim bytes() 
+ As Byte 
+ Dim fn As Integer
+ 
+ Dim msg As String 
+ Dim buf As String
+ 
+ Dim fnf As Integer
+ 
+ Dim snf As Integer
+ 
+ Dim tout As Integer
+ 
+ Dim OK As Integer
+ 
+ Dim tempbuf As String
+ 
+ Dim strResult As String
+ 
+ 
+ 
+Bytes() is the array of bytes which will contain the downloaded 
+ material. "fn” will contain the number of the file which will be opened 
+ to be written to. Other important variables include "buf”, "fnf”, "snf” 
+ and "tout”. "buf” is a buffer which will contain the data. "fnf” stands 
+ for "file not found” and will contain the number of files not found. 
+ "snf” stands for "server not found” and will contain the number of 
+ remote addresses not found. "tout” stands for "timed out” and will 
+ contain the number of timed out messages. "strResult” will contain the 
+ downloaded string.
+ 
+Next, set the properties to default values if no values are provided 
+ by the user.
+ 
+ 
+ 
+ 'Set the transfer protocol
+If Not Protocol1 = "" Then
+ Form1.Inet1.Protocol = icHTTP
+ ElseIf Protocol1 = "http" Or Protocol1 = "HTTP" Then
+ Form1.Inet1.Protocol = icHTTP
+Else
+ Form1.Inet1.Protocol = icHTTP
+End If
+'Set the Access Type to Default
+Form1.Inet1.AccessType = icUseDefault
+'Set the proxy address
+If Not ProxyAddress = "" Then
+ Form1.Inet1.Proxy = ProxyAddress
+End If
+ 
+If Not RemotePort1 = "" Then
+ Form1.Inet1.RemotePort = RemotePort1
+End If
+ 
+ 
+ 
+Notice the way we are accessing the control’s properties. Set the 
+ protocol to HTTP. HTTP protocol is a stateless protocol. Originally, 
+ HTTP was designed for the transmission of text but it can be used to 
+ transfer binary files as well. Set the AccessType property to default. 
+ AccessType specifies how the control will access the Internet. There are 
+ three possible settings for this property:
+ 
+ 
+- icUseDefault The control uses the access settings that are 
+ specified in the Windows registry to access the Internet. 
+ 
+ 
+- icDirect The control has a direct connection to the 
+ Internet. 
+ 
+ 
+- icNamedProxy The control uses a proxy server. The proxy 
+ server must be specified in the control’s Proxy property.
+ 
+ 
+ 
+Similarly, set the remotehost and remoteport property which are 
+ supplied by the user.
+ 
+ 
+ 
+ On Error Resume Next
+If strURL = "" Then
+ Status = "URL not provided"
+ Exit Function
+End If
+Form1.Inet1.URL = strURL
+bytes() = Form1.Inet1.OpenURL(, icByteArray)
+strResult = Form1.Inet1.OpenURL(strURL, icString)
+'Essential to avoid tying up the system
+Do Until Form1.Inet1.StillExecuting = False ' WAIT Downloading..
+ DoEvents
+Loop
+ 
+ 
+ 
+We have used the OpenURL method of the control to retrieve the 
+ content from the remote file. The easiest way to use the Internet 
+ Tranfer Control is with the OpenURL method. Two parameters are passed to 
+ this method. The first parameter is the URL of the file to be downloaded 
+ and the second parameter is the datatype which will tell the control 
+ about the datatype of the content to be downloaded from the remote 
+ server. This can be text or binary. If you want to download file from a 
+ FTP server then the URL parameter should contain something like this:
+ 
+ 
+ftp://ftp.server.com/test.htm
+ 
+ 
+In case of HTTP, provide the URL in the format shown below:
+ 
+ 
+http://www.server.com/image1.gif
+ 
+ 
+Data type is the type of data being retrieved; this can be text or 
+ binary. The values that can be provided to this parameter are as 
+ following:
+ 
+ 
+- icString Use this type if you want to download the data as 
+ a string. 
+ 
+ 
+- icByteArray Use this datatype if you want to download the 
+ data as a binary.
+ 
+ 
+We have used the URL property of the control to assign the URL of the 
+ file to be downloaded to the control. We have used the OpenURL method 
+ twice, first time, to retrieve the actual data and second time to 
+ retrieve the data as a text. I know this is an inefficient way but I did 
+ this just for demonstration purposes. The data is retrieved as a text 
+ because the first 50 chars of the downloaded string contain the error 
+ messages, if any.
+ 
+ 
+ 
+ Do Until Form1.Inet1.StillExecuting = False ' WAIT Downloading..
+ DoEvents
+Loop
+ 
+ 
+ 
+Lets bring our focus to the statement above, what we are doing is 
+ checking the status of the control, this is important as we want the 
+ system to wait for the control to complete the transfer. If 
+ "StillExecuting” is true then it means that the control is still busy 
+ downloading the file.
+ 
+ 
+ 
+ tempbuf = bytes()
+'If the URL returned any thing, put the first
+'50 characters in a buffer, Error messages
+'will be found here.
+If Len(strResult) > 50 Then
+ buf = Left(strResult, 100)
+Else
+ buf = bytes()
+End If
+'Catch a time out error
+If Err = 35761 Then
+ tout = tout + 1
+ Status = "Timed out: " & tout
+ Err.Clear
+ Exit Function
+'If nothing is returned, it usually means
+'that the server was not found.
+ElseIf tempbuf = "" Then
+ snf = snf + 1
+ Status = "Server not found: " & snf
+ Exit Function
+'if nothing is returned, it usually means that
+'the server was found, but the requested file was
+'not present.
+ElseIf InStr(1, buf, "404") Then
+ fnf = fnf + 1
+ Status = "File not found: " & fnf
+ Exit Function
+Else
+'Otherwise, everything is OK
+ OK = OK + 1
+ Status = "File was downloaded successfully: " & OK
+ 
+End If
+ 
+ 
+ 
+If the downloaded string is larger than 50 chars then transfer the 
+ first 100 characters to the buffer so that the error messages can be 
+ searched for. 35761 is the time out error.
+ 
+ 
+ 
+ 'Get a file number
+fn = FreeFile
+ 
+'Open a binary file and load data into it!
+Open sOutPutFile For Binary Access Write As #fn
+Put #fn, , bytes()
+DoEvents
+'Close the open file
+Close #fn
+ 
+ 
+ 
+Now its time to write the information retrieved from the remote 
+ server to the local file. We have used FreeFile function here, FreeFile 
+ function returns an integer representing the next file number available 
+ for use by the open statement.1 - 255 file numbers can be used to open 
+ files not accessible to other applications. Use file numbers in the 
+ range 256 - 511 for files accessible from other applications. 
+ SOutPutFile is the name of the output file provided by the user. We have 
+ opened the file for binary access. Put the downloaded bytes into the 
+ newly opened file. After writing the content to the file, close the 
+ file. That’s it. I used this component to download image files from 
+ remote computers and it always worked fine.
+ 
+ 
+ 
+ Private Sub Class_Terminate()
+Set Form1 = Nothing
+End Sub
+ 
+ 
+ 
+In the class_terminate() event of the class, destroy the form on 
+ which we placed the control.
+ 
+Step 4: Compile the project
+ 
+It’s time to compile the project. From the file menu, select the 
+ "Make HTTP.dll”. The component is automatically registered on the 
+ computer where it is compiled but to register it on other computers, you 
+ will have to register it manually. Use regsvr32.exe to register the 
+ component manually.
+ 
+Step 5: Testing the component
+ 
+Lets test the component in VB first. It is always good practice to 
+ test the component in VB before taking it to the ASP. If you find an 
+ error while using the component in ASP then it will be quite laborious 
+ to recompile the component with new changes added to it. If such a 
+ situation occurs, then stop the IIS services and always unregister the 
+ component before deleting it, if you decide to do so. To unregister the 
+ component, use the following command:
+ 
+Regsvr32.exe /u component.dll
+ 
+Recompile the component and start the IIS services. To test the 
+ component in VB, add a standard EXE project to the current project. Add 
+ two command buttons on the form, change the caption of one button to 
+ "Test Dload Component” and change the caption of the other button to 
+ "Exit”
+ 
+ 
+ 
+ Private Sub Test_Click()
+ Dim objHTTP As New HTTP.DLoad
+ Dim strURL As String
+ objHTTP.Protocol1 = icHTTP
+ objHTTP.ProxyAddress = ""
+ objHTTP.RemotePort1 = 80
+ strURL = "http://server/application/images/image1.gif"
+ objHTTP.DLoad strURL, "c:\test.gif"
+ MsgBox objHTTP.Status
+ Set objHTTP = Nothing
+End Sub
+ 
+ 
+ 
+The test code is pretty simple. Set the property values and provide 
+ the name of the file to be download. Use the code below to test the 
+ component in ASP:
+ 
+ 
+ 
+ Dim objHTTP 
+Set objHTTP = server.createobject("HTTP.Dload”)
+Dim strURL
+objHTTP.Protocol1 = icHTTP
+objHTTP.ProxyAddress = ""
+objHTTP.RemotePort1 = 80
+strURL = "http://server/application/images/image1.gif"
+objHTTP.DLoad (strURL, "c:\test.gif")
+response.write objHTTP.Status
+Set objHTTP = Nothing
+ 
+ 
+ 
+You will find the string (string containing the name of the file to 
+ be downloaded) parsing code in the ASP file provided with this article.
+ 
+ASP and VB code is provided with this article. ASP code contains two 
+ asp pages, form1.asp is the initial form and the results from form1.asp 
+ are passed to the form2.asp. In form2.asp, object is created and the 
+ values from form1.asp are passed to the object.
+ 
+VB code contains a form and values that are to be passed to the 
+ object are hard coded in the form, you can change the values to test the 
+ functionality.
+ 
+Summary
+ 
+This article shows you how to create a server component that can be 
+ used to download files from web sites. This component is especially 
+ designed to download binary files including image files. You can 
+ download images from any computer connected to the Internet.
+ 
+About the Author
+ 
+S.S. Ahmed is a senior software engineer in a software development 
+ company that specializes in web application development. To contact 
+ Ahmed with questions or comments, please email him at
+ ss_ahmed1@hotmail.com.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+Synchronous vs Asynchronous 
+	Brady Kelly Monday, June 25, 2001	
+	
+	
+	
+inet control in dll
+	pete Thursday, July 12, 2001	
+	
+	
+	
+Won't download ASP generated files
+	Jerry Thompson Monday, July 30, 2001	
+	
+	
+	
+What about https?
+	Cristian Grigoriu Saturday, August 04, 2001	
+	
+	
+	
+This is not a server.
+	Mark Wednesday, October 17, 2001	
+	
+	
+	
+ULOAD Method
+	SGR Friday, December 14, 2001	
+	
+	
+	
+This code is full of errors !!
+	Jo Tuesday, January 22, 2002	
+	
+	
+	
+http
+	harikrishna Saturday, March 30, 2002	
+	
+	
+	
+Want to Keep track of Download File
+	Chaitanya S Tembe Thursday, April 18, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home -
+ Tools&Technologies -
+ ITC - 
+ HTTP Transfer Component
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

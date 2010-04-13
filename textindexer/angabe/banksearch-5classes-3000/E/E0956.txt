@@ -1,0 +1,102 @@
+
+C++ reference: cstdlib library (stdlib.h)
+ 
+ cplusplus.com >
+ reference >
+ cstdlib
+ 
+stdlib.h
+ 
+ 
+cplusplus.com 
+General purpose standard C library, including memory allocation, process control, conversions and others.
+ stdlib.h summary
+Functions:
+ abort Abort current process returning error code
+ abs Return absolute value of integer parameter 
+ atexit Specifies a function to be executed at exit 
+ atof Convert string to double 
+ atoi Convert string to integer 
+ atol Convert string to long 
+ bsearch Binary search 
+ calloc Allocate array in memory 
+ div Divide two integer values 
+* ecvt Convert floating point value to string 
+ exit Terminate calling process 
+* fcvt Convert floating point value to string 
+ free Deallocate dynamically allocated memory 
+* gcvt Convert floating point value to string 
+ getenv Get string from environment 
+* itoa Convert integer to string 
+ labs Return absolute calue of long integer parameter 
+ ldiv Divide two long integer values 
+* lfind Linear search 
+* lsearch Linear search 
+* ltoa Convert long integer value to string 
+ malloc Allocate memory block 
+* max Return the greater of two parameters 
+* min Return the smaller of two parameters 
+* putenv Create or modify environment variable 
+ qsort Sort using quicksort algorithm 
+ rand Generate random number 
+ realloc Reallocate memory block 
+ srand Initialize random number generator 
+ strtod Convert string to double-precision floating-point value 
+ strtol Convert string to long integer 
+ strtoul Convert string to unsigned long integer 
+* swab Swap bytes 
+ system Execute command 
+* ultoa Convert unsigned long integer to string
+* = not ANSI-C, but supported by most compilers.
+ 
+stdlib.h summary:
+ 
+C stdlib.h library functions can be divided in these groups depending on their utility:
+conversion:
+atof,
+atoi,
+atol,
+ecvt,
+fcvt,
+itoa,
+ltoa,
+strtod,
+strtol,
+strtoul,
+ultoa
+dynamic memory allocation/deallocation:
+calloc,
+free,
+malloc,
+realloc
+process control and environment variables:
+abort,
+atexit,
+exit,
+getenv,
+putenv,
+system
+sorting and searching:
+bsearch,
+lfind,
+lsearch,
+qsort,
+swab
+mathematical operations:
+abs,
+div,
+labs,
+ldiv
+ 
+Notes
+NULL
+NULL is a defined constant used to express null pointers, that is,
+an unassigned pointer or a pointer that points nowhere. It is defined as:
+#define NULL 0
+size_t
+Defined type used as arguments for some functions that require sizes or counts
+specifications. This represents an unsigned value generally
+defined in header files as unsigned int:
+typedef unsigned int size_t;
+© The C++ Resources Network, 2000
+ 

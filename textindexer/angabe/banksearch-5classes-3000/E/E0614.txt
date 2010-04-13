@@ -1,0 +1,368 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Static Parameter Class
+This article was contributed by
+Kerry Barnes.
+Environment: Should run under any OS
+The problem:
+The other day I was caught with a dilemma. You see I had a group of
+several threads that required access to parameters that are currently
+stored in a file. My first instinct was to just make a class to load
+the data so that each thread could instantiate a copy of this. This
+however just sort of rubbed me the wrong way. There had to be a
+better way.
+My Solution:
+I came up with an idea, which I don't think is all that new, but it
+did catch a few people off guard. I put a little twist on the old
+Singleton object. You see I decided to create a Singleton object with
+a series of static member functions and member variables. This way I
+never have to either instantiate or cleanup the object. And all of my
+threads have access to the data without obtaining a referance to it,
+because all of the data is availabile through static methods.
+My example has all of the thread synchronization removed for clarity,
+also I used only the Standard Template Library objects to make
+this class portable.
+#include 
+using namespace std;
+#include "Parameters.h"
+void main(int argc, char* argv[])
+{
+ //**************************************************************
+ //* The parameters are accessed without an instance of the class
+ //**************************************************************
+	cout 
+The Header File:
+class CParameters
+{
+public:
+	static string getName();
+	static int getVersion();
+	static void load(string fileName);
+	virtual ~CParameters();
+private:
+	CParameters();
+	static string m_ProgramName;
+	static int m_Version;
+	static CParameters instance;
+};
+The .cpp File
+#include 
+#include 
+using namespace std;
+#include "Parameters.h"
+////////////////////////////////////////////////////////////////
+// Construction/Destruction
+////////////////////////////////////////////////////////////////
+//**************************************************************
+//* Here I set default values to my static variables
+//**************************************************************
+string CParameters::m_ProgramName = "Undefined";
+int CParameters::m_Version = 0;
+//**************************************************************
+//* Here I invoke my constructor and load my variables
+//**************************************************************
+CParameters CParameters::instance = CParameters();
+//**************************************************************
+//* Since this is a private method it can only be invoked by the 
+//* previous line
+//**************************************************************
+CParameters::CParameters()
+{
+	load("default.dat");
+}
+//**************************************************************
+//* No cleanup required since we didn't make anything on the heap
+//**************************************************************
+CParameters::~CParameters()
+{
+}
+//**************************************************************
+//* I put this in to change the values after the program has 
+//* started. Mind you in my case this was unnecessary.
+//**************************************************************
+void CParameters::load(string fileName)
+{
+	// Open the parameters file
+ ifstream in(fileName.c_str(), ios::in); 
+	// Did it open?
+ if (in) 
+	{
+	// Yes, load up our data
+ in >> m_Version >> m_ProgramName; 
+	// now, close the file
+ in.close(); 
+	}
+}
+//**************************************************************
+//* Access methods incase you don't want to make your static 
+//* variable public
+//**************************************************************
+int CParameters::getVersion()
+{
+	return m_Version;
+}
+string CParameters::getName()
+{
+	return m_ProgramName.c_str();
+}
+Downloads
+Download source - 2 Kb
+Download demo project - 5 Kb
+History
+Date Posted: February 11, 2001
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Secure Business IM
+Find a Web Host
+EMedia Mag Free Sub
+For CGI Scripts
+Computer Training
+Build Flash Online
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

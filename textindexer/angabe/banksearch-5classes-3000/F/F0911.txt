@@ -1,0 +1,56 @@
+
+Visual Basic Books
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+ Advanced Microsoft Visual Basic 6 Chapter 1
+Tip 10: Use a ROOS 
+(Resource Only Object Server).
+A basic ROOS (pronounced "ruse") is a little like a string table resource except that it runs in-process or out-of-process as an Automation server. A ROOS provides a structured interface to a set of objects and properties that enables us to build more flexible error handling routines.
+For example, the ROOS holds a project’s error constants (or rather the values mapped to the symbols used in the code that are resolved from the object’s type library). The ROOS also holds a set of string resources that hold the actual error text for a given error and the methods used to load and process errors at run time. To change the language used in error reports or perhaps the vocabulary being used (for example, user vs. programmer), simply use a different ROOS. (No more DLLs with weird names!)
+Tip 11: Replace useful 
+intrinsic objects with your own.
+Our main ROOS contains a set of alternative standard object classes, TMSErr and TMSApp, for example. These are instantiated as Err and App at application start-up as part of our application template initialization. (All our Visual Basic applications are built on this template.) By creating objects like this, we can add methods, properties, and so on to what looks like one of Visual Basic’s own objects.
+For example, our error object has extra methods named Push and Pop. These, mostly for historical reasons, are really useful methods because it’s not clear in Visual Basic when Err.Clear is actually applied to the Err object—that is, when the outstanding error, which you’ve been called to handle, is automatically cleared. This can easily result in the reporting of error 0. Watch out for this because you’ll see it a lot!
+ Usually, an error is mistakenly cleared in this way when someone is handling an error and from within the error handler he or she calls some other routine that causes Visual Basic to execute an Err.Clear. All sorts of things can make Visual Basic execute an Err.Clear. The result in this case is that the error is lost! These kinds of mistakes are really hard to find. They’re also really easy to put in—lines of code that cause this to happen, that is!
+The Help file under Err Object used to include this Caution about losing the error context.
+If you set up an error handler using On Error GoTo and that handler calls another procedure, the properties of the Err object may be reset to zero and zero-length strings. To retain values for later use, assign the values of Err properties to variables before calling another procedure, or before executing Resume, On Error, Exit Sub, Exit Function, or Exit Property statements.
+Of course, if you do reset Err.Number (perhaps by using On Error GoTo in the called routine), when you return to the calling routine the error will be lost. The answer, of course, is to preserve, or push, the error context onto some kind of error stack. We do this with Err.Push. It’s the first line of code in the error handler—always. (By the way, Visual Basic won’t do an Err.Clear on the call to Err.Push but only on its return—guaranteed.) Here’s an example of how this push and pop method of error handling looks in practice:
+Private Sub Command1_Click()
+ On Error GoTo error_handler:
+ VBA.Err.Raise 42
+ Exit Sub
+error_handler:
+ Err.Push
+ Call SomeFunc
+ Err.Pop
+ MsgBox Err.Description
+ Resume Next
+End Sub
+Here we’re raising an error (42, as it happens) and handling it in our error handler just below. The message box reports the error correctly as being an Application Defined Error. If we were to comment out the Err.Push and Err.Pop routines and rerun the code, the error information would be lost and the message box would be empty (as Err.Number and Err.Description have been reset to some suitable "nothing"), assuming the call to SomeFunc completes successfully. In other words, when we come to show the message box, there’s no outstanding error to report! (The call to Err.Push is the first statement in the error handler. This is easy to check for during a code review.)
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999 Valassis Enterprises. All rights reserved.

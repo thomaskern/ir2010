@@ -1,0 +1,886 @@
+
+Javalobby Forums - Java games at GDC covered by Gamespy
+ 
+ 
+ 75052 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ Java games at GDC covered by Gamespy
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 109 replies on
+ 11 pages.
+ Most recent reply:
+ May 17, 2002 7:56 PM
+ by
+ 
+ Bobby Martin
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: « 1 2 3 4 5 6 7 8 ... 11 » ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mads Andersen
+ 
+ 
+ 
+ Posts: 6
+ 
+ 
+ Registered: May, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: C# better for games than Java
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 10:37 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ No, I code mostly in C++ now. I've found that the biggest development speed-up of Java is it's class library. Having a good class-library in C++ removes that advantage of Java, while opening the door for all the C++ goodies. I have also found that memory management (and resource management in general) in C++ is a lot less of a problem than I had thought earlier using the proper techniques. My disgust for C++ was mainly because had been taught C++ wrong.I made clear what I was referring to was *supported* bindings. I've made plenty of JNI to not really need any unsupported bindings, I can "easily" make them myself. If I'm going to resort to DirectInput bindings, I'm already saying Windows/XBox only, or no WORA. Then why not go for C#?It's already been established that Java3D is very slow (see Jacob Marner's report). Why Sun wants to force game developers into that scene graph architecture is beyond me.My original comment could be appreviated to this: "why would you choose Java over C# for technical reasons?"
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Guest
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Missing the point of Java portability!
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 10:37 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java applications/games are only portable to platforms for which a JRE has been implemented, I don't remember anyone claiming otherwise! The benefit of Java is that it moves the burden of porting away from the application developer to a JRE provider. If there is enough user demand to run Java applications on a particular platform then it is likely that someone will port a JRE to that platform. As soon as the JRE is available on a platform, every Java game/application (compatible with that version of JRE) will immediately be available with very little effort, if any, from the application/game developer.If a good range of 'console quality' games are written in Java, there will be more of an incentive for somebody to port a JRE to consoles. Don't forget, these games will also work on Windows/Mac/Linux/Solaris today.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Otherwise...
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 10:39 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Nobody would need to port DirectX... you switch to OpenGl, that's the portable way to do things. Anyhow, someone who wants to build portable games is not going to use DirectX, they will use OpenGl.Now, the problem here is that you refer to OpenGL as if it were Java... it is not... OpenGL is a C library and bindings exist for Java under Windows and MacOS, period.If I have a C++ game using OpenGL, I can port it everywhere where OpenGL is... if I have a Java game using the OpenGL bindings, I can go Windows and Mac. End of story.That's not very impressive.Java is in no way more cross-platform than C++ in this case, quite the contrary.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Exactly, PC games are a small market.
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 10:56 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ As far as gaming is concerned, I believe consoles are the ultimate test. Quake was written for OpenGL and then ported to just about every consoles on the market, admittedly not using OpenGL as the layer.You don't need to use the same library on all machines, but you have to be able to port. The fact that you can write a game using DirectX and then use the same codebase on the XBox is a plus for the XBox. However, the basic idea is that you need to be able to go over and tap into the console market at some point. I wouldn't buy stocks in a game company that has no plans for the console market.You have to be able to take your Java game and port it to the PlayStation. If you can't do that... sorry, but Java is just not a serious gaming platform.Why? Because just about 70% (might be higher) of the gaming market is console-based. That's right... PC games are small change!!! If you can't tap into the console market, then you are missing the juicy part...Ok, it might be fine for some niche markets, but overall, WORA here means nothing if you omit the console market.That would be like having a technology that runs everywhere but on Windows and say that it is "WORA" or "portable". It wouldn't be because most of the market is Windows-based. Same applies in the gaming market, but you have to replace windows by "playstation, gamecube, xbox". If your game can't run on one of those, don't bother...
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Ah! But who's going to do the porting?
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 11:04 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Who's going to port a gaming JRE to the PlayStation2? Not Sony, they have no such plans and never had. If you are lucky, they'll release some "personal java" implementation... but no such thing as a gaming JRE with 3D bindings, sound bindings and so on. I can't very well see Sun do it, they can hardly support more than Windows and Solaris right now...Who then?What about Nitendo... Who's going to build a gaming JRE on the gamecube??? And finally... the XBox... ever heard of Microsoft talking about a gaming JRE for the XBox???So that's it. You are basically limited to Windows and MacOS. MacOS is not exactly a big gaming platform... so you might as well say that you are building Windows-only games... boring... Most sales for games go to the console market. That's where you need to be, as long as this is not possible, Java is not a serious solution for game programming...
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Daniel Lemire
+ 
+ 
+ 
+ Posts: 176
+ 
+ 
+ Registered: Nov, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Oh! Pleeease!!! Your C++ has no memory leaks? no wild pointer?
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 11:14 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Give me a URL to a high performance100 classes or more project written in C++ that you've written under a year. I'll show you memory leaks.Anything major in C++ involving managing large amounts of memory will have memory leaks... It is not a matter of "knowing C++", it is simply that there too many possible pitfalls to see them all. If you make typos in English, you code memory leaks in C++, it is as simple as that.All experienced C++ programmers will tell you that you should never say that your code is now perfect. It is *very* common to suddenly discover leaks in old C++ code.The reason why this doesn't show up most of the time is because the big leaks are fixed and the software doesn't run 24/24... so it will only gradually go bad... slowly enough so that users might not notice... but it will go bad... Once you start porting your code, you almost always discover hidden leaks that didn't show up in your previous code because of the very precise way you were using it... tweak C++ code enough and it will leak...Of course, that is not to say that all C++ has leaks, of course not... but code your write in under a year will typically have many leaks... reworking your code again and again is the only way I know to really make sure the leaks are all gone. The JVM even had memory leaks up until recently... and I'm pretty sure they wouldn't be quoted saying that they got them all!
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Mads Andersen
+ 
+ 
+ 
+ Posts: 6
+ 
+ 
+ Registered: May, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ RE: Oh! Pleeease!!! Your C++ has no memory leaks? no wild pointer?
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 11:45 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ I don't remember having said my code was perfect? I know it's not.What I did say was that C++ wasn't as bad as I thought "back in the old days". First of all, don't use "new" in what is sometimes referred to as "application code". Encapsulate "new" and "delete" in classes. Find an owner for all dynamically allocated objects (this is easy since you encapsulated your dynamic allocations), and leave the responsibility to de-allocate to that owner. Then let the automatic variables ("locals&quot do the rest of the work.Another reason why I don't think that mem-leaks are as bad is the tools available. I have recently played with this memory manager. Sure it's not as fancy as a garbage collector, but it works! It tells me exactly in which files and on which lines that I have made an allocation that I have forgotten to free. It tells me if there's an "new"/"delete" mismatch etc.As for wild-pointers. When encapsulating "properly" we haven't really had any problems that I'm aware of.I can't show you my recent C++ project, since I have a paper pending. But it runs on Amiga, Windows, Linux and Solaris. Multi-threaded on Solaris, Linux and Windows (when compiled with gcc, didn't bother enabling multi-threading with VC). The real problems we did have porting was actually not what you mention, but forgetting to initialize members in constructors (or subsequently after allocation, we had very high performance requirements).
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jerason Banes
+ 
+ 
+ 
+ Posts: 230
+ 
+ 
+ Registered: Apr, 1999
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Not true
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 12:20 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ OpenGL is available for Windows, Mac, Linux, Solaris, HP-UX, IRIX, and a host of other systems. (Linux BTW, uses Mesa OpenGL by default. This is very sllloooowwww. Individual graphics cards such as Nvidia should have replacement drivers.) The truth is that OpenGL is used for 3D by everyone except Windows game programmers who use DirectX. You see, OpenGL was a standard that was put together by the various Unix companies so that their customers who did 3D modeling (windtunneling, animation, oil drilling, etc.) would be able to port between platforms and choose what they thought to be the best hardware for the job. The resulting OpenGL API was one of the cleanest, easiest to use 3D APIs ever developed. So much so, that several years ago John Carmack led an open letter to Microsoft from various game development companies, asking them to officially support OpenGL as an alternative to DirectX. Microsoft ignored them. As a result graphics card manufacturers have shouldered the burden of OpenGL support on Windows.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jean-Baptiste Bugeaud
+ 
+ 
+ 
+ Posts: 27
+ 
+ 
+ Registered: Nov, 1998
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Strange statements ..
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 12:28 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ With C# you get a language at the same high level as JavaNo just because Java is a broad skill nowadays whereas C# is only niche toys for MS addicted at this time portability, C# runs well on Windows and XBoxThis is *stupid* just because the DirectX API are not the same btwn the regular windows and XBox OS. It was supposed to be the same on specs but at the end MS rollback maybe because MS did not want people to release software without paying the fee (to get their money back) for SDKs. DirectX on xbox is neither a subset nor a super-set... futher detail on this point should follow soon as people are getting into this deeply ....About Java (J2SE), it rocks on Windows, MacOSX, Linux, PocketPC and stop more but that are limited as a game platform.Sony was supposed to have a J2SE ready for PS2 in their Linux SDK but i wans not able to confirm this point.About XBox a J2SE port could be in focus if there is a need. And the Java3D may also create a XBox DirectX mapping ...(as the XBox is nothing more that a customized PC using a i386 with a customized Windows and a customized DirectX ... lot of customized stuffs but might be done AFAIK).About the slow startup, i did not know that startup was such a pitfall if so, why did they use CD or DVD as a medium and not cardige to store games ! Ok, i was kidding because it is certainly a matter of cost, but there is lot of ways to improve startup time, one common used by games is the progress screen Anyway, by reducing the depency graph of classes and adding dynamic class used you improve speed.... About code protection, anybody knows that trusting native C/C++ code (or event then newby C# native generation) to be safe is false. If this was true, no software will be cracked !As they are tools to disasemble the bytecode there exist tools to disasemble the x86 in a clean and wonderfull way (few years i used to play with the ICE tool that is nowadays outdates but was quite impressive at this time).A IT rule state that as long as it can be read you can do whatever you want with it About APIs, Java offer a much more large set of standards and widelly available thru platforms (ever seen DirecX on Mac ? No! But Java3D yes !). Collaborative networks such as Jini, JMS, JxTA have no counterpart in the MS.net world ! Java has also the power to connect to J2EE backend server that offer games a new solution to integrate foreign content (just imagine a racing game where the advertisement will be live for instance, or a game where high-scores offers you rebates to partners stuffs ...). There is no limit here !As a conclusion, .net and C# are useless for games just because they just offer features that already exists with existing MS SDKs !So why will user invest in such a limited platform when either they can actually do the same with C++ or can do it better with Java -JB'.www.up2go.net - WebStart @ the MAX !
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Guest
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Maybe nobody, but that wasn't my point.
+ 
+ 
+ 
+ 
+ 
+ Posted: Mar 27, 2002 12:45 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ It may not be in any games console manufactures' interest for game developer to produce games that automatically run on their competitors consoles. Doesn't most of their profit come indirectly from game sales rather than console sales? If so, if somebody produces a Java game that can run on any console, how does the console manufacturer profit from that game?
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 109 replies
+ on 11 pages
+ [
+ «
+ |
+ 1 
+ 2 
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+	 |
+ »
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

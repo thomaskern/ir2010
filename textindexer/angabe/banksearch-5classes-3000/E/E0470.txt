@@ -1,0 +1,454 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ MemCheck Driver Memory Tool
+This article was contributed by L5 Software 
+Group, LLC. 
+Environment: Windows NT/2K/XP driver development 
+ 
+Purpose
+The MemCheck code is designed to provide Windows NT/2K/XP driver developers 
+ with a tool to help in the detection of the following memory handling issues:
+ 
+Buffer overrun 
+ Buffer corruption 
+ Buffer use after buffer release 
+ Double buffer releases 
+ 
+ MemCheck&#146;s Routines
+ 
+ 
+MemCheck has a specific API (set of functions) that should be used in place 
+ of existing routines. 
+ 
+ Original routine
+ 
+ MemCheck routine 
+ 
+ 
+ ExAllocatePool(&#133;)
+ 
+ MEM_ALLOCATE(&#133;) 
+ 
+ 
+ ExAllocatePoolWithTag(&#133;)
+ 
+ MEM_ALLOCATE_WITH_TAG(&#133;) 
+ 
+ 
+ ExFreePool(&#133;)
+ 
+ MEMCHECK_FREE(&#133;) 
+ 
+The parameters for each of the MemCheck routines are exactly the same as those 
+ in the original (DDK) functions. By replacing the original calls with the memCheck 
+ versions, validation can be done during the allocation and release routines. 
+ 
+In addition to the functions listed above, MemCheck also has the following 
+ routines:
+ 
+ 
+ MemCheck Routine 
+ Description 
+ 
+ 
+ MEM_CHECK_INIT() 
+ Initialize memCheck's resources. This routine should be called before 
+ any other memCheck routines are used. 
+ 
+ 
+ MEM_CHECK() 
+ Forces memCheck to validate all buffers being monitored. 
+ 
+ 
+ MEM_LIST_DISPLAY() 
+ 
+ Displays a list of all buffers being monitored by memCheck. In addition, 
+ each buffer being monitored is validated for correctness (the header and 
+ footer tags are checked). 
+ 
+ 
+ MEM_VALID_ACCESS() 
+ Tests ptr to see if it points to a location within a valid buffer being 
+ monitored by memCheck. 
+ 
+ 
+ MEM_CHECK_EXIT() 
+ Frees resources used by memCheck. This routine should be called when unloading. 
+ Make sure not to make further calls to memCheck routines after calling MEM_CHECK_EXIT() 
+ 
+ 
+ 
+ 
+MemCheck Settings
+ 
+The settings for MemCheck are contained in the memcfg.h file. Each of these 
+ settings is a simple macro. By defining and undefining a macro, the setting 
+ can be turned on or off.
+ 
+ 
+ 
+ 
+ 
+MemCheck Setting
+ 
+ Description 
+ 
+ 
+ MEMCHECK_ON 
+ Enable/disable the entire memcheck package. 
+ 
+ 
+ MEMCHECK_DEBUGPRINT 
+ 
+ Enables displaying of MEMCHECK_DEBUG() macro information this is mostly 
+ debug information for memCheck itself. 
+ 
+ 
+ MEMCHECK_DISPLAYPRINT 
+ 
+ Enables displaying of MEMCHECK_PRINT() macro information 
+ 
+ 
+ MEMCHECK_DISPLAY_FREES 
+ 
+ Display information when buffer is freed 
+ 
+ 
+ MEMCHECK_DOUBLE_FREES 
+ Enable checking for double frees...this causes extra memory to be used 
+ and should NOT be left enabled for a shipping product. 
+ 
+ 
+ MEMCHECK_HALT_ON_BAD 
+ Causes a debug breakpoint to occur when a bad buffer tag is encounted 
+ 
+ 
+ MEMCHECK_FREE_ON_EXIT 
+ Allows memcheck to free its resources upon exit. This is normally left 
+ on 
+ 
+ 
+ How MemCheck works
+ 
+MemCheck&#146;s main functionality is exercised when all allocation and release 
+ routines (ExAllocatePool(&#133;), ExAllocatePoolWithTag(&#133;) and ExFreePool(&#133;)) 
+ are replaced with the MemCheck analog (see MemCheck&#146;s Routines above for 
+ more information). With these routines in place, MemCheck maintains a list of 
+ each buffer allocated. When the client requests a 1K buffer be allocated, MemCheck actually allocates 
+ a larger buffer. This extra space is used to store tags at the start (header) 
+ and end (footer) of the buffer. The client is returned a pointer to a buffer of the requested size (assuming 
+ the call was successful). MemCheck then writes a specific value in the header 
+ and footer tags. If at any point MemCheck realizes that the tags are invalid, 
+ it can tell that the user has perturbed their memory. 
+ 
+NOTE: MemCheck stores more information within the buffer than just the tags 
+ and client data. The above description is a simplification of the actual method 
+ MemCheck uses. Please refer to memcheck.c code to see how the real buffer list 
+ is maintained.
+ 
+Another useful feature of MemCheck is MEM_VALID_ACCESS(). By calling MEM_VALID_ACCESS(ptr), 
+ MemCheck can compare the ptr address to the addresses of each of the monitored 
+ buffers. If the address is not within a valid buffer range, MemCheck can display 
+ a warning. 
+ 
+When the MEMCHECK_DOUBLE_FREES macro is defined (in memcfg.h) and the client 
+ frees a buffer, the buffer is not actually released. Instead, it&#146;s information 
+ is maintained. In the event that an attempt is made to free the same ptr, MemCheck 
+ will be able to notify the client. 
+ 
+Using the MemCheck Code
+ 
+The first step in using the MemCheck code is to call MEM_CHECK_INIT() when 
+ your driver initializes and MEM_CHECK_EXIT() when your driver unloads. The next 
+ step is to replace all the original DDK memory allocation and release calls 
+ with the MemCheck counterparts (see MemCheck&#146;s Routines above for more 
+ information). After completing these steps, make sure MemCheck is enabled 
+ (via the MEMCHECK_ON macro in memcfg.h). Then build the driver and run it. MemCheck 
+ will be able to scour the memory usage right away and try to find problems.
+ 
+In addition to the previous steps, users may find it useful to use the other 
+ &#145;helper&#146; functions to track down buffer problems. These functions 
+ are
+ 
+ 
+- MEM_CHECK()
+ 
+- MEM_LIST_DISPLAY()
+ 
+- MEM_VALID_ACCESS()
+ 
+(see MemCheck Routines above for a description of these routines).
+ 
+When you have finally tracked down all memory issues, you can disable the MemCheck 
+ package by undefining the MEMCHECK_ON macro in memcfg.h. This has the effect 
+ of making your code build with no code from MemCheck being included. This means 
+ that the size and performance of the driver will be the same as one using only 
+ the DDK calls.
+Downloads
+Download source - 28.8 Kb 
+History
+Date Posted: April 8, 2002
+ 
+Comments:
+- Checking out the bug fixes... - JB (2002/05/03)
+- FIX for memcheck.c - Jesse B (2002/05/03)
+- FIX for memcheck.h - Jesse B (2002/05/02)
+- requires the DDK, here's the link - Just so you know... (2002/04/11)
+- Who is the ntddk.h - Guenter Klein (2002/04/10)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Compare Prices
+For Web Graphics
+Free DNS Offer
+Find Annual Reports
+Find a Consultant
+Internet Jobs
+Anti-Virus Software
+Find A Web Developer
+Free Barter Account
+Search Marketplace
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

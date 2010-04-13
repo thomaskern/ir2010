@@ -1,0 +1,917 @@
+
+Javalobby Forums - Java games at GDC covered by Gamespy
+ 
+ 
+ 75053 Members! 
+ This
+ website is gratefully dedicated to Allan Chasanoff 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Forums
+ | Links
+ | 
+ Jobs | Members
+ Only 
+ 
+ 
+ 
+ Member Login
+ 
+ 
+ Become a Member 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ Email Address: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Password: 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ Automatically
+ Login
+ 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+JOIN NOW, IT'S FREE!
+ Not a member yet? Join right now and enjoy the many benefits of
+ Javalobby membership.
+ 
+ 
+ 
+ 
+ 
+ 
+- Participate in our discussion forums
+ 
+- Download free software and books
+ 
+- Receive members-only discount offer
+ 
+ 
+ 
+ 
+ 
+- Receive up-to-date info via our newsletter
+ 
+- List your products/services in our links directory
+ 
+- Enhance your career at JavaJobs.com
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Click
+ here if you don't remember your password and want it mailed to you.
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	 
+	 
+	
+ 
+ 
+ Java games at GDC covered by Gamespy
+ 
+ 
+ 
+ 
+ 
+ Home
+ »
+ Forums
+ »
+ Javalobby Frontpage
+ 
+ 
+ 
+ 
+ 109 replies on
+ 11 pages.
+ Most recent reply:
+ May 17, 2002 7:56 PM
+ by
+ 
+ Bobby Martin
+ 
+ 
+ 
+ 
+ 
+	 
+	
+ Reply to this Topic
+ 
+ 
+ 
+	 
+	
+ Post New Topic
+ 
+ 
+ 
+ 
+	 
+	
+ Search Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic
+ 
+ 
+ 
+	 
+	
+ Back to Topic List
+ 
+ 
+ 
+ 
+ 
+ Next Topic
+ 
+ 
+ 
+ 
+ 
+ [ Go to: « "Back to first page">1 ... 8 9 10 11 ] 
+ 
+ 
+ Print
+ Friendly Format | Switch
+ to map view format 
+ 
+ Email
+ Thread to a Friend 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jeff Kesselman
+ 
+ 
+ 
+ Posts: 12
+ 
+ 
+ Registered: Apr, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: A point on cross paltform games.
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 6:37 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Find us something good, easy to administer, Java and free and I'l be happy to bring it up with Chris.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jeff Kesselman
+ 
+ 
+ 
+ Posts: 12
+ 
+ 
+ Registered: Apr, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: A point on cross paltform games.
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 6:38 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hey,
+Im gald to hear it supports message editing.
+In re the disappearing cursor, we can point fingers all day but if using it discurages use of Netscape 6 then its an issue for us.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Sam Terrell
+ 
+ 
+ 
+ Posts: 8
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Doesn't seem to run at all here... :-(
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 2, 2002 8:38 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ which IBM? 1.3.0 was the version I was using originally that it worked with. I then "upgraded" to 1.3.1. For some reason, at that point, mine broke. I think I may need to just get the GL4Java directly from their website to fix it. 
+Originally, I had more problems getting it working in windows than linux. Since you've never seen it, I'll try to figure out what the problem is.
+BTW, you can install several JVM/JDK's in linux. I make my jvm to the traditional /usr/lib/java with a symlink. I have 4 SDK's to test things with It's not really a portability thing I'm testing... more of a backwards compatibility and performance testing with my apps, so I know which JVM to use in production.
+Oh yeah... check the console where you run the command and see what the exception was. I was getting problems with glx creating the window for opengl. Which confuses me because Wolfenstein can. But my guess is that Quake and Wolfenstein may not use glx to open a window. Try to run glxgears or glxinfo. I think games use GLUT to open windows.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	s.s^2
+ 
+ 
+ 
+ Posts: 1
+ 
+ 
+ From: Melbourne
+ 
+ Registered: Apr, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: GetAmped!
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 1:11 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Hi,
+I had the same character control problem in GetAmped. Running on my windows machine, the character kept on walking away from the enemy's direction, with a mind of its own!
+Anyhow, I went to the Gaming Options section in Control Panel, and removed all the game controllers. (They weren't connected anyway) After that, it works fine now. And with skinnable characters, it's looking great.
+Anybody know any great sites/resources for Java Game Dev? (preferably in English, or else have to use the Fish...)
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Gregory Pierce
+ 
+ 
+ 
+ Posts: 19
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: GetAmped!
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 11:41 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ javagaming.org, gamedev.net, and j3d.org are the only ones that I know about.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Gregory Pierce
+ 
+ 
+ 
+ Posts: 19
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Care to share details Gregory?
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 11:49 AM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Like most things in life you should discover it for yourself instead of taking someone elses word for it. Get yourself a copy of an IDG market report or go to a Game Developers Conference and get the number.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Gregory Pierce
+ 
+ 
+ 
+ Posts: 19
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: consoles
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 12:57 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ That Sony did not *make* Everquest. Noone in Sony was responsible for the creation of Everquest. Verb usage error. Sony purchased the company that made Everquest.
+"The PC game market is something else... to even be distributed is a major challenge... let alone make money out of the game!"
+So lets say you create a game and you're not a publisher nor were you contracted by a publisher to develop a game. You think that its easier to get it distributed simply because its a console game (you will find it difficult to even get your hands on the tools to start off with)? If a publisher such as EA or Bethesda Softworks (Morrowind) wanted to develop a PC version of a game or a console version of a game they can do so because they have distribution channels for *whatever* platform they want to distribute for. If you're Daniel the developer looking to put out a console game - you have a better shot at getting a job at a publisher, to be blunt.
+Lets say I wanted to get a copy of Godzilla 2000 for a console - can't get it. There are many shooters which are simply unavailable. Just because a game is on a console doesn't somehow bestow it with distribution rights. Good stuff with good marketing will make the shelf, bad stuff that has good marketing will make the shelf, good stuff that has bad marketing (console or otherwise) will not make the shelf. The amount of money invested in development of a console game is larger than that of a PC game and thus more resources are devoted to ensuring it actually gets on the shelf - but console games are cancelled all the time just like PC games are. Now ask you rself this - when was the last time you saw an independent or new development house put out a game on a console that was well marketed and well distributed?
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Sam Terrell
+ 
+ 
+ 
+ Posts: 8
+ 
+ 
+ Registered: Mar, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Doesn't seem to run at all here... :-(
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 3, 2002 6:49 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ hehe... after reinstalling my OpenGL drivers from NVidia, all is well again. Runs in IBM130, and SUN140 that I have tested. I did have problems out of IBM131... something about awt. Maybe the IBM131 jdk is a little out of spec... I don't know, but it just doesn't work. Use IBM130 if you have it around, or if you want faster loadtimes, I've found that SUN140 works really good. I would get it anyhow, just so you can test things like that. Besides, it has some cool features that you may want to take advantage of while IBM works on 1.4.0. Just change the path to the java executable in the arkanae.sh script, then you don't have to switch... what do you need with the extra 84M? 
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Jeff Kesselman
+ 
+ 
+ 
+ Posts: 12
+ 
+ 
+ Registered: Apr, 2000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Yes, please send us the URL when you are done!
+ 
+ 
+ 
+ 
+ 
+ Posted: Apr 9, 2002 4:31 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ We'll definately post to the up to Javagaming.org
+I'll try to remember to drop a note here as well.
+ 
+	
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	Bobby Martin
+ 
+ 
+ 
+ Posts: 1
+ 
+ 
+ From: Arlington, tx
+ 
+ Registered: May, 2002
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Re: Dirty Java
+ 
+ 
+ 
+ 
+ 
+ Posted: May 17, 2002 7:56 PM
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Reply
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Actually, Magicosm runs on top of Java3D (which is an opengl binding, but I'm pretty sure it's not what you meant I believe GetAmped is the game that Sun showed at the GDC which runs on a direct gl binding.
+The rest of the info you have correct, basically. We did port Magicosm to Solaris at the convention in about 5 hours. We didn't have to do a recompile to do that (although we did do a recompile, to get some minor unrelated last minute changes in). The hold-up on migrating to Solaris was getting the latest java3d and video card drivers onto the machine. (By latest, I mean LATEST! The version of java3d was one that was built earlier that day by the java3d team.)
+Bobby Martin
+Lead Magicosm Server Developer
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ This topic has 109 replies
+ on 11 pages
+ [
+ «
+ |
+ 8 
+ 9 
+ 10 
+ 11
+ ]
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Previous Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Top
+ of the page 
+ 
+ 
+ 
+ 
+ 
+ 
+ Next Topic 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Javalobby
+ discussion forums
+ powered by
+ Jive 
+ Forums 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ About 
+ Us | Volunteers Wanted | Terms 
+ of Use | Privacy Policy 
+ 
+ 
+ 

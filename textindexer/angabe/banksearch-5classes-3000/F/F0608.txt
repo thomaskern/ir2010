@@ -1,0 +1,42 @@
+
+ Essential XML Quick Reference 
+By: Aaron Skonnard and Martin Gudgin 
+ISBN: 0201740958 
+Publisher: Addison-Wesley 
+ 
+ 
+Pure XML 
+Reviewed By: George Klissarov 
+The Essential XML Quick Reference is a really good quick reference
+manual. You will not learn everything about XML by reading this book.
+However, if your need is for a reference, then this is the perfect
+alternative and supplement to MSDN help windows cluttering your screen.
+It consists of a comprehensive but very concise summary, in reference
+form, of the various W3C standards documents for XML provides a concise,
+easy to search reference for the core technologies of XML: namespaces,
+DTDs, XPath, DOM Level 2, SAX, SOAP, etc.. Where the book excels is that
+it is pure XML. It avoids getting bogged down in parser-specific issues,
+but instead addresses XML at a standards level.
+Another strength of the book is in its coverage of two of the most
+exciting XML concepts: Schemas and SOAP. The schema coverage is split
+into two chapters. The first deals with the base schema types and how to
+create simple type. The second chapter focuses on complex types and
+schema extension. The SOAP chapter, like the rest of the book, stays
+focused on pure XML and avoids discussion SOAP implementations from IBM,
+Microsoft, etc. It provides a great reference to the building blocks of
+a SOAP message. The only thing missing from this chapter is a reference
+for WSDL.
+The explanations are short, but they are detailed enough to be useful
+and the coverage is complete. Code examples are used to illustrate most
+of the commands and they are well-constructed, really to the point,
+without being simple. It doesn't take long to 'get' one of these
+examples and to test your understanding of the textual definition. In
+the few places where language-specific sample code is provided, the
+samples are available for both the Java and COM. It has been well edited
+and the layout is superb: the right things stand out in the right
+places. It's compact for the quantity of information contained. While
+the explanations are short, they are detailed enough to be useful and
+the coverage is complete.
+ 
+ 
+	

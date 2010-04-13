@@ -1,0 +1,45 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Controls II
+Time to learn about other controls that VB has to offer us. A few that we will be talking about here are; Progress bars, Image lists and Toolbars. In order to add these controls to your project, add the "Microsoft Windows Common controls 5.0/6.0" to your toolbox.
+ProgressBar
+I 'm sure you've seen the progressbar control being used somewhere before, such as in ScanDisk. The purpose of this control is basically to inform the user of the status of something (percentage of its progress) in the program like a long operation, and to let the user know that it's still working and that the computer didn't freeze or anything like that.
+ProgressBar Properties
+Min - The minimum number that the Prgbar can be
+Max - The maximum number that the Prgbar can reach
+Value - The value of the Prgbar inbetween the Min & Max numbers
+Codes...
+ Private Sub Timer1_Timer()
+ ProgressBar1.Value = ProgressBar1.Value + 2 'Every 100ms, prgbar.value adds 2 to itself
+ If ProgressBar1.Value >= 100 Then 'If the prgbar value excedes or equals 100
+ 'then stop timer
+ Timer1.Enabled = False
+ End If
+ End Sub
+Download the ProgressBar example
+ImageList
+The ImageList is a pretty cool control, it's kind of different then the rest of controls you have learned up to this point. The control itself isn't visible at run time, but its images are... You basically have images in this control (which you configure in the properties), and you use the images for other controls that need images.
+ImageList Properties
+Key - The pictures name, it will be used in other controls
+ToolBar
+The ToolBar is one of the controls that use the ImageList control. If you've ever used WordPad, then you've seen what a toolbar is, it's the buttons right underneath the menu, such as Bold, Italic and Underlined. They're all part of that programs toolbar. The purpose of the toolbar is to make whatever you want to do quicker and easier, it has a picture on it for crying out loud! In order for you to make the toolbar work, you should have a ImageList control ready, with images that you plan to use on the toolbar selected.
+ToolBar Properties
+ImageList - Select an imagelist control that has pictures that you will use on the toolbar
+Index - Determines which button your dealing with
+Key - Is the name for the toolbar button which you will use for coding it
+Style - Determines the way the button will look and act, such as a separator
+Image - Is the image that will be put on that button, refer to an image in the imagelist using an image's "key"
+Codes...
+ Private Sub Toolbar1_ButtonClick(ByVal Button As ComctlLib.Button)
+ Select Case Button.Key
+ Case "ToolBarButton1"
+ 'Codes for what you want this button to do...
+ Case "ToolBarButton2"
+ 'Codes for what you want this button to do...
+ Case "ToolBarButton3"
+ 'Codes for what you want this button to do...
+ End Select
+ End Sub
+Download the ToolBar example
+Back
+Next

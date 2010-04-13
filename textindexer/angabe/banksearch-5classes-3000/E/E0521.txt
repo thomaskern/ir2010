@@ -1,0 +1,174 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq3_3.html 
+ 
+search 
+ 
+Node:WindowsNT,
+Next:DOSEmu,
+Previous:OS2,
+Up:Requirements
+3.3 Will DJGPP work on Windows/NT?
+Q: What about Windows NT?
+A: Current Windows NT versions support DPMI programs in the DOS
+box, so DJGPP programs should in general run fine under NT (but see the
+list of possible problems below).
+The DPMI server built into NT (and Windows 9X) loses selectors with each
+child program that is invoked by a DJGPP program, so after about two
+thousand calls to functions from the spawnXX family you can see
+an error message like this:
+ Load error: no DPMI selectors
+Some versions of NT lose DOS memory instead of selectors, so you might
+see another error message:
+ Load error: no DOS memory
+These problems are likely to afflict only DJGPP ports of Unix shells
+(such as bash), since no other DJGPP program, not even
+Make, is likely to call so many child programs before it exits. 
+The only known work-around is to exit the shell every now and then,
+because when all the available selectors are exhausted, the DOS box will
+crash. I'm told that Make sometimes fails on long
+Makefiles on Windows 9X, where the selectors are lost at even
+higher rate than on NT. If you ever run a very long Makefile and
+see Make crash, just run Make again, and it will pick up
+where the crashed session has left off.
+The long filename API (the special functions of Int 21h which support
+file names longer than the DOS 8+3 limitation) for DOS box is not
+supported by current versions of Windows/NT, so you cannot have long
+filenames there from DJGPP programs. An alpha version of an LFN driver
+for NT which enables long file name support for DJGPP programs, written
+by Andrew Crabtree and significantly improved by Wojciech Galazka, can
+be downloaded the Web.
+The popular DJGPP IDE RHIDE needs a -M switch to work on NT
+(to disable the mouse support which will otherwise crash RHIDE). 
+Version 1.4.7b or RHIDE reportedly solves this problem and allows
+the mouse to be used on NT. Also, one user reported that he had to type
+rhide twice to enter RHIDE, because the first invocation
+immediately exits back to the command-line prompt with no message, if
+you don't disable the mouse with -M.
+You might have problems with using the SVGA modes of your video card
+under Windows/NT; only standard VGA modes (including mode-X) work. That
+is because NT doesn't allow arbitrary direct access to the SVGA
+registers, without which it is impossible to recognize the type of the
+SVGA and employ its capabilities. For example, a user reported that GRX
+functions and the MODETEST.EXE program thought that only a
+standard VGA was installed, whereas he had an S3 card. There is nothing
+you can do about this feature of Windows/NT; that is the price you pay
+for the stability and protection you get under this OS (a runaway
+program that accesses hardware registers can wipe out your disk or wedge
+the entire system cold). However, I'm told that Windows/NT 4.0 supports
+DirectX which is a method of accessing screen, audio and other
+peripherals directly, and the Win32 ports of Allegro and other graphics
+packages can use it.
+The Allegro library also has problems on NT. One user reports that even
+switching into the standard 640x480 video mode turns the screen black
+and kills the machine. Programs that use Allegro to switch into VESA
+modes usually don't work, since NT doesn't support SVGA graphics modes. 
+In particular, the example programs provided with Allegro print an error
+message like this:
+ Error setting 24 bit graphics mode
+ VESA not available
+Programs that use the "nearptr" facility of DJGPP to access absolute
+memory addresses (e.g., for memory-mapped devices) won't work on NT,
+because its DPMI server silently ignores functions that set huge limits
+on selectors. Since the default algorithm which allocates memory from
+the DPMI server needs to set such huge limit in some rare cases, there's
+a small probability that a program will fail or crash even if it doesn't
+set selector limits in user code. It is best to use the Unix-style
+sbrk algorithm in programs that run on Windows/NT. See the
+library docs for the variable _crt0_startup_flags where the
+_CRT0_FLAG_UNIX_SBRK bit is explained, for more info on this
+issue. If you cannot switch to the Unixy sbrk (e.g., if you
+don't have access to the program's sources), I'm told that sometimes
+such problems can be worked around if you run DJGPP programs in a
+full-screen session; your mileage may vary.
+Another problem on NT is that you cannot install a handler for the
+SIGFPE, SIGINT, or SIGALRM signals: if you do, your
+program will crash as soon as the signal is generated (in DJGPP
+v2.02 and later, FP exceptions are masked by default, so you will need
+to unmask them first, otherwise SIGFPE won't be generated). This
+is due to a bug in NT.
+Windows/NT makes it impossible to use FP emulation on a machine that has
+the FP hardware. If you set 387=n on NT, the DJGPP startup code
+calls the DPMI function to switch on the FP emulation, but NT ignores it
+and continues to use the hardware FPU.
+Yet another problem with NT is that interrupting some programs with
+Ctrl- causes Dr. Watson to complain about "Access
+Violation" (that's NT'ese for GPF) and abort the program; careful
+inspection of Dr. Watson's logfile seems to indicate that the crash is
+inside NT's own code which handles the exception deliberately produced by
+the DJGPP's machinery that translates the Ctrl- keypress
+into a signal. It seems NT uses the DJGPP stack for some of that
+processing, which is a no-no inside an exception handler. Sorry, no
+work-around.
+The above-mentioned problems with signals are probably the cause for
+another type of calamities on Windows/NT: running a program compiled
+with the -pg option causes it to crash almost immediately due
+to--you guessed it--"Access Violation" in NTVDM (that's the NT DOS
+Emulator).
+Windows/NT comes with its own version of redir.exe, which serves
+a different purpose. If you invoke redir, and the NT's
+winnt\system32 directory is before DJGPP's bin
+directory in your PATH, you will see a message saying "The VDM
+Redirector is already loaded". To solve this, rearrange your
+PATH or rename DJGPP's redir.exe to somethink like
+djredir.exe.
+Programs that use the library function delay may hang if the
+ key is pressed while the program is inside the call to
+delay. The work-around is to use usleep or write a loop
+which calls uclock.
+Another peculiarity of the NT DOS box is that beeping by printing the
+\007 character to stdout or stderr behaves
+strangely. Usually it beeps, but the beep is very long; sometimes, you
+get the Windows "ding" sound. It is recommended that you turn on the
+"visible bell" feature of the tools that support it, like Emacs and
+Less.
+Accessing the serial communication ports on NT also has some problems. 
+Anton Helm says that the first
+two invocations of a program that accesses the port behave abnormally;
+e.g., the data from the device on the other end of the link doesn't get
+fed into your program. After that, the third and subsequent invocations
+work correctly, but only if you use COMAND.COM as your shell. 
+Using the default cmd.exe leaves the link in a state where you
+get the replies from the other device for the nth invocation of
+your program in the n+1st invocation.
+In other words, to make the com port work on NT, you need to open the
+DOS box with COMMAND.COM, run your program and exit it two times,
+then invoke the program for the third time and start working.
+Some people report that NT servers cause much more problems than NT
+workstations of the same version and build. It seems that these
+problems usually mean that NT installation was done incorrectly (maybe
+it is much harder to get it right with a server than with a
+workstation?). If you have such problems, try to install a workstation,
+or re-install the server, and see if that helps. And if you gain some
+insight as to why servers like DJGPP less than workstations, please tell
+what you've learned.
+The Cygnus Win32 project is another (unrelated to DJGPP) port of GCC and
+development tools to Windows/NT and Windows 9X platforms, which
+specifically targets development of Windows programs. See description of the Cygwin project, for more details about the Cygnus ports.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

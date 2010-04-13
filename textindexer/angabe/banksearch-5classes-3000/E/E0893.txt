@@ -1,0 +1,182 @@
+
+GNE::PingPacket class Reference
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE::PingPacket Class Reference
+Using the PingPacket is one way to measure ping. 
+More...
+#include 
+Inheritance diagram for GNE::PingPacket::
+List of all members.
+Public Methods
+ 
+ PingPacket (bool makeReq=true) 
+ Creates a PingPacket with a preassigned request ID which is pulled from an internal source. More...
+ 
+virtual ~PingPacket () 
+bool isRequest () 
+ Is this PingPacket a ping request?
+ 
+void makeReply () 
+ Changes this PingPacket from a ping request to a ping reply. More...
+ 
+Time getPing () 
+ If this packet is a ping reply that is from one of our requests, this finds the time elapsed since its creation. More...
+ 
+virtual Packet * makeClone () const 
+ Returns a newly allocated exact copy of this packet.
+ 
+virtual int getSize () const 
+ Returns the current size of this packet in bytes.
+ 
+virtual void writePacket (RawPacket &raw) const 
+ Writes the packet to the given RawPacket.
+ 
+virtual void readPacket (RawPacket &raw) 
+ Reads this packet from the given RawPacket.
+ 
+Static Public Methods
+ 
+int recoverLostRequests (Time limit) 
+ Every time you create a packet, the request ID is placed into a request table so that the time difference can be measured later. More...
+ 
+int reqsPending () 
+ Returns the number of pending requests. More...
+ 
+Packet * create () 
+ Returns a new instance of this class using the constructor to pass in false, so this returns an object in an uninitialized state and suitable only to call readPacket on.
+ 
+Static Public Attributes
+ 
+const int ID = 4 
+ The ID for this type of packet.
+ 
+Detailed Description
+Using the PingPacket is one way to measure ping.
+Other methods exist to find ping and latency (latency is one-way time, whereas ping is two-way). You could use other methods depending on if data sent in the game is an implied response (and therefore a "built-in" ping), or if the peers are time-syncronized and timestamps are sent on game packets this can be used to measure latency with every incoming packet.
+So PingPacket is just a very simple system of measuring ping and is handy for measuring ping while connecting, or when making a simple "query" connection like when a client is just trying to get game info. Ping capability was not integrated into the Connection class to give you the largest flexibility on how to measure latency and ping in your games.
+Since the PingPackets will be placed into the queue and received as normal, this will be measuring effective ping rather than the actual time it takes for the packet to travel there and back, giving a more realistic view of lag.
+The way to use PingPackets: 
+- Create a new PingPacket. The constructor will make a ping request with the proper unique request ID. 
+- Send the packet to whoever you want, any way you want. 
+- When reading the incoming packet stream, check for PingPackets.
+ Discover if they are requests or replies by calling isRequest.
+ If they are requests, call makeReply and send it back.
+ If they are replies, call getPing to measure the round trip time. 
+- If you send packets over an unreliable connection, call recoverLostRequests to declare late packets as "lost" and recover any used memory in the request table. 
+Check out the exping example for an example and more explaination on how to use PingPacket. 
+Constructor & Destructor Documentation
+ 
+ 
+ 
+ 
+ GNE::PingPacket::PingPacket 
+ ( 
+ bool 
+ makeReq = true 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Creates a PingPacket with a preassigned request ID which is pulled from an internal source.
+Only ping requests are made using the constructor -- you should use getReply when you get a ping request to make the ping response packet. The PingPacket::create function passes in false to get an uninitalized PingPacket for reading. You will probably only ever use the default form of the constructor. If you pass false, the state of this object is undefined after creation and is suitable only to use readPacket on. 
+ 
+Member Function Documentation
+ 
+ 
+ 
+ 
+ Time GNE::PingPacket::getPing 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+If this packet is a ping reply that is from one of our requests, this finds the time elapsed since its creation.
+Calling this function will remove the request ID from the request table, so this function will only work once for each reply. If the request ID was not found, then an elapsed time of 0 will be returned. 
+ 
+ 
+ 
+ 
+ 
+ void GNE::PingPacket::makeReply 
+ ( 
+ 
+ ) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Changes this PingPacket from a ping request to a ping reply.
+If the PingPacket is already a reply, this function has no net effect. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PingPacket::recoverLostRequests 
+ ( 
+ Time 
+ limit 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Every time you create a packet, the request ID is placed into a request table so that the time difference can be measured later.
+This takes up some memory. It is possible that a ping reply is never received, espically if sending PingPackets over an unreliable connection. This function will remove any packets that have been pending for longer than the time specified. It will return the number of packets that were considered lost based on the specified pending time limit and remove these requests from the table. If a reply for one of these lost requests comes back, getPing will be unable to find them and return an elapsed time of 0.
+When GNE is shutdown the request table will be cleared out so you don't have to ever call this function unless you want to find out how many more packets have been lost, or if you want to free some memory. 
+ 
+ 
+ 
+ 
+ 
+ int GNE::PingPacket::reqsPending 
+ ( 
+ 
+ ) 
+ [static] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Returns the number of pending requests.
+This number increases by 1 every time a request is made, and goes down by one with a successful call to getPing. The number will also decrease if recoverLostReqests is called and finds late requests. 
+ 
+The documentation for this class was generated from the following files:
+- PingPacket.h
+- PingPacket.cpp
+Generated on Fri Mar 8 03:03:23 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

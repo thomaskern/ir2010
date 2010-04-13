@@ -1,0 +1,650 @@
+
+ 
+Old News Archive Page 1
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+Old News Archive
+ 
+ This is where all of that reject, 
+ old news gets kept. Instead of throwing it out, I've decided to 
+ be nostalgic and keep the old news. Here it is below: 
+ 
+Old Website News -- present to 9/30/99
+ Really Old Website News -- 9/30/99 to 6/30/99
+ Really Old Website News -- 6/30/99 to 2/6/98
+ 
+Old Project V2143 News -- present to 5/4
+ Really Old Project V2143 News -- 4/29 
+ to 3/13
+ 
+Back to main page
+ 
+Old Webpage News:
+ 
+ 
+ 12/2/01 
+ -- GNE 0.40 alpha 
+ 
+ 
+ A lot of work has been done on GNE since 0.003 
+ pre-alpha, and GNE has changed a great deal. The Connection API has 
+ been redesigned and new types of Connections have been added in addition 
+ to the completion of the timers, threading, and Console I/O (which 
+ has been GREATLY expanded). Well I could go on a whole page talking 
+ about the new features and additions. Check out the GNE page and the 
+ GNE SourceForge site soon for updates within the next day. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 11/29/01 
+ -- Addendum to OOP Tutorial 
+ 
+ 
+ I've made an addendum to the OOP tutorial, which 
+ you can find on the tutorials page. It's pretty large and I almost 
+ considered making it a separate tutorial but it addresses the issues 
+ on standards compliance in the OOP tutorial. It addresses the concept 
+ of namespaces, the new include files, and has brief mentions on the 
+ new iostreams library and the STL. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 11/18/01 
+ -- Still Here 
+ 
+ 
+ I have not been updating the website much recently, 
+ but I am still around. I have been working a lot on the GNE library, 
+ so most of the activity is happening on the GNE page and GNE SourceForge 
+ site. There also will possibly be a new (short) tutorial comming in 
+ the next month on making your own streambufs (based off the ISOC++98 
+ standard)! If you would like to see it quicker, send an email and 
+ I'll consider doing it earlier.
+ I've also added a short explaination 
+ of the non-networking classes in Itana. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 7/23/01 
+ -- Email Change 
+ 
+ 
+ Webzone, my ISP, has stopped doing dial-up access, 
+ so my email address has changed. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 5/14/01 
+ -- Toolzone Down 
+ 
+ 
+ Toolzone, the provider of my guestbook and counter, 
+ has been down mysteriously for about a week and a half now. With all 
+ of the websites closing now, I don't think they are comming back, 
+ so I have gotten rid of the guestbook and now have a counter from 
+ www.thecounter.com. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 5/4/01 
+ -- GNE Now in Full Swing 
+ 
+ 
+ GNE has now been comfortably setup now and settled 
+ in its homepage. There won't be anymore news posts on this mainpage. 
+ Updates for GNE will be on its own page and on its SourceForge 
+ project page. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/30/01 
+ -- More GNE News 
+ 
+ 
+ Everything in the GNE section has been updated. 
+ I am about to start coding GNE and anyone who is willing to help, 
+ please contact me. I've submitted the project 
+ to Sourceforge and hope to have a CVS site up soon. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/28/01 
+ -- Site Update 
+ 
+ 
+ I've redesigned the site, this time just using 
+ a different tool. It doesn't look different but the code is. The navbars 
+ and this page are entirely using CSS now instead of HTML font properties. 
+ The navbars will also update now automatically on all pages if I change 
+ the template. The rest of this site looks the same but the content 
+ is still using HTML properties -- these will only be changed when 
+ I modify a page.
+ Besides that I've put up a Word 97 version of the GNE requirements 
+ document. That is the only thing new here. Nothing too exciting. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/26/01 
+ -- Itana v.71a 
+ 
+ 
+ v.71a Windows is now out. Note that v.70 and v.71 
+ clients are netgame compatable. Linux server works only in 2 players. 
+ Since my Linux box is really messed up right now I can't compile .71a/Linux 
+ right now but if anyone wants the source feel free. In fact if you 
+ want to do it forever you can see a lot more support -- I can't keep 
+ up with both versions. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/25/01 
+ -- GNE Progress Update 
+ 
+ 
+ I have put up the work done so far on the Rose 
+ model and the docs (generated from stubs documented with javadoc-style 
+ comments) so far. Feel free to sanity-check my work as I go along. 
+ Use the contact link to the left to sent and comments/praise/flames 
+ to me. If you need some functionality in GNE for your project, this 
+ is the time to let me know ASAP for me to consider it. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/20/01 
+ -- GNE page 
+ 
+ 
+ The GNE link on the left sidebar was broken when 
+ I uploaded the new site -- this was because I forgot to actually CREATE 
+ the new page. GNE is only 3 days old now so only the requirements 
+ document is up. At any stage of development any and all comments are 
+ useful. If you wish to use GNE in your projects and need some different 
+ functionality, it is best to know before I complete the class diagrams. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/20/01 
+ -- Site Redesign 
+ 
+ 
+ I've completely resdesigned the site. I think the 
+ design speaks for itself and requires no explanation. Let me know 
+ by using the conact link on the left bar what you think about the 
+ new design. I have also gotten bug reports on Itana, and in the current 
+ version >2 players doesn't work right now. Also there is some graphics 
+ trash being left from explosions and the Alsetti parabolt. The >2 
+ players situation and the Alsetti parabolt has been fixed for now, 
+ and I'll try to get a patch out soon. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/12/01 
+ -- Itana v.7a 
+ 
+ 
+ Itana v.7a is now out! All four races are included 
+ now. Please see the Itana page for more 
+ info on the latest release. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 4/1/01 
+ -- Updates 
+ 
+ 
+ I've made some changes to the design of the main 
+ page and removed a poll. I decided against leaving it up, espically 
+ since only a few have responded to it. Also an Itana update: All 4 
+ races are in, each with their own weapons and special abilities. There 
+ is also all new graphics for every race, including the Alsetti! This 
+ is because a new artist, Vivienne Allen, has joined the Itana team. 
+ 
+ 
+ 
+ 
+ 
+ 
+10/19 -- Released version 2.0.1 of the BGui library, 
+ with 2 new operating systems offically supported, and a bugfix.
+ 10/18 -- Released the WIP fixed version of BGui. Read 
+ the BGui page for more details.
+ 7/30 -- I added 2 of my Java programs to The Coffee Cup section. Enjoy.
+ 7/23 -- I've done a lot of editing now and have redesigned 
+ some areas and created 2 others -- The Games Corner 
+ and The Coffee Cup. Check them out and let 
+ me know what you think.
+ 7/9 -- I edited he Allegro tutorial to be constistant 
+ with the latest WIP. I also added a small sample Allegro program pre the 
+ request of one of my visitors and a section for using Allegro with MSVC.
+ 7/3 -- I haven't updated in a long time. Anyways, I fixed 
+ an error in the C tutorial in the structures section where a string should 
+ have been copied using the strcpy command and not the = operator. Also 
+ I fixed some things in the mini-dictionary. As for my "secret project" 
+ I haven't worked on it since I left college in May, although I have ever 
+ intention on finishing it, espically since I have most of it completed 
+ now.
+ 4/23 -- Sorry guys but the site that hosted my voting 
+ link decided to discontinue its Top 50 list because it was not getting 
+ as many members as they wanted. Thanks for all of you who voted for me 
+ to keep me #1 for so long, although there was not much competition :)! 
+ As for the new game, I have been working on it. It is called Itana and 
+ will be multi-player only (I will add bots if I have time and skill to 
+ do that). I have most of the basic code in and I can virtually play the 
+ whole game, but at the moment only by myself. My next steps are to add 
+ in the networking foundation, then finish off the very last parts of the 
+ engine, then it will enter beta stage where I will tweak it and stuff.
+ 
+Unlike my other projects I have decided to keep this one a lot more quiet 
+ because I wanted to focus totally on making this one rather than getting 
+ it out like I did to JetFight and PV2143. I actually want to FINISH this 
+ game, and not have the problems I did with the other two games where my 
+ teams lost interest (I as well to some extent), so I planned this game 
+ where I could finish it by myself in one or two months and still be an 
+ improvement over my last work. So far it has been going excelently -- 
+ in fact better than I've expected! When I get it to beta stage (100% all 
+ features and fully playable, only needs "tweaking" and final 
+ bug fixing) I will release it at that time, which I expect to be before 
+ I leave college at the end of May. After which time I might have trouble 
+ testing network since I won't have the networking capabilities I have 
+ here at college.
+ 
+3/25 -- I've been working on a new game recently but 
+ I don't want any pressure on this or spending a lot of time with the web 
+ page and all that so I can focus on the game and school, so I have been 
+ quiet about it publically. But I was trying to decide wether to choose 
+ floats, doubles, or fixeds in my program, so I did a lil' profiling. I 
+ updated the Archive with this new info.
+ 3/8 -- I have returned from spring break! There have 
+ been some new updates to the site. The contact form works again, the random 
+ number library has been updated to fix some major bugs and I just updated 
+ the MUUDPIC site (I know it's been done for awhile, sorry for not getting 
+ around to updating.) Also I have been having counter troubles for the 
+ last month along with all of the other users on the site. It will be cleared 
+ up soon otherwise I will be changing counters. I've lost about 400 hits 
+ and I cannot access the stats or usage reports since their program times 
+ out.
+ 2/20 -- I've updated the poll and added a link to a C/C++ 
+ oriented newsletter, Codecraft. It's listed near the top of the links 
+ page, or you can follow the link here. Also work on MUUDPIC 
+ has resumed! Actually it started about a week ago but now it is nearly 
+ finished. Just tonight I finished the working version with all of the 
+ features working correctly. I just need to add a few additional things 
+ to make it more stable in case people get disconnected from the internet 
+ or try to use duplicate names. I will update the page soon.
+ 2/10 -- The COMPLETE version of DeathWorms is out now! 
+ Sorry for the delay but it didn't get worked on as we all got busy. But 
+ now it's out, check it out here.
+ 1/29 -- I updated the jrnd library so now it will work 
+ in both C and C++ on all ANSI standard compilers, and now it has its own 
+ RNG so you will get the same performance on all platforms. As for the 
+ new "mystery game" I hope to have it out by the end of this 
+ weekend. Its webpage here is complete, the GUI just needs a few finishing 
+ touches and the save/load code is nearly complete.
+ 1/27 -- The voting link to Armageddon Games is finnally 
+ back up! Thanks to all of the people who have voted for my site in the 
+ past. There should also be a total revamp of the jrnd library which will 
+ be portable across ANY COMPILER (not just DJGPP). Expect this by the end 
+ of the week. The GUI frontend on the "mystery game" is very 
+ near completion.
+ 1/24 -- Sorry I have not done much in the tutorial area 
+ but instead I had been working on programming a new little game that we 
+ have been playing around with in the dorms for hours. The only downside 
+ is that it's only fun with 3-4 people so it IS multiplayer! I've had it 
+ done for a bit but now I am going to put a GUI frontend to it so other 
+ people can reasonably use it too. It supports as many players as you can 
+ fit on one keyboard and up to 4 joysticks!!! Look for it soon.
+ As for the OOP tutorial I've uploaded the 4 sections that I've done since 
+ the last update. Also I found a memory leak bug in the LinkList library 
+ and it has been fixed now and cleaned up some. I'm also on the DJGPP ring 
+ now so feel free to browse the sites along the ring for more DJGPP information.
+ 1/17 -- I've done some misc work on the site making sure 
+ The Archive, the Learning section, and the dictionary are all up to date. 
+ I have also started up work on the OOP tutorial again because of a request 
+ ;). Anyways the fifth chapter is now finished totally and I have just 
+ started on the sixth chapter.
+ 1/14 -- Updated the links page, made sure the descriptions 
+ were still valid and all of the links pointed to the right places, and 
+ deleted obsolete links.
+ 1/12 -- Sorry for not updating in a long time. I had been waiting 
+ to see if I could fix the problems with the Windows PV2143 or not before 
+ I released it. Either ways I've decided to release the Windows version, 
+ although it still have a few bugs but at least I know they are Allegro's 
+ now. When Allegro (the library I use to do grfx, sfx, etc) gets finalized 
+ hopefully it will look and act exactly with the DOS PV2143.
+ BTW: I just notced that Fortunecities is getting stupider and stupider. 
+ I'm so glad I left them. I just noticed they have a file download gateway 
+ for every file you get that puts up banners and shameless FC ads!!! I 
+ almost feel stupid mirroring them now they are so lame... but RIT goes 
+ down every once in awhile...12/15 -- I really didn't think the voting links would come back but they did. 
+ I know the sites are related so the other one might be comming 
+ back soon. Thanks to all of the people who voted for this site!
+ 12/11 -- I changed the poll. It was starting 
+ to get old after a few months ;).
+ 12/10 -- Sorry for being out of the scene for so long. 
+ A few weeks ago I got MSVC and have been playing around with it, with 
+ the intentions of porting the PV2143 game to Windows DirectX using the 
+ new Allegro which is almost complete. The program runs somewhat but there 
+ are still serious bugs and progress is slow. When I get around to it I 
+ will probably MSVC-ize the site and tutorials, making sure what is DJGPP 
+ specific is mentioned as being specific to DJGPP. I will also consider 
+ making a short tutorial about some basic MSVC things helpful for programmers 
+ starting with the environment or starting the C/C++ tutorial.
+ 11/8 -- I put an .a library file in the QuickGUI zip 
+ for those who don't want to have to bother with compiling it. It's only 
+ 6k after zipped so it's no biggie.
+ 11/7 -- If you are reading this, you know that the page 
+ has moved to the RIT server! It was a hard decision but I decided to make 
+ it because in the long run it will do better than fortunecities.
+ 11/4 -- Sorry for not having many updates lately but 
+ it's because I've been busy with end-of-term stuff in college. Very soon 
+ I think I may have a lot more time opening up! I've also added a link 
+ to the Armegeddon Games Programming Top 50 to vote for my site. If you 
+ liked my site I appreciate your vote!
+ 10/30 -- Sorry I messed up permissions on the one-part 
+ PV2143 download yesterday! It should be working now. Thanks goes out to 
+ Zylot for finding this problem!!!
+ 10/25 -- I've released QuickGUI under the Files and Programming page. There was also an update 
+ to the library that MUUDPIC uses to access the TCP/IP stack in Windows 
+ and it is working better but still fails on all computers. When the library 
+ improves enough or I get access to Linux or MSVC work will continue.
+ 10/21 -- I've put up an UNOFFICAL release 
+ of the JPEG library by Eric Vannier because the offical site has been 
+ gone for MONTHS and the other links to get it at are broken. Get this 
+ from the Files and Programming page. As 
+ for QGUI, I should probably release that, and I will soon, but the reason 
+ why I hadn't was because I wanted to get it to work on Linux. Well I couldn't 
+ get the thing to work on my system because it doesn't recognize my hard 
+ drive, and x windows is horribly slow and there is hardly any support 
+ for things in my system. The only good thing I can say about it is that 
+ networking over my ethernet and all of the essential things were all there 
+ when I started and ready for use and even setup correctly -- something 
+ Windows never did. So if I ever get Linux to work it is very doubtful 
+ I will EVER develop anything in or to Linux.
+ 10/15 -- The conversion of MUUDPIC/TextGUI to Allegro 
+ is well underway. The base GUI procedures are ready to be used, and I 
+ will release it separately from MUUDPIC for those who want to use it. 
+ The textbox from TextGUI still exists, allowing for real-time window output 
+ in the GUI using the > operator 
+ (like cin), with the option of giving the user a prompt, settable via 
+ a method. So far there are two misc tools, a wrapper for the editbox to 
+ work well with enter, sending a MSG_TEXTBOX to all objects, and a QOutput 
+ to quickly display a message to the user. I plan to release source which 
+ will compile under both Linux and DOS without changes if at all possible, 
+ but there will be two ports.
+ 10/12 -- Because of my lack of success in UNIX curses, 
+ I am writing MUUDPIC using GUI powered by Allegro, the library I use for 
+ my JetFight and PV2143 games, and which is also (supposedly directly) 
+ portable to Linux, which I intend to do after I get the GUI working in 
+ DOS (the internet library still does not work under 98), using classes 
+ as similar as possible to TextGUI classes (most of those functions are 
+ obsolete now, including CTextBox, which is 100% obsolete in the GUI since 
+ a textbox already exists).
+ 10/11 -- The Linux port of MUUDPIC has been released. 
+ It would be totally completed except for some curses stuff. Actually my 
+ opinion of ncurses is not too great right now, and if anyone would please 
+ help, I would appreciate it. I spent 5 minutes (quite literally) porting 
+ my logic to Linux, and I've spent over 10-15 hours+ porting only 50 lines 
+ of code! Curses seems impossible! For some reason, it doesn't show right 
+ on VT100, crashes an xterm, corrupts the screen in ANSI, but corrupts 
+ it just slightly less in ANSI.SYS mode. What a wonderful piece of crap.
+ 10/6 -- It's PV2143, it's back, and it's better than 
+ ever in version 15, with many map editor enhancements and some game enhancements! 
+ Check the PV2143 readme file for the latest 
+ info. If you want to be on the mailing list to know when new PV2143 news 
+ comes out, or if you want to help, contact me.
+ 
+Old Project V2143 News:
+ 
+6/7--Build 12 is out with the following features: Digital MOD music, 
+ collision detection, loading maps from last build and this one (saves 
+ only latest version since it converts). Road and bridge graphics, and 
+ now buildings! I have to admit they are not all that great because of 
+ their drawing angle but this WILL be fixed (looks at unit artist).
+ 5/31--So far for build 12 I have some buildings in and digital MOD music. 
+ This next version will also be able to read maps both from the previous 
+ build 11 and from its own version; however, it will only save maps of 
+ its version (for conversion purposes.) I'm also thinking of doing the 
+ same thing in the future.
+ 5/25--Many additions to the editor, including intelligent tile laying, 
+ "big fonts" and in general more helpful, intelligent, and context-sensitve 
+ menus. The stealth tank and the trees have a new look, as well as the 
+ player tank (Earth tank)'s cannon. Also the new map format makes the maps 
+ only 1/3rd of their original size, and MUCH MUCH faster loading/saving.
+ 5/21--All of the previously mentioned features have been added, which 
+ is way too many to list again. This is the very first build I actually 
+ started considering this a real "game" now rather than just 
+ a programming project. Also, if you would like to be added on the mailing 
+ list for this game, when I release a new version on the site I will notify 
+ you. To be added send me mail stating wether 
+ you wish to subscribe or unsubcribe. Your email address of course will 
+ not leave the list, and fall into the evil hands of junk advertisers ;).
+ 5/17--I've gotten the ALL of the terrain tiles in besides 
+ some road and the bridges. The next release should come out by this weekend, 
+ and should be the biggest yet!
+ 5/16--Sorry for the lack of updates recently but last Thursday I graduated 
+ and partied all night ;). Since then I've been enjoying a wonderful weeked 
+ off school! Since the last release, I've been working on the AI, and adding 
+ more enemies, and the new, morphing, player tank now. Right now even before 
+ a lot of the AI is in I can't even beat 4 tanks now at a time! By the 
+ next release I should have greated added to the editor (to allow for AI 
+ editing) and added some more enemies, and perhaps the rest of the tiles 
+ (my artist says he'll work on them today.)
+ 5/9--A small update. Added water gibs and a flood fill option in the map 
+ editor (select F to use.) The instructions pops up a real GUI box now 
+ besides the raw lines of text, which make it easier to read and much easier 
+ for me to maintain. Unfortunately no other major features have or will 
+ be implemented until I get more art/music/sfx :(.
+ 5/4--Added previously mentioned features, and more tile arts. Also a new 
+ data file, for a REAL map now.
+ 
+Back to main page
+ 
+ 
+ 
+ 

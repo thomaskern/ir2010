@@ -1,0 +1,644 @@
+
+GotW #72: Data Formats and Efficiency
+ 
+ 
+ GotW #72 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+Data Formats and Efficiency 
+ Difficulty: 8 / 10
+How good are you at choosing highly compact and memory-efficient data
+formats? How good are you at writing bit-twiddling code? This GotW gives you
+ample opportunity to exercise both skills, as we consider efficient
+representations of chess games and a BitBuffer to hold them.
+Background: I assume you know the basics of chess.
+Problem
+JG Question
+1. Which standard container uses the least
+memory to store the same number of objects of the same type T: deque, list, set,
+or vector? Explain.
+Guru Questions
+2. You are creating a worldwide chess server
+that stores all games ever played on it. Because the database can get very
+large, you want to represent each game using as few bytes as possible. For this
+problem, consider only the actual game moves and ignore extra information such
+as the players' names and comments.
+For each of the following data sizes, demonstrate a format for representing a
+chess game that requires the indicated amount of data to store each half-move (a
+half-move is one move played by one side). For this question, assume 1 byte == 8
+bits.
+ 
+a) 128 bytes per half-move
+ 
+b) 32 bytes per half-move
+ 
+c) minimum 4 bytes and maximum 8 bytes per half-move
+ 
+d) minimum 2 bytes and maximum 4 bytes per half-move
+ 
+e) 12 bits per half-move
+3. To implement solution 2(e), you decide to
+create the following class that manages a buffer of bits. Implement it portably,
+so that it will work correctly on all conforming C++ compilers regardless of
+platform.
+ 
+class BitBuffer
+ {
+ public:
+ // ... add other functions as needed ...
+ 
+ // Append num bits starting with the first bit of p.
+ //
+ void Append( unsigned char* p, size_t num );
+ 
+ // Query #bits in use (initially zero).
+ //
+ size_t Size() const;
+ 
+ // Get num bits starting with the start-th bit,
+ // and store the result starting with the first
+ // bit of p.
+ //
+ void Get( size_t start, size_t num, unsigned char* dest ) const;
+ 
+ private:
+ // ... add details here ...
+ };
+4. Is it possible to store a chess game using
+fewer than 12 bits per half-move? If so, demonstrate how. If not, why not?
+Solution
+1. Which standard
+container uses the least memory to store the same number of objects of the same
+type T: deque, list, set, or vector? Explain.
+Each kind of container chooses a different space/performance tradeoff:
+ 
+a) A vector internally stores a contiguous array of T objects, and
+ so has no per-element overhead at all.
+ 
+b) A deque can be thought of as a vector whose internal
+ storage is broken up into chunks. A deque stores chunks, or
+ "pages," of objects. This requires storing one extra pointer of
+ management information per page, which usually works out to a fraction of a
+ bit per element. There's no other per-element overhead because deque
+ doesn't store any extra pointers or other information for individual T
+ objects.
+ 
+c) A list is a doubly-linked list of nodes that hold T elements.
+ This means that for each T element, list also stores two pointers,
+ which point to the previous and next nodes in the list. Every time we insert a
+ new T element, we also create two more pointers, so a list requires
+ two pointers' worth of overhead per element.
+ 
+d) Finally, a set (and, for that matter, a multiset,
+ map, or multimap) also stores nodes that hold T (or
+ pair) elements. The usual implementation of a set is as a
+ tree with three extra pointers per node. Often people see this and think, 'why
+ three pointers? isn't two enough, one for the left child and one for the right
+ child?' Because it must be possible to efficiently iterate over the set, we
+ also need an "up" pointer to the parent node, otherwise determining
+ the 'next' element starting from some arbitrary iterator can't be done
+ efficiently. (Besides trees, other internal implementations of set are
+ possible; for example, an alternating skip list can be used, although this
+ still requires at least three pointers per element in the set.[1])
+Part of choosing an efficient in-memory representation of data is choosing
+the right (read: most space- and time-efficient) container that supports the
+functionality you need. But that's not the end of it by any means: Another big
+part of choosing an efficient in-memory representation of data is determining
+how to represent the data that will be put into those containers. This question
+brings us to the meat of this issue of GotW.
+Different Ways To Represent Data
+The point of Question 2 is to demonstrate that there can be a plethora of
+ways to represent the same information:
+2. You are creating a
+worldwide chess server that stores all games ever played on it. Because the
+database can get very large, you want to represent each game using as few bytes
+as possible. For this problem, consider only the actual game moves and ignore
+extra information such as the players' names and comments.
+The rest of this article uses the following terms and abbreviations:
+ 
+ 
+ 
+ K 
+ King 
+ 
+ 
+ Q 
+ Queen 
+ 
+ 
+ R 
+ Rook 
+ 
+ 
+ B 
+ Bishop 
+ 
+ 
+ N 
+ Knight 
+ 
+ 
+ P 
+ Pawn 
+ 
+ 
+ rank 
+ row on the chessboard, typically numbered
+ 1 (White's home row)
+ to 8 (Black's home row) 
+ 
+ 
+ file 
+ column on the chessboard, typically
+ numbered a (left) to h
+ (right) 
+ 
+ 
+ 
+For each of the following data sizes, demonstrate a
+format for representing a chess game that requires the indicated amount of data
+to store each half-move (a half-move is one move played by one side). For this
+question, assume 1 byte == 8 bits.
+ 
+a) 128 bytes per half-move
+One representation that would take this amount of space would be to assume
+that the program already knows the current board position (which it can deduce
+from the previous moves) and store the entire new board position using two bytes
+per square. In this case, we are mimicking one of the standard online notations,
+which uses a 'W' or 'B' or '.' to designate the side that owns the piece in the
+given square, and a 'K', 'Q', 'R', 'B', 'N', 'P', or '.' to designate the type
+of piece in the given square.
+Using this scheme, and storing the board from rank 1 to rank 8, and file a to
+file h within each rank, one possible half-move representation might be:
+ WRWNWBWQWKWBWNWRWPWPWP..WPWPWPWP......WP........................\
+ ................................BPBPBPBPBPBPBPBPBRBNBBBQBKBBBNBR
+If this is the first move, it represents "1. d4" (or, "1.
+P-Q4"), my usual opening move.
+ 
+ b) 32 bytes per half-move
+The representation in (a) seems a little wasteful, since it's in ASCII text
+that humans can read, but we really only need a machine-readable format. After
+all, the software running in front of the chess database is going to take care
+of displaying positions to the user.
+We can get down to 32 bytes per half-move by keeping the basic strategy above
+of storing the entire new board position, but this time storing only 4 bits for
+each square: we need 3 bits to store the piece type (e.g., 0 for K, 1 for Q, 2
+for R, 3 for B, 4 for N, 5 for P, or 6 for none), and 1 bit to store the color
+(which can be ignored if there is no piece on the square).
+Using this scheme, and storing the board from rank 1 to rank 8, and file a to
+file h within each rank, one possible half-move representation might consume
+this many bytes:
+ XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+ 
+ c) minimum 4 bytes and maximum 8 bytes per half-move
+We can achieve this by storing the half-move as text in old-style chess
+notation.
+Old-style "descriptive" chess notation identifies squares used
+variable-length tags like K3 and QN8, instead of using two-character tags like
+e3 and b8. To write down a half-move this way requires at least 4 characters
+(e.g., P-Q4) and possibly as much as 8 characters (e.g., RKN1-KB1, P-KB8(Q)).
+Note that no extra trailing null or other delimiter is needed because the move
+format can be decoded unambiguously.
+Using this scheme, one possible half-move representation might be:
+ P-KB8(Q)
+ 
+ d) minimum 2 bytes and maximum 4 bytes per half-move
+We can achieve this by storing the half-move as text in modern chess
+notation.
+Modern "algebraic" chess notation is more compact, and any
+half-move can be written using at least 2 characters (e.g., d4) and at most 4
+characters (e.g., Rgf1, gh=Q). Again, no special move delimiter is needed
+because the format can be decoded unambiguously.
+Using this scheme, one possible half-move representation might be:
+ gh=Q
+(Incidentally, a major advantage of this representation outside the computing
+world is that it can be written down quickly on paper by a human, even under
+time pressure. The reduction from a maximum of 8 characters to a maximum of 4
+characters, coupled with some improved conceptual simplicity, turns out to make
+a big difference to users -- also known as players.)
+ 
+ e) 12 bits per half-move
+We can get more compact still by taking a different approach: What if we were
+to store just the moving piece's origin and destination squares? To encode one
+square location requires 6 bits because there are 64 possibilities; so to encode
+two square locations to allow for both the origin and the destination to be
+recorded requires 12 bits. That suffices for usual moves, but in the case of a
+pawn promotion, however, this scheme will need more than 12 bits.
+That's already a lot better than the earlier attempts. Let's stop here for a
+moment, though, and consider how we might create auxiliary data structures to
+store such bits of information that won't play nice and fall on even byte
+boundaries.
+BitBuffer, the Binary Slayer
+3. To implement solution
+2(e), you decide to create the following class that manages a buffer of bits.
+Implement it portably, so that it will work correctly on all conforming C++
+compilers regardless of platform.
+First, note that the directive "assume that 1 byte == 8 bits"
+applied only to Question #2 -- it does not apply here. We need a solution
+that will compile and run correctly on any conforming C++ implementation, no
+matter what kind of underlying platform it's running on.
+The required interface boiled down to:
+ 
+class BitBuffer
+ {
+ public:
+ void Append( unsigned char* p, size_t num );
+ size_t Size() const;
+ void Get( size_t start, size_t num, unsigned char* dest ) const;
+ // ...
+ };
+You might wonder why the BitBuffer interface was specified in terms of
+pointers to unsigned char. First off, there's no such thing as a pointer to a
+bit in standard C++, so that's out. Second, the C++ standard guarantees that
+operations on unsigned types (including unsigned char, unsigned short, unsigned
+int, and unsigned long) won't run afoul of "hey, you didn't initialize that
+byte!" or "hey, that's not a valid value!" messages from your
+compiler. As Bjarne Stroustrup writes:[2]
+ The unsigned integer types are ideal for uses that treat storage as a bit array.
+So compilers are required to treat unsigned char (and the other unsigned
+integer types) as raw bits of storage -- which is just what we want. There are
+other approaches, but this is a reasonable one that lets us exercise our
+bit-fiddling coding skills, which happens to be a major goal of this GotW.
+The main question in implementing BitBuffer is: What internal representation
+should we use? I'll consider two major alternatives.
+Attempt #1: Bit-Fiddling Into an unsigned char Buffer
+The first idea is to implement the BitBuffer via an internal big block of
+unsigned chars, and fiddle the bits ourselves when we put them in and take them
+out. We could let BitBuffer have a member of type unsigned char* that points to
+the buffer, but let's at least use a vector so that we
+don't have to worry as much about basic memory management.
+Do you think the above sounds pretty easy? If you do, and you haven't yet
+tried to implement (and test!) it, take an hour or three and try it now. I bet
+you'll find it's not as simple as one might think.
+I'm not entirely ashamed to report that this version took me quite a bit of
+effort to write. Just drafting the initial version of the code took me more
+programming effort than I expected, and then it took a lot of debugging effort
+to find and fix all the bugs. I didn't keep track of the development effort, but
+in retrospect I estimate it took me several score compiles, including several to
+add reporting cout's to analyze intermediate values and see where things were
+going wrong, plus half a dozen sessions in the debugger stepping through code,
+to determine and fix all the problems.
+Here's the result. I don't claim it's perfect, but it passed the unit tests I
+threw at it, including single- and multi-byte appends and boundary cases. (You
+always write unit test harnesses for your code, right? And make sure your code
+passes them all, before you check the code in?) Note that this version of the
+code operates on chunks of bytes at a time -- for example, if we're using 8-bit
+bytes and have an offset of 3 bits, then we'll copy the first three bits as a
+unit and copy the last 5 bits as a unit, for two operations per byte. For
+simplicity, I also require the user to provide buffers that are a byte bigger
+than might otherwise be necessary, just so that I can simplify my own code by
+allowing a little running off the end.
+ 
+// Example 3(a): BitBuffer
+ implemented in terms of
+ // vector. Hard work. Ugh.
+ //
+ class BitBuffer
+ {
+ public:
+ BitBuffer() : buf_(0), size_(0) { }
+ 
+ // Append num bits
+ starting with the first bit of p.
+ //
+ void Append( unsigned char* p, size_t num )
+ {
+ int bits = numeric_limits::digits;
+ 
+ // first destination byte & bit offset
+ int dst = size_ / bits;
+ int off = size_ % bits;
+ 
+ while( buf_.size() >
+ off;
+ if( off > 0 )
+ buf_[dst+i+1] = (*(p+i) & mask)
+ ::digits;
+ 
+ // first source byte & bit offset
+ int src =
+ start / bits;
+ int off = start % bits;
+ 
+ for( int i = 0; i 0 )
+ *(dst+i) |= buf_[src+i+1] >>
+ (bits - off);
+ }
+ }
+ 
+private:
+ vector buf_;
+ size_t size_; // in bits
+ 
+ // Build a mask where
+ the first n bits are 1 and
+ // the rest are 0.
+ //
+ unsigned char FirstBits( size_t n )
+ {
+ int num = min( n, numeric_limits::digits );
+ unsigned char b = 0;
+ while( num-- > 0 )
+ b = (b >> 1) | (1 ::digits-1));
+ return b;
+ }
+ };
+The above code is nontrivial. Take some time to read it and to convince
+yourself that it's doing the right thing. (If you think you've found a bug,
+first write a test harness that attempts to demonstrate the bug; once the bug
+has been confirmed, please do go ahead and send me both the bug report and the
+test harness that tickles the problem behavior.)
+Attempt #2: Reusing a Standard Bit-Packed Containers
+The second idea is to note that the standard library already includes two
+containers that store bits: bitset and vector. Now, bitset is a bad
+choice simply because bitset has fixed length N and we'll be encoding
+variable-length bitstreams. No dice. Here vector, for all its other
+faults, is a tempting choice and in this case turns out to be just what the
+doctor ordered.
+The most important thing I can say about the following code is this:
+The Example 3(b) code was essentially correct on first
+writing.
+Yes, really. Between my first compile and the final code, all I did was fix a
+few syntax typos like a missing semicolon (these are, after all, things the
+compiler is supposed to find for you) and add parentheses in two places where
+I'd forgotten that % has higher precedence than +. That's it.
+ 
+// Example 3(b): BitBuffer implemented in
+ terms of
+ // vector.
+ //
+ class BitBuffer
+ {
+ public:
+ // Append num bits starting with the first bit of p.
+ //
+ void Append( unsigned char* p, size_t num )
+ {
+ int bits = numeric_limits::digits;
+ 
+ for( int i = 0; i ::digits;
+ 
+ *dst = 0;
+ for( int i = 0; i buf_;
+ };
+That writing this version was so much easier than writing Example 2(a)
+shouldn't be surprising. This version reuses existing bit-fiddling code instead
+of writing its own, it uses about 50% fewer lines of code -- and it's disproportionately
+less buggy as a result! This time I didn't even have to ask the user to supply a
+bit of extra output space just to make my Get() code simpler, as I did in the
+first version.
+I suspect that both solutions, especially the first, could probably be
+further improved -- there may be bugs I didn't detect, and maybe the code could
+be simplified a bit in ways I didn't see -- but I think they're pretty close to
+optimal in terms of both correctness and style.
+The Big Squeeze
+Let's take one final look at the compressed representation and see if there's
+anything more we can do to squeeze it down.
+4. Is it possible to store
+a chess game using fewer than 12 bits per half-move? If so, demonstrate how. If
+not, why not?
+Yes. For example, here are three ways:
+We can get down to 10 bits per half-move by encoding the destination square
+and the piece that moved there. Encoding a square requires 6 bits, as above.
+Encoding which piece moved there can be done by simply identifying the number of
+the piece, assigning an arbitrary ordering to the squares, say from rank 1 to
+rank 8 and file a to file h within each rank, and numbering the pieces in the
+order their current squares appear in that ordering. There can only be 16 pieces
+on the board, so the piece can be identified using 4 bits, for a total of 10
+bits.
+Could we do better still? Let's reason it through: We can encode all possible
+squares as destination, but usually only a minority of squares could actually be
+moved to with a legal move, so there must be some redundancy left in that part
+of our encoding. Similarly, we can represent all pieces moving to the given
+square, even though almost certainly not all pieces could move to that square --
+indeed, some pieces may not even have a legal move at all to any square --, so
+somehow we're probably encoding more than we need to encode. For example, we
+could compress the second part further by storing from 0 to 4 bits to identify
+the piece that moved: there are 1 to 16 possibilities, and if there is only one
+piece that could move to the square then we don't need to encode any bits at
+all. On decoding, we know how many possible pieces could have moved to the
+square, and so we know how many bits to pull from the input format for that
+half-move.
+We can get down to an encoding that uses at least 0 and at most 8 bits per
+half-move as follows: First, invent an ordering of legal moves; for example, we
+could order the pieces according to their squares as above, and for each piece
+order its possible moves as possible destination squares according to the same
+square ordering. Then, store the number of the actual move made using the
+minimum number of bits required; for example, the opening position has 20 legal
+moves, and to store them as a plain binary number requires ceiling(log2(20))
+= 5 bits.
+The result is that we need a minimum of 0 bits to represent each half-move.
+Zero bits are needed if there is only one possibility, a forced move. But how
+many bits could be needed in the worst case? This corresponds directly to the
+question: How many moves could there be in a legal chess position? At http://www.drb.insel.de/~heiner/Chess/README_LONG,
+the author writes: "The current known maximum is 218 (Dickins 1968):
+3Q4/1Q4Q1/4Q3/2Q4R/ Q4Q2/3Q4/1Q4Rp/1K1BBNNk w - - 0 1." The board looks
+like this:[3]
+ - - - Q - - - - 3Q4
+ - Q - - - - Q - 1Q4Q1
+ - - - - Q - - - 4Q3
+ - - Q - - - - R 2Q4R
+ Q - - - - Q - - Q4Q2
+ - - - Q - - - - 3Q4
+ - Q - - - - R p 1Q4Rp
+ - K - B B N N k 1K1BBNNk
+In this worst case, 8 bits are needed to encode the move as a plain binary
+number. On average, probably 5 bits will be required to store a typical move;
+the opening position has 20 moves, and a typical endgame with the side to move
+having, say, K+R+2P on an open board can yield about 30 legal moves if the Pawns
+are getting ready to promote, both of which cases require 5 bits to store using
+this method.
+Thinking about this briefly should convince us that this encoding ought to be
+pretty close to optimal, because it is representing directly and exactly the
+answer to the question at hand: "Which legal move was made?" We are
+using the minimum number bits to represent the possibilities for any given move
+as a plain binary number, with full knowledge of what has gone before.
+Can we do better still? Yes, although now we'll start to see diminishing
+returns as the further gains become incremental. This is because further gains
+rely on having more knowledge and/or saving only partial bits. To illustrate how
+we could do a bit better still, consider that the opening position has 20 moves,
+which we under the above scheme we would store using ceiling(log2(20))
+= 5 bits -- yet really that choice of first move theoretically holds only log2(20)
+= 4.3 bits of actual information, even assuming that all moves are equally
+likely, and on average we should require even fewer bits because the two most
+popular opening moves for White account for the majority of all chess games. In
+brief, if we can additionally gain knowledge about the relative probabilities of
+each move (for example, by building into the compression engine a deterministic
+chess-playing program that can guess which moves are better or more likely than
+others for any given position), then we could use variable-length encodings such
+as Huffman and arithmetic compression that use fewer bits to store the more
+likely moves. This trades off computing time using domain-specific knowledge in
+return for better compression.
+Conclusion
+This GotW shows how domain-specific knowledge can be applied to make a
+significant difference in the solution of a given problem.
+In summary, even without any knowledge of which moves are more likely in any
+given position, a typical 40-move (80-half-move) game can be stored in about 50
+bytes. To get a sense of how tight a representation that really is, consider:
+This concluding sentence is exactly 50 bytes long.
+ 
+Notes
+1. L. Marrie. "Alternating Skip Lists" (Dr.
+Dobb's Journal, 25(8), August 2000).
+2. B. Stroustrup. The C++ Programming Language, Special
+Edition (Addison-Wesley, 2000)
+3. I believe it should be straightforward to show that this
+is a legally reachable position: Black moved last, and the only legal move could
+have been to move the P on h3 to h2 (the P on h2 it could not have come from g3
+because there's no White piece it could have captured). Note that, sometime in
+the past, all white Ps Queened, and the easiest way to let them do that with
+minimal captures is to have every 2nd black P be captured by a white P, where
+each captured black P allows two white Ps (the capturing P and the P on the
+capturee's file) to advance to the 8th rank with no further captures. Therefore
+White's move before that could have been to capture any of Black's 10 other
+pieces on any of the 16 squares White now controls, etc. If we just say that
+White's last 10 moves were each to capture a Black piece that had itself just
+moved to the target square, and we've accounted for the last 21 half-moves
+leading to the position shown.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

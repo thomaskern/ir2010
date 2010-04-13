@@ -1,0 +1,53 @@
+
+Learn to Program with Visual Basic 6- Chapter 4
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+Learn to Program with Visual Basic 6
+Chapter 4
+I pointed out that the Picture property now reads (Bitmap). "By the way," I said, "one of the questions I'm asked most is how to set the value of the Picture property back to (None). Just double-click the value to highlight it, and then press the Delete key. Backspace will not do it."
+I asked if anyone had any questions. For the moment, no one did. I thought this would be a good opportunity to let everyone in the class do a formal exercise on their own.
+ 
+Although the projects for many of the exercises can be found on the CD (in the folder LTP VB 6\Chapter…\Additional Exercises\…), these will only be the more complex ones. Exercises like this one won't be on the CD, so don't worry if you can't find them. 
+In this exercise, we will explore the Visual Basic Properties window, and change the Name property of our form:
+ 
+Exercise
+Displaying and Modifying the Properties of the Form
+- Start a new Visual Basic Standard EXE project.
+- Select the form by clicking on it with the mouse.
+- Once the form is selected, view the Properties window by using one of the four methods discussed earlier in today's class. There's only one object in the project so the Object list box at the top of the Properties window should read Form1.
+- Underneath the Object list box are two tabs, Alphabetic and Categorized. By default, the Alphabetic tab is selected, and the other tab reads Categorized. Click on the Categorized tab and the arrangement of properties in the window changes. Now the properties are arranged by the following major property categories: Appearance, Behavior, DDE, Font, Misc (Miscellaneous), Position and Scale.
+- Look for the Name property of the form, which is part of the Misc category, instead of at the top of the list in Alphabetic view. 
+- We are now going to change the value of the Name property. Select the Name property in the Properties window by clicking on it once with your mouse. Once the Name property is selected, replace Form1 with frmMain. This change will be accepted either by pressing the Enter key or by clicking your mouse on another property.
+- You should notice that the name of the form has changed in the Object list box as well as in the title bar of the Properties window. Both should now read frmMain:
+ 
+There’s a shortcut for navigating through the list of property names in the Properties window. You can quickly scroll to a property by holding down the Shift and Ctrl keys, plus the first letter of the property name you wish to scroll to. Visual Basic will scroll to the first property name beginning with that letter. For example, if you hold down the Shift, Ctrl and M keys, Visual Basic will scroll to the MaxButton property.
+ 
+- Display the Project Explorer window by pressing the Ctrl and R keys. The name of the form should change there as well:
+ 
+next page....
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

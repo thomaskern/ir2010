@@ -1,0 +1,14 @@
+
+String methods
+String methods
+Essence
+	String str = ??????? ;
+	if ( str.equals ( ???????? ) )
+	int len = str.length ();
+	int pos = str.indexOf ( '@' ) ;
+	int pos2 = str.indexOf ( ".org" ) ;
+	String strleft = str.substring ( 0, pos ) ;
+JAVALESSONS.COM
+a.k.a. WWW.JLESSONS.COM
+Copyright © 2000,2001 System Exclusive & Multi Midi (NL) All rights
+reserved

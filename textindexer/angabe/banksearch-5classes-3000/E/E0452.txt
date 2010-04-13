@@ -1,0 +1,433 @@
+
+GotW #23: Object Lifetimes - Part II
+ 
+ 
+ GotW #23 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted
+ to Usenet. See the book Exceptional
+ C++ (Addison-Wesley, 2000) for the most current solutions to
+ GotW issues #1-30. The solutions in the book have been revised and
+ expanded since their initial appearance in GotW. The book versions also
+ incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+Object Lifetimes - Part II
+ Difficulty: 6 / 10
+Following up from #22, this issue considers a C++ idiom that's frequently
+recommended... but often dangerously wrong.
+Problem
+Critique the following idiom (shown as commonly presented):
+ T& T::operator=( const T& other ) {
+ if( this != &other ) {
+ this->~T();
+ new (this) T(other);
+ }
+ return *this;
+ }
+1. What legitimate goal does it try to
+achieve? Correct any coding flaws in the version above.
+2. Even with any flaws corrected, is this
+idiom safe? Explain. If not, how else should the programmer achieve the intended
+results?
+(See also GotW #22, and the October 1997 C++ Report.)
+Solution
+Critique the following idiom (shown as commonly
+presented):
+ T& T::operator=( const T& other ) {
+ if( this != &other ) {
+ this->~T();
+ new (this) T(other);
+ }
+ return *this;
+ }
+Summary[1]
+This idiom is frequently recommended, and it appears as an example in the
+draft standard.[2] It is also poor form and,
+if anything, exactly backwards. Don't do it.
+1. What legitimate goal
+does it try to achieve?
+This idiom expresses copy assignment in terms of copy construction. That is,
+it's trying to make sure that T's copy assignment and its copy constructor do
+the same thing, which keeps the programmer from having to needlessly repeat the
+same code in two places.
+This is a noble goal. After all, it makes programming easier when you don't
+have to write the same thing twice, and if T changes (e.g., gets a new member
+variable) you can't forget to update one of the functions when you update the
+other.
+This idiom could be particularly useful when there are virtual base classes
+that have data members, which would otherwise be assigned incorrectly at worst
+or multiple times at best. While this sounds good, it's not really much of a
+benefit in reality because virtual base classes shouldn't have data members
+anyway.[3] Also, if there are virtual base
+classes it means that this class is designed for inheritance, which (as we're
+about to see) means we can't use this idiom because it is too dangerous.
+Correct any coding flaws in the version above.
+The code above has one flaw that can be corrected, and several others that
+cannot.
+Problem #1: It Can Slice Objects
+The line "this->~T();" does the wrong thing if T is a base class
+with a virtual destructor. When called on an object of a derived class, it will
+destroy the derived object and replace it with a T object. This will almost
+certainly break any subsequent code that tries to use the object. (See GotW
+#22 for more discussion about slicing.)
+In particular, this makes life a living hell for authors of derived classes
+(and there are other potential traps for derived classes, see below). Recall
+that derived assignment operators are normally written in terms of the base's
+assignment as follows:
+ Derived&
+ Derived::operator=( const Derived& other ) {
+ Base::operator=( other );
+ // ...now assign Derived members here...
+ return *this;
+ }
+In this case, we get:
+ class U : /* ... */ T { /* ... */ };
+ U& U::operator=( const U& other ) {
+ T::operator=( other );
+ // ...now assign U members here... oops
+ return *this; // oops
+ }
+As written, the call to T::operator=() silently breaks all of the code after
+it (both the U member assignments and the return statement). This will often
+manifest as a mysterious and hard-to-debug runtime error if the U destructor
+doesn't reset its data members to invalid values.
+To correct this problem, the code could call "this->T::~T();"
+instead, which ensures that for a derived object only the T subobject will be
+replaced (rather than the whole derived object be sliced and wrongly transformed
+into a T). This replaces an obvious danger with a subtler one that can still
+affect authors of derived classes (see below).
+2. Even with any flaws
+corrected, is this idiom safe? Explain.
+No. Note that none of the following problems can be fixed without giving up
+on the entire idiom:
+Problem #2: It's Not Exception-Safe
+The 'new' statement will invoke the T copy constructor. If that constructor
+can throw (and many/most classes do report constructor errors by throwing an
+exception), then the function is not exception-safe because it will end up
+destroying the old object without replacing it with anything.
+Like slicing, this flaw will break any subsequent code that tries to use the
+object. Worse, it will probably cause the program to attempt to destroy the same
+object twice since the outside code has no way of knowing that the destructor
+for this object has already been run. (See GotW #22 for
+more discussion about double destruction.)
+Problem #3: It's Inefficient for Assignment
+This idiom is inefficient because construction almost always involves more
+work than resetting values during assignment. Destruction and reconstruction
+done together involve even more work.
+Problem #4: It Changes Normal Object Lifetimes
+This idiom breaks any code that relies on normal object lifetimes. In
+particular, it breaks or interferes with all classes that use the common
+"initialization is resource acquisition" idiom. In general, it breaks
+or interferes with any class whose constructor or destructor has side effects.
+For example, what if T (or any base class of T) acquires a mutex lock or
+starts a database transaction in its constructor and frees the lock or
+transaction in its destructor? Then the lock/transaction will be incorrectly
+released and reacquired during an assignment -- typically breaking both client
+code and the class itself. Besides T and T's base classes, this can also break
+T's derived classes if they rely on T's normal lifetime semantics.
+Some will say, "But of course I'd never do this in a class that
+acquires/releases a mutex in its ctor/dtor!" The short answer is,
+"Really? And how do you know that none of your (direct or indirect) base
+classes does so?" Frankly, you often have no way of knowing this, and you
+should never rely on your base classes' working properly in the face of playing
+unusual games with object lifetimes.
+The fundamental problem is that this idiom subverts the meaning of
+construction and destruction. Construction and destruction correspond exactly to
+the beginning/end of an object's lifetime, at which times the object typically
+acquires/releases resources. Construction and destruction are not meant to be
+used to change an object's value (and in fact they do not; they actually destroy
+the old object and replace it with a lookalike that happens to carry the new
+value, which is not the same thing at all).
+Problem #5: It Can Still Break Derived Classes
+With Problem #1 solved by calling "this->T::~T();" instead, this
+idiom only replaces the "T part" (or "T subobject") within a
+derived object. Many derived classes can react well to having their objects'
+base parts swapped out and in like this, but some may not.
+In particular, any derived class that takes responsibility for its base
+class' state could fail if its base parts are modified without its knowledge
+(and invisibly destroying and reconstructing an object certainly counts as
+modification). This danger can be mitigated as long as the assignment doesn't do
+anything extraordinary or unexpected from what a "normally written"
+assignment operator would do.
+Problem #6: It Relies on Unreliable Pointer Comparisons
+The idiom relies completely on the "this != &other" test. (If
+you doubt that, consider what happens in the case of self-assignment.)
+The problem is that that test is not guaranteed to do what you might think:
+While the standard guarantees that pointers to the same object must compare
+equal, it doesn't guarantee that pointers to different objects must compare
+unequal. If this happens, the assignment won't be done when it should. (See GotW
+#11 for more about the "this != &other" test.)
+For those who think that this is pedantic, a brief thought from GotW
+#11: Any copy assignment that "must" check for self-assignment is
+not exception-safe.[4] [Note: See Exceptional
+C++ and the Errata page for
+updated information.]
+There are other potential hazards that can affect client code and/or derived
+classes (such as behaviour in the presence of virtual assignment operators,
+which are always a bit tricky at the best of times), but this should be enough
+to demonstrate that the idiom has some serious problems.
+So What Should We Do Instead?
+If not, how else should the programmer achieve the
+intended results?
+The idea of having one member function do the work of both kinds of copying
+(copy construction and copy assignment) is good: It means that the code only
+needs to be written and maintained in one place. This idiom just chose the wrong
+common function, that's all.
+If anything, the idiom is exactly backwards: copy construction should be
+implemented in terms of copy assignment, rather than the reverse. For example:
+ T::T( const T& other ) {
+ /* T:: */ operator=( other );
+ }
+ T& T::operator=( const T& other ) {
+ // the real work goes here
+ // (presumably done exception-safely, but now it
+ // can throw whereas throwing broke us before)
+ return *this;
+ }
+This has all the benefits of the original idiom, and none of the problems.[5]
+For prettiness, you might write a common private helper function that does the
+real work, but it's pretty much the same:
+ T::T( const T& other ) {
+ do_copy( other );
+ }
+ T& T::operator=( const T& other ) {
+ do_copy( other );
+ return *this;
+ }
+ T& T::do_copy( const T& other ) {
+ // the real work goes here
+ // (presumably done exception-safely, but now it
+ // can throw whereas throwing broke us before)
+ }
+Conclusion
+The original idiom is full of pitfalls, it's often wrong, and it makes life a
+living hell for the authors of derived classes. I'm sometimes tempted to post
+the above code in the office kitchen with the caption: "Here be
+dragons."
+From the GotW coding standards:
+ 
+- prefer writing a common private function to share code between copying
+ and copy assignment, if necessary; never use the trick of implementing copy
+ assignment in terms of copy construction by using an explicit destructor
+ followed by placement new, even though this trick crops up every three months
+ on the newsgroups (i.e., never write:
+ T& T::operator=( const T& other )
+ {
+ if( this != &other)
+ {
+ this->~T(); // evil
+ new (this) T( other ); // evil
+ }
+ return *this;
+ }
+ 
+Notes
+1. I'm ignoring pathological cases (e.g., overloading
+T::operator&() to do something other than return this). GotW
+#11 mentioned a few.
+2. In the draft standard, this example was intended to
+demonstrate the object lifetime rules, not to recommend a good practice (it
+isn't!). For those interested, here it is (slightly edited for space) from
+3.8/7:
+ [Example:
+ struct C {
+ int i;
+ void f();
+ const C& operator=( const C& );
+ };
+ const C& C::operator=( const C& other)
+ {
+ if ( this != &other )
+ {
+ this->~C(); // lifetime of '*this' ends
+ new (this) C(other);
+ // new object of type C created
+ f(); // well-defined
+ }
+ return *this;
+ }
+ C c1;
+ C c2;
+ c1 = c2; // well-defined
+ c1.f(); // well-defined; c1 refers to
+ // a new object of type C
+ --end example]
+As further proof that this is not intended to recommend good practice, note
+that here C::operator=() returns a const C& rather than a plain C&,
+which needlessly prevents portable use of these objects in standard library
+containers.
+From the GotW coding standards:
+ 
+- declare copy assignment as "T& T::operator=(const T&)"
+ 
+- don't return const T&; although this would be nice since it prevents
+usage like "(a=b)=c", it would mean you couldn't portably put T
+objects into standard library containers, since these require that assignment
+returns a plain T& (Cline95: 212; Murray93: 32-33)
+ 
+3. See also Scott Meyers' "Effective C++".
+4. While you can't rely on the "this != &other"
+test, there's nothing wrong with using it as an attempt to optimize away known
+self-assignments. If it works, you've saved yourself an assignment. If it
+doesn't, of course, your assignment operator should still be written in such a
+way that it's safe for self-assignment. There are arguments both for and against
+using this test as an optimization, but that's beyond the scope of this GotW.
+5. True, it still requires a default constructor and it may
+still not be optimally efficient, but you can only get optimal efficiency by
+using initializer lists (initializing the member variables during construction
+as one step, rather than constructing them and then assigning them as two
+steps). Of course, doing that would sacrifice the code commonality, and arguing
+those tradeoffs is again beyond the scope of this GotW.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

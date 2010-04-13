@@ -1,0 +1,500 @@
+
+Taking it to the Web
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Tour
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Taking it to the Web
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Read Document 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6GuidedTour.exe 
+ 
+ 
+	 
+ 780 KB Microsoft Word file 
+	
+	
+ 
+	 
+ 4 min @ 28.8 Kbps 
+	
+	
+	 
+	
+	
+	
+	 
+ Get Office file viewers 
+ 
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Getting Started 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Setup Instructions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating the Project and Adding Components 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Linking and Implementing Controls 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Running and Testing the Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Building the MFC Application 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Advanced Debugging 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Taking it to the Web 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+How do you take this application directly to the Web? Because you chose a flexible architecture of ActiveX, COM, Dynamic HTML, and HTML the transition will be smooth. 
+- To run this Guided Tour application in Internet Explorer, just point Internet Explorer at C:\Visual C++ 6.0 Guided Tour\main.htm (As you may have noticed in the MFC application, the Fitch & Mather logo fades in through the use of Dynamic HTML.)
+- Use the application in the same manner that it was used when the application was hosted in MFC. 
+The Composite Control (multimedia player and database front end) is a lightweight ActiveX control, conducive to downloading and ready to run in Internet Explorer. Though you added much additional functionality to it, you kept it lightweight by using the excellent COM support present in ATL.
+By using the Media Player, the application created here couldn&#146;t be better suited to a Web scenario from a multimedia point of view. The video files displayed are Active Streaming Format (ASF), which are designed to be streamed across the Web but are also great for stand-alone use. The Media Player also supports RealVideo, the most popular streaming video format on the Internet.
+The display of PowerPoint slides in an Internet scenario is accomplished (quite transparently to the end user) through the Active Document Containment capabilities of Internet Explorer 4.0 (Visual C++ 6.0 also makes it easier than ever to add those same capabilities to your own MFC applications). Any client using Internet Explorer could thus use the application presented here simply by downloading the free PowerPoint 97 viewer from Microsoft PowerPoint Web site.
+The data was stored in Microsoft Access for this Guided Tour because that product is powerful, easy to set up, and easy to use. The data could be stored anywhere. The data access code added was OLE DB consumer code, so the data could be stored in any OLE DB or ODBC compliant database, including Oracle, DB2, SQL Server&#153; and more. 
+In this Guided Tour, you have used many of the new features in Visual C++ 6.0 to create a multitier application, the Fitch & Mather Online Educational System. You&#146;ve seen how Visual C++ makes ActiveX controls, data access components, rich user interfaces and Internet-ready developers more productive in creating the highest performance code, including efficient components.
+These are a few of the qualities that make Visual C++ 6.0 the most productive C++ tool for the highest performance enterprise development. 
+A note for those adding database support to their MFC applications from the MFC AppWizard (Step 2).
+For any MFC AppWizard project using Kagera (the OLE DB Provider for ODBC Drivers) there is the following line in the generated recordset that causes problems in some scenarios:
+propset.AddProperty(DBPROP_UPDATABILITY,
+ DBPROPVAL_UP_CHANGE);
+To work around this, users should change the line to look like:
+propset.AddProperty(DBPROP_UPDATABILITY,
+ DBPROPVAL_UP_CHANGE | DBPROPVAL_UP_INSERT | DBPROP_UP_DELETE);
+This issue will be fixed in the release version of Visual C++ 6.0.
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

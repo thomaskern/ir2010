@@ -1,0 +1,362 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Persistant Properties With C++ - the Readable Way
+This article was contributed by 
+Adi Degani.
+Environment: VC6
+Introduction
+During my many years of C++ programming I ran into so many cases where there was a collection of persistant properties to be maintained by means of system registry, INI files, database tables etc. etc., and as a fanatic for clear and readable code I always hated to see how my code get cluttered each time I wanted to set a new property or query for a previously saved one.
+When STL first came out it was fascinating to see how easy it was to set a new value in a map container and query for it later on, just by using the [] operator. I mean, if I could only do things like: 
+CDatabaseTable dbt("my_table");
+dbt["Name"] = "Joe Shmoe";
+cout 
+class CPropertiesStorage
+{
+public :
+ class CPropertiesStoragePair
+ {
+ public :
+ Key first;
+ Value second;
+ CPropertiesStoragePair(CPropertiesStorage& stg)
+ : m_storage(stg) {}
+ CPropertiesStoragePair(CPropertiesStorage& stg, 
+ const Key& k)
+ : m_storage(stg), first(k) {}
+ CPropertiesStoragePair(CPropertiesStorage& stg, 
+ const Key& k, 
+ const Value& v)
+ : m_storage(stg), first(k), second(v) {}
+ CPropertiesStoragePair(const CPropertiesStoragePair& sp)
+ : m_storage(sp.m_storage), first(sp.first), 
+ second(sp.second) {}
+ CPropertiesStoragePair& operator = (const Value& v)
+ {
+ second = v;
+ m_storage.Write(first, second);
+ return *this;
+ }
+ CPropertiesStoragePair& operator = 
+ (const CPropertiesStoragePair& sp) const
+ {
+ if( &sp != this )
+ {
+ m_storage = sp.m_storage;
+ first = sp.first;
+ second = sp.second;
+ }
+ return *this;
+ }
+ operator const Value&() const
+ {
+ return (const Value&)second;
+ }
+ private :
+ CPropertiesStorage& m_storage;
+ };
+ friend class CPropertiesStoragePair;
+ CPropertiesStorage() {}
+ virtual ~CPropertiesStorage() {}
+ CPropertiesStoragePair operator[] (const Key& k)
+ {
+ CPropertiesStoragePair sp(*this, k);
+ Read(sp.first, sp.second);
+ return sp;
+ }
+protected :
+ virtual void Read(const Key& k, Value& v) = 0;
+ virtual void Write(const Key& k, const Value& v) = 0;
+};
+There are two template parameters, the key type and the value type. This is just like what you should already know from your STL experience. The only thing that is left is two pure-virual methods where you can implement the actual read and write mechanism according to the storage you're using. I've also decided not to return any result form those two functions because at that stage I can't be totally sure of how you might implement those two methods. I figured
+that the actual implementation would throw some kind of exception it something bad happens.
+Sample
+Here is a sample code that uses an INI file as the storage media:
+class CIniFileSection 
+ : public CPropertiesStorage
+{
+public :
+ CIniFileSection(const char* lpszIniFileName, 
+ const char* lpszSection)
+ : m_sIniFileName(lpszIniFileName), 
+ m_sSection(lpszSection)
+ {
+ }
+protected :
+ const std::string m_sIniFileName;
+ const std::string m_sSection;
+ virtual void Read(const std::string& k, std::string& v)
+ {
+ char szBuf[200];
+ GetPrivateProfileString(m_sSection.c_str(), 
+ k.c_str(), 
+ "", 
+ szBuf, sizeof(szBuf), 
+ m_sIniFileName.c_str());
+ v = szBuf;
+ }
+ virtual void Write(const std::string& k, 
+ const std::string& v)
+ {
+ WritePrivateProfileString(m_sSection.c_str(), 
+ k.c_str(), 
+ v.c_str(), 
+ m_sIniFileName.c_str());
+ }
+};
+int main()
+{
+ CIniFileSection r("d:\\test.ini", "main");
+ r["key1"] = "value1";
+ std::cout 
+internet.commerce
+ 
+Be a Commerce Partner
+Find A Web Developer
+Send a Press Release
+Computer Training
+Build Flash Online
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Compare Prices
+For Web Graphics
+Free DNS Offer
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

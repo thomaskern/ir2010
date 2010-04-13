@@ -1,0 +1,375 @@
+
+VB Helper: Review: Palm OS Development Environments
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Review: Palm OS Development Environments 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Interesting survey results: How Do You Use Your Palm?
+ Overview
+ Development Environments
+ 
+ AppForge
+ NS Basic
+ CASL
+ Code Warrior
+ GCC tools
+ Performance
+ Development Environment Summary
+ 
+ Books
+ 
+ 
+- Palm Programming in Basic
+ 
+- Palm OS Programming from the Ground Up
+ 
+ Visitor Comments
+Overview
+A PDA (Personal Digital Assistant) are little hand-held computers costing a few hundred dollars that store phone numbers, address, appointments, and other PIM (Personal Information Management) information. They have relatively little memory (typically a few MB total) and no hard drives. Permanent storage is in non-volatile memory. PDAs also have a much smaller amount (several KB) of volatile memory that an application can use for temporary calculations. This volatile memory is much faster than the non-volatile memory. PDAs run the Palm OS operating system.
+The CPU in a PDA runs at a much slower clock speed than those in a desktop computer. A PDA may run at 15 MHz while a modern desktop system runs at more than 1 GHz.
+PDAs have very small screens (160 x 160 pixels) and very limited color. Only the highest-end models have 16-bit color. Some of the other expensive models have 8-bit color, while others have 1-bit (monochrome) or 2-bit (4 shades of gray) color. The screens are composed of LCDs so they have limited contrast and slow refresh rates. That means no high-quality animation.
+PDAs do not have keyboards (although you can buy keyboards to attach to them these days). You enter data using a stylus to click buttons and lists, or to write in the little box at the bottom of the PDA. Text recognition software converts your writing into characters. It's easier than you might think, although it is slower than typing.
+Together these facts mean there is a limit to what you can do with a PDA. They are not designed for big number crunching applications, complex algorithms, or highly graphical display. They are ideal for simple data entry and retrieval.
+In contrast to PDAs, Pocket PCs are slightly bigger and more powerful. They typically run Palm OS or Windows CE. Note that you can use Visual Basic for Windows CE to write applications for the Windows CE platform.
+The following sections describe some of the PDA development environments available and some books I've used to learn about some of this. If you have experiences you would like to share, email them to me.
+Development Environments
+Note that most of these products provide at least some cross-platform development capabilities. For example, CASL can produce programs that run under Palm OS or Windows. Depending on which product you buy, AppForge can build programs for Palm OS or the Pocket PC.
+AppForge
+AppForge is a very popular add-on that allows you to build palm applications using Visual Basic 6. Because you get to use Visual Basic, development is relatively fast. AppForge claims they will support .NET at some point.
+Unfortunately to run the program requires a shared library called a "booster pack" installed on the PDA. Recent boosters have taken up about 340KB (which is a lot on a PDA with only a few MB of total memory) and rumors say the next version will take around 400KB. Because the boosters contain a lot of shared code, they greatly reduce the size of the application part.
+The boosters contain a collection of new controls that AppForge calls "ingots." AppForge provides quite a few of these while some other development packages provide only a few controls. CASL, for example, provides only Button (although it can be configured as a CheckBox), Label, Text Field, Selector (like a ComboBox), and File Selector.
+Different PDA devices require different boosters. Most are free but a few require the user to pay a small fee (around $10). In any case, the user would have to install these separately.
+Some users have complained that the boosters make execution slow. I have talked to one person, however, who uses AppForge to make a professional card game that uses artificial intelligence and he says performance is adequate, particularly on the newer more powerful PDAs available today.
+AppForge is expensive. A developer's license costs $699 and the personal edition costs $129. The personal edition
+doesn't come with scroll bars, sliders, a "widget" control, classes, and a few other things. You can download a 30-day demo from their Web site.
+NS Basic
+NS Basic is a vesion of BASIC, although it's much less powerful than Visual Basic and the development environment is much weaker. I've used it a fair amount and was annoyed by the compiler's poor error messages, which make it hard to find bugs. It provides no runtime debugger and sometimes lets simple errors through. For example, it didn't realize that this was an error. The program crashed at runtime.
+ For i = 1 To 10
+ For i = 1 To 10
+The language also has some restrictions that made it very hard for me to use. It doesn't support recursion (where a subroutine calls itself). Apparently the reason recursion doesn't work is they put all variables in heap memory. This memory is non-volatile so the PDA retains values in it even if you turn the PDA off and then back on. Unfortunately it also doesn't allow each version of the recursive routine to have its own copies of its variables.
+This variable storage strategy also makes the executable relatively slow because values must be pulled in and out of the slower non-volatile memory rather thay working in whatever faster memory is available on the PDA. 
+Given the PDA's normal limitations on memory and speed, you can ask whether it matters much that NS Basic makes things a little slower. You won't be performing complex numerical simulations on the PDA anyway. NS Basic can probably handle simple data entry tasks just fine.
+Like AppForge, NS Basic requires a runtime on the PDA. However, this one is only 33KB, is the same runtime for all PDAs (as opposed to separate boosters for different hardware), and it's free. At $149.95, NS Basic is much less expensive than AppForge.
+CASL
+CASL (Compact Application Solution Language) is a simple language for building PDA applications. It took me about an hour to read the documentation and learn all I needed to know to start building applications. It shouldn't take you very long, either. The compiler is extremely fast so you can test things very quickly.
+CASL has a few troublesome restrictions. It doesn't have the equivalent of ByRef and ByVal. All scalar variables are passed ByVal and all arrays are passed ByRef. You can get around this by using global variables or passing arrays containing 1 element, but it occasionally complicates your code. CASL doesn't have classes, but it's not hard to live without those.
+A more serious restriction is that CASL provides no features to manipulate bitmaps (neither does NS Basic and probably others). You can display a bitmap, but you cannot modify its pixels. This isn't a big deal for many applications but it's inconvenient for the graphical programs I like to write.
+Like AppForge and NS Basic, CASL can use a runtime on the PDA. It's about 59KB and is free. However, CASLpro lets you translate your CASL application into pure C code. Then you can compile it using the GCC compiler (the CASL Web site has simple instructions for downloading and installing the necessary tools) to build a standalone application that doesn't require the runtime library.
+The resulting application is much bigger, however, so you may be better off using the runtime library if you plan to have more than one CASL application on the same PDA. For example, two small applications compiled from C code might take around 60KB each for a total of 120KB. Using the runtime, they would be around 3-4KB so the total with the library would be 66KB.
+On the other hand, the compiled C version is faster than the interpreted version. In one program, the interpreted vesion took about 5 times as long as the compiled version. This means you might want to distribute more CPU-intensive programs compiled and others with the runtime library.
+At CASL is relatively inexpensive. The normal version is $84.95 and CASLpro (which allows you to compile into C code) is $200. The demo vesion available on their Web site is restricted, but not so restricted that you can't do a lot with it. You can definitely get far enough to decide whether you want to buy the full product.
+Overall, CASL seems to be the best value for the money.
+Code Warrior
+Code Warrior is a very popular C programming environment. Development will take longer than using AppForge, NS
+Basic, or CASL, particularly if you don't already know C. I've been using it for a little while now and it seems okay. It produces small, fast code and doesn't require a runtime library. A "Duck Hunt" CASL demo is able to do an okay job of animating one duck and one bullet. A Sub Hunt example by Palm Computing (probably written in C or even assembly) can animate dozens of objects very smoothly. I'm hoping for comparible performance from Code Warrior.
+Code Warrior does have three disadvantages, however. First, at $499 it's quite expensive.
+Second, you need to use C or C++. The languages themselves aren't too bad but the event loop processing can be rather complicated. If you've done any Windows programming in C/C++, you've seen this before.
+Finally, the IDE is a bit cumbersome. It's better than some of the others I've seen (for example, NBasic) but it falls short of Visual Basic's ease of use.
+Click here to download the demo version.
+GCC tools
+GCC (Gnu C Compiler) is a "free" ware compiler. It is acknowledged as one of the best C compilers and it costs you nothing except the time it takes to install it. The catch is installing it and the other tools you need is non-trivial so it may take a lot of time. The result is also not an integrated development environment such as those provided by the other products described here. It is more suitable for those who have experience with command-line development like you see on Unix systems.
+Note that CASLpro uses GCC to compile its code when you build a C-code executable. It is possible that you could use the CASL instructions for installing GCC and related tools and then use GCC directly, rather than using the instructions found on at palmos.com. I haven't tried it.
+Performance
+I ran code similar to the following for NS Basic, CASL, CASL compiled as C code, and Code Warrior.
+ 
+For trial = 1 To 100
+ For i = 1 To 100
+ x = i * i
+ Next i
+Next trial 
+Code Warrior was so fast I had to run the first loop from 1 to 10,000 to get meaningful values.
+The following table shows the approximate number of times each program ran its inner loop per second both on the PDA (Visor Neo) and on the POSE emulator.
+Times on POSE emulator
+ EnvironmentLoops per Second
+ NS Basic 625 
+ CASL 407 
+ CASL, compiled C code 1,319 
+ Code Warrior 41,667 
+Times on Visor Neo PDA
+ EnvironmentLoops per Second
+ NS Basic 333 
+ CASL 488 
+ CASL, compiled C code 2,137 
+ Code Warrior 17,857 
+Naturally different operations will run at different speeds so your results will vary if you need to perform different operations.
+Development Environment Summary
+ ProductPriceProsCons
+ AppForge $129 - $699 VB 6, very fast development expensive, huge runtime library, different runtimes for different PDAs 
+ NS Basic $149.95 relatively fast development, inexpensive, small runtime library slower execution, weaker language, weaker development environment, no debugger 
+ CASL $84.95 - $200 Simple language, fast development, fast compiler, can compile into C code, inexpensive, relatively small runtime library, nice debugger Some language restrictions 
+ Code Warrior $499 Fast execution, no runtime library, nice debugger(?) More complicated environment means slower development, expensive 
+ GCC Tools Free Free, high-quality compiler Difficult installation, command-line interface 
+Books
+So far I have two books on PDA programming but I haven't had a chance to read them in detail. I'll expand these reviews when I've had a chance.
+Palm Programming in Basic
+ 
+By Jon Kilburn, 2002, apress, 388 pages, $27.97.
+If you want to get started with PDA programming, this book provides a useful introduction to three of the most popular non-C development environments: AppForge, NS Basic, and CASL. While CASL isn't really a BASIC language, it's easy enough to learn that you shouldn't have much trouble with it.
+The book begins by describing Palm devices and their restrictions. It then explains the Palm Operating System Emulator (POSE) that you can download and use to test PDA programs.
+The book then goes on to describe the three programming environments and shows how to build a sample GolfPro application using each. It finishes with a discussion of conduits (PDA programs that transfer data to and from the desktop system), Web clipping applications, and PDA utilities.
+ Amazon.com
+ 
+ Amazon.co.uk
+Palm OS Programming from the Ground Up
+ 
+By Robert Mykland, 2000, Osborne/McGraw-Hill, 507 pages, $34.99.
+This book talks about programming PDAs using C in the Code Warrior development environment. The CD-ROM contains a free version demo of Code Warrior and I thought that would be all I needed to get started. Unfortunately I couldn't get it to run and that version no longer exists on the metrowerks Web site. Now I have gotten the latest demo vesion to run but there are a few changes so some of the text doesn't match the development environment.
+This book is two years old and changes have also been made to the Palm OS so some of the material is inaccurrate. It does talk about many of the PDA's major systems, however: databases, controls, lists, categories, and so forth. It describes some development tools including CodeWarrior, GCC, POSE, and a few others.
+Overall the book provides some useful background and working through its examples to make them work would probably be a worthwhile exercise. If you don't already know C, however, you should start with an introductory C book.
+ Amazon.com
+ 
+ Amazon.co.uk
+Visitor Comments
+By Adam Kelly.
+I have a Palm, great as an "instant on" 
+way to get at my Outlook contacts and calendar. My "fast" Laptop still boots 
+to slowly when I just need that phone number or date! However I have a 
+project in mind for remote wireless access of data from one of our systems 
+and Pocket PC, specifically the COMPAQ IPAQ's, look better suited to the 
+tasks. App forge does software for Pocket PC as well ,and there are the VB 
+variants from MS for Pocket PC. Any chance of a similar review for MS Pocket 
+PC's soon or does this indicate that your needs can be met by Palms?
+[I don't know about the Pocket PC. I would like to check them out but I'm losing most of my work time to babysitting chores starting tomorrow. If anyone has any input, please send it to me. Rod]
+By Peter Nish.
+Just thought I'd share my thoughts (for what they're worth) on Palm development
+using AppForge. I haven't had vast experience with AppForge, in fact I've only used
+the evaluation version.
+One thing that was immediately obvious to me was that if you're an experienced
+VB developer, AppForge, in my opinion is definitely the way to go.
+As you know, AppForge is a VB Addin, meaning all Palm development is done
+from within the VB IDE using most of the tools we're already familiar with.
+Appforge has its own fairly comprehensive set of controls (known as Ingots)
+which replace the standard VB Active-X controls.
+Within an hour or so of installing AppForge and a brief flick through the manual,
+I had a simple working application which allowed two Palm PDAs to communicate
+via their infrared ports.
+Another nice thing about AppForge is that it also supports development on the
+Pocket PC which is definitely a good thing considering Microsoft's push into the
+handheld market (not to mention HP & Compaq).
+By Chris Wallace.
+Late last year I investigated and worked a little in building apps for
+the Palm and PocketPC (PPC) platforms. AppForge is the best product for
+the Palm for us VB types. I used embeddedVB for the PPC (with SQL Server
+2000 CE).
+Attached (22K) is a set of slides I used for that presentation. My conclusion
+was that the Palm was not powerful enough for some applications, but was
+great for small or simple applications. For enterprise level
+applications I suggested using eVB on the PPC. 
+Now, I believe that the .NET Compact Framework platform is far superior
+to the old eVB for building these apps (just now out in beta). I have
+scheduled Jeff Geller of Microsoft Consulting Services to present at our
+group on August 26, 2002, Meeting topic will be: ".NET Mobile
+Technology". Heavy emphasis will be on PPC and the .NET Compact
+Framework.
+[Chris runs the excellent Denver Microsoft Visual Studio .NET User Group. I'll have to try to haul my lazy carcass down to that meeting. Rod]
+By John Cullen.
+You may be interested to know that a popular UK computing magazine PCPlus included a full version of Code Warrior Professional v5 on the cover disk of their June edition. Obviously it's not the latest version, and I am not sure therefore if it can be used for developing Palm apps, however if it can then it would a lot cheaper to buy a back issue of the magazine than a copy of the latest version! It may also be available on other cover disks (now or in the future) so potential developers may want to keep a lookout!
+By Paul Nicholls.
+I tried a demo version of AppForge, but didn't like it because it took up quite a chunk of space with its "Booster", which sounds like it enhances your programs, but really it is an essential runtime. This was especially annoying as one program that I was going to make with it would only be a few k without the Booster. I ended up making it in PilotMag (doesn't use VB or Basic language), which doesn't have any kind of runtimes, instead. It is only 4k as opposed to about that PLUS over 50k of Booster! If only there was some decent VB clone or pluggin for Palm OS which didn't need any runtimes! I would much prefer to have that than have to learn a whole new language! 
+There are 3 URLs mentioned in the About box of PilotMag, all lead to the same site EXCEPT that because they are all hosted on different servers, the first one appears to have no popups, the second has a popup and the third has a closable ad inside the page(it's on Geocities). The sites are:
+- http://www.users.cg.yu/montesoft
+- http://montesoft.tripod.com
+- http://www.geocities.com/montesoft
+Jon Kilburn, author of
+Palm Programming in Basic, says:
+Thought I'd make a few comments on your comparision of AppForge, NS Basic and CASL. Before I do that, you should also look into Pocket Studio, which is written in Delphi and use the Delphi language as a base. Version one takes a bit, but overall, faster to pick up (of course I know Delphi) than CW was. Now on to the comments:
+- AppForge - You didn't mention several items of importance, including that the CE version requires a PER DEVICE royaltee for Booster. There are several other things of note, or that you can extend anything you want by creating a fuser (which is similiar to a shared library) in C and calling it from your Palm App.
+First and foremost, when it comes to database sorting and data access AppForge contains the MOST robust data manipulation features of them all. Including the ability to sort (ie index) on multiple columns and search on any column. The database functions are FAR superior to those in the competitors. This is tempered by the performance. However, AppForge 2.1 includes the ability to develop your own ingots (which can be made to work in both environements) using their developer library. They also include a number of enhanced controls with events, so you can subclass their grid object (for example) and control it down to the cell level. It also includes the Universal Conduit which makes building simple conduits a breeze, you can literally build a conduit in seconds. They also have an example using the CDK to build a conduit which will write to AppForge PDBs. 
+- NS Basic - NS Basic suffers from poor performance as a result of such things as using databases to store memory variable and that all numeric values are stored as floats (reguardless of type). There is also no conduit kit and no debugger. You can build conduits using the CDK and I believe there is an example on the Yahoo groups forum. They have full support for Shared Libraries (written in C). 
+- CASL - This language just plain works. Period. It's rock solid and with the new version 3.3 they have a grid object which supports all types of data including labels, combo boxes, images, etc. Database performance is very fast. They also have full support for Shared Libraries (written in C), and they have a conduit kit. Their conduit is kind of screwy since you define the sync type inside the palm application rather than at the conduit level. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

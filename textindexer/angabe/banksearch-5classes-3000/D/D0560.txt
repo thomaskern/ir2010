@@ -1,0 +1,109 @@
+
+Hoskinson's Web Server Query Tool
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ Hoskinson's Web Server Query Tool 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+Have you ever wondered what kind of 
+HTTP server software a particular Web site is running? Now you can find 
+out with Hoskinson's Web server query tool. This tool is written 
+completely in Java, and will run in any JDK 1.1 - compliant VM. I have 
+tested it using the Sun JDK 1.2, and the Microsoft VM Build 
+5.00.3167.
+How does this tool 
+work?
+First, this tool confirms the identity 
+of the host by doing a name server lookup. Second, it attempts to connect 
+to an HTTP daemon running on port 80. If successful, it gets the HTTP 
+"Server" header (which is the name of the Web server software), and displays 
+it to the end user. 
+If the server in question is running 
+HTTP on another port, you can still query it using this tool. Simply 
+append the port number to the host name (separated by a ":"), as shown 
+below:
+If you are interested in using this 
+tool, read both the disclaimer and the license, and then download the tool and the source code. If you are a Java 2 user (JDK 1.2.x), you can download 
+an executable JAR version, and if you are a Microsoft VM user, you can 
+download a Win32 EXE version. To run it, execute one of the 
+following commands:
+Sun 
+JDK:
+java qryHTTPd
+---- or ----
+javaw qryHTTPd
+Microsoft 
+VM:
+jview qryHTTPd
+---- or ----
+wjview qryHTTPd
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

@@ -1,0 +1,148 @@
+
+Stroustrup: The Design and Evolution of C++
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research
+The Design and Evolution of C++
+Addison-Wesley, ISBN 0-201-54330-3.
+Here is
+- 
+the preface,
+- 
+the Notes to the reader
+explaining the structure of the book, and
+- 
+some errata
+to the 1st and 2nd printings.
+- 
+a C++ glossary with references to sections of D&E.
+Back Cover text:
+Written by
+Bjarne Stroustrup, the designer of C++, this book presents the
+definitive insider's guide to the design and development of the C++
+programming language. Without omitting critical details or getting bogged
+down in technicalities, Stroustrup presents his unique insights into the
+decisions that shaped C++. Every C++ programmer will benefit from
+Stroustrup's explanations of the 'why's' behind the language.
+The Design and Evolution of C++ is written in a well-organized,
+easy-ro-read style which is often instructive and occasionally entertaining.
+Key insights offer the beginner logical 'hooks' on which to hang
+understanding of the details of the language. This book also provides
+information and detailed discussions of key design decisions that will add
+to the expert's understanding.
+Features:
+- 
+Provides insights into the aims, principles, and real-world constraints
+which shaped C++,
+- 
+Describes design decisions for individual language features,
+- 
+Shows the relationships between C++ language features and the design and
+programming techniques supported by C++,
+- 
+Discusses the design of the latest language features: templates, exceptions,
+run-time type information, and namespaces.
+In this book, Stroustrup dissects the decisions made in the development of
+the language to present a case study in 'real object-oriented language
+development' for the working programmer. In doing so, he presents his views
+on programming and design in a concrete and useful way that makes this book
+a must-read for every C++ programmer.
+For translations, see
+my publication list and
+my cover gallery.
+Review
+Here are a few paragraphs from a review of D&E by Al Stevens
+written for Dr. Dobb's Journal, August 1994
+(naturally, I have picked from my favorite bits of that review, but I haven't
+warped the sense of the review, omitted any damning criticisms,
+or in any way edited the paragraphs I quote):
+This is an important book, an important addition to the culture, not only
+for its historical perspective, but for the insight that it provides into the
+process of language definition, development, and specification.
+You learn a lot about C++ programming, even though that's not
+Stroustrup's primary purpose. In explaining why he accepted or rejected proposed
+features, Stroustrup offers examples of alternatives that reveal better ways to
+use C++ -- ways made possible by the underlying behavior of the language, ways
+that programmers discovered rather than designed. He often expresses his own
+surprise at their discovery, which adds insight to the complexities of the
+language. Even its creator has to discover (or be told about) an idiom that
+applies the language's underlying behavior to the expression of a particular
+solution.
+The Design and Evolution of C++ is a study in language structure and
+design, revealing Stroustrup's resolute philosophy about how a programming
+language should work and what compromises are necessary to assure its success.
+Most criticisms of C++ fall into two categories, the legacy of language
+constructs that descended from C, and its static (compile-time) type checking
+system, which purists view as being less than object-oriented. Stroustrup deals
+with both. First, he could have built a better language instead of a better C.
+He could have assigned less importance to compatibility with C. "Within C++,
+there is a much smaller and cleaner language struggling to get out," which he
+says "would ... have been an unimportant cult language." Second, he is committed
+to the concept of static (as opposed to dynamic) type checking as being
+inherently safer and essential to retain the efficiency of C. Without that
+guarantee, programmers used to C's efficiency will not switch to a new language
+no matter what promise it holds.
+We programmers sometimes believe that programming languages come from one
+of two places: large paradigm-polluting bureaucracies belching out behemoths
+such as COBOL and ADA, or independent free spirits who, in one bright light of
+inspiration, sit down and cobble a terse, elegant, language like C or C++ to
+endure for generations. This book tells a different tale, and you learn of the
+contributions of a number of collaborators both within AT&T and later on the
+Committee. Stroustrup gives credit where it is due and names names. Whether or
+not you like a feature or bemoan the absense of one, you can usually find out
+whose idea it was by reading this book. C++ is the product of the minds of many
+participants over a long period of time with Stroustrup as the focal point.
+The Design and Evolution of C++ expands your understanding of C++ by
+explaining how and why it evolved. You will be more tolerant of some of its
+vagaries once you understand the alternatives. You will embrace new features
+after you've learned their motivations. You will anxiously wait for your
+favorite compiler vendor to release versions that implement the new features so
+that you can try them out. If you write C++ code, you need this book.
+-- Al Stevens
+homepage
+|
+C++ links
+|
+FAQ
+|
+technical FAQ
+|
+glossary
+|
+compilers
+|
+publications
+|
+TC++PL
+|
+D&E
+|
+bio
+|
+interviews
+|
+applications
+|
+AT&T Research

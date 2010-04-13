@@ -1,0 +1,95 @@
+
+C++ Tutorial: 5.5, Preprocessor directives
+ Section 5.5 
+ Preprocessor directives
+ 
+ 
+ 
+ 
+Preprocessor directives are orders that we include within the code of our programs
+that are not instructions for the program itself but for the preprocessor.
+The preprocessor is executed automatically by the compiler when we compile a program in
+C++ and is the one in charge to make the first verifications and digestions of the
+program's code.
+All these directives must be specified in a single line of code
+and they do not have to include an ending semicolon ;.
+#define
+At the beginning of this tutorial we already spoken about a preprocessor directive:
+#define, that serves to generate what we called
+defined constantants or macros and whose form is the following:
+#define name value
+Its function is to define a macro called name that whenever it is found in some
+point of the code is replaced by value. For example:
+#defines MAX_WIDTH 100
+char str1[MAX_WIDTH];
+char str2[MAX_WIDTH];
+It defines two strings to store up to 100 characters.
+#define can also be used to generate macro functions:
+#define getmax(a,b) a>b?a:b
+int x=5, y;
+y = getmax(x,2);
+after the execution of this code y would contain 5.
+#undef
+#undef fulfills the inverse functionality than #define.
+What it does is to eliminate from the list of defined constants the one that has the
+name passed as parameter to #undef:
+#define MAX_WIDTH 100
+char str1[MAX_WIDTH];
+#undef MAX_WIDTH
+#define MAX_WIDTH 200
+char str2[MAX_WIDTH];
+#ifdef, #ifndef, #if, #endif, #else and #elif
+These directives allow to discard part of the code of a program if a certain condition
+is not fulfilled.
+#ifdef allows that a section of a program is compiled only if the
+defined constant that is specified as parameter has been defined, independently
+of its value. Its operation is:
+#ifdef name
+// code here
+#endif
+For example:
+#ifdef MAX_WIDTH
+char str[MAX_WIDTH];
+#endif
+In this case, the line char str[MAX_WIDTH]; is only considered by the
+compiler if the defined constant MAX_WIDTH has been previously
+defined, independently of its value. If it has not been defined, that line will not be
+included in the program.
+#ifndef serves for the opposite: the code between the
+#ifndef directive and the #endif directive
+is only compiled if the constant name that is specified has not been defined
+previously. For example:
+#ifndef MAX_WIDTH
+#define MAX_WIDTH 100
+#endif
+char str[MAX_WIDTH];
+In this case, if when arriving to this piece of code
+the defined constant MAX_WIDTH has not yet been defined
+it would be defined with a value of 100.
+If it already existed it would maintain the value that it had (because the
+#define statement won't be executed).
+The #if, #else and #elif
+(elif = else if) directives serve for that the portion of code that follows
+is compiled only if the specified condition is met.
+The condition can only serve to evaluate constant expressions.
+For example:
+#if MAX_WIDTH>200
+#undef MAX_WIDTH
+#define MAX_WIDTH 200
+ 
+#elsif MAX_WIDTH
+The only difference between both expressions is in the directories in which the compiler is
+going to look for the file. In the first case in that the file is specified between
+quotes the file is looked for from the same directory in which the file that includes
+the directive is, and only in case that it is not there the compiler looks for in the
+default directories where it is configured to look for the standard header
+files.
+In case that the file name is included enclosed between angle-brackets
+ Previous:
+5-4. Advances classes type casting. 
+ 
+ index 
+ 
+ Next:
+6-1. Input/Output with files.
+ 

@@ -1,0 +1,431 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Automatic Factory from Microsoft
+This article was contributed by 
+E. van de Pitte.
+Environment: Microsoft VC6
+In short
+This document describes a mechanism to create instances of classes using their classname. The list of classes that can be created using their classname happens automatically (when new classes are defined, they automatically become part of the list of registered classes). The mechanism is very useful when the class that must be created depends on external input (e.g. registry settings, script file etc).
+History
+In many applications I make use of the Factory pattern. To avoid having to
+write and maintain code to select what class to create I've created a mechanism that automatically registers classes into a static 'registration'-class. Because I did not find an official name for the mechanism, I called it the 'automatic factory' mechanism. The 'automatic' points to the behavior of the classes that are registered into a central list without having to write this code explicitly.
+During the development of this mechanism, I took a more closer look under the hood of the DECLARE_DYNAMIC / DECLARE_DYNCREATE and DECLARE_SERIAL macros from Microsoft (actually I noticed the base-concepts of these macro's and my own mechanism were similar).
+As a result of this 'closer MFC examination', I created a utility class that makes creation of classes based upon the string representation of the classtype possible (without having to write and maintain registration code).
+The standard MFC mechanism to create a class dynamically uses the following syntax:
+#include 
+#include 
+// Get static CRuntimeClass instance belonging to the class.
+CRuntimeClass* pRuntimeClass = RUNTIME_CLASS( CMyClass );
+// Create instance (CObject*) and check if this is the 
+// classtype (or derived from) we expect (using dynamic_cast).
+CMyBaseClass* pClass = 
+ dynamic_cast (pRuntimeClass->CreateObject()); 
+Code 1: Creating instances the using CRuntimeClass.
+In this piece of code, the class to create ('CMyClass' in the example) must be known to the routine that creates the instance at compile time, or the CRuntimeClass* of a class to create must be looked up based on some criterion (a mapping of the input to the CRuntimeClass-instance of the class to create must be created).
+The automatic factory automatically creates a mapping from the name of the
+class to the CRuntimeClass-instance that belongs to that name.
+Constructing instances using the automatic factory looks like this:
+#include 
+#include 
+// CREATE_OBJECT returns a pointer to a CObject. To be certain 
+// that the instance is derived from the 
+// expected type, a dynamic_cast is used.
+CMyBaseClass* pClass = dynamic_cast( 
+ CREATE_OBJECT(_T("CMyClass"))); // Only base class is needed.
+Code 2: Creating instances using CREATE_OBJECT.
+or, more shortly (the returned instance is safely casted to the base class inside the internal (template)function).
+#include 
+#include 
+CMyBaseClass *pClass = NULL;
+// CMyClass is constructed. The constructed instance is safely 
+// casted to the type of the input
+// parameter (which is CMyBaseClass*) in this example.
+CREATE_CHECKED_OBJECT ( _T("CMyClass"), pClass );
+Code 3: Creating instances using CREATE_CHECKED_OBJECT.
+Construction instances this way is extremely helpful when the type that
+must be created depends on an 'external source' (e.g. a configuration file).
+When new class-types are added to the application, they are immediately looked up (and created) without the need of writing special code.
+Preconditions
+The preconditions are also described in the MSDN (article:
+"Serialization: Making a Serializable Class").
+In short the preconditions are:
+ 
+- CObject must be the base class (or part of the inheritance hierarchy).
+ 
+- The class must have a default constructor.
+ 
+- DECLARE_SERIAL macro.
+ 
+- IMPLEMENT_SERIAL macro.
+ 
+- The class may not be a template class.
+A class that fulfills these preconditions
+is automatically registered to the current module state when the program is
+started. Read "Creating Instances"
+for a description how to create instances based upon the name of the classtype.
+Example:
+Header file:
+class CSomeBaseClass : public CObject // 1 <- Derived from CObject
+{
+ DECLARE_SERIAL(CSomeBaseClass) // 2 <- DECLARE_SERIAL
+public:
+ CSomeBaseClass() {} // 4 <- Default constructor.
+};
+class CSomeDerivedClass : public CSomeBaseClass
+{
+ DECLARE_SERIAL(CSomeDerivedClass)
+public:
+ CSomeDerivedClass() {}
+};
+Source file:
+// Precondition 4. Use the IMPLEMENT_SERIAL macro's.
+IMPLEMENT_SERIAL ( CSomeBaseClass, CObject, 1 )
+IMPLEMENT_SERIAL ( CSomeDerivedClass, CSomeBaseClass, 1 )
+Code 4: Defining constructable classes.
+In this example code, 2 (empty) classes are defined that met the
+preconditions. When the program is started, the static CRuntime-instances of
+these 2
+classes are registered to the module-state of the current application.
+Creating instances.
+Creating an instance of a class based upon the classtype-name is just a matter of looking up the
+CRuntime-class information of the class that you want to instantiate followed by a call to the CreateObject factory-function.
+According to the MSDN, the 'CRuntimeClass::FromName' function can be used for this. Unfortunately, this function exists for the Windows CE-library, but not for the 'normal' Windows MFC library (belonging to Visual C++ 6.0).
+For that reason, I created a (static) utility class that implements this missing functionality and also adds routines to give insight in the list of classes that can be constructed. To avoid even more 'code-typing effort', macros have been written to create instances of a given class type (look inside the MSAutoFactory.h file for a description of the various functions and their parameters).
+Creating instances can be done using 2 functions:
+ 
+- CObject* CreateObject ( LPCTSTR strClassName, bool CurrentModuleOnly = false )
+ 
+or use the macro
+CREATE_OBJECT( _classname_ )
+ 
+Create an instance of the type described in 'strClassName' and return the instance (CObject is always the base class).
+ 
+ 
+- template bool CreateObject ( LPCTSTR strClassName, T*&
+ pConstructedInstance, bool CurrentModuleOnly = false )
+ or use the macro
+ CREATE_CHECKED_OBJECT( _classname_, _outputtype_ )
+ Create an instance of the classtype described in 'strClassName'. When this succeeds, a 'dynamic_cast' is used to cast the instance to the type of the parameter (the pConstructedInstance or _outputtype_).
+ 
+The usage of these macro's is shown in the small example code below.
+// Create a "CSomeDerivedClass" instance, check if it 
+// is derived from CSomeBaseClass 
+// (internally dynamic_cast is used, using the input type as 
+// (template) parameter) and export it.
+CSomeBaseClass *pInstance = NULL;
+if ( CREATE_CHECKED_OBJECT ( _T("CSomeDerivedClass"),
+ pInstance );
+{
+ // Do something with the pointer you've created.
+ ..
+ delete ( pInstance );
+}
+// Alternative way (do the dynamic_cast yourself)
+CObject *ptrObject = CREATE_OBJECT( _T("CSomeDerivedClass"));
+CSomeBaseClass *pInstance2 = 
+ dynamic_cast( ptrObject );
+if ( pInstance2 )
+{
+ // Do something with the instance.
+ .. 
+ delete ( pInstance2 );
+}
+Code 5: Example constructing instances using the macros.
+Notes.
+Some notes have to made for this mechanism however:
+ 
+- Most important: The mechanism uses an internal structure of
+ Microsoft. Although the chance of changes to this structure is small, it may happen in future releases of Visual C++.
+ 
+- Microsoft offers the following macros:
+ DECLARE_DYNAMIC This macro will Add CRuntime-information to a class.
+ DECLARE_DYNCREATE This macro adds and fills the 'm_pfnCreateObject'
+ factory function.
+ DECLARE_SERIAL » This macro adds
+ a.o. registration of the class.
+ The class only registers itself when DECLARE_SERIAL is used, when the other macros are used, the classtype is not registered.
+ 
+- The IMPLEMENT_SERIAL macro needs a 'wSchema' parameter. This parameter is used to detect if the structure of class-data that is serialized from a stream into memory has changed (refer to the serialization mechanism). For the Automatic Factory functionality it has no meaning so any number will be OK.
+ 
+- The mechanism supports statically linked DLL's. When a DLL is loaded
+ dynamically (using LoadLibrary), the classtypes that are registered in the loaded DLL are not added to the classlist (of the application). I don't know if this behavior is the same when delayed DLL loading is used.
+Downloads
+Download demo project - 15 Kb
+History
+Date Posted: May 20, 2002
+Date Last Update: July 11, 2002
+Comments:
+- Updated article and downloads - Brad Jones (Webmaster) (2002/07/11)
+- Same as MFC? - AB (2002/05/21)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Freelance Projects
+Find A Web Developer
+Send a Press Release
+Web Design
+Register Domains
+Search the Web
+USA Mailing Address
+Secure Business IM
+Find a Web Host
+EMedia Mag Free Sub
+ 
+ 
+ 
+ 
+ 
+Gilian Unveils Entry Level Version Of G-Server
+Guidance Software Pushes Proactive Forensics 
+Certification Watch: IT Job Market to Improve, Study Says
+Sun Issues Fix for iPlanet Server Bug
+Globus Toolkit 2.0 Wins R&D 100 Award
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

@@ -1,0 +1,83 @@
+
+VB Techniques: Visual Basic 6.0 Programmers' Toolkit Forum
+ 
+Home
+ &#8226; 
+Search
+ &#8226; 
+Forums
+ &#8226; 
+Articles
+ &#8226; 
+Interviews
+ &#8226; 
+Links
+ &#8226; 
+Reviews
+ &#8226; 
+Tip Archive
+ &#8226; 
+VB 6.0 Toolkit
+ &#8226; 
+Visual Basic 6.0 Bible
+ &#8226; 
+About
+ 
+View Messages in Thread
+Subject: 
+way to display about 100 records from a recordset into a form 
+Author: 
+Shruti 
+Date: 10/25/2001 3:09:16 PM 
+Hi all!
+I am looking for a way to display about 100 records from a recordset into a form. I know there are various grids like msflexgrid, mshflexgrid etc to display them, but I think they are not very flexible. Also I want to be able to select one of those records and then modify them if required. Is control array a good idea????
+Please suggest a better way. 
+Shruti
+ 
+Actions: 
+Post New Message | 
+Post Reply 
+ 
+Subject: 
+Re: way to display about 100 records from a recordset into a form 
+Author: 
+Hasmukh 
+Date: 12/15/2001 6:25:22 PM 
+Hi Shruti,
+Control array is not good way to display all 100 records, because it will occupied memory more that grid control. I think you should used datagrid that's very effictive for editing as well as delete or insert records.
+ 
+Actions: 
+Post New Message | 
+Post Reply 
+ 
+Subject: 
+Re: way to display about 100 records from a recordset into a form 
+Author: 
+Shailendra 
+Date: 12/19/2001 4:00:13 AM 
+Hi
+I think the best control in spread is Farpoint Spread. this is a third party control
+U can use this U can do any operation which ever u want on the spread
+ 
+Actions: 
+Post New Message | 
+Post Reply 
+ 
+Subject: 
+Re: way to display about 100 records from a recordset into a form 
+Author: 
+Masino Sinaga 
+Date: 7/7/2002 9:21:21 AM 
+I think DataGrid control is one of the best way you can try. You can download the source code at http://www30.brinkster.com/masinosinaga/ go to "Download" folder, click the files that have "database" or "datagrid" keyword in "Deskripsi" column, for example "Database.zip", "Database2.zip", "ADOCode.zip", "DataGrid3.zip", etc... Hope they're useful. 
+Best regards,
+Masino Sinaga
+ 
+Actions: 
+Post New Message | 
+Post Reply 
+ 
+Return to Forum
+ 
+Copyright © 2002 by Northstar Computer Systems.
+Contact the webmaster with any comments, questions or problems with the site.
+ 

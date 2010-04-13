@@ -1,0 +1,517 @@
+
+ 
+Really Old News Page 3
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+This is some REALLY 
+ old Stuff!
+ All the way back 
+ to 2/6/98 to be precise!
+ 
+Back to main 
+ page
+ 
+6/30 -- Yes I realize it's been a long time. A very long time. A couple days 
+ ago I got a few new images from my artist. When I have time I will put 
+ them in. But right now my life is pretty hectic. My 8-6 job doesn't help 
+ much, and I am working on getting my Eagle Scout rank which I have to 
+ finish up in a few weeks. I'm also playing actively in my AD&D gaming 
+ "club". Also in the next week I'm also leaving out of town for 
+ a week to visit my college for orientation, so I have my hands full. Most 
+ likely you will not see any major updates to the game. To be honest perhaps 
+ ever again. Once I get to college the idea of a DOS project using the 
+ latest 9-year-old technology probably won't excite me as much as DirectX 
+ and Direct3D programming, which I could program in half the time than 
+ making all of the GUIs for my game. The GUI I spent days on I could have 
+ done in Windows in an hour. I'm ready to move to a better environment.
+ 
+I had already made a promise to myself to get this game 
+ at least to basic multiplayer mode before I offically stop it, so it's 
+ not stopped yet. And I know that I'm really close. I really don't know 
+ what's going to happen so just stick around. Perhaps after I get my Eagle 
+ early this July that will free up a lot more time. If I do get started 
+ on an active basis again, then the biggest issue will be TCP/IP from DOS, 
+ which requires a hack into Windows which does not work in '98(very well) 
+ or in NT(at all). It will take weeks waiting for bugfixes on the library 
+ to do something I can do in a few lines of Windows code I could write 
+ in an hour.
+ 
+The next release for sure will be these new images, whenever 
+ that happens.
+ 
+6/7 -- As promised, build 12 of PV2143 is out. There are a few issues with 
+ the version, be sure to check the news on the game page! I don't know 
+ if anyone was having problems with come.to before, but if you were, they 
+ are gone now I believe. For some reason sometimes it would work and others 
+ it wouldn't. It should be cleared up now hopefully.
+ 6/6 -- Tomorrow sometime build 12 will be released, with some more graphics, 
+ buildings, and collision detection (tanks don't run over each other now.) 
+ Within the next week I hope to start trying to conquer multiplayer.
+ 5/31 -- Updated Project V2143 news, and changed the screenshot to a newer 
+ version.
+ 5/31 -- Added the finished Allegro tutorial to the tutorials section. It is 
+ brief, but it was meant to point out some unclear points, and give some 
+ tips on what to learn and what to not waste your time on. Everything I 
+ learned I learned from the Allegro docs, and I was able to make the game 
+ I did -- so putting any more in would be horribly redundant. The real 
+ learning will come from the next tutorial I am making.
+ 5/28 -- Added a new appendix to the tutorials, and started work on the Allegro 
+ tutorial, but I'm waiting to release that until I finish the first section 
+ so I don't confuse people by leaving them hanging. Also project news -- 
+ I have digital MOD music in it now.
+ 5/25 -- LinkList update to 1.9. This is the "final" version of the 
+ library, as I have tested it enough to feel safe about its functions. 
+ If you find any bugs in it please notify me. Also build 11 of the game 
+ is out, with a super-pumped editor and new fonts! Check the tank news 
+ for all the major features added! Also, the game is now in .zip format, 
+ as many people found the file-by-file download unpopular.
+ 5/21 -- Updated the game page with build 10! There are a few important notes 
+ on this game -- PLEASE read the news and bugs section.
+ 5/21 -- Updated a link on the links page. I should be putting build 10 out 
+ soon, but a lot of the stuff going into it is very complex and I would 
+ like it "closed" enough -- meaning I don't want too many things 
+ only half-way active. But it's been SO long since the last release I'll 
+ release a new build today or tomorrow for certain, no matter how messed 
+ up it is.
+ 5/19 -- Some more game news, check it out on the game's page. Made some cosmetic 
+ changes to the charts in the tutorial. Added two appendices to the tutorial 
+ page, more are comming.
+ 5/17 -- Did some editing with the background. It's 20k larger, but I think 
+ it's better since I've always gotten a lot of complaints about it. You 
+ like? This white almost seems to brite now, so I changed it to silver 
+ here. If I like this color scheme I'll apply it to the rest of the site. 
+ Feedback anyone?
+ 5/16 -- Added the huge section on pointers and debugging for pointers.
+ 5/16 -- Sorry for the lack of updates recently but last Thursday I graduated 
+ and partied all night ;). Since then I've been enjoying a wonderful weeked 
+ off school! Since the last release, I've been working on the AI, and adding 
+ more enemies, and the new, morphing, player tank now. Right now even before 
+ a lot of the AI is in I can't even beat 4 tanks now at a time! By the 
+ next release I should have greated added to the editor (to allow for AI 
+ editing) and added some more enemies, and perhaps the rest of the tiles 
+ (my artist says he'll work on them today.) Also I have added 4 more sections 
+ to the C/C++ tutorial.
+ 5/11 -- Added a registry. If you want to leave a comment on the site, or just 
+ present yourself, go ahead and sign the registry!
+ 5/9 -- Added a link to the links page. Also, I have been working on TCP/IP 
+ programming: learning it etc. I might put some BSD socket chat examples 
+ up soon, and when/if I release these, this will mean that the game might 
+ be going into some multiplayer testing. However at best that would be 
+ still a week or two away as graduation and finals approaching will limit 
+ my time working on the game, as well as my artists. On that note I have 
+ updated the game to build 9, although this is only a fairly small update.
+ 5/6 -- Fixed the broken link to download the game. It took two days for me 
+ to get a mail. Please people, if there is a broken link or you experience 
+ a bug in the game please e-mail me. If I fix the bug then I will put you 
+ on the credits for being a tester.
+ 5/4 -- Not a MAJOR update to the game, but build 8 of Project V2143 is out. 
+ Mainly it adds the features I mentioned before, and tile art.
+ 5/3 -- Again, added four more sections to the tutorials.
+ 5/2 -- I've added to the tutorials section.
+ 4/30 -- I've worked on the C/C++ tutorial some bit, however the info here 
+ is very basic for now. I started the tutorial from the ground up, so it 
+ is only useful for programmers starting with these languages, NOT starting 
+ with programming, since I assume a basic vocabulary and basic understanding 
+ of basic logical structures like loops, decisions, arrays, etc.
+ 4/29 -- I've updated the Project V2143 news with some updates on what's happening. 
+ I haven't been able to work on the game much due to prom this weekend 
+ and finals comming up within the next week, so game production will be 
+ very slow. I'm still pretty much waiting for the art and sound now before 
+ I can do much more.
+ 4/25 -- The version I posted really was't build 7. I swore I updated it right 
+ but I didn't. Anyways downloading it now should fix bugs.
+ 4/25 -- Build #7 is out, with a virtually complete map editor and a really 
+ nasty (cosmetically speaking) transparency bug fixed! Much more stuff 
+ posted in project news!
+ 4/24 -- By the end of this weekend, build #7 (YES 7, not 6), 
+ will be released, adding stereo sounds and stereo volume/panning effects, 
+ more titlescreen stuff, and basic map editor. The map editor already right 
+ now is half-way done on my system.
+ 4/20 -- I've added a new URL to access my site: http://come.to/gillius , so feel free to use this if you want. However, there is a delay page 
+ there, so if you bookmark, still bookmark to this original URL. Only use 
+ come.to if you want something easy to remember. Later I might just get 
+ rid of that and put up a banner.
+ 4/17 -- Updated LinkList to 1.8b to fix some silly errors. 
+ Also Build 5 of Project V2143 is out, fixing the Save/Load errors.
+ 4/16 -- There is a big in LinkList 1.8, wait for me to update sometime tomorrow. 
+ It seems templates can't work in a multi-file project because they are 
+ generated like inlines.
+ 4/16 -- I apologize for the recent lack of updates, but 
+ a trouble area of Project V2143, as well as school troubles have 
+ delayed me a bit. Anyways exciting updates in both the game and linklist 
+ have been sent to the site.
+ 4/8 -- Tank Wars to .003a, and a new screenshot. Look for 
+ LinkList 1.8 soon. Right now in the Project V2143 testing no bugs 
+ have been found, but I will add a swap function to swap two LinkLists, 
+ since the the = operator is private.
+ 4/4 -- Updated LinkList library to 1.7
+ 4/4 -- Added the Learning C++ section, and made the appropiate restructuring 
+ of this site. Also, I've finalized the name for the Tank Wars project 
+ as Project V2143: The Price of Justice, or Project V2143 
+ for short. V.002alpha is now out.
+ 4/1 -- Major LinkList lib update, espically a TOTAL rewrite 
+ for linklist.cc, which is now an interactive interpreter. You get to pretend 
+ like your the computer and manipulate the LinkList (I've drank too much 
+ Coke today!!!) Plus, yesterday I made the VERY FIRST build of TankWars!!! 
+ I've uploaded it to the site, and check it out! Don't forget to read the 
+ news updates there now. Also, look for a C++ entrance tutorial possibly 
+ starting in the next week.
+ 3/31 -- I've actually updated jrnd.h, I had an old file 
+ up when I changed over sites from AOL, and copy2.cc has bene updated, 
+ now with full explanations and line-by-line commenting. Check back tomorrow 
+ for a LinkList library update.
+ 3/30 -- I've deleted old links and added a new one. Also, 
+ I have reset the counter. It wasn't until very recently when I started 
+ getting more than one hit a day. That counter lasted since February 6th, 
+ and about 300-350 of those 418 counts were either me, or a personal friend 
+ I invited. Now I've been getting 5 or so hits a day even, and I reconfigured 
+ the counter so that I never trip it.
+ 3/29 -- I finally got the storyline for the Tank Wars project, 
+ and a possible name for both the multiplayer and single player portions(yes 
+ the multiplayer has a storyline that fits in with single play!): Project 
+ V2143: The Price of Justice. Check out the Tank Wars page for more! Also, 
+ LinkList has been heavily updated to version 1.5 now, and I've also been 
+ accepted into the Allegro webring! The LinkList quick ref has been "discontinued" 
+ because I'm adding too much for a quick ref, and I think the LinkList.h 
+ file has adequate documentation.
+ 3/23 -- The JetFight page 
+ on the AOL mirror works correctly now. TankWars plot is almost ready to 
+ put up, and perhaps at that time, it'll get a REAL name!
+ 3/19 -- Some important updates for the future of Tank Wars 
+ on its page. Also I've added a lot more programming links, as I noticed 
+ my bookmark list growing in this area. So far, the Allegro webring still 
+ hasn't responded with rejection or notification at all, so I wonder if 
+ the ringmaster is still active? Also updated LinkList library!
+ 3/14 -- The Tank Wars section is now up. And I am NOT sticking 
+ with a generic name like I did for JetFight. Once I get the plot in and 
+ think of something it WILL have a real name. Also I am in the progress 
+ of joining the Allegro webring.
+ 3/13 -- Fixed links to be "frame friendly." Added timing of Allegro's 
+ fixed trig functions, comparing them to themselves, and also to the floating 
+ point versions. The floating point takes between 400 to 500 times the 
+ processing time, with the exception of fatan and afatan2, which only take 
+ 1/2 the time of their floating point counterparts.
+ 3/6 -- Added Linkref.txt to the LinkList Library as a 1 
+ page, printable reference to LinkList.
+ 3/4 -- The move to Fortunecity is pretty much complete. The only thing left 
+ to do there now is figure out their advertising policy. The LinkList library 
+ has been updated very recently.
+ 3/3 -- Total revamp of this site! I will be moving to Fortunecities 
+ very soon as I will be losing my AOL account within the next few months. 
+ I might run this site as a mirror until I lose it. I've taken off all 
+ of the MIDIs. The JetFight zip will remain up on this site only until 
+ I lose this account, at which time it will be taken off forever. Many 
+ other things have changed, so if you have any comments email me! ALSO 
+ IMPORTANT LINKLIST.H INFO--please check the linklist.h entry for VERY 
+ important bug info and complier issues.
+ 2/26 -- Added "Timing" 
+ section to Files and Programming Area, updated with amazing linklist results!!! 
+ Check it out. Also just now I have discoverd something amazing! I missed 
+ the year anniversary of this page, which was 2/6/98! Wow, I've had this 
+ thing up a WHOLE year?
+ 2/21 -- Tank Wars still 
+ exists, but it hasn't past the planning/prototype stage yet until I find 
+ the ability to make a serious time commitment. I have recently decided 
+ to finish my Eagle scout which I must do before I am 18. Plus school of 
+ course. I have updated the links page though as well as the files and 
+ programming.
+ 1/21 -- I've updated a 
+ little bit on the links page.
+ 1/13 -- I 
+ figured that it was about time for me to update my links page with the 
+ latest links. The ones that I update I'll put a date next to it for when 
+ they were last verified.
+ 1/11 -- I've added a new 
+ program to go along with the season. It's just a simple snow program that 
+ took me about 30 minutes to make but can be a cool screensaver (maybe 
+ if I put music and a background to it as well?) Look for it in the files 
+ and programming section. As for Tank Wars it is in the planning stage 
+ still and has been at a standstill and will be until I decide to make 
+ a serious commintent along with other programmers/helpers. Right now I 
+ have lots of school work.
+ 12/21 -- My next project is called TankWars. Yeah yeah I know 
+ I come up with these original titles. Well if you can come up with a better 
+ name let me know!!! Heh. But I will be creating its page soon.
+ 12/9 -- I've added floating 
+ to fixed speed tests in files and prog with AMAZING results!!! If you 
+ program Allegro you MUST see this. I've also added intclass.cc for those 
+ learning constuctors and = operators, who want to see exactly when each 
+ is called, when, and how many times. More copies are made than one usually 
+ thinks.
+ 12/8 -- I have confimed the messed up data at the top of the 
+ page. This seems to happen in Netscape Communicator, and does it in my 
+ Netscape 4.5. I can't do anything about browser wars... That is a midi 
+ file, which works perfectly in MSIE. When I had the midi file to work 
+ in Netscape, MSIE users couldn't use it, or mac netscape users. There's 
+ not much I can do. Netscape 4.0 doesn't display the trash, but the midi 
+ doesn't work either.
+ As too website news, the files and programming area has been revamped 
+ to fit both the needs of learning programmers wanting access to my libraries, 
+ and gamers wanting to try out my games.
+ 12/3 -- Unfortunately, 
+ I have some very bad news. JetFight has now been discontinued!!! I will 
+ shortly be putting up the latest version, .20. For reasons why I left 
+ check out the JetFight page. I will however, be probably starting on a 
+ new project.
+ 11/11 -- JetFight is progressing, but I haven't updated the 
+ game yet. I will however, be splitting up the zip, since it is getting 
+ large, and the jet32.dat doesn't change. Check out the new screenshots 
+ on the JetFight page, and the latest updates.
+ 11/7 -- Jetfight up to 
+ v.019a now. I think the version I uploaded had a fatal bug in it and couldn't 
+ be loaded at all, I believe, so this version should be much better ;)
+ 11/4 -- Yet another major 
+ update to my game. Check out its page to see what is new. Unfortunately 
+ I have been hvery busy at school lately and haven't had as much time as 
+ I'd like to work on the game and update my page, but there is still a 
+ lot of progress going on despite my lack of updating here. I have also 
+ updated the page with a new function in jrnd.h
+ 10/23 -- Whew! It sure 
+ had been awhile since I updated my game. I've worked on it a tiny bit, 
+ about at much as to say that if I said "MASSIVE UPDATE" as I 
+ did before, I would be making a massive understatement. The game is about 
+ 2/3rds complete code-wise. After that all there is left to do is the graphics 
+ and such.
+ 10/15 -- I finally broke down and decided I should update this 
+ page. I have done soo much I don't even KNOW what's been updated! I've 
+ personally worked 18 or so hrs in the last 2 days on my game, and my grfx 
+ designer Stephen has worked for 10-11 hrs. Just check it out.
+ 10/11 -- Jetfight v.015a 
+ is now out! Oh yeah. Check the page for the latest info -- screen shots 
+ are now up! I'll put up a shot from in-game when I get a chance.
+ 10/7 -- WOW! I just got 
+ the title screen in tonight from Jason Asato and it is so cool! I couldn't 
+ resist the urge to put it in. ASAP I will be putting in the menuing system, 
+ which I have been waiting to do for a lont time. Now if only I could get 
+ a font. . .
+ 10/7 -- Unfortunately, 
+ due to schoolwork and being a senior, I haven't had too much time to work 
+ on my project. But I had forgotten to put someone up my credits page, 
+ so he is up there now. Sorry about using the same MIDIs all the time, 
+ but if I had time I'd change those too ;).
+ 10/4 -- Updated the credits in JetFight page and added a new 
+ program.
+ 10/1 -- JetFight game upgraded 
+ to v.012a. Basically it not much new on the outside, but I totally reoganized 
+ my code again and rewrote the structure of it. Now, soon, the map editor 
+ and the menus will be going up soon to check back.
+ 9/25 -- I have upgraded 
+ my copy of Allegro, to 3.0 + WPI. I have recompiled my JetFight game with 
+ the library, plus I have added in a few bugfixes and such. Check out the 
+ JetFight page for more detail.
+ 9/24 -- I am putting up 
+ my JetFight game. I still haven't found a good name for it yet, so if 
+ you have any good ideas, e-mail me. Check out the JetFight page under 
+ Files and Programming page!
+ 9/22 -- This page is newly updated!!! I'm going to be putting 
+ up my latest project online soon! I'll be making a whole page devoted 
+ to it under the Files and Programming page. You may have also noticed 
+ that I took out Cresendo. Some people have complained about the plug in 
+ so I have put the MIDI in HTML background music. So far I've seen it work 
+ in MSIE 4.0, but not Netscape 4.0. I'll see about the solution soon. If 
+ you have any suggestions about choosing plug-in over HTML, then e-mail 
+ me.
+ 
+Hehe I am an idiot! In the process of converting 
+ my page over to another editor and remaking the page I accidently LOST 
+ the 3/31 to 4/18 news!!! There was a gap in page updates from 4/18 to 
+ 9/22 however. Basically I just updated my programs in the news so no biggie.
+ 
+3/31 -- For any of those who downloaded the stars screensaver 
+ with the intentions of looking at the code, well, oops, I forgot to include 
+ the jrnd.h file! Look for it on the files and programming page. 
+ 
+ 3/30 -- I have put up the 3DFX interview I have had with [RoCkY] on IRC EFNET. I was thinking 
+ about buying a new 3D card, so I talked to him to get the details of the 
+ 3DFX series of cards. Looks like I'm getting a lot of new news, 
+ maybe I'll have to create an old new section. 
+ 3/27 -- I have updated the stars screensaver to a better version. 
+ Now the number of foreground stars can be changed since the stars array 
+ size is now determined in runtime, and the "floating point exception" 
+ bug has been fixed. If any of you encounter bugs in the program, 
+ let me know. 
+ 3/26 -- Files area and programming area have been set up. 
+ Stars DOS screensaver put in files area. Also more midi's on these 
+ pages and on the Not-So-Secret Music Page. MANY links added and 
+ updated. 
+ 3/15 -- It's been awhile since the last update; soon, 
+ I'm going to put up a page about C, C++, DJGPP, and Allegro programming 
+ (links to these sites on links page now). Right now I've added places 
+ you can contact me at, if you want to chat/ask about programming, or if 
+ you just want to annoy me ;). 
+ 2/21 -- If you noticed that some of the links didn't work, this is because 
+ I am having problems with Netscape Composer and the fact that Windows 
+ isn't case sensitive, but HTTP protocol is, so some files weren't found. 
+ these should (HOPEFULLY) be fixed now. 
+ 2/19 -- Check out the Not-So-Secret Music page. I've put up more midis, 
+ and the midis that play here on the pages and others can be downloaded. 
+ 
+ 2/17 -- I've added the internet status report and this news section, and 
+ a link to the cartoon-a-day page on Andover.net. Look here for updates 
+ on this page, and on any relevant events in my Real Life or in the online 
+ world as a whole. 
+ 2/6 -- This page is created! If you have ANY comments or suggestions 
+ at all, espically about the layout of this main page, lemme know with 
+ the mail link below. I'm not sure I like the layout of my main page 
+ anyways, but it's the best I can come up with so :P
+ 
+Back to main 
+ page
+ 
+ 
+ 
+ 

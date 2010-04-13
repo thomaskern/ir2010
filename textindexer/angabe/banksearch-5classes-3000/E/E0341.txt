@@ -1,0 +1,559 @@
+
+ 
+C >> Bitwise Operators 3 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bitwise Operators Quiz 
+ Main Menu 
+ Functions 
+ 
+ 
+ 
+ 
+Bitwise Operators 3
+ 
+ 
+ 
+ 
+ 
+The First Bit
+ 
+ 
+ 
+ 
+ 
+Before I talk about the last bitwise operator, I will give a brief lesson on negative binary numbers. This is probably past the beginner 
+ stage, but I've added it in for completeness (I didn't even learn much about hex and binary at university!). 
+ 
+Recall from the Type Modifiers section, that an int could be signed, or 
+ unsigned. 
+ 
+If it's signed, the range is usually -32768 to 32767, where as an unsigned int has a range of 0 to 65535. 
+ 
+Note that 215 = 32768 and 216 = 65536. 
+ 
+These figures only apply to short ints - assume that an int is a short int by default for this lesson. 
+ 
+ 
+ 
+The size of a short int is 16 bits. This means that 16 binary digits can be used to represent any integer. 
+ 
+Now, 32767 is 0111 1111 1111 1111 in binary (I've added the spaces to make it easier to count the bits!). 65535 is 1111 1111 1111 1111 
+ in binary. 
+ 
+As you can see, the only difference between the two, is the first bit on the left. Basically, the unsigned type modifier turns 
+ "on" that bit, so that it could be used to represent a number from 32768 to 65535. 
+ 
+On the other hand, the signed keyword "disables" that bit from being used to represent a number from 32768 to 65535. 
+ Instead, it's used to represent negative numbers from -1 to -32768. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+~ 
+ - Bitwise NOT (Complement)
+ 
+ 
+ 
+ 
+ 
+Logical NOT reverses the truth value of expressions. i.e. turns true (non zero) into false (zero) and vice versa. 
+ 
+Bitwise NOT (also known as complement), takes the binary representation of a number, and turns all zeros into ones, and ones into zeros. 
+ 
+ 
+ 
+ 
+Now, unlike the previous 3 bitwise operators: AND, OR and XOR, NOT takes just one operand, plus the return value depends on the type 
+ of int - usually, ints are signed short ints by default. 
+ 
+For an unsigned short int, the maximum number in binary is 1111 1111 1111 1111 (or 65535 in decimal, i.e. 216-1). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+unsigned 
+ short int
+ 
+ 
+ 
+ 
+ 
+Using bitwise NOT in unsigned short int mode is relatively straightforward. 
+ 
+Basically, you MUST write the integer in its full 16 binary digit format, turn all zeros into ones and ones into zeros, and you'll 
+ end up with the binary representation of your return value. 
+ 
+ 
+ 
+Take 9 as an example. Suppose we assign ~9 to an unsigned short int declared variable. 
+ 
+If we were to use bitwise NOT, we'd have to write in all the extra zeros, then reverse the bits... 
+ 
+ 
+ 
+ 9 is 0000 0000 0000 1001 
+ ~9 is 1111 1111 1111 0110 
+ 
+This might seem like a horrid number to convert back to decimal, but the easiest way to think of it, is the maximum 16 bit number, 
+ minus 9: 65535 - 9. 
+ 
+If you want, go back to the binary-decimal converter to check that the binary 
+ for ~9 is equivalent to 65535 - 9 = 65526. 
+ 
+Let's look at a C program... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ unsigned short int j = ~9;
+ printf("~9 is %d\n", j);
+ return 0;
+}
+ 
+ 
+ #include 
+int main() {
+ unsigned short int i = 9;
+ printf("~%d is %d\n", i, ~i);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ ~9 is 65526
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Notice the way I've declared my variable. I did end up with unexpected results first time around, as my initial program 
+ demonstrates... 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ ~9 is -10
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+... looks like the value returned depends on the type of int (if any) you assign it to. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Negative 
+ Binary Numbers
+ 
+ 
+ 
+ 
+ 
+Now let's move to signed short int mode, and take 10 as our example. To find out what -10 is in binary, first we must use 
+ bitwise NOT on 10: 
+ 
+ 10 is 0000 0000 0000 1010. 
+ ~10 is 1111 1111 1111 0101 
+ 
+Now add 1 to ~10. This could be tricky - if the rightmost bit is zero, simply change it to 1 and you're done. 
+ 
+If it's already 1, change it to zero and look at the next bit. If that's zero, change it to 1 and you're done. If not, change it to 
+ zero and move on... keep going until you can change a zero into a 1. 
+ 
+ 
+ 
+Examples: 2+1: 2 is 10 in binary, last bit is zero, so change it to 1 to get 11, which is 3. 
+ 
+3+1: 3 is 011 in binary. First bit from the right is 1, so that gets turned into a 0. Second bit from the right is 1, so that's changed 
+ to 0. 3rd bit from the right is 0, so change that to 1 to get 100 which is 4. 
+ 
+Back to the example, 1 added to ~10 gives: 
+ 
+1111 1111 1111 0110 - that is -10 in binary. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+signed 
+ short int
+ 
+ 
+ 
+ 
+ 
+Using bitwise NOT and assigning to a signed short int isn't as hard as initially thought. 
+ 
+First write out its 16 bit format, change all ones into zeros and vice versa and you have your answer. It's just converting it back 
+ into decimal that's a little trickier! 
+ 
+Take 12: 0000 0000 0000 1100 
+ Then ~12 is: 1111 1111 1111 0011 
+ 
+To convert it back into decimal, subtract 1 from ~12 and bitwise NOT it. Then convert that back into decimal (easier), and insert a 
+ minus sign in front. 
+ 
+ 
+ 
+... OR in general, ~x is simply -1 - x !! 
+ 
+In case you wondered, to subtract 1 from a binary number, starting from the right again, if the bit is 1, turn it into a zero and you're 
+ done, else change it to a 1 and move left. Keep doing this until you can change a 1 into a zero. 
+ 
+~12 - 1 is 1111 1111 1111 0010 
+ 
+Now bitwise NOT this to get 0000 0000 0000 1101 
+ 
+... stick a minus sign in front of the decimal format to get your answer: -(8+4+1) = -13. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Remember that in unsigned short int mode, ~x is -1 - x ! 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Negative 
+ Hex Numbers?
+ 
+ 
+ 
+ 
+ 
+Here's a thought: what if we converted the binary format of a negative decimal number into hex format?! Surely that should yield the 
+ hex for a negative number... Let's take -240, whose hex value is FFFFFF10 (seen in the hex 
+ section). 
+ 
+Convert 240 into binary: 
+ 
+240 - 128 = 112
+ 112 - 64 = 48
+ 48 - 32 = 16
+ 16 - 16 = 0
+ 
+240 is 11110000 in binary. 
+ 
+Now perform bitwise NOT: 
+ 
+240: 0000 0000 1111 0000 
+ ~240: 1111 1111 0000 1111 
+ 
+ 
+ 
+Now Add 1 to ~240: 
+ 
+1111 1111 0001 0000 
+ 
+- This is -240 in binary. Now covert each set of 4 bits into their hex values: 
+ 
+1111 = decimal 15 = F in hex 
+ 0001 = decimal 1 = 1 in hex 
+ 0000 = decimal 0 = 0 in hex 
+ 
+... We get FF10, which is the last 4 digits of what MSVC++ 
+ displayed. 
+ 
+Having said that, FFFFFF10 suggests that there are 8*4 = 32 bits (Each hex digit is 4 bits as 24=16). 
+ 
+Anyway, all of this, is probably out of a beginner's scope! 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Bitwise Operators Quiz 
+ Main Menu 
+ Functions 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

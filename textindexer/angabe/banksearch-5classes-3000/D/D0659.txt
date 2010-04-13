@@ -1,0 +1,654 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : kJava 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+	
+	 
+	 	
+	
+	
+	
+	Technologies
+	 
+ 
+ 
+ 
+ 
+ 	
+	
+	
+	J2ME 
+	
+	
+	 
+	-CLDC 	
+	
+	
+	 
+	 
+	-MIDP 
+	
+	
+	 
+	 
+	-EmbeddedJava 
+	
+	
+	 
+	 
+	-kJava 
+	
+	
+	 
+	-CDC 	
+	
+	
+	 
+	 
+	-PersonalJava 
+	
+	
+	Other 
+	
+	
+	 
+	-BREW 	
+	
+	
+	 
+	-iAppli 	
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 	 
+	 
+	
+	
+	 
+	 
+ 
+	 
+ 
+	
+	
+	
+	
+	kJava Articles
+	 
+	
+	
+	
+	
+	
+	 
+	Moving Your Application from Wired to Wireless?- by Cliff Haas -05/01/2002
+	
+	 Cingular's Sr. Manager of Wireless Developer Program, Cliff Hass, discusses the new-found ease of developing wireless applications with J2ME using a network connection and running across multiple devices. 
+	
+	 
+	
+	
+	
+	 
+	2002 - The Year for Mobile Operators to Support Killer Applications- by Bruce Jackson -04/24/2002
+	
+	 As mobile operators look to generate cash from subscribers, all eyes are on what this year's killer apps will be; but Bruce Jackson says there will be none until operators put a system in place to deliver them. 
+	
+	 
+	
+	
+	
+	 
+	Quick Quips from JavaOne- by Angus Muir -03/27/2002
+	
+	 MJN has total coverage of JavaOne 2002!!! Check back for daily updates about the conference and the impact of J2ME on the future of mobile computing. 
+	
+	 
+	
+	
+	
+	 
+	A Simple MIDP Application- by James White and David Hemphill -03/13/2002
+	
+	 This excerpt from "Java 2 Micro Edition" introduces you to the entire process of creating a J2ME application using the Mobile Information Device Profile (MIDP). 
+	
+	 
+	
+	
+	
+	 
+	The Application of Jini Technology to Enhance the Delivery of Mobile Services- by Steve Hashman and Steven Knudsen -03/07/2002
+	
+	 This whitepaper discusses the application of Jini(tm) network technology for resource-constrained mobile devices and how the technology can be used to address a number of current challenges faced by the mobile industry. 
+	
+	 
+	
+	
+	
+	More kJava Articles...
+	 
+	
+	
+	
+	
+	
+	
+	
+	kJava FAQ
+	 
+	
+	
+	
+	
+	
+	 
+	
+	Is there any way to transmit data using SSL?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any KJava articles and tutorial?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any other Micro Java FAQs?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any user interface classes defined for J2ME?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Can the Bitmap class support colour BMPs?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Can you capture a screenshot on the Palm?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Does the KVM support grayscale or colour?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How do I bundle the kAWT classes with my application?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How do I include a custom icon in a palm application? Only the default icon gets included.
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How do you compile and preverify a Spotlet?
+	 
+	
+	
+	 
+	
+	
+	
+	More kJava FAQ...
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 	
+ 	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	SpruceFloat
+	
+	-04/04/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Al Salah
+	
+	-07/26/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	HFSS Calc
+	
+	-06/29/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	kAWTBioSig
+	
+	-06/28/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Calendar
+	
+	-06/25/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Screen Master
+	
+	-06/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Applet Browser and PQA Manager
+	
+	-06/12/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	ssABG
+	
+	-05/09/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Greedy Snake
+	
+	-04/26/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	ListBox Widget
+	
+	-04/26/2001 
+	
+	
+	 
+	
+	
+	
+	More kJava Downloads...
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Tools
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	xKVM / Color KVM
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	CodeWarrior for Java
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	Forte for Java
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	JBuilder
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	VisualAge Micro Edition
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	News
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Crisp Wireless mLogic and Sun ONE Studio IDE Deliver Tools for Rapid Development of Mobile Content and Community Applications
+	
+	-07/16/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	J-Phone announces two wireless 'Sha-Mail' handsets
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	PointBase Micro 4.3 and PointBase UniSync 4.3 Now Available
+	
+	-06/03/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Openwave Acquires Ellipsus Technology to Deliver Comprehensive Download Management Solution
+	
+	-05/29/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Pixo Challenges Wireless Java Provisioning Vendors with Superior Performance and Scalability
+	
+	-05/09/2002 
+	
+	
+	 
+	
+	
+	
+	More kJava News...
+	 
+	
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

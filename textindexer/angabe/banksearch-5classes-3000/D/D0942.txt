@@ -1,0 +1,334 @@
+
+	
+	 
+	 
+	
+	
+	
+	Quick Search for: 
+	 
+	 
+ 
+ 
+	
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	 <!http://www.1JavaStreet.com>
+	
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 Code/Articles » | 
+ Newest/Best » | 
+ Community » | 
+ Jobs » | 
+ Other » | 
+ Goto » | 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	" SRC="/vb/images/iconbar/Categories.gif" WIDTH=46 HEIGHT=61 BORDER=0 ALT="Categories"> " SRC="/vb/images/iconbar/Search.gif" WIDTH=42 HEIGHT=61 BORDER=0 ALT="Search"> " SRC="/vb/images/iconbar/Newest-Code.gif" WIDTH=43 HEIGHT=61 BORDER=0 ALT="Newest Code"> " SRC="/vb/images/iconbar/Coding-Contest.gif" WIDTH=45 HEIGHT=61 BORDER=0 ALT="Coding Contest"> " SRC="/vb/images/iconbar/Code-of-the-Day.gif" WIDTH=45 HEIGHT=61 BORDER=0 ALT="Code of the Day"> " SRC="/vb/images/iconbar/Ask-A-Pro.gif" WIDTH=39 HEIGHT=61 BORDER=0 ALT="Ask A Pro"> " SRC="/vb/images/iconbar/Jobs_Unique.gif" WIDTH=38 HEIGHT=61 BORDER=0 ALT="Jobs"> " SRC="/vb/images/iconbar/Upload.gif" WIDTH=39 HEIGHT=61 BORDER=0 ALT="Upload"> 
+	
+	 
+	
+	
+	 
+	
+	Java/ Javascript Stats
+ Code: 139,788 lines
+	Jobs: 332 postings
+	 
+	
+	
+	 
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 <!bgcolor=#B3C4FF>
+	 
+	Sponsored by:
+	
+ 
+ 
+	 
+	
+	
+	
+	
+	
+	 <!NOTE:form for world change--has to be here to prevent spacing problems> 
+ 
+ 
+ 
+	Login
+	
+ 
+	
+	
+	
+	
+	
+	Latest Code Ticker for Java/ Javascript.
+	<!standard 3d table header>
+"_top" >WaterMark
+By Joel Samuel on 7/15
+"_top" >FTP Login
+By Joel Samuel on 7/15
+"_top" >HostReciever
+By Joel Samuel on 7/15
+"_top" >Auto-Maximise with No Fingers
+By Joel Samuel on 7/15
+"_top" >Factorize
+By Fazle Arefin on 7/15
+(Screen Shot)
+"_top" >A Basic JavaScript-Calc ulator
+By Johannes Knapp on 7/13
+"_top" >x
+By Kris_1028 on 7/12
+ 
+ 
+<!click here to put on your own site>Click here to put this ticker on your site! 
+Daily Code Email
+ To join the 'Code of the Day' Mailing List click here!
+ 
+ 
+ 
+	
+	
+	Affiliate Sites 
+	
+	 
+	
+	
+	
+	
+	
+- Artifact Software
+	
+- Dev Articles
+	
+	
+- Rent A Coder
+	
+	
+- VB Explorer
+	
+	 
+	
+	
+	 
+	
+	
+	<!a href="http://www.pipeboost.com/psc.asp" target=_blank>
+	
+	
+	
+	
+	
+	 
+	
+	 
+ 
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	Qiksearch Vertical Scroller 
+	 
+ Print 
+ Email 
+ 
+ 
+ 
+ <!source code> <!width="131" height="104">
+ Submitted on: 3/28/2002 4:06:14 AM
+	By: Premshree Pillai 
+	
+	Level: Intermediate
+User Rating: Unrated
+ Compatibility:JavaScript 
+Users have accessed this code 765 times.
+ 
+ 
+ 
+ When you move your mouse over the above link a hint or something about the link will appear below the link in a vertically scrolling fashion. When you move your mouseout the scrolling will stop.
+ 
+ 
+ 
+ 
+code:
+ Can't Copy and Paste this?<!/i>
+ <!font size="1">Click here for a copy-and-paste friendly version of this code!<!/font>
+ <!bgcolor="#DBDBDB"> 
+ <!center> Terms of Agreement: 
+	 By using this code, you agree to the following terms... 
+	 1) You may use 
+	 this code in your own programs (and may compile it into a program and distribute it in compiled format for langauges that allow it) freely and with no charge. 
+	 2) You MAY NOT redistribute this code (for example to a web site) without written permission from the original author. Failure to do so is a violation of copyright laws. 
+	 3) You may link to this code from another website, but ONLY if it is not wrapped in a frame. 
+	 4) You will abide by any additional copyright restrictions which the author may have placed in the code or code's description. 
+//**************************************
+// 
+// Name: Qiksearch Vertical Scroller
+// Description:When you move your mouse 
+// over the above link a hint or something 
+// about the link will appear below the lin
+// k in a vertically scrolling fashion. Whe
+// n you move your mouseout the scrolling w
+// ill stop.
+// By: Premshree Pillai
+//
+// Assumes:This script is a simple modif
+// ication of Link Hint Scroller. The only 
+// difference here is that the hint will sc
+// roll vertically.
+When you move your mouse over the above link a hint or something about the link will appear below the link in a vertically scrolling fashion. When you move your mouseout the scrolling will stop. 
+To use this Javascript,view the source of this document. Firstly you must copy the script and place it in the head section. Then you must copy the section and place it wherever you want it in the body. All the required section are marked by the comments and 
+scroll_height : Scroll height variable (150 here)
+time_length : Speed of scroll (50 here, meaning after 50 milliseconds the hint will change position by 1 pixel i.e a speed of 20 pixels/second)
+begin_pos : Beginning position of hint (20 here)
+//
+//This code is copyrighted and has// limited warranties.Please see http://
+// www.1JavaStreet.com/xq/ASP/txtCodeId.278
+// 3/lngWId.2/qx/vb/scripts/ShowCode.htm//for details.//**************************************
+// 
+Qiksearch Vertical Scroller
+Qiksearch Vertical Scroller
+Move your mouse over
+Vertical Scrolling!
+this script is a simple modification of Link Hint Scroller. The only difference here is that the hint will scroll vertically.
+When you move your mouse over the above link a hint or something about the link
+will appear below the link in a vertically scrolling fashion. When you move your mouseout the scrolling will stop.
+To use this Javascript,view the source of this document. Firstly you must copy the script
+and place it in the head section. Then you must copy the section and place it wherever you want it in the body. All the required section are marked by the comments and 
+scroll_height : Scroll height variable (150 here)
+time_length : Speed of scroll (50 here, meaning after 50 milliseconds the hint will change position by 1 pixel i.e a speed of 20 pixels/second)
+begin_pos : Beginning position of hint (20 here)
+ 
+&#169 Premshree Pillai
+<FONT face="arial,verdana,helvetica" size="-2" color="#CCCCCC">http://www.qiksearch.com/javascripts/qiksearch_vertical_scroller.htm</FONT>
+ 
+<!/form><!/td><!/tr><!/table>
+ Other 24 submission(s) by this author 
+ 
+ 
+Report Bad Submission 
+ <!img src="/vb/scripts/comments/images/PscWorldSmall.jpg" border="0" valign="left" align="left">Use this form to notify us if this entry should be deleted (i.e contains no code, is a virus, etc.).
+Reason: 
+ <!table border="0" cellpadding="0" cellspacing="0" width="90%"> 
+Your Vote! 
+ 
+	
+	
+	What do you think of this code(in the Intermediate category)?
+	(The code with your highest vote will win this month's coding contest!)
+	 Excellent Good Average Below Average Poor 
+See Voting Log 
+<!/table><!table border="0" cellpadding="0" cellspacing="0" width="90%"> 
+<!/table>Other User Comments 
+4/10/2002 8:17:46 AM:<!xmp>roger taylor<!/xmp>
+Alternativly you could just just the tag and set the direction attribute to UP !!!! Keep the Planet clean! If this comment was disrespectful, please report it:
+Reason:
+ 
+ 
+ 
+ Add Your Feedback! 
+ Note:Not only will your feedback be posted, but an email will be sent to the code's author in your name.
+NOTICE: The author of this code has been kind enough to share it with you. If you have a criticism, please state it politely or it will be deleted.
+For feedback not related to this particular code, please click here.
+ 
+ 
+ Name: 
+ Comment: 
+ 
+<!/td> <!/tr><!/table><!/div> 
+ <!*******************************>
+ 
+ 
+ 
+ 
+<!disclaimer/copyright>
+Categories | Articles and Tutorials | Advanced Search | Recommended Reading | Upload | Newest Code | Code of the Month | Code of the Day | All Time Hall of Fame | Coding Contest | Search for a job | Post a Job | Ask a Pro Discussion Forum | Live Chat | Feedback | Customize | Java/ Javascript Home | Site Home | Other Sites | About the Site | Feedback | Link to the Site | Awards | Advertising | Privacy
+Copyright© 1997 by Exhedra Solutions, Inc. All Rights Reserved. By using this site you agree to its Terms and Conditions. 1 Java Street (tm) and the phrase "Dream It. Code It" (tm) are trademarks of Exhedra Solutions, Inc.
+ 
+ 
+<!/td> <!/tr><!/table>

@@ -1,0 +1,53 @@
+
+ setlocale()
+ 
+ 
+setlocale-Set locale information for a program
+Synopsis
+ #include &#060;locale.h&#062;
+ ret = setlocale(category, locale);
+ char *ret; /* Pointer to the selected locale portion */
+ int category; /* Names the portion of the locale to be
+*/
+ /* selected */
+ const char *locale; /* Identifies the type of environment */
+Description
+ This function selects the appropriate portion of the program's
+ locale as specified by the category and locale arguments. The
+ category argument indicates which portion of a program's locale
+ will be affected. You must specify one of the following values:
+ Value Portion Affected
+ ----- ----------------
+ LC_COLLATE the behavior of the strcoll and strxfrm 
+functions
+ LC_CTYPE the character-handling and multibyte functions
+ LC_NUMERIC the decimal point character for the formatted
+I/O
+ and string conversion functions, and the
+ nonmonetary formatting information returned by the
+ localeconv function
+ LC_TIME the behavior of the strftime function
+ LC_MONETARY the monetary formatting information returned by
+ the localeconv function
+ LC_ALL the entire program's locale
+ The locale string, which identifies the type of environment to
+ use, may contain one of three special values:
+ Value Meaning
+ ----- -------
+ C Use the minimal environment for C translation.
+ "" Use the Amiga native environment.
+ NULL Use the current default locale without changing it.
+ If the locale argument is not one of these strings, the setlocale
+ function searches its internal list of locale environments for a
+ matching one. If it finds one, it uses it. Otherwise, it attempts
+ to open a disk-based locale specification by using the readlocale 
+ function.
+Returns
+ If it finds the selected environment, the setlocale function
+ returns a pointer to a string associated with the requested
+ category. If it cannot find the environment, it returns a NULL
+ pointer, and the program's locale is not changed. This string is
+ considered read-only and is valid until the next call to the
+ setlocale function.
+See Also
+ localeconv , readlocale 

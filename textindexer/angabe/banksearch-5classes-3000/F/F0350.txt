@@ -1,0 +1,50 @@
+
+Visual Basic Section 3: Scaling Coordinates to a Visual Basic Object
+Scaling Coordinates to a Visual Basic Object
+The Algorithm
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+The Code
+Sub PlotLine ()
+'##############################################
+'##############################################
+' PLOTLINE: Procedure for reading an plotting
+' lines stored in ARC/INFO ungenerate
+' format
+'##############################################
+' Required variables:
+Dim i As Integer, j As Integer, Percent As Integer
+' Set the mousepointer
+Screen.MousePointer = 11
+' Loop for each polygon
+For i = 1 To PolyNum
+ 'Loop for each coordinate
+ For j = 1 To CoordNum(i) - 1
+ frmUPP.picDisplay.Line(Poly(i).X(j), Poly(i).Y(j)) -
+ (Poly(i).X(j + 1), Poly(i).Y(j + 1)),
+ QBColor(0)
+ Next j
+ ' Update screen details 
+ Percent = (i / PolyNum) * 100
+ msg = "Plotting polygons...." & Percent & "%"
+ frmUPP.Gauge1.Value = Percent
+ frmUPP.lblCaption.Caption = msg
+ DoEvents
+Next i
+' Set the mousepointer
+Screen.MousePointer = 0
+msg = "Done..."
+frmUPP.lblCaption.Caption = msg
+frmUPP.Gauge1.Value = 0
+End Sub
+Forward: Plotting Polygons
+Back: Reading an ARC/INFO Ungenerate File
+Author: Marcus Blake 
+(marcus@geog.leeds.ac.uk)
+Webmaster: Ian Turton (ian@geog.leeds.ac.uk)
+Last Updated: 19 February 1996 07:39:23

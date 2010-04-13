@@ -1,0 +1,35 @@
+
+ 
+ 
+ 
+ 
+ 
+ JSP Tutorial
+ 
+- 
+JSP Tutorial
+ 
+Techniques for form editing
+A tag library such as the one that comes with the Blazix
+server, may not be available in your environment. How can you
+allow similar features without using a tag library?
+It is a little tedious, but it can be done. Basically, you must
+edit each HTML tag yourself, and put in a default value. The following
+examples shows how we modify GetName.jsp to provide features similar to
+blx:getProperty
+but with manual HTML tag editing:
+What's your name? 
+What's your e-mail address? 
+What's your age? >
+As you can see, this simply involves adding a "VALUE" field in the INPUT
+tags, and initializing the field with an expression!
+To handle exceptions during input processing, a simple approach is to
+use "String" fields in the bean, and do the conversion to the
+target datatype yourself. This will allow you to handle exceptions.
+Exercise: Modify the earlier example to do everything without
+the Blazix tag library (you can restrict this to only one field.)
+ 
+Conclusion: Material for further learning 
+Contents
+ 
+ 

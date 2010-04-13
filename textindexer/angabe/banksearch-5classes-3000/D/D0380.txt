@@ -1,0 +1,872 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : CLDC 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+	
+	 
+	 	
+	
+	
+	
+	Technologies
+	 
+ 
+ 
+ 
+ 
+ 	
+	
+	
+	J2ME 
+	
+	
+	 
+	-CLDC 	
+	
+	
+	 
+	 
+	-MIDP 
+	
+	
+	 
+	 
+	-EmbeddedJava 
+	
+	
+	 
+	 
+	-kJava 
+	
+	
+	 
+	-CDC 	
+	
+	
+	 
+	 
+	-PersonalJava 
+	
+	
+	Other 
+	
+	
+	 
+	-BREW 	
+	
+	
+	 
+	-iAppli 	
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 	 
+	 
+	
+	
+	 
+	 
+ 
+	 
+ 
+	
+	
+	
+	
+	CLDC Articles
+	 
+	
+	
+	
+	
+	
+	 
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP- by Michael Taylor -07/09/2002
+	
+	 This report from Developnet examines the various methods available for passing data over HTTP for J2ME MIDP/J2EE applications. 
+	
+	 
+	
+	
+	
+	 
+	J2ME IDE Comparison- by Michael Taylor -06/12/2002
+	
+	 This report from Developnet provides an in-depth review of market-leading IDEs that provide facilities for J2ME development using MIDP/CLDC. 
+	
+	 
+	
+	
+	
+	 
+	Wireless Java: Developing with J2ME- by Jonathan Knudsen -05/30/2002
+	
+	 MJN readers have been given the opportunity to preview the newest J2ME book, "Wireless Java: Developing with Java 2, Micro Edition." This excerpt discusses creating user interfaces with J2ME. 
+	
+	 
+	
+	
+	
+	 
+	Moving Your Application from Wired to Wireless?- by Cliff Haas -05/01/2002
+	
+	 Cingular's Sr. Manager of Wireless Developer Program, Cliff Hass, discusses the new-found ease of developing wireless applications with J2ME using a network connection and running across multiple devices. 
+	
+	 
+	
+	
+	
+	 
+	2002 - The Year for Mobile Operators to Support Killer Applications- by Bruce Jackson -04/24/2002
+	
+	 As mobile operators look to generate cash from subscribers, all eyes are on what this year's killer apps will be; but Bruce Jackson says there will be none until operators put a system in place to deliver them. 
+	
+	 
+	
+	
+	
+	More CLDC Articles...
+	 
+	
+	
+	
+	
+	
+	
+	
+	CLDC FAQ
+	 
+	
+	
+	
+	
+	
+	 
+	
+	How do I obfuscate using RetroGuard?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Is Sun working on a PDA profile?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Is there any way to transmit data using SSL?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Why doesn't the finalize() method get executed?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any other Micro Java FAQs?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Are there any user interface classes defined for J2ME?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Can I perform multithreading with the KVM?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Can you run native code (system calls) on the Palm or Windows CE using the KVM?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Does CLDC support floats and doubles?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How can I access native methods from a CLDC application?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How do I write to stderr?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How does Garbage Collection Work in the KVM?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Is it possible to serialize objects in CLDC?
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Is RMI supported in the CLDC?
+	 
+	
+	
+	 
+	
+	
+	
+	More CLDC FAQ...
+	 
+	
+	
+	
+	
+	
+	
+	
+	CLDC FSS
+	 
+	
+	
+	
+	
+	
+	 
+	
+	Creating a simple clipboard for a TextBox component
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Sharing a Ticker among components
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Using a Java Servlet and cookies with a MIDlet (Session Management)
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Calling a Java Servlet using request method GET
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Open, close, read and write to persistent storage
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Read and write using Streams and Java data types
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Read records from persistent storage in sorted order
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Inserting and replacing components on a Form
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How to use InputConnection for raw input streams II
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	How to use InputConnection for raw input streams
+	 
+	
+	
+	 
+	
+	
+	
+	More CLDC FSS...
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 	
+	
+ 	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	SpruceFloat
+	
+	-04/04/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Froggy 1.0
+	
+	-02/26/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Rescue 1.0
+	
+	-02/26/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Missiles 1.0
+	
+	-02/26/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Brainiac 0.8
+	
+	-02/26/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	ROAM
+	
+	-02/26/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	PieFight! 
+	
+	-02/25/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Copter 1.0
+	
+	-02/14/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Air Attack 1.0
+	
+	-02/13/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Astro Belt 1.0
+	
+	-02/13/2002 
+	
+	
+	 
+	
+	
+	
+	More CLDC Downloads...
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Tools
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	Wingfoot SOAP 1.0
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	WHITEboardTM SDK 
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	BlackBerry Java Development Environment
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	CLDC and the K Virtual Machine (KVM)
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	KVM for Linux
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	Mobile Information Device Profile (MIDP)
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	Palm OS Emulator
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	xKVM / Color KVM
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	CodeWarrior for Java
+	 
+	
+	
+	 
+	
+	
+	
+	- 
+	
+	Forte for Java
+	 
+	
+	
+	 
+	
+	
+	
+	More CLDC Tools...
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	News
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Crisp Wireless mLogic and Sun ONE Studio IDE Deliver Tools for Rapid Development of Mobile Content and Community Applications
+	
+	-07/16/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	J-Phone announces two wireless 'Sha-Mail' handsets
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Sun Brews New Java For Cell Phones
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Nextel and Motorola Launch First Java Technology-Enabled Phone With Color Display in the United States
+	
+	-07/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Hutchison 3G awards elata wireless Java deal
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	More CLDC News...
+	 
+	
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

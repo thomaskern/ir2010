@@ -1,0 +1,335 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class CloseableFrame
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+Class CloseableFrame
+java.lang.Object
+ |
+ +--java.awt.Component
+ |
+ +--java.awt.Container
+ |
+ +--java.awt.Window
+ |
+ +--java.awt.Frame
+ |
+ +--CloseableFrame
+Direct Known Subclasses: WebClient
+public class CloseableFrameextends Frame
+A Frame that you can actually quit. Used as
+ the starting point for most Java 1.1 graphical
+ applications.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Fields inherited from class java.awt.Frame 
+CROSSHAIR_CURSOR, 
+DEFAULT_CURSOR, 
+E_RESIZE_CURSOR, 
+HAND_CURSOR, 
+ICONIFIED, 
+MOVE_CURSOR, 
+N_RESIZE_CURSOR, 
+NE_RESIZE_CURSOR, 
+NORMAL, 
+NW_RESIZE_CURSOR, 
+S_RESIZE_CURSOR, 
+SE_RESIZE_CURSOR, 
+SW_RESIZE_CURSOR, 
+TEXT_CURSOR, 
+W_RESIZE_CURSOR, 
+WAIT_CURSOR 
+ 
+Fields inherited from class java.awt.Component 
+BOTTOM_ALIGNMENT, 
+CENTER_ALIGNMENT, 
+LEFT_ALIGNMENT, 
+RIGHT_ALIGNMENT, 
+TOP_ALIGNMENT 
+ 
+Constructor Summary 
+CloseableFrame(String title)
+ 
+ 
+Method Summary 
+ void 
+processWindowEvent(WindowEvent event)
+ Since we are doing something permanent, we need
+ to call super.processWindowEvent first. 
+ 
+Methods inherited from class java.awt.Frame 
+addNotify, 
+finalize, 
+getCursorType, 
+getFrames, 
+getIconImage, 
+getMenuBar, 
+getState, 
+getTitle, 
+isResizable, 
+paramString, 
+remove, 
+removeNotify, 
+setCursor, 
+setIconImage, 
+setMenuBar, 
+setResizable, 
+setState, 
+setTitle 
+ 
+Methods inherited from class java.awt.Window 
+addWindowListener, 
+applyResourceBundle, 
+applyResourceBundle, 
+dispose, 
+getFocusOwner, 
+getInputContext, 
+getLocale, 
+getOwnedWindows, 
+getOwner, 
+getToolkit, 
+getWarningString, 
+hide, 
+isShowing, 
+pack, 
+postEvent, 
+processEvent, 
+removeWindowListener, 
+setCursor, 
+show, 
+toBack, 
+toFront 
+ 
+Methods inherited from class java.awt.Container 
+add, 
+add, 
+add, 
+add, 
+add, 
+addContainerListener, 
+addImpl, 
+countComponents, 
+deliverEvent, 
+doLayout, 
+findComponentAt, 
+findComponentAt, 
+getAlignmentX, 
+getAlignmentY, 
+getComponent, 
+getComponentAt, 
+getComponentAt, 
+getComponentCount, 
+getComponents, 
+getInsets, 
+getLayout, 
+getMaximumSize, 
+getMinimumSize, 
+getPreferredSize, 
+insets, 
+invalidate, 
+isAncestorOf, 
+layout, 
+list, 
+list, 
+locate, 
+minimumSize, 
+paint, 
+paintComponents, 
+preferredSize, 
+print, 
+printComponents, 
+processContainerEvent, 
+remove, 
+remove, 
+removeAll, 
+removeContainerListener, 
+setFont, 
+setLayout, 
+update, 
+validate, 
+validateTree 
+ 
+Methods inherited from class java.awt.Component 
+action, 
+add, 
+addComponentListener, 
+addFocusListener, 
+addInputMethodListener, 
+addKeyListener, 
+addMouseListener, 
+addMouseMotionListener, 
+addPropertyChangeListener, 
+addPropertyChangeListener, 
+bounds, 
+checkImage, 
+checkImage, 
+coalesceEvents, 
+contains, 
+contains, 
+createImage, 
+createImage, 
+disable, 
+disableEvents, 
+dispatchEvent, 
+enable, 
+enable, 
+enableEvents, 
+enableInputMethods, 
+firePropertyChange, 
+getBackground, 
+getBounds, 
+getBounds, 
+getColorModel, 
+getComponentOrientation, 
+getCursor, 
+getDropTarget, 
+getFont, 
+getFontMetrics, 
+getForeground, 
+getGraphics, 
+getHeight, 
+getInputMethodRequests, 
+getLocation, 
+getLocation, 
+getLocationOnScreen, 
+getName, 
+getParent, 
+getPeer, 
+getSize, 
+getSize, 
+getTreeLock, 
+getWidth, 
+getX, 
+getY, 
+gotFocus, 
+handleEvent, 
+hasFocus, 
+imageUpdate, 
+inside, 
+isDisplayable, 
+isDoubleBuffered, 
+isEnabled, 
+isFocusTraversable, 
+isLightweight, 
+isOpaque, 
+isValid, 
+isVisible, 
+keyDown, 
+keyUp, 
+list, 
+list, 
+list, 
+location, 
+lostFocus, 
+mouseDown, 
+mouseDrag, 
+mouseEnter, 
+mouseExit, 
+mouseMove, 
+mouseUp, 
+move, 
+nextFocus, 
+paintAll, 
+prepareImage, 
+prepareImage, 
+printAll, 
+processComponentEvent, 
+processFocusEvent, 
+processInputMethodEvent, 
+processKeyEvent, 
+processMouseEvent, 
+processMouseMotionEvent, 
+removeComponentListener, 
+removeFocusListener, 
+removeInputMethodListener, 
+removeKeyListener, 
+removeMouseListener, 
+removeMouseMotionListener, 
+removePropertyChangeListener, 
+removePropertyChangeListener, 
+repaint, 
+repaint, 
+repaint, 
+repaint, 
+requestFocus, 
+reshape, 
+resize, 
+resize, 
+setBackground, 
+setBounds, 
+setBounds, 
+setComponentOrientation, 
+setDropTarget, 
+setEnabled, 
+setForeground, 
+setLocale, 
+setLocation, 
+setLocation, 
+setName, 
+setSize, 
+setSize, 
+setVisible, 
+show, 
+size, 
+toString, 
+transferFocus 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+CloseableFrame
+public CloseableFrame(String title)
+Method Detail 
+processWindowEvent
+public void processWindowEvent(WindowEvent event)
+Since we are doing something permanent, we need
+ to call super.processWindowEvent first.
+Overrides:processWindowEvent in class Window
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

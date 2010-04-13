@@ -1,0 +1,126 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/doc/ug/graphics/vbe20.html 
+ 
+search 
+ 
+Guide: VBE 2.0 graphics modes 
+There is one major problem with the VESA standard. It was designed
+several years ago while people were still using 286 machines, so it is
+a real mode API with a 16 bit interface. You can still use it from a
+32 bit protected mode system like djgpp, but this means that every
+time you call a VESA function the cpu has to switch into real mode in
+order to run the 16 bit driver code, and then it has to switch back
+into protected mode before it can return to your program. These mode
+switches are slow, and can be a real performance problem because you
+will often need to switch banks many hundred times while drawing a
+complex image. The VBE 2.0 API is a more recent extension to the
+original standard, and adds some features designed to improve the
+performance of protected mode programs.
+ Not every machine will have a VBE 2.0 driver installed. This can
+be detected by checking that the high byte of the
+vesa_info.VESAVersion field contains a value greater than or
+equal to two: if it does not, you have an old VESA 1.x driver that
+will not support any of the functions described in this document.
+ VBE 2.0 provides a new bank switching mechanism that can be used
+in a protected mode environment without the expensive switch to real
+mode. This is implemented as a small stub of relocatable 32 bit code
+provided by the VESA driver, which can be copied into your address
+space and then called directly to perform the bank switch, hardware
+scrolling, and palette setting functions. It is very easy to add
+support for this method into an existing body of VESA 1.x code, and
+the speed improvement can be dramatic.
+ The 32 bit code stubs are obtained by calling VESA function
+0x4F0A, for example:
+ typedef struct VESA_PM_INFO
+ {
+ unsigned short setWindow __attribute__ ((packed));
+ unsigned short setDisplayStart __attribute__ ((packed));
+ unsigned short setPalette __attribute__ ((packed));
+ unsigned short IOPrivInfo __attribute__ ((packed));
+ } VESA_PM_INFO;
+ VESA_PM_INFO *vesa_pm_info;
+ void *pm_bank_switcher;
+ int get_vesa_pm_functions()
+ {
+ __dpmi_regs r;
+ /* check that the driver is at least VBE version 2.0 */
+ if (vesa_info.VESAVersion setWindow);
+ return 0;
+ }
+This code will give you a pointer to the protected mode bank
+switching function, but you cannot call this directly from C because
+it uses a special register based argument passing convention. A little
+bit of inline asm is needed to make sure the parameters go into the
+correct registers, eg:
+ void set_vesa_bank_pm(int bank_number)
+ {
+ asm (
+	 " call *%0 "
+ : /* no outputs */
+ : "r" (pm_bank_switcher), /* function pointer in any register */
+	"b" (0), /* set %ebx to zero */
+	"d" (bank_number) /* bank number in %edx */
+ : "%eax", /* clobber list (we have no way of */
+	"%ebx", /* knowing which registers the VESA */
+	"%ecx", /* code is going to change, so we */
+	"%edx", /* have to assume the worst and list */
+	"%esi", /* them all here) */
+	"%edi"
+ );
+ }
+This routine is an exact drop-in replacement for the
+set_vesa_bank() function described in the previous chapter,
+but will run several hundred times faster!
+ VBE 2.0 also provides the ability to use a linear framebuffer mode
+in which the entire video memory can accessed as a single block at
+some location other than the standard 0xA0000, which gets rid of the
+need for bank switching altogether. This is both the fastest and the
+easiest way to program SVGA graphics, but unfortunately you can't
+count on it being supported by all hardware. Even if the card has a
+VBE 2.0 driver, many older boards don't support linear framebuffers at
+all, and a few of the more recent ones can only use linear addressing
+in certain resolutions.
+ Setting a linear framebuffer mode is extremely simple. After
+calling the find_vesa_mode() function, check that bit 7 of
+mode_info.ModeAttributes is set, to make sure that linear
+addressing is possible in this mode. Assuming that it is supported,
+when you call function 0x4F02 to select the mode you should put
+(mode_number | 0x4000) into the BX register, instead of just
+mode_number, and you will have a linear framebuffer!
+ The video memory is located at the physical address specified by
+the mode_info.PhysBasePtr field, but you must map this area
+into your address space before you can access it. This can be done
+with the code:
+ __dpmi_meminfo mapping;
+ int selector;
+ /* map into linear memory */
+ mapping.address = mode_info.PhysBasePtr;
+ mapping.size = vesa_info.TotalMemory to access the framebuffer directly with
+a normal C pointer. This is a very appealing technique because it
+allows you to treat the entire SVGA screen exactly like a normal C
+array, but you should be aware that it won't work under some DPMI
+hosts (notably Windows NT and Linux DOSEMU), plus if you write all
+your code in this way it will be difficult to later add support for
+banked SVGA modes in case you ever need to make your program run on
+hardware without a linear framebuffer. But if you are happy to
+restrict yourself to systems that are capable of linear addressing and
+support the Fat DS method, you can set this up with the code:
+ #include 
+ __dpmi_meminfo mapping;
+ if (!__djgpp_nearptr_enable())
+ return -1;
+ /* map into linear memory */
+ mapping.address = mode_info.PhysBasePtr;
+ mapping.size = vesa_info.TotalMemory 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

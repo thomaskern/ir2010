@@ -1,0 +1,19 @@
+
+Countdown started ..
+Know your limits
+This shows the limits of 2 data types :
+byte and short
+Essence
+	byte byteuno = 126 ;
+	short shortuno = 32766 ;
+	++byteuno ;
+	...
+	--byteuno ;
+	...
+	++shortuno ;
+	....
+	--shortuno ;
+ 
+JAVALESSONS.COM
+Copyright © 2000 System Exclusive & Multi Midi (NL) All rights
+reserved

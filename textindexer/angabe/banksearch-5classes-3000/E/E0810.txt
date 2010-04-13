@@ -1,0 +1,287 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Drive
+This article was contributed by Ibrar Ahmad.
+Drive.dll is a dll that creates a drive to system directoryor drive similar to existing drives such as C:\. It contains seven classes:
+class CContextMenu : public IContextMenu, IShellExtInit
+class CDropTarget : public IDropTarget
+class CEnumIDList : public IEnumIDList
+class CPidlMgr
+class CQDriveClassFactory : public IClassFactory
+class CShellFolder : public IShellFolder, public IPersistFolder
+class CShellView : public IShellView
+Downloads
+Download - QDrive.dll - 19 kb
+Download Source Code - 62 kb
+History
+Date Posted: September 6, 2001
+ 
+Comments:
+- This is not an original Code - Shahbaz Ali (2002/03/22)
+- need advice - abunoman rahman (2002/03/14)
+- Thanks - kishore (2001/11/23)
+- don't be a jerk... - Kris Matthews (2001/11/14)
+- Thanks - Mario Lopez (2001/09/23)
+- ANS] How to use this dll - Ibrar Ahmed (2001/09/10)
+- MSP - nazia (2001/09/10)
+- Kotpal's Shell NameSpace Extension AppWizard v3.1 - An Enthousiast (2001/09/09)
+- [Ans]How to use this dll. - lachesis (2001/09/09)
+- When I grow older... - Daniel Turini (2001/09/07)
+- how to use? - db (2001/09/07)
+- how to remove the icon? - cl007 (2001/09/07)
+- what does this do? - dp (2001/09/06)
+- whoa! - Ralph Krausse (2001/09/06)
+Add Comment
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Register Domains
+For CGI Scripts
+Business Search
+Secure Business IM
+Tech Magazines-Free
+EMedia Mag Free Sub
+Comparison Shopping
+Computer Training
+For Web Graphics
+Promote Your Website
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

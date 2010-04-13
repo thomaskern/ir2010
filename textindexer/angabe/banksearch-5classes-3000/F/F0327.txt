@@ -1,0 +1,132 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+A Trap With Recordsets and Tables
+Beginning ASP Databases - Chapter 3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+A Trap With
+Recordsets and Tables
+Table Warping
+by NULLS
+Sometimes fields of a record contain no data or a "Times New Roman";color:black'>NULL.
+A person may not have a phone number, or a member is registered with a title
+and last name but no first name. HTML tables will not automatically give you an
+empty cell to represent NULL data. Instead, many browsers will close up the
+empty space by shifting cells to the left to fill the gap. For example the cell
+that contains the Last Name gets shifted under the First Name heading, and all
+the rest of the row is similarly thrown off and a hole is generated all the way
+in the right column. Again, this is not a problem for all browsers, IE 4 and 5
+heal this type of error well.
+<![if !supportEmptyParas]> <![endif]>
+The shortest solution is to always concatenate 
+an 
+before the data in your cells. This code will create a space before the data.
+Even if there is no data, the non-breaking space will hold the cell open. For
+example:
+<![if !supportEmptyParas]> <![endif]>
+ 
+Response.Write " " &
+oRSp("NameFirst") & " "
+<![if !supportEmptyParas]> <![endif]>
+Although this trick solves the
+missing cell problem, it generates no small amount of angst in students. In the
+lines above we are using the ampersand for the same purpose, but in two
+different types of syntax. The first ampersand is for HTML, it is telling the
+browser to add in a non-breaking space after the .
+The second ampersand is for VBScript, telling it to add another term (the data
+in the "Times New Roman";
+color:black'>NameFirst field) to its Response.Write
+string. 
+<![if !supportEmptyParas]> <![endif]>
+The first ampersand must go to the page so the browser can
+see it, therefore it must be within the double quotes. It will be printed on
+the page by ASP, and then go out to the network. The browser will interpret
+that into a non-breaking space and remove the 
+(also known as an entity name) from the user's view.
+<![if !supportEmptyParas]> <![endif]>
+The second ampersand will be used by ASP to build the string
+"Times New Roman";color:black'> John for Response.Write to put on the page. As that string is built, ASP
+removes the ampersand, it is never seen by HTML. That second ampersand must go
+outside the double quotes. The third ampersand is of the same type as the
+second.
+<![if !supportEmptyParas]> <![endif]>
+This code can also be
+re-arranged to put the after the data which will preserve left-aligned columns, as follows.
+<![if !supportEmptyParas]> <![endif]>
+ 
+Response.Write "" & oRSp("NameFirst")
+& " "
+<![if !supportEmptyParas]> <![endif]>
+A less obtrusive
+technique is to insert the non-breaking space only if there is no data, as
+shown in the following code
+<![if !supportEmptyParas]> <![endif]>
+If IsNull(oRSp("NameFirst"))
+Then
+ 
+Response.Write " "
+Else
+ 
+Respone.write oRSp("NameFirst")
+End If
+A Note on
+Moving in Recordsets.
+By default, when you open a simple recordset it is a forward
+only cursor. That means for walking through the records you have just two
+options:
+<![if !supportEmptyParas]> <![endif]>
+"Times New Roman"'>MoveFirst
+"Times New Roman"'>MoveNext
+<![if !supportEmptyParas]> <![endif]>
+You can only go forward through the recordset.
+ 
+After you go through the
+recordset once you must use "Times New Roman";
+color:black'>rs.MoveFirst prior to being able to go through the recordset
+again. There is frequently confusion from my students that you only get one
+pass through the recordset. But as long as after each pass you do a "Times New Roman";color:black'>Move.First,
+you can pass through many times. But you can never back up through the records
+or jump ahead over records. 
+Summary
+The most basic technique for reading data from a database
+can be accomplished in three lines, plus the lines to write the data to the
+page. The first line, "Times New Roman";
+color:black'>Dim, sets aside a variable name, the second, "Times New Roman";color:black'>SET,
+makes an instance of the recordset class, and the third uses the "Times New Roman";color:black'>OPEN
+method to fill the object with a recordset. 
+<![if !supportEmptyParas]> <![endif]>
+Once filled, we can move down through the records of the
+recordset writing data to the page. 
+Writing to the page is frequently done within an HTML table, which requires
+shifting back and forth between HTML tags and ASP-ADO data. When writing code
+you must be careful of a few traps including collapsed HTML cells from missing
+data.
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

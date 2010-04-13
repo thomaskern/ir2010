@@ -1,0 +1,37 @@
+
+ 
+online C++ tutorial: A Brief History of C++
+ 
+ 
+ 
+ Section 1: Introduction 
+Section 1.3: A Brief History of C++
+The C++ Programming Language is basically an extension of the 
+C Programming Language. The C Programming language was developed 
+from 1969-1973 at Bell labs, at the same time the UNIX operating
+system was being developed there. C was a direct descendant of the
+language B, which was developed by Ken Thompson as a systems
+programming language for the fledgling UNIX operating system.
+B, in turn, descended from the language BCPL which was designed 
+in the 1960s by Martin Richards while at MIT.
+In 1971 Dennis Ritchie at Bell Labs extended the B language 
+(by adding types) into what he called NB, for "New B".
+Ritchie credits some of his changes to language constructs found
+in Algol68, although he states
+"although it [the type scheme], perhaps, did not emerge in a form 
+that Algol's adherents would approve of"
+After restructuring the language and rewriting the compiler for B,
+Ritchie gave his new language a name: "C".
+ In 1983, with various versions of C floating around the 
+computer world, ANSI established a committee that eventually 
+published a standard for C in 1989. 
+In 1983 Bjarne Stroustrup at Bell Labs created C++.
+C++ was designed for the UNIX system environment, it
+represents an enhancement of the C programming
+language and enables programmers to improve the
+quality of code produced, thus making reusable code
+easier to write. 
+ Bjarne Stroustrup 
+ 
+ 
+ 

@@ -1,0 +1,86 @@
+
+ Litt's Tips : Application Development
+ 
+ 
+ 
+ 
+Troubleshooters.Com
+Presents:
+Copyright (C) 1995-1997 by Steve Litt
+- Keep Version 1 Simple
+- Normalize It
+- Document It
+- Allocate time and people for back-end and comm protocol
+problems
+Other Navigation: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]
+Application Development Tips
+In my twelve years as a software development consultant I've seen beautiful
+apps that allow their users to effortlessly quintuple their productivity,
+and I've seen unmaintainable trash apps that break every day and cost everyone
+time and money. Three factors that make the difference are simplicity,
+normalization and documentation.
+Additionally, client-server developers need to watch out for the back-end/comm
+protocol gotcha. 
+ Keep
+Version 1 simple
+On time and under budget? I do it all the time. Not through superior
+intellect or hundred hour weeks, but by making the app, especially the
+first version, simple. Few moving parts -- just the stuff the user really
+needs to do the job. Few unexplored nooks and crannies for bugs to hide.
+Minimal pointers to arrays of pointers to functions, or twenty-button customizable
+buttonbars. I don't fight my language. Given a choice of a cute user interface
+or a robust app, I'll choose the robust app every time. My clients thank
+me for it.
+I plan for version 2 during initial design of version 1 by inserting
+hooks for the more challenging user requests, and features my experience
+indicates they'll want later. That way they can be inserted effortlessly
+(instead of shoehorned) into version 2.
+[ Top of page | Email
+Steve Litt ]
+ !!! NORMALIZE
+DATA !!! (yes, I'm shouting)
+The truly unmaintainable apps I've seen involved unnormalized data.
+Conversely, an app using well normalized data is always maintainable --
+worst case you can add or change a functionality by adding a subroutine
+or even a small executable accessing the normalized data. Normalized data
+does well in integrated, multi-platform environments. Be sure to devote
+enough time and attention to the data design. If necessary, hire a consultant.
+It's vital to follow the rules of normalization.
+[ Top of page | Email
+Steve Litt ]
+ Document
+it
+We've all seen it. Good applications gone bad. It starts when the original
+developer(s) moves on, and an ever changing parade of maintenance programmers
+do enhancements. Not knowing the intent of the original developers or understanding
+their fundimental design, the maintenance programmers add redundent variables,
+data and subroutines. Different sections of the app use different variables,
+data and subroutines for the same functionality. A simple change to the
+application now requires changes to several redundant subroutines, data
+and variables, which must be found by trial and error. Side effect bugs
+creep in, with fixes creating more problems. Enhancements that took a day
+now take weeks or months to implement.
+This is a documentation problem. If the application developers do not
+have the time or desire to document their design, hire a consultant to
+do it. See Documentation tips.
+[ Top of page | Email
+Steve Litt ]
+ Allocate
+time and people for back-end and comm protocol problems.
+It's natural. In client-server apps, we programmers tend to focus on
+data structure and user interface, letting the database server and communications
+issues take care of themselves (as advertised). Unfortunately, these issues
+usually rear their ugly heads as a large user population starts banging
+on the app.
+At the start of the design stage, assign or affiliate a network expert
+and an expert on the back end platform to the development team. As soon
+as the data structure is determined, develop and run test programs to bang
+on the data from multiple points, and do bottleneck analysis. The few days
+or weeks you spend doing this will save you months. If you don't have the
+manpower in house, hire a consultant. 
+Other Navigation: [ Code Corner | Troubleshooters.Com
+| Email Steve Litt | Copyright
+Notice ]
+Copyright (C)1997 by Steve Litt. -- Legal

@@ -1,0 +1,898 @@
+
+Visual Basic Internet Programming - MS Winsock Control - Simple Mail Sender Sample Project
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ MS Winsock Control -
+ Simple Mail Sender Sample 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ Simple Mail Sender
+ 
+Download Simple Mail Sender Sample
+ Project (sendmail.zip, 4kb)
+ 
+The information below will help you to create application, which offers the ability to send simple e-mail messages. "Simple" means that this message can be send to only one recipient and can contain
+ only the plain text.
+ 
+Create new project (Standard Exe). The Form1 will be created by default.
+ 
+Change the Name property of the form to "frmSendMail" and Caption to "Simple Mail sender". Change the BorderStyle
+ property value to "1 - Fixed Single" as well.
+ 
+Add MS Winsock Control to the project and place one instance of the control to the form.
+ Add another controls and place them on the form as shown below:
+ 
+ 
+ 
+Change the Name property of New Message, Send Message &#1080; Close buttons to
+ cmdNew, cmdSend &#1080; cmdClose accordingly.
+ 
+ Now open the code editor for frmSendMail and add this code:
+Private Sub cmdNew_Click()
+ txtRecipient = ""
+ txtSubject = ""
+ txtMessage = ""
+ 
+ 
+End Sub
+Private Sub cmdClose_Click()
+ Unload Me
+ 
+ 
+End Sub
+ 
+Well, all is set and we are ready to go on to the main topic -
+ writing the code for sending a message. 
+ 
+If you have already read the introduction to SMTP protocol you know about some commands
+ that you have to use to send e-mail message. This commands must be sent in strict predefine sequence. In order to track the sequence we'll use special variable
+ m_State, which stores the current state of SMTP
+ session. 
+ 
+ You might think of SMTP session state as of state of waiting for server's reply to one of
+ client's command. Therefore, the quantity of such states is equal to the quantity of SMTP commands.
+ It is useless way to describe the value of SMTP session state with one
+ of VB data types. That is why I suggest creating special data type
+ "SMTP_State" by means of enumeration
+ of all the required constants with VB keyword - Enum:
+Private Enum SMTP_State
+ MAIL_CONNECT
+ MAIL_HELO
+ MAIL_FROM
+ MAIL_RCPTTO
+ MAIL_DATA
+ MAIL_DOT
+ MAIL_QUIT
+End Enum
+ 
+As you see the quantity of Enum's members is bigger then the quantity
+ of required command. The reason you'll get to know soon. And now add
+ this enumeration into code of frmSendMail. Define the variable m_State
+ as well.
+ 
+Private m_State
+ As SMTP_State
+ 
+It's not difficult to guess that main events will happen after the
+ pressing of Send Message button. We're going to add such a code into
+ Click event.
+ 
+Private Sub cmdSend_Click()
+ 
+ Winsock1.Connect Trim$(txtHost), 25
+ m_State = MAIL_CONNECT
+ 
+ 
+End Sub
+It's just two strings of
+ code. The first one establishes connection to port number 25 (default
+ SMTP port). And the second one makes assigning to m_State variable.
+ "Is that all ?" you may ask. Yes. Currently it's all. We begin
+ the communication between server and our application while establishing
+ the link. We're going to manage this process by means of
+ Winsock1_DataArrival events. This event will let us know about the
+ server's response. According with the response we'll send the required
+ command to the SMTP server. The skeleton of this algorithm looks like
+ this:
+ 
+ 
+Private Sub Winsock1_DataArrival(ByVal bytesTotal As
+Long)
+ 
+ Dim strServerResponse As
+ String
+ 
+ 
+ Dim strResponseCode 
+ As String
+ 
+ 
+ 
+ strResponseCode = Left(strServerResponse, 3)
+ 
+ 
+ 
+ If strData = "250" Or _
+ strData = "220" Or _
+ strData = "354" Then
+ 
+ 
+ 
+ Select
+Case
+ m_State
+ Case
+MAIL_CONNECT
+ Case
+MAIL_HELO
+ Case
+MAIL_FROM
+ Case
+MAIL_RCPTTO
+ Case
+MAIL_DATA
+ Case
+MAIL_DOT
+ Case
+MAIL_QUIT
+ End
+Select
+ 
+ Else
+ 
+ MsgBox "SMTP Error:
+ " & strServerResponse, _
+ 
+ vbInformation, "SMTP Error"
+ 
+ End If
+ 
+ 
+ 
+End Sub
+ 
+The first executing string of code figures out the server's response.
+ The next IF/ELSE/ENDIF verifies whether the response is equal to one of
+ the predefine values. This three code of response is in use by SMTP
+ server while communication with the client. All these responses indicate
+ the success of executing the command the server has received. Any other
+ response indicates the error, which will be displayed via standard
+ dialog MessageBox. This dialog appears any time we receive the response,
+ which differs from those three appeared in IF/ELSE/ENDIF block. In case
+ of the one of the success response the verified expression will be equal
+ to True and the execution skips to Select Case block. Here is the
+ complete Winsock1_DataArrival routine with the all required comments.
+ 
+Private Sub Winsock1_DataArrival(ByVal bytesTotal As
+Long)
+ 
+ Dim strServerResponse As
+ String
+ 
+ 
+ Dim strResponseCode 
+ As String
+ 
+ 
+ Dim strDataToSend 
+ As String
+ 
+ 
+ '
+ 
+ 
+ 'Retrieve
+ data from winsock buffer
+ 
+ 
+ '
+ 
+ Winsock1.GetData strServerResponse
+ 
+ '
+ 
+ 
+ Debug.Print strServerResponse
+ 
+ '
+ 
+ 
+ 'Get server response code (first three symbols)
+ 
+ 
+ '
+ 
+ strResponseCode = Left(strServerResponse, 3)
+ 
+ '
+ 
+ 
+ 'Only these three codes tell us that previous
+ 
+ 
+ 'command accepted successfully and we can go on
+ 
+ 
+ '
+ 
+ 
+ If strResponseCode =
+ "250" Or _
+ strResponseCode = "220" Or _
+ strResponseCode = "354" Then
+ 
+ 
+ 
+ Select Case m_State
+ Case
+ MAIL_CONNECT
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_HELO
+ 
+ '
+ 
+ 
+ 'Remove blank spaces
+ 
+ 
+ strDataToSend = Trim$(txtSender)
+ 
+ '
+ 
+ 
+ 'Retrieve mailbox name from e-mail address
+ 
+ 
+ strDataToSend = Left$(strDataToSend, _
+ 
+ InStr(1, strDataToSend, _
+ 
+"@") - 1)
+ 
+ 'Send HELO command to the server
+ 
+ 
+ Winsock1.SendData "HELO " & _
+ 
+strDataToSend & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "HELO
+ " & strDataToSend
+ 
+ '
+ 
+ 
+ Case MAIL_HELO
+ 
+ '
+ 
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_FROM
+ 
+ '
+ 
+ 
+ 'Send MAIL FROM command to the server
+ 
+ 
+ Winsock1.SendData "MAIL FROM:" &
+_
+ 
+Trim$(txtSender) & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "MAIL
+ FROM:" & Trim$(txtSender)
+ 
+ '
+ 
+ 
+ Case MAIL_FROM
+ 
+ '
+ 
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_RCPTTO
+ 
+ '
+ 
+ 
+ 'Send RCPT TO command to the server
+ 
+ 
+ Winsock1.SendData "RCPT TO:" &
+_
+ 
+Trim$(txtRecipient) & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "RCPT
+ TO:" & Trim$(txtRecipient)
+ 
+ '
+ 
+ 
+ Case MAIL_RCPTTO
+ 
+ '
+ 
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_DATA
+ 
+ '
+ 
+ 
+ 'Send DATA command to the server
+ 
+ 
+ Winsock1.SendData "DATA" & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "DATA"
+ 
+ '
+ 
+ 
+ Case MAIL_DATA
+ 
+ '
+ 
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_DOT
+ 
+ '
+ 
+ 
+ 'So now we are sending a message body
+ 
+ 
+ 'Each line of text must be completed with
+ 
+ 
+ 'linefeed symbol (Chr$(10) or vbLf) 
+ 
+'not with vbCrLf
+ 
+ 
+ '
+ 
+ 
+ 'Send Subject line
+ 
+ 
+ Winsock1.SendData "Subject:" & txtSubject &
+ vbLf
+ 
+ '
+ 
+ 
+ Debug.Print "Subject:"
+ & txtSubject
+ 
+ '
+ 
+ 
+ Dim varLines 
+ As Variant
+ 
+ 
+ Dim varLine 
+ As Variant
+ 
+ 
+ '
+ 
+ 
+ 'Parse message to get lines (for VB6 only)
+ 
+ 
+ varLines = Split(txtMessage, vbCrLf)
+ 
+ '
+ 
+ 
+ 'Send each line of the message
+ 
+ 
+ For Each varLine In varLines
+ 
+ Winsock1.SendData CStr(varLine) & vbLf
+ 
+ '
+ 
+ 
+ Debug.Print CStr(varLine)
+ 
+ Next
+ 
+ 
+ '
+ 
+ 
+ 'Send a dot symbol to inform server
+ 
+ 
+ 'that sending of message completed
+ 
+ 
+ Winsock1.SendData "." & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "."
+ 
+ '
+ 
+ 
+ Case MAIL_DOT
+ 
+ 'Change current state of the session
+ 
+ 
+ m_State = MAIL_QUIT
+ 
+ '
+ 
+ 
+ 'Send QUIT command to the server
+ 
+ 
+ Winsock1.SendData "QUIT" & vbCrLf
+ 
+ '
+ 
+ 
+ Debug.Print "QUIT"
+ 
+ Case MAIL_QUIT
+ 
+ '
+ 
+ 
+ 'Close connection
+ 
+ 
+ Winsock1.Close
+ 
+ 
+ '
+ 
+ 
+ End Select
+ 
+ 
+ 
+ Else
+ 
+ 
+ '
+ 
+ 
+ 'If we are here server replied with
+ 
+ 
+ 'unacceptable response
+ code therefore we need
+ 
+ 
+ 'close connection and inform user about problem
+ 
+ 
+ '
+ 
+ Winsock1.Close
+ 
+ 
+ '
+ 
+ MsgBox "SMTP Error:
+ " & strServerResponse, _
+ 
+ vbInformation, "SMTP Error"
+ 
+ '
+ 
+ 
+ End If
+ 
+ 
+ 
+End Sub
+ Please pay attention to the strings of the message we're going to
+ send. They don't end with the vbCrLf. We're using vbLf instead. This
+ rule applies to the header of the message (Subject) as well. Surely
+ there are lots of another headers, which differ from Subject. But we're
+ not going to discuss it here. Just remember that each one sends to the
+ server ended by vbLf. Avoiding doing that results in server's
+ misunderstanding the commands you are sending. The last thing you should
+ make is to create the routine, which deals with the Windows Sockets
+ errors.
+ 
+Private Sub Winsock1_Error(ByVal Number As
+Integer, _
+ 
+Description As
+String, _
+ 
+ByVal Scode As
+Long, _
+ 
+ByVal Source As
+String, _
+ 
+ByVal HelpFile As
+String, _
+ 
+ByVal HelpContext As
+Long, _
+ 
+CancelDisplay As Boolean)
+ MsgBox "Winsock Error number " & Number &
+vbCrLf & _
+ Description,
+vbExclamation, "Winsock Error"
+End Sub
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+	
+question 
+	Olga Tuesday, March 28, 2000	
+	
+	
+	
+me@EXAMPLE.de, EXAMPLE.de is not the Host...
+	Chris Wednesday, May 17, 2000	
+	
+	
+	
+Language Problem!
+	Gil Tuesday, June 20, 2000	
+	
+	
+	
+How Can i send a mail to multiple recipients?
+	Arnone Tuesday, October 17, 2000	
+	
+	
+	
+Attachments with Mail Checker
+	Andythe Monday, October 30, 2000	
+	
+	
+	
+call to mail server fails when using a class.
+	Chris Tuesday, November 07, 2000	
+	
+	
+	
+I am having trouble sending mail with my prog
+	jay [Lord Maximus] Tuesday, November 28, 2000	
+	
+	
+	
+How to send to multiple recepient
+	Sam Fernandez Wednesday, December 27, 2000	
+	
+	
+	
+Problem with TCP Protocol(Error '40006' : )
+	Ashirwad Juker Wednesday, January 31, 2001	
+	
+	
+	
+Wrong protocol Error 40006
+	Richard Slack Thursday, February 01, 2001	
+	
+	
+	
+Attachments
+	Richard griffiths Saturday, March 03, 2001	
+	
+	
+	
+Mail Sender Sample
+	Burkster Wednesday, April 04, 2001	
+	
+	
+	
+Problem with m_state
+	Braden Mcloughlin Saturday, July 07, 2001	
+	
+	
+	
+vb5 and simple mail sender
+	Anita Tuesday, September 11, 2001	
+	
+	
+	
+Will not sent body of message
+	Richard Tuesday, October 30, 2001	
+	
+	
+	
+I loose the message's body
+	Demian Thursday, November 08, 2001	
+	
+	
+	
+How to send Attachments !
+	Anand Monday, December 10, 2001	
+	
+	
+	
+How can I include BCC, CC lists?
+	Anand Monday, December 10, 2001	
+	
+	
+	
+some answers and a Question.
+	Levani Tuesday, December 11, 2001	
+	
+	
+	
+SMTP Error 501
+	grandeben Monday, January 14, 2002	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ MS Winsock Control
+ - Simple Mail Sender Sample
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

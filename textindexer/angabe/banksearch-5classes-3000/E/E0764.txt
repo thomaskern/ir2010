@@ -1,0 +1,297 @@
+
+ 
+C >> strstr, strchr and strrchr ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ strcpy, strncpy and strcmp 
+ Main Menu 
+ Scope and Storage Specifiers 
+ 
+ 
+ 
+ 
+strstr, strchr and strrchr
+ 
+ 
+ 
+ 
+ 
+Using strstr to Find Substrings
+ 
+ 
+ 
+ 
+ 
+To determine if a string is contained within another string, use strstr. 
+ 
+This function takes two arguments: the string you want to search through, and the string you want to search for. If it finds a substring, 
+ strstr returns a pointer to the FIRST occurrence of the substring, else it returns a NULL pointer. Here's an example: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char *url = "http://www.iota-six.co.uk";
+ printf("%s\n", strstr(url, "iota-six"));
+ printf("%s\n", strstr(url, "iota-6"));
+ if(strstr(url, "iota-seven")==NULL) {
+ printf("iota-seven not found in %s\n", url);
+ }
+ printf("Length of %s is %d\n", url, strlen(url));
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ iota-six.co.uk
+ (null)
+ iota-seven not found in http://www.iota-six.co.uk
+ Length of http://www.iota-six.co.uk is 25
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+First of all, a string was declared an initialized (a char array would've worked in this example also). 
+ 
+In the first printf, we call strstr and try to search for "iota-six" in the url 
+ variable. Obviously, we succeed, and so strstr returns a pointer to the first occurrence of "iota-six" in 
+ url. Hence, the rest of the url string from the first character of "iota-six" onwards is displayed. 
+ 
+ 
+In the second printf, we search for "iota-6". strstr has no luck this time, so 
+ returns a NULL pointer. 
+ 
+The if statement shows how to check for a NULL pointer. 
+ 
+ 
+ 
+The last printf is just a reminder of how to use strlen to find the length of a string (not including 
+ the null character, mind). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Using 
+ Pointer Arithmetic 
+ 
+ 
+ 
+ 
+ 
+To find the character number where the substring starts, you can do a little pointer arithmetic to calculate the position. Remember 
+ that the first letter is considered as position zero. 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char *url = "http://www.iota-six.co.uk";
+ char *search_string = "iota-six";
+ char *position;
+ int index;
+ position = strstr(url, search_string);
+ if(position==NULL) {
+ printf("%s not found in %s\n", search_string, url);
+ }
+ else {
+ printf("Address of url: 0x%p\n", url);
+ printf("Address of position: 0x%p\n", position);
+ index = url - position; /* pointer arithmetic! */
+ if(indexUsing 
+ strchr and strrchr to Find Characters
+ 
+ 
+ 
+ 
+ 
+These functions are similar to strstr, but instead they search for characters. They behave in the same way - if they don't 
+ find an occurrence of the char you pass in, a NULL pointer is returned. 
+ 
+strchr returns a pointer to the FIRST occurrence of a char you pass in, where as strrchr returns a pointer 
+ to the LAST occurrence, as demonstrated below: 
+ 
+ 
+ 
+ 
+ #include 
+#include 
+int main() {
+ char *title = "Eddie's Basic Guide to C";
+ char search_char = 'e';
+ char *position;
+ int index;
+ position = strchr(title, search_char); /* search for first occurrence ... */
+ if(position==NULL) {
+ printf("%c not found in %s\n", search_char, title);
+ }
+ else {
+ index = title - position; /* pointer arithmetic to work out index */
+ if(index 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

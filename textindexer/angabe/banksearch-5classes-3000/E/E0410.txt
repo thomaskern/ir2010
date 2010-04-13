@@ -1,0 +1,95 @@
+
+Computer Centre: Introduction to C Programming
+ 
+ Structure of C Programs
+Objectives
+Having completed this section you should know about:
+- C's character set
+- C's keywords
+- the general structure of a C program
+- that all C statement must end in a ;
+- that C is a free format language
+- all C programs us header files that contain standard library functions.
+C's Character Set
+C does not use, nor requires the use of, every character found on a modern
+computer keyboard. The only characters required by the C Programming Language are as follows:
+- A - Z
+- a -z
+- 0 - 9
+- space . , : ; ' $ "
+- # % & ! _ {} [] () |
+- + - / * =
+The use of most of this set of characters will be dicussed throughout the course.
+The form of a C Program
+All C programs will consist of at least one function, but it is usual (when your experience grows) to write a C program that comprises several functions. The only function that has to be present is the function called main. For more advanced programs the main function will act as a controling function calling other functions in their turn to do the dirty work! The main function is the first function that is called when your program executes.
+C makes use of only 32 keywords which combine with the formal syntax to the form the C programming language. Note that all keywords are written in lower 
+case - C, like UNIX, uses upper and lowercase text to mean different things. If you are not sure what to use then always use lowercase text in writing your C programs. A keyword may not 
+be used for any other purposes. For example, you cannot have a variable called auto. 
+The layout of C Programs
+The general form of a C program is as follows (don't worry about what everything means at the moment - things will be explained later):
+preprocessor directives
+global declarations
+main()
+{
+ local variables to function main ;
+ statements associated with function main ;
+}
+f1()
+{
+ local variables to function 1 ;
+ statements associated with function 1 ;
+}
+f2()
+{
+ local variables to function f2 ;
+ statements associated with function 2 ;
+}
+.
+.
+.
+etc
+Note the use of the bracket set () and {}. () are used in conjunction with function names 
+whereas {} are used as to delimit the C statements that are associated with that function. Also note the semicolon - yes it is there, but you might have missed it! a semicolon (;) is 
+used to terminate C statements. C is a free format language and long statements can be continued, without truncation, onto the next line. The semicolon informs the C compiler that 
+the end of the statement has been reached. Free format also means that you can add as many 
+spaces as you like to improve the look of your programs.
+A very common mistake made by everyone, who is new to the C programming language, is to 
+miss off the semicolon. The C compiler will concatinate the various lines of the program together and then tries to understand them - which it will not be able to do. The error message produced by the compiler will relate to a line of you program which could be some distance from the initial mistake.
+Preprocessor Directives
+C is a small language but provides the programmer with all the tools to be able to write 
+powerful programs. Some people don't like C because it is too primitive! Look again at the 
+set of keywords that comprises the C language and see if you can 
+find a command that allows you to print to the computer's screen the result of, say, a simple 
+calculation. Don't look too hard because it dosen't exist.
+It would be very tedious, for all of us, if everytime we wanted to communicate with the 
+computer we all had to write our own output functions. Fortunately, we do not have to. 
+C uses libraries of standard functions which are included when we build our programs. For 
+the novice C programmer one of the many questions always asked is does a function 
+already exist for what I want to do? Only experience will help here but we do include 
+a function listing as part of this course.
+All programs you will write will need to communicate to the outside world - I don't think 
+I can think of a program that doesn't need to tell someone an answer. So all our C programs 
+will need at least one of C's standard libraries which deals with standard inputting and 
+outputting of data. This library is called stdin.h and it is declared in our programs before the main function. The .h extension indicates that 
+this is a header file.
+I have already mentioned that C is a free format language and that you can layout your 
+programs how you want to using as much white space as you like. The only exception are 
+statements associated with the preprocessor.
+All preprocessor directives begin with a # and the must start in the first column. The commonest directive to all C programs is:
+#include 
+Note the use of the angle brackets () around the header's name. These indicate 
+that the header file is to be looked for on the system disk which stores the rest of the C 
+program application. Some text books will show the above statement as follows:
+#include "stdio.h"
+The double quotes indicate that the current working directory should be searched 
+for the required header file. This will be true when you write your own header files 
+but the standard header files should always have the angle brackets around them.
+NOTE: just to keep you on your toes - preprocessor statements, such as include, 
+DO NOT use semi-colons as delimiters! But don't forget the # must be in the first column.
+Thats enough background to C programs - lets get on with our first program which will 
+start to bring together some of the ideas outlined above.
+ Computer Centre
+Introduction C Programming
+Information Suppliers: Richard Mobbs, Head of Information Services, Leicester University Computer
+ Centre and Marina Carter, Postgraduate Student, Loughborough University.
+Last Updated: August 1995

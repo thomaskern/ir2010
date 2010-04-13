@@ -1,0 +1,36 @@
+
+WBPidlNav
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 06/01/98,
+ last update: 06/01/98 
+ 
+Home 
+ 
+ 
+ WBPidlNav: How to navigate the
+ WebBrowser control using a folder's pidl
+ 
+ Ever wanted to navigate the IE4 WebBrowser control to a local system folder that has no
+ path? How about the Desktop or Network Neighborhood virtual folders? 
+This example simply demonstrates how to obtain a specified special
+ folder's pidl (pointer to an item ID list) from the SHGetSpecialFolderLocation API, obtain
+ the region in memory that pidl's data resides, copy the pidl's data to a VB allocated byte
+ array, and finally navigate the WebBrowser to specified special folder by passing the byte
+ array in a VB Variant variable (creating a SAFEARRAY) to the WebBrowser's Navigate2
+ method..
+ 
+For more information on the WebBrowser's Navigate2 method
+ and SAFEARRAYs, see MS KB article ID Q167834 "HOWTO: Web Browser Navigation Using a
+ PIDL" (included)
+ 
+ Download wbpidlnv.zip (16kb) 
+ 

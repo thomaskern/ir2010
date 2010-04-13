@@ -1,0 +1,473 @@
+
+Java(TM) Boutique - Java Books - Professional Java SOAP - Page 29
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+USA Mailing Address
+Find Annual Reports
+Internet Jobs
+Free DNS Offer
+Send a Press Release
+Software Store
+Business Search
+Find a Consultant
+EMedia Mag Free Sub
+Comparison Shopping
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+Reviews :
+Java Books :
+Professional Java SOAP :
+Buy this book
+Title:
+Professional Java SOAP
+ISBN: 1861006101
+Price: $49.99 
+£36.99 
+C$74.95 
+© Wrox Press, Ltd.
+ 
+ 
+	
+Build and Test
+ 
+	
+	Before we can continue, we must define the mappings in our lesavon web application for Tomcat. 
+ 
+ 
+ Le Savon Application 
+ 
+ This is the Le Savon Application. 
+ 
+	
+	
+	We map com.lesavon.service.Serveur to the name "Le Serveur". We now route all calls to /serveur to this servlet. This will mean that any client that attempts to connect to 
+	http://localhost:8080/lesavon/serveur will have its request forwarded to the Serveur 
+	(cached) router. 
+	
+ 
+ Le Serveur 
+ com.lesavon.service.Serveur 
+ 
+ 
+ Le Serveur 
+ /serveur 
+ 
+ 
+ Le Serveur 
+ / serveur/ 
+ 
+	
+ 
+ 
+	
+ 
+ 
+	The RPCRouterServlet is named "Non-Cached Router" and it is mapped to any calls for /ncrouter 
+	in the lesavon web application. 
+	
+	
+ 
+ Non-Cached Router 
+ Apache-SOAP RPC Router 
+ A router with no cache. 
+ 
+ org.apache.soap.server.http. RPCRouterServlet 
+ 
+ 
+ faultListener 
+ org.apache.soap.server.DOMFaultListener 
+ 
+ 
+ 
+ Non-Cached Router 
+ / ncrouter 
+ 
+ 
+ Non-Cached Router 
+ /ncrouter/ 
+ 
+ 
+ 
+ 
+	The web.xml file should be stored in a folder named C:\ProJavaSoap\Chapter5\etc together with 
+	the soap.xml file created earlier. We must now add a couple of lines to the ANT script to make sure 
+	that the new files are copied to the correct destinations. 
+	
+	
+	The web.xml file must be placed inside the WEB-INF directory of the lesavon web application, 
+	ofcourse. We add the following lines to the BuildLeSavon. xml file: 
+	
+ 
+ 
+ 
+	 
+	Next, we must copy the RemoteAdmin.xml and RemoteOrder.xml descriptors to the C:\ ProJavaSoap\ Chapter05\ webapps\ lesavon\ WEB-INF\ classes\ com\ lesavon 
+	directory. Our configuration manager will look for these files here. We must also copy the soap.xml file to the 
+	
+	
+	lesavon web application directory: 
+ 
+ 
+ 
+ 
+	The resultant ANT file is called BuildLeSavon_2.xml in the code download. 
+	The sample code for this chapter can be found in the ProJavaSoap\Chapter05\leSavon directory 
+	in the code download. The following screenshot shows a build on a Windows 2000 machine: 
+ 
+	
+	
+	You will have to adjust the classpath to your particular settings, but the list of JAR files should be the 
+	same. The servlet.jar file must be included in the classpath now since we are compiling servlets. As 
+	shown in the previous figure, ANT does most of the work for us. 
+	
+	
+	We will also need to add the following context to Tomcat's server.xml as we did in Chapter 3. 
+	
+ 
+ 
+ 
+ 
+	Alternatively, the entire contents of Chapter 5's webapps directory may be moved to Tomcat's 
+	directory; this will have the same effect. We can test that the application is installed as we did in 
+	Chapter 3, by navigating to http:// localhost: 8080/ lesavon/ ncrouter. This should give the message: 
+	"Sorry, I don't speak via HTTP GET-you have to use HTTP POST to talk to me" as before. 
+	Remember that the ncrouter is being provided by the soap servlet that does not accept GET requests. 
+	
+	
+	To test the GetOrders client, you first need to make sure that Tomcat is running. The instructions to set up Tomcat are described in Chapter 3. As usual, pay particular attention to classpath issues. You 
+	must make sure that Tomcat can load the new classes by making sure that the system classpath for 
+	Tomcat includes the webapps/lesavon/WEB-INF/classes as shown in the following screenshot: 
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+ 

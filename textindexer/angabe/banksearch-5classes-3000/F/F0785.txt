@@ -1,0 +1,31 @@
+
+ 
+ 
+ Gradient Background
+ 
+WaitSecs
+Sub
+ 
+To force a function wait
+a given number of seconds (in a timed loop, for example), without freezing
+the program, use the function WaitSecs: 
+Sub
+WaitSecs (secs As Single) 
+ 
+Dim StartTime as Single 
+ 
+StartTime = Timer 
+'initialize timer 
+ 
+ 
+Do 
+ 
+DoEvents 
+'execute pending commands
+ 
+ 
+Loop Until Timer > StartTime + secs 
+End
+Sub
+ 
+ 

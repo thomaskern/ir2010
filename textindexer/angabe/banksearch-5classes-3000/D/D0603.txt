@@ -1,0 +1,592 @@
+
+Java(TM) Boutique - 
+Servlet and JSP Training Courses
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+Computer Training
+For CGI Scripts
+Freelance Projects
+Web Design
+Secure Business IM
+Send a Press Release
+Find a Web Host
+Find a Consultant
+For Web Graphics
+Build Flash Online
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+	Java Boutique :
+	Resources :
+	Java@Work :
+	
+Servlet and JSP Training Courses
+Looking for short hands-on training courses on servlets and JavaServer Pages (JSP)
+taught at your company by Marty Hall? If you have a group of 
+at least 12 interested developers (15 for courses outside the US or Canada),
+on-site courses are available with the following distinctive features:
+ 
+- Courses are taught by an experienced developer, award-winning
+ instructor, conference speaker on servlets and JSP (JavaOne 2000,
+	 JavaOne 2001, International Conference for Java Development,
+	 Evolve 2000, SD West, Comdex), and author of 
+ Core Web Programming. 
+ Core Servlets and
+ JavaServer Pages (JSP), and
+ More Servlets and
+ JavaServer Pages (JSP) from Sun Microsystems
+ Press. Core Servlets and JavaServer Pages is 
+ the most popular servlet and JSP book internationally,
+	 with translations in Bulgarian, Chinese, Czech, French, 
+ German, Hebrew, Japanese, Korean, Polish, Russian and Spanish.
+ It was ranked by both amazon.com and fatbrain.com as one of
+ the ten best computer programming books of 2001, and was one of
+ the top ten best-selling computer-related books at Borders
+ stores and amazon.com in 2001.
+ 
+- Courses cover servlets 2.2/2.3 and JSP 1.1/1.2 in detail
+ 
+- Courses are well-tested, having been taught by Marty
+ in the US, Canada, Australia, the Philippines, and Japan
+ 
+- Courses provide plenty of hands-on servlet and JSP exercises
+ 
+- Courses can be customized to suit the background and interests
+ of your people
+ 
+- Courses include a complete set of course notes and a copy
+ of Core Servlets and JSP (for the introductory course)
+ or More Servlets and JSP (for the advanced course).
+Contact the course instructor
+at hall@coreservlets.com
+for more details and to arrange on-site courses. Please check
+Marty's schedule and availability
+first. Also, instructors can
+license the course materials
+for their own courses.
+Short Course Topics
+Following is the standard curriculum for the four-day course that
+is based on Core Servlets and
+JavaServer Pages. It assumes that students are familiar with basic Java programming
+and HTML, but do not necessarily know anything HTTP, servlets, JSP, or CGI.
+Every day is broken into three or four topics, each of which consists of lecture
+followed by lab time to try hands-on exercises.
+New: Advanced servlet and JSP short course
+based on More Servlets and JavaServer Pages. This four-day course
+will cover the topics listed in the 
+book's
+table of contents. It assumes students are familiar with basic servlet and 
+JSP development, up to at least the level of the standard four-day short
+course listed below.
+Servlets 2.2
+- Day 1 Session 1: Getting Started with Servlets
+ 
+- Advantages of servlets over CGI and competing technologies
+ 
+- The process of compiling, installing, and invoking servlets
+ 
+- Generating HTML
+ 
+- The servlet life cycle
+ 
+- Using initialization parameters
+ 
+- Using page modification dates to support browser caching
+ 
+- Servlet debugging strategies
+- Day 1 Session 2: Query data
+ 
+- Aside: HTML forms
+ 
+- Reading form data
+ 
+- Handling GET and POST from a single servlet
+ 
+- Handling missing and malformed query data
+- Day 1 Session 3: Using HTTP 1.1 request headers
+ 
+- Why, how, available headers, examples
+ 
+- Reducing download time by sending compressed pages
+ 
+- Aside: Servlet equivalent of the standard CGI variables
+- Day 2 Session 1: Generating The HTTP Response
+ 
+- HTTP 1.1 status codes and what you use them for
+ 
+- A search engine front end
+ 
+- HTTP 1.1 response headers and what you use them for
+ 
+- Common MIME Types
+ 
+- Accessing ongoing server-side computation with incremental browser updates
+- Day 2 Session 2: Handling cookies
+ 
+- Uses of cookies
+ 
+- Problems with cookies
+ 
+- Sending cookies to browser
+ 
+- Reading cookies from browser
+ 
+- Cookie utilities
+- Day 2 Session 3: Session Tracking
+ 
+- The purpose of session tracking
+ 
+- The session tracking API
+ 
+- Per-servlet access counts
+ 
+- Making a reusable shopping cart class
+ 
+JavaServer Pages 1.1
+- Day 2 Session 4: Introduction to JSP
+ 
+- Advantages of JSP over competing technologies
+ 
+- Setting up your environment
+ 
+- Invoking JSP pages
+ 
+- Common misunderstandings about JSP
+ 
+- JSP in the real world
+- Day 3 Session 1: JSP Scripting Elements
+ 
+- JSP Expressions
+ 
+- JSP Scriptlets
+ 
+- JSP Declarations
+ 
+- Template text
+ 
+- Predefined variables
+ 
+- Limiting Java code called directly from JSP pages
+- Day 3 Session 2: The JSP page directive -- structuring generated servlets
+ 
+- Designating which classes are imported
+ 
+- Specifying the MIME type of the page
+ 
+- Generating Excel spreadsheets unconditionally
+ 
+- Conditionally generating HTML or Excel spreadsheets
+ 
+- Participating in sessions
+ 
+- Designating pages to process JSP errors
+- Day 3 Session 3: Including Files and Applets in JSP Documents
+ 
+- Including JSP files at the time the main page is translated into a servlet
+ 
+- Including HTML or plain text files at the time the client requests the page
+ 
+- Including applets that use the Java Plug-In
+- Day 3 Session 4: Using JavaBeans with JSP
+ 
+- Creating and accessing beans
+ 
+- Setting bean properties explicitly
+ 
+- Associating bean properties with input parameters
+ 
+- Automatic conversion of bean property types
+ 
+- Sharing beans among multiple JSP pages and servlets
+- Day 4 Session 1: Creating Custom JSP Tag Libraries
+ 
+- Tag handler classes
+ 
+- Tag library descriptor files
+ 
+- The JSP taglib directive
+ 
+- Simple tags
+ 
+- Tags that use attributes
+ 
+- Tags that use the body content between their start and end tags
+ 
+- Tags that modify their body content
+ 
+- Looping and nested tags
+- Day 4 Session 2: Integrating Servlets and JSP
+ 
+- The MVC (Model 2) Architecture
+ 
+- Forwarding requests from servlets to static and dynamic resources
+ 
+- Using servlets to set up beans for use by JSP pages
+ 
+- An on-line travel agency combining servlets and JSP
+ 
+- Including JSP output in servlets
+ 
+- Forwarding requests from JSP pages
+ 
+Day 4 Session 4: Summary and Wrapup
+ 
+- Servlet intro
+ 
+- Handling form data
+ 
+- Processing HTTP request headers
+ 
+- Generating the HTTP response
+ 
+- Using cookies
+ 
+- Session tracking
+ 
+- JSP intro
+ 
+- JSP scripting elements
+ 
+- The JSP page directive
+ 
+- Including files and applets in JSP pages
+ 
+- Using JavaBeans in JSP pages
+ 
+- Creating custom JSP tag libraries
+ 
+- MVC: Combining servlets and JSP
+ 
+ 
+For more details or to schedule a course, contact the instructor
+at hall@coreservlets.com.
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+<IMG SRC="/img/URL.gif" ALT="http://www.internet.com/" WIDTH="161" HEIGHT="18" BORDER="0">
+ 

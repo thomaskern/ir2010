@@ -1,0 +1,372 @@
+
+Compound Member Index
+Main Page Namespace List Class Hierarchy Compound List File List Namespace Members Compound Members Related Pages 
+GNE Compound Members
+a | b | c | d | e | f | g | h | i | j | l | m | n | o | p | r | s | t | u | w | ~
+Here is a list of all documented class members with links to the classes they belong to:
+- a -
+- acquire()
+: GNE::Mutex, GNE::ConditionVariable
+- addHeader()
+: GNE::Connection
+- addIncomingPacket()
+: GNE::PacketStream
+- Address()
+: GNE::Address
+- addVersions()
+: GNE::Connection
+- adjustCount()
+: GNE::Counter
+- avgBytesRecv
+: GNE::ConnectionStats
+- avgBytesSent
+: GNE::ConnectionStats
+- b -
+- broadcast()
+: GNE::ConditionVariable
+- bytesRecv
+: GNE::ConnectionStats
+- bytesSent
+: GNE::ConnectionStats
+- c -
+- checkHeader()
+: GNE::Connection
+- checkVersions()
+: GNE::Connection
+- ClientConnection()
+: GNE::ClientConnection
+- ConditionVariable()
+: GNE::ConditionVariable
+- connect()
+: GNE::SyncConnection, GNE::ClientConnection
+- connected
+: GNE::Connection
+- connecting
+: GNE::Connection
+- Connection()
+: GNE::Connection
+- Counter()
+: GNE::Counter
+- create()
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- currentThread()
+: GNE::Thread
+- d -
+- DEF_NAME
+: GNE::Thread
+- DEF_PRI
+: GNE::Thread
+- detach()
+: GNE::Thread
+- diff()
+: GNE::Time
+- disconnect()
+: GNE::SyncConnection, GNE::SocketPair, GNE::Connection
+- disconnectSendAll()
+: GNE::Connection
+- e -
+- Error()
+: GNE::Error
+- ErrorCode
+: GNE::Error
+- EventThread()
+: GNE::EventThread
+- f -
+- finishedConnecting()
+: GNE::Connection
+- flush_output()
+: GNE::Console::goutbuf
+- g -
+- getAbsoluteTime()
+: GNE::Timer
+- getAddress()
+: GNE::Address
+- getCode()
+: GNE::Error
+- getConnection()
+: GNE::SyncConnection
+- getCount()
+: GNE::Counter
+- getCurrentTime()
+: GNE::Timer
+- getCurrOutRate()
+: GNE::PacketStream
+- getData()
+: GNE::RawPacket, GNE::CustomPacket
+- getInLength()
+: GNE::PacketStream
+- getListener()
+: GNE::EventThread, GNE::Connection
+- getLocalAddress()
+: GNE::SocketPair, GNE::ServerConnectionListener, GNE::Connection
+- getMaxUserDataSize()
+: GNE::CustomPacket
+- getName()
+: GNE::Thread
+- getNameByAddress()
+: GNE::Address
+- getNewConnectionParams()
+: GNE::ServerConnectionListener
+- getNextPacket()
+: GNE::PacketStream
+- getNullListener()
+: GNE::ConnectionListener
+- getOutLength()
+: GNE::PacketStream
+- getPing()
+: GNE::PingPacket
+- getPort()
+: GNE::Address
+- getPosition()
+: GNE::RawPacket
+- getPriority()
+: GNE::Thread
+- getRemoteAddress()
+: GNE::SocketPair, GNE::Connection
+- getRemoteOutLimit()
+: GNE::PacketStream
+- getReqOutRate()
+: GNE::PacketStream
+- getSec()
+: GNE::Time
+- getSize()
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- getStats()
+: GNE::SocketPair, GNE::Connection
+- getTotaluSec()
+: GNE::Time
+- getType()
+: GNE::Packet
+- getuSec()
+: GNE::Time
+- getWrongGame()
+: GNE::WrongGame
+- getWrongID()
+: GNE::PacketTypeMismatch
+- getWrongVer()
+: GNE::UserVersionMismatch
+- h -
+- hasStarted()
+: GNE::EventThread
+- HIGH_PRI
+: GNE::Thread
+- i -
+- ID
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- isConnected()
+: GNE::Connection
+- isListening()
+: GNE::ServerConnectionListener
+- isNextPacket()
+: GNE::PacketStream
+- isReleased()
+: GNE::SyncConnection
+- isRequest()
+: GNE::PingPacket
+- isRunning()
+: GNE::Thread
+- isValid()
+: GNE::Address
+- j -
+- join()
+: GNE::Thread
+- l -
+- listen()
+: GNE::ServerConnectionListener
+- Listener
+: GNE::Connection
+- LowLevelError()
+: GNE::LowLevelError
+- m -
+- makeClone()
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- makeReply()
+: GNE::PingPacket
+- maxAvgBytesRecv
+: GNE::ConnectionStats
+- maxAvgBytesSent
+: GNE::ConnectionStats
+- Mutex()
+: GNE::Mutex
+- n -
+- normalize()
+: GNE::Time
+- o -
+- onConnect()
+: GNE::ConnectionListener
+- onConnectFailure()
+: GNE::ConnectionListener
+- onDisconnect()
+: GNE::EventThread, GNE::ConnectionListener
+- onDoneWriting()
+: GNE::EventThread, GNE::ConnectionListener
+- onError()
+: GNE::EventThread, GNE::ConnectionListener
+- onExit()
+: GNE::EventThread, GNE::ConnectionListener
+- onFailure()
+: GNE::EventThread, GNE::ConnectionListener
+- onListenFailure()
+: GNE::ServerConnectionListener
+- onListenSuccess()
+: GNE::ServerConnectionListener
+- onNewConn()
+: GNE::ConnectionListener
+- onReceive()
+: GNE::ReceiveEventListener, GNE::EventThread, GNE::ConnectionListener
+- open()
+: GNE::SyncConnection, GNE::ServerConnectionListener, GNE::ClientConnection
+- openSockets
+: GNE::ConnectionStats
+- operator bool()
+: GNE::Error, GNE::Address
+- operator+()
+: GNE::Time
+- operator+=()
+: GNE::Time
+- operator-()
+: GNE::Time
+- operator()
+: GNE::Time
+- operator>>()
+: GNE::SyncConnection, GNE::RawPacket
+- p -
+- Packet()
+: GNE::Packet
+- packetsRecv
+: GNE::ConnectionStats
+- packetsSent
+: GNE::ConnectionStats
+- PacketStream()
+: GNE::PacketStream
+- PingPacket()
+: GNE::PingPacket
+- ps
+: GNE::Connection
+- r -
+- r
+: GNE::SocketPair
+- rate
+: GNE::RateAdjustPacket
+- RAW_PACKET_LEN
+: GNE::RawPacket
+- RawPacket()
+: GNE::RawPacket
+- rawRead()
+: GNE::SocketPair
+- rawWrite()
+: GNE::SocketPair
+- readPacket()
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- readRaw()
+: GNE::RawPacket
+- recoverLostRequests()
+: GNE::PingPacket
+- reg()
+: GNE::ConnectionEventGenerator, GNE::Connection
+- release()
+: GNE::SyncConnection, GNE::Mutex, GNE::ConditionVariable
+- reqsPending()
+: GNE::PingPacket
+- reset()
+: GNE::RawPacket, GNE::CustomPacket
+- run()
+: GNE::Timer, GNE::Thread, GNE::ServerConnection, GNE::PacketStream, GNE::EventThread, GNE::ConnectionEventGenerator, GNE::ClientConnection
+- s -
+- ServerConnection()
+: GNE::ServerConnection
+- ServerConnectionListener()
+: GNE::ServerConnectionListener
+- setAddress()
+: GNE::Address
+- setAddressByName()
+: GNE::Address
+- setCode()
+: GNE::Error
+- setCount()
+: GNE::Counter
+- setListener()
+: GNE::EventThread, GNE::Connection
+- setNextWriteLoc()
+: GNE::Console::goutbuf
+- setPort()
+: GNE::Address
+- setRates()
+: GNE::PacketStream
+- setSec()
+: GNE::Time
+- setuSec()
+: GNE::Time
+- shutdown
+: GNE::Thread
+- shutDown()
+: GNE::Thread, GNE::PacketStream, GNE::EventThread, GNE::ConnectionEventGenerator
+- signal()
+: GNE::ConditionVariable
+- sleep()
+: GNE::Thread
+- SocketPair()
+: GNE::SocketPair
+- sockets
+: GNE::Connection
+- start()
+: GNE::Thread, GNE::EventThread
+- startTimer()
+: GNE::Timer
+- stopTimer()
+: GNE::Timer
+- stream()
+: GNE::Connection
+- SyncConnection()
+: GNE::SyncConnection
+- t -
+- Thread()
+: GNE::Thread
+- Time()
+: GNE::Time
+- timedWait()
+: GNE::ConditionVariable
+- Timer()
+: GNE::Timer
+- timerCallback()
+: GNE::TimerCallback, GNE::Counter
+- toString()
+: GNE::Time, GNE::ProtocolViolation, GNE::WrongGame, GNE::LowLevelError, GNE::Error, GNE::Address
+- u -
+- u
+: GNE::SocketPair
+- unreg()
+: GNE::ConnectionEventGenerator, GNE::Connection
+- w -
+- wait()
+: GNE::ConditionVariable
+- waitAndDecrement()
+: GNE::Counter
+- waitForAllThreads()
+: GNE::Thread
+- waitToSendAll()
+: GNE::PacketStream
+- writePacket()
+: GNE::RateAdjustPacket, GNE::PingPacket, GNE::PacketStream, GNE::Packet, GNE::ExitPacket, GNE::CustomPacket
+- writeRaw()
+: GNE::RawPacket
+- ~ -
+- ~Connection()
+: GNE::Connection
+- ~PacketStream()
+: GNE::PacketStream
+- ~RawPacket()
+: GNE::RawPacket
+- ~ServerConnection()
+: GNE::ServerConnection
+- ~ServerConnectionListener()
+: GNE::ServerConnectionListener
+- ~SocketPair()
+: GNE::SocketPair
+- ~SyncConnection()
+: GNE::SyncConnection
+- ~Timer()
+: GNE::Timer
+Generated on Fri Mar 8 03:03:22 2002 for GNE by
+1.2.13.1 written by Dimitri van Heesch,
+ © 1997-2001

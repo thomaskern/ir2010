@@ -1,0 +1,46 @@
+
+ 
+ 
+ 
+ Compile and run
+Compile and run
+To build class files from your source code you use a compiler.
+You can download Sun's System Development Kit, SDK.
+Windows example :
+In an MSDOS console window go to the directory that contains Simplest.java.
+For example :
+ 
+d: 
+to drive D: 
+cd \ 
+to root directory 
+cd work 
+to directory work 
+Type d:\jdk1.3\bin\javac.exe Simplest.java
+( The d:\jdk1.3 part depends on where you've installed
+your download.)
+This will either result in the Simplest.class file or in error
+messages, if you've mishpeledd something, omitted a ; 
+, have a } too many, mixed up lowercase,uppercase, etc....
+Alternatively, you could use a tool like Borland's JBuilder.
+The Simplest.class file contains Java instructions, bytecodes.
+Put this file in the same directory/folder as the HTML file, Simplest.html .
+Open the HTML file in your browser and see the applet run.
+Another way to test an applet, is by using Sun's appletviewer tool:
+ d:\jdk1.3\bin\appletviewer.exe Simplest.html
+Yes, the argument is the HTML file.
+This, unlike a browser, ignores the rest of the HTML, though. Only
+convenient for testing the applet by itself.
+If you're very satisfied with your applet and want to publish
+it, FTP the class file(s) binary(!) to the same directory as where you copy your HTML
+file to. So, if the HTTPserver is Apache, this would probably be the htdocs
+directory or one of its subdirectories.
+ 
+HAVE FUN !
+Running a stand-alone application, without a browser, is different. We
+will deal with that in our Applet or Application ? lesson .
+(You can make typing life easier by setting a path to the bin directory and omitting .exe or even by making a script )
+JAVALESSONS.COM
+Copyright © 2000-2002 System Exclusive & Multi Midi (NL) All rights
+reserved
+ 

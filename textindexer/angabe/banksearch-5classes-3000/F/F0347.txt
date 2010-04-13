@@ -1,0 +1,105 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > ActiveX / COM
+Detecting when controls have been added to your Usercontrol.
+ID: 722
+Author: Microsoft
+Date: 4/25/2000 9:06:02 PM
+VB6To use this your usercontrol must be a control container. You will need to add a Timer control to your UserControl, set the Interval property to about 1000 (1 second).
+Private Sub Timer1_Timer()
+ Dim UserCtrl As Object
+ Debug.Print UserControl.ContainedControls.Count
+ For Each UserCtrl In UserControl.ContainedControls
+ Debug.Print UserCtrl.Name
+Next
+ Want More Source Code? You May Also Be Interested In This: 
+Determine when a developer makes your Usercontrol the default
+Shows how to determine when a developer sets the default property of your control to true or false so you can draw your control to reflect the change.
+VB6
+Rank:
+Difficulty:
+ 
+Detecting when the Font is changed in an ActiveX Control
+Shows how you can let your control detect when a font is changed and respond to the event.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

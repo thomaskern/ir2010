@@ -1,0 +1,311 @@
+
+1.3) Declarations and access control
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+1) Declarations and 
+ Access Control 
+Objective 3 
+For a given class, determine if a default constructor 
+ will be created and if so state the prototype of that constructor.
+Note on this objective 
+This is a neat small objective that concentrates on an easily overlooked 
+ aspect of the Java language
+What is a constructor? 
+You need to understand the concept of a constructor to understand this objective. 
+ Briefly, it is special type of method that runs automatically when an class 
+ is instantiated. Constructors are often used to initialise values in the class. 
+ Constructors have the same name as the class and no return value. You may get 
+ questions in the exam that have methods with the same name as the class but 
+ a return type, such as int or string. Be careful and ensure that any method 
+ you assume is a constructor does not have a return type.
+Here is an example of a class with a constructor that prints out the string 
+ "Greetings from Crowle" when an instance of the class is created.
+public class Crowle{
+ public static void main(String argv[]){
+ Crowle c = new Crowle();
+ }
+ Crowle(){
+ System.out.println("Greetings from Crowle");
+ }
+}
+When does java supply the default constructor? 
+If you do not specifically define any constructors, the compiler inserts an 
+ invisible zero parameter constructor "behind the scenes". Often this 
+ is of only theoretical importance, but the important qualification is that you 
+ only get a default zero parameter constructor if you do not create any of your 
+ own.
+ 
+ 
+ 
+ 
+If you create constructors of your own, 
+ Java does not supply the default zero parameter constructor 
+ 
+ 
+ As soon as you create any constructors of your own you loose the default no 
+ parameter constructor. If you then try to create an instance of the class without 
+ passing any parameters (i.e. invoking the class with a zero parameter constructor), 
+ you will get an error. Thus as soon as you create any constructors for a class 
+ you need to create a zero parameter constructor. This is one of the reasons 
+ that code generators like Borland/Inprise JBuilder create a zero parameter constructor 
+ when they generate a class skeleton.
+ The following example illustrates code that will not compile. When the compiler 
+ checks to create the instance of the Base class called c it inserts a 
+ call to the zero parameter constructor. Because Base has an integer 
+ constructor the zero parameter constructor is not available and a compile time 
+ error occurs. This can be fixed by creating a "do nothing" zero parameter 
+ constructor in the class Base.
+//Warning: will not compile.
+class Base{
+Base(int i){
+ System.out.println("single int constructor");
+ }
+}
+public class Cons {
+ public static void main(String argv[]){
+ Base c = new Base();
+ }
+}
+//This will compile
+class Base{
+Base(int i){
+ System.out.println("single int constructor");
+ }
+Base(){}
+}
+public class Cons {
+ public static void main(String argv[]){
+ Base c = new Base();
+ }
+}
+The prototype of the default constructor 
+The objective asks you to be aware of the prototype of the default constructor. 
+ Naturally it must have no parameters. The most obvious default is to have no 
+ scope specifier, but you could define the constructor as public or protected.
+ 
+ Constructors cannot be native, abstract, static, synchronized or final.
+ 
+ That piece of information was derived directly from a compiler error message. 
+ It seems that the quality of the error messages is improving with the new releases 
+ of Java. I have heard that the new IBM Java compilers have good error reporting. 
+ You might be well advised to have more than one version of the Java compiler 
+ available to check your code and hunt down errors. 
+Exercises 
+Exercise 1
+Create a class called Salwarpe with a method called hello that prints out the 
+ "Hello". In the main method of the class create an instance of itself 
+ called s1 and call the hello method from that instance. Compile and run the 
+ program so you can see the output. 
+Exercise 2
+Still using the Salwarpe.java file comment out the line that creates the s1 
+ instance and calls its hello method. Create a public constructor for the class 
+ that takes an integer parameter. and prints out the value of the integer. Create 
+ an instance of the class called s2 passing the value of 99 to the constructor. 
+ Compile and run the program so you can see it print out the output 
+Exercise 3
+Uncomment the line that creates the s1 instance and modify the program so it 
+ will compile and run printing out both Hello and 99.
+Suggested Solution for Exercise 1
+public class Salwarpe {
+ public static void main(String argv[]){
+ Salwarpe s1 = new Salwarpe();
+ s1.hello();
+ }
+ public void hello(){
+ System.out.println("Hello");
+ }
+}
+Suggested Solution for Exercise 2
+public class Salwarpe {
+ public static void main(String argv[]){
+ //Salwarpe s1 = new Salwarpe();
+ //s1.hello();
+ Salwarpe s2 = new Salwarpe(99);
+ }
+ public void hello(){
+ System.out.println("Hello");
+ }
+ public Salwarpe(int i){
+ System.out.println(i);
+ }
+}
+ Suggested Solution for Exercise 3
+public class Salwarpe {
+ public static void main(String argv[]){
+ Salwarpe s1 = new Salwarpe();
+ s1.hello();
+ Salwarpe s2 = new Salwarpe(99);
+ }
+ public void hello(){
+ System.out.println("Hello");
+ }
+ public Salwarpe(int i){
+ System.out.println(i);
+ }
+ public Salwarpe(){}
+}
+Note how you must create a zero parameter constructor for this final exercise. 
+ Once you have created any constructors for a class, Java will not provide the 
+ "behind the scenes" zero parameter constructor that was available 
+ in exercise 1.
+ 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+Given the following class definition
+class Base{
+ Base(int i){}
+}
+class DefCon extends Base{
+DefCon(int i){
+ //XX
+ }
+}
+Which of the following lines would be legal individually if added at the line 
+ marked //XX?
+1) super();
+ 2) this();
+ 3) this(99);
+ 4)super(99);
+Question 2)
+Given the following class
+public class Crowle{
+ public static void main(String argv[]){
+ Crowle c = new Crowle();
+ }
+ Crowle(){
+ System.out.println("Greetings from Crowle");
+ }
+}
+What is the datatype returned by the constructor?
+1) null
+ 2) integer
+ 3) String
+ 4) no datatype is returned
+ Question 3) 
+What will happen when you attempt to compile and run the following code?
+public class Crowle{
+ public static void main(String argv[]){
+ Crowle c = new Crowle();
+ }
+void Crowle(){
+ System.out.println("Greetings from Crowle");
+ }
+}
+1) Compilation and output of the string "Greetings from Crowle"
+ 2) Compile time error, constructors may not have a return type
+ 3) Compilation and output of string "void"
+ 4) Compilation and no output at runtime
+ Question 4) 
+What will happen when you attempt to compile and run the following class?
+class Base{
+ Base(int i){
+ System.out.println("Base");
+ }
+}
+class Severn extends Base{
+public static void main(String argv[]){
+ Severn s = new Severn();
+ }
+ void Severn(){
+ System.out.println("Severn");
+ }
+}
+1) Compilation and output of the string "Severn" at runtime
+ 2) Compile time error
+ 3) Compilation and no output at runtime
+ 4) Compilation and output of the string "Base"
+Question 5)
+ 
+ Which of the following statements are true?
+ 
+ 1) The default constructor has a return type of void
+ 2) The default constructor takes a parameter of void
+ 3) The default constructor takes no parameters
+ 4) The default constructor is not created if the class has any constructors 
+ of its own.
+Answers 
+Answer to Question 1)
+ 
+ 4)super(99);
+ 
+ Because the class Base has a constructor defined the compiler will not insert 
+ the default zero argument constructor. Therefore calls to super() will 
+ cause an error. A call to this() is an attempt to call a non existant 
+ zero argument constructor in the current class. The call to this(99) 
+ causes a circular reference and will cause a compile time error.
+ 
+ Answer to Question 2)
+ 
+ 4) no datatype is returned
+ 
+ It should be fairly obvious that no datatype is returned as by definition constructors 
+ do not have datatypes. 
+ Answer to Question 3)
+4) Compilation and no output at runtime
+ 
+ Because the method Crowle has a return type it is not a constructor. Therefore 
+ the class will compile and at runtime the method Crowle is not called. 
+ 
+ Answer to Question 4)
+ 
+ 2) Compile time error
+ 
+ An error occurs when the class Severn attempts to call the zero parameter constructor 
+ in the class Base
+ 
+Answer to Question 5)
+ 
+ 3) The default constructor takes no parameters
+ 4) The default constructor is not created if the class has any constructors 
+ of its own.
+ 
+ Option 1 is fairly obviously wrong as constructors never have a return type. 
+ Option 2 is very dubious as well as Java does not offer void as a type for a 
+ method or constructor.
+ Other sources on this topic
+ 
+ This topic is covered in the Sun Tutorial at 
+ http://java.sun.com/docs/books/tutorial/java/javaOO/constructors.html
+ Richard Baldwin Covers this topic at
+ http://www.Geocities.com/Athens/Acropolis/3797/Java042.htm#default 
+ constructor
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec1.html#obj3
+ Bruce Eckel Thinking In Java
+ http://codeguru.earthweb.com/java/tij/tij0050.shtml#Heading143 
+ 
+Last updated
+ 26 Dec 1999
+ copyright © Marcus Green 1999
+ most recent copy at www.jchq.net
+ 
+ 

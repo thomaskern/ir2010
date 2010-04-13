@@ -1,0 +1,97 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Files, Folders and Drives
+Showing a Window without Activating it
+ID: 1043
+Author: Abstractvb.com
+Date: 6/13/2002 7:52:34 PM
+VB6
+Declaring the API
+To acomplish this task we need to declare the ShowWindow API. This API when 
+called will show our window, and the activation depends on the second parameter, 
+which we will use SW_SHOWNOACTIVATE.
+Private Declare Function ShowWindow Lib "user32" (ByVal hWnd As Long, ByVal nCmdShow As Long) As Long
+Private Const SW_SHOWNOACTIVATE = 4
+Example Usage
+To use this API just call it like shown below. You can use any form you like as 
+long as you can access its hWND property.Private Sub Form_Load()
+ ShowWindow Me.hWnd, SW_SHOWNOACTIVATE
+End Sub
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

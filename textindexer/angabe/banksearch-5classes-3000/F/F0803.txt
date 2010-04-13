@@ -1,0 +1,22 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+Text Boxes
+Text boxes are used for user input and to show output. Text boxes are easy, useful, and used often.
+ 
+Text Box properties:
+Alignment - Determines whether the text in the text box is centered, toward the right or left
+BorderStyle - Determines what the border of the text box looks like
+Enabled - Determines if the text box is useable or not
+Font - Determines what the font is
+ForeColor - Determines the Text box's font color
+Locked - Determines if the user can write in the text box or not
+MaxLength - Determines how much text the text box can hold, you won't be able to type more then the max value
+Multiline - Determines if the text box has a single line or multiple lines to write in
+PasswordChar - Determines if the text is masked with the character (letter/number/symble) you specify
+so no one can see what the user is typing
+ScrollBars - Determines if it has scrollbars so you can scroll
+TabStop - Determines if the control gets focus by pressing tab
+TabIndex - The order the control gets focus
+Text - What the text will be in the text box, which is usually left blank
+Back
+Next

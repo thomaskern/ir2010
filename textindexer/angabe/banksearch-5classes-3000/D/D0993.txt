@@ -1,0 +1,164 @@
+
+1.4) Declarations and access control
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+1)Declarations and Access Control 
+Objective 4 
+State the legal return types for any method given 
+ the declarations of all related methods in this or parent classes.
+Note on this objective 
+This seems to be a rather obscurely phrased objective. It appears 
+ to be asking you to understand the difference between overloading and overriding. 
+ 
+ 
+ To appreciate this objective you need a basic understanding of overloading and 
+ overriding of methods. This is covered in
+ 
+ Section 6: Overloading Overriding Runtime Type and Object Orientation
+Methods in the same class 
+By related methods I assume that the objective means a method with the same 
+ name. If two or more methods in the same class have the same name, the method 
+ is said to be overloaded. You can have two methods in a class with the 
+ same name but they must have different parameter types and order.
+ It is the parameter order and types that distinguish between any two versions 
+ of overloaded method. The return type does not contribute towards distinguishing 
+ between methods.
+ The following code will generate an error at compile time, the compiler sees 
+ amethod as an attempt to define the same method twice. It causes an error 
+ that will say something like
+method redefined with different return type: void amethod(int)
+was int amethod(int)
+class Same{
+public static void main(String argv[]){
+ Over o = new Over();
+ int iBase=0;
+ o.amethod(iBase);
+ }
+ //These two cause a compile time error
+ public void amethod(int iOver){
+ System.out.println("Over.amethod");
+ }
+ public int amethod(int iOver){
+ System.out.println("Over int return method");
+ return 0;
+ }
+}
+ 
+ 
+ 
+ 
+ The return data type does not contribute towards
+ distinguishing between one method and another. 
+ 
+ 
+Methods in a sub class 
+You can overload a method in a sub class. All that it requires is that the 
+ new version has a different parameter order and type. The parameter names are 
+ not taken into account or the return type.
+If you are going to override a method, ie completely replace its functionality 
+ in a sub class, the overriding version of the method must have exactly the same 
+ signature as the version in the base class it is replacing. This includes the 
+ return type. If you create a method in a sub class with the same name and signature 
+ but a different return type you will get the same error message as in the previous 
+ example. i.e.
+method redefined with different return type: void amethod(int) 
+was int amethod(int)
+The compiler sees it as a faulty attempt to overload the method rather than 
+ override it.
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+Given the following class definition
+public class Upton{
+public static void main(String argv[]){
+ }
+ public void amethod(int i){}
+ //Here
+}
+Which of the following would be legal to place after the comment //Here ?
+ 1) public int amethod(int z){} 
+ 2) public int amethod(int i,int j){return 99;} 
+ 3) protected void amethod(long l){ } 
+ 4) private void anothermethod(){}
+Question 2)
+Given the following class definition
+class Base{
+ public void amethod(){
+ System.out.println("Base");
+ }
+}
+public class Hay extends Base{
+public static void main(String argv[]){
+ Hay h = new Hay();
+ h.amethod();
+ }
+}
+ Which of the following methods in class Hay would compile and cause the program 
+ to print 
+ out the string "Hay"
+1) public int amethod(){ System.out.println("Hay");}
+ 2) public void amethod(long l){ System.out.println("Hay");}
+ 3) public void amethod(){ System.out.println("Hay");}
+ 4) public void amethod(void){ System.out.println("Hay");} 
+Answers
+Answer to Question 1)
+2) public int amethod(int i, int j) {return 99;}
+ 3) protected void amethod (long l){}
+ 4) private void anothermethod(){}
+Option 1 will not compile on two counts. One is the obvious one that it claims 
+ to return an integer. The other is that it is effectivly an attempt to redefine 
+ a method within the same class. The change of name of the parameter from i to 
+ z has no effect and a method cannot be overriden within the same class. 
+Answer to Question 2)
+3) public void amethod(){ System.out.println("Hay");}
+Option 3 represents an overriding of the method in the base class, so any zero 
+ parameter calls will invoke this version. 
+Option 1 wll return an error indicating you are attempting to redefine a method 
+ with a different return type. Although option 2 will compile the call to amethod() 
+ invoke the Base class method and the string "Base" will be output.Option 
+ 4 was designed to catch out those with a head full of C/C++, there is no such 
+ thing as a void method parameter in Java.
+ 
+ Other sources on this subject
+ 
+ 
+ Jyothi Krishnan
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec1.html#obj4
+ 
+ In that link Jyothi suggests you go to objective 19 which you can find at
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec6.html#obj19 
+ 
+Last updated
+10 Nov 2000
+copyright © Marcus Green 2000
+most recent copy at http://www.jchq.net
+ 
+ 
+ 
+ 

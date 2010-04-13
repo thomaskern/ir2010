@@ -1,0 +1,243 @@
+
+ 
+MUUDPIC Networking Program
+ 
+ 
+ Gillius's Programming 
+ 
+ 
+ 
+ 
+ 
+ Sections 
+ 
+ 
+ Home / News
+ Tutorials
+ Games Corner
+ Java
+ The Archive
+ Links 
+ 
+ 
+ Fourms 
+ 
+ 
+ Current Projects 
+ 
+ 
+ 
+ 
+GNE v.49a
+ --Game Networking Engine
+ 
+Itana v.71a
+ --2D multiplayer space game
+ 
+ 
+ 
+ Complete Projects 
+ 
+ 
+ BGui2 
+ v.2.0.2
+ Deathworms
+ MUUDPIC 
+ 
+ 
+ Contact 
+ Gillius 
+ 
+ 
+ Gillius's 
+ Resume 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Location 
+ 
+ 
+ 
+ 
+ 
+ What part of the world do you 
+ live in? 
+ 
+ 
+ 
+ 
+ North America 
+ 
+ 
+ 
+ 
+ South America 
+ 
+ 
+ 
+ 
+ Europe 
+ 
+ 
+ 
+ 
+ Africa 
+ 
+ 
+ 
+ 
+ West/North Asia (like Russia) 
+ 
+ 
+ 
+ 
+ East/South Asia (like India and Japan) 
+ 
+ 
+ 
+ 
+ Australia / Indonesia 
+ 
+ 
+ 
+ 
+ Middle East 
+ 
+ 
+ 
+ 
+ Other 
+ 
+ 
+ 
+ 
+ 
+ 
+ Current 
+ results 
+ 
+ 
+ 
+ 
+ 
+ Alxnet 
+ Free Web Tools 
+ 
+ 
+ 
+ View old poll results 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ since 5/14/01 
+ 
+ 
+ 
+ 
+ 
+MUUDPIC 
+ Networking Program
+ (and TextGUI windowing 
+ library)
+ 
+Programmed by Jason 
+ Winnebeck
+ 
+Return to Main 
+ Page
+ 
+MUUDPIC Table of 
+ Contents
+ 
+Latest News
+ What is MUUDPIC?
+ The TextGUI
+ How it Works
+ Current Bugs
+ Download
+ 
+ 
+Latest News
+ 
+3/8 -- The Windows port 
+ of MUUDPIC using MSVC and MFC has been (nearly) completed. This version 
+ works much better than the original DOS or Linux versions. Its only error 
+ at the moment is that it allows duplicate filenames when it should not 
+ and does not ping the clients from time to time to see if they are still 
+ active. The Dos box under Windows version has been discontinued and removed 
+ since it doesn't work nor ever will. The Linux version is also discontinued 
+ and will not work with the Windows one since I updated the protocol to 
+ make it more reliable and flexible.
+ 
+10/11 -- The Linux port of MUUDPIC has 
+ been released. It would be totally completed except for some curses stuff. 
+ Actually my opinion of ncurses is not too great right now, and if anyone 
+ would please help, I would appreciate it. I spent 5 minutes (quite literally) 
+ porting my logic to Linux, and I've spent over 10-15 hours+ porting only 
+ 50 lines of code! Curses seems impossible! For some reason, it doesn't 
+ show right on VT100, crashes an xterm, corrupts the screen in ANSI, but 
+ corrupts it just slightly less in ANSI.SYS mode. What a wonderful piece 
+ of crap.
+ 
+Return to Top
+ 
+What is MUUDPIC?
+ 
+MUUDPIC stands for Multi-User UDP Internet Chat. The purpose 
+ of the project is to create an experimental networking method which will 
+ be used in the multiplayer code for Project V2143: The Price of Justice. 
+ The server/client pair will act almost in an identical way in the chat 
+ as they would in the game, and the server will be useable in the PV2143 
+ code with only a few minor adjustments. More info is available in this 
+ document, or in this readme.
+ 
+Return to Top
+ 
+The TextGUI
+ 
+The windowing library which was used in 
+ DOS/Linux MUUDPIC is available as a completely separate and usable package, 
+ and includes the classes CWindow text window and the CWindow based CTextBox 
+ input window designed for multitasking. This libraries work under any 
+ operating system and in any compiler which can make DOS/console targets 
+ and has a conio.h similar to DJGPP's. I would assume this works for Borland, 
+ and possibly for VC++, but I am only supporting it offically for DJGPP.
+ 
+The Windows are easy to use with just the 
+ insertion operator. Commands are simple. Set up the window and use commands 
+ like: MyWin Download TextGUI
+ 
+Information is available in this section or in the readme file.
+ 
+Standalone library. Source ready to compile 
+ for use available here (13k) along with example code. There is 
+ no binary since it is only a library (the example application will compile 
+ to an EXE though). Most of the TextGUI library is commented line-by-line.
+ 
+Return to Top
+ 
+ 
+ 
+ 

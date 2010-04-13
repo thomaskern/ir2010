@@ -1,0 +1,74 @@
+
+ localeconv()
+ 
+ 
+localeconv-Return information on locale formatting conventions
+Synopsis
+ #include &#060;locale.h&#062;
+ lcl = localeconv(void);
+ struct lconv *lcl; /* Locale information structure */
+Description
+ This function fills in a structure of information about numeric
+ and monetary formatting for the current program's locale. The
+ structure is defined in the file locale.h as follows:
+ struct lconv {
+ char *decimal_point;
+ char *thousands_sep;
+ char *grouping;
+ #define LCONVM int_curr_symbol
+ char *int_curr_symbol; /* international currency symbol
+*/
+ /* for current locale */
+ char *currency_symbol; /* local currency symbol for */
+ /* current locale */
+ char *mon_decimal_point; /* decimal point for monetary */
+ /* quantities */
+ char *mon_thousands_sep; /* separator for groups of digits */
+ /* in monetary quantities */
+ char *mon_grouping; /* size of digit groups in */
+ /* monetary quantities
+*/
+ char *positive_sign; /* string indicating non- */
+ /* negative monetary quantity */
+ char *negative_sign; /* string indicating negative */
+ /* monetary quantity */
+ char int_frac_digits; /* number of digits after decimal */
+ /* point in international */
+ /* monetary quantities
+*/
+ char frac_digits; /* number of digits after decimal
+*/
+ /* point in monetary quantities
+*/
+ char p_cs_precedes; /* 1=currency symbol precedes */
+ /* nonnegative monetary quantity
+*/
+ /* 0=symbol succeeds quantity */
+ char p_sep_by_space; /* 1=space between currency symbol*/
+ /* and non-negative monetary */
+ /* quantity */
+ /* 0=no space */
+ char n_cs_precedes; /* 1=currency symbol precedes */
+ /* negative monetary quantity */
+ /* 0=symbol succeeds quantity */
+ char n_sep_by_space; /* 1=space between currency symbol*/
+ /* and negative monetary quantity */
+ /* 0=no space */
+ char p_sign_posn; /* position of sign for positive
+*/
+ /* monetary quantities
+*/
+ char n_sign_posn; /* position of sign for negative
+*/
+ /* monetary quantities
+*/
+ };
+ The decimal point character used to format nonmonetary values
+ defaults to a period (.). The character used to separate groups of
+ digits before the decimal point character in formatted nonmonetary
+ values defaults to a comma (,).
+Returns
+ This function returns a pointer to the lconv structure for the
+ current locale.
+See Also
+ setlocale 

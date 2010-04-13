@@ -1,0 +1,107 @@
+
+Cprogramming.com: Code Journal Issue 2
+ 
+ 
+ 
+- Home
+ 
+ 
+- Tutorials
+- Source
+- Books
+- Directory
+- Quiz
+ 
+ 
+- Borland
+- DJGPP
+- Other
+ 
+ 
+- C board
+- Functions
+- Email
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Click Here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ (Back to Code 
+ Journal Main)
+ 
+Code Journal is a free, biweekly newsletter on programming 
+ and computer science provided jointly by Cprogramming.com 
+ and AI Horizon. 
+This is the March 11th Issue. 
+ CODE 
+ JOURNAL: Your Guide to Programming
+ 
+ February 20, 2002
+ 
+ In This Edition:
+ - Welcome to the Code Journal
+ - Handling Errors Exceptionally Well in C++
+ - Time Flies Like an Arrow, but Time Algorithms with Big-O
+ - Programming 
+ Challenge
+ 
+ Welcome to the Code Journal, a joint 
+ venture between Cprogramming.com 
+ and AI Horizon that aims to 
+ provide insightful articles on both C++ and algorithmic programming. 
+ Code Journal is helpware: in return for reading it, you are asked 
+ to help someone else out with their own programming problems. Good 
+ luck, and quick compiling.
+ 
+ ---------------------------------------------------------
+ C/C++ Programming by Alex Allain
+ ---------------------------------------------------------
+ Handling Errors Exceptionally Well in C++
+One handy feature of C++ is its exception handling system. An exception is a 
+situation in which a program has an unexpected circumstance that the section 
+of code containing the problem is nor explicitly designed to handle. In C++,
+ exception handling is useful bcause it makes it easy to separate the program 
+design between code written to handle the chores of the program and code 
+written to handle errors; doing so makes reading the code much easier. 
+Furthermore, exception handling in C++ propagates the exceptions up the stack; 
+therefore, if there are several functions called, but only one function that 
+needs to reliably deal with errors, the method C++ uses to handle exceptions 
+means that it can easily handle those exceptions without any code in the 
+intermediate functions.
+When errors occur, the function generating the error can 'throw' an exception. 
+For example, take a sample function that does division:
+const int DivideByZero = 10;
+//....
+double divide(double x, double y)
+{
+ if(y==0)
+ throw DivideByZero;
+ return x/y;
+}
+The function will throw DivideByZero as an exception that can then be caught 
+by an exception-handling catch statement that catches exceptions of type int.
+ The necessary construction for catching exceptions is a try catch system. 
+If you wish to have your program check for exceptions, you must enclose the
+ code that may have exceptions thrown in a try block. For example:
+try
+{
+ divide(10, 0);
+}
+catch(int i)
+{
+ if(i==DivideByZero)
+ cerr

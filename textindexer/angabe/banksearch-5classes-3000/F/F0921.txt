@@ -1,0 +1,491 @@
+
+Visual Basic Internet Programming - WinInet API - How to detect the WinInet version
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 	Home -
+ 	 What's New - Tools&Technologies -
+ 	 Resources - Books
+ - Forum
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ 
+ WinInet API - How to detect the WinInet version 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Advertisement] 
+ 
+ 
+ 
+ 
+ 
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search vbip.com] 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+[Search other VB sites] 
+ 
+ 
+ 
+ 
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+[Featured Book] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+[Newsletter] 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HTML
+ Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ [Partners]
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ How to detect the WinInet version?
+ 
+Why to detect it?
+ 
+The WinInet API is not a stated interface. The MS devolopment team
+ permanently improves it so, the way you use WinInet library shipped with
+ IE5 might be unacceptable, if the user has installed IE4. Take a look at
+ an example. 
+ 
+Version of the WinInet library shipped with IE4 provides the InternetGetConnectedState function to detect the Internet connection state and
+ some properties of the connection. The WinInet library shipped with IE5
+ bring us a new function InternetGetConnectedStateEx that allows to get
+ aditional information about the Internet connection, and IE3 doesn't
+ provide any function to detect one. 
+ 
+So, since some WinInet API functions are unavailable if a system has
+ an earlier version of IE installed, you have to detect the version of
+ WinInet library. The following is a list of the API functions that were
+ added in IE 4 and IE 5.
+ 
+Functions Introduced in Internet Explorer 4
+ 
+ 
+CreateUrlCacheGroup
+ DeleteUrlCacheGroup
+ FindFirstUrlCacheEntryEx
+ FindNextUrlCacheEntryEx
+ GetUrlCacheEntryInfoEx
+ HttpEndRequest
+ HttpSendRequestEx
+ InternetAutodial
+ InternetAutodialHangup
+ InternetDial
+ InternetGetConnectedState
+ InternetGoOnline
+ InternetHangUp
+ InternetReadFileEx
+ SetUrlCacheEntryGroup
+ 
+ 
+Functions Introduced in Internet Explorer 5
+ 
+ 
+FindFirstUrlCacheGroup
+ FindNextUrlCacheGroup
+ FtpCommand
+ FtpGetFileSize
+ GetUrlCacheGroupAttribute
+ InternetGetConnectedStateEx
+ SetUrlCacheGroupAttribute
+ 
+ 
+Use InternetQueryOption
+ function
+ 
+The InternetQueryOption function is an universal routine that can be
+ used to determine several properties of the system and current Internet
+ session. Below is a declaration:
+ 
+Declare Function
+ InternetQueryOption Lib "wininet.dll"
+ _
+ Alias "InternetQueryOptionA" (ByVal
+ hInternet As Long, _
+ 
+ ByVal dwOption As
+ Long, _
+ 
+ lpBuffer As Any, _
+ 
+ lpdwBufferLength As Long) As
+ Long
+ 
+To use this function in order to retrieve the WinInet version you
+ must asign the following values to the arguments of the function:
+ 
+hInternet - Internet session handle; in our case must be 0.
+ 
+dwOption - contains a flag value that explain what information the
+ function should retrieve. To get the version number use INTERNET_OPTION_VERSION
+ flag
+ 
+ 
+Const INTERNET_OPTION_VERSION = 40
+ 
+ 
+lpBuffer - receives INTERNET_VERSION_INFO structure:
+ 
+ 
+Type
+ INTERNET_VERSION_INFO
+ dwMajorVersion As Long
+ dwMinorVersion As Long
+ End Type
+ 
+ 
+lpdwBufferLength - informs function about the buffer length.
+ 
+ 
+ The INTERNET_VERSION_INFO structure returned by this function call can
+ be interpreted as follows:
+ 
+ 
+ 
+ 
+ 
+ dwMajorVersion 
+ dwMinorVersion 
+ WinInet
+ Version 
+ 
+ 
+ 1 
+ 0 
+ Internet Explorer
+ 3 
+ 
+ 
+ 1 
+ 1 
+ Internet Explorer
+ 4 
+ 
+ 
+ 1 
+ 2 
+ Internet Explorer
+ 5 
+ 
+ 
+ 
+ 
+ 
+ 
+ Creating a VB function
+ 
+ 
+Now, we can create a code module with the function that will return
+ the WinInet version number. 
+ 
+ 
+Add to a project a new code module. In the Genral_Declarations
+ section put the following code:
+ 
+ 
+Type INTERNET_VERSION_INFO
+ dwMajorVersion As Long
+ dwMinorVersion As Long
+ 
+ End Type
+ 
+Const INTERNET_OPTION_VERSION = 40
+ 
+Declare Function InternetQueryOption
+ Lib "wininet.dll" _
+ 
+ Alias "InternetQueryOptionA" (ByVal hInternet
+ As Long, _
+ 
+ ByVal dwOption As
+ Long, _
+ 
+ lpBuffer As Any, _
+ 
+ lpdwBufferLength As Long) As Long
+ 
+Enum WinInet_Versions
+ INET_VER_ERROR = 0
+ INET_VER_UNKNOWN = 1
+ INET_VER_IE3 = 3 'wininet shipped with IE3
+ INET_VER_IE4 = 4 '-//- with IE4
+ INET_VER_IE5 = 5 '-//- with IE5
+ 
+ End Enum
+ 
+Create GetWinInetVersion function as shown below:
+ 
+Function GetWinInetVersion()
+ As WinInet_Versions
+ 
+ Dim lStructSize As
+ Long
+ Dim VersionStruct As
+ INTERNET_VERSION_INFO
+ Dim lRetVal As
+ Long
+ 
+ lStructSize = Len(VersionStruct)
+ 
+ lRetVal = InternetQueryOption(0&,
+ INTERNET_OPTION_VERSION, _
+ 
+ VersionStruct, lStructSize)
+ If lRetVal = 0 Then
+ GetWinInetVersion =
+ INET_VER_ERROR
+ Exit
+ Function
+ Else
+ If
+ VersionStruct.dwMajorVersion = 1 Then
+ Select
+ Case VersionStruct.dwMinorVersion
+ 
+ Case 0
+ 
+ GetWinInetVersion = INET_VER_IE3
+ 
+ Case 1
+ 
+ GetWinInetVersion = INET_VER_IE4
+ 
+ Case 2
+ 
+ GetWinInetVersion = INET_VER_IE5
+ 
+ Case Else
+ 
+ GetWinInetVersion = INET_VER_UNKNOWN
+ 
+ End Select
+ Else
+ 
+ GetWinInetVersion = INET_VER_UNKNOWN
+ End If
+ End If
+ 
+ End Function
+ 
+That's it. Now you can call the GetWinInetVersion function in order
+ to detect the version of the WinInet library. For example:
+ 
+Select Case GetWinInetVersion
+ Case INET_VER_IE4
+ Call
+ InternetGetConnectedState (...) 
+ Case INET_VER_IE5, INET_VER_UNKNOWN
+ Call
+ InternetGetConnectedStateEx (...)
+ Case INET_VER_IE3
+ 'you have not the
+ WinInet function to detect the Internet connection
+ End Select
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Please, post here only feedback for the article/tutorial/sample you
+ have read above.
+ If you have any question and like to get an answer, post your messages in the Forum.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home -
+ Tools&Technologies -
+ 
+ WinInet API 
+ - How to detect the WinInet version 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Home | What's
+New | Tools
+& Technologies | Resources | Books
+ | Forum
+Report about any problems and errors to webmaster@vbip.com
+Copyright © 1998 - 2002 by Oleg Gdalevich
+ 
+ 
+ 
+ 

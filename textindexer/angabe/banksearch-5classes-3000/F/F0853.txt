@@ -1,0 +1,19 @@
+
+	VBUG News Group
+	
+If you are posting code, surround it with [code] [/code] tags - it helps preserve the formatting and spacing.
+I don't understand your question.
+From what I understand of your question the AA.EXE has a command button that when clicked writes out a program BB.EXE.
+ 
+What would the BB.EXE be an executable of? Are you going to be passing some type of source code (VB, C++, etc.) and calling a compilier for the language in question? Most languages have the ability to be compiled from the command prompt instead of from within an IDE. If that is the case I would call a shell command to run the compilier for the language in question. If you're thinking something else I don't know.
+jim
+	Name 
+ 
+	Email Address 
+ 
+	Subject: 
+	 
+	 
+	 
+	
+	

@@ -1,0 +1,412 @@
+
+ 
+C >> Strings 1 ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Pointers 3 
+ Main Menu 
+ Strings 2 
+ 
+ 
+ 
+ 
+Strings 1
+ 
+ 
+ 
+ 
+ 
+ 
+Character Arrays Versus String Constants
+ 
+ 
+ 
+ 
+ 
+Recall that each character has a unique ASCII value, as mentioned in the Data Types section. 
+ A character constant is just a single character, enclosed in single quote marks and can be assigned to variables of the int 
+ or char data types. 
+ 
+If you were to have an array of characters WITHOUT the null character as the last element, you'd have an ordinary character array, 
+ rather than a string constant. 
+ 
+ 
+ 
+ 
+ 
+ 
+String constants have double quote marks around them, and can be assigned to char pointers, as previously mentioned. Alternatively, 
+ you can assign a string constant to a char array - either with no size specified, or you can specify a size, but don't forget 
+ to leave a space for the null character! 
+ 
+char *string_1 = "Hello";
+ char string_2[] = "Hello"; 
+ char string_3[6] = "Hello"; 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ int a = 'H'; /* character constants */
+ char b = 'i';
+ int i;
+ char array1[4] = {'B','e','e','r'}; /* a character array */
+ char array2[7] = {'C','o','f','f','e','e','\0'}; /* a string constant */
+ /* don't forget to add an extra element for the null character! */
+ char array3[] = "Or you can specify an unsized char array";
+ char *array4;
+ array4 = " just to be safe.";
+ printf("The numeric value of a is %d\n", a);
+ printf("The numeric value of b is %d\n\n", b);
+ printf("The character that a holds is %c\n", a);
+ printf("The character that b holds is %c\n", b);
+ /* printf("array1 holds %s\n", array1); is illegal - array1 NOT a string */ 
+ printf("\narray1 holds:\n\t");
+ for(i=0 ; iReading 
+ Strings
+ 
+ 
+ 
+ 
+ 
+One possible way to read in a string is by using scanf. However, the problem with this, is that if you were to enter a string 
+ which contains one or more spaces, scanf would finish reading when it reaches a space, or if return is pressed. As a result, 
+ the string would get cut off. 
+ 
+So what now? We could use the gets function... 
+ 
+ 
+ 
+gets takes just one argument - a char pointer, or the name of a char array, but don't forget to declare 
+ the array / pointer variable first! What's more, is that it automatically prints out a newline character, making the output a little 
+ neater. 
+ 
+ 
+ 
+If you intended to use a char array, you MUST specify its size before passing it into gets. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Writing 
+ Strings
+ 
+ 
+ 
+ 
+ 
+Before I give an example, I'd like to introduce you to puts. 
+ 
+Like with printf and scanf, if you want to use gets and puts you'd have to include the stdio.h 
+ header file.
+ 
+ 
+ 
+ 
+ 
+puts is similar to gets in the way that it takes one argument - a char pointer. This also automatically 
+ adds a newline character after printing out the string. Sometimes this can be a disadvantage, so printf could be used instead. 
+ 
+ 
+Example time: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ char array1[50];
+ char *array2;
+ printf("Now enter another string less than 50 characters with spaces: \n");
+ gets(array1);
+ printf("\nYou entered: ");
+ puts(array1);
+ printf("\nTry entering a string less than 50 characters, with spaces: \n");
+ scanf("%s", array2);
+ printf("\nYou entered: %s\n", array2);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Output: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Now enter another string less than 50 characters with spaces: 
+ hello world 
+ 
+ You entered: hello world 
+ 
+ Try entering a string less than 50 characters, with spaces: 
+ hello world 
+ 
+ You entered: hello 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+I got a warning from MSVC++ when I ran this: local variable 'array2' used without having been initialized. 
+ 
+It compiled ok, but when I initialized array2 with a value, the program crashed! 
+ 
+On the other hand, if I'd inputted a string back into array1 like this: scanf("%s", array1); it was 
+ fine, though the string I entered still got cut off. So it's safer to use char arrays as opposed to char pointers. 
+ 
+ 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Pointers 3 
+ Main Menu 
+ Strings 2 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

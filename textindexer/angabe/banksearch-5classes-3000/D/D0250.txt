@@ -1,0 +1,194 @@
+	
+	 WDVL: Applets
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+Find A Web Developer
+Free DNS Offer
+Comparison Shopping
+Software Store
+Search Marketplace
+Search the Web
+Find a Consultant
+Computer Training
+Send a Press Release
+FlashMX Tools/Bundles
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Applets	
+What is a Java Applet?
+Java is an object-oriented programming language developed by Sun Microsystems. One of the greatest things about the fact that Java is object oriented is the standard library of objects it provides. These objects are easy to use and rich with functionality. A Java program is executed as either an application which runs stand-alone from the command line or as an applet that runs under a Web browser. Applications and applets start program execution in different ways; an application has a main() method and an applet has a init() method inititiated by the browser. This article will focus on writing an applet.
+How do you execute a Java Applet?
+The source code of a Java applet is stored in file with the suffix ".java". The source code is compiled into bytecode and stored in a file with the suffix ".class". The ".class" file is included in the HTML document using the applet tag. Here is an example of the applet tag used by the Contact applet:
+A Java applet is executed by a Web browser when the browser loads an HTML document that contains an applet tag. The Contact applet source code is stored in Contact.java. Its bytecode is stored in Contact.class . It is included in the Contact.html document.
+The applet tag defines the width and height of the applet window within the HTML document. The applet tag has numerous
+attributes to enhance its placement within the HTML document.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

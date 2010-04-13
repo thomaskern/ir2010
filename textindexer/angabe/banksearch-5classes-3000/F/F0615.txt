@@ -1,0 +1,96 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > ActiveX / COM
+Setting the Default Event for your control.
+ID: 749
+Author: Abstractvb
+Date: 6/9/2000 11:27:19 PM
+VB6
+In the code window for the UserControl select the Tools -> Procedure Attributes menu items. When the procedure attributes window appears select the event you want to be the default event in the Name ComboBox. then click the Advanced button.
+Under the Attributes frame select the checkbox called "User Interface Default" and then press ok. That event you selected is now the default event for your control.
+NOTE: If you cut and paste that event in your code the information you entered in the Procedure Attributes will be lost and you will have to set it again.
+ Want More Source Code? You May Also Be Interested In This: 
+How to create an AboutBox for your Usercontrol
+This shows how to create an AboutBox for your UserControl and have it show up in the properties window at design time for the developer hosting your control.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

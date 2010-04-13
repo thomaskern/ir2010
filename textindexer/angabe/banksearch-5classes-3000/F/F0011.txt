@@ -1,0 +1,244 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+VB Examples
+Here are a few Visual Basic examples. All these files are in .Zip format, so you will need WinZip v7.0 + to unzip them and if you don't have it go here and download the latest version, which will not cost you anything. You will aslo need Visual Basic 5 or 6 (written in VB5) in order to use these examples.
+Example
+ 
+"black">
+Details
+ 
+Password Entry
+ 
+An example showing you how to make your program use passwords for access
+ 
+Combo Boxes & Select Case
+ 
+An example showing you how to use Combo boxes w/ select case
+ 
+Do While Loops
+ 
+An example showing you how to use Do While loops
+ 
+List Box
+ 
+An example showing you how to use the List box control Updated
+ 
+Frames
+ 
+An example showing you how to use Frames efficiently Updated
+ 
+ProgressBar
+ 
+An example showing you how to use the progress bar control *Fix* ReUploaded
+ 
+Menus
+ 
+An example showing you normal menus and the differnt options they have
+ 
+Popup Menus
+ 
+An example showing you how to make Popup menus
+ 
+"OnTop" Form
+ 
+An example of a form that is always ontop
+ 
+Timer
+ 
+An example of a way to use a timer
+ 
+Playing .mids
+ 
+An example of how to play .mid sound files (special thanks to Gollum)
+ 
+Playing .wavs
+ 
+An example of how to play .wav sound files (special thanks to Gollum)
+ 
+Draging & Droping
+ 
+An example of how to drag & drop things on your form
+ 
+ToolBar
+ 
+An example of how to make and use the ToolBar control
+ 
+Cancel For Loop
+ 
+An example of how to cancel a For Loop that is in progress
+ 
+Cancel Do Loop
+ 
+An example of how to cancel a Do Loop that's in progress
+ 
+Moving the Mouse
+ 
+An example of how to move the pointer with codes 
+ 
+Hiding the Mouse
+ 
+An example of how to hide the mouse... 
+ 
+Common Dialog
+ 
+An example of how to use the Color dialog box
+ 
+Common Dialog2
+ 
+An example of how to use the Open dialog box
+ 
+Animating w/ BitBlt
+ 
+An example of how to use BitBlt to animate a sprite (special thanks to Gollum)
+ 
+Animating w/ BitBlt2
+ 
+An example of how to use BitBlt to animate a sprite, make it transparent and move it on the form (special thanks to Gollum) 
+API
+ 
+An example of how to use API to get the User Name from the system...
+ 
+API 2
+ 
+An example of how to use API to find if a window is open or not...
+ 
+API 3
+ 
+An example of how to use API to Shut down/Restart/Log-Off Windows...
+ 
+Comparing Two Listboxes
+ 
+An example of how to compare two list boxes, and see what is missing from the second list...
+ 
+Saving to the Registry
+ 
+An example of how to Save and Load from the Registry
+ 
+For Loop
+ 
+An example of how to use a For Loop...
+ 
+Get Len of File/String
+ 
+An example of how to get the length of a File or a String...
+ 
+Printing ListBoxes
+ 
+An example of how to print List Boxes out...
+ 
+Preventing Instances
+ 
+An example of how to prevent your program from running more than once at the same time
+ 
+Get Resolution
+ 
+An example of how to get your current resolution
+ 
+Get Mouse Pos
+ 
+An example of how to get your mouse's current position
+ 
+Closing Windows
+ 
+An example of how to close other apps
+ 
+Renaming Files
+ 
+An example of how to rename files
+ 
+Copying Files
+ 
+An example of how to copy files
+ 
+Check If File/Dir Exists
+ 
+An example of how to check if a certain file or directory exists
+ 
+Scroll In Text Boxes
+ 
+An example of how to check scroll up/middle/down text boxes
+ 
+Random Numbers
+ 
+An example of how to generate random numbers
+ 
+Browsing
+ 
+An example of how to browse your computer using the Drive, Dir and File controls
+ 
+Reading Text Files
+ 
+An example of how to read text files
+ 
+Control Arrays
+ 
+An example of how make and use control arrays
+ 
+Making Files
+ 
+An example of how make files
+ 
+'Edit' Menu
+ 
+An example of how make and use edit menu functions such as copy, cut, paste, delete and select all
+ 
+Quotation Marks
+ 
+An example of how to add quotation marks to text
+ 
+IsNumeric Function
+ 
+An example of how to use the 'IsNumeric' function
+ 
+Left | Mid | Right Functions
+ 
+An example of how to use the "Left," "Right," and "Mid" functions
+ 
+Selecting Text
+ 
+An example of how to select text in text boxes
+ 
+Searching Text
+ 
+An example of how to search for text in a text box
+ 
+Making Directories
+ 
+An example of how to make directories in your hard drive
+ 
+Running Apps
+ 
+An example of how to run apps
+ 
+Writing Backwards
+ 
+An example of how to write backwards in text boxes
+ 
+Going To Web Sites
+ 
+An example of how to go to web sites
+ 
+Removing Directories
+ 
+An example of how to remove directories
+ 
+Getting Variable's Data Types
+ 
+An example of how to find out a variables data type
+ 
+Get Available Fonts
+ 
+An example of how to get all the available fonts the user has on their system
+ 
+Collection
+ 
+An example of a collection, how to make and use its methods
+ 
+Data Control
+ 
+An example of how to use the data control to access databases
+ 
+Data Control2
+ 
+An example of how to use the data control to access databases
+ 

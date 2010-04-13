@@ -1,0 +1,73 @@
+
+Java Native Interface
+The JavaTM Tutorial
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Trail: Java Native Interface
+by Beth Stearns
+The lessons in this
+trail show you how to integrate native code with programs written in Java. 
+You will learn how to write 
+native methods. Native methods are methods
+implemented in
+another programming language such as C. 
+The JNI is for programmers who must take advantage of platform-specific functionality outside of the Java Virtual Machine. Because of this, it is recommended that only experienced programmers should attempt to write
+native methods or use the Invocation API!
+Overview of the JNI
+begins with an introduction to the JNI concepts. 
+Writing Java Programs with Native Methods
+describes how to compile and run a Java program with a native method. It walks you step by step through a simple example (the "Hello World!" of
+native methods) to illustrate how to write, compile, and run a Java program
+that includes native methods.
+Integrating Java and Native Programs
+shows you how to map Java types to native types. This lesson includes information about
+passing arguments of various data types into a native method and
+returning values of various data types from a native method. It also shows how to implement a native method within a Java program.
+Interacting with Java from the Native Side 
+describes many useful functions that your native language
+code can use to access Java objects and their members, create Java
+objects, throw exceptions, and more.
+Invoking the Java Virtual Machine 
+explains how to invoke the Java Virtual Machine from your native application.
+Summary of the JNI 
+lists the JNI methods and mapping tables to remind you of what you've learned.
+Note: 
+ 
+Available now from 
+amazon.com 
+For more complete
+information, refer to the new book, The JavaTM 
+Native Interface: Programmer's Guide and Specification 
+written by Sheng Liang. Published by Addison Wesley Longman, Inc. June 1999.
+ 
+This book is the definitive resource and a comprehensive guide to working with the JNI.
+Entirely up-to-date, the book offers a tutorial, a detailed description
+of JNI features and programming techniques, JNI design justifications, and 
+the official specification for all JNI types and functions. 
+ 
+Security consideration: 
+Note that the ability to load dynamic libraries is subject to
+approval by the current security manager. When working with native
+methods, you must load dynamic libraries. Some applets may not be
+able to use native methods because 
+the browser or viewer they are running in restricts the ability to load dynamic libraries. See
+Security Restrictions for information about the security restrictions placed on applets.
+Note: MacOS programmers should refer to 
+MacOS Runtime for Java.
+Programmers interested in writing native
+methods in releases prior to 1.1 can
+download
+the old version of this trail.
+It describes native methods for the 1.0.2 release of the JDK.
+ 
+Start of Tutorial
+ 
+Search
+Feedback Form
+ 
+Copyright
+1995-2002 Sun Microsystems, Inc. All rights reserved.

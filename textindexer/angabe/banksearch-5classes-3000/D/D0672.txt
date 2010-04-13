@@ -1,0 +1,349 @@
+
+ 
+ Study guide: Trash talk, Part 1
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 2001 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Java 101 
+ 
+ 
+ Study guide: Trash talk, Part 1
+ 
+ Brush up on Java terms, learn tips and cautions, review homework assignments, and read Jeff's answers to student questions
+ 
+ 
+ 
+Summary
+Welcome to the Java 101 study guide. This guide complements "Trash Talk, Part 1." It provides a glossary of terms specific to that article, new homework, solutions to last month's homework, Jeff Friesen's answers to questions from your fellow students, additional examples, and miscellaneous notes and thoughts.
+The Java 101 study guides are evolving documents -- they change periodically. For example, if you submit a question long after Jeff posts the relevant study guide, your question and his answer will eventually make its way onto that guide. Furthermore, from time to time, he will post additional examples and other material that clarifies an article's topic, so be sure to revisit the study guides periodically. 
+ 
+ By Jeff Friesen
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+Index
+- Glossary of terms
+- Tips and cautions
+- Miscellaneous notes and thoughts
+- Homework
+- Answers to last month's homework
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+Glossary of terms 
+ finalization A fallback mechanism for cleaning up finite resources. Finalization occurs when the garbage collector calls a resurrectable object's overridden finalize() method. 
+garbage collection The process by which some executable, such as the JVM, automatically frees an object's memory when a single reference to that memory no longer exists. 
+garbage collector That part of the JVM that performs garbage collection. 
+handles Indexes into a table of object references. 
+mark-and-sweep algorithm A tracing-based garbage collector algorithm that first marks in some way each object during a trace through all objects on the object heap and then sweeps all unmarked objects into oblivion. 
+object heap That portion of the JVM's memory area from which the JVM allocates memory for new objects. 
+reachable A state in which an object can be reached via some path that starts from a root-set variable. 
+resurrection The act of preventing an object's collection by making it reachable from inside its finalize() method. 
+root set of references A group of reference variables always accessible to an executing Java program. Those variables include local variables, parameters, and class fields. 
+stop-and-copy algorithm A copying-based garbage collector algorithm that divides the object heap into an object area and a free space area. The stop-and-copy garbage collector stops program execution while it copies objects from the object area to the free space area, defragmenting the heap in the process. 
+Train algorithm A modified generational collector algorithm that manages the mature object space to shorten the delay that the garbage collector imposes on a program. 
+unreachable A state in which an object cannot be reached by any path starting from any root-set variable. 
+Back to index
+Tips and cautions 
+These tips and cautions will help you write better programs and save you from agonizing over error messages produced by the compiler.
+ Tips 
+ 
+- Get into the habit of ending your finalize() methods with super.finalize(); method calls. That way, if you insert a superclass above your class and if that superclass has its own finalize() method, you can be sure the garbage collector calls superclass's finalize() method. 
+ Cautions 
+ 
+- You should call System.runFinalization (); immediately after a call to System.gc ();. If you place System.runFinalization (); before System.gc (); or omit the System.gc (); call, not all finalize() methods will run. (I do not know the reason for this.) 
+- If you resurrect an object and then make that object unreachable, the next time the garbage collector runs, it will collect that object without calling the object's finalize() method. 
+Back to index
+Miscellaneous notes and thoughts 
+You might be wondering why I did not include instance (that is, object) fields in the root set of references. The reason is that, unlike class fields (which are always accessible through a program's lifetime) and local variables/parameters (which are always accessible during a method call), instance fields become inaccessible to the garbage collector when an object becomes unreachable. 
+Back to index
+Homework 
+This month, you have three questions to answer: 
+ 
+- Why is it beneficial that Java, rather than the developer, frees objects? 
+- Write a program that demonstrates how you can run out of memory in a Java program. What happens when you run out of memory? 
+- What is a disadvantage to a generational garbage collector? (Hint: Why does the Train algorithm exist?) 
+Back to index
+Answers to last month's homework 
+Last month, I asked you to trace the initialization process through the Employees source code below (assume that java Employees starts the program):
+Employees.java 
+// Employees.java
+class Employee
+{
+ private String name;
+ private double salary;
+ static int count;
+ static double bonus;
+ Employee (String name, double salary)
+ {
+ this.name = name;
+ this.salary = salary;
+ if (this instanceof Accountant)
+ this.salary += bonus;
+ }
+ static
+ {
+ // Pretend to load bonus from a database.
+ bonus = 500.0;
+ }
+ {
+ if (count > 5)
+ bonus = 0.0;
+ count++;
+ }
+ String getName ()
+ {
+ return name;
+ }
+ double getSalary ()
+ {
+ return salary;
+ }
+}
+class Accountant extends Employee
+{
+ Accountant (String name, double salary)
+ {
+ super (name, salary);
+ }
+}
+class Employees
+{
+ public static void main (String [] args)
+ {
+ String [] names =
+ {
+ "John Doe",
+ "Jane Smith",
+ "Jack Jones",
+ "Bob Smyth",
+ "Alice Doe",
+ "Janet Jones"
+ };
+ double [] salaries =
+ {
+ 40000.0,
+ 50000.0,
+ 30000.0,
+ 37500.0,
+ 52000.0,
+ 47000.0
+ };
+ for (int i = 0; i method. That method assigns 500.0 to bonus. 
+- The JVM allocates memory for an Employee object's name and salary instance fields, and zeroes all bits comprising that memory. A reference to that object's memory is placed in a temporary stack location. 
+- The JVM executes the method corresponding to Employee(String name, double salary).
+- The method first calls Object's no-argument method, which does nothing and subsequently returns. 
+- The method next executes an if decision statement's byte code instructions that evaluate count > 5. Because count currently contains 0, 0.0 does not assign to bonus. 
+- The method next executes the equivalent of count++. count now contains 1. 
+- The method next assigns the reference in its name parameter to the name field and the double-precision floating-point value in its salary parameter to the salary field. 
+- Finally, the method uses the byte code equivalent of instanceof to see if the current object is an instance of Accountant. Because the object is not such an instance, nothing further happens and exits. 
+- The JVM takes the Employee object's reference from the temporary stack location and assigns it to local variable e. 
+- The two System.out.println() method calls result in calls to Employee's getName() and getSalary() methods for the object referenced by e. Those methods return the appropriate name and salary values, which subsequently print. 
+- The for loop statement increments i (which becomes 1), and checks to see if i's value is still less than names.length's (6) -- which it still is. Therefore, the if decision statement executes a second time. 
+- Because the next two iterations (where i contains 1 and 2) repeat previous steps, let's continue where i contains 3. 
+- if evaluates i method to execute. 
+- The JVM allocates memory for an Accountant object's name and salary instance fields (which are located in the Employee layer), and zeroes all bits comprising that memory. A reference to the Accountant object is placed in a temporary stack location. 
+- The JVM executes the method corresponding to Accountant(String name, double salary).
+- The method first calls Employee's two-argument method. 
+- Employee's method calls Object's no-argument method, which does nothing and subsequently returns. 
+- Employee's method next executes the if decision statement that evaluates count > 5. Because count currently contains 3, 0.0 does not assign to bonus. 
+- Employee's method next executes the equivalent of count++. count now contains 4. 
+- Employee's method next assigns the reference in its name parameter to the name field and the double-precision floating-point value in its salary parameter to the salary field. 
+- Finally, Employee's method uses the byte code equivalent of instanceof to see if the current object is an instance of Accountant. Because the current object is such an instance, the contents of bonus (500.0) are added to the salary field. 
+- Employee's method exits to Accountant's method. 
+- Accountant's method has nothing further to do, so it exits. 
+- The JVM takes the Accountant object's reference from the temporary stack location and assigns it to local variable a. 
+- The two System.out.println() method calls result in calls to Accountant's inherited getName() and getSalary() methods for the object referenced by a. Those methods return the appropriate name and salary values, which subsequently print. 
+- The for loop statement increments i (which becomes 4), and checks to see if i's value is still less than names.length's (6) -- which it still is. Therefore, the if decision statement executes a second time. 
+- Because the next two iterations (where i contains 4 and 5) repeat previous steps, let's continue where i contains 6. 
+- Now that i contains 6, the for loop statement, followed by main(), exits. Before main() exits, the JVM releases memory for the local variables from the method call stack. 
+Back to index
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

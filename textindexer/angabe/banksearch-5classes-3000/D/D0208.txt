@@ -1,0 +1,143 @@
+
+Java Optimization Resources
+Java Optimization Resources
+[ index ]
+[ benchmarks
+ | compilers
+ | maintainability
+ | rules
+ | size
+ | speed
+ | tools ]
+I started this page because there no other web resources on
+how to optimize Java. Thankfully, that has now changed.
+Optimization
+ 
+- Doug Bell has an excellent article on Java 
+ optimization in JavaWorld (see also benchmarks, below).
+ 
+- Paul Santa Maria shows how 
+ to benchmark 
+ and optimize a Mandelbrot Set program.
+ 
+- Peter Wayner's article on Core Programming in the September 1996 issue
+ of Byte describes the various bytecodes used for Java function calls and
+ how to speed them up (two words: use final!).
+ 
+- Paul Tyma has
+ written:
+ 
+	
+- An article on optimizing Java in the April 1996 issue of
+	 Dr Dobbs Journal.
+	
+	
+- An online article on Why not to 
+	 use Thread.sleep()
+	
+- Slides and example code from a talk on Writing
+	 Fast Java Code, including a case study.
+ 
+Benchmarking
+There are now enough Java benchmarks out there that I've alphabetised the list
+and commented out some that aren't being updated anymore.
+ 
+- Doug Bell's Benchmark
+ applet is part of an excellent article on how to optimize Java.
+ 
+- Bill
+ and Paul's Excellent UCSD Benchmarks, with a great explanation of the
+ perils of benchmarking Java and pointers to more benchmarks.
+ 
+- BenchBeans
+ is a competitor for CaffeineMark (see below), in that it attempts to
+ measure all aspects of Java performance, including graphics.
+ 
+- CaffeineMark
+ and the Java 
+ Performance Report are probably the most quoted Java benchmark and
+ results. 
+ 
+- Fhourstones 2.0
+ plays a perfect game of Connect 4 and times itself. A good example of a
+ non-trivial memory- and compute-intensive benchmark.
+ 
+- Java BYTEMark from
+ BYTE magazine--sadly no results yet.
+ 
+- Java
+ Speed trials from PC Magazine--the opposite problem, results
+ but no source.
+ 
+- Jstones by Jens
+ Steckhan concentrates on testing the performance of AWT dialog elements,
+ and includes comparative results for different systems.
+ 
+- Java
+ vs C++ results for dense matrix calculations, from Sky Coyote.
+ 
+- Linpack
+ by Jack Dongarra and Reed Wade (with additional
+ optimizations from this site).
+<!- 
+- OSF Java test
+ suite includes both validation and benchmarking tests.
+ Comprehensive but also tending towards incomprehensible. -->
+ 
+- Sieve of Eratosthenes and the
+ Plasma benchmark from Wayne Rasband.
+The FemtoJava project at UMD has links
+to other benchmarks. 
+Books
+A few of the currently available 
+Java 
+books have sections on optimization:
+ 
+- Teach
+ Yourself Internet Game Programming with Java in 21 Days by Michael
+ Morrison includes tables from this site (with my approval), and expands
+ on some of the techniques I describe for speed
+ and helping the compiler.
+ 
+- KickAss Java Programming by
+ Tonny Espeset gives no credit, but uses a couple of my examples (of
+ course, it might be pure coincidence that he also chose
+ arrayCopy, abs, and inline code using the variable
+ x but the odds are against it...).
+ 
+- Advanced Java: Idioms,
+ Styles, Programming Tips and Pitfalls has good general advice and
+ some specific performance analyses for hash tables, strings and
+ vectors.
+ 
+- Cutting-Edge Java Game Programming by Neil Bartlett, Steve Simkin and
+ Chris Stranc includes techniques from and references to this site.
+Java resources
+ 
+- There are several excellent collections of Java links--here are just a
+ few:
+ 
+	
+- JavaLinks from TeamJava.
+	
+- Java Notes from Jim
+	 George.
+	
+- Java Programming
+	 Resources from Marty Hall.
+	
+- Java
+	 Resources from the Infospheres project at Caltech.
+	
+ 
+ 
+- "How Do I..." 
+ from the Java Developer.
+ 
+ http://www.cs.cmu.edu/~jch/java/resources.html 
+ Java Optimization Resources 
+ 
+ 
+ Last modified: Wed 18 Mar 1998 
+ Copyright &#169 1996, 1997 Jonathan Hardwick 
+ 

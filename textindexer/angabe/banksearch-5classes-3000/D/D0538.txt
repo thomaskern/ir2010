@@ -1,0 +1,114 @@
+
+Hoskinson's Simple Text Editor
+ 
+ 
+ 
+ 
+ 
+JResources.com Channels
+ 
+ 
+(Download the Java source code for the JResources.com applet collection)
+ Hoskinson's Simple Text Editor 
+ 
+ 
+ 
+ 
+Home
+ 
+Introduction
+Search
+Discussion Forums
+Disclaimer
+License
+Feedback
+ 
+Applets
+ 
+Ad banner
+Ticker
+Hyperlinked ticker
+Vertical scroller
+Hyperlinked banner
+Button menu
+Web site shortcuts
+Animator
+Digital clock
+Growing text
+Rainbow text
+RGB calculator
+ 
+Servlets
+ 
+JDBC Connector Servlet
+XMLDataGateway Servlet
+ 
+Applications
+ 
+Web server query tool
+Simple text editor
+ 
+MS Java Resources
+ 
+GUID generator
+Java NSLookup
+Code-behind HTML (Pt 1)
+Code-behind HTML (Pt 2)
+ 
+Other Resources
+ 
+JavaSoft
+Gamelan
+JARS
+MS Java
+Hoskinson.net
+ 
+ 
+ 
+ 
+ 
+This stand-alone application shows how to implement a simple text editor in Java 1.1.
+ It demos the following principles: 
+- 
+ Creating a windowed application by extending java.awt.Frame
+- 
+ Creating a menu bar, and attaching it to the frame
+- 
+ Creating an "action event" handler by implementing the ActionListener interface.
+ Using this model, event handling is "delegated" to the one or more EventListeners 
+ that are "listening" for events to occur to a given component. Event Listeners are 
+ classes that implement the interfaces in the EventListener interface hierarchy.
+ An EventListener can be a separate class, or it can be an EventListener for it's
+ own components.
+- 
+ "Explicit Event Enabling" as an alternative to delegating event handling to
+ listeners. This is accomplished by overriding the "process event" method that receives events and
+ dispatches them to event listeners.
+- 
+ Using the java.io.File class to get information about a file or directory
+- 
+ Using and chaining low level and high level input and output streams
+If you are interested, read both the disclaimer and the license, and then download the bytecode file and the 
+source code. If you are a Java 2 user (JDK 1.2.x), you can download 
+an executable JAR version. To run it, execute one of the 
+following commands:
+Sun 
+JDK:
+java simpleTextEditor
+---- or ----
+javaw simpleTextEditor
+Microsoft 
+VM:
+jview simpleTextEditor
+---- or ----
+wjview simpleTextEditor
+ 
+ 
+ 
+Copyright © 1996-99, JResources.com. All rights
+ reserved.
+Download the Java source code for the JResources.com applet collection
+ 
+ 
+ 
+ 

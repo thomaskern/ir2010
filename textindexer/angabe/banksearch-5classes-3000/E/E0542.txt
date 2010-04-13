@@ -1,0 +1,316 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Connection Pipe Classes
+This article was contributed by 
+Ion Tichy.
+http://www.iont.20m.com
+Environment: VC6, WindowsNT4, Windows2000
+1. Purpose
+Simple and fast communication between all types of MFC Applications on a single or multiple computers in Windows NT. 
+2. Main features
+- Data transmission from Clients to Server, their processing and results return, if needed.
+- Data transmission from Server to Clients informing them about any event.
+- Different schemes of buffer allocations.
+- Automatic Server loading.
+- Automatic Server termination without Clients, if needed.
+- Utilities for registration, automatic loading, tracing and Wizard. 
+3. Introduction
+Several years ago I wrote classes by using Mailslots for communication between Clients and Server. According to the project requirements these classes had to worked in Windows 95. In spite of numerous problems and limitations of Mailslots these classes work properly in Windows 95 and Windows NT. 
+The above-mentioned problems are the following: 
+- 8-bytes limitation for Mailslots names in Windows 95 and 
+- numerous data transmission across Mailslots between Computers, if they have several identical installed communiciation protocols. 
+Microsoft considers this as "by design". In other words, it is not an error, but I don't agree.
+In these classes Server has the receiving thread and Clients send data with identificator of Client (Computer name and Client name) to this thread. It increases summary data that Clients transmit across Mailslots and it is the disadvantage of this method.
+I took a course of COMs and ATL. After that it was evident that there were very many undocumented things in that technology. ATL is a convenient tool, but I have discovered several limitations, e.g. it is impossible to make ATL-Server from the existing MFC application. 
+DCOM implementation needs great efforts too. For example, I wrote my first program with DCOM in almost 2 weeks and had to ask Microsoft for numerous consultations. That's why in spite of my wish to use COM/DCOM in my new project I had to give up this idea.
+The new project that I have begun to work at had high requirements for the speed of data processing. This factor had to be taken into account in the design of the new communication tool. Fortunately, unlike COM, there were no requirements to the design of the universal tool and this made the development easier. 
+For the new project I have chosen the protocol Named Pipes working only in Windows NT. In literature this protocol is defined as following:
+An inter-process communication mechanism that allows one process to communicate with another local or remote process. 
+I have tried to implement the ideas that I used in my first project with Mailslots as well as the ideas of COM. In the next chapter you'll learn the Client-Server architecture, based on the Named Pipes protocol.
+4. Client-Server Architecture
+There are following variants of connections Client and Server. 
+- Client and Server are on a single computer. 
+- Client and Server are on multiple computers.
+Click here for larger image
+ 
+When Server is loaded, Client tries to get into connection with Server.
+If Server is not loaded and Client and Server are on a single computer, Client gets information about Server from Registry of this computer(see Computer 4). 
+If Server is not loaded and Client and Server are on multiple computers, Client gets information about Server from Registry of the remote Server computer across utility AgentCP (see Computers 1 and 2). This program searches Server information in Registry of Server Computer and loads it.
+As seen from Figure 1, for successful functioning of the above-mentioned process it is necessary:
+- To write information about Server in Registry of Server Computer. 
+- To run utility AgentCP on the remote computer previously.
+Thus the Server automatic loading is carried out. Process-Server may be terminated automatically, if Clients are not connected.
+Here you may see WizardCP Application:
+Click here for larger image
+ 
+Downloads
+Download Users Guide - 169 KB
+Download Demo project - 200 KB
+Download WizardCP - 40 KB
+Download Test, generated by WizardCP - 119 KB
+History
+Date Posted: August 27, 2001
+ 
+Comments:
+- Nice article ! - hostalet (2002/06/14)
+- network - k.ramesh (2001/09/17)
+- Another useful protocol (not only working in WinNT)... - M. Knaup (2001/08/29)
+- Good Job - Edison (2001/08/29)
+- nice piece - eechu (2001/08/29)
+- great! - frank (2001/08/27)
+Add Comment
+ 
+ 
+ 
+internet.commerce
+ 
+Be a Commerce Partner
+Tech Magazines-Free
+FlashMX Tools/Bundles
+Comparison Shopping
+Computer Training
+For Web Graphics
+Promote Your Website
+Find Annual Reports
+Find a Consultant
+Internet Jobs
+Anti-Virus Software
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

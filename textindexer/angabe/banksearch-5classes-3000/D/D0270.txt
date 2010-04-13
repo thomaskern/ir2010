@@ -1,0 +1,62 @@
+
+ 
+ 
+ 
+ 
+ JSP Tutorial
+ 
+JSP Tutorial
+	
+	
+ 
+Further learning
+The JSP tutorial presented here covers the most useful JSP programming
+constructs. The tutorial is focused on being practical and simple,
+therefore not all details have been covered.
+Specifications
+When you are comfortable with JSPs and ready to tackle more details, you
+may find it useful to download the JSP specifications from Sun's
+JSP page. There is also a JSP
+quick reference card available from this site that can be handy to
+print out and keep.
+An item to note is that JSP's eventually are turned into servlets, and
+though JSPs are much simpler than servlets, for some cases servlets are
+still useful. Therefore you may want to also learn about servlets.
+Interface Definitions
+If you need to know exactly how to do some particular thing in JSP, e.g.
+how to get the remote user's machine name, or the query string, or how
+to re-direct the user's browser to a different page, or some similar thing,
+one good place to start looking is in these interface definitions:
+javax.servlet.http.HttpServletRequest
+javax.servlet.http.HttpServletResponse
+javax.servlet.jsp.JspWriter
+javax.servlet.jsp.PageContext
+Books
+Here is a link you can use to search for books
+on Java Server Side programming.
+SQL links
+Books
+on SQL.
+SQL Tutorial
+SQL Tutorial
+SQL Tutorial
+ejbtut.com
+New from jsptut.com! See http://www.ejbtut.com/
+for a tutorial on the Enterprise Java Beans technology.
+Java Links
+For those new to Java, some links are collected here that can be used to
+learn more about the technology, business and community:
+JDance
+JavaSkyline
+Amazon.com
+books/products relating to Java
+JGuru
+Training
+If your organization has several programmers who can benefit from JSP,
+servlets, EJB or other Java related training, Jsptut.com can arrange an
+onsite training class. Please send an email to jsptut@jsptut.com
+Consulting
+If your organization has need for JSP or other Java server side consulting,
+send an email to jsptut@jsptut.com
+Send comments on this tutorial to feedback@jsptut.com 
+ 

@@ -1,0 +1,602 @@
+
+ 
+C >> The 4 Data Types ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Constants and Variables Quiz 
+ Main Menu 
+ Type Modifiers 
+ 
+ 
+ 
+ 
+The 4 Data Types
+ 
+ 
+ 
+ 
+ 
+Introduction
+ 
+ 
+ 
+ 
+ 
+In C, there are four data types: char, int, float, and double. Each one has its own properties. 
+ For instance, they all have different sizes. The size of a variable can be pictured as the number of containers / memory slots that 
+ are required to store it. 
+ 
+ 
+ 
+ Later on, we will use the sizeof operator to determine the size of various data types. 
+ 
+In the meantime, let's look at the four data types in a bit more detail... 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The char Data Type
+ 
+ 
+ 
+ 
+ 
+Variables of the char data type can store a single character from a set of 256 characters. 
+ 
+In fact, all of the characters on your keyboard have a unique numerical code associated with it, so in reality, you're storing numerical 
+ codes into char variables. The set of codes are known as ASCII codes, where ASCII stands for "American 
+ Standard Code for Information Interchange" and is usually pronounced "ask-ee". 
+ 
+ 
+ 
+The following program prints out the 256 ASCII characters - don't worry if you can't understand the code just yet.
+ 
+ 
+ #include 
+int main() {
+ int i,j;
+ for(i=0 ; iDeclaring 
+ and Initializing Variables
+ 
+ 
+ 
+ 
+ 
+To DECLARE a variable, means to reserve memory space for it. 
+ 
+Declaring a variable involves inserting a variable name after a data type. You can also declare many variables of the same data type 
+ all on one line by separating each one with a comma. This is demonstrated in the example directly below. 
+ 
+ 
+ 
+INITIALIZING a variable involves assigning (putting in) a value for the first time. This is done using the 
+ ASSIGNMENT OPERATOR, denoted by the equals sign, =. 
+ 
+Declaration and initializing can be done on separate lines, or on one line. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Initializing 
+ char Variables
+ 
+ 
+ 
+ 
+ 
+To store a character into a char variable, you must enclose it with SINGLE quote marks. Double quote 
+ marks are reserved for STRINGS (an ARRAY of characters). Strings and arrays are covered 
+ in the later sections. The characters you assign are CHARACTER CONSTANTS. So for the example, 'H' 
+ is a character constant. 
+ 
+You can also assign a char variable an integer, that is, the ASCII code. 
+ 
+This example should help clarify the declaration and initialization of char variables. Once again, ignore the printf 
+ function for now. 
+ 
+ 
+ 
+#include 
+int main() {/* this program prints Hello */
+ char a,b,c,d; /* declare char variables */
+ char e = 'o'; /* declaration and 
+ initialization */
+ a = 'H'; /* initialize the rest... */
+ b = 'e'; /* b = e is incorrect */
+ c = 'l'; /* so is c = "l" - you MUST
+ enclose the character with 
+ single quote marks*/
+ d = 108; /* the ASCII code for l */
+ printf("%c%c%c%c%c\n", a, b, c, d, e);
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ int Data Type
+ 
+ 
+ 
+ 
+ 
+Variables of the int data type represent whole numbers. If you try to assign a fraction to an int variable, the decimal 
+ part is ignored and the value assigned is rounded down (or TRUNCATED) from the actual value. 
+ 
+Also, assigning a character constant to an int variable assigns the ASCII value. 
+ 
+ 
+ #include 
+int main() {
+ int a,b,c,d,e;
+ a = 10;
+ b = 4.3;
+ c = 4.8;
+ d = 'A';
+ e = 4.3 + 4.8;
+ 
+ printf("a = %d\n", a);
+ printf("b = %d\n", b);
+ printf("c = %d\n", c);
+ printf("d = %d\n", d);
+ printf("e = %d\n", e);
+ printf("b+c = %d\n", b+c);
+ 
+ return 0;
+} 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The output of the example is: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+a = 10
+ b = 4
+ c = 4
+ d = 65
+ e = 9
+ b+c = 8
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Obviously, 10 gets assigned to a without any problems. 
+ 
+4.3 gets rounded down to 4 when assigned to b. 
+ 
+ 
+ 
+ 
+4.8 gets rounded down to 4 when assigned to c - not up to 5 as one may have expected. 
+ 
+Now, d gets assigned 65 - the ASCII code for the character 'A'. 
+ 
+9 gets assigned to e because 4.3+4.8 equals 9.1, which gets rounded down. 
+ 
+The first 5 printf statements prints out the integer values of a through to e. 
+ 
+The last printf statement prints out the sum of b and c, that is, 4 and 4 and not 4.3 
+ and 4.8. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ float Data Type
+ 
+ 
+ 
+ 
+ 
+To store variables correct to six decimal places, you can use the float data type. 
+ 
+Floats are relatively easy to use but problems tend to occur when performing division. 
+ 
+In general:
+ 
+An int divided by an int returns an int. 
+ An int divided by a float returns a float. 
+ A float divided by an int returns a float. 
+ float divided by a float returns a float. 
+ 
+If you want to store the result of a division as a decimal number, make sure you store it in a float declared variable. 
+ 
+If you want the decimal result of the division between two integers, you can use a method called COERSION 
+ (or CASTING). This involves placing (float) before an expression you wish to cast. 
+ 
+ 
+ 
+#include 
+int main() {
+ float a,b,c,d,e,f;
+ 
+ a = 1/3;
+ b = 1/3.0;
+ c = 1.0/3;
+ d = 1.0/3.0;
+ e = (float)1/3;
+ f = (float)(1/3);
+ 
+ printf("1 divided by 3 is %f\n", a);
+ printf("1 divided by 3.0 is %f\n", b);
+ printf("1.0 divided by 3 is %f\n", c);
+ printf("1.0 divided by 3.0 is %f\n", d);
+ printf("\nThe float-casting of \n");
+ printf(" 1, divided by 3 is %f\n", e);
+ printf("\nf equals %f\n", f);
+ 
+ return 0;
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The output of the example is: 
+ 
+ 
+ 
+ 
+ 
+ 1 divided by 3 is 0.000000
+ 1 divided by 3.0 is 0.333333
+ 1.0 divided by 3 is 0.333333
+ 1.0 divided by 3.0 is 0.333333
+ 
+ The float-casting of
+ 1, divided by 3 is 0.333333
+ 
+ f equals 0.000000
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Firstly, five variables of the float data type are declared and initialized with the return values of various 
+ calculations: 
+ 
+ a stores the result of an int divided by an int. The integer value of 0.333333... is zero, so 0.000000 
+ is assigned to a.
+ 
+ b stores the result of an int divided by a float, so 0.333333 as expected.
+ 
+ c stores the result of a float divided by an int, so 0.333333 as expected.
+ 
+ d stores the result of a float divided by a float, so 0.333333 as expected.
+ 
+ 
+ 
+With e, we've used casting. (float) occurs just before the 1, so 1 is effectively 1.0, 
+ therefore the result of 1.0 divided by 3 gets assigned to e, that is, 0.333333.
+ 
+We've also used casting for f, but not in the correct manner. Because of the brackets, 1 divided by 3 gets 
+ evaluated first, then the result gets casted to a float. Since 1 divided by 3 returns 0, 0.000000 
+ gets assigned to f. 
+ 
+Now, the printf functions prints out most of the text between the double quote marks with a few exceptions. 
+ 
+ \n is known as the NEWLINE character - it acts like a line break, and is commonly used to make the 
+ output look neater. 
+ 
+ %f is a FORMAT SPECIFIER and is replaced with the float-value of specified expressions. 
+ 
+Format specifiers will be discussed at a later date - for now you need to understand why a and f gets assigned 0.000000 
+ and b to e gets assigned 0.333333.
+ 
+Finally, notice that we are unable to store certain fractions like a third, exactly in C.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ double Data Type
+ 
+ 
+ 
+ 
+ 
+You can store decimals correct to ten decimal places using the double data type. However, doubles take up twice as much memory 
+ than floats, so use doubles when it's really necessary. 
+ 
+ 
+ 
+Once again, be careful when it comes to calculations that involve divisions - use casting when necessary. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Scientific 
+ Notation 
+ 
+ 
+ 
+ 
+ 
+It is possible to express numbers in scientific notation, which is handy if the numbers get very large or small. 
+ 
+In C, scientific notation is of the form xey - you should replace x and y with numbers (y must 
+ be an integer). 
+ 
+ 
+ 
+Basically, xey translates to "x times 10 to the power of y". 
+ 
+For example, 1.2e3 is 1.2*1000 = 1200 
+ 1.23e4 is 1.23*10000 = 12300 
+ 4.5e-2 is 4.5*0.01 = 0.045 
+ 
+ 
+ 
+ 
+Printer Friendly Version
+ 
+ 
+ 
+ Constants and Variables Quiz 
+ Main Menu 
+ Type Modifiers 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

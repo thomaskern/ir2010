@@ -1,0 +1,32 @@
+
+DriveScan
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Posted: 09/16/97:,
+ last update: 09/16/97 
+ 
+Home 
+ 
+ 
+ DriveScan: Fast
+ recursive file search and folder info example
+ 
+ This VB32 example demonstrates the use of FindFirstFile() in a recursive procedure and
+ shows how it can fly through drives and folders. It delivers speed close to that of Find
+ in the Start Menu.
+ 
+ The source code shows how to search all available drives for files based on a filename
+ and/or wildcard, and how to obtain a total count of folders and files in a specified path.
+ Many subtle speed enhancements are employed. Explanatory comments are liberally sprinkled
+ throughout.
+ 
+ Download drvscan.zip (12kb) 
+ 

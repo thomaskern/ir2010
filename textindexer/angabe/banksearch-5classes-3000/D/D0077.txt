@@ -1,0 +1,186 @@
+
+Don's Java Central - What is Java?
+What is Java?
+"Java is a simple, object-oriented, multi-threaded,
+garbage-collected, secure, robust, architecture-neutral,
+portable, high-performance, dynamic programming language."
+-- This quote is from Arthur van Hoff, author of the Java
+compiler.
+Now, what does he really mean by all that? Java is an exciting
+new language that solves some interesting problems that plague
+distributed computing environments. Java has the potential to
+transform the Internet from an information delivery medium to an
+interactive computing environment. 
+ 
+ Java Features 
+ 
+ 
+- Cross Platform: Java is a cross platform language.
+ The Java compiler compiles Java source code into
+ "bytecodes". These bytecodes are then
+ interpreted by a Java "virtual machine" that is
+ written for the processor architecture the program is
+ running on. This means that your Java Applet will run on
+ any platform that has a Java interpreter. This kind of
+ platform independece is essential for a heterogeneous
+ platform like the Internet or even corporate Intranets.
+ 
+- 
+ 
+- Software Distribution: In the case of applets, the
+ Java bytecodes are downloaded at run-time, so the user is
+ always getting the most current code. This solves all
+ sorts of software distribution nightmares that
+ enterprises have traditionally had to contend with.
+ 
+- 
+ 
+- Moves processing to the client, and off the server:
+ Today, any user interaction with Web pages is done by CGI
+ (Common Gateway Interface) scripting, which requires
+ resources on the server. Many feel that this method is
+ not robust enough to handle very large number of users as
+ Web pages get more and more interactive. Java promises to
+ move this processing to the client (user's) machine,
+ which will free up resources on the server.
+ 
+- 
+ 
+- Security: Java was designed to verify and execute
+ binary programs in a controlled environment. This
+ protects the end-user's computer from viruses and
+ security violations. Whenever a Java applet is
+ transferred to the user's browser, it is subject to
+ byte-code verification. This means that if the packet's
+ size is changed along the way, the program will be
+ aborted. This checking guards against Trojan horses and
+ viruses being added to the Java bytecodes.
+ 
+- 
+ 
+- Easier to program than C++, and just as powerful!
+ Here are some of the advantages of Java over C++: 
+ 
+- 
+ 
+- No pointers: The Java language passes all arrays
+ and objects by reference but does not have an
+ explicit pointer type. This prevents the
+ programmer from constructing a reference to
+ anonymous memory. 
+ 
+- Automatic garbage collection - The Java
+ interpreter manages the memory, it is not the
+ programmer's responsibility. 
+ 
+- C++ style Exceptions are automatically generated
+ when dereferencing a NULL pointer, accessing
+ outside the bounds of an array, or running out of
+ memory. 
+ 
+ 
+ 
+- Network protocol handlers: Support for HTTP, FTP,
+ NNTP, MIME, and Sockets make it sort of a "network
+ programming language."
+ 
+- 
+ 
+- JavaScript: Netscape wanted a scripting language
+ that could give more power to HTML documents. So they
+ teamed up with Sun to create JavaScript. It will run on any browser
+ with a Java interpreter.
+ 
+- 
+ 
+ Java Pros 
+ 
+ 
+- Java allows HTML writers the ability to take their pages
+ from static information to interactive applications.
+ 
+- 
+ 
+- Java has broad industry support. It has been licensed by:
+ Netscape, Spyglass, Wollongong, Microsoft, Oracle,
+ Novell, Borland, Symantec, et. al.
+ 
+- 
+ 
+- Java runs on many platforms. Sun will distribute versions
+ of the compiler and interpreter for the Mac, Solaris,
+ Windows 95 and NT. IBM is working on versions for OS/2
+ and Windows 3.1. Ports of the interpreter are underway
+ for the Amiga, HP, Linux, NeXTStep, MIPS, and Silicon
+ Graphics systems by third party developers. 
+ 
+ Java Cons 
+ 
+ 
+- Currently, Java lacks 'persistent' objects. Let's say you
+ go to a Web site with a great Java applet and wait for
+ several minutes for your browser to download it. The next
+ time you visit the site, you need to wait all over again
+ (unless the applet is still in your browser's cache).
+ Persistence would allow you to store the applet on your
+ PC the first time you download it, and only download it
+ again if the applet has changed. This doesn't make much
+ difference with some of the small applets out there now,
+ but it will when Web sites start using Java applets to do
+ more complex tasks.
+ 
+- 
+ 
+- Even though Java was designed to take some of the
+ complexities out of coding in a language like C++, it did
+ evolve from C++ and is similar in some ways. Programmers
+ that don't want to learn C++ may not expend the time and
+ energy to learn to code in Java.
+ 
+- 
+ 
+- There are no usage metering capabilites. For example:
+ once everyone has Java Applets on their Web pages, and
+ anyone can run them, how do you charge people for your
+ software? Many believe hooks for this kind of processing
+ needs to be built into the Java language.
+ 
+- 
+ 
+- Other areas of Java that need to be improved: 
+ 
+- 
+ 
+- Lacks multimedia objects. 
+ 
+- Lacks a Visual Development Environment like
+ Visual Basic or Delphi - although many vendors
+ are working on this right now, including Borland,
+ Symantec, Powersoft, IBM, Sunsoft, and many
+ others. 
+ 
+- No Font support or support for resources like
+ icons, menus, etc. 
+ 
+- No imaging support. 
+ 
+- Only supports Sun's audio format. 
+ 
+ 
+For more info on Java and Internet Software Development in
+general, check out my "Internet Software Development"
+link coming soon! I'll have a link to it here, and from the main
+page.
+In the meantime, take a look at Mike Loukides' article "Java: Not
+Just Another Pretty Face" In my opinion, this short
+article is a very realistic discussion of the capabilites and
+potential of Java. It's well worth reading. 
+You also may be interested in some clarification on Microsoft's
+Internet Strategy. Read
+this article by Brad Silverberg, Microsoft's VP Internet
+Platform and Tools Division.
+| Home | Java Links | Workshop | Java Applets | Java News | Other Links | E-Mail | 
+ 
+Don's Java Central /
+donc500@earthlink.net / © 1996 Don Campbell 
+Established Feb 7, 1996 

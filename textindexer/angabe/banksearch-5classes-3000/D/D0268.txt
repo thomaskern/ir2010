@@ -1,0 +1,345 @@
+
+4.1) Language Fundamentals, Interfaces,Packages and Inner classes
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+4) Language Fundamentals 
+Objective 1) 
+Identify correctly constructed package declarations 
+ import statements class declarations (of all forms including inner classes) 
+ interface declarations and implementations (for java.lang.Runnable or other 
+ interface described in the test) method declarations (including the main method 
+ that is used to start execution of a class) variable declarations and identifiers.
+Note on this objective 
+This is a strangely phrased objective. It seems to be asking you to understand 
+ where, how and why you can use import and package statements and where you should 
+ place the interface statement and variable statements. The 1.1 objective seemed 
+ to make more sense in that they asked you to "distinguish legal and illegal 
+ orderings" of various statements. I have a feeling that they did not re-write 
+ every question in the bank to match the new objectives so you will get similar 
+ questions for the Java2 exam.
+The package statement 
+The name package implies a collection of classes, somewhat like a library. 
+ In use a package is also a little like a directory. If you place a package statement 
+ in a file it will only be visible to other classes in the same package. You 
+ can place a comment before the package statement but nothing else. You may get 
+ exam questions that place an import statement before the package statement
+//You can place a comment before the package statement
+package MyPack;
+public class MyPack{}
+The following will cause an error
+import java.awt.*;
+//Error: Placing an import statement before the package 
+//statement will cause a compile time error
+package MyPack;
+public class MyPack{}
+ 
+ 
+ 
+ 
+If a source file has a package statement it must 
+ come before any other statement apart from comments 
+ 
+ 
+ 
+The package statement may include the dot notation to indicate a package 
+ hierarchy. Thus the following will compile without error
+package myprogs.MyPack;
+public class MyPack{}
+Remember that if you do not place a package statement in a source file it will 
+ be considered to have a default package which corresponds to the current directory. 
+ This has implications for visibility which is covered in Section 1.2 Declarations 
+ and access control. 
+The import statement 
+Import statements must come after any package statements and 
+ before any code. Import statements cannot come within classes, after classes 
+ are declared or anywhere else. 
+ 
+ The import statement allows you to use a class directly instead of fully 
+ qualifying it with the full package name. An example of this is that the classname 
+ java.awt.Button is normally referred to simply as Button, so long 
+ as you have put in the statement at the top of the file as follows
+import java.awt.*;
+Note that using a class statement does not result in a performance overhead 
+ or a change in the size of the .class output file. 
+Class and inner class declarations 
+A file can only contain one outer public class. If you attempt to create 
+ a file with more than one public class the compiler will complain with 
+ a specific error. A file can contain multiple non public classes, but bear in 
+ mind that this will produce separate .class output files for each class. It 
+ does not matter where in the file the public class is placed, so long as there 
+ is only one of them in the file.
+Inner classes were introduced with JDK 1.1. The idea is to allow one class 
+ to be defined within another, to be defined within a method and for the creation 
+ of anonymous inner classes. This has some interesting affects, particularly 
+ on visibility.
+ Here is a simple example of an inner class
+class Outer{
+ class inner{}
+}
+This results in the generation of class files with the names
+Outer.class
+Outer$Inner.class
+The definition of the inner class is only visible within the context of an 
+ existing Outer class. Thus the following will cause a compile time error
+ 
+class Outer{
+ class Inner{}
+}
+class Another{
+public void amethod(){
+ Inner i = new Inner();
+ }
+}
+So far as the class Another is concerned, the class Inner does not exist. 
+ It can only exist in the context of an instance of the class Outer. Thus the 
+ following code works fine because there is an instance of this for the 
+ outer class at the time of creation of the instance of Inner
+class Outer{
+ public void mymethod(){
+ Inner i = new Inner();
+ }
+ public class Inner{}
+}
+But what happens if there is no existence of this for the class Outer. 
+ To make sense of the rather odd syntax provided for this try to think of the 
+ keyword new as used in the above example as belonging to the current 
+ insistence of this.
+Thus you could change the line that creates the instance of this to read
+ 
+Inner i = this.new Inner();
+Thus if you need to create an instance of Inner from a static 
+ method or somewhere else where there is no this object you can use new 
+ as a method belonging to the outer class
+ 
+class Outer{
+ public class Inner{}
+}
+class another{
+public void amethod(){
+ Outer.Inner i = new Outer().new Inner();
+ }
+}
+Despite my glib explanations, I find this syntax unintuitive and forget it 
+ five minutes after learning it. It is very likely that you will get a question 
+ on this in the exam, so give it extra attention. 
+ 
+ 
+ 
+ 
+You can gain access to an inner class by using the 
+ syntax
+ Outer.Inner i = new Outer().new Inner(); 
+ 
+ 
+ 
+ 
+One of the benefits of inner classes is that an inner class generally gets 
+ access to the fields of its enclosing (or outer) class. Unlike an outer class 
+ an inner class may be private or static. The examiners seem to 
+ like to ask simple questions that boil down to "can an inner class be 
+ static or private". Marking an inner class static 
+ has some interesting effects with regards to accessing the fields of the enclosing 
+ class. The effect of marking it as static means there is only one instance 
+ of any variables, no matter how many instances of the outer class are created. 
+ In this situation how could the static inner class know which variables to access 
+ of its non static outer class. Of course the answer is that it could not know, 
+ and thus an static inner class cannot access instance variables of its 
+ enclosing class.
+The methods of an static inner class can of course access any static fields 
+ of its enclosing class as there will only ever be one instance of any of those 
+ fields.
+Inner classes declared within methods 
+Inner classes can be created within methods. This is something that GUI builders 
+ like Borland JBuilder do a great deal of when creating Event handlers.
+Here is an example of such automatically generated code
+ 
+buttonControl1.addMouseListener(new java.awt.event.MouseAdapter() {
+ public void mouseClicked(MouseEvent e) {
+ buttonControl1_mouseClicked(e);
+ }
+ });
+Note the keyword new just after the first parenthesis. This indicates 
+ that an anonymous inner class is being defined within the method addMouseListener. 
+ This class could have been defined normally with a name which might make 
+ it easier for a human to read, but as no processing is done with it anywhere 
+ else, having a name does not help much.
+If you create such code by hand, it is easy to get confused over the number 
+ and level of brackets and parentheses. Note how the whole structure ends with 
+ a semi colon, as this is actually the end of a method call.
+As you might guess an anonymous class cannot have a constructor. Think about 
+ it, a constructor is a method with no return value and the same name as the 
+ class. Duh! we are talking about classes without names. An anonymous class may 
+ extend another class or implement a single interface. This peculiar limit does 
+ not seem to be tested in the exam. 
+Field visibility for classes defined within a method 
+A class defined within a method can only access fields in the enclosing method 
+ if they have been defined as final. This is because variables defined within 
+ methods normally are considered automatic, ie they only exist whilst 
+ the method is executing. Fields defined within a class created within a method 
+ may outlive the enclosing method.
+ 
+ 
+ 
+ 
+A class defined within a method can only access final 
+ fields of the enclosing method. 
+ 
+ 
+Because a final variable cannot be changed the JVM can be sure that the value 
+ will stay constant even after the outer method has ceased to execute. You are 
+ very likely to get questions on this in the exam, including questions that query 
+ the status of variables passed as a parameter to the method (yes, they too must 
+ be final)
+Creating an interface 
+Interfaces are the way Java works around the lack of multiple inheritance. 
+ Interestingly Visual Basic uses the keyword interface and uses the concept in 
+ a manner similar to Java. The interface approach is sometimes known as programming 
+ by contract. An interface is used via the keyword "implements". Thus 
+ a class can be declared as 
+class Malvern implements Hill,Well{
+ public 
+ }
+ 
+ 
+ 
+ 
+Question 1)
+Given the following code
+public class FinAc{
+ static int l = 4;
+ private int k=2;
+public static void main(String argv[]){
+ FinAc a = new FinAc();
+ a.amethod();
+ }
+ public void amethod(){
+ final int i = 99;
+ int j = 6;
+ class CInMet{
+ public void mymethod(int q){
+ //Here
+ }//end of mymethod
+ }//End of CInMet
+ CInMet c = new CInMet();
+ c.mymethod(i);
+ }//End of amthod
+}
+Which of the following variables are visible on the line marked with the comment 
+ //Here?
+1) l
+ 2) k
+ 3) i
+ 4) j
+ 
+Question 2) 
+Which of the following will compile correctly?
+1)
+//A Comment
+import java.awt.*;
+class Base{};
+2)
+import java.awt.*;
+package Spot;
+class Base();
+3)
+//Another comment
+package myprogs.MyPack;
+public class MyPack{}
+4)
+class Base{}
+import java.awt.*;
+public class Tiny{}
+ 
+Question 3) 
+Which of the following statements are true?
+1) An inner class may be defined as static
+ 2) An inner class may NOT be define as private
+ 3) An anonymous class may have only one constructor
+ 4) An inner class may extend another class
+ 
+Question 4) 
+From code that has no current this reference how can you create an instance 
+ of an inner class?
+1) Outer.Inner i = new Outer().new Inner(); 
+ 2) Without a this reference an inner class cannot be created
+ 3) Outer.Inner i = Outer().new new Inner();
+ 4) Outer i = Outer.new().Inner(); 
+Answers
+Answer 1)
+1) l
+ 2) k
+ 3) i
+ A class defined within a method can only see final fields from its enclosing 
+ method. However it can see the fields in its enclosing class including private 
+ fields. The field j was not defined as final.
+Answer 2)
+1)
+//A Comment
+import java.awt.*;
+class Base{};
+3)
+//Another comment
+package myprogs.MyPack;
+public class MyPack{}
+Any package statement must be the first item in a file (apart from comments). 
+ An import statement must come after any package statement and before any code.
+ Answer 3)
+1) An inner class may be defined as static
+ 4) An inner class may extend another class
+How could an anonymous class have a constructor? Inner classes may be defined 
+ as private.
+ Answer 4)
+1) Outer.Inner i = new Outer().new Inner();
+ 
+ Other sources on this topic
+ 
+ The Sun Tutorial
+ http://java.sun.com/docs/books/tutorial/java/more/nested.html
+ 
+ Richard Baldwin
+ http://www.Geocities.com/Athens/7077/Java094.htm
+ and also
+ http://www.Geocities.com/Athens/7077/Java095.htm
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec4.html#obj9
+ 
+ A tutorial on packages
+ http://v2ma09.gsfc.nasa.gov/JavaPackages.html
+ 
+ The Java Language Specification on interfaces
+ http://java.sun.com/docs/books/jls/html/9.doc.html#238680 
+ 
+Last updated
+12 November 2000
+copyright © Marcus Green 2000
+most recent version at http://www.jchq.net
+ 
+ 
+ 
+ 
+ 

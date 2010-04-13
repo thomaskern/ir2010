@@ -1,0 +1,165 @@
+
+ BCBDEV.COM: FAQs
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Q: Align structures on byte or word boundaries
+Answer:
+Many BCB programmers have to work with source code that pre-dates C++Builder. For some
+programmers, this legacy code contains data structures that must be aligned on byte or
+word boundaries. Legacy code that is ported to C++Builder will malfunction if it
+requires byte or word alignment because by default, C++Builder projects
+utilize dword or quadword alignment.
+If you open a C++Builder project file in text mode, you will find a line that looks
+like this:
+ CFLAG1 = -Od -Hc -w -k -r- -y -v -vi- -c -a4 -b- -w-par -w-inl -Vx -Ve -x
+Notice the -a4 compiler option. Borland complilers use the -a command line option
+to control the alignment mode. -a4 aligns data on dword boundaries. -a2 aligns
+to word and -a1 aligns to byte. BCB5 users may notice that the default compiler setting
+is -a8 which aligns on a quadword boundary.
+If you have structures that require word or byte
+alignment, you might be tempted to edit the makefile and change the -a4 to -a2 or -a1.
+If you use BCB3 or BCB1, don't try this. The VCL requires dword alignment. Your BCB program will go down
+in flames if you fiddle with the makefile's alignment setting. Starting with BCB4, Borland added #pragma statements to
+all of the VCL header files to force the correct alignment for the VCL classes. In BCB4 and BCB5, you can change the -a
+compiler option if you want. However, to align certain structures, it is wiser to force those structures to the correct alignment,
+instead of relying on global project settings.
+#pragma to the rescue
+Fortunately, C++Builder allows you to change the alignment scheme for certain
+portions of your source code. This allows you to properly align your data structures
+while keeping most of the source under the -a4 or -a8 compiler option. To alter the alignment
+of a single structure, surround the definition of the structure with #pragma pack
+commands. For example:
+#pragma pack(1) // change to byte alignment
+struct ByteAlignedStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma pack() // return to default alignment for the project
+The #pragma pack(1) statement switches the compiler into byte alignment mode.
+The parameter in the pack() statement determines the number of bytes to align on:
+1 = byte aligned, 2 = word aligned, 4 = dword aligned. The numbering scheme works
+the same way as -a compiler option. If the pack() parameter doesn't contain
+an argument, the alignment mode reverts back to the mode that is specified in
+the makefile. In BCB, the mode returns to dword alignment (quadword for BCB5).
+The pragma pack() command can span over several structures. This code
+aligns three structures to byte boundaries. When using this technique, make sure
+that you don't forget the last #pragma pack().
+#pragma pack(1)
+struct Data1
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+};
+struct Data2
+{
+ BYTE bArray[25];
+};
+struct Data3
+{
+ BYTE bSize;
+ WORD wArray[100];
+}
+#pragma pack()
+Sample code
+The sizeof function is the best way to prove that #pragma pack() is performing
+the way you want it to. To verify that it works, create a new project, add three
+labels to the form, and then modify the main CPP file to match the code below
+//-----------------------------------------------------------------
+#include 
+#pragma hdrstop
+#include "Unit1.h"
+//-----------------------------------------------------------------
+#pragma resource "*.dfm"
+TForm1 *Form1;
+#pragma pack(1)
+struct ByteStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma pack(2)
+struct WordStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma pack(4)
+struct DwordStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma pack()
+//-----------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+ : TForm(Owner)
+{
+ Label1->Caption = "Byte align = " + IntToStr(sizeof(ByteStruct));
+ Label2->Caption = "Word align = " + IntToStr(sizeof(WordStruct));
+ Label3->Caption = "DWord align = " + IntToStr(sizeof(DwordStruct));
+}
+Run the program. The program will display 9 for the byte aligned structure,
+10 for the word aligned structure, and 12 for the dword aligned structure.
+Notes:
+1: Remember that the #pragma directive is unique to each compiler. Although
+many compilers support #pragma pack, don't be surprised if you find a compiler
+that doesn't support it. #pragma pack is not a language standard. In addition
+to #pragma pack, most compilers, including C++Builder, contain a host of other
+#pragma commands.
+2: BCB allows you to use #pragma to alter makefile options in certain parts of
+your code. The syntax is #pragma option -XX where XX is the option that you are
+altering. This technique can also be used to alter the data alignment setting.
+#pragma option -a1 // switch to -a1 byte alignment
+struct ByteAlignedStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma option -a4 // return to -a4
+BCB also supports stack based pushing and popping of compiler arguments. The code
+above could also be written like this:
+#pragma option push -a1 // switch to -a1 byte alignment
+struct ByteAlignedStruct
+{
+ BYTE bVar1;
+ BYTE bVar2;
+ BYTE bVar3;
+ WORD wVar4;
+ DWORD dwVar5;
+};
+#pragma option pop // return to -a4
+This technique is safer than the first, because it does not assume that the
+original setting alignment setting was -a4. By simply using the
+pop directive, the compiler returns to whatever the original setting
+was in the project file. In BCB5, the default is -a8. In older versions
+of BCB, the default is -a4. The pop command makes your code
+less susceptible to problems when upgrading from version to version.
+ 
+ 
+Copyright © 1997-2000 by Harold Howe.
+All rights reserved.
+ 

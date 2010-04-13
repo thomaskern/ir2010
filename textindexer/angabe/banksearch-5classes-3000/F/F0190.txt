@@ -1,0 +1,235 @@
+
+Tutorial: How to make a gradient between two colors
+Tutorial: How to make a gradient
+between two colors
+This tutorial shows how to
+create a gradient between two colors. Follow this example and
+you'll finish up with a program like the one here available for download.
+Well, first of all, you
+should let the user choose two distinct colors before trying to
+draw a gradient. Create a new form and place some scroll bars so
+we can adjust the red, green and blue values for both colors.
+Also, place two pictureboxes to show the current color. Here we
+have a list of controls to create and a screenshot:
+ 
+ 
+ 
+ Control Name 
+ Control Type 
+ Max
+ Property 
+ Purpose 
+ 
+ 
+ RVal1 
+ Horizontal
+ Scrollbar 
+ 255 
+ Red value
+ for the first color 
+ 
+ 
+ GVal1 
+ Horizontal
+ Scrollbar 
+ 255 
+ Green
+ value for the first color 
+ 
+ 
+ BVal1 
+ Horizontal
+ Scrollbar 
+ 255 
+ Blue value
+ for the first color 
+ 
+ 
+ RVal2 
+ Horizontal
+ Scrollbar 
+ 255 
+ Red value
+ for the second color 
+ 
+ 
+ GVal2 
+ Horizontal
+ Scrollbar 
+ 255 
+ Green
+ value for the second color 
+ 
+ 
+ BVal2 
+ Horizontal
+ Scrollbar 
+ 255 
+ Blue value
+ for the second color 
+ 
+ 
+ picColor1 
+ PictureBox 
+ Unused 
+ Display
+ the 1st color 
+ 
+ 
+ picColor2 
+ PictureBox 
+ Unused 
+ Display
+ the 2nd color 
+ 
+ 
+ 
+ 
+Order:
+ 
+ 
+ RVal1 
+ RVal2 
+ 
+ 
+ GVal1 
+ GVal2 
+ 
+ 
+ BVal1 
+ BVal2 
+ 
+ 
+ picColor1 
+ picColor2 
+ 
+ 
+ 
+ 
+After we've done this, we
+have to write some code to change the pictureboxes colors when we
+alter the value of some scrollbar. Next we'll create two
+functions: each one will adjust the colors for both pictures. You
+can place the code inside your form's declarations section.
+ Sub
+ AdjustPic1()
+ 'First color
+ picColor1.BackColor =
+ RGB(RVal1.Value, GVal1.Value, BVal1.Value)
+ End Sub
+ 
+ Sub
+ AdjustPic2()
+ 'Second color
+ picColor2.BackColor =
+ RGB(RVal2.Value, GVal2.Value, BVal2.Value)
+ End Sub
+ 
+ Private Sub
+ RVal1_Change()
+ AdjustPic1
+ End Sub
+ 
+ Private Sub
+ GVal1_Change()
+ AdjustPic1
+ End Sub
+ 
+ Private Sub
+ BVal1_Change()
+ AdjustPic1
+ End Sub
+ 
+ Private Sub
+ RVal2_Change()
+ AdjustPic2
+ End Sub
+ 
+ Private Sub
+ GVal2_Change()
+ AdjustPic2
+ End Sub
+ 
+ Private Sub
+ BVal2_Change()
+ AdjustPic2
+ End Sub
+As you must have noticed,
+the Change event is fired whenever you change the value
+of a scrollbar. Now run the project (press F5) and play with the
+scroll bars. Notice that the colors in the pictureboxes change
+accordingly to your RGB settings!
+Yeah right. The first step
+is done. Now for the second part. Create another picture that
+will contain the gradient itself, and a command button to draw
+the gradient. Name them picGradient and cmdDraw,
+respectively.
+Set picGradient's ScaleMode
+propery to 3 - pixels, and cmdDraw's Caption propery to
+"Draw gradient". You'll have something like this:
+ 
+ 
+ Now
+ we've reached the math part. I won't explain the gradient
+ formula so much, just follow the code. Declare some
+ variables in the declarations section of your form: 
+ 
+ Dim
+ curR As Double 'Current red value
+ Dim
+ curG As Double 'Green value
+ Dim
+ curB As Double 'Blue
+ 
+ Dim
+ Rinc As Double 'Red increment per
+ loop
+ Dim
+ Ginc As Double 'Green increment
+ Dim
+ Binc As Double 'Blue increment
+And here's the sub that
+will draw the gradient on the picturebox:
+ Sub
+ DrawGradient()
+ 
+ curR = RVal1.Value
+ curG = GVal1.Value
+ curB = BVal1.Value
+ 
+ Rinc = (RVal2.Value -
+ RVal1.Value) / picGradient.ScaleWidth
+ Ginc = (GVal2.Value -
+ GVal1.Value) / picGradient.ScaleWidth
+ Binc = (BVal2.Value -
+ BVal1.Value) / picGradient.ScaleWidth
+ 
+ For
+ curx = 0 To picGradient.ScaleWidth 'Loop
+ that draws the gradient
+ 
+ picGradient.Line
+ (curx, 0)-(curx, picGradient.ScaleHeight), _
+ RGB(curR,
+ curG, curB)
+ 
+ curR = curR + Rinc
+ curG = curG + Ginc
+ curB = curB + Binc
+ 
+ Next
+ curx
+ End Sub
+To end things up, place the
+command to draw the gradient when the user clicks cmdDraw:
+ Private Sub
+ cmdDraw_Click()
+ DrawGradient
+ End Sub
+And that's it! If you
+followed our steps correctly, you should end up with something
+like this:
+We hope you enjoy our
+tutorial! If you have any questions, e-mail us.
+© 1999:
+Pablo Alvim

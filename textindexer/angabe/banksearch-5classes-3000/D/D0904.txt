@@ -1,0 +1,120 @@
+
+API for Code from Core Servlets and JavaServer Pages: Class ConnectionPoolServlet3
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+coreservlets
+Class ConnectionPoolServlet3
+java.lang.Object
+ |
+ +--javax.servlet.GenericServlet
+ |
+ +--javax.servlet.http.HttpServlet
+ |
+ +--coreservlets.ConnectionPoolServlet3
+public class ConnectionPoolServlet3extends HttpServlet
+A variation of ConnectionPoolServlet that does NOT
+ use connection pooling. Used to compare timing
+ benefits of connection pooling.
+ 
+ Taken from Core Servlets and JavaServer Pages
+ from Prentice Hall and Sun Microsystems Press,
+ http://www.coreservlets.com/.
+ © 2000 Marty Hall; may be freely used or adapted.
+See Also: Serialized Form
+Constructor Summary 
+ConnectionPoolServlet3()
+ 
+ 
+Method Summary 
+ void 
+doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ 
+ void 
+init()
+ 
+ 
+Methods inherited from class javax.servlet.http.HttpServlet 
+doDelete, 
+doOptions, 
+doPost, 
+doPut, 
+doTrace, 
+getLastModified, 
+service, 
+service 
+ 
+Methods inherited from class javax.servlet.GenericServlet 
+destroy, 
+getInitParameter, 
+getInitParameterNames, 
+getServletConfig, 
+getServletContext, 
+getServletInfo, 
+getServletName, 
+init, 
+log, 
+log 
+ 
+Methods inherited from class java.lang.Object 
+clone, 
+equals, 
+finalize, 
+getClass, 
+hashCode, 
+notify, 
+notifyAll, 
+toString, 
+wait, 
+wait, 
+wait 
+ 
+Constructor Detail 
+ConnectionPoolServlet3
+public ConnectionPoolServlet3()
+Method Detail 
+doGet
+public void doGet(HttpServletRequest request,
+ HttpServletResponse response)
+ throws ServletException,
+ IOException
+Overrides:doGet in class HttpServlet
+init
+public void init()
+Overrides:init in class GenericServlet
+ 
+ Overview 
+ Package 
+ Class 
+ Tree 
+ Deprecated 
+ Index 
+ Help 
+ 
+ 
+Order the Book
+ 
+ PREV CLASS 
+ NEXT CLASS 
+ FRAMES 
+ NO FRAMES 
+ SUMMARY: INNER | FIELD | CONSTR | METHOD 
+DETAIL: FIELD | CONSTR | METHOD 
+CSAJSP @ amazon.com
+Return to Top-Level Source Code Archive

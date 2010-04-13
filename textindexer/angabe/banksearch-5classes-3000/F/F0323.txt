@@ -1,0 +1,261 @@
+
+VB Square - Database Development - Articles - Make a reusable database class - Introduction
+ 
+ 
+ 
+Topic Areas
+ActiveX
+API
+Beginning
+Controls/Forms
+Databases
+File/Directory
+Graphics
+Internet
+Miscellaneous
+Mouse/Keyboard
+Registry
+Contents
+Articles
+Tips
+Demo Projects
+Books
+Resources
+Q and A
+Tech News
+Newsletters
+Contact Us
+ 
+ 
+ 
+ 
+ 
+ 
+Home 
+ > 
+Database Development > 
+Articles
+ 
+Visual Basic Code
+ 
+ 
+Search VB Square: 
+ 
+ 
+ 
+ 
+Detailed VB Articles
+ 
+Make a reusable database class
+By Sam Huggill
+Introduction
+This database class might need you to change one db path
+setting (which could be improved by using a public variable). Otherwise it contains
+prettry much the same functions as the previous article apart from the addition of the
+repair and compact functions.
+Add a new class module and rename it cDataFunc. Copy the
+following code into it:
+ 
+Option Explicit
+'Public members of this module
+Public iID As Integer
+Private db As Database
+Private RS As Recordset
+Public Sub OpenDB(dbName As String)
+ 
+ 'Open the database
+ Set db = OpenDatabase(dbName)
+End Sub
+Function GetNextRecord(sRecordSet As String, sField As String, iPos As Integer) As String
+ 'Open the recordset and select the next record
+ Set RS = db.OpenRecordset("SELECT * FROM " & sRecordSet & " WHERE _ 
+ " & sField & " =" & iPos, dbOpenDynaset)
+ 'Return the field value
+ iID = "" & RS.Fields(sField).Value
+ 'Close the recordset
+ RS.Close
+End Function
+Function UpDate(sRecordSet As String, sField As String, _ 
+ sValue As String, sFieldToUpdate As String, sValueToUpdate As String)
+ 'Open the Contact table
+ Set RS = db.OpenRecordset("SELECT * FROM " & sRecordSet _ 
+ & " WHERE " & sField & " = " & sValue, dbOpenDynaset)
+ With RS
+ 'Set it in edit more
+ .Edit
+ 'Update the following fields
+ .Fields(sFieldToUpdate).Value = sValueToUpdate
+ 'Update the table
+ .UpDate
+ 'Close it
+ .Close
+ End With
+End Function
+Function AddToDatabase(sRecordSet As String,_ 
+ sFieldToAdd As String, sValueToUpdate As String)
+ 'Open the Contact table
+ Set RS = db.OpenRecordset("SELECT * FROM" & sRecordSet _ 
+ & " Contact", dbOpenDynaset)
+ With RS
+ 'Set it to Add mode
+ .AddNew
+ 'Enter the field values
+ .Fields(sFieldToUpdate).Value = sValueToUpdate
+ 'Update it
+ .UpDate
+ 'Close it
+ .Close
+ End With
+End Function
+Function DeleteFromDatabase(sRecordSet As String, _ 
+ sField As String, sValue As String)
+ 'Open the Contact table
+ Set RS = db.OpenRecordset("SELECT * FROM"_ 
+ & sRecordSet & " WHERE" & sField & " = " & sValue & "'", dbOpenDynaset)
+ With RS
+ 'Set it to delete mode
+ .Delete
+ 'Close it
+ .Close
+ End With
+End Function
+Function RepairDatabase(sDBName As String)
+ db.Close
+ DBEngine.RepairDatabase sDBName
+ OpenDB (App.Path & "\demo.mdb")
+End Function
+Sub CompactDatabase(sDBName As String, sBackup As String)
+ db.Close
+ 'Check to see if the tempory backup exists
+ If Len(Dir$(sBackup)) > 0 Then 'Backup exists
+ Kill sBackup 'Delete it
+ End If
+ 'Compact the database to the tempory one
+ DBEngine.CompactDatabase sDBName, sBackup
+ 'Delete the current one
+ Kill sDBName
+ 'Compact the backup to the actual database
+ DBEngine.CompactDatabase sBackup, sDBName
+ 'And remove the backup database
+ Kill sBackup
+ OpenDB (App.Path & "\demo.mdb")
+End Sub
+Sub BackupDatabase(sDBPath As String, sOutput As String)
+ If Len(Dir$(sDBPath)) > 0 Then 'Backup exists
+ Kill sDBPath 'Delete it
+ End If
+ 'Output to new database
+ DBEngine.CompactDatabase sOutput, sDBName
+End Sub
+Add a new form (frmTest). To the form add six command
+buttons (cmdAdd, cmdDelete, cmdCompact, cmdUpdate, cmdNext and cmdRepair.) Add three text
+boxes and a label (txtName, txtPhone, txtNotes and lblID). Copy the following code into
+the form's General Declarations procedure:
+'Private declarations for the database and recordset
+Private db As Database
+Private RS As Recordset
+Private m_cData As cDataFunc
+Private Sub cmdAdd_Click()
+ 'Set the global variables
+ sName = txtName
+ sPhone = txtPhone
+ sNotes = txtNotes
+ 'Call the add function
+ m_cData.AddToDatabase "Contact", "Name", sName
+End Sub
+Private Sub cmdCompact_Click()
+ m_cData.CompactDatabase App.Path & "\demo.mdb", App.Path & "\backup.mdb"
+End Sub
+Private Sub cmdDelete_Click()
+ 'Set the global variables
+ sName = txtNamer
+ sPhone = txtPhone
+ sNotes = txtNotes
+ 'Call the delete function
+ m_cData.DeleteFromDatabase "Contact", "Name", sName
+End Sub
+Private Sub cmdNext_Click()
+ 'Call the next record function
+ m_cData.GetNextRecord "Contact", "Name", iID
+End Sub
+Private Sub cmdRepair_Click()
+ m_cData.RepairDatabase App.Path & "\demo.mdb"
+End Sub
+Private Sub cmdUpdate_Click()
+ 'Set the global variables
+ sName = txtName
+ sPhone = txtPhone
+ sNotes = txtNotes
+ iID = lblID
+ 'Call the Edit function
+ Call m_cData.Update("Contact", "PersonID", lblID)
+End Sub
+Private Sub Form_Load()
+ Set m_cData = New cDataFunc
+ m_cData.OpenDB (App.Path & "\demo.mdb")
+End Sub
+Private Sub Form_Unload(Cancel As Integer)
+ Set m_cData = Nothing
+End Sub
+Download the project files
+(All the code below)
+ 
+ 
+ 
+ 
+Question, Query, Criticism?
+Post your feedback now! 5 comments. 
+ 
+ 
+ 
+Email this page 
+ 
+Printer Friendly 
+ 
+More From Sam 
+ 
+Post Feedback 
+Related
+ 
+- 
+Beginning databases 
+- 
+Make a reusable database class 
+- 
+Switch from DAO to ADO 
+- 
+Check Fields in a Database 
+- 
+Copy an ADO Image field to Another ADO Image Field 
+Free Newsletter
+ 
+ 
+ 
+ 
+ 
+Hot Picks
+ 
+- 
+Using the inet control 
+- 
+Make a Chart control! 
+- 
+Life of a VB programmer 
+- 
+MS Object Models 
+ 
+ 
+ 
+ 
+ VB Square Today
+ 
+Beginning Objects in VB - Learn all you ever wanted to know about objects in our weekly series.
+Learn XML - Catch up on this new technology as Sam Huggill reveals all.
+Using ASP with VB components - Leverage your VB skills and use ASP to provide your data to a wider audience
+Is MCSD Worth It? - Mack Male finds out just how much MCSD does for you as a programmer.
+ 
+ 
+ 
+ 
+Copyright ©1997-2001 Lighthouse Internet Solutions. All rights reserved. Privacy Policy.
+ 

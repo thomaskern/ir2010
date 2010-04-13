@@ -1,0 +1,407 @@
+
+ 
+ Process XML with JavaBeans, Part 2
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 1999 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ JavaBeans
+ 
+ 
+ Process XML with JavaBeans, Part 2
+ 
+ How IDEs interconnect components
+ 
+ 
+ 
+Summary
+Last month's JavaBeans column introduced IBM's XML Beans, a suite of JavaBeans that process XML files. This month, Mark looks at the XMLEditor and XMLConvenience bean sets that make creating custom XML editors a snap. (3,400 words)
+ 
+ By Mark Johnson
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+n last month's column, I discussed the creation of XML-processing applications that have little or no user interface. That article covered the DOMGenerator, XMLTokenizer, XMLFileGenerator, and XMLStringGenerator components, all of which are nonvisual beans. 
+ Process XML with JavaBeans: Read the whole series! 
+- Part 1. Interconnect JavaBeans to process XML 
+- Part 2. How IDEs interconnect components 
+- Part 3. Simplify XML processing with XMLConvenience Beans 
+ 
+ 
+Last month's components showed you how to read and write XML trees. This month, I'll show you how to use the nonvisual XMLEditor bean set to process those trees. This article will be highly technical, so you must have prior knowledge of how JavaBeans interconnect in an integrated development environment (IDE) at the lowest level. I'll give a detailed example of a very simple application, with explanations of event and property connections, and describe how you can use them to create applications without programming. 
+This article assumes you've read Part 1 of this series and that you're familiar with the basics of XML, the Document Object Model (DOM), and JavaBeans, as well as the concept of building applications in an IDE. It would also be helpful to download and install IBM's XML Beans from IBM's alphaBeans site (see Resources). 
+ The XMLEditor bean set 
+XMLEditor beans do not necessarily edit XML, despite what their name implies. Instead, these beans form a hierarchy of containers and operators that match particular features of an org.w3c.dom.Document or a org.w3c.dom.Node (which I will simply call Document, Node, Element, etc.), and hold a reference to that object for processing. 
+That object represents a part of the input XML tree being edited. As shown last month, a DOMGenerator bean creates a Document object, representing the tree of XML nodes. But that capability is almost useless if you can't pick the tree apart and use its pieces. That's where XMLEditor beans come in. 
+I'll start with an example that clarifies what I'm discussing here. Part of the sample XML I've been using for these articles, a recipe for Lime Jello Marshmallow Cottage Cheese Surprise, appears in Figure 1 in two different forms. 
+ 
+Figure 1. Recipe XML as text (left) and as objects (right) 
+ 
+ 
+The left side of the figure represents part of the sample XML document, encoded as ASCII text. (You can find a link to the entire sample XML code in the Resources section below.) On the right is the same document, represented as a tree of DOM Node objects (subclasses of org.w3c.dom.Node). The DOMGenerator (by way of its underlying parser) produces this tree from the input XML stream. 
+The top-level element is the Document node, only one of which exists for any given XML document. The DOMGenerator object creates an object of this type and provides it as its result property. A Document is a container that, if not empty, holds one and only one object of type Element, which is in turn given the same name as the Document's top-level tag. This element is called the document element. In this example, the document element is . (With the notation , I indicate both the name of an XML tag and the tag name returned by the getTagName() method of a corresponding DOM Element object.) 
+The contains a single that contains a Text item. The Text item's value is the name of the recipe. This structure is defined and enforced by the Document Type Definition (DTD) for the XML document. (You can see the simple DTD for this Recipe XML in Resources below.) 
+What does all this have to do with XMLEditor beans? Each container bean class in the XMLEditor bean set recognizes a particular Node type at the bean class's input. For example, a DocumentContainer XMLEditor bean takes a Document node as its input. A DocumentContainer's input is the value of its inputDocument property, which is write only. The DocumentContainer contains a read-write property called currentNode, which is the document to be edited. The DocumentContainer has a third property, result, which is read only, and returns the Document object that the DocumentContainer currently contains. 
+The inputDocument (write only) and result properties (read only) can be different because the document within the DocumentContainer (the currentNode) is editable. After editing (setting the currentNode property to refer to a different Document object, for example), the result document -- that is, the output -- may well be different from the input.
+Let's apply this to the example above. Imagine setting a DocumentContainer's inputDocument to the Document object at the top of the object tree in Figure 1. The DocumentContainer will make the Document available as a Node (since a Document is a subclass of Node, and therefore is a Node), and then make that Node available as its currentNode property. It will also make the Document available as its result property. 
+To understand how an application composed of interconnected objects works, you must understand how to interconnect objects. What does it mean for objects to be connected to one another? 
+ Object connection: An in-depth example 
+Returning to the example in Figure 1, let's build a small application that gives the user a view of a recipe's name -- that is, the contents of the element inside a Document's element. Figure 2 shows the configuration of just such an application running inside the IBM VisualAge for Java IDE. Other IDEs may present the connections between beans in completely different ways, but all serious IDEs allow connections between bean properties, events, and methods. 
+ 
+ center Figure 2. Configuration of the RecipeEditor application 
+ 
+ 
+The purpose of the RecipeEditor bean is simply to extract the text of the element of a Document containing a and display that to the user. 
+For the rest of this section, I'm going to delve into the inner workings of how IDEs connect objects to one another, using the simple RecipeEditor as an example. If you already understand event listener relationships and the ways in which IDEs interconnect components to create applications, you can skip down to the section titled An unprogrammed application . 
+Clicking the Open File button causes the DOMGenerator object (marked A in Figure 2) to read its input, parse any XML it finds, and produce a DOM Document as its output. But how exactly does clicking the button cause this to happen? 
+ Making the connection 
+The arrow in Figure 2 between the Open File button and DOMGenerator1 indicates an event listener relationship. In this case, the DOMGenerator's triggerAction() method is called when the Open File button produces an ActionEvent. Calling triggerAction() causes the DOMGenerator to fetch its input document, parse the document, and produce a Document object as its result. 
+It's fairly easy to create a DOMGenerator that listens for ActionEvents on another object. For example: 
+public class DOMGeneratorThatListens
+ extends DOMGenerator implements ActionListener {
+ public void actionPerformed(ActionEvent e) {
+ triggerAction(); 
+ }
+}
+Then, elsewhere in the code: 
+Button openFile = new Button("Open file...");
+DOMGeneratorThatListens dg = new DOMGeneratorThatListens();
+openFile.addActionListener(dg);
+Simple enough. In real applications, though, many objects listen for events from multiple sources, and they may also send events to other objects. The resulting code quickly becomes too complex for an IDE to handle easily. 
+ Being adaptable 
+A common solution to this problem is to split the listening and reacting functionality out of the subclass and place it in a separate class, called an event adapter class. An event adapter is simply a dispatcher that listens for events on an event source and then calls methods on the event target. Code for an event adapter might look like this: 
+public class DOMGeneratorButtonAdapter implements ActionListener {
+ DOMGenerator dg = null;
+ Button b = null;
+ DOMGeneratorButtonAdapter(Button source, DOMGenerator target) {
+ b = source;
+ dg = target;
+ b.addPropertyChangeListener(this);
+ }
+ public void actionPerformed(ActionEvent e) {
+ dg.triggerAction();
+ }
+}
+You could then link together a button and a DOMGenerator without subclassing either of them, like this: 
+Button openFile = new Button("Open file...");
+DOMGenerator dg = new DOMGenerator();
+DOMGeneratorButtonAdapter dgba = new DOMGeneratorButtonAdapter(openFile, dg);
+When the button is clicked, the adapter receives the event and then performs the method call on the target object. 
+A purely object-oriented solution would be to create a separate event adapter object for each connection. Some IDEs may do so, but the designers of VisualAge for Java decided to turn the application class (in this case, RecipeEditor) into the event adapter for all events. In other words, the application class listens for all events from objects (e.g., clicks on the Open File button) and then dispatches calls to the appropriate targets (e.g., the DOMGenerator's triggerAction()). 
+When the user clicks the Open File button, the button sends an ActionEvent to all of its listeners by passing it to those listeners' actionPerformed() methods. The application class (RecipeEditor) is registered as a listener for ActionEvents, and it responds to the button's ActionEvent by calling the DOMGenerator's triggerAction() method.
+ How connections are created 
+In Figure 2, the application developer created the connection between the button and the DOMGenerator in the IDE. The arrow leading from the button to the DOMGenerator is a graphical representation of a method that the IDE generated automatically. The application developer indicated (graphically, using mouse clicks and menus) that the IDE should connect the button's actionPerformed() method to the DOMGenerator's triggerAction() method. The IDE then automatically took the following steps: 
+ 
+- It declared the application class RecipeEditor as an ActionListener by adding implements ActionListener to the RecipeEditor class declaration. This made the class capable of receiving ActionEvent objects. 
+- It wrote a handler method actionPerformed, which detects whether the source of the ActionEvent was the Open File button and, if so, calls triggerAction() on the DOMGenerator. Here's a sample of the code the IDE produced: 
+/* WARNING: THIS METHOD WILL BE REGENERATED. */
+public void actionPerformed(ActionEvent e) {
+if ((e.getSource() == getButton3()) ) {
+connEtoM11(e);
+}
+if ((e.getSource() == getOpenFile()) ) {
+connEtoM1(e);
+}
+}
+/* WARNING: THIS METHOD WILL BE REGENERATED. */
+private void connEtoM1(ActionEvent arg1) {
+getDOMGenerator().triggerAction();
+}
+You can see that the IDE wrote two methods: actionPerformed(), which checks the source of the event, and connEtoM1(), which actionPerformed calls after making that check and which actually performs the connection. Notice also that, instead of using the user interface element objects directly, the IDE has created accessors for them (getOpenFile() and getDOMGenerator()). This is good programming style, as it encapsulates access to the class's internal objects. 
+- Finally, the IDE registered the application class as a listener for ActionEvents on the Open File button in the RecipeEditor.initConnections() method, called from the constructor. initConnections() is a method, written entirely by VisualAge for Java, that is responsible for creating property change and event relationships. 
+Code generated by other IDEs would look very different from code that appears in the source files, but it would do essentially the same thing: it would call triggerAction() when the Open File button is pushed. (You can find RecipeEditor.java in the source archive, downloadable in jar, tgz or zip formats from Resources below.) 
+This is the standard way in which IDEs assemble objects into applications: they create instances of component classes and interconnect them with event listener and property change listener relationships. Each object maintains a list of other objects to notify when particular events occur. When an event occurs on an object (a mouse click, a query result return, a method call, input ready to be read, and so forth), the object generates an event (itself an object) describing what happened, and passes it to all the other objects listening for such events. That way, objects can be assembled into applications without compiling anything at runtime. 
+A component knows what other objects wish to be notified about an event because, earlier in the program's run, the object was added to the component's list of listeners for that event by way of a call to the component's addeventTypeListener() method. 
+The method call that adds one object to another object's list of listeners can occur practically anywhere in a program. Often components will listen for their own events. Window classes commonly listen for their own WindowEvent messages, for example. Sometimes components will add other objects to their own listener lists. Usually an object adds itself to another object's list of listeners for a particular event, by making a call such as otherObject.addSomeEventListener(this). In most of the cases in this article, though, an IDE generates the code that adds objects to other objects' listener lists, creating an event connection between the two objects. VisualAge for Java creates all these connections in a method called initConnections() (which you can see in this month's sample source code; see Resources to download it). 
+The reason I'm spending so much time on this topic is that it's the central concept behind building applications visually. If the ideas are still unclear to you, read up on event listener relationships in Resources. Meanwhile, let's return to the sample application. 
+ 
+ An unprogrammed application 
+Now that you understand how IDEs connect objects to one another, I'll discuss using those connections in an application. First, forget that the application class is the event listener. That's an implementation detail. From the point of view of the person assembling an application, a connection between two components is direct. You need only understand what the IDE is doing, so you can debug more effectively. 
+Figure 2 is reprinted below to minimize scrolling. 
+Figure 2. Configuration of the RecipeEditor application (encore) 
+ 
+As noted earlier, connection A in Figure 2 causes a button click to call triggerAction() on DOMGenerator1. The other connections behave as described below: 
+ 
+ B According to the documentation, a DOMGenerator fires an event called fetchArguments before it reads its input; that allows the input source a chance to initialize. The input source will in this case be a filename, indicated by the user by way of an ExtendedFileDialog object. ExtendedFileDialog is a class in the XMLConvenience bean set that extends the standard java.awt.FileDialog and has additional properties that simplify its use in an IDE. Connection B configures ExtendedFileDialog1's show() method to be called in response to DOMGenerator1 firing fetchArguments. The user may then select a file that activates connection C. 
+ 
+ C Connection C is a property change relationship, a special type of event relationship that binds two properties together. Changing the value of a property on the source causes a corresponding set of a property on the target. (For more on property change relationships, see Resources.) 
+ VisualAge for Java indicates a property change relationship using a blue line with circles on the ends. The circle at the property source end is hollow; the target end is full. So the diagram in Figure 2 indicates that changing some property of ExtendedFileDialog1 results in the setting of some other property of DOMGenerator1. Selecting connection C in VisualAge displays the following text in the status line: 
+ connPtoP10: (ExtendedFileDialog1,fullpath)<-->(DOMGenerator1,inputXmlFileLocation) 
+ 
+This line indicates that, when ExtendedFileDialog1.fullpath is set, DOMGenerator1.inputXmlFileLocation is also set to the same value. (Incidentally, the method that performs this property change is connPtoP10, useful information when debugging.) ExtendedFileDialog1.fullpath is set exclusively by the user action of selecting a file; therefore, that action sets the location of DOMGenerator1's input file, by way of the property change relationship. 
+ 
+ D Connection D is a property change relationship between DOMGenerator1.result and DocumentContainer1.inputDocument. When DOMGenerator1 produces a Document, connection D passes the Document to DocumentContainer1. 
+ 
+ E The ECRecipe object is an instance of ElementContainer, an XMLEditor bean set class. ElementContainer finds an element with a particular tag name within an input node. 
+ When an ElementContainer's inputParentNode is set to a particular node, the ElementContainer searches that node's child nodes for any child with a tag name matching the ElementContainer's elementName property. If it finds one, the ElementContainer sets its currentNode to the discovered element. 
+ ECRecipe is an ElementContainer with its elementName set to the string "Recipe." When the inputParentNode property of ECRecipe is set to a Document containing a element, ECRecipe sets its output currentNode property to the input. ECRecipe then picks the element out of the Document. 
+ Connection E is a property change relationship linking DocumentContainer1.currentNode to ECRecipe.inputParentNode. ECRecipe picks the tag out of any Document that appears at its input. If there is no such tag, then ECRecipe does nothing. 
+ 
+ F Connection F is a property change relationship from ECRecipe.currentNode to ECName.inputParentNode. 
+ Just as ECRecipe picks the node out of a Document, ECName picks the node out of a and makes it available at its currentNode property. 
+ 
+ G The TextContainer is yet another XMLEditor class. Like the other containers, the TextContainer holds a reference to a DOM Node object -- a Text object, in this case. The container searches the Node at its inputParentNode property for a Text node and, if it finds one, sets its data property to the string contents of the Text node. In other words, a TextContainer picks the string out of a Text node and makes it available at its data property. 
+ Connection G is a property change relationship from ECName.currentNode to TCName.inputParentNode. It picks the text out of the Name element and makes it available at its data property. 
+ 
+ H Finally, connection H is a property change relationship from TCName.data (a string) to the TextField's text property. This sets the TextField's text to be identical to the string inside the Name element at the input of TCName. 
+ 
+ 
+So, to recap, the TextField in the form gets set to the name of the recipe, because it's set to: 
+ 
+- the string, which is contained in... 
+- the Name, which is contained in... 
+- the Recipe, which is contained in... 
+- the Document, which... 
+- DOMGenerator1 read from the file the user chose, using... 
+- ExtendedFileDialog1, which was activated because... 
+- DOMGenerator1 fired a fetchArguments event,because... 
+- the Open File button was wired to call DOMGenerator1.triggerAction() when pressed. (Whew!) 
+Figure 3 shows the RecipeEditor in operation. The example.html file in Resources has been loaded into the application, and the name of the current recipe is clearly visible. Anticlimactic, isn't it? 
+ 
+Figure 3. The RecipeEditor in action 
+ 
+ 
+ Why build applications with components? 
+This is quite a lot of work and a lot of explanation for something so simple, right? Seems as though it would be easier just to code the whole mess by hand. But there are advantages to building an application this way. 
+ 
+- First, this application was built with no programming. Not one line. I created a running application that can read an XML file, pick the text out of an element a couple of levels down, and display it for editing in a panel by drawing pictures. And it was built in less time than it took to explain how it works.
+- Second, building applications by assembling components lets you create a system at a higher level of abstraction than programming -- in terms of ideas rather than code. To draw an application this way is to work with objects in the domain of the system being built. In this case, the domain is processing XML documents.
+There's still plenty of room for coding -- the components must come from somewhere. But, while you're building a system out of components, the temptation to start coding is an indication that something isn't right with your set of components. Ask yourself why you want to code something manually rather than provide it as a service that a component can offer; your answers will improve your design because you're thinking through that decision consciously. 
+- Third, the designers of this XML JavaBeans package did a good job of separating the functionality of the XMLEditor beans from the user interface. They deliberately gave these beans no user interface, because they'd like them to be used where a GUI is not appropriate. On a server, for example, decoupling functionality from presentation is one good way to make code reusable.
+It would be easy to disconnect the pieces of the application that have no user interface and use them in another context, completely unmodified. Imagine, for example, that you had a directory with thousands of XML recipe files and you wanted to get their names for an index. Replace the ExtendedFileDialog with a directory-scanning object and send the output of TCName to a self-sorting vector of strings, and you have a program that indexes recipe files. Of course, you may need to write the directory scanner or sort the vector beans yourself, but you'll be able to reuse those in the future if they're general and well designed. 
+- Fourth, there's another form of recycling I haven't explored: using components to build other components. Imagine taking this chain of little objects, putting it in a box, and labeling the box "Recipe Name Finder." The chain of components just created could be used anywhere, whenever the name of a recipe was needed.
+- Finally, applications built with components and events can be easier to debug than coded programs, because test classes can be attached to the event connections to report what is going on as the program runs. Debugging a program with events then becomes more like troubleshooting an electrical circuit than debugging code. Again, the person doing the troubleshooting is working at a higher level of abstraction. 
+Using components to create applications can cause problems, too. Performance limitations, training considerations, memory usage, and the lack of components that have the exact functionality needed are examples. But that's material for another column. 
+ Running the sample program 
+You need to install the XML Beans suite and include its jar file in your CLASSPATH to run this month's sample code (see Resources below to find it). If you're interested in how the code works, you can load the .java files (also available in Resources) into your own IDE and step through the code manually. If you use VisualAge for Java, you should be able to open the RecipeEditor class in the Visual Composition Editor and play with the connections. 
+ Conclusion 
+Of course, the little application you've seen is useless. I doubt anyone's going to be sitting at a desk viewing recipe titles all day. But now that you have the basics down, you can start to do more interesting things with these components. 
+In the next part of the series, I'll show you how to make the contents of these containers updatable, traverse the DOM tree in more than one direction at once, and handle multiple objects contained in a node. I'll also show how to create such applications more easily by using the XMLConvenience bean set of the XML JavaBeans suite. 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+Resources
+Download the source code and class files for this month's article
+- In jar format (with class and .java files): 
+http://www.javaworld.com/jw-12-1999/beans/JWBeansDec99.jar
+- In tgz format (gzipped tar): 
+http://www.javaworld.com/jw-12-1999/beans/JWBeansDec99.tgz
+- In zip format: 
+http://www.javaworld.com/jw-12-1999/beans/JWBeansDec99.zip
+- Read the entire sample XML: 
+http://www.javaworld.com/jw-12-1999/beans/example.html
+- See the simple DTD for this Recipe XML: 
+http://www.javaworld.com/jw-12-1999/beans/example-dtd.html
+XML and XML JavaBeans Suite resources
+- "XML for the absolute beginner," Mark Johnson (JavaWorld, April 1998) -- a quick start to XML: 
+http://www.javaworld.com/javaworld/jw-04-1999/jw-04-xml.html
+- "Keep listening for upcoming events," Mark Johnson (JavaWorld, October 1997) -- a tutorial introduction to the event listener interface concept: 
+http://www.javaworld.com/jw-10-1997/jw-10-beans.html
+- "'Double Shot, Half Decaf, Skinny Latte' -- Customize your Java," Mark Johnson (JavaWorld, September 1997) -- an example of event listener interfaces: 
+http://www.javaworld.com/jw-09-1997/jw-09-beans.html
+- Download IBM's XML JavaBeans Suite from the alphaWorks alphaBeans site: 
+http://alphaWorks.ibm.com/ab.nsf/techmain/CC88275128BB7B0088256723000AC88F?OpenDocument
+- IBM's alphaBeans site has a large number of high-quality JavaBeans you can play with: 
+http://www.alphaWorks.ibm.com/alphaBeans
+- The parser from IBM's xml4j package is available free for noncommercial use. It's even free for commercial use, but be sure to read the license agreement first: 
+http://www.alphaWorks.ibm.com/formula/XML
+- The World Wide Web Consortium (W3C) maintains a page covering ongoing efforts in the XML community: 
+http://www.w3.org/XML
+- The undisputed mother of all XML news sites is Robin Cover's SGML/XML Web page: 
+http://www.oasis-open.org/cover/
+- A good site for XML news, tutorials, and information: 
+http://www.xml.com
+- David Megginson, creator of the SAX parser, has a Web site: 
+http://www.megginson.com
+- IBM's developerWorks site includes excellent XML resources: 
+http://www.ibm.com/developer/xml
+- Microsoft's data management is increasingly based on XML. Read about Microsoft's XML strategies: 
+http://msdn.microsoft.com/xml/default.asp
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

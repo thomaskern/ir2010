@@ -1,0 +1,44 @@
+
+You must have a frames-capable browser to take proper advantage of the following documents correctly. Although it doesn't really matter as these documents can also be read without using frames.
+Visual Basic: Hello World Example
+The "First" Example
+The aim of these examples is to work through the the simple examples provided in week 1 & 2 and converting them to Visual Basic. This will both illustrate how to use Visual Basic and provide some useful exercises to further your programming skills. 
+A Visual Basic Version
+The first thing the programmer must think about when programming an application that involves a GUI is how the users are going to interact with the application. For example, the purpose of the first.bas program is to simply to display the result of various arithmetric operations on 2 & 5. How can a GUI be used to implement this aim?
+Simply displaying the result is boring aswell as not being very useful for the user. VB provides several tools which allow the programmer to provide a more intuitive interface to the program. One of the major aims of visual programming is to design an interface that is immediately understandable by the user.
+For more information on designing graphical user interfaces 
+In terms of this program, there are two improvements that can be made;
+- allow the user to select which arithimetric operation tp perform, and
+- allow the user to change the input numbers.
+When VB starts up it provides the user with an initial form. This is by default the start up form. Use this form to create a simple application (see below) that performs some simple computations.
+Note: A startup form is the form that is displayed first when ever your new program is started. With applications with several forms the programmer can select which one is the starting form from the Options | Project menu.
+Here the user can decide on how the user is going to use the program
+This program can be downloaded from the School of Geography's anonymous ftp site. 
+Further Exercises
+- Add a help button that brings up a window of text explaining how to use the program.
+- Rewrite the code associated with the cmdCalc button as a function
+- Create a simple calculator
+Visual Basic: Hello World Example
+FIRST.BAS
+The first example of week 1 illustrated some of the arithmetic operations in Basic.
+First.bas
+A = 2
+B = 5
+C = A + B
+PRINT A , "PLUS", B, "EQUALS", C
+C = B - A
+PRINT A , "MINUS", B, "EQUALS", C
+C = A * B
+PRINT A , "MULTIPLIED BY", B, "EQUALS", C
+C = A / B
+PRINT A , "DIVIDED BY", B, "EQUALS", C
+END
+A Visual Basic Version
+' This is a Simple Hello World Program
+Dim $String as String * 12
+Dim i as Integer
+$String = "Hello World"
+For i = 1 to 5
+Print $String
+Next i
+End

@@ -1,0 +1,203 @@
+	
+	 WDVL: Terms
+	
+	
+	
+	
+	
+	
+	
+ 
+	
+	FREE
+ Newsletter
+	
+	
+	
+	
+ 
+ 
+	
+	 
+ 
+	
+	
+ 
+ 
+ 
+ 
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	 
+ 
+	
+	Hot Topics 
+	
+	
+	 JavaScript
+	 
+	
+	
+	 HTML
+	 
+	
+	 CSS
+	 
+	
+	 DHTML
+	 
+	
+	 ASP
+	 
+	
+	 XML
+	 
+	
+	
+find a web host with:
+ CGI Access
+ Database Support
+ NT Servers
+ UNIX Servers
+ Telnet Access
+advanced search
+ 
+ 
+	
+	 WebDev Network 
+	 
+	
+	
+ FlashKit
+ Gif.com
+ Java Boutique
+ JavaScript.com
+ JavaScript Source
+ WebDevJobs
+ JustSMIL
+ ScriptSearch
+ SMW
+	 VoiceXML Planet
+	 Web Hosts
+ WDJ
+ WDVL
+ WebDeveloper.com
+ WebReference.com
+ XMLFiles.com
+	 
+	
+	 e-commerce 
+	 
+	
+	
+	Be a Commerce Partner
+Secure Business IM
+Promote Your Website
+USA Mailing Address
+Internet Jobs
+For Web Graphics
+Register Domains
+Search the Web
+Free DNS Offer
+Free Barter Account
+EMedia Mag Free Sub
+	 
+	
+	internet.com
+	 
+	
+	 Internet News
+	 Internet Investing
+	 Internet Technology
+	 Windows Internet Tech.
+	 Linux/Open Source
+	 Web Developer
+	 ECommerce/Marketing
+	 ISP Resources
+	 ASP Resources
+	 Wireless Internet
+	 Downloads
+	 Internet Resources
+	 Internet Lists
+	 International
+	 EarthWeb
+	 Career Resources
+	 Search internet.com
+	 Advertise
+	 Corporate Info
+	 Newsletters
+	 E-mail Offers
+	
+	 
+ 
+ 
+	
+	
+	 
+	Terms	
+What are the Java Language Terms?
+Here is a brief definition of some of the Java language terms. If you are familiar with a 3rd or 4th generation programming language the term in parenthesis below will help you associate the object oriented term to a familiar concept.
+Class consists of variables and methods. Every Java applet is a class. (program)
+Method is a group of statements that perform activities in a class.(subroutine)
+Member Variable contains a value for a class that is available to all methods in the class.(common)
+ 
+Local Variable contains a value available only to the method in which it is defined. (local)
+Package is a group of classes bundled together for reference convenience. (library)
+Object is an instance or occurrence of a class.
+Naming Conventions
+Class names typically are comprised of words that each begin with a Capital Letter.
+ Method names usually begin with a lowercase letter and each subsequent word is capitalized.
+Both member and local variable names are usually in one of two formats. They could start with a lower case letter and each subsequent word is capitalized. Or they could contain underscores in between words or trailing single word names.
+Language Syntax 
+Java statements are terminated with ";". Classes, methods and blocks of statements (if, for, while) are enclosed in brackets like "{ }". Conditional clauses associated with an if statement are placed in parenthesis like "( )". All statements, parameters and variable names are case sensitive. For example "North" is not the same as "NORTH" when used as a parameter to the add() method. All variables must be declared and they must have one type like; int, boolean, float. Java provides the typical mathematical and character manipulation operators like +, -, *, /, ++, and many others.
+For more details, consult these Internet resources for a comprehensive explanation of Java fundamentals and an introduction to object oriented programming.
+ 
+ 
+ 
+ 
+- Introducing Java (TM) - Your First Applet
+- What is a Java Applet?
+- What are the Java Language Terms?
+- What is the structure of an applet program?
+- What are member variables?
+- What are the applet methods?
+- How do you create a graphical user interface?
+- How is data supplied to a Java applet?
+- How are user events managed?
+- How to start programming Java applets?
+ 
+ 
+	Up to =>
+	Home
+ / Authoring / Java / Intro
+	Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+	Legal Notices, 
+	
+	Licensing,
+	Reprints,
+	 &
+	 
+	 Permissions, 
+	 
+	 Privacy Policy.
+	 
+	 
+	 
+	 	
+	

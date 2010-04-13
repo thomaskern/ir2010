@@ -1,0 +1,947 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : Tech Talk 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+	
+	 
+	 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	Technologies
+	 
+ 
+ 
+ 
+ 
+ 	
+	
+	
+	J2ME 
+	
+	
+	 
+	-CLDC 	
+	
+	
+	 
+	 
+	-MIDP 
+	
+	
+	 
+	 
+	-EmbeddedJava 
+	
+	
+	 
+	 
+	-kJava 
+	
+	
+	 
+	-CDC 	
+	
+	
+	 
+	 
+	-PersonalJava 
+	
+	
+	Other 
+	
+	
+	 
+	-BREW 	
+	
+	
+	 
+	-iAppli 	
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	
+	 
+	 
+	 
+	 
+	 
+	 
+	 	 
+	 
+	
+	
+	 
+	 
+ 
+	 
+ 
+	
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP 
+	
+	
+	 	
+	
+	This report from Developnet examines the various methods available for passing data over HTTP for J2ME MIDP/J2EE applications.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	J2ME IDE Comparison 
+	
+	
+	 	
+	
+	This report from Developnet provides an in-depth review of market-leading IDEs that provide facilities for J2ME development using MIDP/CLDC.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Introduction to the J2ME Platform 
+	
+	
+	 	
+	
+	An excerpt from "Wireless J2ME Platform Programming", this chapter covers the Java platform for pervasive devices, device configurations and profiles, and device application management systems.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	The Network Connection 
+	
+	
+	 	
+	
+	This excerpt from "Java 2 Micro Edition" discusses network connectivity for J2ME applications, including the Generic Connection Framework, HTTP-based connections, socket-based connections and datagram-based connections.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	A Simple MIDP Application 
+	
+	
+	 	
+	
+	This excerpt from "Java 2 Micro Edition" introduces you to the entire process of creating a J2ME application using the Mobile Information Device Profile (MIDP).
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Application of Jini Technology to Enhance the Delivery of Mobile Services 
+	
+	
+	 	
+	
+	This whitepaper discusses the application of Jini(tm) network technology for resource-constrained mobile devices and how the technology can be used to address a number of current challenges faced by the mobile industry.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Core J2ME- The Basics of J2ME 
+	
+	
+	 	
+	
+	This excerpt from John's new book Core J2ME Technology & MIDP covers the configurations, profiles, Java Virtual Machines, and more basics of J2ME programming.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Reduce, Reuse and Recycle: Reusing Objects - Part II 
+	
+	
+	 	
+	
+	Part II of the series expands on the basic ideas introduced in the first article to further explore the comparison between Object Creation and Object Pools in order to determine the best approach to be used in a J2ME environment, rather then just accepting the "Established Rules" of Java Programming.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Introducing Wireless JMS 
+	
+	
+	 	
+	
+	With the growing usage of Java on the client and server side for mobile solutions, the client/server interaction issues become important -- JMS middleware can be the solution in the development of "rich" J2ME client applications.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Java 2 Micro Edition Basics 
+	
+	
+	 	
+	
+	This excerpt from "Mobile Information Device Profile for Java 2 Micro Edition: Professional Developer's Guide" discusses how J2ME evolved and presents the concepts of configurations and profiles.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Java in Small Places 
+	
+	
+	 	
+	
+	It might be time for embedded device manufacturers to look beyond their C boundaries to see what Java can bring to the table.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Working with the RMS - Part II 
+	
+	
+	 	
+	
+	The second installment of John Muchow's RMS series addresses how to use an enumeration to sort and search records within the record store.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Elements of a typical J2ME MIDP Business Application 
+	
+	
+	 	
+	
+	Based in part on the upcoming book "The Mobile Information Device Profile for J2ME" by C. Enrique Ortiz and Eric Giguere, this article provides a technical introduction to MIDP enterprise applications.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Working with the RMS 
+	
+	
+	 	
+	
+	There are many questions about how to store data in your MIDP applications. John Muchow has got the answers.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Using the low-level GUI: Display Effects 
+	
+	
+	 	
+	
+	The third article in Roman's Low-Level GUI series discusses the various effects that can be performed using an image for a MIDP application, including scrolling and panning. 
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Implementing a Rich Content Creation Platform 
+	
+	
+	 	
+	
+	This Plazmic Whitepaper discusses the opportunities and challenges for wireless market players, including trends in wireless technology and how to enable content for mobile devices.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Using the low-level GUI - Repeating Keys 
+	
+	
+	 	
+	
+	The second article in Roman's low-level GUI series explores the use of repeating keys in your application and let's you know how, and if, it is possible.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Using the low-level GUI - A Primer 
+	
+	
+	 	
+	
+	Low-level GUI are great for developing arcade-style games for MIDP, but most developers don't explain how and why they did something; so Roman's going to help you figure it out.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Reduce, Reuse and Recycle: Reusing Objects - Part I 
+	
+	
+	 	
+	
+	The first in a series of articles that will take a look at a number algorithms and approaches that can be used to help deal with the limitations of mobile devices.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	NTT DoCoMo's Java for i-Mode 
+	
+	
+	 	
+	
+	The second of two excerpts from the new programming book "Wireless Java Programming with J2ME" gives an overview of DoCoMo's J2ME implementation and discusses the company's release of J2ME phones and their expansion plans for the U.S.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Java: Fat and Slow? 
+	
+	
+	 	
+	
+	An excerpt from "Java 2 Micro Edition: Professional Developer's Guide", chapter 2 takes a close look at the architecture of Java and its evolution from a client-oriented programming language to a platform that is capable of running enterprise applications.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Wireless Java Programming with J2ME: Persistent Storage 
+	
+	
+	 	
+	
+	The first of two excerpts from the new book, Chapter 8: "Persistent Storage" discusses how to create, delete, and access a record store and how to manipulate its records.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Wireless Java: Developing with J2ME 
+	
+	
+	 	
+	
+	MJN readers have been given the opportunity to preview the newest J2ME book, "Wireless Java: Developing with Java 2, Micro Edition." This excerpt discusses creating user interfaces with J2ME.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	The Pervasive Computing Device Architecture 
+	
+	
+	 	
+	
+	Learn more about the requirements for pervasive computing devices and discover what content models are appropriate for network-connected appliances.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Java Runtime Components for the Embedded Revolution 
+	
+	
+	 	
+	
+	It's unlikely that the same VM configuration will be used on a wide range of embedded systems the way it is on the desktop. This in-depth analysis tells us why this will play a large role in development for embedded devices.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Embedded Linux and Java Technology 
+	
+	
+	 	
+	
+	Take a look at the teaming of the Linux operating system and Java technology for embedded applications and explore the benefits of the synergy between them.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Object Lists - Performance and Efficiency under J2ME 
+	
+	
+	 	
+	
+	Your J2ME application requires you maintain a long list of object handles, however fast and simple are key to its success. Not having the diverse selection available in J2SE, Lee Miles shows us a sleek and efficient implementation of an ArrayList.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Parsing XML on the KVM with kXML 
+	
+	
+	 	
+	
+	As application development for smart devices increases, XML parsing is becoming more important, but device limitations still create some problems. Stefan Haustein shows us how to overcome those limitations through the use of kXML.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Serious KVM Programming 
+	
+	
+	 	
+	
+	This article talks about the experience gained from porting the full featured GIS applet to J2ME CLDC and MIDP programs for KVM devices.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Compiling and using the Generic Connection Framework 
+	
+	
+	 	
+	
+	Using kAWT, you are able to create AWT applications that can be executed on the Palm KVM and the desktop as well. But if you are interested in creating an application that uses connections like sockets, you need to use the javax.microedition.io classes of the generic connection framework. 
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	What is this CLDC Thing Anyway? 
+	
+	
+	 	
+	
+	An introduction to the CLDC and its components.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Porting the KVM to Linux 
+	
+	
+	 	
+	
+	For all you java loving penguins out there, here is an article that may help you take the foray into Java's wireless world.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	The KVM Gets Color 
+	
+	
+	 	
+	
+	Michael Kroll and Stefan Haustein have wasted no time in modifying the original KVM source to provide both colour and grayscale support directly in the KVM, and the kAWT, of course. 
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Porting TinyXML onto the CLDC/KVM1.0 for PalmOS 
+	
+	
+	 	
+	
+	Christian Sauer documents and enlightens with his search an implementation of the world's tiniest parser.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	The KAWT Project 
+	
+	
+	 	
+	
+	This article provides a glimpse into the JAVA Abstract Window Toolkit (AWT), that enabes parallel development for KVM and JVM platforms and simplified testing of KVM applications on the desktop.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Understanding the Connection Framework 
+	
+	
+	 	
+	
+	With the initial Beta of Sun's J2ME CLDC (Java 2 Micro Edition Connected, Limited Device Configuration), a new Java extension package has appeared -- javax.microedition.io. This article is designed to help you understand this class and the connection framework.
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	Dynamic Classloading in the KVM 
+	
+	
+	 	
+	
+	Razvan Dragomirescu explains how to manipulate the Palm database to support dynamic class loading in the KVM. 
+	 
+	
+	
+	 
+	
+ 
+	 
+	
+	
+	 
+ 
+ 
+ 
+ 	
+ 	
+	
+	
+	
+	News
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Crisp Wireless mLogic and Sun ONE Studio IDE Deliver Tools for Rapid Development of Mobile Content and Community Applications
+	
+	-07/16/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Verizon Wireless Selects Vindigo To Deliver Downloadable Location-Based Application
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Matsushita Communication Selects Nokia's Software Platform for Future Wireless Multimedia Phones
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	LightSurf and Carview to Deploy eSwitch-Powered Services to Wireless Users Throughout Japan 
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Wireless Games Player receives BREW Award
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	J-Phone announces two wireless 'Sha-Mail' handsets
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Serving BREW of fun, talk
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Sun Brews New Java For Cell Phones
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Wireless gaming over a cellular network will be worth 4.4 billion
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	Rocket Mobile Launches Suite of Wireless Applications
+	
+	-07/05/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

@@ -1,0 +1,185 @@
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns="http://www.w3.org/TR/REC-html40">
+Building Tables with Data
+Beginning ASP Databases - Chapter 3
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Visual Basic Books
+Home
+Visual Basic Beginner Books
+Visual Basic Database Books
+Visual Basic ActiveX Books
+Visual Basic Advanced Books
+VB Internet Programming Books
+Resources
+Visual Basic Links
+Add a Link
+Subscribe to Mailing List
+ Visual Basic Books 
+ 
+Building
+Tables with Data
+Very frequently
+ your client will want to place data into an HTML table, for
+display of the browser. To review some HTML, let me state the three basic rules
+of table tags:
+<![if !supportEmptyParas]> <![endif]>
+Begin and end the entire table with BORDER="1">
+and "Times New Roman"'>
+Begin and end each row with and "Times New Roman"'>
+Begin and end each cell with and "Times New Roman"'> 
+<![if !supportEmptyParas]> <![endif]>
+Using the double quotes for the border value ensures universal
+readability. However, many common browsers do not require them.
+<![if !supportEmptyParas]> <![endif]>
+To build tables that display our data, we need to mix HTML
+table tags into the data that ADO returns. The most basic table contains only
+one row (one record or one name) and two columns, as follows. This is
+artificially easy, but a good way to start:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+The code sample above lays out the logic very explicitly. In
+the following listing we condense this to fewer lines of code. Keep in mind
+that this is still the same very simple 1-row, 2-column table:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Response.Write ""
+Response.Write
+oRSst2("PeopleNameFirst")
+Response.Write
+" "
+Response.Write
+oRSst2("PeopleNameLast")
+Response.Write
+" 
+"
+%>
+<![if !supportEmptyParas]> <![endif]>
+We can also use the Response.Write shortcut to further
+condense the code that generates this table, as follows. However, it is general
+good practice not to code your ASPs this way as separating your server side
+scripting rather than keeping it all together in the same place degrades
+performance.
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+ 
+ 
+Building
+Tables with For…Next Loops
+It is rare that you have a client that will be satisfied
+with a one-row table! Tables usually present data on many records. We will
+explore that technique first with a table that produces three rows as a result
+of putting the code for a row within a For…Next loop in the code below. 
+Of course, we can only loop
+within ASP, so we will have to forget about the Response.Write
+shortcut used above; instead we'll revert to writing the HTML tags from within
+ASP, and using "Times New Roman";
+color:black'>Response.Write explicitly:
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+Note in the above listing that we have to be sure that the
+table tags are outside of the loop but the rows and cell tags are inside the
+loop.  For the purposes of this demo we
+are assuming that there are at least three records; in the real world that
+would be a dangerous assumption.
+<![if !supportEmptyParas]> <![endif]>
+The common errors on the above code include:
+(the usual problems in creating recordsets)
+Putting the or inside the loop
+Leaving out 
+Putting more than one or 
+ in a row
+Forgetting to include the "Times New Roman"'>.MoveNext
+line within the loop
+Trying to retrieve more records than are available in the
+database 
+In later sections of the book we discuss even faster and
+more eloquent ways to build a table.
+Try It Out -
+Building a Table of the First Five Clothing Items
+Let's use the Clothier database again, to create a table
+that shows the Name and department of the first five items.
+<![if !supportEmptyParas]> <![endif]>
+2726-03-SimpleRS TIO
+Building a Table of the First Five Clothing Items
+Chapter 3 Simple
+Recordsets
+Try It Out - 
+Building a Table of 
+the First Five Clothing
+Items
+<![if !supportEmptyParas]> <![endif]>
+Response.Write ""
+For iRowCounter = 1 to 5
+ 
+Response.Write "" &
+oRSc("ItemName") & " "
+ 
+Response.Write "" &
+oRSc("ItemDepartment") & " 
+"
+ 
+oRSc.MoveNext
+next
+%>
+<![if !supportEmptyParas]> <![endif]>
+The above code produces the following screen.
+<![if !supportEmptyParas]> <![endif]>
+<![if !vml]><![endif]>
+How It Works - Building a Table of the First Five Clothing Items
+The following lines create the recordset and ensure that we
+are positioned at the first record:
+<![if !supportEmptyParas]> <![endif]>
+dim oRSc
+dim iRowCounter
+set
+oRSc=server.CreateObject("adodb.recordset")
+oRSc.open "items",
+"DSN=clothier"
+oRSc.MoveFirst
+<![if !supportEmptyParas]> <![endif]>
+Then we begin to write the table to the web page. First, we
+write the "Times New Roman";
+color:black'> tag, which belongs outside the loop:
+<![if !supportEmptyParas]> <![endif]>
+Response.Write ""
+<![if !supportEmptyParas]> <![endif]>
+Now we can loop through the first five records. Note that,
+like all "Times New Roman";
+color:black'>For...Next Loops we need a counter to
+keep track of the number of loops that have been performed. In each loop we
+write the open row tag then the tags and data for the two cells in
+the two columns:
+<![if !supportEmptyParas]> <![endif]>
+For iRowCounter = 1 to 5
+ 
+Response.Write "" &
+oRSc("ItemName") & " "
+ 
+Response.Write "" &
+oRSc("ItemDepartment") & " 
+"
+ 
+oRSc.MoveNext
+next
+%>
+<![if !supportEmptyParas]> <![endif]>
+And then we place the
+table close tag outside of the loop as follows.
+<![if !supportEmptyParas]> <![endif]>
+<![if !supportEmptyParas]> <![endif]>
+©1999 Wrox Press Limited, US and UK.
+ 
+Email us your comments:"mail" border=0>
+Fax: 1(916)404-7719
+©1999-2000 Visual Basic Books. All rights reserved.

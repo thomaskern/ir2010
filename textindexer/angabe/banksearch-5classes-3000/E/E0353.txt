@@ -1,0 +1,471 @@
+
+GotW #53: Migrating to Namespaces
+ 
+ 
+ GotW #53 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+This is the original GotW problem and solution
+ substantially as posted to Usenet. See the book More
+ Exceptional C++ (Addison-Wesley, 2002) for the most current
+ solution to this GotW issue. The solutions in the book have been revised
+ and expanded since their initial appearance in GotW. The book versions
+ also incorporate corrections, new material, and conformance to the final
+ ANSI/ISO C++ standard.
+ 
+ 
+ 
+Migrating to Namespaces 
+ Difficulty: 4 / 10
+Standard C++ includes support for namespaces and name visibility
+control with using declarations and directives. What's the best way to use these
+powerful facilities, and what's the most effective way to initially migrate your
+existing C++ code to a namespace-aware compiler and library?
+Problem
+JG Question
+1. What are using-declarations and
+using-directives, and how are they used? Give examples.
+Bonus: What does MLOC stand for?
+Guru Question
+2. You are working on a MLOC project with over
+1,000 .h and .cpp files. The project team is just upgrading to the latest
+version of your compiler, which finally both supports namespaces and puts all of
+the standard library features into namespace std. Unfortunately, this
+conformance boon has the side effect of breaking your current build. As always,
+there is never enough time allocated to do a detailed job; you would like to
+analyze every source file and write exactly the needed using-declarations in
+each one, but that's infeasible at this time.
+What is the most effective way to deal with this problem and safely migrate
+your code base to the new (and more standard) environment? Discuss alternatives,
+and prefer the quickest approach that gets the job done without compromising
+future safety and usability. How can you best defer unnecessary (for now)
+migration work to the future without increasing the overall migration workload
+later?
+Solution
+1. What are
+using-declarations and using-directives, and how are they used? Give examples.
+Using Declarations
+A using declaration creates a local synonym for a specific name actually
+declared in another namespace. For the purposes of overloading and name
+resolution, a using declaration works just like any declaration.
+ // Example 1a
+ //
+ namespace A
+ {
+ int f( int );
+ int i;
+ } using A::f;
+ int f( int ); int main()
+ {
+ f( 1 ); // ambiguous: A::f() or ::f()? int i;
+ using A::i; // error, double declaration (just as
+ // writing "int i;" again would be)
+ }
+A using declaration only brings in names whose declarations have already been
+seen. For example:
+ // Example 1b
+ //
+ namespace A
+ {
+ class X {};
+ int Y();
+ int f( double );
+ } using A::X;
+ using A::Y; // only function A::Y(), not class A::Y
+ using A::f; // only A::f(double), not A::f(int) namespace A
+ {
+ class Y {};
+ int f( int );
+ } int main()
+ {
+ X x; // OK, X is a synonym for A::X
+ Y y; // error, A::Y not visible because the
+ // using declaration preceded the
+ // actual declaration that's wanted f( 1 ); // oops: this uses a silent implicit
+ // conversion and calls A::f(double),
+ // NOT A::f(int), because only the
+ // first A::f() declaration had been
+ // seen at the point of the using
+ // declaration for the name A::f
+ }
+Using Directives
+A using directive allows all names in another namespace to be used in the
+scope of the using directive. Unlike a using declaration, a using directive
+brings in names declared after the using directive. For example:
+ // Example 1c
+ //
+ namespace A
+ {
+ class X {};
+ int f( double );
+ } using namespace A; namespace A
+ {
+ class Y {};
+ int f( int );
+ } int main()
+ {
+ X x; // OK, X is a synonym for A::X
+ Y y; // OK, Y is a synonym for A::Y f( 1 ); // OK, calls A::f(int)
+ }
+Bonus: What does MLOC stand for?
+MLOC stands for millions of lines of code. Typically, the measurement counts
+only noncomment, nonblank lines.
+Migrating To Namespaces, Safely and Effectively
+Background: The situation described in Question #2 is pretty typical for
+projects whose compilers are supporting namespaces for the first time.
+Note that in such a situation by definition there can't already be name
+conflicts in the existing project (including both custom code and libraries)
+because namespaces didn't yet exist, so the main problem that needs a solution
+is that now the standard library is in namespace std and so unqualified uses of
+"std::" names in the project code will now fail to compile.
+2. You are working on a
+MLOC project with over 1,000 .h and .cpp files. The project team is just
+upgrading to the latest version of your compiler, which finally both supports
+namespaces and puts all of the standard library features into namespace std.
+Unfortunately, this conformance boon has the side effect of breaking your
+current build.
+First, let's go on a short tangent to analyze the best long-term solution.
+Then we'll know better what to look for in a good short-term solution that won't
+end up being just thrown away and reworked when we get to the long-term
+solution.
+Characteristics of a Good Long-Term Solution
+As always, there is never enough time allocated to do a
+detailed job; you would like to analyze every source file and write exactly the
+needed using-declarations in each one, but that's infeasible at this time.
+In short, a good long-term solution for namespace usage should follow at
+least these rules:
+1. Using directives should be avoided entirely, especially in header files.[1]
+The reason for Guideline #1 is that using directives cause wanton namespace
+pollution by bringing in potentially huge numbers of names, many (usually the
+vast majority) of which are unnecessary. The presence of the unnecessary names
+greatly increases the possibility of unintended name conflicts -- not just in
+the header, but in every module that #includes the header.
+2. Namespace using declarations should never appear in header files.
+The reason for Guideline #2 is less obvious.
+Most authors recommend that using declarations never appear AT FILE SCOPE in
+shared header files. That's good advice, as far as it goes, because at file
+scope a using declaration causes the same kind of namespace pollution as using
+directives, only less of it.
+Unfortunately, in my opinion the above "usual advice" doesn't go
+far enough. Here is why you should never write using declarations in header
+files at all, not even in a namespace scope: The meaning of the using
+declaration may change depending on what other headers happen to be #included
+before it in any given module. (I'll come back to this point again when I get to
+Example 2c later on.)
+Think about what this means. To illustrate, consider the following example
+module and two good long-term approaches to migrating the module to namespaces:
+ // Example 2a: Original namespace-free code
+ // //--- file x.h ---
+ //
+ #include "y.h" // declares Y
+ #include 
+ #include ostream& operator& ); //--- file x.cpp ---
+ //
+ #include "x.h"
+ #include "z.h" // declares Z
+ #include ostream& operator& d )
+ {
+ // ...
+ }
+How can we best migrate the above code to a compiler that respects namespaces
+and puts standard names in namespace std? Before reading on, please stop for a
+moment and think about what alternatives you might consider. Which ones are
+good? Which ones aren't? Why?
+* * *
+There are several ways you might approach this. I'll describe two common
+strategies, only one of which is good form.
+A Good Long-Term Solution
+A good long-term solution is to explicitly qualify every standard name
+wherever it is mentioned in x.h, and to write just the using declarations that
+are needed inside each source (.cpp) file for convenience, since those names are
+likely to be widely used in the source file:
+ // Example 2b: Good long-term solution
+ // //--- file x.h ---
+ //
+ #include "y.h" // declares Y
+ #include 
+ #include std::ostream& operator& ); //--- file x.cpp ---
+ //
+ #include "x.h"
+ #include "z.h" // declares Z
+ #include using std::deque; // using declarations appear
+ using std::ostream; // AFTER all #includes ostream& operator& d )
+ {
+ // ...
+ }
+Note that the using declarations inside x.cpp had better come after all
+#include directives, otherwise they may introduce name conflicts into other
+header files depending on #include orders.
+[An alternative good long-term solution would be to do the above but eschew
+the using declarations entirely and explicitly qualify each standard name, even
+inside the .cpp file. I don't recommend doing that, because it's a lot of extra
+work that doesn't deliver any real advantage in a typical situation like this.]
+A Not-So-Good Long-Term Solution
+In contrast, a bad long-term solution would be to put all of the project's
+code into its own namespace (which is not objectionable in itself, but isn't as
+useful as you might think) and write the using declarations or directives in the
+headers (which opens the door for potential problems). The reason some people
+have proposed this method is that it requires less typing than some other
+namespace-migration methods:
+ // Example 2c: Bad long-term solution (or, Why to
+ // avoid using declarations in
+ // headers, even not at file scope)
+ // //--- file x.h ---
+ //
+ #include "y.h" // declares MyProject::Y and adds
+ // using declarations/directives
+ // in namespace MyProject
+ #include 
+ #include namespace MyProject
+ {
+ using std::deque;
+ using std::ostream;
+ // or, "using namespace std;" ostream& operator& );
+ } //--- file x.cpp ---
+ //
+ #include "x.h"
+ #include "z.h" // declares MyProject::Z and adds
+ // using declarations/directives
+ // in namespace MyProject
+ // error: potential future name ambiguities in
+ // z.h's declarations, depending on what
+ // using declarations exist in headers
+ // that happen to be #included before z.h
+ // in any given module (in this case,
+ // x.h or y.h may cause potential changes
+ // in meaning)
+ #include namespace MyProject
+ {
+ ostream& operator& d )
+ {
+ // ...
+ }
+ }
+Note the error. The reason, as stated, is that the meaning of a using
+declaration in a header can change -- even when the using declaration is inside
+a namespace, and not at file scope -- depending on what else a client module may
+happen to #include before it. It's ALWAYS bad form to write any kind of code
+that can silently change meaning depending on the order in which headers are
+#included. (It's also bad form to write header code that requires the user to
+#include other headers manually ahead of it; headers should always be
+self-contained and work correctly even if #included alone.)
+An Effective Short-Term Solution
+The reason why I've spent time explaining desirable long-term solutions is so
+that, when we pick a simpler short-term solution, we pick one that won't
+compromise a good long-term solution:
+What is the most effective way to deal with this
+problem and safely migrate your code base to the new (and more standard)
+environment? Discuss alternatives, and prefer the quickest approach that gets
+the job done without compromising future safety and usability. How can you best
+defer unnecessary (for now) migration work to the future without increasing the
+overall migration workload later?
+Adding using declarations or directives in the headers would be the least
+work, but it's work that would have to be undone when we implement the correct
+long-term solution. We've already seen enough reasons not to go down that road.
+Given that we mustn't add using declarations or directives in headers, our only
+alternative is to add "std::" in the right places in the headers.
+We can, however, get away with writing a using directive in each
+implementation file, which avoids/defers the tedious work of figuring out the
+(possibly lengthy) correct set of using declarations that will eventually go
+into each implementation file. Note that this doesn't compromise -- or change
+the meaning -- of any other code in any other modules, including the headers we
+#include, as long as we're careful to write the using directive after all of the
+#include statements. For convenience, and for a good reason that will become
+clearer in a moment, I'll put the using directive into a separate header to be
+#included after all others.
+Finally, we can defer the work of moving to the new C header
+style too, which also defers all of the associated namespace issues.
+Here's the result:
+ // Example 2d: Good short-term solution is to:
+ // - in headers, write std:: as needed
+ // - in .cpp files, #include
+ // "myproject_last.h" after all
+ // other headers
+ // //--- file x.h ---
+ //
+ #include "y.h" // declares Y
+ #include 
+ #include std::ostream& operator& ); //--- file x.cpp ---
+ //
+ #include "x.h"
+ #include "z.h" // declares Z
+ #include 
+ #include "myproject_last.h"
+ // AFTER all other #includes ostream& operator& d )
+ {
+ // ...
+ } //--- common file myproject_last.h ---
+ //
+ using namespace std;
+This does not compromise the long-term solution in that it doesn't do
+anything that will need to be "undone" for the long-term solution. At
+the same time, it's simpler and requires fewer code changes than the full
+long-term solution would.
+Migrating To the Long-Term Solution
+In the future, this allows a simple migration to the full long-term solution.
+Simply follow these steps:
+- in each header: change lines that #include C headers to the new
+ style; e.g., change "#include " to
+"#include "
+- in myproject_last.h: comment out the using directive
+- rebuild; in each implementation file, see what breaks and add the correct
+using declarations (after all #includes)
+If you follow this advice, then even with looming project deadlines you'll be
+able to quickly -- and effectively -- migrate to a namespace-aware compiler and
+library, all without compromising your long-term solution.
+ 
+Notes
+1. Unless of course the header is only #included by one
+module, but this case is rare enough that I didn't want to cause possible
+confusion by writing "...in shared header files," lest someone think
+this advice applies only to headers shared between projects. It applies to all
+headers that are #included by more than one module.
+ 
+Copyright ©
+2002 Herb Sutter
+ 

@@ -1,0 +1,439 @@
+
+ 
+ Letters to the Editor
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ December 1998 
+ 
+ 
+ 
+ 
+ HOME 
+ FEATURED TUTORIALS 
+ COLUMNS 
+ NEWS & REVIEWS 
+ FORUM 
+ JW RESOURCES 
+ ABOUT JW 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ ARCHIVE
+ 
+ TOPICAL INDEX
+ 
+ 
+ Core Java 
+ 
+ 
+ 
+ Enterprise Java 
+ 
+ 
+ 
+ Micro Java 
+ 
+ 
+ 
+ Applied Java 
+ 
+ 
+ 
+ Java Community
+ 
+ 
+ 
+ JAVA Q&A INDEX
+ JAVA TIPS INDEX
+ 
+JavaWorld Services
+ Free JavaWorld newsletters 
+ ProductFinder 
+ 
+ White Paper Library 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Letters to the Editor
+ 
+ This month: Todd Sundsted helps readers address problems with zipping and mobile agents; Jean-Pierre Dube cures readers' BMP blues; John Zukowski rescues readers in distress; and more!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+Advertisement 
+ 
+ 
+ 
+NEW_SUBJECT: How-To Java: "Zip your data and improve the performance of your network-based applications" by Todd Sundsted 
+READ_ME: /jw-11-1998/jw-11-howto.html 
+ WinZip doesn't deliver 
+Todd,
+I was just working with Java's zip classes and hit a snag. I have created an archive which, when unzipped with an old command-line version of PKUNZIP (version 1.1), works as expected. However, when I try the same with WinZip 6.2 (the version Sun recommends), I get a collection of empty files. Examining the archive with WinZip 6.2 shows that the files are there and that WinZip knows their respective sizes. What could be going wrong? 
+Steven Primrose-Smith 
+ Steven, 
+I'm assuming you've created the zip file from Java. 
+Here are some thoughts: 
+First, information about a zip file entry is stored in (potentially) two places. It may or may not be stored with each entry, and it is stored at the end of the zip file. WinZip's explorer-like screen listing gets its information (I suspect) from the directory at the end of the zip file. That's why the zip file looks okay. 
+What's interesting is that both WinZip and Java use zlib (I believe) whereas PKUNZIP uses its own library. The InfoZIP tools also use zlib -- you might want to give them a try to see if they do any better. Also, determine whether or not WinZip can extract entries from jar files created with Sun's jar tool -- jar files are also zip files. 
+Todd Sundsted : 
+LETTER_DIV: Weak zip implementation? 
+Todd, 
+I'm new to compression field and would like to ask if there is a way to avoid reading the FileInputStream twice? (as in your example). 
+Damir Kirasic 
+Damir, 
+You've found an area where the zip implementation is, in my opinion, weak. Here's the deal: 
+The CRC value is only necessary when writing a STORED entry. The ZipInputStream class needs the value so that it can determine where the data ends. The ZipInputStream class can determine where DEFLATED data ends without the CRC value. 
+You might ask why it uses this value and not the uncompressed size of the file (which is stored in the zip header) to determine when to stop reading. Unfortunately, the ZipOutputStream class doesn't reliably record this value. Apparently, it assumes that all zip data is coming from someplace like System.in (and is, therefore, of unknown length). Consequently, it doesn't record the value for size you set with ZipEntry.setSize(). So even if you know the size of the file you want to add to the zip file, you can't count on it using that value. 
+Anyway, I read the FileInputStream the first time to calculate the CRC value. I read it the second time to write the data. If you always write DEFLATED entries you don't need calculate the CRC value, but it doesn't hurt either. I wanted to provide code that worked in either case. 
+Todd Sundsted : 
+NEW_SUBJECT: How-To Java: The Mobile Agents series 
+READ_ME: /jw-06-1998/jw-06-howto.html READ_ME: /jw-07-1998/jw-07-howto.html READ_ME: /jw-09-1998/jw-09-howto.html READ_ME: /jw-10-1998/jw-10-howto.html 
+ Prolog: museum piece or cutting edge? 
+Todd, 
+I read your article ("Agents can think, too!" JavaWorld, October 1998) and found it very thought-provoking. I'm considering doing some research in speech recognition and it would appear that the AI language of choice for this area is Prolog. How good is Prolog in the overall scheme of things? Is it doomed to be a museum piece in the same fashion that you suggest Lisp will be? In short, does it make sense to invest time and money in learning it? 
+And lastly, would you know offhand which are the best universities in the US that offer undergraduate and postgraduate programs in speech-recognition technologies? 
+James N. Carmichael 
+ James, 
+A professor of mine once declared, "Prolog is a great one-idea language." He was, I think, referring to the fact that Prolog is great a what it does, but it only does one thing really well. I once tried to write a stack based (RPN) calculator in Prolog (don't ask why). I managed to finish it, but it took far longer and was far more confusing than it would have been had I written it in C (or Lisp). 
+You need to pick the best language for the problems you're trying to solve. C, C++, and Java are popular because they make it easy to write the types of applications a lot of people want to write. Lisp and Prolog make good AI languages, and I suspect they'll both (especially Lisp) be around until someone creates something better. It would have been a mistake to write the broker/buyer/seller code in Java. 
+With that said, I think you'll find the area of speech recognition to be something of a hybrid. Depending on the level at which you work, you may use Lisp and you may use C. It will depend on whether you're studying the higher level cognitive processing, or the low level auditory processing. You might even wind up building silicon (Richard Lyon and Carver Mead built a model of the cochlea in silicon). 
+As to recommendations: unfortunately, they wouldn't be much more than guess work. I'd suggest reading the publications and contacting the people doing the work you think is interesting. 
+Todd Sundsted 
+: 
+LETTER_DIV: And another thing... 
+Todd, 
+I enjoyed your piece on Jess ("Agents can think, too!" JavaWorld, October 1998); it was well written and easy to follow. 
+However, I do a have a few suggestions. First, you should have included the URL for Jess. 
+Second, technically agents don't "think," but "reason." A minor point, but this sort of language is partly responsible for the inflated expectations that have troubled AI in general. 
+Finally, I believe it is a bit unfair to characterize neural nets as low-level reasoning systems and expert systems as high-level. For instance, IBM's new Ginkgo neural net technology offers very high-level reasoning capabilities and is entirely written in Java. A more fair statement might be that connectionist software approaches the problem from the bottom-up while symbolic processing systems approach reasoning from the top-down. 
+Don Barker 
+ Don, 
+Let me address your points one by one. The URL you seek is actually down at the bottom of the article in the Resources section, but here it is again for convenience: http://herzberg.ca.sandia.gov/jess 
+Regarding my semantics: in retrospect, I'd have to agree with you; although it might be presumptuous to suggest my agents even "reason." I understand the distinction you're getting at, however. 
+Finally, I hope no one mistook my use of the terms low-level and high-level as commentary on the types of problems each technology can solve. It's pretty clear that our ability to think, act, and reason is an emergent property of some pretty simple "low-level" hardware. I used the term "low-level" to emphasize that fact that neural-networks were originally inspired by neurons and their interconnections. And I used the term "high-level" more in the sense of the cognitive processing typically associated with higher-level animals (primates and such). With that said, I'd say that your statement is correct as well, though more abstract. 
+I'll have to take a look at that Ginkgo. Thanks for the tip. 
+Todd Sundsted : 
+LETTER_DIV: Ki gets an update 
+Todd, 
+I've noticed that your latest version of Ki (the software for the Agents series) does not include the db directory (the program crashes without it). 
+I was hoping the latest version would give me some hints on how to include my own agents in the db directory. However, I hit the wall when I try to create data files that complement the zip files. 
+Also, I noticed your explanation of the ui collection is reversed from my understanding. The agent dispatcher has the Start and Stop buttons. 
+Finally, I do not understand how the agent manager works. There is a lot of "plumbing" in the code, and I cannot see what is supposed to happen. The dialog (the one without the Start and Stop buttons) displays, but I am unsure of its operation.
+Taron Baker 
+ Taron, 
+I've recently redone the site and improved the code. Surf over to http://www.etcee.com/javaworld/ki and download the latest version. 
+The data files are generated automatically. They hold agent state. There are only created if Ki exits normally (not via Ctrl-C, for instance). 
+I've changed both the agent manager and the agent dispatcher. They should be more intuitive. Let me know if I've succeeded. 
+Todd Sundsted : 
+NEW_SUBJECT: "Prepare yourself for what's new and different in the forthcoming JDK 1.2 release" by John Zukowski 
+READ_ME: /jw-11-1998/jw-11-jdk12.html 
+ No Java 1.2 for VAJ 
+John, 
+I am a software engineer in China. I just read your article about JDK 1.2. Thank you very much. 
+I have a questions for you: I want to know how can I use JDK 1.2 features in VisualAge for Java 2.0. I have not found any info about this. I really need to access Java 2D from VAJ 2.0. Can you help? 
+Liu Qi Wei 
+Liu Qi Wei, 
+Until IBM releases a patch, you cannot use JDK 1.2 with VisualAge for Java. You can, however, import the newer version of the Swing classes or use the Collections classes that are 1.1 compatible, but that is about it. For better or worse, this is how IBM designed the tool. 
+John Zukowski 
+: 
+LETTER_DIV: Questions, questions -- Zukowski to the rescue 
+John, 
+Your article on JDK 1.2 has me a bit confused.
+If we don't set CLASSPATH, how do we handle the package conventions of our own classes? Do we continue to place the classes in directory structures corresponding to the packages? How do we run a class from the command line? How do you indicate to the JVM where our classes reside if not in the lix/ext directory? 
+Dhruv Gupta 
+ Dhruv,
+The directory structure of packages is still necessary. However, if you place the classes in a jar file, the jar maintains the directory. If you do not wish to place them in a jar file, you'll need to place the classes in the classes directory, under the JRE directory (for instance jdk1.2\jre\classes). Also: "." is, by default, in your default CLASSPATH, so classes and/or packages found relative to the current directory are still found. 
+If you still wish to use CLASSPATH, you can; it just isn't necessary anymore. It is only necessary if you don't place the class files where the runtime expects them. 
+You do not specify or access them any differently than you do now. 
+I recommend that you read the Extensions Framework documentation at http://java.sun.com/products/jdk/1.2/docs/guide/extensions/index.html for more information. 
+John Zukowski 
+: 
+NEW_SUBJECT: Java Step by Step: "Making the Forum Swing" by Michael Shoffner 
+READ_ME: /jw-09-1998/jw-09-step.html READ_ME: /jw-11-1998/jw-11-step.html 
+ Why synchronize? 
+Michael, 
+Most of the methods in your latest article are synchronized -- is this because they are time consuming and involve network actions? 
+Alexis Moussine-Pouchkine 
+Alexis, 
+Actually, it's because they modify instance variables that can get inconsistent if more than one thread enters a method at one time. In actual practice, most environments have only one event thread, so such problems are unlikely with event methods. 
+Michael Shoffner : 
+LETTER_DIV: Get visual with JTree 
+Michael, 
+In reference to your Swing-based forum articles: I'd like to visually select a certain JTree leaf. I did this with tree.setSelectionPath( TreePath ...). It seemed to work because I got a valueChanged event, but I didn't get any visual feedback.
+In fact, after the action no node was visually selected at all. 
+So how do you make a selection visible on the JTree? 
+Johan Holtman 
+Johan, 
+Immediately after you do the selection (where path is the TreePath what you just selected), try: 
+tree.expandPath (path); 
+If that doesn't do it, send me the code and I'll have a look. 
+Michael Shoffner 
+: 
+NEW_SUBJECT: Java Tip 60: "Saving bitmap files in Java" by Jean-Pierre Dube 
+READ_ME: /javatips/jw-javatip60.html 
+ Converting a Graphics object into an Image object 
+Jean-Pierre, 
+Your was article excellent. However, there was one portion that you left out -- how to actually convert a Graphics object into an Image object for your saveBitmap() method. 
+I can't find any simple way in the API to do this. Any pointers would be greatly appreciated. 
+Vikram David 
+Vikram, 
+Actually, no method in the Graphics object will return an Image. But there is a workaround. You have to use a double buffer to paint your Component. Here is a code sample: 
+ //--- Define an Image object
+ private Image bufferImage;
+ //--- Code to create an image the size of the component.
+ //--- add this code in the addNotify method
+ void addNotify () {
+ super.addNotify ();	
+ Rectangle r;
+ r = this.getBounds ();
+ bufferImage = createImage (r.width, r.height);
+ }
+ //--- In the paint method do the following
+ void paint (Graphics g) {
+//--- bufferGraphic could be made global to this class but 
+//--- you would have to clear the background before each paint ?
+Graphics bufferGraphic = bufferImage.getGraphics ();
+...
+//--- Paint using bufferGraphic
+ super.paint (bufferGraphic);
+...
+g.drawImage (bufferImage, 0, 0, null);
+ }
+Using this code you will always have a copy of the image in bufferImage. 
+Jean-Pierre Dube 
+: 
+LETTER_DIV: From B&W photo to 256-color bitmap 
+Jean-Pierre, 
+I'm planning to use an infrared camera to provide some black and white photos (the gray scale depth is 12 bit, and resolution is only 256 x 256). What format should I use, and how can I save a photo to a bitmap file (assuming I have all data in the memory) that can be recognized by Windows application programs. 
+Van Nguyen 
+Van, 
+I would use a 256-color bitmap. The format is a bit different from to 24-bit format I explained in my tip. Anyway here's the explanation of the format. 
+In the 256-color format, all colors are represented in a color table. So, instead of getting the color directly from the bitmap data as we did in the 24-it format, the bitmap data is an index in the color table. Let's look at the following structure: 
+ BitmapFileHeader
+ Type 19778
+ Size 3118
+ Reserved1 0
+ Reserved2 0
+ OffsetBits 118
+ BitmapInfoHeader
+ Size 40
+ Width 80
+ Height 75
+ Planes 1
+ BitCount 8
+ Compression 0
+ SizeImage 3000
+ XPelsPerMeter 0
+ YPelsPerMeter 0
+ ColorsUsed 256
+ ColorsImportant 256
+ ColorTable
+ Blue Green Red Unused
+[00000000] 84 252 84 0
+[00000001] 252 252 84 0
+[00000002] 84 84 252 0
+[00000003] 252 84 252 0
+[00000004] 84 252 252 0
+[00000005] 252 252 252 0
+[00000006] 0 0 0 0
+[00000007] 168 0 0 0
+[00000008] 0 168 0 0
+[00000009] 168 168 0 0
+[0000000A] 0 0 168 0
+[0000000B] 168 0 168 0
+[0000000C] 0 168 168 0
+[0000000D] 168 168 168 0
+[0000000E] 84 84 84 0
+...
+[000000FF] 252 84 84 0
+ Image
+ .
+ . Bitmap data
+ .
+As you can see the bitmap header and the information header are the same. The difference is in the color table that follows the information header. The color table contains 256 entries of RGBU (U for unused). In this table you set your gray scale colors. Next, you will have to compute the start of the bitmap data using the following formula: startOfBitmap = sizeOfBitmapHeader + sizeOfInfoHeader + (256 * 4). And remember, each entry in the bitmap data is an index into the color table. Because there are only 256 colors, each bitmap data is 1 byte, so you will reduce your file size considerably from a 24-bit format. 
+To conclude, you will have to scan in your memory image and create a color table, store that color table after the bitmap info header, and store the image itself, as each byte is an index in the color table. 
+Good luck! 
+Jean-Pierre Dube : 
+NEW_SUBJECT: "Merging Java and Win32: A new way to develop Windows applications" by Geoff Friesen 
+READ_ME: /jw-07-1998/jw-07-java-win32.html 
+ Getting a C++ header file with Java 
+Geoff, 
+I'm quite interested in combining Java with C++, and your article was a big help. 
+Everything seems fine until I execute java useSysInfo. Once I do this, a UnsatisfiedLinkError is thrown in the line where the call to the native method is done (System.out.println ("PATH = " + SysInfo.getenv ("PATH") + "\n");). 
+I think I have done everything right, but I am not sure how you get the sysInfo.h file.
+I'm hoping you can shed some light on this question. 
+Javier Finez 
+Javier, 
+You use the javah tool to generate a C++ header file that contains the C++ JNI-style function prototypes for those Java methods defined with the native attribute. Don't forget to include the -jni option with javah; otherwise, the header file will not be generated. Here is an example: 
+public class SysInfo
+{
+ static
+ {
+ try
+ {
+ System.loadLibrary ("SysInfo");
+ }
+ catch (java.lang.UnsatisfiedLinkError e)
+ {
+ }
+ }
+ public static native String getenv (String evName);
+}
+javah -jni SysInfo
+This example will create a file called SysInfo.h. The C++ JNI-style function prototype is: 
+JNIEXPORT jstring JNICALL Java_SysInfo_getenv (JNIEnv *, jclass, jstring); 
+As to the UnsatisfiedLinkError, this will occur under the following circumstances. 
+ 
+- The DLL (Windows) or shared library (Unix) cannot be found. This DLL or
+library must be located in the current path. 
+- The C++ function stored in the DLL or shared library has a name that does
+not match the name found in the header file. 
+ 
+Geoff Friesen 
+: 
+ 
+ 
+ 
+ Printer-friendly version | Mail this to a friend
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Advertisement: Support JavaWorld, click here!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ HOME | 
+ FEATURED TUTORIALS | 
+ COLUMNS | 
+ NEWS & REVIEWS | 
+ FORUM | 
+ JW RESOURCES | 
+ ABOUT JW | 
+ FEEDBACK
+ 
+ 
+ Copyright © 2002 JavaWorld.com, an IDG Communications company
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

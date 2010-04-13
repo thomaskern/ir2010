@@ -1,0 +1,118 @@
+
+C++ Sourcecodes
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sources
+ 
+Generic Console programs
+File 
+ Description 
+ Source 
+ C++ Tutorial Sources 
+ Set of simple example sources to follow the C++ Tutorial included in the documents section of this site. 
+ Juan Soulie 
+ Fraction 
+ Example program to add and reduce fractions. 
+ Abraham Ishaq 
+ Fraction 
+ A Fraction class that has the ability to add, subtract, multiply, divide and show various statistics of the fraction. 
+ Daniel Pronych 
+ Triangle 
+ Small program for beginners demonstrating the use of loops and iostream + iomanip libraries. 
+ Gary Paduana 
+ Master String 
+ This is a collection of functions, and classes that will aid you in very explicit string manipulation. 
+ Jared Bruni 
+ Encrypt 
+ Encrypts/Decrypts a piece of text using vigenere algorithm. 
+ Sam Alexander 
+ Rectangle 
+ A simple program demonstrating tokenizing by drawing a rectangle. 
+ Nick White 
+ Bynary convert 
+ A simple program that converts a string into its binary representation. 
+ Matt Fowler 
+ 
+ 
+Windows programs
+File 
+ Description 
+ Source 
+ Winnie 
+ A small program that shows one of the fundamentals of Windows programming: How to create a window. 
+ Tom Lee 
+ SDI Frame 
+ A basic framework for Single-Document-Interface applications. 
+ Gary Hall 
+ BMP Loader 
+ Example on how to load a BMP File. 
+ Juan Soulie 
+ GIF View 
+ Example on how to load and display animated GIF and BMP Files. 
+ Juan Soulie 
+ CWinTcpSocket 
+ C++ Winsock wrapper class. 
+ Tom Lee 
+ Master Library 
+ Header file containing a lot of C++ functions. Over 6,000 lines of code with code ranging from DirectX to Winsock. Good resource for windows C++ programming (Visual C++ project files). 
+ Jared Bruni 
+ MasterKong 2D 
+ Level editor 
+ A 2D DirectX video game which plays around with a few different concepts. Contains graphics,sounds,tilemap,ai,projectiles, level editor and more (Visual C++ project files). 
+ Jared Bruni 
+ Win32 Example 
+ Basic intro Windows API, with multiple windows (Visual C++ project files, using C). 
+ Jared Bruni 
+ Win32 Example (II) 
+ Basic intro Windows API, controls, menu (Visual C++ project files). 
+ Jared Bruni 
+ URL Downloader 
+ This is a simple application that allows you to download a file from a web page (Visual C++ project files). 
+ Jared Bruni 
+ Basic Direct 3D 8 
+ Basic intro Direct3D8, sets up the window and draws a few things (Visual C++/DirectX project files). 
+ Jared Bruni 
+ Tank 3.0 Beta 
+ Beta version of a direct3d game that the author is programming at the moment. 
+ Christian Reimann 
+ HWPrint 
+ Example program to demonstrate printing using Win32 API. 
+ Tom Lee 
+ 
+ 
+MS-DOS programs
+File 
+ Description 
+ Source 
+ Notepad 
+ Text editor. 
+ Zahid Ashfaq 
+ 
+If you have any self-explanatory source and you
+want it to be included here contact us.
+NOTE: The files signaled with this icon ->
+ are ZIP compressed files. If you need more info on how
+to decompress these files check the "Info on zip files" document.
+ 
+ 
+ 
+main |
+information |
+documents |
+reference |
+sources |
+forum
+ 
+ 
+© The C++ Resources Network, 2000-2001
+All rights reserved. 

@@ -1,0 +1,229 @@
+
+ 6.3) Overloading, overriding, runtime type 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+6) Overloading, overriding, 
+ runtime type and object orientation 
+Objective 3) 
+Write code to construct instances of any concrete 
+ class including normal top level classes inner classes static inner classes 
+ and anonymous inner classes.
+Note on this Objective 
+Some of this material is covered elsewhere, notably in Objective 4.1
+Instantiating a class 
+Concrete classes are classes that can be instantiated as an object reference 
+ (also simply called an object) . Thus an abstract class cannot be instantiated 
+ and so an object reference cannot be created. Remember that a class that contains 
+ any abstract methods the class itself is abstract and cannot be instantiated. 
+ 
+ 
+ The key to instantiating a class is the use of the new keyword. This 
+ is typically seen as
+Button b = new Button();
+This syntax means that the variable name is of the type Button and contains 
+ a reference to an instance of the Button. However although the type of the reference 
+ is frequently the same as the type of the class being instantiated, it does 
+ not have to be. Thus the following is also legal
+Object b = new Button();
+This syntax indicates that the type of the reference b is Object rather than 
+ Button.
+ 
+ The declaration and instantiation need not occur on the same line. Thus can 
+ construct an instance of a class thus.
+Button b;
+b = new Button();
+Inner classes were added with the release of JDK 1.1. They allow one class 
+ to be defined within another. 
+Inner classes 
+Inner classes were introduced with the release of JDK 1.1. They allow classes 
+ to be defined within other classes, and are sometimes referred to as nested 
+ classes. They are used extensively in the new 1.1 event handling model. You 
+ will almost certainly get questions about nested classes and scoping on the 
+ exam.
+Here is a trivial example
+class Nest{
+	class NestIn{}
+}
+The output when this code is compiled is two class files. One, as you 
+ would expect is
+Nest.class
+The other is
+Nest$NestIn.class
+This illustrates that nesting classes is generally a naming convention rather 
+ than a new sort of class file. Inner classes allow you to group classes logically. 
+ They also have benefits in scoping benefits where you want to have access to 
+ variables. 
+Nested top level classes 
+A nested top level class is a static member of an enclosing top level class.
+Thus to modify the previous trivial example
+class Nest{
+	static class NestIn{}
+}
+This type of nesting is frequently used simply to group related classes. Because 
+ the class is static it does not require an instance of the outer class to exist 
+ to instantiate the inner class. 
+Member classes 
+I think of a member class as an "ordinary inner class". A member 
+ class is analogous to other members of a class, you must instantiate the outer 
+ class before you can create an instance of the inner class. Because of the need 
+ to be associated with an instance of the outer class Sun introduced new syntax 
+ to allow the simultaneous creation of an instance of the outer class at the 
+ same time as the creation of an inner class. This takes the form
+Outer.Inner i = new Outer().new Inner();
+To make sense of the new syntax provided for this try to think of the keyword 
+ new as used in the above example as belonging to the current insistence 
+ of this,
+ 
+ Thus you could change the line that creates the instance of this to read
+Inner i = this.new Inner();
+Because a member class cannot exist without an instance of the outer class, 
+ it can have access to the variables of the outer class. 
+Classes created in methods 
+A more correct name for this is a local class, but thinking of them as created 
+ in methods gives a good flavour of where you are likely to come across them.
+ 
+ 
+ 
+ 
+local classes can only access final fields or parameters 
+ of 
+ the enclosing method
+ 
+ 
+A local class is visible only within it's code block or method. Code within 
+ a local class definition can only use final local variables of the containing 
+ block or parameters of the method. You are very likely to get a question on 
+ this in the exam.
+Anonymous classes 
+Your first reaction to the idea of an anonymous inner class might be "why 
+ would you want to do that and how can you refer to it if it doesn't have a name?"
+ 
+ To answer these questions, consider the following.You might be in the situation 
+ of constantly having to think up names for instances of classes where the name 
+ was self evident. Thus with event handling the two important things to know 
+ are the event being handled and the name of the component that the handler is 
+ attached to. Giving a name to the instance of the event handling class does 
+ not add much value. 
+ 
+ As to the question how can you refer to it if it doesn't have a name, well you 
+ can't and if you need to refer to it by name you should not create an anonymous 
+ class. The lack of a name has an additional side effect in that you cannot give 
+ it any constructors.
+ 
+ 
+ 
+ 
+Anonymous classes cannot have constructors 
+ 
+ 
+ 
+Here is an example of the creation of an anonymous inner class
+class Nest{
+public static void main(String argv[]){
+ Nest n = new Nest();
+ n.mymethod(new anon(){});
+ }
+ public void mymethod(anon i){}
+}
+class anon{}
+Note how the anonymous class is both declared and defined within the parenthesis 
+ of the call to mymethod. 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+ Which of the following statements are true?
+ 
+ 1) A class defined within a method can only access static methods of the enclosing 
+ method
+ 2) A class defined within a method can only access final variables of the enclosing 
+ method
+ 3) A class defined with a method cannot access any of the fields within the 
+ enclosing method
+ 4) A class defined within a method can access any fields accessible by the enclosing 
+ method
+Question 2)
+ 
+ Which of the following statements are true?
+ 
+ 1) An anonymous class cannot have any constructors
+ 2) An anonymous class can only be created within the body of a method
+ 3) An anonymous class can only access static fields of the enclosing class
+ 4) The class type of an anonymous class can be retrieved using the getName method
+Question 3)
+ Which of the following statements are true?
+ 
+ 1) Inner classes cannot be marked private
+ 2) An instance of a top level nested class can be created without an instance 
+ of its enclosing class
+ 3) A file containing an outer and an inner class will only produce one .class 
+ output file
+ 4) To create an instance of an member class an instance of its enclosing class 
+ is required.
+Answers 
+Answer 1)
+ 
+ 2) A class defined within a method can only access final variables of the enclosing 
+ method
+ 
+ Such a class can access parameters passed to the enclosing method
+ 
+ Answer 2)
+ 
+ 1) An anonymous class cannot have any constructors
+ 
+ Answer 3)
+2) An instance of a top level nested class can be created without an instance 
+ of its enclosing class
+ 4) To create an instance of an member class an instance of its enclosing class 
+ is required.
+ 
+ An inner class gets put into its own .class output file, using the format
+Outer$Inner.class. 
+A top level nested class is a static class and thus does not require an instance 
+ of the enclosing class. A member class is an ordinary non static class and thus 
+ an instance of its enclosing class is required.
+ 
+ Other sources on this topic
+ 
+ The Sun Tutorial
+ http://java.sun.com/docs/books/tutorial/java/more/nested.html
+ 
+ Richard Baldwin
+ http://www.geocities.com/Athens/7077/Java094.htm
+ 
+ Jyothi Krishnan on this topic at
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec6.html#obj21 
+ 
+Last updated
+ 13 Jan 2000
+ copyright © Marcus Green 2000
+ 
+ 
+ 

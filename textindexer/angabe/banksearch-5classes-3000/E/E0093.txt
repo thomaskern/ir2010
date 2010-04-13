@@ -1,0 +1,486 @@
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Alt Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+C++ & MFC
+ 
+	 Forums | 
+	 Latest updates | 
+	 Recommend it 
+	
+ 
+ 
+ 
+Section Manager : CodeGuru
+ 
+ 
+ 
+ General 
+ 
+ 
+ 
+- Template class to manipulate bits of undefined type - Ludovic CHARRIER (1998/08/06)
+- Extension to the STL "find_if" and "for_each" - Michael Scherotter (1998/08/06)
+- AVLTree - template version - Andreas Jaeger (1998/09/17)
+- Locales and Facets in Visual C++ - Mario Contestabile (1998/12/09)
+- CGoodTime -- A Y2.038K-Safe Replacement for CTime - Andy Kaylor (1998/12/15)
+- An FDIS compliant Operator "new" - Ray Brown (1999/02/13)
+- Globals in MFC - Petr Stejskal (1999/02/13)
+- CArchive BUG - Jeff Knight (1999/02/13)
+- Custom Numeric Formatting - Eugeny Berezkin (1999/03/02)
+- An 'extended' exception class - Bernard Niset (1999/03/02)
+- Unicode, MBCS and Generic text mappings - Chris Maunder (1999/03/20)
+- STL iterators and MFC - Dave Lorde (1999/03/21)
+- An ATL replacement for COleDateTime - Mark A. Richman (1999/04/11)
+- SEH and C++ Exceptions - catch all in one - Martin Ziacek (1999/05/30)
+- TimeStamp - A replacement for COleDateTime and COleDateTimeSpan - David Hubbard (1999/07/06)
+- CEditDist Abstract Template Class for Edit Distance Calculation on Generic Data Types - Zvika Ben-Haim (1999/08/21)
+- Run Time Class Handler: Instantiating Classes by Name - Ernst Versteeg (1999/12/18)
+- A Powerful Function Parser - Andreas Jaeger (2000/03/01)
+- Switch on Strings in C++ - Stefan Ruck (2001/07/25)
+A way to implement a switch on strings using pure standard C++. 
+- Persistant Properties With C++ - the Readable Way - Adi Degani. (2001/08/08)
+This article provides the means to work with any dictionary-like storage by using the [] operator for both read and write.
+- switch Statement Performance Consideration - Kiran Thonse Sanjeeva (2001/08/23)
+A suggestion for optimizing your switch statements.
+- Connection Pipe Classes - Ion Tichy (2001/08/27)
+Simple and fast communication between all types of MFC Applications on a single or multiple computers in Windows NT. 
+- Drive - Ibrar Ahmad (2001/09/06)
+Drive.dll is a dll that creates a drive to system directoryor drive similar to existing drives such as C:\. 
+- STL Compatible Base64 Encoder - Konstantin Pilipchuk (2001/10/31)
+A base64 encoder that can encode/decode data from/to i(o)streams, streambufs, memory buffers, etc. 
+- Win32 Resource API C++ Wrapper - Peter Chiu (2001/10/31)
+The classes presented in this article provides a simple interface for enumerating, adding and removing resources from Win32 image files (.dll/.exe).
+- Platform independent extensible log class - Chen Mingjie (2001/11/20)
+The ability to log is commonly needed in every software project on every platform. 
+- Intelligent 'enum's in C++ Applications - Lloyd Willemsen (2001/12/06)
+Representing Enums as C++ classes.
+- Tree Class - Alexander Kovachev (2002/01/09)
+Tree structures in C++.
+- Delegate in Standard C++ - Ben Chun Pong Chan (2002/01/28)
+Implementing delegates in "unmanaged C++" by way of using the "external polymorphism" pattern.
+- How to use your own DllMain in MFC Dll's - Vijay Sharma (2002/01/29)
+How to write your own DllMain in an MFC Dll.
+- What Are Threads? - Gopal Mor (2002/05/07)
+If you don't already know what threads are, then you should take the time to learn. 
+- Common File Tasks -- Search and Replace, and Append - James Moody (2002/06/07)
+A simple class to do common tasks of search and replace within a file, and also to add an entry to a configuration file. A sample project is included.
+- Automatic Factory from Microsoft - E. van de Pitte (2002/07/11)
+Discover a method to create instances of a class based upon their classtype. The collection of creatable classes is built automatically upon program startup without the need of writing specific registration code. 
+ 
+ 
+ 
+ 
+ Array Handling 
+ 
+ 
+ 
+- Functions for Setting and Retrieving Values from Variant Safe Arrays - Nanda Kishore (2000/01/30)
+- CGBitArray : A Packed Array of Flags - Gary Whitehead (2000/10/16)
+Class that stores huge arrays of flags in as efficient a manner as possible (packed into array of BYTEs) 
+- MFC extension class CBitArray - Thomas Holte (2001/11/27)
+The class CBitArray behaves like a specialization of the MFC template class CArray. 
+ 
+ 
+ 
+ 
+ Binary Trees 
+ 
+ 
+ 
+- Storage Media Independent AVL Library - Wu Yuh Song (2000/02/08)
+ 
+ 
+ 
+ 
+ Buffer & Memory Manipulation 
+ 
+ 
+ 
+- Circular Buffer - David Hubbard (2000/01/22)
+- Expandable, Data Type-Neutral Buffer Class - Abrar Ahmad (2000/02/11)
+- Inflable Arrays in Win32 - Petko Popov (2001/09/21)
+The inflable array described here allows to declare really huge buffers without actually allocating much more memory than is really needed to store the actual data. 
+- MemCheck Driver Memory Tool - L5 Software Group, LLC (2002/04/08)
+Code to help driver developers locate and solve memory problems. The code includes checks for buffer overruns, double-frees, invalid memory accesses.
+- Automatic Deallocation of Unwanted Memory - Niraj Kedar (2002/05/09)
+The most common yet repeated mistake that programmers make occurs while using system memory. This program automatically deallocates memory back to the system!
+ 
+ 
+ 
+ 
+ Collections 
+ 
+ 
+ 
+- Sortable CObArray class - Douglas Peterson (1999/03/02)
+- Sortable CObList class - Douglas Peterson (1999/03/02)
+- Iterating through List Containers - Zoran M.Todorovic (1999/03/02)
+- Dictionary - a C++ template class to emulate VBScript's "Scripting.Dictionary" collection - James Curran (1999/03/08)
+- Template Classes to Manage Collections of Objects - Per Ghosh (1999/03/21)
+- HybridList - A fast N lg (N) sort algorithm for lists - Dan Kozub (1999/03/28)
+- QSort for CStringArray - Chris Losinger (1999/04/03)
+- QuickSort enabled CArray template class - Ziacek Martin (1999/06/12)
+- Enhanced collection template classes: CArrayEx, CMapEx and CSortedArray - Audrius Vasiliauskas (1999/12/07)
+ 
+ 
+ 
+ 
+ Compression 
+ 
+ 
+ 
+- CZip/CUnzip classes for zipping and unzipping files - Florent Jugla (1999/03/02)
+- ZLib compression library - Jean-loup Gailly and Mark Adler (1999/03/02)
+- ComprLib - A Data Compression Library - Jeff Connelly (1999/07/30)
+- Zip and Unzip, the MFC Way - Tadeusz Dracz (2000/11/07)
+MFC-based library that enables the creation, modification and extraction of PKZIP and WinZip archives 
+ 
+ 
+ 
+ 
+ External Links 
+ 
+ 
+ 
+- eNITL - the Network Improv Template Language - Liam Breck (1999/03/22)
+ 
+ 
+ 
+ 
+ File I/O 
+ 
+ 
+ 
+- Circular File - Ibrar Ahmad (2000/11/14)
+Generic C++ circular file implementation
+- Non volatile variables and configuration settings for MFC applications - Ruben Joensson (2002/01/24)
+This article describes two classes for storing and retrieving string, numeric and BOOL variables to/from files in ASCII text format - much like INI files. 
+ 
+ 
+ 
+ 
+ Function Calling 
+ 
+ 
+ 
+- Working with Variable Argument Lists in Functions - Michael Uchitelev (2001/04/10)
+Class to retrieve the arguments passed to the function with the variable number of parameters. Works for both _cdecl and _stdcall functions.
+ 
+ 
+ 
+ 
+ Linked Lists 
+ 
+ 
+ 
+- Better Method of Creating/Deleting Linked Lists Nodes - Ralph Varjabedian (2000/10/04)
+Presents alternative to traditional methods of adding and removing nodes from linked lists
+ 
+ 
+ 
+ 
+ Memory Tracking 
+ 
+ 
+ 
+- Detecting Memory Leaks - Stefan Soltsien (1999/07/25)
+ 
+ 
+ 
+ 
+ Open FAQ 
+ 
+ 
+ 
+- C++ & MFC Open FAQ - Zafir Anjum (1998/09/23)
+A dynamic FAQ that is open to all developers (to add new entries and comment on existing ones)
+ 
+ 
+ 
+ 
+ Parsing 
+ 
+ 
+ 
+- Expression Evaluation - Zoly Farkas (1999/03/02)
+- A Generalized Parsing Class for MFC - Richard Stringer (1999/03/02)
+- Lexical Analyser - Terence Kam (1999/03/02)
+- String Tokenizer - Zoly Farkas (1999/03/02)
+- CTokenEx - A String Tokenizer Class - Daniel Madden (1999/07/30)
+- Mini Pascal Compiler - Zoly Farkas (1999/08/09)
+- Number To English Translation - Jason E. Neumeier (2000/09/27)
+Useful class that enables you to display the textual representation of a number (for things such as check writing applications)
+ 
+ 
+ 
+ 
+ Patterns 
+ 
+ 
+ 
+- Applying Strategy Pattern in C++ Applications - Kulathu Sarma (1999/03/02)
+- Applying Observer Pattern in C++ Applications - T. Kulathu Sarma (1999/03/02)
+- Bridge Pattern - Bridging the gap between Interface and Implementation - Kulathu Sarma (1999/03/02)
+- Observer Pattern Class - Ray Virzi (2000/05/04)
+Provides a very fine C++ implementation of the Observer Pattern (implementing cyclic updates, self reference, etc.)
+- MFC and Design Patterns - T. Kulathu Sarma (2001/07/09)
+Gain an overview on what a design pattern is and how they employed in developing MFC library.
+ 
+ 
+ 
+ 
+ Pointers 
+ 
+ 
+ 
+- Smart Pointers and other Pointer classes - Poul Costinsky (1999/03/02)
+- Function Pointers to Non-Static Object Methods - Andrew Schafer (1999/03/02)
+- A Smart Pointer Class for Subclass Pointers - Qi Yang (1999/12/09)
+Performs reference counting, garbage collection and supports subclasses
+- Smart Pointer that supports subclassing - Erez Efrati (1999/12/15)
+- Smart Pointer Class - John R. Bandela (1999/12/16)
+Allows assignment from derived class to a base class and has a BackPtr class to implement weak references
+- AutoPtr
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

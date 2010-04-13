@@ -1,0 +1,33 @@
+
+ 
+ 
+ 
+ 
+ 
+ EJB Tutorial
+ 
+EJB Tutorial
+ 
+Tutorial Index Page
+Creating an Entity Bean: Blizzard Step 5
+This brings us to the last page. Note that the names start off as
+"PropsTable" and "propsTable" for the package name, and are edited here
+to "Props" and "props".
+Change the bean and package names to "Props" and "props", enter a directory
+name, such as "C:\Ejbtut" where you want the entity bean source files to
+be placed, and click "Build". You should see output similar to what
+is shown below, in your Java console window.
+The following entity bean source files have been created:
+ Remote Interface: C:\Ejbtut\Props.java
+ Home Interface: C:\Ejbtut\PropsHome.java
+ Bean Class: C:\Ejbtut\PropsBean.java
+The ejb-jar file has been created in:
+ C:\Ejbtut\META-INF\ejb-jar.xml
+The commands to build and compile the entity bean are in:
+ C:\Ejbtut\build.cmd
+[Press ENTER to continue]
+ 
+Return to Entity Bean Creation 
+Contents
+ 
+ 

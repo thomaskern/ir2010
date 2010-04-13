@@ -1,0 +1,313 @@
+
+2.3)Flow Control and Exception Handling
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+2) Flow Control and Exception Handling
+Objective 3)
+Write code that makes proper use of exceptions 
+ and exception handling clauses (try catch finally) and declares methods and 
+ overriding methods that throw exceptions.
+An exception condition is a when a program gets into a state that is not quite 
+ normal. Exceptions trapping is sometimes referred to as error trapping. A typical 
+ example of an exception is when a program attempts to open a file that does 
+ not exsist or you try to refer to an element of an array that does not exist.
+The try and catch statements are part of the exception handling 
+ built into Java. Neither C/C++ nor Visual Basic have direct equivalents to Javas 
+ built in exceptions. C++ does support exceptions but they are optional, and 
+ Visual Basic supports On Error/Goto error trapping, which smacks somewhat 
+ of a throwback to an earlier less flexible era of BASIC programming.
+Java exceptions are a built in part of the language. For example if you are 
+ performing I/O you must put in exception handling. You can of course put in 
+ null handling that doesn't do anything. The following is a little piece of code 
+ I have used with Borland/Inprise JBuilder to temporarily halt output to the 
+ console and wait for any key to be pressed.
+import java.io.*; 
+public class Try{ 
+ public static void main(String argv[]){
+ Try t = new Try(); 
+ t.go(); 
+ }//End of main
+public void go(){ 
+ try{ 
+ DataInputStream dis= new DataInputStream(System.in); 
+ dis.readLine(); 
+ } catch(Exception e){
+ /*Not doing anything when exception occurs*/
+ } //End of try
+ System.out.println("Continuing"); 
+ }//End of go 
+}
+In this case nothing is done when an error occurs, but the programmer must 
+ still acknowledge that an error might occur. If you remove the try and 
+ catch clause the code will simply not compile. The compiler knows that 
+ the I/O methods can cause exceptions and demands exception handling code.
+Comparing with Visual Basic and C/C++
+This is a little more rigorous than Visual Basic or C/C++ which allows you 
+ to throw together "quick and dirty" programs that pretend they are in a world 
+ where errors do not occur. Remember that the original version of DOS was called 
+ QDOS for Quick and Dirty DOS by it's creator and look how long we have lived 
+ with the legacy of that bit of hackery. By the time you have gone to the trouble 
+ of putting in a try/catch block and blank braces you may as well put 
+ in some real error tracking. It's not exactly bondage and discipline programming, 
+ it just persuasively encourages you to "do the right thing". 
+The finally clause
+The one oddity that you are likely to be questioned on in the exam, is under 
+ what circumstances the finally clause of a try/catch block is 
+ executed. The short answer to this is that the finally clause is almost 
+ always executed, even when you might think it would not be. Having said that, 
+ the path of execution of the try/catch/finally statements is something 
+ you really need to play with to convince yourself of what happens under what 
+ circumstances. 
+ 
+ 
+ 
+ 
+The finally clause of a try catch block will 
+ always execute,
+ even if there are any return statements in the try catch part
+ 
+ 
+One of the few occasions when the finally clause will not be executed is if 
+ there is a call to 
+System.exit(0);
+The exam tends not to attempt to catch you out with this exception to the rule.
+The exam is more likely to give examples that include return statements in 
+ order to mislead you into thinking that the code will return without running 
+ the finally statement. Do not be mislead, the finally clause will 
+ almost always run. 
+The try/catch clause must trap errors in the order their natural order 
+ of hierarchy. Thus you cannot attempt to trap the generic catch all Exception 
+ before you have put in a trap for the more specific IOException.
+The following code will not compile
+try{
+ DataInputStream dis = new DataInputStream(System.in); 
+ dis.read(); 
+ }catch (Exception ioe) {} 
+ catch (IOException e) {//Compile time error cause} 
+ finally{}
+This code will give an error message at compile time that the more specific 
+ IOException will never be reached. 
+Overriding methods that throw exceptions
+An overriding method in a subclass may only throw exceptions declared in the 
+ parent class or children of the exceptions declared in the parent class. This 
+ is only true for overriding methods not overloading methods. Thus if a method 
+ has exactly the same name and arguments it can only throw exceptions declared 
+ in the parent class, or exceptions that are children of exceptions in the parent 
+ declaration. It can however throw fewer or no exceptions. Thus the following 
+ example will not compile
+import java.io.*;
+class Base{
+public static void amethod()throws FileNotFoundException{}
+}
+public class ExcepDemo extends Base{
+ //Will not compile, exception not in base version of method
+ public static void amethod()throws IOException{}
+}
+If it were the method in the parent class that was throwing IOException 
+ and the method in the child class that was throwing FileNotFoundException 
+ this code would compile. Again, remember that this only applies to overridden 
+ methods, there are no similar rules to overloaded methods. Also an overriden 
+ method in a sub class may throw Exceptions.
+ 
+ 
+ 
+ 
+ 
+Question 1)
+What will happen when you attempt to compile and run the following code?
+import java.io.*;
+class Base{
+public static void amethod()throws FileNotFoundException{}
+}
+public class ExcepDemo extends Base{
+public static void main(String argv[]){
+ ExcepDemo e = new ExcepDemo();
+}
+public static void amethod(){}
+protected ExcepDemo(){
+	 try{
+	 DataInputStream din = new DataInputStream(System.in);
+	 System.out.println("Pausing");
+	 din.readChar();
+	 System.out.println("Continuing");
+	 this.amethod();
+	 }catch(IOException ioe) {}
+	}
+}
+1) Compile time error caused by protected constructor
+ 2) Compile time error caused by amethod not declaring Exception
+ 3) Runtime error caused by amethod not declaring Exception
+ 4) Compile and run with output of "Pausing" and "Continuing" after a key is 
+ hit
+Question 2) 
+What will happen when you attempt to compile and run the following code?
+import java.io.*;
+class Base{
+public static void amethod()throws FileNotFoundException{}
+}
+public class ExcepDemo extends Base{
+public static void main(String argv[]){
+ ExcepDemo e = new ExcepDemo();
+}
+public static void amethod(int i)throws IOException{}
+private ExcepDemo(){
+ try{
+ DataInputStream din = new DataInputStream(System.in);
+ System.out.println("Pausing");
+ din.readChar();
+ System.out.println("Continuing");
+ this.amethod();
+ }catch(IOException ioe) {}
+ }
+}
+1) Compile error caused by private constructor
+ 2) Compile error caused by amethod declaring Exception not in base version
+ 3) Runtime error caused by amethod declaring Exception not in base version
+ 4) Compile and run with output of "Pausing" and "Continuing" after a key is 
+ hit
+Question 3) 
+What will happen when you attempt to compile and run this code?
+import java.io.*;
+class Base{
+public static void amethod()throws FileNotFoundException{}
+}
+public class ExcepDemo extends Base{
+public static void main(String argv[]){
+ ExcepDemo e = new ExcepDemo();
+}
+public static void amethod(int i)throws IOException{}
+private boolean ExcepDemo(){
+	 try{
+	 DataInputStream din = new DataInputStream(System.in);
+	 System.out.println("Pausing");
+	 din.readChar();
+	 System.out.println("Continuing");
+	 this.amethod();
+	 return true;
+	 }catch(IOException ioe) {}
+	 finally{
+	 System.out.println("finally");
+	 }
+	 return false;
+	}
+}
+1) Compilation and run with no output.
+ 2) Compilation and run with output of "Pausing", "Continuing" and "finally"
+ 3) Runtime error caused by amethod declaring Exception not in base version
+ 4) Compile and run with output of "Pausing" and "Continuing" after a key is 
+ hit
+Question 4) 
+What will happen when you attempt to compile and run the following code?
+import java.io.*;
+class Base{
+public static void amethod()throws FileNotFoundException{}
+}
+public class ExcepDemo extends Base{
+public static void main(String argv[]){
+ ExcepDemo e = new ExcepDemo();
+}
+public boolean amethod(int i){
+	 try{
+	 DataInputStream din = new DataInputStream(System.in);
+	 System.out.println("Pausing");
+	 din.readChar();
+	 System.out.println("Continuing");
+	 this.amethod();
+	 return true;
+	 }catch(IOException ioe) {}
+	 finally{
+	 System.out.println("Doing finally");
+	 }
+	 return false;
+	 }
+	ExcepDemo(){
+ 	amethod(99);
+	 }
+}
+1) Compile time error amethod does not throw FileNotFoundException
+ 2) Compile, run and output of Pausing and Continuing
+ 3) Compile, run and output of Pausing, Continuing, Doing Finally
+ 4) Compile time error finally clause never reached
+ 
+ 
+Answers
+Answer to Question 1)
+ 4) Compile and run with output of "Pausing" and "Continuing" after 
+ a key is hit
+ 
+ An overriden method in a sub class must not throw Exceptions not thrown in the 
+ base class. In the case of the method amethod it throws no exceptions and will 
+ thus compile without complaint. There is no reason that a constructor cannot 
+ be protected.
+ 
+ Answer to Question 2)
+ 4) Compile and run with output of "Pausing" and "Continuing" after 
+ a key is hit
+ In this version amethod has been overloaded so there are no restrictions 
+ on what Exceptions may or may not be thrown.
+ 
+ Answer to Question 3)
+ 1) Compilation and run with no output.
+ 
+ OK, I have wandered off topic here a little. Note that the constructor now has 
+ a return value. This turns it into an ordinary method and thus it does not get 
+ called when an instance of the class is created.
+ 
+ Answer to Question 4)
+ 3) Compile, run and output of Pausing, Continuing, Doing Finally
+ 
+ The finally clause will always be run.
+ Other sources on this topic 
+ 
+ 
+ This topic is covered in the Sun Tutorial at
+ http://java.sun.com/docs/books/tutorial/essential/exceptions/definition.html
+ 
+ Richard Baldwin Covers this topic at
+ http://www.geocities.com/Athens/Acropolis/3797/Java030.htm
+ and 
+ http://www.geocities.com/Athens/Acropolis/3797/Java056.htm
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec2.html#obj7
+ 
+ Bruce Eckel Thinking in Java
+ Chapter 9) 
+ 
+ 
+Last updated
+ 28 Dec 1999
+ copyright © Marcus Green 1999
+ most recent version at www.jchq.net
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

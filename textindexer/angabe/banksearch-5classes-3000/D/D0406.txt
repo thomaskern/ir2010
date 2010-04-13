@@ -1,0 +1,430 @@
+
+Java(TM) Boutique - Java Books - Professional Java SOAP - Page 13
+	
+	
+	
+	
+	
+	
+ 
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	 ARTICLES 
+	 Tutorials 
+	 Reviews 
+	 Development Tools 
+	 Glossary 
+	 APPLETS 
+	by Category 
+	 by Date 
+	
+	 by Name 
+	 Hall of Fame 
+	 Archive 
+	 Submit 
+	 Source Code 
+	 Applications 
+	 Servlets and JSP 
+	
+	 FORUM 
+	 FAQ 
+	 Users Poll 
+	 Discussion Group 
+	 Discussion List 
+	
+	 Contact Us 
+	
+	 OTHER RESOURCES 
+	 Custom Applets 
+	 Java@Work 
+	 Java News 
+	 Jini Watch 
+	 Affiliate Programs 
+	
+	
+	Find a Web Host With:
+	
+	
+	
+	
+	CGI Access
+	Database Support
+	NT Servers
+	UNIX Servers
+	Telnet Access
+	
+	
+	advanced search
+	
+	 
+	
+	
+	
+ 
+Latest Developer Headlines:
+ 
+Plug.In: CARP Battle, Devices Dominate
+Chip Tech Makers Veeco, FEI in $1B Merger
+Sprint Group Exits Data Biz
+ 
+internet.com
+ 
+	
+Internet News
+Internet Investing
+Internet Technology
+Windows Internet Tech.
+Linux/Open Source
+Web Developer
+ECommerce/ Marketing
+ISP Resources
+ASP Resources
+Wireless Internet
+Downloads
+Internet Resources
+Internet Lists
+International
+EarthWeb
+Career Resources
+Search internet.com
+Advertise
+Corporate Info
+Newsletters
+E-mail Offers
+	
+ 
+e-commerce
+ 
+Be a Commerce Partner
+EMedia Mag Free Sub
+For Web Graphics
+Send a Press Release
+Secure Business IM
+Software Store
+Find a Web Host
+Compare Prices
+USA Mailing Address
+Anti-Virus Software
+Freelance Projects
+ 
+WebDev Network
+ 
+FlashKit
+Gif.com
+JavaBoutique
+JavaScript.com
+JavaScriptSource
+WebDev Jobs
+JustSMIL
+ScriptSearch
+StreamingMediaWorld
+VoiceXML Planet
+Web Hosts
+WebDevelopersJournal
+The WDVL
+WebDeveloper.com
+WebReference.com
+XMLFiles.com
+ 
+	
+	
+	
+	
+	
+	
+	
+	 
+	Web Developer
+Opt-in Lists
+	 
+	
+	CGI
+	HTML
+	Java
+	JavaScript
+	Web Design and Promotion
+	Web Site Development
+	
+ 
+	E-mail Address:
+	
+	Can you receive
+ HTML e-mail?
+Yes No
+	Zip Code:
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+Reviews :
+Java Books :
+Professional Java SOAP :
+Buy this book
+Title:
+Professional Java SOAP
+ISBN: 1861006101
+Price: $49.99 
+£36.99 
+C$74.95 
+© Wrox Press, Ltd.
+ 
+ 
+	
+SOAP Fault
+ 
+	
+	The following diagram shows that the SOAP element appears as a entry. 
+	
+	
+	
+	 
+	The SOAP Fault is optional, but there can only be one element per element. The 
+	SOAP element contains up to four elements: 
+	
+- 
+	The element allows the client to algorithmically identify the source of the fault. 
+	As you can see from the following table, this mechanism is similar to what we saw for HTTP when it comes to differentiating the source of the error. However, rather than using numerical 
+	values, SOAP uses XML qualified names. The version mismatch and mustUnderstand fault 
+	codes are particular to SOAP. 
+	Name Meaning 
+	Version Mismatch The namespace for the SOAP envelope is not 
+	"http://schemas.xmlsoap.org/soap/envelope/". 
+	
+	mustUnderstand One of the header entries was not understood by the 
+	receiving party and the mustUnderstand flag was set to 
+	"1" (true). 
+ 
+	Client The message received was incorrectly formed. A 
+	typical example of this would be a lack of serialization 
+	information. 
+ 
+	Server The receiving web service could not process the message. 
+	This situation would arise if the application were to throw 
+	an exception. The detail section of the fault might contain 
+	the stack of exception. 
+ 
+	
+	
+- 
+	Once again, the strong affinity of SOAP to HTTP shows up in the element, 
+	since it is similar to the reason phrase that we saw earlier. Note that the 
+	must be present. The is mostly intended for human readers as opposed to 
+	the , which is intended for algorithmic use. 
+	
+- 
+	The element names the service that generated the fault. The NullPointerException 
+	in the example below was thrown inside the ncrouter of the lesavon context. The is more meaningful in a situation where there is more 
+	than one recipient for the SOAP message. We will look at an example of this when we talk 
+	about the SOAPActor in the Messaging section. 
+	 
+	
+	
+- 
+	The element is meant to carry application-specific information. It must be present 
+	if the application could not process the element. In other words, its presence or 
+	absence can be used to test if the error was related to processing the body. For instance, the 
+	fault example with an unknown service does not contain a element, as the request never made it to the service (in this case because the service was not registered). 
+	
+	Note that the Apache SOAP implementation will not generate a element if you do not 
+	include a fault listener in your deployment descriptor. We will look more closely at deployment 
+	descriptors in the next chapter, when we write the HelloWorld sample. Instead of the fault shown in 
+	the previous example, you would get the following: 
+ 
+ SOAP-ENV:Server 
+ Exception from service object: null 
+ /realtimequotes/ncrouter 
+ 
+	
+	In addition to these four elements, a SOAP fault may contain additional namespace-qualified elements. 
+	Next, we will discuss the rules that SOAP defines to encode its payloads. 
+ 
+ 
+ 
+	
+ 
+	
+	
+	Applet Index
+	(sorted alphabetically)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 #s
+	 
+	 
+	
+	The Java Source
+ 
+	(applets w/source code)
+	 A
+	 B
+	 C
+	 D
+	 E
+	 F
+	 G
+	 H
+	 I
+	 J
+	 K
+	 L
+	 M
+	 N
+	 O
+	 P
+	 Q
+	 R
+	 S
+	 T
+	 U
+	 V
+	 W
+	 X
+	 Y
+	 Z
+	 
+	 
+	
+	
+How to Add Java Applets to Your Site
+New on the Java Boutique:
+New Article:
+Taking Java to new levels with the Macromedia MX initiative
+Earlier this year, Macromedia unveiled its MX initiative. The MX initiative is billed as an "integrated family of client, tool, and server technologies" that is built on a Java foundation. ColdFusion MX now sits on top of the powerful Java 2 Enterprise Edition (J2EE) platform. Read on to find out what this means to you as a Java developer.
+ 
+... [Submissions]
+New Tutorial:
+Coding your second Jakarta Struts Application
+Keld Hansen takes another step up the Struts ladder. This month 
+he shows you how to build a classic list-detail application with 
+the well-known CRUD-actions: Create, Read, Update, and Delete. 
+... [more Tutorials]
+Year in Review:
+The Best of 2001
+The year 2001 saw 179 new applets posted to JavaBoutique. Check out the 2 most popular apps from each month of 2001! 
+... [popular applets]
+Elsewhere on internet.com:
+WebDeveloper Java
+Lots of Java information on webdeveloper.com
+WDVL Java
+Thorough Java resource at the Web Developer's Virtual Library.
+ScriptSearch Java
+100s of free Java code files to download.
+ 
+ 
+	
+	
+	 
+ 
+ 
+WebDev News
+ 
+ 
+OASIS Demos SAML 1.0
+ 
+ 
+Nokia, SGI Team on Wireless 3D Standard
+ 
+ 
+IBM Unveils Multimodal Tools
+ 
+ 
+ 
+	
+SIGN UP FREE
+	Java Bytes
+Animator1
+Provided by:John Beenen
+This latest version of Animator1 now features webPersona coding to coordinate character actions and sounds in 2D animations. You can also utilize, effects and chaining, and as usual, display on any webpage. 
+	Download of the Week
+Animated Menu Two
+Quickly add an animated button bar to your web pages. Both vertical and horizontal displays are supported. Highly customizable!
+JB User Poll
+Which do you feel is more important, innovation or standards compliance?
+	
+The JavaBoutique Top 15:
+1. DJPopMenu
+2. NavBar
+3. PingPong
+4. 3DMaze
+5. ChompText
+6. BSCOutline
+7. RushHour
+8. Encyclo
+9. AnimLetters_anim
+10. SiteBrowser
+11. Nibbly
+12. BMMenu
+13. NewsMaker
+14. Viewer
+15. BMI
+Want more? Check out our Top 100!
+	
+Refer-It
+Affiliate Program and Referral Directory.
+New on internet.com
+ 
+ 
+ Liberty Serves up Alternative to Passport
+ The race is on for Web services domination as the Sun Microsystems-backed syndicate targets Microsoft with single sign-on authentication services.
+ 
+ 
+ Security Wars: Can Intrusion Detection Even the Score?
+ Intrusion detection systems provide reams of raw data, and plenty of false alarms. How do you assess an IDS, where do you use one, and when does a human need to step in and make sense of what it's telling you?
+ 
+ 
+ 
+ 
+ Intel's in the Lab With Ultra Wideband
+ What's Intel's take on Ultra Wideband technology and its prospects for mass market consumption? We asked Intel Labs' Kevin Kahn, ultra-researcher extraordinaire and a director of their Communications Interconnect Technology Lab.
+	
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Legal Notices, Licensing, Reprints, & Permissions, Privacy Policy.
+ 

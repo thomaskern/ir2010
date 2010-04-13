@@ -1,0 +1,131 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What's Wrong With This Code? Volume #3
+The hidden danger of overriding virtual pascal base functions
+To help you debug the program, put a breakpoint in the CreateParams method of TForm2. Place another
+breakpoint on the line where m_WndClassName is initialized in the constructor. The red text in the code below
+shows where to place the breakpoints. Then run the program and see which breakpoint gets tripped first.
+//---------------------------------------------------------------
+// form cpp file
+__fastcall TForm2::TForm2(TComponent* Owner,
+ const AnsiString &WndClassName)
+ : TForm(Owner),
+ m_WndClassName(WndClassName)
+{
+}
+//---------------------------------------------------------------
+void __fastcall TForm2::CreateParams(TCreateParams & Params)
+{
+ TForm::CreateParams(Params);
+ strcpy(Params.WinClassName,m_WndClassName.c_str());
+}
+You may be suprised to find that the breakpoint in CreateParams gets tripped before the breakpoint on
+m_WndClassName. How can that be? That's not possible! CreateParams is a virtual function, and
+virtual functions are not supposed to get called before an object is fully constructed. How does CreateParams
+get called before the form's constructor runs?
+To investigate the problem, it is helpful to look at the call stack from the breakpoint in CreateParams.
+Figure 2 shows the call stack on my system.
+ 
+Figure 2. call stack as viewed from CreateParams
+Notice the three lines that are highlighted. At the bottom of the call stack window is the button click event of the
+main form (there is some stuff on the call stack below that, but we don't need to worry about that). The button
+click event constructs a TForm2 object, so we see the TForm2 constructor on the call stack.
+The TForm2 constructor immediately passes control to the base class constructor. As we move up the stack, we can see the base
+class constructors for TForm and TCustomForm. Moving closer to the top of the stack, we begin to
+reach some calls that have to do with creating the window handle for the form. These functions are called
+HandleNeeded, CreateHandle, and CreateWnd. We eventually reach CreateParams at the
+top of the call stack. It looks like CreateParams is called by the CreateWnd method of
+TWinControl. We can verify this by looking at the VCL source in CONTROLS.PAS.
+procedure TWinControl.CreateWnd;
+var
+ Params: TCreateParams;
+ TempClass: TWndClass;
+ ClassRegistered: Boolean;
+begin
+ CreateParams(Params);
+ ...
+end;
+The call stack reveals that CreateWnd is called from the base constructors
+of the form, and CreateWnd calls CreateParams. Here is the crux of the problem. CreateParams
+is a virtual function. In pure C++, you are not supposed to call virtual functions from the constructors of a base
+class. Well, that's not entirely correct. You can call them, but if a derived class overrides that function, the derived
+version of the function doesn't get called. This makes sense because you don't want to execute methods of a class before
+its constructor has had a chance to run.
+Object Pascal, on the other hand, is a different beast. Calling virtual functions from base class constructors is
+perfectly legal. If a derived class overrides a virtual function that is called by the base constructor, then
+the virtual method of the derived class will execute before the base constructor has returned control to
+the derived constructor. This is a dangerous scenario. What if the virtual function accesses an object that
+gets created in the constructor? An access violation will occur because the member object hasn't been initialized yet.
+Because C++Builder sits on top of a pascal foundation, your C++ forms, datamodules, and controls must play along with
+this oddity in object pascal. The behavior of virtual functions in object pascal explains why the CreateParams
+method was running before the constructor for TForm2 had a chance to run.
+At this point, the problem should be coming into focus. The m_WndClassName string variable is initialized from
+the constructor of TForm2. This initialization does not occur until the base class constructor returns. The
+base class constructor calls CreateParams. CreateParams attempts to use the value of the string
+in m_WndClassName. But hold on a minute, m_WndClassName hasn't been initialized yet! We are still
+inside the base class constuctor, but CreateParams is trying to access a member variable that doesn't get
+initialized until the base constructor returns. As a result, m_WndClassName doesn't contain the string
+that we expect it to contain. When we copy m_WndClassName into the Params structure, we end up
+copying an empty string.
+The empty string turns out to be the cause of the error. A window cannot have an empty window class name. When we try
+to create the window, the operating system returns an error. The VCL transforms this error into the
+EWin32Error that we see via the message box.
+So now that we know the cause of the error, how do we fix it? Fortunately, the code is not really worth fixing. I can't
+think of a reason why we would want to initialize the window class name of a form from code that is outside the form's
+class. Usually, that sort of thing is initalized internally. Nevertheless, it is worth discussing how we might solve
+the problem. One way would be to use a static method and a static variable. Another method would be to have
+TForm2 call a method of the main form to retrieve the class name. A third technique would be to create a
+utility class that dishes out class names. TForm2 could execute a method of this object to fetch its class
+name. None of these solutions sound that appetizing.
+Instead of worrying about how to fix the code in this edition of w3TC, I think we should look at some of the
+implications of how object pascal deals with virtual functions. First of all, the normal rules of C++ don't always
+apply to C++Builder. This is just great. It's hard enough to memorize how C++ works, let alone trying to remember where
+and when C++Builder deviates from normal C++ behavior. Secondly, you have to be aware of what virtual functions are called
+by the base class constructors of your form. CreateWnd and CreateParams are two of them, but there
+might be others. If you override these functions, you must be careful not to access any member variables from the virtual
+function. Third, you should realize that the same strange behavior applies to destructors. If you override a virtual
+function and a pascal base class desctructor calls that function, your derived function will indeed execute. This is
+silly in my opinion, and it's a recipe for disaster. Pure C++ does not behave this way. Lastly, you should also realize
+that this behavior of object pascal plagues Delphi programmers too. I could convert the orignial code to Delphi, and
+the result would have been the same. The only difference with Delphi is that Object Pascal allows you to initialize
+variables before calling the base class constructor. 
+Note: When CreateParams attempts to use the contents of the string member variable, the string
+appears to be empty. This was a stroke of luck. There are no guarantees about what an unitialized variable will
+contain. The internal data for the string could have contained garbage. When I first tested the code, I was
+actually expecting an access violation.
+Note: In this issue, we saw how C++Builder breaks from C++ tradition when you derive a class from a pascal base.
+What happens when you don't derive from pascal classes? If you derive from a C++ base class, and it calls a virtual
+function in its constructor, will the derived version of the function execute? This question is left as an exercise.
+Note: It appears that we have found a clear deficiency in the object pascal language. Now, let's ask ourselves
+how Borland should fix the problem. Yes, it is bad that certain functions
+in your class might execute before your constructor has run, or after your destructor has run. But what is the best
+way to remedy the problem?
+One solution would be to delay the creation of the form's window handle until after the constructor has finished.
+This is how OWL worked. In OWL, after the constructor of your window had finished, you still didn't have a real window
+handle yet. The problem with this approach is that the
+Handle property of the form would not be available in the constructor of the form. You would not be able to
+set the Height and Width properties of the form in the constructor if this was the case. Furthermore, none of your
+child controls would be real controls yet either. You would not be able to set the Text property of an edit box from
+the form's constructor, because the edit box wouldn't be a real windows control at that point.
+Another solution would be to change object pascal so it behaves exactly like C++. If a base class constructor calls
+a virtual function, then don't execute the derived version of the function. This causes problems too. A lot of
+the VCL classes override CreateWnd and CreateParams. If object pascal behaved like C++, then
+CreateWnd and CreateParams would cease being called, except for the functions in TWinControl.
+This would completely break the VCL.
+At this point, there doesn't seem to be a clear cut way for Borland to make the situation any better than it is now.
+Perhaps the best course of action is to simply memorize which virtual functions are called during construction, and
+to remember not to access member variables of the class when you override those functions.
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

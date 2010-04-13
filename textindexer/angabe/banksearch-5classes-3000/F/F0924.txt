@@ -1,0 +1,95 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Files, Folders and Drives
+Remove the Border from any Window.
+ID: 836
+Author: Abstractvb
+Date: 5/5/2001 3:19:11 PM
+VB6
+Simply call the RemoveFrame function and pass it the Window Handle of the window to want to remove additional styles on and it will be done.
+Private Const GWL_STYLE = (-16)
+Public Declare Function SetWindowLong Lib "user32" _ 
+ Alias "SetWindowLongA" (ByVal hwnd As Long, _
+ ByVal nIndex As Long, _
+ ByVal dwNewLong As Long) As Long
+Public Sub RemoveFrame(lnghWND As Long)
+ SetWindowLong lnghWND, GWL_STYLE, 0&
+End Sub
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

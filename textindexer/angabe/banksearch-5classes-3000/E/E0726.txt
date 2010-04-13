@@ -1,0 +1,216 @@
+
+Stroustrup: Errata for 5th printing of The C++ Programming Language
+Errata for 5th printing of The C++ Programming Language
+Errata for
+Bjarne Stroustrup:
+The C++ Programming Language (3rd edition),
+Addison-Wesley, 1997. ISBN0-201-88954-4.
+Errata for the 5th printing yielding the 6th.
+Errors and Clarifications
+Preface:
+Chapter 1:
+Chapter 2:
+pg 31 add to namespace Stack:
+	typedef Rep& stack;
+Chapter 3:
+pg 57	s/void f(list& ve, vector& le)/
+	void f(vector& ve, list& le)/
+Chapter 4:
+Chapter 5:
+Chapter 6:
+pg 121	Move the entry for ?: (conditional expression) above the entry
+	for assignment operators.
+	(It still doesn't explain a=b?c=d:e, but it covers the more common cases).
+Chapter 7:
+pg 151	s/in different scopes/in different non-namespace scopes/
+pg 151	add "See also 8.2.6 and 8.2.9.2." at the end of 7.4.2.
+pg 153	s/A default argument can be repeated in a subsequent declaration
+	in the same scope but not changed./A default argument cannot be
+	repeated or changed in a subsequent declaration in the same scope./
+	(unnoticed standards change).
+pg 154	change the second declaration of f() to
+	void f(int = 7);	// error: cannot repeat default argument
+pg 158	s/cmp(pj,pjg)
+pg160-162	Spell all macro names in sec7.8 except arg_two with all
+	capital letters (to emphasize the ugliness of macros).
+pg 163	add "[10] If you must use macros, use ugly names with lots of capital letters; sec7.8."
+Chapter 8:
+pg 166	remove links from lexer to symbol table
+pg 169	s/string_value/Lexer::string_value/
+pg 170	s/string_value/Lexer::string_value/
+pg 187	The definition of to_char() works on most implementations but is not
+	guaranteed by the standard. Replace it with:
+	char to_char(int i)
+	{
+	if (i::min() || numeric_limits::max()
+pg 188	Add to the end of the first paragraph:
+	"If an exception is thrown and no try-block catches it,
+	the program terminates (14.7)."
+Chapter 9:
+pg 218	s/and do require run-time/and do not require run-time/
+Chapter 10:
+pg 233	s/cache&/cache*/
+pg 233 Date::compute_cache_value() must be a const member
+pg 234	s/c./c->/ thrice
+pg 257	s/sec14.4.7/sec14.4.4/
+Chapter 11:
+Chapter 12:
+Chapter 13:
+pg 337	to avoid ambiguities add to the last example:
+	inline double max(int i, double d) { return max(i,d); }
+	inline double max(double d, int i) { return max(d,i); }
+Chapter 14:
+pg 368	add "// throw() means throws nothing; see sec14.6" to the first
+	occurrence of throw().
+Chapter 15:
+pg 392	s/ across different scopes/across different class scopes/
+pg 423 replace
+Employee::operator delete[](p,s*sizeof(Employee)+delta);
+by
+Employee::operator delete[](p); // release s*sizeof(Employee)+delta bytes
+Chapter 16:
+pg 445	Replace the top three examples by
+template typename C::iterator find_last(C& c, typename C::value_type v)
+{
+	typename C::reverse_iterator ri = find(c.rbegin(),c.rend(),v);
+	if (ri == c.rend()) return c.end();	// use c.end() to indicate "not found"
+	typename C::iterator i = ri.base(); 
+	return --i;
+}
+For a reverse_iterator, ri.base() returns an iterator
+pointing one beyond the position pointed to by ri (sec19.2.5).
+Without reverse iterators, we could have had to write an explicit loop:
+template typename C::iterator find_last(C& c, typename C::value_type v)
+{
+	typename C::iterator p = c.end();	// search backwards from end
+	while (p!=c.begin())
+	if (*--p==v) return p;
+	return c.end();	// use c.end() to indicate "not found"
+}
+A reverse iterator is a perfectly ordinary iterator, so we could have written:
+template typename C::iterator find_last(C& c, typename C::value_type v)
+{
+	typename C::reverse_iterator p = c.rbegin();	// view sequence in reverse order
+	while (p!=c.rend()) {
+	if (*p==v) {
+	typename C::iterator i = p.base(); 
+	return --i;
+	}
+	++p;	// note: increment, not decrement (--)
+	}
+	return c.end();	// use c.end() to indicate "not found"
+}
+Note that C::reverse_iterator is not the same type as C::iterator.
+Chapter 17:
+pg 478	s/and pop() returns/and top() returns/
+pg 482	s/ std::make_pair(T1 t1, T2 t2)/ std::make_pair(const T1& t1, const T2& t2)/
+pg 485 replace the definition of m4 by
+map m4(String_cmp(literary));	// pass comparison object
+pg 491	s/, class T//
+pg 495	operators &, |, and ^ returns a bitset rather than a bitset&
+pg 506	s/st(const/St(const/
+Chapter 18:
+pg 530	s/(os)/(cout)/
+pg 533	s/to the front (head)/towards the front (head)/
+pg 542	s/tests whether every member of the first sequence is also a
+	member of the second:/tests whether every member of the second
+	sequence is also a member of the first:/
+Chapter 19:
+pg 563	s/throw out_of_bounds()/throw out_of_bounds();/
+pg 563	operator->() needs to check for out_of_bounds
+pg 563	+ and [] didn't check for negative offsets:
+	Checked_iter operator+(Dist d)	 // for random-access iterators only
+	{
+	if (c->end()-currbegin()-curr) throw out_of_bounds();
+	return Checked_iter(c,curr+d);
+	}
+	reference_type operator[](Dist d) // for random-access iterators only
+	{
+	if (c->end()-currbegin()-curr) throw out_of_bounds();
+	return curr[d];
+	}
+Chapter 20:
+Chapter 21:
+pg 617	s/The test succeeds only if the state is good()./
+	The tests succeed only if the state is !fail() and fail(), respectively./
+pg 646	Replace
+	int snextc();	// read next character
+by
+	template >
+	basic_streambuf::int_type basic_streambuf::snextc() // read next character
+pg 623	s/ios_base::eof/ios_base::failure/
+Chapter 22:
+pg 658	s/numeric_limits/numeric_limits/
+pg 659	replace 
+static const int digits = 8;	 // number of bits (``binary digits'')
+ 
+static const int digits = 7;	 // number of bits (``binary digits'') excluding sign
+pg 681	s/class complex/template class complex/
+pg 683	s/const valarray&/valarray&/
+pg 684	s/const valarray&/valarray&/
+Chapter 23:
+Chapter 24:
+pg 750	s/if the result is nonzero/if the result is zero (false)/
+Appendix A:
+Appendix B:
+Appendix C:
+Typos
+Preface:
+pg 5	The word "polymorphism" should not be in semi-bold font.
+Chapter 1:
+pg 18	s/Ygeesh/Yogeesh/
+Chapter 2:
+Chapter 3:
+Chapter 4:
+pg 71	s/If the result is converted back to bool;
+	/If the result is converted back to bool,/
+Chapter 5:
+pg 100	change
+	pv++;	// error: decrement void*
+to
+	pv++;	// error: can't increment void* (the size of the object pointed to is unknown)
+Chapter 6:
+pg 109	s/no character set/no current character set/
+pg 125	s/rdsate/rdstate/ in comment
+pg 133	s/i
+Chapter 7:
+pg 159	s/Ritchie D.M/Ritchie D.M./
+Chapter 8:
+Chapter 9:
+Chapter 10:
+Chapter 11:
+pg 272	s/their left-hand operand/its left-hand operand/
+pg 289	reverse the order of the declarations of in_core_address and identifier
+	(to set a good example for initializing members in declaration order)
+Chapter 12:
+pg 312	s/known by the compilation/known by the compiler/
+pg 323	s/a Ival_maker/an Ival_maker/
+Chapter 13:
+Chapter 14:
+pg 368	s/cab ne/can be/
+pg 368	s/exteract/extract/
+Chapter 15:
+pg 396	s/must must/must/
+pg 411	s/instead returning/instead of returning/
+Chapter 16:
+Chapter 17:
+pg498-502	s/= allocator/= allocator >
+Chapter 18:
+pg 517	s/const name&/const string&/
+Chapter 19:
+Chapter 20:
+pg 592	s/is one of/one of/
+Chapter 21:
+Chapter 22:
+pg 679	s/a an/an/
+Chapter 23:
+Chapter 24:
+Chapter 25:
+Appendix A:
+Appendix B:
+Appendix C:
+pg 828	s/that 32G/than 32G/
+pg 835	s/on a machine, where/on a machine where/
+pg 856	s/iterator_type/iterator/ thrice
+pg 857	s/iterator_type/iterator/ seven times
+pg 864	s/illegal, if/ illegal if/

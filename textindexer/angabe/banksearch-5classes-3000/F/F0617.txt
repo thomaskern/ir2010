@@ -1,0 +1,442 @@
+
+VB Helper: Ready-to-Run Visual Basic Graphics Programming: Table of Contents
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Ready-to-Run Visual Basic Graphics Programming: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ What Readers Have Done 
+ What's New in Edition 2 
+ Amazon.com 
+ 
+ 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The links in the following text display images that demonstrate the techniques in this book. 
+Some browsers make these files appear grainy. If yours does, try viewing the .GIF files stored 
+in your Web cache directory.
+ 
+ 
+ Part One: Working with Windows 
+ 
+ 
+ 
+1. Visual Basics
+This chapter covers Visual Basic graphics fundamentals such as
+coordinate systems, handling Paint events, graphical controls,
+creating scrolled windows, and basic colors.
+2. Using the API
+This chapter explains how to use the Windows API in 
+Visual Basic programs. It also describes many API functions that are
+useful in graphics programs.
+3. Advanced Color
+Chapter 3 describes more advanced color topics including different
+color models, device-independent and device-dependent bitmaps,
+and color palettes. The more bitmap-oriented parts book later
+assume you are using higher color modes such as 24-bit color.
+This chapter describes color palettes for completeness.
+4. Advanced Text
+Chapter 4 covers advanced text operations such as finding text metrics
+to learn exactly how big a font is, and how to use the CreateFont API
+function to build stretched, compressed, and 
+rotated text.
+5. Printing
+This chapter explains how to use the Printer object to produce
+high-resolution printouts. It explains how to print, display a print
+preview, handle multi-page documents, and scale objects to fit
+the printer nicely. It also includes code that lets you easily
+print a form much as PrintForm does, only in high resolution.
+ 
+ 
+ Part Two: Image Processing 
+ 
+ 
+ 
+6. Point Processes
+This chapter explains image processing techniques including that
+manipulate an image one pixel at a time. These methods include image
+averaging, 
+adjusting an image's brightness, contrast, or color balance, and
+compositing.
+7. Area Processes
+Chapter covers image processing techniques thaht manipulate areas
+in an image. These methods include spatial filtering to smooth,
+sharpen, or 
+emboss an image.
+This chapter also describe
+rotation and
+shape-disorting
+image transformations.
+ 
+ 
+ Part Three: Animation 
+ 
+ 
+ 
+8. Bitmap Animation
+Chapter 8 explains the fundamentals of bitmap animation. It shows how
+to use several different methods for presenting images quickly
+enough to create smooth animation.
+9. Advanced Animation
+Chapter 9 tackles more advanced animation topics. It describes 
+different ways you can control an animation such as scripting,
+simulation, and sprites. It also describes specialized animation
+techniques such as tweening and
+morphing.
+ 
+ 
+ Part Four: Two-Dimensional Graphics 
+ 
+ 
+ 
+10. Fractals and Tilings
+As its title implies, this chapter describes fractals and tilings
+including
+random trees,
+animated 
+snowflakes,
+Hilbert curves,
+gaskets,
+the chaos game,
+the Mandelbrot set (image 1,
+image 2,
+image 3), and
+Julia sets (image 1,
+image 2,
+image 3).
+Using these programs you can build intricate images with remarkably little code.
+11. Drawing Curves
+Chapter 11 shows how you can draw several useful kinds of curves.
+It explains how to draw parametric curves such as
+Bowditch curves and
+cycloids. It also shows
+how to fit a curve to data using Hermite, least squares, and 
+Bezier curves.
+12. Two-Dimensional Transformations
+This chapter explains a simple way to represent two-dimensional
+transformations that allow you to perform important operations such
+as scaling, translating, and rotating objects in a uniform way.
+Chapter 12 also describes
+shape-distorting transformations.
+ 
+ 
+ Part Five: Three-Dimensional Graphics 
+ 
+ 
+ 
+13. Three-Dimensional Transformations
+This chapter extends the two-dimensional transformations described 
+in Chapter 12 into three dimensions. It explains how to display 
+simple
+three-dimensional objects.
+14. Surfaces
+Chapter 14 explains several different ways to generate and display
+surfaces including
+fractal surfaces,
+parametric surfaces, and
+surfaces of transformation.
+By adding a little color, you can make surprisingly realistic
+landscapes.
+15. Hidden Surface Removal
+Three-dimensional images are easier to understand if hidden
+surfaces are not displayed. Chapter 15 shows how to remove hidden 
+surfaces from both
+simple and
+complex three-dimensional scenes.
+16. Shading Models
+Shading models add extra realism to three-dimensional images.
+This chapter builds a complex shading model to produce
+more realistic pictures.
+It also explains the 
+Gouraud and
+Phong
+methods for smooth shading.
+17. Ray Tracing
+Ray tracing allows a program to draw reflective and transparent
+objects. Chapter 17 develops an advanced ray tracing system
+to display fascinating images.
+- Frosty (one of my favorites)
+- Big blue marble
+- Graphics evolution
+- Two overlapping
+- Four overlapping
+- Big and small
+- Six orbiting
+- Six overlapping
+This chapter covers:
+- Multiple light sources.
+- A new checkerboard object.
+- Texture mapping.
+- Environment mapping.
+- Image mapping to determine transparency.
+- A script-driven
+object editor
+that lets you preview scenes using wireframe or shading models.
+ 
+ 
+ Part Six: Beyond Three Dimensions 
+ 
+ 
+ 
+18. Higher-Dimensional Transformations
+Chapter 18 extends the transformations described in Chapters 12 and 13
+into higher dimensions. This allows a program to display
+four-dimensional objects,
+and even objects of higher dimensions. This chapter explains how to 
+use animation to make higher-dimensional images understandable.
+19. Mathematical Tools
+This chapter describes some useful mathematical formulas that
+calculate geometric values such as the distance between two points,
+between a point and a line, between two lines, and between a
+point and a plane. Chapter 19 reviews matrix and vector operations,
+and shows how to derive the locations of the vertices in the 
+Platonic solids (tetrahedron, cube, octahedron, dodecahedron,
+and icosahedron).
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Ready-to-Run Visual Basic Graphics Programming: Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ What Readers Have Done 
+ What's New in Edition 2 
+ Amazon.com 
+ 
+ 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

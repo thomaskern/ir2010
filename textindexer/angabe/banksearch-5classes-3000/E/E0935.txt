@@ -1,0 +1,463 @@
+
+ 
+C >> Type Modifiers ::..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ :: Resources ::..
+ .. C Tutorials
+ .. HTML Tutorials
+ .. Links 
+ :: Community ::..
+ .. C Forum
+ .. HTML Forum
+ .. Tell Your Mates 
+ :: Books + Software ::..
+ .. General Computing
+ .. Game Programming
+ .. Macromedia Products 
+ :: Miscellaneous ::..
+ .. Bookmark This Site
+ .. Save As Homepage
+ .. Contact 
+ :: Shop Onine ::..
+ .. 
+ Amazon.com
+ .. 
+ Amazon.co.uk
+ 
+ :: Search ::..
+ .. Yahoo
+ .. Lycos
+ .. 
+ Ask Jeeves 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ The 4 Data Types 
+ Main Menu 
+ Arithmetic Operators 
+ 
+ 
+ 
+ 
+Type Modifiers
+ 
+ 
+ 
+ 
+ 
+The signed and unsigned Keywords
+ 
+ 
+ 
+ 
+ 
+When you declare a variable of the type, int, by default, its value is SIGNED. In other words, the 
+ variable could be positive or negative. 
+ 
+On my machine, the minimum value of a signed int is -32768 and the maximum value is 32767 (that is, 215-1). 
+ 
+An unsigned int on the other hand, can only store positive values, and has the range from 0 to 65535 (that is, 216-1). 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The short and long Keywords
+ 
+ 
+ 
+ 
+ 
+The cases above all apply when the integer is of the short type, which takes up less memory than the long type. The 
+ range of values that a short int could store is somewhat limited, so if you're planning to store huge numbers you'd want to 
+ use the long type. 
+ 
+Most of the time, an integer with be of the signed short type by default, which is why you've never seen me declare a signed 
+ short int. 
+ 
+Here's a summary:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Type 
+ 
+ 
+ 
+Minimum Value 
+ 
+ 
+ 
+Maximum Value 
+ 
+ 
+ 
+ 
+ 
+signed short int 
+ 
+ 
+ 
+-32768
+ 
+ 
+ 
+32767
+ 
+ 
+ 
+ 
+ 
+unsigned short int 
+ 
+ 
+ 
+0
+ 
+ 
+ 
+65535
+ 
+ 
+ 
+ 
+ 
+signed long int 
+ 
+ 
+ 
+-2147483648
+ 
+ 
+ 
+ 2147483647
+ 
+ 
+ 
+ 
+ 
+unsigned long int 
+ 
+ 
+ 
+0
+ 
+ 
+ 
+4294967295
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Note that:
+ 
+215 = 32768
+ 216 = 65536
+ 231 = 2147483648
+ 232 = 4294967296
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+The 
+ sizeof Operator
+ 
+ 
+ 
+ 
+ 
+This function enables you to find out how many BYTES a variable occupies. A byte is defined as EIGHT 
+ BINARY DIGITS (or "8-bits"). Binary numbers are covered later. For now, think of a byte as a container in the computer's 
+ memory. 
+ 
+The sizeof operator takes one OPERAND. An operand is an expression that is required for an operator 
+ to work. 
+ 
+ 
+ 
+You can use a data type as an operand, to find out how much memory is required to store variables of that data type, as demonstrated 
+ by this example: 
+ 
+ 
+ 
+ 
+ #include 
+int main() {
+ printf("Size of int is %d bytes\n",sizeof(int));
+ printf("Size of short int is %d bytes\n",sizeof(short int));
+ printf("Size of long int is %d bytes\n\n", sizeof(long int));
+ 
+ printf("Size of signed int is %d bytes\n",sizeof(signed int));
+ printf("Size of signed short int is %d bytes\n",sizeof(signed short int));
+ printf("Size of signed long int is %d bytes\n\n", sizeof(signed long int));
+ 
+ printf("Size of unsigned int is %d bytes\n",sizeof(signed int));
+ printf("Size of unsigned short int is %d bytes\n",sizeof(unsigned short int));
+ printf("Size of unsigned long int is %d bytes\n\n", sizeof(unsigned long int));
+ 
+ printf("Size of char is %d byte\n",sizeof(char));
+ printf("Size of float is %d bytes\n",sizeof(float));
+ printf("Size of double is %d bytes\n", sizeof(double));
+return 0;
+}
+ 
+ 
+ 
+ 
+ 
+Notice the use of extra white space to add readability to the code.
+ 
+The output shows that the amount of memory required is not affected by the signed or unsigned type modifiers: 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Size of int is 2 bytes 
+ Size of short int is 2 bytes 
+ Size of long int is 4 bytes 
+ 
+Size of signed int is 2 bytes 
+ Size of signed short int is 2 bytes 
+ Size of signed long int is 4 bytes 
+ 
+Size of unsigned int is 2 bytes 
+ Size of unsigned short int is 2 bytes 
+ Size of unsigned long int is 4 bytes 
+ 
+Size of char is 1 byte 
+ Size of float is 4 bytes 
+ Size of double is 8 bytes 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+You can also pass the function a declared variable, to find out how much memory that variable occupies. 
+ 
+ 
+ 
+Printer 
+ Friendly Version
+ 
+ 
+ 
+ The 4 Data Types 
+ Main Menu 
+ Arithmetic Operators 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Search Now:
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. General Computing ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Game Programming ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+.. Macromedia Products ..
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+http://www.iota-six.co.uk © 2002
+ 
+Thanks to CompleteControl UK Ltd
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

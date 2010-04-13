@@ -1,0 +1,85 @@
+
+ free()
+ 
+ 
+free-Free memory
+Synopsis
+ #include &#060;stdlib.h&#062;
+ void free(b);
+ void *b; /* block pointer */
+Description
+ The free function releases a block of memory that was previously
+ obtained using the calloc , malloc , or realloc function. For
+ compatibility with some versions of UNIX, the block is not
+ actually returned to the free space pool until the next time you
+ call the calloc , malloc , realloc , or free function. Then, if
+ that next call is to the realloc function and the block being
+ reallocated is the one that was just freed, the realloc function
+ will proceed correctly. In other words, you can ask the realloc 
+ function to reallocate a block that was freed as long as you have
+ not called the calloc , malloc , or realloc function in the
+ meantime.
+Example
+ #include &#060;stdio.h&#062;
+ #include &#060;stdlib.h&#062;
+ #include &#060;string.h&#062;
+ struct LIST
+ {
+ struct LIST *next;
+ char text[2];
+ };
+ void main(int argc, char *argv[])
+ {
+ struct LIST *p;
+ struct LIST *q;
+ struct LIST list;
+ char b[256];
+ int x;
+ printf("nBegin new group...n");
+ for (q = &list; ; q = p)
+ {
+ printf("Enter a text string: ");
+ if (fgets(b,sizeof(b),stdin) == NULL)
+ {
+ break;
+ }
+ if (b[0] == NULL)
+ {
+ if (q == &list)
+ {
+ printf("n");
+ exit(EXIT_SUCCESS);
+ }
+ break;
+ }
+ x = sizeof(struct LIST) - 2 + strlen(b) + 1;
+ p = (struct LIST *)malloc(x);
+ if (p == NULL)
+ {
+ printf("No more memoryn");
+ exit(EXIT_FAILURE);
+ }
+ q-&#062;next = p;
+ p-&#062;next = NULL;
+ strcpy(p-&#062;text, b);
+ }
+ printf("nnTEXT LIST...n");
+ /*
+ * You must be sure to copy the next pointer from
+ * the current block before you free it. Some
+ * systems rely on a side-effect to be able to
+ * access the memory after it is freed -- this is
+ * BAD PROGRAMMING PRACTICE!
+ */
+ p = list.next;
+ while(p != NULL)
+ {
+ q = p-&#062;next;
+ printf(p-&#062;text);
+ free((char *)p);
+ p = q;
+ }
+ list.next = NULL;
+ }
+See Also
+ calloc , malloc , realloc 

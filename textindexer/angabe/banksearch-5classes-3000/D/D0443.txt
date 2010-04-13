@@ -1,0 +1,249 @@
+
+ 
+ 
+ 
+ 6.1) Overloading and Overriding
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at
+ http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at
+ http://www.jchq.net/bookreviews/jcertbooks.htm
+ 
+ 
+ 
+Recommended book on this topic
+ 
+ 
+Java Design Patters A Tutorial
+ 
+ 
+If you really want to understand the thinking behind
+ the design of many of the Java classes such as I/O AWT/Swing and others
+ this book shows the underlying thought process behind this approaches.
+ This Object Orientation in action, rather than in theory and in trivial
+ examples. This book covers much more than you strictly need for the
+ purposes of the certification exam but you will see these patterns
+ constantly referred to in the world of software engineering, so you might
+ want to get used to them sooner rather than later. You might also consider
+ the original "GOF" book (see reviews at amazon).
+ 
+ 
+Buy from
+ Amazon.com
+ or from
+ Amazon.co.uk
+ 
+ 
+ 
+ 
+ 
+ 
+6)Overloading overriding runtime type and object orientation 
+ 
+ 
+Objective 1)
+ 
+ 
+State the benefits of encapsulation in object oriented design and write
+ code that implements tightly encapsulated classes and the relationships "is
+ a" and "has a".
+ 
+ 
+"Is a" vs "has a" relationship
+ 
+ 
+This is a very basic OO question and you will probably get a question on
+ it in the exam. Essentially it seeks to find out if you understand when
+ something is referring the type of class structure that an object belongs
+ to and when it refers to a method or field that a class has.
+ 
+ Thus a cat IS A type of animal and a cat HAS a tail. Of course the
+ distinction can be blurred. If you were a zoologist and knew the correct
+ names for groups of animal types you might say a cat IS A 
+ 
+longlatinwordforanimalgroupwithtails.
+ 
+but for the purpose of the exam this is not a consideration.
+ 
+ The exam questions tend to be of the type whereby you get a text
+ description of a potential hierarchy and you get questions as to what
+ ought to be a field and what ought to be a new class type as a child.
+ These questions can look complex at first glance, but if you read them
+ carefully they are fairly obvious.
+ 
+ 
+Encapsulation
+ 
+ 
+The Java 1.1 objectives did not specifically mention encapsulation,
+ though you would be hard pressed to study Java and not come across the
+ concept. Encapsulation involves separating the interface of a class from
+ its implementation. This means you can't "accidentally" corrupt
+ the value of a field, you have to use a method to change a value.
+ 
+ 
+ 
+ 
+ 
+ 
+Encapsulation involves hiding data of a
+ class and allowing access only through a public interface.
+ 
+ 
+ 
+ 
+ 
+ 
+To do this usually involves the creation of private variables (fields)
+ where the value is updated and retrieved via methods. The standard naming
+ convention for these methods is
+ 
+ 
+- 
+ 
+ 
+setFieldName 
+ 
+- 
+ 
+ 
+getFieldName 
+ 
+ 
+ 
+For example if you were changing the Color of a shape you might create a
+ method pair in the form
+public void setColor(Color c){
+ cBack = c;
+ }
+public Color getColor(){
+ return cBack;
+ }
+ 
+ 
+The main access control keywords for variables are
+ 
+ 
+- 
+ 
+ 
+public 
+ 
+- 
+ 
+ 
+private 
+ 
+- 
+ 
+ 
+protected 
+ 
+ 
+ 
+Do not be mislead into thinking that the access control system is to do
+ with security. It is not designed to prevent a programmer getting at
+ variables, it is to help avoid unwanted modification.
+ 
+ 
+The standard approach using the Color example above would be for the
+ Color field cBack to be private. A private field is only visible
+ from within the current class. This means a programmer cannot accidentally
+ write code from another class that changes the value. This can help to
+ reduce the introduction of bugs.
+ 
+ 
+The separation of interface and implementation makes it easier to modify
+ the code within a class without breaking any other code that uses it.
+ 
+ 
+For the class designer this leads to the ability to modify a class,
+ knowing that it will not break programs that use it. A class designer can
+ insert additional checking routines for "sanity checks" for the
+ modification of fields. I have worked on insurance projects where it was
+ possible for clients to have an age of less than zero. If such a value is
+ stored in a simple field such as an integer, there is no obvious place to
+ store checking routines. If the age were only accessible via set
+ and get methods it will be possible to insert checks against zero
+ or negative ages in such a way that it will not break existing code. Of
+ course as development continues more situations may be discovered that
+ need checking against.
+ 
+ 
+For the end user of the class it means they do not have to understand
+ how the internals work and are presented with a clearly defined interface
+ for dealing with data. The end user can be confident that updates to the
+ class code will not break their existing code.
+ 
+ 
+Runtime type
+ 
+ 
+Because polymorphism allows for the selection of which version of a
+ method executes at runtime, sometimes it is not obvious which method will
+ be run. Take the following example.
+class Base {
+int i=99;
+public void amethod(){
+ System.out.println("Base.amethod()");
+ }
+}
+public class RType extends Base{
+int i=-1;
+ public static void main(String argv[]){
+ Base b = new RType();//
+ (This is general stuff on OOP rather than concentrating on "is
+ a" "has a")
+ 
+ Jyothi Krishnan on this topic at
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec6.html#obj19
+ 
+ Java 1.1 Unleashed
+ http://www.itlibrary.com/reference/library/1575212986/htm/ch05.htm
+ (See the section on encapsulation) 
+ Chapter 6 from the Roberts, Heller and Earnest book 
+http://developer.java.sun.com/developer/Books/certification/page1.html
+ 
+ 
+ 
+ 
+Last updated
+ 12 June 2001
+ copyright © Marcus Green 2001
+ 

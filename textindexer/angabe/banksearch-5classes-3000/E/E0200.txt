@@ -1,0 +1,292 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq4_4.html 
+ 
+search 
+ 
+Node:What to download,
+Next:Disk space,
+Previous:DJGPP by WWW,
+Up:Getting DJGPP
+4.4 What Files to Download?
+Q: What's the minimum set of .zip files I need to download?
+A: This depends on what you are planning to use DJGPP for.
+The following table lists required and recommended files by category. 
+An alternative method of choosing the files suitable for your needs is
+to use the DJGPP zip-picker feature which will guide you through the
+process.
+- To only run DJGPP-compiled programs, you MUST download all of
+these10:
+v2/readme.1st
+This explains how to install DJGPP and get started with using it.
+v2/faq230b.zip
+The latest edition of this FAQ list. Use it whenever you have problems
+installing and using DJGPP.
+v2/frfaq21b.zip
+This FAQ list translated into French by Francois Charton.
+v2misc/csdpmi4b.zip
+CWSDPMI, the DJGPP free DPMI server. DJGPP programs require DPMI
+services, which provide a way to run 32-bit protected-mode programs
+under real-mode MS-DOS. (If you can get DPMI services in your
+environment, like if you run under Windows, QDPMI, or OS/2, you don't
+need CWSDPMI, but I recommend downloading it nonetheless so you can try
+it in case you have trouble with other DPMI servers.)
+v2misc/pmode11b.zip
+This is an alternative DPMI server, PMODE/DJ. Its memory footprint is
+smaller than CWSDPMI and it can be bundled with DJGPP programs to make a
+stand-alone executable that doesn't require a DPMI server to run. 
+PMODE/DJ doesn't support virtual memory and its implementation of the
+DPMI spec is a bit more restricted than that of CWSDPMI, but it is
+faster, and therefore more appropriate for high-performance interrupt
+handling.
+v2/djtzn203.zip
+This archive includes the timezone files, which are used by
+several library functions and programs that call those functions, to
+translate file time stamps between different time zones. You will need
+this archive if you run DJGPP-compiled programs that set file times for
+files downloaded from a distant place; one example is an archiving
+program such as unzip or Tar. Most people will only need a
+single file from this distribution. See zoneinfo files, for a detailed explanation
+of these files. 
+- For developing C programs (no C++), you MUST download all of the above,
+plus the following:
+v2gnu/gcc2952b.zip
+The GNU C Compiler binaries and docs (including the docs for the C++
+compiler).
+v2gnu/bnu281b.zip
+The GNU Binutils, including as, the GNU assembler; ld, the
+GNU linker; and their docs. GCC calls these utilities during
+compilation.
+v2/djdev203.zip
+C header files and libraries, library reference, minimal development
+environment (including assembly-level debuggers), DJGPP-specific
+utilities and their documentation. Required to compile/link C programs.
+v2gnu/txi40b.zip
+Info, a stand-alone program to read GNU hypertext documentation files, and
+an environment to produce such files. Without info, you cannot
+read the C library reference and the docs included with the ported GNU
+software packages. This package also includes the install-info
+utility, which helps to install Info docs of optional utilities that you
+download. Several files required to format Texinfo docs for printing
+are also included. 
+- For developing C++ programs, you will need all of the above, plus the
+following:
+v2gnu/gpp2952b.zip
+The GNU C++ compiler, (the docs are part of the gccNNNb.zip package,
+see above), the C++ header files and standard C++ class
+libraries, including the STL, and their docs.
+v2gnu/lgp2952b.zip
+Additional GNU C++ class libraries. This library is now deprecated
+and no longer maintained. I suggest not to use it.
+v2gnu/objc2952b.zip
+If you want to develop Objective-C programs, you will need this file,
+which includes the Objective-C compiler and header files. More
+information about Objective-C is available from Brad Cox's home page. Many Objective-C related
+links can be found at
+. 
+- For developing Fortran programs, you will need the C development tools
+(no need to download C++ compilers and libraries), plus the
+following:
+v2gnu/g772952b.zip
+The GNU f77 compiler and libraries. 
+- The following are some optional packages which you might want:
+- Debugging:
+v2gnu/gdb418b.zip
+GDB, the GNU Debugger and its docs. (Note that the djdev
+distribution includes two simpler, assembly-level debuggers,
+edebug and fsdb. The latter presents a user interface
+similar to that of Turbo Debugger.) 
+- Additional development tools (consider getting at least the Make
+distribution):
+v2gnu/mak3781b.zip
+GNU Make program with its docs. (Make is a program that can
+automatically compile/link a program given the description of
+dependencies between the various source and object files, on a special
+file called Makefile.) You should install Make 3.75 or later if
+you use DJGPP v2.01 (previous ports of Make have subtle
+incompatibilities with v2.01 tools). The DJGPP port of Make supports
+Unix-style shells (as well as DOS COMMAND.COM and its
+4DOS/NDOS replacements) and can be used to run Unix
+Makefiles if you install a Unix-style shell (e.g., bash) and
+auxiliary utilities. It also supports long filenames on Windows 9X and
+MS-DOS pathnames with drive letters.
+v2apps/rhide14b.zip
+The RHIDE integrated development environment for DJGPP (similar to
+Borland IDE), written by Robert Hoehne. 
+The latest version features an integrated debugger, based on GDB code; a
+stand-alone version of GDB with a Turbo Vision interface (but not all
+GDB features can be used); and support for user interface in languages
+other than English (using a port of GNU gettext library). Latest
+developments and beta versions of RHIDE are available from RHIDE home page. Binaries
+of an improved beta version is available from Andris Pavenis's home page; this version uses TVision
+v1.0.9, SETEdit v0.4.39, and its debugging engine is based on
+GDB 4.18 and DJGPP debug support from a pretest version of v2.03.
+v2/djlsr203.zip
+The sources of the DJGPP C library and utilities written specifically
+for DJGPP. If you can afford the disk space (it requires about 10MB), I
+recommend installing or at least downloading it, so you can easily fix
+possible library bugs. Note that beginning with DJGPP v2.02, the
+sources for the time-zone-related programs and files are available
+separately, in the djtzs203.zip archive.
+v2gnu/bsh203b.zip
+Bash (Bourne-Again SHell), the GNU shell, and its docs. If you
+mostly work in Unix environment, you will feel right at home using
+bash as your interactive shell. It is also great as a batch
+shell for running Unix-born shell scripts and Makefiles when these are
+too complex to convert them to MSDOS. If you install bash, you
+should also install auxiliary utilities (Fileutils, Textutils, Sh-utils,
+Grep, Diffutils, Findutils, Sed and Gawk) as these are usually invoked
+from many shell scripts and Makefiles.
+v2gnu/bsn125b.zip
+Bison, a Yacc-like parser generator, and its docs. You will need it if
+you intend to build a compiler or a parser for some language.
+v2gnu/acnf213b.zip
+Gnu Autoconf, a tool for producing shell scripts that automatically
+configure software source code packages to adapt to target platforms.
+v2gnu/dif272b.zip
+GNU Diffutils (diff, cmp, diff3, sdiff), and their docs. If you need to
+submit patches or changes to DJGPP or GNU sources, you will need the GNU
+diff program from this package. diff is also required by
+almost all configuration-management packages, such as RCS and
+CVS.
+v2gnu/emacs.README
+v2gnu/em2005*.zip
+GNU Emacs, the most powerful, customizable, extensible programmer's
+editor known today. The DJGPP port supports mouse, menu bar, pop-up
+menus, color syntax highlighting, reading Info documentation and
+compilation from within the editor, long filenames on Windows 9X, and
+much more. Emacs can and should be used as an integrated development
+environment (another alternative is RHIDE, see above). Please
+read the file emacs.README before you begin downloading the rest.
+v2gnu/fil316b.zip
+GNU Fileutils, including ls, rm, cp, mv, and
+others. Highlights of the latest port: ls supports colorization
+of files (like on Linux), ln -s knows about DJGPP-style
+"symlinks" (see symlink feature of DJGPP, elsewhere in this document), install
+-s will strip executables on the fly, and all the utilities support
+long filenames on Windows 9X and numbered backups (even on plain DOS). 
+This package is a must if you want to run Unix shell scripts, as they
+use some of these utilities a lot.
+v2gnu/find41b.zip
+GNU Findutils, including find, xargs, and locate. 
+These programs are used to process a group of files which share some
+common attributes, like the file name pattern, read/write permissions,
+file time-stamps, etc. Since DOS has its own, incompatible program
+called find.exe, you will need either to make sure DJGPP's
+bin subdirectory is before the C:\DOS directory (for
+DOS and Windows 3.X) and C:\WINDOWS\COMMAND directory
+(for Windows 9X) on your PATH, or to rename the DOS find
+program to some other name. If you don't, you might see the following
+message when you try to run find:
+ FIND: Parameter format not correct
+v2gnu/flx254b.zip
+Flex, a Lex-like lexical analyzer generator, and its docs. Required to
+build compilers or programs which break streams of characters into
+lexical tokens. Used a lot in conjunction with Bison, a parser
+generator.
+v2gnu/gwk304b.zip
+GNU Awk, an interpreter for a powerful text-processing language with
+many built-in functions. Gawk is also invoked by many shell scripts, so
+if you use Bash or need to run shell scripts, you should download Gawk.
+v2gnu/grep24b.zip
+GNU Grep package and its docs. The programs of this package are used to
+search for strings or regular expressions within files. You will also
+need this if you use Emacs (which has commands that invoke Grep) or if
+you want to run Unix shells and Makefiles.
+v2gnu/idu32db.zip
+GNU Id-utils and their docs. These utilities are used to quickly search
+for tokens in all the files that comprise a directory tree (e.g., a
+large project). They are similar to Grep, but much faster, and
+their notion of a token is sensitive to the source language of the
+scanned file, so they are more appropriate e.g. for searching variable
+names in C source files.
+v2gnu/pat254b.zip
+GNU Patch program and docs. Required to apply patches to sources given
+a source-level patch-file generated by diff.
+v2gnu/perl552b.zip
+Perl, a powerful scripting and text-processing language implemented as
+an interpreter. Many sophisticated scripts, like
+texi2html11, use Perl. In particular, the GNU Automake package is
+implemented as a Perl script.
+v2gnu/sed302b.zip
+GNU Sed (a batch editor) program and its docs. Many ported packages
+require it during the build process on MSDOS.
+v2gnu/shl112b.zip
+GNU Sh-utils. A must if you use the port of bash or want to run
+Unix Makefiles, but some utilities (such as env or test)
+can also be very useful on their own right.
+v2gnu/txt20b.zip
+GNU Textutils. Includes many useful programs, such as sort,
+wc, cat, join, paste, od, and
+uniq. Unix shell scripts and Makefiles call some of these
+a lot, so you should install this package if you run them. 
+- Developing text-mode and graphics GUI applications:
+v2tk/grx23.zip
+A graphics library for DJGPP. Note that it is still in development, so
+some advanced features might not work. GRX is quite portable to other
+operating systems: it is known to work with several DOS compilers,
+including Borland and Watcom; on Linux with svgalib and X11, and on
+several Unix platforms with X11R5 or later version of X-Windows. Also,
+GRX is the only library that supports printing out graphics images
+(check out the addons/print directory in the GRX distribution). 
+A significant drawback of GRX is that its docs is very outdated
+and incomplete.
+Hartmut Schirmer is the current
+maintainer of GRX. GRX is distributed under the GNU Library License
+(a.k.a. LGPL). Latest versions of GRX, including fixes to known
+problems and plans for future developments can be found on the GRX home page.
+v2tk/bcc2grx.zip
+The interface library to convert Borland graphics calls into calls to
+GRX library functions.
+v2tk/allegro/alleg312.zip
+A recursive acronym for Allegro Low LEvel Game ROutines, Allegro
+is a powerful game-writing and graphics library. It is also an
+alternative to GRX (see above), even if you don't need to develop a
+game. It is somewhat less portable than GRX to other operating systems,
+but its documentation is significantly better and up-to-date. Unlike
+GRX, Allegro is not under LGPL, it is free. A port of Allegro to
+Win32 and to Linux is in the works (initial versions are available).
+By popular demand, Allegro now has its mailing list. To post a message
+to the list, send email to allegro@canvaslink.com. To
+subscribe to the Allegro list, send a message to
+listserv@canvaslink.com with the text subscribe allegro
+{your full name}. Another related resource is the Allegro home page.
+v2tk/pdc22.zip
+A public-domain Curses library, for programming text-mode user-interfaces
+which are portable to Unix or ported from Unix.
+Version 2.3 of PDCurses was released. It is available via FTP. 
+Note that all of the packages have source distributions
+(*s.zip) which you can download in case you discover a bug, or
+want to know more about how the tools work. The companion *d.zip
+files hold the documentation for the package converted into HTML, DVI
+and PostScript formats.
+For description of additional files not mentioned here, get the file
+00_index.txt; it contains a full list of the distribution files and a
+short description of every file. 
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

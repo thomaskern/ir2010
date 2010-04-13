@@ -1,0 +1,95 @@
+
+lcc, A Retargetable Compiler for ANSI C
+ 
+ Princeton CS 
+ Software
+ lcc, A Retargetable C Compiler 
+ 
+lcc, A Retargetable Compiler for ANSI C
+ 
+ 
+ FTP site · European mirror
+ site
+ Source code · Files updated since the 4.1
+ release
+ Contributed software ·
+ LCC-Win32 · Q
+ Software Solutions
+ Frequently asked questions
+ Installation guide · Reporting bugs
+ Man pages: lcc 
+ PDF
+ · bprint 
+ PDF
+ Visit www.bestbookbuys.com
+ for the best online price for the book.
+ Reviews: comp.compilers (follow-ups: 1,
+2) · Assoc. of C & C++ Users
+ Errata: Second Printing · First Printing
+ Related page: C Interfaces and
+ Implementations
+ 
+ 
+ Links2Go
+ Compilers
+ 
+MathTools.Net
+ 
+ 
+ 
+ 
+ 
+ Buy it! 
+ 
+ 
+Download release 4.1: gzip'd tar file (649K)
+ · compress'd tar file
+ (1111K) · ZIP archive
+ (748K).
+ 
+Also available: An InstallShield executable
+ (1099K) that installs the lcc 4.1 binaries under Windows NT/95/98.
+lcc is a retargetable compiler for Standard C. It generates code for the ALPHA, SPARC, MIPS R3000, and Intel x86 and its successors. lcc is available for anonymous ftp
+from ftp.cs.princeton.edu in /pub/packages/lcc; the README file gives
+the details. Here's what else is available: 
+ 
+- Using ASDL with lcc 4.1.
+ 
+- cdb, a machine-independent debugger.
+ 
+- A updated, 
+ complete description of the
+ lcc 4.x Code-Generation Interface (PDF 256K).
+ 
+- The lcc 4.1 distribution LOG and README
+ files.
+ 
+- A sample chapter from A Retargetable C Compiler (PDF 339K).
+ 
+- User-contributed software is available in /pub/packages/lcc/contrib;
+ its README
+ lists the contributions and gives instructions for contributors.
+ 
+- lcc 3.6 source code.
+ 
+- A bibliography
+ of lcc-related papers and talks.
+lcc is described in A Retargetable C Compiler: Design and
+Implementation (Addison-Wesley, 1995, ISBN 0-8053-1670-1). This book is a detailed
+tour of the lcc 3.6 source code. The ftp
+distribution includes the source code for the complete compiler, the code generators
+for all its targets, and the code-generator generator that produced them. See the preface and table of contents for more
+details.
+The USENET newsgroup comp.compilers.lcc is an
+unmoderated newsgroup that serves as a forum for all topics related to the installation,
+use, and development of lcc. You can post messages to comp.compilers.lcc using any USENET
+newsreader or by visiting http://www.dejanews.com/,
+which also includes an archive of recent postings.
+There is also an independently maintained news/mail gateway to comp.compilers.lcc; to
+subscribe, send an empty message to lcc-subscribe@mjolner.dk.
+Articles posted to comp.compilers.lcc are mailed to members of this mailing list, and
+messages sent to lcc@mjolner.dk are posted to the
+newsgroup.
+ Chris Fraser / cwfraser@microsoft.com
+ David Hanson / drh@microsoft.com
+ $Revision: 1.56 $ $Date: 2002/07/09 20:16:19Z $ 

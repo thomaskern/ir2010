@@ -1,0 +1,562 @@
+
+ 
+ 
+Cprogramming.com: lightatdawn's FAQ
+ 
+ 
+- <!a href="index.html">Home
+ 
+ 
+- Tutorials
+- Source
+- Books
+- Directory
+- Quiz
+ 
+ 
+- Borland
+- DJGPP
+- Other
+ 
+ 
+- C board
+- Functions
+- Email
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Click Here!
+ 
+ 
+ 
+LIGHTATDAWN'S FAQ TO END ALL FAQs
+ (with increasingly major edits by the webmaster. Update: January 15, 2002)
+TABLE OF CONTENTS
+- Links:
+ 
+- Tutorials
+ 
+- Compilers
+ 
+- Graphics
+ 
+- Other Libraries
+ 
+- Resources
+- Netiquitte (on this board)
+- Caps
+ 
+- Flames/Vulgarity/Idiocy
+ 
+- Fix all my problems
+ 
+- Descriptive Subject Lines
+ 
+- Getting better results
+ 
+- The Search Option
+ 
+- Code formatting
+ 
+- Multiple posts
+- Clearing the Screen
+- Pausing your program
+- Random Numbers
+- Running execs
+- Displaying a picture file
+- I dont have x header file
+- void main() or int main()
+- Various
+ About the FAQ
+ This FAQ was designed to cover the most frequently asked questions (F.A.Q. Duh!) on the C++/C (formerly Newbie) boards on this site.
+The questions are seen quite regularly and we hoped to help out a large group of people all at once. This gives people more
+time to answer more questions since they dont have to answer the same ones repeatedly (this gets boring really fast).
+ The idea for a FAQ has been tossed around the board for a while. Someone finally decided to do something about it.
+That would be me (lightatdawn) (of course). While I compiled most of this FAQ, I used many suggestions from many of the
+regulars here. Sunlight provided all of the Windows specific code (since I'm no WinPro at the moment) and robwhit submitted
+a bunch of common questions as well as a few answers. *thumbs up* Most of the links are also his. Artc also gave me some
+great sites. (I've checked them out myself. All the links here are good. Updated Feb. 6, 2001) Check them out for good resources/examples/
+tutorials/etc.
+ Also, read the netiquette section. Following the netiquette of this board (its all pretty simple and obvious stuff) will
+make everyone else much more likely to help you. It will also everyone happier, more well-adjusted individuals... and less
+likely to start rants (e.g. "RANT: system("cls") and system("pause") are evil"). *laughs* Though I suppose anyone reading
+this should thank Sunlight for starting that one seeing as it indirectly led to the creation of this FAQ.
+ So without further ado... here is the FAQ.
+LINKS
+Tutorials:
+ The Basics
+Cprogramming.com's C++ made Easy
+ http://www.sunlightd.com/Windows/
+ The everpopular Win32 & DirectX tutorial by Sunlight
+ http://firstpod.tripod.com/cpp21/
+ A DirectX tut
+ http://www.scorpioncity.com/djdirectxtut.html
+Compilers:
+ Borland C++ 5.5
+ http://www.borland.com/bcppbuilder/freecompiler/
+ Some info on BC55
+ http://www.pharo.onlinehome.de/Bcc55.html
+ DJGPP
+ http://www.delorie.com/djgpp/
+ LCC-Win32 (A C only compiler)
+ http://www.cs.virginia.edu/~lcc-win32/
+ MingW32
+ http://www.xraylith.wisc.edu/~khan/software/gnu-win32/gcc.html
+ NASM
+ http://www.web-sites.co.uk/nasm/
+Graphics:
+ OpenGL site
+ http://www.opengl.org
+ MESA -- OGL implementation (3D Graphics Library)
+ 
+ http://Mesa3D.sourceforge.net/
+ Allegro (Library that comes with DJGPP)
+ http://www.talula.demon.co.uk/allegro/
+<b>Other Libraries:</b><br><br>
+ OapenAL (audio library)<br>
+ <A href="htttp://www.openal.com">http://www.openal.com
+<b>Resources:</b><br>
+<br> Tutorials, Examples, and Help, for many OSs and languages<br>
+ <A href="http://www.programmersheaven.com">http://www.programmersheaven.com
+ Programming Central
+ http://www.programmingcentral.com/
+ File Format info
+ http://www.wotsit.org
+ Online general help
+ http://www.gator.net/~garyg/C/master_index.html
+ Linux related topics
+ http://sourceforge.net
+ A good all-round site
+ http://development.freeservers.com/
+0.0 NETIQUETTE
+</h3>
+<A name="netcaps"><b>0.1 CAPS</b><br><br>
+ Us programmers spend many hours in front of computers (duh!). This tends to be a quiet excersise. We dont really
+appreciate people running around yelling. Each persons problem is *just* as important as the next. Please don't clutter
+the post up with CAPS.<br><br>
+<A name="netflames"><b>0.2 FLAMES/VULGARITY/IDIOCY</b><br><br>
+ Do unto others... Sometimes discussions get going on the board that arent exactly specifically code oriented.
+(RANT: DOS is dead) It turns out people have a lot to say on such subjects. (Mainly: No. Its not.) Occasionally people
+get excited and start flaming people about their code structure/opinions/ideas/existance. Although these people are
+entitled to their opinion, please do it somewhere else.<br>
+ Vulagarity is also not usually looked upon with favour. Some (most) of the users of this board do not want to hear
+some things. I think the rest of us can live with that, yes?<br>
+ This is a *help* board. People here *help* each other. Its a fairly friendly enviroment. There is a wide range of
+expertise displayed here. From practically first day newbie to "I've been programming since Cobol was the wave of the
+future". If you have a question you think is too simple: ask anyhow. If you see a question you think is so simple that everyone should know it: answer it. Dont get all holier-than-thou. You've got to start somewhere.<br><br>
+<A name="nethelp"><b>0.3 FIX ALL MY PROBLEMS</b>
+<br><br>
+ We see a lot of posts like "here is my 5 gazillion page program please fix it if there are any problems" (To quote
+robwhit). We (I speak at least for myself but probably others as well) would love to solve the world's problems. Unfortunately time usually has something to say about that. If you have a massive program, please do not post the entire thing on the board. It would be best to just post the small section that you believe causes the problem. Or if all the code is suspect (uh oh) then you may want to ask someone to check your code via e-mail. Pages of code are very hard to read on the board. No indentation (...at the time of this FAQ. Oh please let that change very soon! [Note from webmaster: No guarantees, but I'm working on it])
+<br><br>
+<A name="netsubject"><b>0.4 DESCRIPTIVE SUBJECT LINES</b><br><br>
+ The subject line is there for a reason. No one has time (well, I don't) to read every post on the board. And most
+of us check several of the boards (This fact also suggests posting only on the appropriate board). That makes for a lot of reading. Posts like "Help" or "Problems" or "C
+programming", arent very helpful. Of course its C programming, thats what the board is for! And we already know you want
+help, thats what the board is for too. Be more specific: "Help with returning char not int", "Problems compiling with
+graphics.h", "Difference between C and C++?"<br><br>
+<A name="netresults"><b>0.5 GETTING BETTER RESULTS</b> (Credit: robwhit)
+Heres some tips:<br><br>
+ Be as specific as possible...people don't have time to write an entire program for you. Don't lay out the specs for your entire program and expect somebody to write it all up for you.<br>
+ Start writing the program yourself, and when you run into a problem that you can't solve on your own, cut out all the
+parts of code that don't have anything to do with the problem, and just post the bare-bones of the source, illustrating the
+problem that way. Be sure to actually ask your question too... sometimes, somebody will post perfectly legitimate code, but
+it doesn't work the way they want (because of a misunderstanding of how the language works). Without them actually stating
+the question, you probably won't get any help unless something looks grossly out of place.<br>
+ Strip down your code! Down to the bare-bones! Cut out pieces of code until you have the smallest peice of code that you
+can still reproduce the problem with. It'll be a lot easier for us on the board (especially because of the lack of
+indentation, and you will probably find the problem on your own once everything is so simplified. <br><br>
+<A name="netsearch"><b>0.6 THE SEARCH OPTION</b><br><br>
+ This one will make you very popular here. Use the Search option! You can search previous posts relating to your topic. If
+you want help on getch() you can search the posts (on all the boards!) for getch. Trust me: this will yield many results.
+Many times your question has been answered already. Sometimes that same day (twice). :)<br><br>
+<A name="formatting"><b>0.7 CODE FORMATTING</b><br><br>
+ You may have seen code formatting utilities posted recently that have now been removed from the board. The situation requiring formatting tools has been otherwise resolved, and the board can now handle newlines and whitespace properly. Please make your code readable, however, and use the indentation which has been granted.<br><br>
+<a name="crosspost"><b>0.8 MULTIPLE POSTINGS</b><br><br>
+ Don't post your question multiple times. The second occurence of any post on a single board within a day or two isn't likely to aid in receiving an answer. If you have posted a question in a thread and have further questions about the same topic, please continue the topic in the same thread, rather than starting a new thread every time you have a question pertaining to the first.<br>
+ <b>Do not cross post</b>; cross posting is not necessary because almost everyone who is likely to answer your question reads all of the boards. There are not too many boards, so choose the proper board for your question with confidence that it will be read by most individuals. Cross posts will be closed by the moderators with a note to continue the thread on the appropriate board.<br><br>
+<A name="clear"><h3> 1.0 CLEARING THE SCREEN: (Credit: robwhit) </h3>
+<b>OPTION 1</b><br>
+<br>
+put this at the top of your source file:<br>
+#include &lt;conio.h&gt;
+<br><br>
+put this where you want the screen to clear:<br>
+clrscr();<br><br>
+Advantages:<br>
+Works fast. Simple.
+<br><br>
+Disadvantages:<br>
+Only DOS compilers have this function.
+<br><br>
+<b>OPTION 2</b>
+<br><br>
+putchar some newlines until everything is scrolled off of the screen.
+<br><br>
+Advantages:<br>
+It works.<br><br>
+Disadvantages:<br><br>
+The screen isn't always the same size, even in text modes, so there could be more lines than you think are there.
+(And its slow and hackish.)<br>
+<br>
+<b>OPTION 3</b>
+<br><br>
+Use a text-mode library like curses or a port of it or something like that.
+<br><br>
+Advantages:<br>
+Portable, provided that you have the library
+<br><br>
+Disadvantages: <br>
+You have to get the library
+<br><br>
+<b>OPTION 4</b>
+<br><br>
+Write directly to video memory, clearing all the bits.
+<br><br>
+Advantages:<br>
+It works.
+<br><br>
+Disadvantages:
+Some OSs don't allow you to directly access hardware, finding out how to write to video memory can be a pain, don't expect
+it to be too portable...<br><br>
+<b>OPTION 5</b>
+<br><br>
+For all UNIX systems, using curses:
+<pre>
+#include &lt;curses.h&gt;
+void clrscr()
+{
+static int init;
+ if (init == 0)
+ {
+ initscr();
+ init = 1;
+ }
+ clear();
+ refresh();
+}
+</pre>
+<b>OPTION 6</b>
+<br><br>
+Throw the monitor out the window
+<br><br>
+Advantages:<br>
+Pretty fail-proof<br>
+Releases your anger<br><br>
+Disadvantages:<br>
+No more monitor.<br>
+If you forgot to unplug it, other computer peripherals might follow it in a racing frenzy<br>
+You have to open the window and take the screen out (the mesh thingie that keeps bugs out.... supposedly...)<br>
+(Note from webmaster: Not portable. Difficult to write code to throw monitor out window.)<br><br>
+<b>WINDOWS OPTION:</b> (Credit: Sunlight)<br><br>
+ Just call the function clrscr(). Simple as that.
+<pre>
+#include &lt;windows.h&gt;
+void clrscr()
+{
+ COORD coordScreen = { 0, 0 };
+ DWORD cCharsWritten;
+ CONSOLE_SCREEN_BUFFER_INFO csbi;
+ DWORD dwConSize;
+ HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+ GetConsoleScreenBufferInfo(hConsole, &csbi);
+ dwConSize = csbi.dwSize.X * csbi.dwSize.Y;
+ FillConsoleOutputCharacter(hConsole, TEXT(' '), dwConSize, coordScreen, &cCharsWritten);
+ GetConsoleScreenBufferInfo(hConsole, &csbi);
+ FillConsoleOutputAttribute(hConsole, csbi.wAttributes, dwConSize, coordScreen, &cCharsWritten);
+ SetConsoleCursorPosition(hConsole, coordScreen);
+}
+</pre>
+<A name="pause"><h4>2.0 PAUSING YOUR PROGRAM</h4>
+I'm assuming DOS/Console Mode here. Any Win32 GUI programs shouldnt need to do this.
+<br><br>
+<b>OPTION 1: getch()</b>
+<br><br>
+Syntax:<br>
+#include &lt;conio.h&gt;<br>
+int getch(void);<br><br>
+Example:<pre>
+#include &lt;conio.h&gt; //for "getch()"
+#include &lt;stdio.h&gt; //for "printf"
+int main(void)
+{
+ printf("Press a key to continue...");
+ getch();
+ return 0;
+}
+</pre>
+NOTE: One could also use gets() instead of getch(). It is more portable than getch() but requires the user to press enter.
+gets() will get a string from stdin and echo to the screen. Terminates on newline character.
+<br><br>
+<b>OPTION 2: kbhit()</b>
+<br><br>
+Syntax:<br>
+#include &lt;conio.h&gt;<br>
+int kbhit(void);<br>
+Example:<pre>
+#include &lt;conio.h&gt; //for "kbhit()"
+#include &lt;stdio.h&gt; //for "printf"
+int main(void)
+{
+ printf("Press a key to continue...");
+ while(!kbhit());
+ return 0;
+}
+</pre>
+<A name="random"><h3>3.0 RANDOM NUMBERS </h3>
+Ah, yes. The backbone of RPGs. (You know, those games which we all start and never finish.)
+There is really only one way (that i know of) to do random numbers. And that is rand().
+Syntax:<pre>
+#include &lt;stdlib.h&gt;
+int rand(void);
+#include &lt;stdlib.h&gt; //for rand
+#include &lt;stdio.h&gt; //for printf
+int main(void)
+{
+ randomize();
+ printf("A random number from 0 to 99: %d", rand() % 100);
+ return 0;
+}
+</pre>
+That said: There is more than one way to initialize the random seed (other than randomize). Randomize will not work under
+all compilers. And since the seed must be initialized (or the numbers will not be random) here is the other way:
+<pre>
+#include &lt;stdlib.h&gt; //for rand
+#include &lt;stdio.h&gt; //for printf
+#include &lt;time.h&gt; //for time
+int main(void)
+{
+ srand(time(NULL));
+ printf("A random number from 0 to 99: %d", rand() % 100);
+ return 0;
+}
+</pre>
+srand initilizes the seed based on the number inputed. Normally time() is used so that the number is different each time the
+program is run. If you use srand(x); (where x is equal to any constant number) you will recieve random numbers but they will
+be the same on each execution.
+<br><br>
+Q: But, how do i get a number between x and y? Like a die or something?<br>
+A: Use a function like this one...<pre>
+int rand_mid(int low, int high)
+{
+ return low+rand()%(high-low+1);
+}
+</pre>
+<A name="execs">
+<h3>4.0 RUNNING EXECS </h3>
+How to run another program from your program? There are many ways to do this.<br><br>
+<b>OPTION 1: system()</b><br><br>
+Disclaimer: (Dont yell at me yet Sunlight!) First let me say that the system(); command is not the best option. It is slow
+(And i mean SLOW!) and poorly optimized. System() makes a DOS system call and can be used to spawn and DOS command. But
+there are always better options. I only included this option because it works.
+<br><br>
+Syntax:<br>
+#include &lt;stdlib.h&gt;<br>
+int system(const char *command);<br><br>
+Example:<pre>
+#include &lt;stdlib.h&gt;
+int main(void)
+{
+ system("myprog.exe");
+ return 0;
+}
+</pre>
+<b>OPTION 2: spawn_</b><br><br>
+This is the best option (in my opinion). Use one of the spawn_ family of functions (spawnl, spawnle, spawnlp, spawnlpe,
+spawnv, spawnve, spawnvp, spawnvpe). I'll include an example using spawnl.
+<br><br>
+Syntax:<br>
+#include &lt;process.h&gt;<br>
+#include &lt;stdio.h&gt;<br>
+int spawnl(int mode, char *path, char *arg0, arg1, ..., argn, NULL);<br>
+int spawnle(int mode, char *path, char *arg0, arg1, ..., argn, NULL, char *envp[]);<br>
+int spawnlp(int mode, char *path, char *arg0, arg1, ..., argn, NULL);<br>
+int spawnlpe(int mode, char *path, char *arg0, arg1, ..., argn, NULL, char *envp[]);<br>
+int spawnv(int mode, char *path, char *argv[]);<br>
+int spawnve(int mode, char *path, char *argv[], char *envp[]);<br>
+int spawnvp(int mode, char *path, char *argv[]);<br>
+int spawnvpe(int mode, char *path, char *argv[], char *envp[]);<br>
+<br><br>
+Example: spawnl<pre>
+#include &lt;process.h&gt;
+#include &lt;stdio.h&gt;
+int main(void)
+{
+ spawnl(P_WAIT, "myprog.exe", "myprog.exe", NULL);
+ return 0;
+}
+</pre>
+<b>WINDOWS OPTIONS:</b> (Credit: Sunlight) 
+ Use one of the _spawn functions, or CreateProcess, or ShellExecute. Which one you use depends on what you want to do.
+_spawn is simplest (and most portable), CreateProcess gives you the most control, ShellExecute gives you the most
+flexibility (starts documents as well as files, for example).
+<A name="pic"><h3>5.0 DISPLAYING A PICTURE FILE </h3>
+ Just a few notes: I'm not going to go into great detail here.<br>
+ If you want to do this in Win32 it is easy. Check out the tutorial at
+<A href="http://users.ox.ac.uk/~ball0597/Reference/WindowsProgramming/">http://users.ox.ac.uk/~ball0597/Reference/WindowsProgramming/
+ If you want to do this in Console mode: You can't. Console mode won't do graphics. The End.
+ If you want to do this in DOS mode. This is more complicated. Check out www.wotsit.com for information regarding picture
+files of all kind. The actual code to do this is semi-long. I'll put it in anyhow. But just so you're warned, this example
+is quite limited. Its cut down to make it easier to understand. This will load "test.bmp" (This can be changed, obviously)
+from the running directory. It will first initialize mode 13 (320x200 screen with 256 col) and then load the BMP. It will
+only load an 8-bit bmp of a size less than the screen. The code can be adapted to read other types of BMPs quite easily.
+Here goes!
+#include <dos.h>
+#include <stdio.h>
+#include <string.h>
+#include <conio.h>
+char far *Screen;
+//Sets the display to VGA 320x200x256
+void VGAScreen (){
+ union REGS r;
+ r.h.ah = 0;
+ r.h.al = 0x13;
+ int86(0x10, &r, &r);
+ return;
+}
+//Goes back to textmode
+void TextScreen (){
+ union REGS r;
+ r.h.ah = 0;
+ r.h.al = 0x3;
+ int86(0x10, &r, &r);
+ return;
+}
+//This sets a DAC register to a specific Red Green Blue-value
+int SetDAC (unsigned char DAC, unsigned char R, unsigned char G, unsigned char B)
+{
+ outportb (0x3C8, DAC);
+ outportb (0x3C9, R);
+ outportb (0x3C9, G);
+ outportb (0x3C9, B);
+ return 0;
+}
+int LoadBMP (){
+ struct BMPHeader {
+ unsigned short bfType;
+ long bfSize,
+ bfReserved,
+ bfOffBits,
+ biSize,
+ biWidth,
+ biHeight;
+ unsigned short biPlanes,
+ biBitCount;
+ long biCompression,
+ biSizeImage,
+ biXPelsPerMeter,
+ biYPelsPerMeter,
+ biClrUsed,
+ biClrImportant;
+ } Header;
+ FILE *BMPFile;
+ unsigned char c, Palette[256][4];
+ char *filename = "test.bmp";
+ unsigned int offset, lines, paddedWidth;
+ //This checks for the file
+ BMPFile = fopen (filename, "rb");
+ if (BMPFile == NULL) {
+	 printf ("Cant open file.");
+	 return 1;
+ }
+ //Read the headerinformation
+ fread (&Header, 54, 1, BMPFile);
+ if (Header.bfType != 19778 || Header.bfReserved != 0 || Header.biPlanes !=1) {
+	 //Not a valid bitmap file - don't display
+	 printf ("Not a valid bitmap.");
+	 fclose (BMPFile);
+	 return 1;
+ }
+ if (Header.biCompression != 0) {
+	 //Compressed file - don't display
+	 printf ("Compressed file.");
+	 fclose (BMPFile);
+	 return 1;
+ }
+ if (Header.biBitCount != 8) {
+	 //If the file is other than 8-bit dont read.
+	 printf ("Not an 8-bit bitmap.");
+	 fclose (BMPFile);
+	 return 1;
+ }
+ if (Header.biWidth > 320 || Header.biHeight > 200) {
+	 //If its larger than 320*200 dont load.
+	 printf ("Size too large.");
+	 fclose (BMPFile);
+	 return 1;
+ }
+ //Load the palette info
+ fread (&Palette, 1024, 1, BMPFile);
+ for (c = 0; c > 2, Palette[c][1] >> 2, Palette[c][0] >> 2);
+ offset = (100 + (Header.biHeight >> 1)) * 320 + 160 - (Header.biWidth >> 1);
+ lines = 0;
+ paddedWidth = Header.biWidth & 0xFFFC;
+ if (Header.biWidth != paddedWidth) paddedWidth += 4;
+ //Loop for reading lines
+ while (lines 
+<h3>
+6.0 I DONT HAVE X HEADER FILE </h3>
+This one seems to bother a lot of people.<br><br>
+ You cant just get the header file. A header file is just a pointer to the .lib. Have you ever looked in a header? Not much actual code going on in there is there? Its just all #define THISTHING and extern _SOMEWEIRDCOLLECTIONOFLETTERS. So, you say, "Can i have the lib too?" Sadly, no. Its copyrighted. Dont you just hate that? And chances are that if you don't have the library already, it wont work with your compiler. :(
+<br><br>
+<b>Solutions?</b><br>
+ Not any good ones. Any functions that are found in the header your looking for will probably be available to you with
+your own headers. It may not be exactly the same but most functions are pretty universal. I'm afraid you'll have to search
+your help and include files. But we're all pretty used to that by now. (If files could get worn out, my help file would be
+a hole in the floor.)
+<br><br>
+<A name="main"><h3> 7.0 VOID MAIN() OR INT MAIN()</h3>
+ A very common question around here is "Whats the difference between void main and int
+main?" The short response is "void main is wrong and int main is right." But that just
+doesnt cut it for some people. :)<br><br>
+ void main(): You cant return a value from void main. i.e. Not return 0; at the end of
+main(). You can return; but no value is passed back to any program that called it. This may
+not seem like much of a problem to you at this point in time but it *will* become important
+as you create more complex programs.<br><br>
+ int main(): Returns a integer value at the end of execution. The value returned can be a
+standard 0 or any other int to represent and number of errors/choices/results/etc... int
+main() is a standard. Meaning its been declared normal by the ANSI standard. Without these
+standards programs would have a hard to communicating. (And everything would very much
+resemble MS Windows. *smiles*)<br><br>
+ Conclusion: Go for int main(). If for no other reason than its a good coding habit. Its
+no harder to say return 0; than return; And it will save you time in the future.
+<br><br>
+<A name="various"><h3>8.0 VARIOUS: (Credit: Sunlight) </h3>
+Q. How do I write a Windows (console-mode) program?<br>
+A. Use a Windows compiler. You can use Borland C++ (v5.5 is freely available), mingw32, lcc/Win32, DJGPP/RSX, Visual C++.
+<br><br>
+Q. How do I do text colouring/movement/centering?<br>
+A. Read the MSDN section on console commands:<br>
+ <A href="http://msdn.microsoft.com/library/default.asp?URL=/library/psdk/winbase/conchar_4p6c.htm">http://msdn.microsoft.com/library/default.asp?URL=/library/psdk/winbase/conchar_4p6c.htm
+Q. No, really - I just want to do gotoxy!!!
+A. Sigh...
+#include <windows.h>
+void gotoxy(int x, int y)
+{
+ COORD coord;
+ coord.X = x;
+ coord.Y = y;
+ SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+Q. How do I do X, Y or Z, which I could do under DOS, and doesn't involve graphics, networking, port access or interrupts?
+A. Chances are you can do it just as you did under DOS. For example, all the standard ANSI C/C++ libraries still work, all
+ the file access, console I/O and all the random number functions.
+To the Boards
+ 
+ <br>
+ <img src="http://focusin.ads.targetnet.com/ad/id=cprogram&opt=hin&cv=210&uid=1" alt="Click here to visit our sponsor" width=468 height=60 border=0>
+ 
+focusIN Specialty Web Network
+ 
+ 
+ 
+	
+ 
+	
+	

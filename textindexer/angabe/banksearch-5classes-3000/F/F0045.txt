@@ -1,0 +1,591 @@
+
+ 
+ 
+ 
+ Key Detection
+Key
+Detection - using flags and the keyboard
+Index
+1. Introduction
+2. Describing
+Bits
+3. Setting
+a Bit
+4. Clearing
+a Bit
+5. Checking
+the value of a Bit
+6. Detecting
+Key Presses
+Introduction
+This is one of the most important
+things you should know. Almost every game needs key detection so that it
+can respond to some actions like, for example, a fire key pressing. Most
+game programmers use one integer for each key being pressed. The problem
+is that, if you press 3 or 4 keys at a time, the computer can't detect
+them all. So here we'll explain how to use just one integer to handle multiple
+flags at a time.
+An integer consists in 16 bits.
+Bits are numbered from right to left, starting at 0, and each one represents
+2 raised to its positional number.
+15 14 13 12 11 10 9 
+8 7 6 5 4 3 2 1 0 
+Bit position
+ 0 0 
+0 0 0 0 0 0 0 0 
+0 0 0 0 0 0 
+Bit value
+As you've seen, one integer
+can store 16 flags that can be active (value=1) or not (value=0).
+[Back
+to Top]
+Describing
+bits
+As it was explained earlier,
+a bit represents 2 raised to its position number. So we would use the following
+to declare constants that describe each bit:
+Global Const BIT_0 = 1 ' 2^0
+= 1
+Global Const BIT_1 = 2 ' 2^1
+= 2
+Global Const BIT_2 = 4 ' 2^2
+= 4
+Global Const BIT_3 = 8 ' 2^3
+= 8
+...
+Global Const BIT_14 = 16384
+' 2^14 = 16384
+You can use it like above, but
+the constants aren't describing what they represent. In your program you
+can use constants such as:
+Global Const Left_Key = 1
+Global Const Right_Key = 2
+Global Const Down_Key = 4
+Global Const Up_Key = 8
+Global Const Fire_Key = 16
+[Back
+to Top]
+Setting
+a bit
+To set
+a bit value, you should use the 'OR' operator in VB.
+0 OR 0
+= 0
+0 OR
+1 = 1
+1 OR
+0 = 1
+1 OR
+1 = 1
+As you
+see, if either bit is set (value=1), then the corresponding bit in the
+result is set. OR'ing with a set bit will always set that bit in the result.
+So if you want to set a flag in a variable, use:
+variable
+= variable OR flag
+Suppose
+that the integer that holds the key flags in our game is named Keys.
+We have an Up_key = 8 constant, too (bit position = 3 - 
+2^3 = 8).
+ 
+ 
+Bit
+Position:
+ 
+15
+ 
+14
+ 
+13
+ 
+12
+ 
+11
+ 
+10
+ 
+9
+ 
+8
+ 
+7
+ 
+6
+ 
+5
+ 
+4
+ 
+3
+ 
+2
+ 
+1
+ 
+0
+ 
+Keys:
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+Up_Key:
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+1
+ 
+0
+ 
+0
+ 
+0
+ 
+Result
+of OR:
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+1
+ 
+x
+ 
+x
+ 
+x
+ 
+'x' represents
+either 0 or 1 - it makes no difference.
+[Back
+to Top]
+Clearing
+a bit
+To clear
+a bit (set its value to 0), we use two operators = 'NOT' and 'AND'.
+NOT
+requires only one argument and is used like NOT
+{expression}
+Not 0
+= 1
+Not 1
+= 0
+If you
+NOT the flag Up_Key, see what happens:
+ 
+ 
+Bit
+Position:
+ 
+15
+ 
+14
+ 
+13
+ 
+12
+ 
+11
+ 
+10
+ 
+9
+ 
+8
+ 
+7
+ 
+6
+ 
+5
+ 
+4
+ 
+3
+ 
+2
+ 
+1
+ 
+0
+ 
+Up_Key
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+0
+ 
+1
+ 
+0
+ 
+0
+ 
+0
+ 
+Result
+of NOT:
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+0
+ 
+1
+ 
+1
+ 
+1
+ 
+'AND'
+only sets the result if both source bits are set:
+0 AND
+0 = 0
+0 AND
+1 = 0
+1 AND
+0 = 0
+1 AND
+1 = 1
+AND'ing
+with 1 will result in an unchanged bit, and AND'ing with 0 will clear the
+bit.
+To clear
+a flag, use:
+variable
+= variable AND (NOT flag)
+E.g.: 
+Keys = Keys AND (NOT Up_Key)
+Looking
+in binary:
+ 
+ 
+Bit
+Position:
+ 
+15
+ 
+14
+ 
+13
+ 
+12
+ 
+11
+ 
+10
+ 
+9
+ 
+8
+ 
+7
+ 
+6
+ 
+5
+ 
+4
+ 
+3
+ 
+2
+ 
+1
+ 
+0
+ 
+NOT
+Up_Key:
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+1
+ 
+0
+ 
+1
+ 
+1
+ 
+1
+ 
+Keys:
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+Result:
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+x
+ 
+0
+ 
+x
+ 
+x
+ 
+x
+ 
+'x' is
+either 0 and 1.
+[Back
+to Top]
+Checking
+the Value of a Bit
+Use the
+AND operator to check if an individual bit is set. Like in the following:
+If variable
+AND flag Then
+procedures
+to do if the flag is set
+Else
+if the
+flag isn't set...
+End If
+In our
+example:
+If Keys
+AND Up_Key Then
+character.Jump
+End If
+[Back
+to Top]
+Detecting
+Key Presses
+First,
+set the KeyPreview property of your main form to True.
+When
+you do this, you receive two events: KeyDown and KeyUp. Both receive a
+KeyCode, that represents the key being pressed or released. All keys have
+constants in VB, like VbKeyUp, VbKeyDown, VbKeySpace, VbKeyA etc.
+Once you've
+assigned flags to all the key constants and declared an integer to store
+them, you should use something like:
+Private
+Sub Form_KeyDown (KeyCode As Integer, Shift As Integer)
+' At this
+event, you should set the appropriate flag
+Select
+Case KeyCode
+Case VbKeyUp 
+' Up arrow
+Keys =
+Keys OR Key_Up ' Set flag
+Case VbKeyDown
+Keys =
+Keys OR Key_Down
+Case VbKeySpace
+Keys =
+Keys Or Key_Fire
+End Select
+End Sub
+You should
+do the opposite in the KeyUp event - it's fired when the user releases
+a key.
+Private
+Sub Form_KeyUp (KeyCode As Integer, Shift As Integer)
+Select
+Case KeyCode
+Case
+VbKeyLeft
+Keys
+= Keys AND (NOT Key_Left)
+' And
+so on...
+End
+Select
+End
+Sub
+...And
+that's what you need to detect keys in VB!
+--->
+Download Keys.bas if you want some routines such as CheckFlag, AddKey,
+RemKey and much more!
+[Back
+to Top] [Back to the Games Programming
+Section]

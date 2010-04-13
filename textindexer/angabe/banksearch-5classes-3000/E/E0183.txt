@@ -1,0 +1,234 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Just Say No to Memory Leaks
+Troubleshooters.Com
+Presents
+"Just Say No" to Memory Leaks
+Copyright (C) 1997 by Steve Litt
+[ Back to Crashproof C++ |
+Code
+Corner | Troubleshooters.Com |
+Email
+Steve Litt | Copyright Notice ]
+Steve Litt is the author of Troubleshooting
+Techniques of the Successful Technologist and
+Rapid Learning: Secret
+Weapon of the Successful Technologist.
+ 
+ 
+To me, letting code with memory leaks out the door is the mark of an
+amateur. Some disagree with me. For those who agree with me, I offer "how
+to eliminate memory leak". To serve those who disagree with me, I offer
+"The Top Ten Excuses for Memory Leak". Enjoy!
+ 
+How to Eliminate
+Memory Leak
+Top Ten Excuses for Memory
+Leak
+- 
+Make everything modular and independent.
+- 
+How to easily delete everything you create
+- 
+Test your classes.
+- 
+Watch out for oststream::str()
+- 
+Test third party tools
+ 
+10. A little memory leak is no big thing.
+9. Nobody will ever find out.
+8. Complex programs always have memory leak.
+7. My Application Framework is too entangled.
+6. The memory leak is in the operating system.
+5. The memory leak is in my third party tools.
+4. Product development cycles are too
+fast.
+3. It's hard to get good programmers today.
+2. Leaks and bugs are the price you pay for GUI.
+1. Everything else leaks, why shouldn't mine?
+ 
+Top Ten Excuses for Memory Leak
+Excuses are like garbage cans. Everybody has one, and they all stink. Here
+are the top ten used to justify "a little memory leak".
+10. A little memory leak is no big thing.
+Especially in a routine that's called only once, or a couple times.
+Right?
+No, wrong. Leaky programs tend to display wierd intermittents ten times
+harder to troubleshoot than a reproducible error. It will drive the users
+nuts.
+9. Nobody will ever find out.
+Since leaky programs usually produce intermittents that can appear to
+crash in other people's programs, I can dodge the bullet by blaming it
+on other programs.
+Of course, a good Troubleshooter can trace the memory leak down to the
+line of code. And if they find it in your code, everyone will hate you.
+Not to mention that your transgression might be published on the web...
+8. Complex programs always have memory leak.
+Come on! Live in the real world. With today's customers demand for more
+features, real-world apps are too complex to elimate every memory leak.
+Don't write apps exceeding your abilities as a programmer. Instead,
+craft your app from a collection of encapsulated and independent
+classes, each of which can be tested and de-leaked independently.
+7. My Application Framework is too entangled.
+My application framework gives me over 100,000 lines of code already
+programmed. Everybody's using it. Unfortunately, it's not modular enough
+to independently test classes.
+Users won't forgive your bugs because of your choice of application
+framework any more than you'd forgive your housepainters sloppy work because
+he chose a bad sprayer. Gone are the days when your only choices were MFC,
+OWL, and DOITYOURSELF. Borland's C++ Builder is based on Ultra-Modular
+VCL. Powersoft's C++ product also shows promise.
+If you're afraid to switch application frameworks because you want the
+one made in Redmond, beware. They won't blame the guys in Redmond for your
+bugs, they'll blame you. And a competitor with solid code will eat your
+lunch.
+6. The memory leak is in the operating system.
+My customers demand apps that work with the most popular operating system,
+and the leaks occur in that operating system.
+Leaks in the OS? Maybe that's true and maybe it isn't. The only way
+to find out is a complete analysis of your program and classes. And that's
+only possible with a modularly crafted app. If you do prove a leak is in
+the OS, it's your job as a programmer to work around it.
+5. The memory leak is in my third party tools.
+I can't write everything from scratch. I can't re-invent the wheel.
+This is the real world. And some of those third party tools have memory
+leaks. What can I do?
+You can demand better of your third party vendors. Demand that their
+offerings come in distinct, modular, and independent classes. Then test
+each class for memory leak. Don't have the time? Then pay the price in
+the marketplace.
+4. Product development cycles are too fast.
+Be real. This is 1997. The marketplace demands a four month time-to-market.
+There's no time to test thoroughly or build in quality.
+OK, fine. Kick the product out the door in four months, with memory
+leaks (and the resulting other problems). Now start your next 4 month production
+cycle. With huge volumes of trouble calls yanking your programmers away
+from their work. And trade magazines demanding explanations for the bugs.
+And decreased revenue from the tarnished reputation.
+3. It's hard to get good programmers today.
+As soon as I get a good programmer, someone else offers him more money.
+The minute I train a programmer, he goes somewhere else. The team at the
+start of a project bears no resemblance to the team at the end of the project.
+So there are bugs.
+If you have problems paying for good talent now, imagine how tough it
+will be when your revenue stream dries up from buggy product. Give your
+good programmers large raises commensurate with their willingness to accept
+training in modular and independent class construction and use. Those large
+raises are nothing next to what you'll have to pay a new guy.
+2. Leaks and bugs are the price you pay for GUI.
+Take your head out of the clouds. Today's user demands GUI, and GUI
+always has memory leaks. Get real!
+See Excuse #1.
+1. Everything else leaks, why shouldn't mine?
+Almost all software today has memory leaks, and people still buy it.
+Why should I spend money on something that won't influence the buying decision?
+Read the trades. Today's corporate managers are sick and tired of the
+high cost of ownership, and are investigating possible solutions. One of
+those proposed solutions, the Java enabled Network PC, would put a lot
+of people, including our favorite operating system, out of business. Many
+lament the fact that in many industries, all this automation has brought
+almost no increase in productivity. Our economy can't continue to support
+buggy software. Changes are coming. And when they do, memory leaks will
+not be forgiven.
+How to Eliminate Memory Leak
+Make everything modular and independent.
+It's been known since the 70's. The less modular your program, the more
+problems. In the 70's, subroutines with global variables provided adequate
+modularity. With the more sophisticated apps of the 80's, local variables
+were required. Now in the 90's, variables and subroutines are packaged
+together in classes, and with a few exceptions each class should NOT be
+required to know about the other classes. Without this level of modularity,
+you'll find it hard to write a sophisticated app, and almost impossible
+to completely debug it. This is the source of most of the "it'llhavetodoware"
+of today. Before taking the next steps to eliminate memory leaks, try your
+best to craft your app from encapsulated and independent classes.
+How to easily delete everything you create
+Make a Zap() command
+I define a zap() command like this:
+#define zap(x) if(x){delete(x); x=0;}
+Then, assuming all pointers start their lives as null pointers, I can safely
+delete what's been newed, and not delete things that haven't been newed,
+with a series of zap() commands like this:
+zap(pchFirstname);
+zap(pchLastname);
+zap(pchJobDescription);
+There is nothing magical about this, it just saves repetative code and
+makes it more readable. Do not stick a typecast in the zap() command --
+if something errors out on the above zap() command it likely has another
+error somewhere.
+One more note. Stroustrup says in his C++ book that #define macros are
+obsolete in C++. For the most part I agree with him, but this macro really
+is just a substitute for lines of code, so I think it's the best way to
+do it. If you know a better way, please write
+me.
+Class member variable pointers
+Generally speaking, most heap-allocated objects start their lives as pointers
+in the private part of classes. Chances are they're allocated with a new
+command in that classes constructor. Make a class method called deallocate()
+to use the delete command on every heap-allocated class variable.
+I like to make sure the object was really allocated, so I make sure
+the pointers start their lives as null. Then I make deallocate() a series
+of zap() commands. My deallocate() method then contains
+code like:
+zap(pchFirstname);
+zap(pchLastname);
+zap(pmyobject);
+Of course, my destructor will call deallocate(), as well as any ABEND method.
+Deleting member variable pointers in a loop
+Sometimes the pointer isn't new'ed in the constructor, but in a method
+that can be called over and over. A good example is a string-constructing
+method which allocates memory sufficient to hold the finished string. For
+instance:
+void MYCLASS::makeFilename(const char *szName, const char *szDir)
+ {
+ pchMemberDir = new char[strlen(szName]+strlen(szDir)+2]; //strlens plus backslash plus null
+ //*** DO THE STRCPY() AND STRCAT() COMMANDS HERE ***
+ }
+The if the method above is called 1000 times in a loop, you'll end up with
+one valid char pointer and 999 disembodied memory chuncks. The trick is
+to put the following line of code just before the new command:
+zap(pchMemberDir) //if exists from past call, delete it
+Test your classes.
+Here's the code. The explanation follows the code:
+void testMyclassOnce()
+ {
+ MYCLASS myobject;
+ //*** EXERCISE ALL METHODS BELOW ***
+ //*** COMMENT IN THE NEXT AS LEAKS ARE ELIMINATED FROM PREVIOUS ***
+ //myobject.method1();
+ //myobject.method2();
+ //myobject.method3();
+ }
+const int testMyclass(const int nReps)
+ {
+ int nLeaks = 0;
+ long lMemLast = 0;
+ long lMemOrg=0;
+ long lMem;
+ for(int nT = 0; nT freeze(0); //WITHOUT THIS, YOU HAVE A MEMORY LEAK
+ }
+void main()
+ {
+ cout freeze(0), which "unfreezes" the string
+and allows it to be destroyed along with the ostrstring object.
+How about when the string is returned by the function. Obviously the
+function can't destroy it. In such a case, you have to destroy it yourself:
+const char *makeFilename(const char *szName, const char *szDir)
+ {
+ ostrstream ost;
+ ost freeze(0).
+Unfortunately, this would expose the returned string to use by another
+memory allocation, which would overwrite the string and produce self-modifying
+code. Note also your calling function can't forget to get the pointer,
+then deallocate it with a call to the next:
+ cout ", "c:\\windows") Copyright
+(C)1997 by Steve Litt. -- Legal
+ 
+ 

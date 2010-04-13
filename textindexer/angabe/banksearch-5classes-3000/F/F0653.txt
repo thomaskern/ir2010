@@ -1,0 +1,86 @@
+
+	
+Hot.Net Code
+	
+	
+ 
+ 
+ 
+	
+	
+	Add 1288 developers to your team
+	
+ 
+	
+	
+	
+ 
+	VBUG Home
+	
+	
+	
+	.NET Zone
+	 
+	
+	Recruitment
+	 
+	
+	Developer Resources
+	 
+	
+	Events
+	 
+	
+	Training
+	 
+	
+	Technical Forum
+	 
+	
+	VBUG Team
+	 
+	
+	Feedback
+	 
+	
+	Contact us
+	 
+	
+	Free Web Magazine
+	
+	
+	
+	 
+	
+	E-news 
+	developer events
+	
+	
+	
+	
+	Privacy Pledge
+	
+	
+VBUG Hot .NET Links
+To send some code or a link to code to be included in this list please submit it to:grahamp@vbug.co.uk It will normally be 
+evaluated (and posted if suitable) within 48 hours. Thanks!
+C# Code
+*** My First C# Project My First C# project is an attempt to write a chess playing machine. I have started writing several classes:
+Here is the class for a Chess Board:
+// The Board Class is an array of 8 x 8 squares.
+// Ideally the Squares in this class should be a member of the Board 
+class Board
+{
+ public void CreateSquares()
+ {
+ Square[,] squares = new Square[8,8];
+ //Now that the array of squares has been created we need to
+ //initialise them. Each square has a row, or rank indicated
+ //by a number, and a file or column - indicated by a letter
+ //on the chess board columns go a-h left to right and rows
+ //go 1 to 8 bottom to top (both from the White Perpsective)
+ //It is important to be consistent as to dimensions on this
+ //array and we will (arbitrarily) assign the 1st dimension to
+ //the letters (or columns) and the 2nd to the numbers (or rows)
+ //The first square is black, the rest alternate from this one.
+ for (int col = 0; col

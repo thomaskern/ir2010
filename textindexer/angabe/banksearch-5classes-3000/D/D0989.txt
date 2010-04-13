@@ -1,0 +1,449 @@
+
+ 
+ 
+ Micro Java Network - The J2ME Resource : The Battle For BREW, J2ME And Related Technologies 
+ 
+	
+	
+	
+ 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+	 
+	
+	 
+	 
+	
+	 	
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+ 	 
+	
+	
+	
+	
+	
+	
+	
+	
+	Articles 
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	
+	 
+	Perspective Articles 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Tech Talk 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Product Reviews 
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	Interviews 
+	
+	 
+	
+	
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+ 
+ 
+ 
+	
+	 
+ 
+ 
+	 
+ 
+ 
+ 	 
+ 
+ 
+ 	 
+ 
+ 
+ 
+ 
+ 
+	 
+	 
+	
+	
+	
+	
+	
+	
+The Battle For BREW, J2ME And Related Technologies
+	
+	by The Shosteck Group
+ -10/29/2001
+	
+	
+Remember smart phones? Remember the Nortel "Orbiter" Java phone? Have you ever wondered why we didn't all get Java (or similar) phones five years ago when they were widely promised?
+There are many good reasons why phones capable of locally executable applications aren't in everyone's pocket today. For the purposes of this briefing, we are focusing on two key reasons. First, the industry needs a "standard" protocol for downloading executable applications (not messages) to mobile phones. To be acceptable to network operators, such a protocol must include a method for securing premium revenues and a method to certify the quality of applications in order to protect the network operator from liability. Second is the application execution environment and programming language. Such an environment needs to be flexible enough to allow useful applications on a variety of mobile device designs, yet protect the device against malicious programs (viruses) and bad programming practices which could unintentionally disable it.
+WAP was originally viewed as the method by which all content would be downloaded to mobile phones. It included a scripting language (WMLScript) which allowed minimally executable applications to be run on the mobile phone. However, it never achieved the success envisioned for it, and WAP itself was not designed to provide an execution environment for programs written in Java or other software languages.
+Sun stepped in aggressively with Java 2 MicroEdition (J2ME) to provide a true application execution environment for mobile devices with constrained memory, processing power, and battery life. This system, which includes both client and server, has achieved some success with phone manufacturers. However, J2ME is primarily designed to solve the technological problems of an application execution environment and does not inherently provide a business model for operators to secure premium revenues. The latter problem is left to the operators and their integration partners to solve.
+Openwave may provide an ideal partner to J2ME. The descendant of Phone.Com and Software.Com, Openwave has developed a "Download Fun" system which includes a protocol for uniformly downloading content and applications to mobile phones, an associated client for phones, and a server product. It is intended to align with an existing application execution environment such as J2ME. Openwave has a strong relationship among GSM network operators as a result of its WAP development work, and has secured a place within the GSM Association's "M-Services" initiative by agreeing to give the Association members royalty-free use of the protocol. The client software is also free to manufacturers.
+Qualcomm has also entered the market with Binary Runtime Environment for Wireless (BREW). BREW encompasses both an application execution environment based on C++ and a business model for certifying, downloading, and charging for premium content. The model calls for Qualcomm or an established third party to guarantee the quality of applications with unique encrypted certification codes. As with Openwave's Download Fun, this would allow network operators to maintain control over premium content and profit by it.
+It remains to be seen whether the Qualcomm model will be market-acceptable. In particular, doubts have been cast on Qualcomm's proposed split of application download revenues. The operator would charge a marked-up "retail" price to consumers. Despite this cloud, it is clear that Qualcomm has the advantage of an unencumbered distribution channel. Qualcomm can embed BREW into the chips which it already sells to manufacturers of CDMA phones, and indeed intends to do so, at no additional cost to the component buyers. This will quickly ensure that BREW technology is built into CDMA phones and in the future into Qualcomm's multi-mode chips which will include GPRS and UMTS as well as CDMA2000.
+This battle will play out on several levels, including political, marketing, and technology. Though all are technically "agnostic" of RF standards, political factors will be predominant. Openwave has strength in GSM, and Qualcomm has strength in CDMA. Crossing beyond their traditional markets will be crucial for both companies. Sun has customers among network operators but they have traditionally bought hardware infrastructure and so this has not been as reliable a channel for adoption of Java technology. All three companies stress that their technology can cooperate with the others -- a marketing ploy designed to defuse the appearance of an "either/or" decision. No one wants a repeat of the RF technology battles of the 2G era, and yet it is impractical for all three companies to succeed in such nearly overlapping spaces. A clash is inevitable.
+Most importantly, this is a battle of titans. None should be underestimated. Any method to achieve their goals, including influencing standards bodies, using antitrust or copyright laws against competitors, or strategic investment, is considered fair play.
+The strength of the companies involved means that efforts sponsored solely by the phone manufacturers (Motorola, Nokia, Siemens, Ericsson, et al) and second-tier software companies to build industry standards in this arena are likely to be ineffective. Symbian, in particular, is badly positioned for this both from a technological and market standpoint. Even broadly-supported standards from independent standards bodies face a challenge, because they are unlikely to include a complete business model for network operators, and generally lack momentum.
+Sun has had the advantage of being first to market but has wrestled to overcome the techno-centric approach of Java and demonstrate to network operators and phone manufacturers that there is a clear profit opportunity in J2ME. This gives the operator little incentive to promote Java phones other than as a new-subscriber marketing tool. Sony's Java phones in Japan have been fraught with troubles and an expensive recall. Concerns over malicious content have further dampened enthusiasm for Java phones. Java needs Download Fun, BREW, or another similar platform to make it a complete solution for network operators.
+Ironically, the actual technology capabilities of each of these technologies are far less important. All are assumed to function at some level, and as has been demonstrated many times, a fairly weak technology can achieve standardization over a "better" one. Those which are weak technically but emerge strong politically can usually find allies and evolutionary paths to bolster their case. We will continue to watch this platform war carefully as the market matures.
+The Shosteck Group
+Tel: 1 301 589 2259
+Fax: 1 301 588 3311
+e-mail: jzweig@shosteck.com
+Copyright Herschel Shosteck Associates, Ltd. 
+	
+	
+	 
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	 
+	
+	 
+ 	
+	
+	Related Content
+	 
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	Articles
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Strategies For J2ME MIDP/J2EE Integration Over HTTP
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	J2ME IDE Comparison
+	
+	-06/12/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Wireless Java: Developing with J2ME
+	
+	-05/30/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Moving Your Application from Wired to Wireless?
+	
+	-05/01/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	Downloads
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Dr Bok
+	
+	-07/11/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Adventurer
+	
+	-07/10/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Coolaz Comics
+	
+	-07/09/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Cave
+	
+	-07/08/2002 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	FAQ
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I debug on an actual device (i85s/i50sx)?
+	
+	-10/13/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	How do I obfuscate using RetroGuard?
+	
+	-10/01/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Are there any beginner CLDC and MIDP articles and tutorials?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	Can I make a phone call using J2ME using my MIDlet?
+	
+	-07/24/2001 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+ 
+ 
+	
+	 
+	
+	
+	 
+	 
+	
+	about us | contact us | contribute | advertise | discussions | privacy | 
+	register
+	Copyright © 2000 - 2002 Micro Java Network
+	 
+	 
+	 
+	
+	
+	 
+	
+ 
+	 
+ 
+ 
+ 
+ 
+ 

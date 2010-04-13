@@ -1,0 +1,101 @@
+
+ BCBDEV.COM: Articles
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+What's wrong with this code? Volume #2
+A benchmark gone bad
+Before we begin, let's post the code for the ClassNameIs routine again.
+// Benchmark for ClassNameIs
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+ int nCount = ComponentCount;
+ DWORD dwStart = GetTickCount();
+ for (int j=0; jClassNameIs("TEdit"))
+ ((TEdit *)Components[i])->Color = clBtnFace;
+ }
+ }
+ DWORD dwEnd = GetTickCount();
+ DWORD dwDiff = dwEnd - dwStart;
+ Label2->Caption = IntToStr(dwDiff);
+}
+The flaw in this benchmark is the way that we call the ClassNameIs function. ClassNameIs takes an
+AnsiString object by value as its only argument. The benchmark code passes char *. The compiler inserts
+code to construct a temporary AnsiString object from the char *. The temporary is constructed by
+using the char * conversion constructor of AnsiString.
+// inside class declaration for AnsiString
+__fastcall AnsiString(const char* src);
+This constructor works by allocating a buffer large enough to hold the string. It then calls the equivalent of
+strcpy to copy the string from the source. If the code for this constructor was written in C++, it might
+look something like this:
+__fastcall AnsiString::AnsiString(const char* str)
+{
+ Data = new char[strlen(char) + 1];
+ strcpy(Data,str);
+ refcnt = 1;
+}
+Every time we pass a char * to ClassNameIs, this constructor runs. Since we call ClassNameIs 16 million times
+in the benchmark, we also call new, strcpy, and strlen 16 million times. The overhead of this
+constructor affects the benchmark. We are not just benchmarking ClassNameIs, we are also benchmarking the string
+manipulation and the memory allocation routines.
+If we eliminate the overhead of the memory allocation and string routines, we can obtain a more accurate benchmark for
+ClassNameIs. We accomplish this by creating an AnsiString constant and passing the contant to
+ClassNameIs. The new code lookes like this.
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+ const AnsiString strEdit("TEdit");
+ int nCount = ComponentCount;
+ DWORD dwStart = GetTickCount();
+ for (int j=0; jClassNameIs(strEdit))
+ ((TEdit *)Components[i])->Color = clBtnFace;
+ }
+ }
+ DWORD dwEnd = GetTickCount();
+ DWORD dwDiff = dwEnd - dwStart;
+ Label2->Caption = IntToStr(dwDiff);
+}
+So what does this accomplish? Instead of calling the conversion constructor for char *, the improved code calls
+the copy constructor to initialize the temporary AnsiString that is passed to ClassNameIs. Is the
+copy constructor any better than the conversion constructor for char *? As it turns out, yes, it is much better.
+Remember that the AnsiString class employs a reference counting scheme. When you create an AnsiString
+object using the copy constructor, the VCL simply copies the internal Data pointer of the source object, and
+increments its reference count. This is much faster than allocating new memory and copying the string.
+The AnsiString copy constructor works effectively like this:
+__fastcall AnsiString::AnsiString(const AnsiString &rhs)
+{
+ Data = rhs.Data;
+ refcnt = ++rhs.refcnt;
+}
+This constructor is much faster than the conversion constructor. When we use this constructor, we get a more accurate
+portrayal of how well ClassNameIs runs. After making this change, the result for ClassNameIs dropped
+from 67,000 milli-seconds to 29,000 milli-seconds. Using the AnsiString constant cut the time by more than half.
+So now we have to ask the question, which benchmark accurately reflects the perforamance of ClassNameIs? If you
+are going to pass char * arguments to ClassNameIs, then the first benchmark is better because it
+includes the overhead of creating the AnsiString temporary using the conversion constructor. This overhead is a
+real factor when you pass char * arguments to ClassNameIs. Another thing to keep in mind is that creating the AnsiString
+constant requires some overhead too, because the constant is created with the char * conversion constructor.
+If you only need to call ClassNameIs one time, then there is no point messing with a constant. If you do need
+to call ClassNameIs dozens of times, and you are going to be passing the same class name each time, then it makes
+sense to create a constant instead of passing a char *.
+In reality, you probably won't need to call ClassNameIs very much anyway since dynamic_cast and
+__classid beat it so convincingly. There really isn't much point using ClassNameIs when the other
+two options work so much more efficiently. Nonetheless, the lesson from this benchmark is one worth remembering. Be aware
+of temporary objects and how much processor time is spent creating and destroying them.
+Note: The AnsiString constructor code that is listed in this edition is C++ pseudo-code. The
+AnsiString class does not use new, strlen, and strcpy. It uses the pascal
+equivalents. Also, refcnt is not a member variable of the class. The reference count is maintained by
+pascal code in SYSTEM.PAS.
+Note: The ClassNameIs function takes a const AnsiString object by value. The function would
+be more effecient if it took a reference instead of an object by value. I would guess that passing the object by value
+has something to do with the fact that the underlying code is in pascal.
+ 
+ 
+Copyright © 1997-2002 by Harold Howe.
+All rights reserved.
+ 

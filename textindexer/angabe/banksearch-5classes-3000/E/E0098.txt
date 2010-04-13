@@ -1,0 +1,167 @@
+
+ 
+ 
+Open Watcom FAQ :
+General Questions 
+[Category Title and Options][Edit Category Permissions] 
+[Duplicate Category as Answer][Move Category][Trash Category][New Answer in "General Ques..."][New Subcategory of "General Ques..."] 
+[Insert Text Here][Insert Uploaded Text Here] 
+General Open Watcom Questions
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+Subcategories:
+Answers in this category:
+Will there be a Watcom C/C++ and Fortran 11.0c release?
+Is everything that was on the Watcom CD available for free download?
+When can I get the source code?
+What compilers will I need to compile the source code?
+Where can I buy Watcom C/C++ and Fortran Products?
+What does the Watcom compiler give us that we don't already get with other free compilers? 
+I really want to contribute! What can I do! 
+ 
+[Edit This Text][Duplicate This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+Will there be a Watcom C/C++ and Fortran 11.0c release? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+Yes! As part of the process of preparing the source code for release under an Open Source license, SciTech Software and a select group of external developers will create and distribute a binary patch upgrade release (11.0c) on the Open Watcom web site. This binary patch will be available free of charge to existing Watcom C/C++ and Fortran customers and will include all updates and bug fixes developed by Sybase since the last commercial update of the product (11.0b). 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+Is everything that was on the Watcom CD available for free download? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+No. The commercial versions of the Watcom C/C++ and Fortran compilers contained licensed copies of the Windows SDK, Microsoft Foundation Classes, OS/2 Toolkit and other commercial tools. Due to licensing issues, those components cannot be made freely available. Hence in order to utilise the 11.0c binary patch release, you will need an official copy of the 11.0, 11.0a or 11.0b installation CD. 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+When can I get the source code? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+Preparing such a large project for its Open Source debut will take several months, so initially SciTech Software and a select group of external developers will be working to prepare the source code for release under an Open Source license. Once the source code has been prepared for release, the complete source to the Open Watcom products will be released on this web site. We hope that the Open Source 1.0 compiler release will be ready sometime near the end of the third quarter of 2001. 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+What compilers will I need to compile the source code? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+Initially the Open Watcom 1.0 compiler will require an official copy of the Watcom C/C++ 11.0b compiler, with the 11.0c binary patch release applied in order to successfully compile it. This is due to the need to rely upon proprietry SDK's for platforms such as Windows, and OS/2 that cannot be distributed along with the Open Source 1.0 compiler release. It is planned to eliminate this dependency in the Open Source 2.0 release, by allowing the compiler to work with freely downloadable SDK's for the supported platforms. 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+Where can I buy Watcom C/C++ and Fortran Products? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+Open Watcom products will be available free of charge. 
+ If you need to use Watcom products prior to the Open Source release, 
+ you can purchase previous versions. Sybase Watcom C/C++ and Fortran 
+ products have been discontinued, but you still may be able to find 
+ them for sale at various places on the Internet. Here are some places 
+ to start:
+ 
+ 
+ 
+ Site: 
+ Comments: 
+ 
+ 
+ http://www.greymatter.com
+ 
+ Greymatter have supplies of Watcom C/C++ 11.0b and Watcom Fortran
+ 11.0b. They will _ONLY_ upgrade original 11.0 and 11.0a owners, so do not
+ bother phoning them if you have 10.6 or earlier, it is a waste of time. 
+ Do not email, just phone. 
+ 
+ 
+ 
+ 
+ 
+ 
+ http://www.citysoftware.com.au 
+ Claim to have Watcom C/C++ 11.0, subversion unknown, $479 Australian dollars 
+ 
+ 
+ http://www.emsps.com/oldtools/watcom.htm 
+ Watcom C/C++ 11.0 educational version in German, manuals in English, Watcom Fortran 11.0 
+ 
+ 
+ www.epcdeals.com 
+ Has Watcom C/C++ & Fortran 10.6 and Watcom C/C++ 11.0,prices in US dollars 
+ 
+ 
+ http://www.ebay.com 
+ 
+ 
+ 
+ www.buylegacy.com 
+ 
+ 
+ 
+ http://shopping.yahoo.com/Computers 
+ 
+ 
+ 
+ https://www.softwareshop.com 
+ 
+ 
+ 
+ http://www.kessler.de/ 
+ 
+ 
+ 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+What does the Watcom compiler give us that we don't already get with other free compilers? 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+The Watcom compiler has a number of advantages of other free compilers, such as full support for 16-bit DOS and Windows development, powerful commercial level debugger with full remote debugging capabilities (serial, parallel, NetBIOS, TCP/IP etc). The Watcom compiler has always been known as producing some of the fastest code around, and even today the Watcom C/C++ 11.0b product produces code as good as the best comercial compilers available. The Watcom C/C++ compiler is also the only freely available compiler for 16-bit Windows and OS/2 device driver development. 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+ 
+ 
+Open Watcom FAQ : General Questions :
+I really want to contribute! What can I do! 
+[Answer Title and Options][Edit Answer Permissions] 
+[Duplicate Answer][Move Answer][Trash Answer][Convert to Category] 
+[Insert Text Here][Insert Uploaded Text Here] 
+Until the Open Watcom 1.0 compiler release is ready, all development will be closed due to proprietary source code licensing issues. Until the Open Watcom 1.0 source code is ready for release, we are not accepting any new members on the Open Watcom development team. 
+ 
+[Edit This Text][Duplicate This Text][Remove This Text][Upload New Bag Here]
+[Insert Text Here][Insert Uploaded Text Here]
+This document is: http://www.openwatcom.org/cgi-bin/fom.cgi?file=23
+ 
+[Search] 
+[Appearance] 
+[Show Top Category Only] 
+[Hide Expert Edit Commands] 
+This is a Faq-O-Matic 2.711.
+ 
+ 
+Moderated by: stephenh@openwatcom.org

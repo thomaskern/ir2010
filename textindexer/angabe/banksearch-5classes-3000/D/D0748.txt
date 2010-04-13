@@ -1,0 +1,627 @@
+
+JADCentral : SOAP-less Interplay
+ 	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+	 
+	 
+	
+	
+	
+	
+	 
+	 
+	 
+	 	
+	 
+	 
+	
+	
+	 
+	 	
+	
+	
+	
+	 
+	
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	SOAP-less Interplay
+	
+	
+	
+	Creating Robust, Interoperating Clients and Web Services using XMLRPC, without SOAP
+	
+	
+	
+	VJS.CO.UK
+	
+	
+	
+	
+	SOAP is currently the centre of attention these days for XML-based, 
+ cross OS, cross platform, cross programming language client and 
+ web service interoperation. Due the overwhelming hype around SOAP, 
+ one can easily overlook a tried and tested alternative that had 
+ been with us for several years before SOAP was conceived. It is 
+ called XMLRPC, or XML-based Remote Procedure Call.
+ XMLRPC is a no-nonsense, simple protocol that was originally designed 
+ by Userland (http://www.userland.com) 
+ for developers to interface with its Frontier content management 
+ product. This protocol's simplicity and utility has enabled its 
+ popularity to grow amongst Internet developers. Its open specification, 
+ available directly from http://www.xmlrpc.com/, 
+ has fostered a healthy growth of support from third party library 
+ developers.
+ In this article, we will create a web service (Java based) on a 
+ Linux system using XMLRPC. Then we will create a Visual Basic client 
+ that will work with this service. Turning the tables around, we'll 
+ then move the web service to the Win32 platform and create a very 
+ simple Python based client to access the service from the Linux 
+ machine. It will clearly demonstrate the cross OS, cross platform, 
+ and cross programming language capabilities and XMLRPC.
+ 
+ For readers following the previous two VSJ articles on SOAP, we 
+ will be using the same code for the core-logic of the web service 
+ - that of finding the n-th prime number - in order to keep things 
+ simple. We will also be reusing most of the code from the Visual 
+ Basic client that we presented last month to implement our XMLRPC 
+ client. 
+ 
+ XMLRPC in a Nutshell
+ 
+ XMLRPC is an application level protocol built on top of HTTP. As 
+ such, it uses the headers of HTTP and has the same request/response 
+ structure. In particular, XMLRPC is built on top of the HTTP POST 
+ method. This allows XMLRPC traffic to 'tunnel through' any HTTP 
+ ready network (i.e. the Internet or Web based corporate Intranet). 
+ 
+ Unique in its class, XMLRPC is about as minimalistic as you can 
+ possibly get with an application protocol. The protocol is so lean 
+ that it really doesn't define anything that it does not require 
+ immediately. The following is a synopsis of this protocol. 
+ The "remote call" is the payload of an HTTP POST request. 
+ It must be an XML document with a root element. 
+ For example, if we are calling a web service that finds the n-th 
+ prime number, the calling HTTP request will look like:
+ 
+ POST /RPC2 HTTP/1.0
+ User-Agent: VSJ VB Client
+ Host: xmlrpc.vsj.com
+ Content-type: text/xml
+ Content-length: 185
+ 
+ 
+ primefind.getPrime
+ 
+ 
+ 1000
+ 
+ 
+ 
+ The User-Agent and Host headers are required, and the Content-type 
+ header must be text/xml. The Content-length header is required and 
+ must reflect the size of the payload. The payload, a single 
+ element, has one single sub-element where the parameters 
+ of the remote procedure are passed. The element can 
+ have zero or more sub-elements. Each 
+ element can contain a sub-element. The above XMLRPC 
+ request corresponds to the following call: 
+ primefind.getPrime(1000) 
+ A element can contain a scalar or array/structure 
+ sub-element. Scalar element can be one of the following:
+ Data Type Element
+ 32 bit integer or 
+ String or no surrounding tag, by default
+ Float, double precision 
+ Boolean, 0 for false and 1 for true 
+ Date and time, with format - 20010502T16:02:00 
+ Base 64 encoded binary 
+ An array such as int myArray[3], can be passed via an 
+ element as: 
+ 
+ 
+ 0
+ 1
+ 4
+ 
+ 
+ A structure can be passed via the element as:
+ 
+ 
+ faultCode 
+ 505 
+ 
+ 
+ faultString 
+ Web service too busy, try again later. 
+ 
+ 
+ 
+ The above structure has two members, one is an integer called faultCode, 
+ and the other one is a string containing a human readable message 
+ of the fault - called faultString. This fault structure is exactly 
+ what an XMLRPC web service should return if a service level error 
+ is encountered during processing of the request. 
+ If there are no HTTP level error, the web service is expected to 
+ respond with: 
+ 200 OK
+ The response body is another XML document containing either a fault 
+ structure or a element. For example, our Prime 
+ Finder web service may return the actual prime found as: 
+ 
+ 
+ 
+ 7919
+ 
+ 
+ 
+ 
+ And that is all that one needs to know before implementing XMLRPC 
+ - useful technology doesn't come simpler than this.
+ 
+ Test Network Topology
+ 
+ In this article, our client/web service scenarios will be tested 
+ on the following network. 
+ 
+ Figure 1 shows the network 
+ that we will be working with. There are two machines, a Windows 
+ 2000 machine and a Linux machine in the network. The IP addresses 
+ of each machine is indicated within the figure. Note also the software 
+ support packages that are required on each machine. Readers who 
+ do not have two machines or a network to experiment with may run 
+ the code on the same machine - as we did in previous month's article.
+Before implementing our XMLRPC service in Java, we will need to 
+ download an XMLRPC support library. Such a library is available, 
+ complete with source, from Hannes Wallnoefer. The URL is:
+ http://classic.helma.at/hannes/xmlrpc/
+ The latest version available at the time of writing is 1.0 beta 
+ 4, and it works well for our purpose. The file download is called 
+ xmlrpc-java.zip. 
+ The following assumes that you have a working Linux distribution 
+ with JDK 1.2.2 or later installed and tested. Create a user directory 
+ called xmlrpc, and unzip the downloaded xmlrpc-java.zip into it 
+ using the command: 
+ unzip xmlrpc-java.zip
+ This will create an xmlrpc-java directory where the distribution 
+ will reside. 
+ The main file for the service is in the XrServer.java source file 
+ under the javaserver directory of the code distribution. It makes 
+ use of the simple XMLRPC enabled web server, helma.xmlrpc.WebServer, 
+ that is part of the support library. Let us now take a look at the 
+ source code of XrServer.java. 
+ import java.util.*;
+ import helma.xmlrpc.WebServer;
+ import helma.xmlrpc.XmlRpc;
+ public class XrServer 
+ In the main() method, we create an instance of the PrimeNumberSearchListener 
+ 
+class that will find the prime number for us: 
+ public static void main(String[] argv) 
+ PrimeNumberSearchListener myPrimeFinder = new PrimeNumberSearchListener();
+ WebServer webServ = null;
+ Next, we also create an instance of an XMLRPC enabled web server, 
+ associated with the webServ reference. The server will be listening 
+ on port 8080:
+ try 
+ webServ = new WebServer (8080); 
+ System.out.println("Starting Prime Finder Web Service...");
+ Here, we tell the XMLRPC enabled web server to associate the web 
+ service primefind with the instance of PrimeNumberSearchListener 
+ that we have created. This single statement establishes our web 
+ service. Now, the getPrime() method of the instance can be accessed 
+ remotely via primefind.getPrime:
+ webServ.addHandler ("primefind", myPrimeFinder); 
+ Having run the service for as long as necessary, a keypress at 
+ the console will terminate the service:
+ System.out.println("Press any key to stop server");
+ System.in.read();
+ {{{} catch (Exception e) 
+ e.printStackTrace();
+ {}
+ We shut down the service here, but remove the registered service 
+ from the server first, using the removeHandler() method:
+ System.out.println("Shutting down Prime Finder Web Service...");
+ webServ.removeHandler("primefind");
+ webServ.shutdown();
+ System.exit(0);
+ }
+ }
+ Hannes' library makes creating an XMLRPC service as simple as instantiating 
+ a class and registering it. We will not cover the logic of the PrimeNumberSearchListener.java 
+ class here again. It basically uses the classic Sieve of Eratosthenes' 
+ algorithm (dating back to 200 BC) for locating small prime numbers 
+ to find any of the first 1000 prime numbers for us. The code had 
+ been explored in detail in last month's SOAP article.
+ 
+ Running the Web Service under Linux
+ 
+ Now, let us get the Linux XMLRPC server up and running. Copy the 
+ files under the javaserver directory of the distribution into the 
+ xmlrpc directory that you created in the last section. Make sure 
+ you also copy the Linux specific script for compiling the server 
+ and running the server. You will find these two scripts, buildsvr, 
+ and startsvr, in the source code distribution under the Linux subdirectory.
+ buildsvr contains: 
+ javac -classpath .:./xmlrpc-java/lib/openxml-1.2.jar:./xmlrpc-java/lib/xmlrpc.jar 
+ XrServer.java
+ startsvr contains:
+ java -cp .:./xmlrpc-java/lib/openxml-1.2.jar:./xmlrpc-java/lib/xmlrpc.jar 
+ XrServer
+ These scripts set up the CLASSPATH in order for the compilation 
+ and execution to work properly. Note that the Java library makes 
+ use of the OpenXML 1.2 parser and requires it (included) for properoperations.
+ Okay, assuming you have build the server using the buildsvr script, 
+ we are now ready to start the Linux server. Simply run the script: 
+ ./startsvr
+ You should see output similar to Figure 
+ 2.
+ The Visual Basic Client
+ 
+ Back on the Win32 machine, you can open the VBXmlRpcClient Visual 
+ Basic project. We will examine a few of its key methods here. The 
+ general structure is identical to the Visual Basic SOAP client that 
+ we created in last month's article. The payload of the XMLRPC request 
+ is built via the build_Method_Call() method. It takes inIndex as 
+ an argument, which it supplies as the value of a 
+ element, destined for the primefind.getPrime remote procedure:
+ Dim env As String
+ Private Sub build_Method_Call(inIndex As String)
+ env = "" 
+ + vbCrLf
+ env = env + vbCrLf + "" + vbCrLf
+ env = env + vbCrLf + "primefind.getPrime" 
+ + vbCrLf
+ env = env + vbCrLf + "" 
+ + inIndex + "" 
+ + vbCrLf
+ env = env + vbCrLf + "" + vbCrLf
+ End Sub
+ When the user clicks on the button, the code will build the payload, 
+ and create the request by adding the required headers: 
+ Private Sub CallButton_Click()
+ Call build_Method_Call(EntryBlank.Text)
+ Debug.Print (EntryBlank.Text)
+ Dim head As String
+ head = "POST /RPC2 HTTP/1.0" + vbCrLf
+ head = head + "Host: xmlrpc.vsj.com"
+ head = head + "User-Agent: VSJ Prime Finder VB Client"
+ head = head + vbCrLf + "Content-Type: text/xml"
+ head = head + vbCrLf + "Content-Length:" + Str(Len(env)) 
+ + vbCrLf
+ head = head + vbCrLf + vbCrLf
+ It then uses the winsock control to connect to the Linux server. 
+ In our case, the XMLRPC server is at 192.168.23.38 - adjust this 
+ to the IP or host name of your own Linux server.
+ Winsock1.Protocol = sckTCPProtocol
+ Winsock1.Connect "192.168.23.38", 8080
+ Do Until Winsock1.State = 7
+ DoEvents
+ Loop
+ Winsock1.SendData head + env
+ Do Until Winsock1.State = 8
+ DoEvents
+ Loop
+ Winsock1.Close
+ End Sub
+ When the response arrives, the DataArrival method is called by 
+ the winsock control. Here, we scan for and extract the single 
+ value within the element - this is the prime 
+ number returned by the web service. We then display the result in 
+ the Result label within the form: 
+ Private Sub Winsock1_DataArrival(ByVal bytesTotal As Long)
+ Dim strData As String
+ Dim tpString As String
+ Dim loc As Integer
+ Winsock1.GetData strData
+ loc = InStr(1, strData, "int>", vbTextCompare)
+ If (loc 
+ tpString = Mid(strData, loc + 4)
+ loc = InStr(tpString, "">Figure 
+ 3. 
+ 
+ Everything works as expected, the Win32 GUI client calls the remote 
+ Linux/Java based web service and obtains the prime number.
+ 
+ Rigging up the Win32 Java XMLRPC Service
+ 
+ Now, we can switch the Java web service onto the Windows 2000 machine. 
+ Assuming that you have JDK 1.2.2 or later installed and tested on 
+ the machine, copy the files in the javaserver directory into a working 
+ directory. Unzip the XMLRPC library files into another directory. 
+ In our case, we have unzipped the library into an xmlrpc directory 
+ within the JDK directory. 
+ Change into the directory of the web service source and edit the 
+ SETPATHS.BAT file to reflect where you have installed the XMLRPC 
+ library: 
+ set CLASSPATH=%CLASSPATH%;%JAVA_HOME%xmlrpclibopenxml-1.2.jar;%JAVA_HOME%xmlrpclibxmlrpc.jar;
+ Run SETPATHS from the command line in order to set up the CLASSPATH. 
+ Next, compile the service using the command line:
+ javac XrServer.java
+ Finally, start the service using the command line:
+ java XrServer
+ You should see exactly the same output as in the Linux server case. 
+ 
+ With the XMLRPC primefind service running on the Win32 machine, 
+ we will now create a client on Linux. This time, we will use the 
+ versatile scripting language - Python.
+ 
+ The Python Client
+ 
+ The easiest way to work with XMLRPC in Python is via a module from 
+ Secret Lab. You can download this XMLRPC support module from this 
+ URL:
+ http://www.pythonware.com/products/xmlrpc/
+ At the time of writing, the latest stable module version is:
+ xmlrpclib 0.9.8
+ Unzip the distribution into a directory where you will be creating 
+ the client Python script. This will place the following files into 
+ the directory:
+ xmlrpc_handler.py
+ xmlrpclib.py
+ xmlrpc_server.py
+ README
+ We will be mainly using xmlrpclib.py. Now, create in the same directory, 
+ our simple seven-line Prime Finder client script:
+ #! /usr/bin/env python
+ from xmlrpclib import Server
+ import sys
+ pcServer = Server("http://192.168.23.30:8080")
+ primeIndex = int(sys.argv[1])
+ print "The " + str(primeIndex) + "th prime number 
+ is " + str(pcServer.primefind.getPrime(primeIndex))
+ This assumes that you have Python installed and tested on your 
+ Linux system. It assumes that the Win32 server machine is at IP 
+ 192.168.23.30. Adjust this to reflect the IP or host name of your 
+ Win32 server.
+ You can find the source code to the Python client in the pythonclient 
+ subdirectory of the source code distribution - in the pxclient file. 
+ Make the pxclient command executable:
+ chmod +x pxclient
+ Now, with the XMLRPC service running on the Win32 machine, run 
+ the pxclient on the Linux box:
+ ./pxclient 35
+ You should see output similar to Figure 
+ 4. Try different argument to list other prime numbers. 
+ 
+ The interpretive nature of Python, and the excellent support library, 
+ together makes creation of XMLRPC client extremely straightforward 
+ and simple.
+ 
+ Differences from SOAP
+ 
+ Unlike SOAP, XMLRPC does not define its own envelope support (it 
+ uses the HTTP headers instead). SOAP's envelope, while adding complexity 
+ to the specification and implementation, allows for other interaction 
+ patterns (than single client/single server) to be developed in the 
+ future. For example, it is theoretically possible to use SOAP messages 
+ in pipelined multi-processing agent systems, disconnected message 
+ queuing systems, or in peer-to-peer networks -- although the details 
+ are not available as of the SOAP 1.1 specifications. SOAP's extensive 
+ object graph encoding scheme also allows for optimisation in handling 
+ large sparse array arguments, and very complex data types that may 
+ occur in certain legacy programming languages - XMLRPC does not 
+ explicitly specify such support. While SOAP attempts to be the standard 
+ for XML based interoperation across all applications; the creators 
+ of XMLRPC continually works with their users to expand its definition, 
+ and is consistent with its minimalist heritage - not defining features 
+ that it cannot use today.
+ 
+ Conclusions
+ 
+ Our brief exploration of XMLRPC in this article should leave you 
+ with very little doubt that XMLRPC can be used to build interoperable 
+ web services today. Its maturity, simplicity, lightweight implementation, 
+ and the wide base of its programming language/environment support 
+ make it a highly credible alternative to SOAP.
+	
+	
+	
+	
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 	
+	
+	
+	
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	&#160 
+	 
+	
+	
+	
+	 
+	 	Not a member? register
+	 
+	 	
+	 
+	 	
+	
+	
+	 Already registered? 
+	
+	
+	
+	 	 
+	 	 
+ 	
+	
+	 	 
+	 
+	
+	
+	
+	
+	
+	 
+	 Remember me 
+	 	
+	 	
+	 
+	
+	
+	
+	 	
+	 	
+	 	Forgot your password?
+	 	
+	 
+	 	
+	 
+	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+	 
+	
+	 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+	 
+	 
+ 
+ 
+	 
+ 
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	
+	 
+	 
+	
+	 
+ 
+	
+	
+	 
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	 
+	
+	
+	 
+	
+	
+	 	
+	 
+	
+	
+	
+	 
+	
+	
+	
+	 
+	
+	
+	 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	 
+	
+CODECENTRAL | FORUMS | NEWS CENTRAL | RESOURCES | TECH SHOWCASE | JUG CENTRAL | PRIVACY POLICY & DISCLAIMER
+HOME | 
+MY ACCOUNT | 
+HELP | CONTACT US
+ 
+ 

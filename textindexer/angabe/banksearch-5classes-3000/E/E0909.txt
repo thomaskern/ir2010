@@ -1,0 +1,330 @@
+
+GotW #80: Order, Order!
+ 
+ 
+ GotW #80 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+Order, Order!
+ Difficulty: 2 / 10
+Programmers learning C++ often come up with interesting
+misconceptions of what can and can't be done in C++. In this example,
+contributed by Jan Christiaan van Winkel, a student makes a basic mistake -- but
+one that many compilers allow to pass with no warnings at all.
+Problem
+JG Question
+1. The following code was actually written by a
+student taking a C++ course, and the compiler the student was using issued no
+warnings about it. Indeed, several popular compilers issue no warnings for this
+code. What's wrong with it, and why?
+ // Example 1
+ //
+ 
+#include 
+ 
+using namespace std;
+ 
+ class
+A
+ {
+ 
+public:
+ 
+A( const string& s ) { /* ... */ }
+ 
+string f() { return "hello, world"; }
+ };
+ 
+ class
+B : public A
+ {
+ 
+public:
+ 
+B() : A( s = f() ) {}
+ 
+private:
+ 
+string s;
+ };
+ 
+ int
+main()
+ {
+ 
+B b;
+ }
+Guru Question
+2. When you create a C++ object of class type,
+in what order are its various parts initialized? Be as specific and complete as
+you can.
+Solution
+1. [...] What's wrong with
+[this code], and why?
+ // ...
+ B() : A( s = f() ) {}
+ // ...
+This line harbors a couple of related problems, both associated with object
+lifetime and the use of objects before they exist. Note that the expression
+"s = f()" appears as the argument to the A base subobject constructor,
+and hence will be executed before the A base subobject (or, for that matter, any
+part of the B object) is constructed.
+First, this line of code tries to use the A base subobject before it exists.
+This particular compiler did not flag the (ab)use of A::f(), in that the member
+function f() is being called on an A subobject that hasn't yet been constructed.
+Granted, the compiler is not required to diagnose such an error, but this is the
+kind of thing standards folks call "a quality of implementation issue"
+-- something that a compiler is not required to do, but that better compilers
+could be nice enough to do.
+Second, this line then goes on and merrily tries to use the s member
+subobject before it exists, namely by calling the member function operator=() is
+being called on a string member subobject that hasn't yet been constructed.
+2. When you create a C++ object of class type,
+in what order are its various parts initialized? Be as specific and complete as
+you can.
+The following set of rules is applied recursively:
+ 
+ 
+First, the most derived class's
+ constructor calls the constructors of the virtual base class subobjects.
+ Virtual base classes are initialized in depth-first, left-to-right order. 
+ 
+ 
+Next, direct base class
+ subobjects are constructed in the order they are declared in the class
+ definition. 
+ 
+ 
+Next, (nonstatic) member
+ subobjects are constructed, in the order they were declared in the class
+ definition. 
+ 
+ 
+Finally, the body of the
+ constructor is executed. 
+For example, consider the following code. Whether the inheritance is public,
+protected, or private doesn't affect initialization order, so I'm showing all
+inheritance as public.
+ // Example 2
+ //
+ class B1 { };
+ class V1 : public B1 { };
+ class D1 : virtual public V1 { };
+ class B2 { };
+ class B3 { };
+ class V2 : public B1, public B2 { };
+ class D2 : public B3, virtual public V2 { };
+ class M1 { };
+ class M2 { };
+ class X : public D1, public D2 { M1 m1_; M2 m2_; };
+The inheritance hierarchy looks like this:
+ B1 B1 
+B2
+ | | /
+ | | /
+ | | /
+ V1 V2 B3
+ | | /
+ |v v| /
+ | | /
+ D1 D2
+ \ /
+ \ /
+ \ /
+ X
+The initialization order for a X object in Example 2 is as follows, where
+each constructor call shown represents the execution of the body of that
+constructor:
+ first, construct the virtual bases:
+ construct V1:
+ B1::B1()
+ V1::V1()
+ construct V2:
+ B1::B1()
+ B2::B2()
+ V2::V2()
+ next, construct the nonvirtual bases:
+ construct D1:
+ D1::D1()
+ construct D2:
+ B3::B3()
+ D2::D2()
+ next, construct the members:
+ M1::M1()
+ M2::M2()
+ finally, construct X itself:
+ X::X()
+This should make it clear why in Example 1 it's illegal to call either A::f()
+or the s member subobject's construct.
+A(nother) Word About Inheritance
+Of course, although the main point of this issue of GotW was to understand
+the order in which objects are constructed (and, in reverse order, destroyed),
+it doesn't hurt to repeated a tangentially related guideline:
+ 
+Guideline: Avoid overusing inheritance.
+Except for friendship, inheritance is the strongest relationship that can be
+expressed in C++, and should be only be used when it's really necessary. For
+more details, see also:
+ 
+ 
+GotW #60:
+ Exception-Safe Class Design, Part 2: Inheritance 
+ 
+ 
+Sutter's
+ Mill #6: Uses and Abuses of Inheritance, Part 1 
+ 
+ 
+Sutter's
+ Mill #7: Uses and Abuses of Inheritance, Part 2 
+ 
+ 
+The updated material in Exceptional
+ C++ and More
+ Exceptional C++ 
+ 
+Copyright ©
+2002 Herb Sutter
+ 

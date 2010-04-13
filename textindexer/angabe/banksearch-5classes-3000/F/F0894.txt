@@ -1,0 +1,27 @@
+
+Making a Form stay on Top
+ 
+Moving a Form Without a Title Bar
+Sometimes, you may want remove the title bar of a form. But, when you do this,
+you're unable to move it. So, to fix this problem, use this code. It will
+move the form when you click and drag it.
+'This code in the declarations section of your form:
+Private Declare Function SendMessage Lib "User32" _
+Alias "SendMessageA" (ByVal hWnd As Long, _
+ByVal wMsg As Long, _
+ByVal wParam As Long, _
+lParam As Any) As Long
+Private Declare Sub ReleaseCapture Lib "User32" ()
+Const WM_NCLBUTTONDOWN = &HA1
+Const HTCAPTION = 2
+'And this at the form's MouseMove event:
+Private Sub Form_MouseMove(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Dim lngReturnValue As Long
+If Button = 1 Then
+Call ReleaseCapture
+lngReturnValue = SendMessage(Form1.hWnd, WM_NCLBUTTONDOWN, _
+HTCAPTION, 0&)
+End If
+End Sub
+Done! Now run the project, drag the form and see what happens!
+ 

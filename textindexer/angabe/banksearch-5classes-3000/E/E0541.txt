@@ -1,0 +1,213 @@
+
+The Author's Voice
+ 
+ 
+ 
+ 
+ 
+ Interview
+ 
+ 
+ 
+The Author's Voice
+The C++ programming language--redefined
+Bjarne Stroustrup, the father of
+C++, talks to Amazon.com about the latest version of his authoritative
+book, the upcoming ISO C++ standard, the quality of commercial tools,
+the value of Java, and the future of C++ programming.
+ 
+Tom Mace, Amazon.com: Why are you updating The C++
+Programming Language? What new things will readers find when they
+open the book?
+Bjarne Stroustrup: Probably most readers will note the extensive
+discussion of the standard library. To the best of my knowledge, no
+C++ textbook has treated the standard library in this breadth and
+depth before. Also, a reader will note the emphasis on technique and
+design. All the key language features are described, and the book is
+organized so that language features are introduced in a logical
+order. However, each feature is presented in the context of a sensible
+use. The aim is to help the reader escape the common trap of focusing
+on language-technical details to the detriment of good programming.
+Many have expressed surprise at how thorough a rewrite this third
+edition is. Basically, it is about 80% new material compared to the
+second edition and the organization has been extensively reworked to
+reflect the many things we have learned about the use of C++ over the
+last six years or so. This book reflects a major step in the evolution
+of C++ and its use.
+Amazon.com: What are the most important changes to the language since the last
+edition was published?
+Stroustrup: Actually, the most important
+change is not a language change; it is the addition of the standard
+library. Surprisingly, my second edition is still adequate with most
+C++ implementations. Only recently have the implementations caught up
+with the specification in my second edition and gone beyond
+that. However, there are new refinements of the template and exception
+mechanisms. Also, run-time type identification (RTTI) and namespaces
+will be new to most people. Standard C++ also offers many minor
+improvements such as declarations in conditions and a Boolean
+type. Naturally, The C++ Programming Language covers them
+all.
+However, the key is the techniques that the language features
+exist to support. Most changes to the text and to the organization
+were done to reflect new and better ways of using the language and to
+take advantage of the standard library.
+The standard library made
+it possible for me to make the language more accessible to new C++
+programmers. By relying on library types--such as vector, list, and
+map--I can postpone the trickier points of C-style pointer and array
+manipulation until it is assumed that the reader is familiar with the
+basics--or even with an appendix.
+This doesn't mean that The C++
+Programming Language has been watered down. It was my aim to write
+a book that offers much to essentially every serious C++ programmer. I
+suspect I have come close to that ideal. Some of the most experienced
+and accomplished C++ programmers helped me by reviewing drafts (you
+can find their names in the acknowledgement section) and every one of
+those learned something significant from their effort.
+Amazon.com: Have you changed the book's
+organization?
+Stroustrup: People who know my first and second editions will note that the
+reference manual has been replaced by the library description. Given
+that an international standard for C++ is imminent, I did not think it
+appropriate for me to provide a manual that paraphrased the standard.
+To compensate, the tutorial text is a bit more detailed in places and
+a couple of appendices provide necessary reference materials (such as
+the complete C++ grammar).
+The book is organized like this:
+Introduction: Chapters 1 through 3 give an overview of the C++
+language, the key programming styles it supports, and the C++ standard
+library. Part I: Chapters 4 through 9 provide a tutorial introduction
+to C++'s built-in types and the basic facilities for constructing
+programs out of them. Part II: Chapters 10 through 15 are a tutorial
+introduction to object-oriented and generic programming using
+C++. Part III: Chapters 16 through 22 present the C++ standard
+library. Part IV: Chapters 23 through 25 discuss design and software
+development issues. Appendices: Appendices A through C provide
+language-technical details.
+As with my first and second editions, I
+aim to provide something that will be valuable as both a tutorial for
+serious programmers and a reference for many years to come.
+Amazon.com: Will the famous exercises be
+changed? Should we expect to see anything along the lines of Tony
+Hansen's The C++ Answer Book for the new edition?
+Stroustrup: There are many new exercises, but
+most of the old favorites remain. It is interesting that Tony Hansen's
+solutions to the exercises in the first edition are mostly still
+valid, but in many cases the newer language features and the library
+make improved solutions feasible.
+Addison-Wesley plans to make a set of good solutions available, but
+the details of how and when have not yet been made final.
+Amazon.com: The deliberations of
+standards bodies are notoriously slow, despite the best intentions of
+everyone involved. How is the ANSI/ISO C++ standardization process
+going? Are important language features still outstanding or is it just
+a question of hammering out details?
+Stroustrup: Formal standardization is slow
+and frustrating. It doesn't help that the standards bodies keep
+"improving" the rules for how a standard is made and what a
+standard is. However, the only alternative to formal standardization
+is the capricious and self-serving control by a commercial company.
+We can always discuss what constitutes a "major" feature,
+but I think "a question of hammering out details" is close
+to the truth. No new language or standard library facilities will be
+introduced in this standard and none currently present will be
+removed. We are in the final draft stage where the focus is on
+precise specification of the current feature set. The time for
+significant improvements (and significant damage) is done. This is one
+of the major reasons I completed my third edition now. It describes
+the language we will live with (happily, I hope) for the next five to
+ten years.
+Amazon.com: When do you
+hope to see the adoption of an ISO standard for C++?
+Stroustrup: I hope to get the final draft
+sent to international vote in November. After that it takes
+significant effort to change even the smallest typo, but formally
+there won't be a standard for some time after that while the ISO and
+the national standards bodies cross the t's and dot the i's.
+Amazon.com: Is C a viable language for
+the future? Would you recommend it for certain tasks?
+Stroustrup: C is and will remain a
+viable language. However, I suspect you really mean to ask if there is
+something for which C is better than C++. In my opinion, the only
+reason to use C is if you happen to be restricted to an environment
+for which there is no C++ compiler or where the tool set doesn't
+accept C++.
+As a language, C++ equals or exceeds C in every area and there are no
+significant problems in making C++ implementations equal or exceed C
+in performance of the generated code. Because C++ is a more expressive
+language, longer compile times are possible--especially if you use
+powerful features such as templates. Programmers should be careful to
+understand the run-time implications of the C++ features they rely
+on. However, given a good basic understanding of C++, this is not
+hard. Naturally The C++ Programming Language can help
+here, but a programmer might also consider looking at The
+Design and Evolution of C++ to see how the principles of the
+C++ language affect the basic efficiencies of language features and
+techniques.
+Amazon.com: Were you surprised when C++
+was used to encapsulate commercial APIs such as Windows?
+Stroustrup: I was surprised by
+Windows. However, I was not surprised by the use of C++ for
+encapsulation. After all, that is one of the things C++ was designed
+to do. Naturally, my third edition describes techniques for
+encapsulation and interface design. I suspect that if the designers of
+the Windows APIs had had my third edition and the language that this
+book describes, those APIs would have been much nicer for programmers.
+It might be worth noting that The C++ Programming Language
+describes "pure C++" as opposed to a specific API. In
+principle, the examples in the book should run everywhere and the
+techniques described should be applicable using any C++
+implementation.
+Amazon.com: How do you feel about the
+quality of commercial C++ tools?
+Stroustrup: They still have a long
+way to go. In particular, I think that the PC suppliers have focused
+on flashy graphical features at the expense of solid work on the key
+language mechanisms. This is especially sad because a few "man
+years" of effort on the basics (such as generating good code for
+concrete types, effective inlining, good template expansion, better
+error detection, and better error messages) would be of immediate and
+significant benefit to hundreds of thousands of programmers.
+My hope is that the new degree of stability that the standard will
+bring will encourage the compiler suppliers to make the relatively
+small investment in quality that is needed in the basic compiler
+technology.
+Amazon.com: What do you think of Java as
+a language and virtual machines as a platform for software execution?
+Stroustrup: Incredibly
+over-hyped. I'm unhappy about the degree of intellectual dishonesty
+surrounding its advertising. It is probably a nice platform for
+running small self-contained systems, but it is being proclaimed as
+the solution to every problem and for every programmer. It is not. No
+language and no system is. Even the platform independence issue is not
+as clearcut as it seems. As the Java libraries are extended to deal
+with more application areas, these libraries themselves become a
+platform. As vendors add new facilities, portability to machines using
+facilities from competing vendors' portability becomes compromised.
+People often claim that Java is similar to C++. The similarity is only
+skin deep. The syntax is similar, but the computational model, the
+basic efficiencies and degrees of expressiveness, and many key
+programming techniques differ. When you consider the libraries need to
+work effectively, the two languages appear more different still. Java
+is not a good match for the C++ design criteria. Java doesn't even
+come close and I don't think it could come close given its own very
+different design criteria. Similarly, C++ doesn't meet Java's design
+criteria.
+I'm sure that there is a niche for Java, just as there is for other
+languages. I just find the drum beat of advertising annoying. In
+particular I find Sun's ads that say "100% pure. No non-Java
+codes" offensive and a bit pathetic. Java cannot provide both
+platform independence and a major source of profits for its
+supplier(s).
+Amazon.com: What do you see in the near
+and long-term future for C++?
+Stroustrup: In the near future, I
+see continual steady growth from a large base of C++ use. In the
+longer term, I think the best have yet to come. The standard will most
+likely lead to significant improvements in quality of implementations
+and an explosion in tools and libraries. I'm already seeing some of
+that and find C++ programming more enjoyable than ever.
+ 
+ 
+Copyright
+and disclaimer © 1996-1998 Amazon.com, Inc.

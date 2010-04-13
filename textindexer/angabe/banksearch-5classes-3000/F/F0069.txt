@@ -1,0 +1,66 @@
+ A{text-decoration: none;}
+ A:hover { color: blue; text-decoration: underline; }
+More Controls
+In this section you will learn about a few other controls such as Frames, Option Buttons, Check Boxes, ScrollBars and finally Timers. Frames gather and organize controls, Option buttons and Check Boxes provide choices that the user can click. ScrollBars let you move things such as text, for a better view, and Timers are like clocks...
+Frames
+What frames basically do is hold controls inside of them, and therefore differentiate them into a set. When you want to use frames, remember that you must add the frame to the form and then move controls inside of the frame. In order to do this, after placing the frame on the form, click & select the frame (so it's blue), then click on a control in the toolbox and draw it in the frame. Not only does your application look better, but the frames also work great w/ Option Buttons...
+Frame properties:
+BorderStyle - Changes the way the border looks
+BackColor - Changes the backround of the frame
+Caption - Changes its caption
+Option Buttons
+Option buttons give you selection and choice. For example if you had 3 option buttons for answering a question such as "Where do you live?" - the first option button might say NY, the second, NJ and the third CA. Only one can be selected at a time. That's fine and all, but what if you also asked "What's your area code?" on that same form (meaning w/ more option buttons)? That's where frames come in... As you know frames hold controls, and therefore making them 1 set. You could put your "area code" option buttons in the frame and then you would be able to click both sets, answering where you live, and your area code.
+Option button properties:
+Caption - Changes the option buttons caption
+Style - Changes the option buttons look
+Coding example...
+ Private Sub Command1_Click()
+ If Option1.Value = True Then
+ Me.Caption = "Option1 was clicked"
+ End If
+ 'If the Option1 button was clicked then
+ 'the form's (refered to as "Me") caption changes
+ 'to "Option1 was clicked"
+ End Sub
+Check Boxes
+Check boxes are similar to option buttons, except you can have as many check boxes on your form checked at the same time w/o having frames for them.
+Check box properties:
+Style - Changes the style
+Coding example...
+ Private Sub Command1_Click()
+ If Check1.Value = 1 Then
+ 'Note
+ 'The "1" is another way of saying "True"
+ 'And "0" is another way of saying "False"
+ 'If the check box is checked then show form2
+ Form2.Show
+ Else
+ Form2.Hide
+ 'If it's not checked then hide form2
+ End If
+ End Sub
+Scrollbars
+Scroll bars are used for changin' values. Moving the scroll bar does just that with the addition of some code.
+Scroll bar properties:
+LargeChange - Changes the amount of the scroll when the user clicks the scroll bar area
+Max - Changes the maximum value of the scrollbars position
+Min - Changes the minimum value of the scrollbars position (switch them & run it and you will understand what I'm saying)
+SmallChange - Changes the amount of the scroll when the user clicks the scroll bar area
+Heres some code to change a labels caption to whatever the scrollbars value is:
+ Private Sub HScroll1_Change()
+ Label1.Caption = HScroll1.Value
+ End Sub
+Timers
+Timers are very useful, and are used a lot. They are very easy to understand too, b/c they simply are what they are called, "Timers." You can get how much time has passed w/ them, loop codes etc.
+Timer properties:
+Interval - A value (1 to 65535) milliseconds which is thousandths of a second
+So lets say you wanted the computer to tell you whenever a second has gone by the codes would look something like this:
+ Private Sub Timer1_Timer()
+ If Timer1.Interval = 1000 Then '1000 m/s is equal to 1 second
+ MsgBox "1 second has passed", vbInformation
+ End If
+ End Sub
+ Note: Timers are always hidden and will not show at run time
+Well now you know more then enough controls to keep you busy for a while. Next up, Dialog boxes.
+Back
+Next

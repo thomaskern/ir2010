@@ -1,0 +1,289 @@
+
+ 
+ 
+ 
+ C++ & MFC - Table of Contents 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Shop for Software
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ CodeGuru Sites 
+ 
+ 
+ Visual C++ / MFC / C++
+ .NET (C# and more)
+ Visual Basic
+ Gamelan (Java)
+ JARs (Java Applets)
+ 
+ 
+ 
+ 
+ 
+ 
+ submission guidelines
+ 
+ 
+ Interact 
+ 
+ 
+ Discussion Boards
+ Newsletters (subscribe)
+ Guestbook
+ Recommend Us!
+ 
+ 
+ 
+ Of Interest 
+ 
+ 
+ Books on .NET
+ Book Reviews
+ Newsletters (archived)
+ 
+ About Us
+ 
+ 
+ 
+ Article Sections 
+ 
+ C++
+ 
+ 
+ algorithms & formulas
+ c++ & mfc
+ date & time
+ string
+ 
+ 
+ 
+ COM-based Technologies
+ 
+ 
+ atl & wtl
+ com & activex
+ com+
+ shell programming
+ 
+ 
+ 
+ Controls
+ 
+ 
+ button control 
+ combobox 
+ edit control 
+ imagelist control 
+ listbox control 
+ listview control 
+ menu 
+ other controls 
+ property sheet 
+ rich edit control 
+ static control 
+ status bar 
+ toolbar 
+ treeview control 
+ 
+ 
+ 
+ Data
+ 
+ 
+ 
+ database
+ miscellaneous
+ 
+ 
+ 
+ Frameworks
+ 
+ 
+ 
+ ui & printing frameworks
+ 
+ 
+ 
+ Graphics & Multimedia
+ 
+ 
+ bitmaps & palettes
+ directx
+ gdi
+ multimedia
+ opengl
+ 
+ 
+ 
+ Internet & Networking
+ 
+ 
+ ie programming
+ internet protocols
+ isapi
+ network protocols
+ 
+ 
+	
+ 
+ Miscellaneous
+ 
+ 
+ miscellaneous
+ samples
+ 
+ 
+ 
+ 
+ Visual Studio
+ 
+ 
+ 
+ debugging
+ add-ins & macros
+ editor tips
+ 
+ 
+ 
+ Windows Programming
+ 
+ 
+ ce
+ clipboard
+ dll
+ file & folder
+ help systems
+ printing
+ win32
+ system
+ 
+ 
+ 
+ Windows & Dialogs
+ 
+ 
+ console
+ dialog
+ docking window
+ doc/view
+ splitter
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Extended Array Template Like CArray
+This article was contributed by 
+Chetan Joshi.
+Environment: Generic. Tested on Windows 2000 and Windows Me
+CExtendedArray 
+This template implements an abstract MFC style class and provides additional functionality of sorting the data internally over NUM_SORTFLDS simultaneously. Also, class provides ability to search for a given value over these fields quickly, (using binary search) implemented over the sorted fields. It depends on MFC template classes (afxtempl.h) to provide global functions like ConstructElement etc.... If you do not wish to use MFC at all, uncomment all of the functions from top of the file.
+It is an abstract class and client must two CompareElem functions. Both of this functions compare two supplied elements and return negative, zero or positive number depending upon whether first element is "less than", "equal to" or "greater than" second element respectively. Only difference between two functions is that in one version, it provides references to two TYPE elements, whereas the second version, passes reference to type and FLDTYPE value.
+TYPE
+is a data type of object that the CExtArray template will store a pointer to I have done away with ARG_TYPE present in MFC class and all references to object are either converted to a pointer or reference Also, although you can use any field in TYPE, class really becomes useful, when
+TYPE is a pointer to structure or a class 
+NUM_SORTFLDS
+is a integer value that defines number of fields within the structure, for which you want ability to search and sort data.
+FLTDTYPE
+is type of field that can be sorted. Only possible value that can make sense here is "void *" or LPARAM. I deliberated a lot on this and cannot think of any other type to use. Send me your comments if you come up with something better. It is basically a place holder that is used while calling CompareElem function.
+Sample usage of CExtendedArray
+{
+ int CompareElem(int nSortFld, 
+ LPSOMESTR& first, 
+ LPSOMESTR& second, 
+ LPARAM lHint)
+ {
+ int r;
+ if (nSortFld == 0)
+ {
+ r = lstrcmpi(first->szApplName, second->szApplName);
+ //std::cerr szApplName 
+ // szApplName 
+ // ApplId , second->ApplId);
+ //std::cerr ApplId 
+ // ApplId 
+ // szApplName, (LPCTSTR)valLookup);
+ std::cerr szApplName 
+ ApplId , (LPCTSTR)valLookup);
+ std::cerr ApplId 
+ szApplName szApplName 
+internet.commerce
+ 
+Be a Commerce Partner
+Software Store
+Freelance Projects
+USA Mailing Address
+Send a Press Release
+Web Design
+Register Domains
+Search the Web
+Business Search
+Secure Business IM
+Tech Magazines-Free
+ 
+ 
+EarthWeb is a service of INT Media Group, Incorporated.
+Copyright 2002 INT Media Group, Incorporated. All Rights Reserved.
+Feedback, 
+Advertising Info, 
+Legal Notices, 
+Licensing, 
+Reprints, & 
+Permissions, 
+Privacy Policy.

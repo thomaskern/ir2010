@@ -1,0 +1,413 @@
+
+6.2) Overloading overriding and OO
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Java2 Certification 
+ Tutorial 
+ 
+ 
+ 
+ 
+ 
+ 
+ You can discuss this topic with others at http://www.jchq.net/discus
+ Read reviews and buy a Java Certification book at http://www.jchq.net/bookreviews/jcertbooks.htm 
+ 
+6) Overloading, overriding, 
+ runtime type and object orientation 
+Objective 2) 
+Write code to invoke overridden 
+ or overloaded methods and parental or overloaded constructors; and describe 
+ the effect of invoking these methods.
+Comment on the objective 
+The terms overloaded and overridden are similar enough to give 
+ cause for confusion. My way of remembering it is to imagine that something that 
+ is overriden has literally been ridden over by a heavy vehicle and no longer 
+ exists in its own right. Something that is overloaded is still moving but is 
+ loaded down with lots of functionality that is causing it plenty of effort. 
+ This is just a little mind trick to distinguish the two, it doesn't have any 
+ bearing of the reality on the operations in Java. 
+Overloading methods 
+Overloading of methods is a compiler trick to allow you to use the same name 
+ to perform different actions depending on parameters. 
+Thus imagine you were designing the interface for a system to run mock Java 
+ certification exams (who could this be?). An answer may come in as an integer, 
+ a boolean or a text string. You could create a version of the method for each 
+ parameter type and give it a matching name thus
+markanswerboolean(boolean answer){ 
+ } 
+markanswerint(int answer){ 
+ }
+markanswerString(String answer){ 
+ }
+This would work but it means that future users of your classes have to be aware 
+ of more method names than is strictly necessary. It would be more useful if 
+ you could use a single method name and the compiler would resolve what actual 
+ code to call according to the type and number of parameters in the call. 
+This is the heart of overloading methods, part of what is known as polymorphism.
+There are no keywords to remember in order to overload methods, you just create 
+ multiple methods with the same name but different numbers and or types of parameters. 
+ The names of the parameters are not important but the number and types must 
+ be different. Thus the following is an example of an overloaded markanswer method
+void markanswer(String answer){ 
+ } 
+void markanswer(int answer){ 
+ }
+The following is not an example of overloading and will cause a compile time 
+ error indicating a duplicate method declaration.
+void markanswer(String answer){ 
+ }
+void markanswer(String title){ 
+ }
+The return type does not form part of the signature for the purpose of overloading. 
+Thus changing one of the above to have an int return value will still 
+ result in a compile time error, but this time indicating that a method cannot 
+ be redefined with a different return type. 
+Overloaded methods do not have any restrictions on what exceptions can be thrown. 
+ That is something to worry about with overriding. 
+ 
+ 
+ 
+ 
+Overloaded methods are differentiated only on 
+ the number, type and order 
+ of parameters,not 
+ on the return type of the method 
+ 
+ 
+Overriding methods 
+Overriding a method means that its entire functionality is being replaced. 
+ Overriding is something done in a child class to a method defined in a parent 
+ class. To override a method a new method is defined in the child class with 
+ exactly the same signature as the one in the parent class. This has the effect 
+ of shadowing the method in the parent class and the functionality is no longer 
+ directly accessible. 
+ 
+ Java provides an example of overriding in the case of the equals method that 
+ every class inherits from the granddady parent Object. The inherited version 
+ of equals simply compares where in memory the instance of the class references. 
+ This is often not what is wanted, particularly in the case of a String. For 
+ a string you would generally want to do a character by character comparison 
+ to see if the two strings are the same. To allow for this the version of equals 
+ that comes with String is an overriden version that performs this character 
+ by character comparison. 
+Invoking base class 
+ constructors 
+A constructor is a special method that is automatically run every time an instance 
+ of a class is created. Java knows that a method is a constructor because it 
+ has the same name as the class itself and no return value. A constructor may 
+ take parameters like any other method and you may need to pass different parameters 
+ according to how you want the class initialised. Thus if you take the example 
+ of the Button class from the AWT package its constructor is overloaded to give 
+ it two versions. One is
+ 
+- 
+ Button() 
+ 
+- 
+ Button(String label) 
+Thus you can create a button with no label and give it one later on, or use 
+ the more common version and assign the label at creation time.
+Constructors are not inherited however, so if you want to get at some useful 
+ constructor from an ancestor class it is not available by default. Thus the 
+ following code will not compile
+class Base{
+public Base(){}
+public Base(int i){}
+}
+public class MyOver extends Base{
+public static void main(String argvp[]){
+ MyOver m = new MyOver(10);//Will NOT compile
+ }
+}
+The magic keyword you need to get at a constructor in an ancestor is super. 
+ This keyword can be used as if it were a method and passed the appropriate 
+ parameters to match up with the version of the parental constructor you require. 
+ In this modified example of the previous code the keyword super is used 
+ to call the single integer version of the constructor in the base class and 
+ the code compiles without complaint.
+class Base{
+public Base(){}
+public Base(int i){}
+}
+public class MyOver extends Base{
+public static void main(String arg[]){
+ MyOver m = new MyOver(10);
+ }
+ MyOver(int i){
+ super(i);
+ }
+}
+Invoking constructors 
+ with this() 
+In the same way that you can call a base class constructor using super() 
+ you can call another constructor in the current class by using this 
+ as if it were a method. Thus in the previous example you could define another 
+ constructor as follows
+ MyOver(String s, int i){
+ this(i);
+ }
+ 
+ 
+ 
+ 
+Either this or super can be called 
+ as the first line from within 
+ a constructor, but not both. 
+ 
+ 
+As you might guess this will call the other constructor in the current class 
+ that takes a single integer parameter. If you use super() or this() in 
+ a constructor it must be the first method call. As only one or the other can 
+ be the first method call, you can not use both super() and this() 
+ in a constructor
+Thus the following will cause a compile time error.
+ MyOver(String s, int i){
+ this(i);
+	super();//Causes a compile time error 
+ }
+Based on the knowledge that constructors are not inherited, it must be obvious 
+ that overriding is irrelevant. If you have a class called Base and you create 
+ a child that extends it, for the extending class to be overriding the constructor 
+ it must have the same name. This would cause a compile time error. Here is an 
+ example of this nonsense hierarchy.
+class Base{}
+class Base extends Base{} //Compile time error!
+ Constructors and the 
+ class hierarchy
+Constructors are always called downward from the top of the hierarchy. You 
+ are very likely to get some questions on the exam that involve a class hierarchy 
+ with various calls to this and super and you have to pick what 
+ will be the output. Look out for questions where you have a complex hierarchy 
+ that is made irrelevant by a constructor that has a call to both this and 
+ super and thus results in a compile time error.
+ 
+ 
+ 
+ 
+Constructors are called from the base (ancestor) 
+ of 
+ the hierarchy downwards. 
+ 
+ 
+Take the following example
+class Mammal{
+ Mammal(){
+ System.out.println("Creating Mammal");
+ } 
+}
+public class Human extends Mammal{
+public static void main(String argv[]){
+ Human h = new Human();
+ }
+ Human(){
+ System.out.println("Creating Human");
+ }
+}
+When this code runs the string "Creating Mammal" is output first 
+ due to the implicit call to the no-args constructor at the base of the hierarchy. 
+ 
+ 
+ 
+ 
+Questions
+Question 1)
+Given the following class definition, which of the following methods could 
+ be legally placed after the comment with the commented word "//Here"?
+public class Rid{
+ public void amethod(int i, String s){}
+	//Here
+}
+1) public void amethod(String s, int i){}
+ 2) public int amethod(int i, String s){} 
+ 3) public void amethod(int i, String mystring){} 
+ 4) public void Amethod(int i, String s) {}
+ 
+Question 2) 
+Given the following class definition which of the following can be legally 
+ placed after the comment line
+ //Here ?
+class Base{
+public Base(int i){}
+}
+public class MyOver extends Base{
+public static void main(String arg[]){
+ MyOver m = new MyOver(10);
+ }
+ MyOver(int i){
+ super(i);
+ }
+ MyOver(String s, int i){
+ this(i);
+ //Here
+ }
+}
+1) MyOver m = new MyOver();
+ 2) super(); 
+ 3) this("Hello",10);
+ 4) Base b = new Base(10);
+ 
+Question 3) 
+Given the following class definition
+class Mammal{
+ Mammal(){
+ System.out.println("Mammal");
+ }
+}
+class Dog extends Mammal{
+ Dog(){
+ System.out.println("Dog");
+ }
+}
+public class Collie extends Dog {
+public static void main(String argv[]){
+ Collie c = new Collie();
+}
+ Collie(){
+ this("Good Dog");
+ System.out.println("Collie");
+ }
+ Collie(String s){
+ System.out.println(s);
+ }
+}
+What will be output?
+1) Compile time error
+ 2) Mammal, Dog, Good Dog, Collie
+ 3) Good Dog, Collie, Dog, Mammal
+ 4) Good Dog, Collie
+Question 4) 
+Which of the following statements are true?
+1) Constructors are not inherited
+ 2) Constructors can be overriden
+ 3) A parental constructor can be invoked using this
+ 4) Any method may contain a call to this or super
+ 
+Question 5) 
+What will happen when you attempt to compile and run the following code?
+class Base{
+ public void amethod(int i, String s){
+ System.out.println("Base amethod");
+ }
+ Base(){
+ System.out.println("Base Constructor");
+ }
+}
+public class Child extends Base{
+int i;
+String Parm="Hello";
+public static void main(String argv[]){
+ Child c = new Child();
+ c.amethod();
+}
+void amethod(int i, String Parm){
+ super.amethod(i,Parm);
+ }
+public void amethod(){}
+}
+1) Compile time error
+ 2) Error caused by illegal syntax super.amethod(i,Parm)
+ 3) Output of "Base Constructor"
+ 4) Error caused by incorrect parameter names in call to super.amethod
+ 
+Question 6) 
+What will be output if you attempt to compile and run this code?
+class Mammal{
+Mammal(){
+ System.out.println("Four");
+ }
+public void ears(){
+ System.out.println("Two");
+ }
+}
+class Dog extends Mammal{
+ Dog(){
+ super.ears();
+ System.out.println("Three");
+ }
+}
+public class Scottie extends Dog{
+public static void main(String argv[]){
+ System.out.println("One");
+ Scottie h = new Scottie();
+ }
+}
+1) One, Three, Two, Four
+ 2) One, Four, Three, Two
+ 3) One, Four, Two, Three
+ 4) Compile time error 
+Answers
+Answer 1)
+ 1) public void amethod(String s, int i){}
+ 4) public void Amethod(int i, String s) {}
+ The upper case A on Amethod means that this is a different method.
+ 
+ Answer 2)
+4) Base b = new Base(10);
+Any call to this or super must be the first line in a constructor. As 
+ the method already has a call to this, no more can be inserted.
+ 
+ Answer 3)
+ 2) Mammal, Dog, Good Dog, Collie
+ 
+ Answer 4)
+ 
+ 1) Constructors are not inherited
+ 
+ Parental constructors are invoked using super, not this. 
+ Answer 5)
+ 1) Compile time error
+ 
+ This will cause an error saying something like "you cannot override methods 
+ to be more private". The base version of amethod was specifically 
+ marked as public whereas the child had no specifier. OK so this was not a test 
+ of your knowlege of constructors overloading but they don't tell you the topic 
+ in the exam either. If it were not for the omission of the keyword public 
+ this code would output "Base constructor", option 3.
+ 
+ Answer 6)
+ 3) One, Four, Two, Three
+ 
+ The classes are created from the root of the hierarchy downwards. Thus One is 
+ output first as it comes before the instantiation of the Scottie h. Then the 
+ JVM moves to the base of the hierarchy and runs the constructor for the grandparent 
+ Mammal. This outputs "Four". Then the constructor for Dog runs. The 
+ constructor for Dog calls the ears method in Mammal and thus "Two" 
+ is output. Finally the constructor for Dog completes and outputs "Three".
+ 
+ 
+ Other sources on this topic
+ 
+ This topic is covered in the Sun Tutorial at 
+ http://java.sun.com/docs/books/tutorial/java/javaOO/methoddecl.html
+ 
+ Richard Baldwin covers this topic at
+ http://www.Geocities.com/Athens/Acropolis/3797/Java004.htm#polymorphism 
+ in general
+ (This is general stuff on OOP rather than concentrating on "is 
+ a" "has a")
+ 
+ Jyothi Krishnan on this topic at 
+ http://www.geocities.com/SiliconValley/Network/3693/obj_sec6.html#obj20 
+ 
+Last updated
+ 12 Jan 2000
+ copyright © Marcus Green 2000
+ 
+ 
+ 
+ 
+ 

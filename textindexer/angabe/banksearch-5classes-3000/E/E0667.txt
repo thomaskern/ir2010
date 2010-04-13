@@ -1,0 +1,388 @@
+
+GotW #81: Constant Optimization?
+ 
+ 
+ GotW #81 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+News 
+ 
+ 
+ 
+ J
+ U
+ L
+ Y 
+ 
+ 
+ Print articles newly available online
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 1" 
+ 
+ 
+ 
+ 
+ 
+ Excerpt from MXC++, "Extensible Templates: 
+ Via Inheritance or Traits?" 
+ 
+ 
+ 
+ 
+ 
+ Book Review: Modern C++ Design 
+ 
+ 
+ 
+ 
+ 
+ Sutter's Mill 
+ column, "Toward a Standard C++ Library, Part 2: Namespaceops and 
+ Library Versioning" 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "A Pragmatic Look at Exception Specifications"
+ The usefulness, or lack 
+ thereof, of exception specifications, and how results can vary 
+ across real-world compilers 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "Getting to the Point"
+ The Boost library has five 
+ smart pointers that provide a rich array [sic] of useful behaviors. 
+ 
+ 
+ A
+ U
+ G
+ U
+ S
+ T 
+ 
+ 
+ The New C++ 
+ column, "Smart(er) Pointers"
+ A closer look at one of the proposed new standard C++ library 
+ features -- smart pointers, particularly those in Boost and Loki, 
+ and a sneak peek at the usefulness of the proposed typedef templates 
+ 
+ 
+ 
+ 
+ Conversations column,
+ "A Midsummer Night's Madness"
+ A brew that mixes pointers, 
+ typedefs, and const 
+ 
+ 
+ 
+ 
+ S
+ E
+ P
+ T
+ E
+ M
+ B
+ E
+ R 
+ 
+ 
+ 
+ 
+ "Standard C++ Meets Managed C++"
+ A survey of the main (in)compatibilities 
+ between Standard C++ and Microsoft’s managed extensions for C++, and 
+ how the two could converge 
+ 
+ 
+ 
+ 
+Sutter's 
+ Mill column,
+ "Export Restrictions, Part 1"
+ The scoop on export -- what 
+ some people think it does, what it actually does, and why it’s the 
+ most widely-ignored feature in the C++ standard 
+ 
+ 
+ 
+ 
+Constant Optimization?
+ Difficulty: 3 / 10
+Does const-correctness help the compiler to optimize code?
+Most programmers' reaction is that, yes, it probably does. Which brings us to
+the interesting thing...
+Problem
+JG Question
+1. Consider the following code:
+ // Example 1
+ //
+ const Y& f( const X& x )
+ {
+ // ... do something with x and find a Y object ...
+ return someY;
+ }
+Does declaring the parameter and/or the return value as const help the
+compiler to generate more optimal code or otherwise improve its code generation?
+Why or why not?
+Guru Questions
+2. In general, explain why or why not the
+presence or absence of const can help the compiler to enhance the code it
+generates.
+3. Consider the following code:
+ // Example 3
+ //
+ void f( const Z z )
+ {
+ // ...
+ }
+The questions:
+ 
+a) Under what circumstances, and for what kinds of class Z, could this
+ particular const qualification help to generate different and better code?
+ Discuss.
+ 
+b) For the kinds of circumstances mentioned in (a), are we talking about a
+ compiler optimization or some other kind of optimization? Explain.
+ 
+c) What's a better way to get the same effect?
+Solution
+1. Consider the following code:
+ // Example 1
+ //
+ const Y& f( const X& x )
+ {
+ // ... do something with x and find a Y object ...
+ return someY;
+ }
+Does declaring the parameter and/or the return value as const help the
+compiler to generate more optimal code or otherwise improve its code generation?
+Why or why not?
+In short, no, it probably doesn't.
+What could the compiler do better? Could it avoid a copy of the parameter or
+the return value? No, because the parameter is already passed by reference, and
+the return is already by reference. Could it put a copy of x or someY into
+read-only memory? No, for both x and someY live outside its scope and come from
+and/or are given to the outside world. Even if someY is dynamically allocated on
+the fly within f() itself, it and its ownership are given up to the caller.
+But what about possible optimizations of code that appears inside the body of
+f()? Because of the const, could the compiler somehow improve the code it
+generates for the body of f()? This leads into the second and more general
+question:
+2. In general, explain why or why not the
+presence or absence of const can help the compiler to enhance the code it
+generates.
+Referring again to Example 1, of course the usual reason that the parameter's
+constness doesn't usually let the compiler do fancy things still applies here:
+Even when you call a const member function, the compiler can't assume that the
+bits of object x or object someY won't be changed. Further, there are additional
+problems (unless the compiler performs global optimization): The compiler also
+may not know for sure that no other code might have a non-const reference that
+aliases the same object as x and/or someY, and whether any such non-const
+references to the same object might get used incidentally during the execution
+of f(); and the compiler may not even know whether the real objects, to which x
+and someY are merely references, were actually declared const in the first
+place.
+Just because x and y are declared const doesn't necessarily mean that their
+bits are physically const. Why not? Because either class may have mutable
+members -- or their moral equivalent, namely const_casts inside member
+functions. Indeed, the code inside f() itself might perform const_casts or
+C-style casts that turn the const declarations into lies.
+There is one case where saying "const" can really mean something,
+and that is when objects are made const at the point they are defined. In that
+case, the compiler can often successfully put such "really const"
+objects into read-only memory, especially if they are PODs whose memory images
+can be created at compile time and therefore can be stored right inside the
+program's executable image itself. Such objects are colloquially called
+"ROM-able."
+3. Consider the following code:
+ // Example 3
+ //
+ void f( const Z z )
+ {
+ // ...
+ }
+The questions:
+ 
+a) Under what circumstances, and for what kinds of class Z, could this
+ particular const qualification help to generate different and better code?
+ Discuss.
+The short answer is: Yes and no.
+First, the Yes part: Because the compiler knows that z truly is a const
+object, it could perform some useful optimizations even without global analysis.
+For example, if the body of f() contains a call like g( &z ), the compiler
+can be sure that the non-mutable parts of z do not change during the call to
+g().
+Other than that, however, writing const in Example 3 is not an optimization
+for most classes Z -- and in those cases where it is an optimization, it's not a
+compiler code generation optimization.
+For compiler code generation, the question mostly comes down to whether the
+compiler could elide copy construction, or could put z into read-only memory.
+That is, it would be nice if we knew that z was really untouched by what goes on
+inside f(), because theoretically that would mean we might be able to just
+directly use the outside object that the caller passed into this function
+instead of making a copy of it, or else we could make a copy but put that copy
+into read-only memory if that happens to be faster or otherwise more desirable.
+In general, the compiler can't use the parameter's constness to elide the
+copy construction or assume bitwise constness. As noted above, too many things
+can go wrong. In particular, Z might have mutable members, or someone somewhere
+(in f() itself, in some other function, or in some directly or indirectly called
+Z member function) might perform const_casts or other chicanery.
+There is one case where the compiler might be able to generate better code.
+If:
+ 
+ 
+the definitions for Z's copy
+ constructor, and for all of Z's functions that are used directly or
+ indirectly in the body of f(), are visible at this point;
+ 
+ 
+ 
+those functions are all pretty
+ simple and free of side effects; and
+ 
+ 
+ 
+the compiler has an aggressive
+ optimizer
+ 
+then the compiler can be sure of what exactly is going on every step of the
+way, and might choose to elide the copy under the "as if" rule, which
+says that a compiler is allowed to do something different from what the standard
+technically says it must as long as a conforming program can't tell the
+difference.
+As an aside, here it's worth mentioning one small red herring: Some people
+may say there's another case where the compiler could generate better code with
+const, namely if the compiler performs global optimization. The thing is that that sentence is true even if you remove the "with
+const." Never mind that global optimization is rare and very expensive; the
+real issue here is that global optimization makes use of all knowledge about how
+an object is actually used, and therefore will do the same thing whether the
+object is actually declared const or not -- it makes decisions based on what you
+really do, not on what you promised to do, and so it doesn't matter if the two
+happen to be the same thing. If you're getting true global optimization anyway,
+then promising constness definitely doesn't help the optimizer do its job any
+better in this respect.
+Note that above I said that "writing const in Example 3 is not an
+optimization for most classes Z," and "for compiler code
+generation." There are, however, more optimizations that are possible than
+are dreamt of in your compiler's optimizer! And indeed const can enable some
+real optimizations:
+ 
+b) For the kinds of circumstances mentioned in (a), are we talking about a
+ compiler optimization or some other kind of optimization? Explain.
+In particular, there are also programmatic optimizations, where the author of
+Z can intelligently choose to do things a different way for const objects.
+As a case in point, let's say that Example 3's Z is a handle/body class, such
+as a String class that uses reference counting to perform lazy copying:
+ //
+Example 4
+ //
+ void
+f( const String s )
+ {
+ 
+// ...
+ 
+s[4]; // or use iterators
+ 
+// ...
+ }
+ 
+Such a String, knowing that calling operator[]() on a const String shouldn't
+be able to change the contents of the string, might decide to provide a const
+overload for operator[]() that returns a char by value instead of a char&:
+ class
+String
+ {
+ 
+// ...
+ 
+public:
+ 
+char operator[]( size_t ) const;
+ 
+char& operator[]( size_t );
+ 
+// ...
+ }
+ 
+Similarly, String could also provide const_iterators whose operator*()
+returns a char by value instead of a char&:
+If so, and if you happen to use the smartened-up operator[]() or iterators,
+and you declare the pass-by-value parameter as const, then -- wonder of wonders!
+-- the String can, with no further help from you, automagically and wholesomely
+optimize your code by avoiding a deep copy...
+ 
+c) What's a better way to get the same effect?
+...but you get all of this and more by simply writing
+ //
+Example 5: Just do it -- better than Example 3
+ //
+ void
+f( const Z& z )
+ {
+ 
+// ...
+ }
+and it works whether the object is handle/body or reference-counted or not,
+so just do that!
+ 
+Guideline: Avoid passing objects by const value. Prefer passing
+ them by const reference instead, unless they're cheap-to-copy objects like
+ ints.
+ 
+It's a common belief that const-correctness helps compilers generate
+ tighter code. Const is indeed a Good Thing, but the point of this issue of
+ GotW is that const is mainly for humans, rather than for compilers and
+ optimizers. When it comes to writing safe code, const is a great tool that
+ lets programmers write safer code with compiler checking and enforcement. Even
+ when it comes to optimization, const is still principally useful as a tool
+ that lets human class designers better implement handcrafted optimizations,
+ and less so as a tag for omniscient compilers to automatically generate better
+ code.
+Acknowledgments
+Thanks to Kevlin Henney for suggesting this topic and
+some of the cases, and to Bill Wade for an amplification to 3(a).. 
+Copyright ©
+2002 Herb Sutter
+ 

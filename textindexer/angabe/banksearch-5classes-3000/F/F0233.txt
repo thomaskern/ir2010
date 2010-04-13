@@ -1,0 +1,205 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6
+Floating an Excel Window in Your own Program
+ID: 959
+Author: Abstractvb
+Date: 1/19/2002 10:25:47 PM
+VB6, MSExcel
+You will need to add a reference to Microsoft Excel. 
+Add an MDI window to your project and set it as the starting window. Then add this code and run it.
+Option Explicit
+Private Const GWL_STYLE = (-16)
+Private Const WS_DLGFRAME = &H400000
+Private Const WS_CHILD = &H40000000
+Private Const WS_CHILDWINDOW = (WS_CHILD)
+Private Const WS_VSCROLL = &H200000
+Private Const WS_CAPTION = &HC00000
+Private Const WS_BORDER = &H800000
+Private Const WS_THICKFRAME = &H40000
+Private Const WS_SIZEBOX = WS_THICKFRAME
+Private Type RECT
+ Left As Long
+ Top As Long
+ Right As Long
+ Bottom As Long
+End Type
+Private Declare Function FindWindow Lib "user32" _
+ Alias "FindWindowA" _
+ (ByVal lpClassName As String, _
+ ByVal lpWindowName As String) As Long
+ 
+Private Declare Function GetParent Lib "user32" _
+ (ByVal hwnd As Long) As Long
+ 
+Private Declare Function SetParent Lib "user32" _
+ (ByVal hWndChild As Long, _
+ ByVal hWndNewParent As Long) As Long
+ 
+Private Declare Function SetForegroundWindow Lib "user32" _
+ (ByVal hwnd As Long) As Long
+ 
+Private Declare Function GetWindowLong Lib "user32" _
+ Alias "GetWindowLongA" _
+ (ByVal hwnd As Long, _
+ ByVal nIndex As Long) As Long
+Private Declare Function SetWindowLong Lib "user32" _
+ Alias "SetWindowLongA" _
+ (ByVal hwnd As Long, _
+ ByVal nIndex As Long, _
+ ByVal dwNewLong As Long) As Long
+ 
+Private Declare Function MoveWindow Lib "user32" _
+ (ByVal hwnd As Long, _
+ ByVal x As Long, _
+ ByVal y As Long, _
+ ByVal nWidth As Long, _
+ ByVal nHeight As Long, _
+ ByVal bRepaint As Long) As Long
+ 
+Private Declare Function SetWindowPos Lib "user32" _
+ (ByVal hwnd As Long, _
+ ByVal hWndInsertAfter As Long, _
+ ByVal x As Long, ByVal y As Long, _
+ ByVal cx As Long, _
+ ByVal cy As Long, _
+ ByVal wFlags As Long) As Long
+ 
+Private Declare Function FindWindowEx Lib "user32" _
+ Alias "FindWindowExA" _
+ (ByVal hWnd1 As Long, _
+ ByVal hWnd2 As Long, _
+ ByVal lpsz1 As String, _
+ ByVal lpsz2 As String) As Long
+Private WithEvents mobjXL As Excel.Application
+Private mlngXLHwnd As Long
+Private Sub MDIForm_Load()
+ Dim lngStyle As Long
+ Dim c As Object
+ Dim lngStatusBar As Long
+ Set mobjXL = New Excel.Application
+ 
+ mobjXL.Caption = "10001"
+ 
+ mobjXL.Visible = True
+ For Each c In mobjXL.CommandBars
+ c.Enabled = False
+ Next
+ mlngXLHwnd = FindWindow("XLMAIN", "10001")
+ SetParent mlngXLHwnd, Me.hwnd
+ 
+ lngStyle = GetWindowLong(mlngXLHwnd, GWL_STYLE)
+ 
+ lngStyle = lngStyle Xor WS_CAPTION
+ lngStyle = lngStyle Xor WS_SIZEBOX
+ 
+ SetWindowLong mlngXLHwnd, GWL_STYLE, lngStyle
+ 
+ MoveWindow mlngXLHwnd, 0, (Picture1.Height / Screen.TwipsPerPixelY), _
+ (Me.ScaleWidth / Screen.TwipsPerPixelX), _
+ (Me.ScaleHeight / Screen.TwipsPerPixelY), 1
+ 
+ mobjXL.Workbooks.Add
+ 
+End Sub
+Private Sub MDIForm_QueryUnload(Cancel As Integer, UnloadMode As Integer)
+ 
+ SetParent mlngXLHwnd, 0
+ DoEvents
+ 
+ mobjXL.Quit
+ 
+ Set mobjXL = Nothing
+End Sub
+Private Sub MDIForm_Resize()
+ If Not Me.WindowState = vbMinimized Then
+ MoveWindow mlngXLHwnd, 0, _
+ (Picture1.Height / Screen.TwipsPerPixelY), _
+ (Me.ScaleWidth / Screen.TwipsPerPixelX), _
+ (Me.ScaleHeight / Screen.TwipsPerPixelY), 1
+ End If
+End Sub
+Private Sub mobjXL_WindowResize(ByVal Wb As Excel.Workbook, ByVal Wn As Excel.Window)
+ MoveWindow mlngXLHwnd, 0, _
+ (Picture1.Height / Screen.TwipsPerPixelY), _
+ (Me.ScaleWidth / Screen.TwipsPerPixelX), _
+ (Me.ScaleHeight / Screen.TwipsPerPixelY), 1
+End Sub
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 

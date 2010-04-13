@@ -1,0 +1,92 @@
+
+VB ListView
+ 
+ 
+ 
+ Brad's VB-32 Programs & Samples 
+ 
+ 
+ 
+ 
+ 
+ 
+ Last update: 11/14/99
+ (VBDirectoryLV, LVItemTips) 
+ 
+Home 
+ 
+ 
+ Extending the
+ functionality of the VB ListView controls
+Overview...
+ 
+ The "ListView" control in both Comctl32.ocx and Mscomctl.ocx is simply a wrapper
+ that superclasses (encapsulates) the real "listview" common control in
+ Comctl32.dll. This allows the real listview common control messages and definitions to be
+ used to override almost every aspect of the VB ListView control.
+ 
+ The listview common control messages and definitions can be found in a C header file named
+ Commctrl.h. This file used to have a friendly URL on the MS site, but doesn't anymore for
+ some reason. It appears that the only alternatives for obtaining this file are to either
+ grab a copy of Visual Studio, or download either of the fairly huge INetSDK or PlatformSDK
+ at http://msdn.microsoft.com/developer/sdk/
+ 
+ But, instead of going to all of the trouble to find the darned download that contains
+ Commctrl.h (wherever it is), and then having to convert the C definitions to VB, well, you
+ can get the whole shebang right here. The follow zip contains *every* listview definition
+ and macro converted to VB, through Comctl32.dll v4.71 (IE4, excluding the listview's
+ CustomDraw definitions). Most listview examples that will eventually appear below will use
+ only the necessary subset of these definitions, keeping each example as clear and simple
+ as possible.
+ 
+ Download lvdefs_471.zip (9kb)
+ Last update: 08/30/99
+ 
+LVItemDrag: How to dynamically drag selected
+ ListItems in the VB ListView.
+ 
+ Even though one or more ListItems can be selected in the ListView whose
+ MultiSelect property is set to True (whose LVS_SINGLESEL window style is not set), unlike
+ familiar Explorer functionality, only the focused ListItem moves when dragging the
+ selection. This demo solves this shortcoming, but not without a little work.
+ 
+ When the left or right mouse button is depressed and moved over ListItem, typically four
+ pixels in any direction, the real listview sends its parent window a LVN_BEGINDRAG or
+ LVN_BEGINRDRAG notification message, respectively. For left button dragging, when the VB
+ ListView receives a LVN_BEGINDRAG, it begins repositioning the ListItem under the cursor.
+ The ListView does not respond to LVN_BEGINRDRAG, and provides no right button item
+ dragging facility. Once either notification has been processed and dragging has begun, the
+ ListView stops raising its MouseMove event, until the respective button is released. So,
+ in order to provide multiple ListItem repositioning with the left mouse button, right
+ button ListItem repositioning, and continue the receive the MouseMove event, the
+ ListView's parent window (typically a Form) must be subclassed, where both notifications
+ can be detected, and eaten (not passed to the CallWindowProc API function).
+ 
+ Also, when in large or small icon view, the view area inside the ListView's client window
+ in which its icons reside can grow to be much larger than the size of the ListView's
+ client window. If an ListItem is dragged to the edge of the ListView client window, the
+ view becomes enlarged and is shifted in the opposite direction. Because item positions
+ (ListItem Left and Top properties) are coordinates relative to the view's 0-0 coordinates,
+ and not the upper-left corner of the ListView client window, this amount of view shifting
+ must be considered when positioning ListItems using the ListView client cursor position.
+ The demo makes heavy use of the LVM_GETORIGIN message, which returns the pixel coordinates
+ of the ListView client window's upper-left corner relative to the shifted view's 0-0
+ coordinates.
+ 
+ Not only does the demo show how to move all selected ListItems with the mouse during a
+ dragging operation, but also solves the annoying behavior where the ListView will scroll
+ wildly when the selected ListItem is dragged near the ListView client window edge.
+ 
+ Download lvitemdrag.zip (9kb)
+ Last update: 08/30/99
+ 
+LVDragImage: How to create a drag image of selected
+ ListView ListItems.
+ 
+ As does the previous demo, this demo also shows how to move selected ListItems in the
+ ListView, but takes a completely different, and quite a bit more complex approach, by
+ showing how to create Explorer like drag images for selected ListView ListItems.
+ 
+ If a single item is dragged in Explorer's listview, a faded image of that item is created
+ and "attached" to the cursor. If multiple items are selected and dragged, on
+ 

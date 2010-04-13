@@ -1,0 +1,63 @@
+
+ 
+ 
+ 
+ lesson11
+Lesson 12: Creating VB Functions For MS Excel
+12.2 The Needs to Create User-Defined Functions in MS-Excel
+You can create your own functions to supplement the built-in
+functions in Microsoft Excel spreadsheet which are quite limited. These
+functions could be very useful and powerful if you know how to program
+them properly. One main reason we need to create user defined functions
+is to enable us to customize our spreadsheet environment for individual
+needs. For example, we might need a function that could calculate commissions
+payment based on the sales volume, which is quite difficult if not impossible
+by using the built-in function alone. Lets look at the table below:
+Table 12.1: Commissions Payment Table
+Sales Volume($)
+ 
+Commissons
+ 
+5000
+ 
+15%
+ 
+In the above table, if a saleman attain a sale volume of $6000,
+he will be paid $6000x12%=$720.00. A visual basic function to calculate
+the commissions could be written as
+follows:
+Function Comm(Sales_V As Variant) as Variant
+If Sales_V =500 and Sales_V=1000 and Sales_V=200 and Sales_V=5000 Then
+Comm=Sales_V*0.15
+End If
+End Function
+12.2 Using Microsoft Excel Visual Basic Editor
+To create User Defined functions in MS Excel, you can click on
+tools, select macro and then click on Visual Basic Editor as shown in Figure
+12.1
+ 
+ 
+ 
+Figure 12.1: Inserting Ms_Excel Visual Basic Editor
+Upon clicking the Visual Basic Editor, the VB Editor windows will appear
+as shown in figure 12.2. To create a function, type in the function as
+illustrated in section 12.1 above After typing, save the
+ file and then return to the Excel windows.
+Figure 12.2 : The VB Editor
+ 
+ 
+ In the Excel windows, type in the titles Sales Volume and Commissions
+in any two cells. By refering to figure 12.3, key-in the Comm function
+at cell C4 and by referencing the value in cell B4, using the format Comm(B4).
+Any value appear in cell B4 will pass the value to the Comm function in
+cell C4. For the rest of the rows, just copy the formula by draging 
+the bottom right corner of cell C4 to the required cells, and a nice and
+neat table that show the commisions will automatically appear. It can also
+be updated anytime
+ 
+ 
+Figure 12.3: MS Excel Windows- Sales Volume
+ 
+ 
+[Back to contents 
+page]

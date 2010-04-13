@@ -1,0 +1,146 @@
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+www.delorie.com/djgpp/v2faq/faq18_2.html 
+ 
+search 
+ 
+Node:Pointer segment,
+Next:Zero SP,
+Previous:int86,
+Up:Low-level
+18.2 How to use buffers with DOS/BIOS services
+Q: I want to call a DOS/BIOS function which requires a pointer to a
+buffer in, e.g. ES:DI (or any other) register pair. How do I get
+the segment to put into the ES register?
+Q: I have some real-mode code that calls the segread
+function. How can I make it work with DJGPP?
+A: If you call __dpmi_int, then you must put into that
+register pair an address of some buffer in conventional memory
+(in the first 1 MByte). If the size of that buffer doesn't have to be
+larger than the size of transfer buffer used by DJGPP (at least 2KB,
+16KB by default), then the easiest way is to use the transfer buffer. 
+(Library functions don't assume the contents of the transfer buffer to
+be preserved across function calls, so you can use it freely.) That
+buffer is used for all DOS/BIOS services supported by DJGPP, it resides
+in conventional memory, and is allocated by the startup code. DJGPP
+makes the address and the size of the transfer buffer available for you
+in the _go32_info_block external variable, which is documented in
+the library reference. Check the size of the buffer (usually, 16K
+bytes, but it can be made as small as 2KB), and if it suits you, use its
+linear address this way:
+dpmi_regs.x.di =
+ _go32_info_block.linear_address_of_transfer_buffer & 0x0f;
+dpmi_regs.x.es =
+ _go32_info_block.linear_address_of_transfer_buffer >> 4;
+For your convenience, the header file go32.h defines a macro
+__tb which is an alias for
+_go32_info_block.linear_address_of_transfer_buffer.
+Here's a simple example of calling a real-mode service. This function
+queries DOS about the country-specific information, by calling function
+38h of the DOS Interrupt 21h, then returns the local currency symbol as
+a C-style null-terminated string in malloced storage. Note how
+the transfer buffer is used to retrieve the info: the address of the
+transfer buffer is passed to DOS, so it stores the data there, and the
+function then retrieves part of that data using dosmemget.
+ #include 
+ #include 
+ #include 
+ #include 
+ char * local_currency (void)
+ {
+ __dpmi_regs regs;
+ regs.x.ax = 0x3800; /* AH = 38h, AL = 00h */
+ regs.x.ds = __tb >> 4; /* transfer buffer address in DS:DX */
+ regs.x.dx = __tb & 0x0f;
+ __dpmi_int (0x21, &regs); /* call DOS */
+ if (regs.x.flags & 1) /* is carry flag set? */
+ /* The call failed; use the default symbol. */
+ return strdup ("$");
+ else
+ {
+ /* The call succeeded. The local currency symbol is stored
+ as an ASCIIZ string at offset 2 in the transfer buffer. */
+ char *p = (char *)malloc (2);
+ if (p != 0)
+ dosmemget (__tb + 2, 2, p);
+ return p;
+ }
+ }
+If the size of the transfer buffer isn't enough, you will have to allocate
+your own buffer in conventional memory with a call to the
+__dpmi_allocate_dos_memory library function. It returns to you the
+segment of the allocated block (the offset is zero). If you only need a
+small number of such buffers which can be allocated once, then you don't
+have to worry about freeing them: they will be freed by DOS when your
+program calls exit. The only adverse effect of not freeing DOS
+memory until the program exits is that if you need to run subsidiary
+programs (via spawnXX or system library functions), those
+programs will have less conventional memory. Usually, this aspect
+should only be considered if a program allocates very large (like 100KB)
+buffers in conventional memory.
+DOS memory can also be allocated by calling function 48h of Interrupt
+21h via __dpmi_int and freed by calling function 49h. The only
+disadvantage of this method is that it doesn't create a protected-mode
+selector for the allocated block, so you must use the _dos_ds
+selector to reference the allocated memory, which is less safe: the
+_dos_ds selector spans the entire first megabyte of memory,
+whereas the selector created by __dpmi_allocate_dos_memory spans
+only the allocated block, and will therefore catch bugs that reference
+memory outside that block.
+For bullet-proof code, you should test the size of the transfer buffer at
+runtime and act accordingly. This is because its size can be changed by
+the STUBEDIT program without your knowledge (however, it can
+never be less than 2KB, the size of the stub, because memory used by the
+stub is reused for the transfer buffer).
+The function segread used by some real-mode compilers does not
+exist in DJGPP. It is used in real-mode code to store the values of the
+CS, DS, SS, and ES registers into a struct
+SREGS variable, when some service that needs one of these registers is
+called from code written for small and tiny memory models. DJGPP has
+the functions _my_cs, _my_ds, and _my_ss for that
+purpose (ES and DS always hold the same selector in code
+produced by GCC from a C or C++ source, so you don't need a fourth
+function). However, these will not be useful if the original real-mode
+code used the segment registers to invoke DOS/BIOS services. For these
+cases, you will need to rewrite the code so that it copies the data
+to/from the transfer buffer and passes the transfer buffer address via
+__dpmi_int, as described above.
+If you use int86x or intdosx to call a DOS or BIOS
+function supported by them, then just put the address of your buffer
+into the register which expects the offset (regs.x.di), forget
+about the segment, and call int86 or intdos instead of
+int86x and intdosx. The DOS/BIOS functions supported by
+int86 and intdos are processed specially by the library,
+which will take care of the rest. Note that calling int86x and
+intdosx will usually crash your program, since they expect that
+you pass them a real-mode segment:offset address to a buffer in
+conventional memory; this is done more easily with __dpmi_int,
+as described above, so I don't recommend using int86x and
+intdosx.
+ 
+webmaster 
+donations 
+bookstore 
+ 
+ 
+delorie software 
+privacy 
+ 
+ 
+Copyright © 2001 
+by Eli Zaretskii 
+ 
+ 
+Updated Apr 2001 
+ 
+Please take a moment to fill out
+this visitor survey
+You can help support this site by
+visiting the advertisers that sponsor it! (only once each, though)

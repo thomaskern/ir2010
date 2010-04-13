@@ -1,0 +1,562 @@
+
+Enterprise Application Development
+	 
+ 
+ 
+ 
+ 
+	
+	
+ 
+	
+ 
+	
+	
+	 
+	 
+	
+	 All Products |
+	 Support |
+	 Search |
+	 microsoft.com Guide 
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 Visual C++ Home |
+	
+	
+	 
+	
+	
+	
+ 
+ 
+	
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 
+	
+	
+	<![if ! ie ]>
+	Search This Site
+	
+	
+	
+	
+	
+	
+	<![endif]>
+	 
+	
+	 	
+	
+	
+	 
+	 
+	
+	
+	
+	
+	
+	 
+	Advanced Search 
+	
+	
+	 
+	
+	
+	
+	
+	 
+	 
+	
+	
+	
+	 
+	 
+	 
+	
+	
+	
+	
+	
+	Visual Studio Home 
+	
+	
+	
+	
+	
+	
+	Visual C++ Home 
+	
+	
+	
+	
+	
+	
+	Product Information 
+	
+	
+	
+	
+	
+	
+	How to Buy 
+	
+	
+	
+	
+	
+	
+	Technical Resources 
+	
+	
+	
+	
+	
+	
+	Downloads 
+	
+	
+	
+	
+	
+	
+	Support 
+	
+	
+	
+	
+	
+	
+	Community 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	Developer Tools 
+	
+	
+	
+	
+	 
+	
+	 
+	
+	
+	
+	
+	 
+	 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+	 
+	 	Visual C++ .NET Product Information
+	
+	 > Visual C++ 6.0
+	
+	 > Evaluation Guide
+	
+	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+Enterprise Application Development
+ 
+	 	
+	 	
+	 	
+ 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	 
+	 	
+	 	
+	 	 
+	 	
+	 	
+	 	 	
+	 	
+	 	
+	 	 
+	 	
+	 
+	 
+	 	
+	 	 
+	 	
+	 
+ 
+ 
+ 	 
+	 	 	 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	Download 
+	
+	
+	 
+	
+	
+	
+	
+ 
+	 
+ VC6evalguide.exe 
+ 
+ 
+	 
+ 1000 KB file 
+	
+	
+ 
+	 
+ 5 min @ 28.8 Kbps 
+	
+	
+	 
+	
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ In This Article
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Windows 2000 Ready 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Developer Productivity 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Highest Performance and Control 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Latest Platform, Internet, and Component Support 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Enterprise Application Development 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	 
+	Community and Training 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Windows Distributed interNet Applications Architecture
+In order to meet the needs of enterprise development, Microsoft introduced the Windows Distributed interNet Applications (DNA) framework. Using the DNA framework, customers can build scalable, multitier business applications that can be delivered over any network, provide open access to diverse data sources across different platforms, and be freely accessed by any client computing platform. In turn, Visual Studio, Enterprise Edition is the complete development tools suite for addressing all aspects of enterprise application development based on the DNA framework.
+Figure 10: Visual Studio is the complete development tools suite for building enterprise applications for the Windows DNA framework. Windows DNA enables corporations to develop cross-platform applications that can access data sources on any server environment including Windows 2000, Windows NT, UNIX, and SNA-based systems.
+Visual Studio, Enterprise Edition
+By acquiring Visual Studio, Enterprise Edition, developers using Visual C++ 6.0 receive important new enterprise development features for building Windows DNA-based applications. These features, integrated directly within the Visual C++ 6.0 development environment, include:
+- Team development features. Microsoft Visual SourceSafe source control system, Microsoft Repository, and the Microsoft Visual Component Manager.
+- Application design and analysis tools. Microsoft Visual Modeler for designing three-tier, component-based models based on the Unified Modeling Language (UML), and Visual Studio Analyzer for detailed performance analysis of distributed applications. 
+- BackOffice, Developer Edition. Developer editions of the Microsoft BackOffice family of application servers.
+Team Development Features
+Visual SourceSafe
+The Microsoft Visual SourceSafe 6.0 version control system is the latest edition of Microsoft's award-winning version control system for managing software and Web site development. Fully integrated with the Visual Basic, Visual C++, Visual J++, Visual InterDev, and Visual FoxPro development environments, as well as with Microsoft Office applications, it provides easy-to-use, project-oriented version control. Visual SourceSafe works with any type of file produced by any development language, authoring tool, or application. Users can work at both the file and project level while promoting file reuse. The project-oriented features of Visual SourceSafe make managing the day-to-day tasks associated with team-based application and Web site development more efficient.
+Microsoft Repository 2.0
+Microsoft Repository allows component information to be shared-not only by multiple team members, but also by multiple tools. By providing an open, extensible framework for storing software components and information about them (such as their methods, data types, and relationships to other components), Microsoft Repository enables tool interoperability across the application life cycle. More benefits of component-based development can be realized, including more effective component management and higher levels of automation. Visual Studio 6.0 provides access to Repository components through Visual Component Manager, Visual Modeler, Visual InterDev, Visual J++, Visual C++, and Visual Basic. Access to the Repository is also provided through numerous third-party products.
+Application Design & Analysis Tools
+Visual Modeler 2.0
+Visual Studio supports logical application design based on the Unified Modeling Language (UML) via the Visual Studio Modeler, that was jointly developed by Microsoft and Rational Software. The Visual Modeler allows the detailed visual description of components, component relationships, methods properties, and events. It functions as a whiteboard that facilitates communication and architectural understanding across teams. The modeler also provides automatic code generation from models into Visual Basic and Visual C++ projects. In addition, reverse-engineering is provided for Visual Basic-based projects.
+Visual Studio Analyzer
+Distributed, multitier applications are inherently complicated. If a developer joins a new team working on such an application, or inherits such an application from another developer, figuring out how the application works can be a significant challenge. Up until now there has not been an easy way to do this, short of studying the source code, stepping through the application using a low-level debugger, and reviewing documentation, architecture specifications, and diagrams that might be out of date. Visual Studio Analyzer helps developers understand distributed applications by identifying components and computers that interact, providing visual diagrams as well as detailed information about the events that each component generates. Teams can record typical sessions of their application and save the resulting event logs; new team members can then replay these logs.
+Determining performance bottlenecks in distributed applications is also a very difficult task. Developers have been limited to measuring only the response times when user operations are issued. If more detailed information was needed, the development team had to instrument applications, record the instrumentation output on each machine, merge the results, and present the data for analysis. Visual Studio Analyzer performs all these tasks without having to alter a single line of code. Each event recorded by the Visual Studio Analyzer is time-stamped and routed to a single event log. Visual Studio Analyzer collates and organizes the data into call trees, correlates request/responses, and generates Gantt-style reports that present the timing and duration of events. For advanced analysis, Visual Studio Analyzer also records selected events from the Windows 2000 or Windows NT Performance Monitor. These events are time-stamped and recorded in the log, which can be overlaid on the Gantt charts. Developers can understand what is happening outside the application as well as inside during application processing. The Visual Studio Analyzer is available only in Visual Studio 6.0 enterprise edition.
+BackOffice Server, Developer Edition
+Microsoft Visual C++ 6.0, Enterprise Edition includes Microsoft Transaction Server, Microsoft Internet Information Server, Microsoft Message Queue Server, as well as developer editions of Microsoft SQL Server and Microsoft SNA Server. Microsoft Visual Studio 6.0, Enterprise Edition includes the complete Microsoft BackOffice family of application servers, which additionally includes Microsoft Exchange, Microsoft Site Server, and Microsoft Systems Management Server. These servers provide a broad set of application services that ease development and management of Windows DNA applications. All of the application services are exposed as COM objects and can be easily used within any of the Visual Studio tools. Refer to the Visual Studio 6.0 Reviewer's Guide for more information on these application services.
+Microsoft SQL Server 7.0, Developer Edition
+Microsoft SQL Server 7.0 is a scalable, high-performance database management system for Windows 2000 and Windows NT-based systems. Designed to meet the requirements of distributed client-server computing, SQL Server 7.0 is tightly integrated with the Microsoft BackOffice family of servers to enable organizations to improve decision making and streamline business processes. The built-in Internet integration in SQL Server gives organizations the ability to build Active Web sites, conduct business on the Internet, and build corporate Intranet sites using open, high-performance solutions.
+SQL Server Lowers the Cost and Complexity of Distributed Computing-
+Reduced complexity for users, administrators and developers means quicker, easier-to-use business solutions at lower costs.
+Microsoft SNA Server 4.0
+Microsoft SNA Server 4.0 is a comprehensive gateway and application integration platform that provides an organization with the best way to embrace Internet, Intranet, and client-server technologies while preserving investments in existing AS/400 and mainframe systems. As an application integration platform, SNA Server 4.0 empowers developers with new ways to take advantage of existing AS/400 and mainframe data and applications using the best of today's object-oriented programming techniques. SNA Server includes comprehensive mainframe connectivity options, including ODBC and OLE DB database drivers for VSAM databases and DB/2 databases running on AS400 and IBM mainframe platforms. SNA Server also includes the Microsoft COM Transaction Integrator for CICS and IMS (COMTI). COMTI provides client applications with access to IBM Customer Information Control System (CICS) and IBM Information Management Systems (IMS) programs running on MVS mainframes. Working in conjunction with Microsoft Transaction Server, COMTI makes CICS and IMS programs appear as typical MTS components that can be packaged with other components for building distributed applications.
+Microsoft Message Queue Server
+Developers can easily support asynchronous messaging with Microsoft Message Queue Server (MSMQ), which provides loosely coupled and reliable network communications services based on a message-queuing model. MSMQ offers comprehensive message queuing functionality such as reliable message delivery, cost-based message routing, and full support for transactions. MSMQ allows Windows-based applications to communicate with each other asynchronously or to integrate with applications running on other platforms. Message queue-based systems offer high scalability and the ability to operate over networks that are occasionally unavailable.
+Microsoft Transaction Server 2.0
+Microsoft Transaction Server (MTS) is a component-based transaction processing system for developing, deploying, and managing high-performance, scalable, and robust enterprise, Internet, and intranet server applications. It combines the flexibility and low cost of desktop applications with the mission-critical transaction-processing features normally found in high-end mainframe systems. MTS defines an application programming model for developing distributed, component-based applications. It also provides a run-time infrastructure for deploying and managing these applications. Using MTS, developers can easily take advantage of distributed transaction support based on the XA standard, with almost no additional programming required. MTS also provides automatic thread and resource pooling to provide the highest degree of scalability for server-side components.
+Microsoft Internet Information Server
+Microsoft Internet Information Server (IIS) is designed to meet the needs for a wide range of users, from workgroups and departments on a corporate intranet to Internet Service Providers hosting Web sites that receive millions of hits per day. IIS revolutionizes the Web capabilities of the Microsoft Windows 2000 and Windows NT Server version 4.0 operating system by providing the easiest way to share information, build and deploy business applications, and host and manage sites.
+IIS Web services include server-side scripting, distributed component facilities, rich database connectivity, automatic session state management, and rich transactional database processing for Web-based applications.
+Universal Data Access
+With the proliferation of data in the form of electronic mail and other documents generated by office productivity packages, the percentage of corporate data stored in non-relational data stores is increasing dramatically. More and more information resides in custom stores and file systems. Developers need the most flexible and high-performance access to these unstructured and semi-structured types of data. Ideally, developers could work with all kinds of data in the same way (with the same programmatic interfaces) to increase their overall productivity and eliminate the need to learn multiple data access APIs. A comprehensive enterprise development tool must support access to both relational and non-relational data if true multitier, integrated solutions are going to be implemented.
+Universal Data Access is Microsoft's strategy for providing high-performance access to all types of information (including relational and non-relational data) across organizations, from the desktop to the enterprise. Universal Data Access enables all Visual Studio tools to access any data source on any platform. Universal Data Access consists of three core technologies: OLE DB, Open Database Connectivity (ODBC), and ActiveX Data Objects (ADO).
+OLE DB and ODBC
+OLE DB is Microsoft's system-level programming interface to diverse data sources. OLE DB specifies a set of Microsoft COM interfaces that encapsulate, or hide, various database management system services. OLE DB is designed for non-relational as well as relational information sources on disparate platforms. These include electronic mail and file system stores; text, graphical, and geographical data; and custom business objects.
+ODBC continues to provide standard access to most relational database systems on the market. In addition, the OLE DB Provider for ODBC uses existing ODBC drivers to access relational data.
+All Visual Studio 6.0 tools include new Microsoft-developed OLE DB providers and/or ODBC drivers to Microsoft SQL Server, Microsoft Access, Microsoft FoxPro®, Oracle, and AS/400 VSAM databases. In addition, third-party OLE DB providers and ODBC drivers are available for other database systems including Informix, Sybase, IBM DB/2, and most others. Independent software vendors can also easily create custom OLE DB providers to their own proprietary storage formats.
+OLE DB Wizard and Template Support
+Independent software vendors and corporations can also easily create custom OLE DB providers and consumers for use with their own proprietary storage formats using the OLE DB templates and wizards included with Visual C++ 6.0. This support is present in ATL and provides developers access to all the performance of writing to OLE DB directly while a minimizing coding. Previously, developers had to write all OLE DB code themselves, including the underlying COM. With the template infrastructure, the reduction in lines of code necessary to build a full-featured OLE DB provider is impressive. Combined with the wizard, however, the reduction in code required from the developer becomes astounding&#151;from 6,000 lines of code to 100 lines of code, for example&#151;because the wizard generates most of the needed code. Such support is also provided for OLE DB consumers. Consumer code generated by the wizard allows developers to easily specify exactly what information they want to consume from an OLE DB provider. This control assures the highest efficiency in record set retrieval.
+ActiveX Data Objects
+ADO is Microsoft's strategic, high-level interface to data, completely isolating developers from the underlying OLE DB and ODBC technologies. ADO supplies an open, application-level data access object model that allows corporate programmers to write database applications over OLE DB data using any language. All of the Visual Studio tools can use ADO to access data. Through ADO, developers now have access to more types of data than ever before and will need to spend far less time writing complex client/server code.
+Figure 11: The Universal Data Access Architecture provides a unified layer of interoperability across multiple, traditional and non-traditional data sources. These data sources can be located on any platform, such as Windows 2000, Windows NT, UNIX, and SNA-based host environments.
+ActiveX Data-Bound Controls
+Visual C++ 6.0 simplifies ADO data access with a new set of ActiveX data-bound controls. By using these controls for data access, developers are not restricted to accessing data from traditional databases, as they were with the RDO-based Microsoft Remote Data Control (MSRDC). These controls include:
+- DataGrid-A data-driven grid control (akin to a spreadsheet).
+- DataCombo-A data-driven combo box (combines an edit box and a list box).
+- DataList-A data-driven list box.
+- Hierarchical Flex Grid-A grid that can contain text or pictures and can sort, merge, and format its contents.
+- Date and Time Picker-A control that allows for the intuitive graphical selection of dates or times.
+These controls are accessible graphically through the Resource Editor.
+ADO Data Bound Dialog Wizard
+An ADO Data Bound Dialog Wizard has been added to Visual C++ 6.0 as a component accessible from the Components and Controls Gallery to guide users through the creation of MFC data-bound dialogs with ADO. This wizard serves as an excellent introduction to ADO for developers using Visual C++ because it generates the necessary dialog resources, elements, and DDX code for binding the UI elements to the member variables of the dialog box class.
+Visual Database Tools
+The Microsoft Visual Database Tools, integrated into all members of the Visual Studio suite, provide extensive support for building data-centric applications rapidly. The Microsoft Visual Database Tools in Visual Studio 6.0, Professional Edition include:
+ 
+- Data View. Connect to and explore any ODBC or OLE DB database.
+- Query Designer. Design, execute, and save complex SQL queries.
+- Visual Data Environment. Define reusable database objects such as record sets and quickly create data-bound applications by using drag-and-drop functionality to move database objects onto forms.
+Additionally, Visual Studio, Enterprise Edition includes the following features directly integrated into Visual C++ 6.0:
+- Database Designer. Create and modify Microsoft SQL Server and Oracle databases, including designing individual tables as well as entire database schemas.
+- Stored Procedure Editor. Create and edit Microsoft SQL Server and Oracle stored procedures using a color-coded editor.
+- Stored Procedure Debugging. Remotely debug stored procedures on Microsoft SQL Server 6.5 (or higher) databases. 
+- Database Projects. Manage databases from a central project, including integrated source code control for stored procedures, database scripts, and SQL queries.
+Data View
+Data View enables developers to examine all databases used in a project, and then quickly and easily integrate database objects into an application. Developers can use Data View to view table structures, database views, stored procedures, and other database objects directly within the development environment, as well as to view and change the actual data in a convenient grid pane.
+Query Designer
+The SQL Query Designer is a powerful tool that enables visual creation of ANSI SQL as well as back-end specific SQL statements. After establishing the connection to the desired database, developers can use the Query Designer to design, view, and execute the query. By dragging tables and dropping them onto the design pane, the SQL is automatically created. The Query Designer will automatically recognize database relationships and generate the appropriate join conditions. Developers can work directly in any pane-diagram, grid, SQL-and their changes will be reflected in the other panes. Queries can be directly tested and the results viewed in the Results Pane.
+Figure 12: The SQL Query Designer makes it easy to visually construct and test complex SQL statements against any data source.
+ 
+Database Designer
+Developers using Visual Studio, Enterprise Edition can use the Database Designer to visually create and modify SQL Server (version 6.5 and higher) and Oracle (version 7.x and higher) databases. The Database Designer is directly integrated into the development environment. For example, developers can create, edit, or delete database tables using the graphical designer. Based on visual operations, the DDL scripts are automatically generated by the Database Designer. These scripts can be directly applied to the database (assuming the developer has the required access permissions) or saved to a file for review and execution by a DBA.
+Developers can also create database diagrams that graphically represent the tables and relationships in the database. These diagrams can be used to create, modify, or delete foreign-key relationships between tables, as well as any indexes and constraints attached to them. Developers can share database diagrams across teams to visualize the structure of the database tables and their relationships and to provide different visualizations of complex databases.
+Figure 13: The Database Designer enables developers to graphically create and modify database schemas directly within the development environment.
+Stored Procedure Editor
+Developers using Visual Studio, Enterprise Edition can view, implement, edit, and test SQL Server stored procedures (T-SQL) and Oracle subprograms (PL/SQL) using a color-coded stored procedure editor.
+Stored Procedure Debugging
+Using integrated SQL debugging for Microsoft SQL Server, developers can also debug stored procedures from directly within the development environment. Developers can step directly from source code executing on a calling computer to Microsoft SQL Server 6.5 (or higher) stored procedure source code executing on a remote server.
+ 
+Database Projects
+Database projects enable developers and database administrators to manage databases from directly within Visual Studio. Database projects organize database designs and database-related functions such as SQL queries, database scripts, stored procedures, and database diagrams in one central project. New with Visual Studio 6.0, developers can place a database project under source control to enable versioning of common database objects such as SQL queries, stored procedures, and database scripts. This allows developers to easily roll back database changes to previous versions, or to quickly apply a common set of scripts across different databases to ensure they are synchronized.
+Microsoft Data Engine
+The Microsoft® Data Engine (MSDE) enables developers to build desktop and shared solutions that easily migrate to full Microsoft SQL Server and grow with your business needs.. MSDE provides 100% compatibility with SQL Server, offers royalty-free licensing and distribution for applications built with Visual Studio 6.0 tools, and provides the reliability of SQL Server in a desktop data engine.
+As application requirements expand, your MSDE applications will easily scale to full SQL Server solutions without changing a single line of code.
+Additional Enterprise Functionality
+As the tool of choice for high performance, Visual C++ is best of breed in several key areas of enterprise development:
+- Control of execution with the best threading support. Objects can be single, apartment, free-threaded, or both free- and apartment-threaded. 
+- Best scalability. The flexibility in the threading model combined with the small footprint and efficient logic provided by C++ templates make ATL-developed components the most scalable components on Windows. Managing transactions and resources for ATL components are made easier with simplified check box support in the ATL COM AppWizard. When used with Internet Information Server and Microsoft Transaction Server, ATL components are the best solution for high-demand, computation-intensive Web applications. 
+- Revolutionary platform technologies. More and more enterprises are looking to clustering technologies to provide high-availability systems at low cost. Visual C++ 6.0 supports the creation of Windows 2000 or Windows NT Cluster Server -ready code with the new Cluster Resource Type Wizard.
+- Most powerful data programming. Visual C++ allows for the creation of the most flexible and highest-performance OLE DB data access code. Because OLE DB is based on COM, OLE DB objects can take advantage of the scalability and performance of other ATL-created objects. Additionally, advanced programming against SQL Server is provided through the Extended Stored Procedure creation capabilities of Visual C++.
+Updated Companion Products
+In addition to the updated core functionality of Visual C++ 6.0, new versions of InstallShield and Test Container are included. InstallShield for Microsoft Visual C++ 6.0 allows developers to create robust setups for the applications they build with Visual C++. With the latest version, additional templates are included to make the installation of an even greater variety of software simpler than ever. 
+With the new and more robust Test Container, developers can efficiently test and debug ActiveX controls. The Test Container now supports OCX96 features including windowless controls and quick activation. Visual Basic, Scripting Edition support has also been added to Test Container to aid developers in productively automating their control testing. 
+	 
+ 
+ 
+ 	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+ 
+ 
+ 
+ 	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	
+	
+	 
+	Contact Us 
+	 
+	
+	
+	
+	
+	 
+	
+	
+	
+	
+	
+	
+	
+	 
+	© 2002 Microsoft Corporation. All rights reserved. Terms of Use. 
+	 
+	Privacy Statement 
+	 
+	Accessibility 
+	 
+	
+	
+	 
+	
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 

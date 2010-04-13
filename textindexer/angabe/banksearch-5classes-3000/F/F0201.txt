@@ -1,0 +1,650 @@
+
+VB Helper: Bug Proofing Visual Basic: Sample Text
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Home
+ 
+ What's New
+ Index
+ Books
+ Links
+ Q & A
+ Newsletter
+ Banners
+ 
+ Feedback
+ Tip Jar
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Old Pages
+ 
+ Old Index
+ Site Map
+ What's New
+ 
+ Books
+ How To
+ Tips & Tricks
+ Tutorials
+ Stories
+ Performance
+ Essays
+ Links
+ Q & A
+ New in VB6
+ Free Stuff
+ Pictures
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Sample Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Error Handling Fundamentals
+ 
+ This article contains roughly half of Chapter 12 of the book Bug Proofing Visual Basic.
+ This chapter explains the fundamentals of using error handlers in Visual Basic.
+ 
+ There is a lot more to writing bug proof programs than just using error handlers. This book also
+ explains how to reduce the chances of errors occurring in a program, how to detect errors
+ when they do occur, and how to recover from unexpected errors.
+ 
+ 
+Chapter 12
+ 
+Error Handling Fundamentals
+ Sections
+ 
+ Use On Error 
+ Leave Error Handlers 
+ Define Error Constants 
+ 
+ 
+ Keep Error Handlers Separate 
+ Understand Error Handler Scope 
+ Don't Nest Error Handlers 
+ 
+ 
+ Error Handling Slides 
+ 
+This chapter explains the family of On Error statements Visual Basic uses to handle errors. 
+It tells how a program installs and removes error handlers, and it explains some of the idiosyncrasies 
+of error handling code. After reading this chapter you will be able to write basic error handlers to 
+protect your programs from the unexpected.
+Note that this article does not cover the new Try Catch Finally syntax introduced in VB.NET because the book
+was written before VB.NET was released. VB.NET does support the On Error GoTo syntax provided by earlier
+versions of Visual Basic, however, and in fact there are times when you will wantj to use it even in VB.NET. For example,
+you can use On Error Resume Next to easily protect every line in a subroutine. Providing similar protection
+using Try Catch Finally is much more awkward.
+ Use On Error 
+A Visual Basic program uses the On Error statement to register error handling code. This statement can take 
+one of three forms:
+- On Error GoTo 0
+- On Error Resume Next
+- On Error GoTo line
+These forms tell Visual Basic what it should do when the program encounters an error. The three forms are 
+described in the following sections.
+On Error GoTo 0
+On Error GoTo 0 is relatively straightforward. It simply cancels any currently installed error handler 
+assigned by a previous On Error GoTo line or On Error Resume Next. If the program encounters an error
+after this statement executes, it crashes.
+On Error GoTo 0 is useful for detecting errors you do not expect. If you leave an error handler active
+when it is no longer needed, it may mask bugs you don't expect. It also prevents error handlers installed
+at a higher level from catching errors.
+On Error Resume Next
+On Error Resume Next makes the program ignore errors. When it encounters an error, the program continues execution 
+after the statement that caused the error.
+When a program uses On Error Resume Next, it should check the Err object after every operation that might cause 
+an error. If the value Err.Number is nonzero, the operation caused an error and the program can take special action.
+The program should check Err.Number immediately after the statement in question. Certain other actions reset 
+the Err object and remove the previous error information.
+Many programs use On Error Resume Next when they present a common dialog to the user. The CommonDialog control's 
+CancelError property indicates whether the control should raise an error if the user cancels the dialog. The 
+following code fragment shows how a program can use CancelError to decide whether to continue an action such 
+as loading a file.
+ 
+' Generate an error if the user cancels.
+dlgOpenFile.CancelError = True
+' Ignore errors for now.
+On Error Resume Next
+' Present the dialog.
+dlgOpenFile.ShowOpen
+' See if there was an error.
+If Err.Number = cdlCancel Then
+ ' The user canceled. Do nothing.
+ Exit Sub
+ElseIf Err.Number Leave Error Handlers 
+There are several ways a program can leave error handling code and return to normal execution.
+- Resume
+- Resume Next
+- Resume 
+- Exit Sub/Function/Property
+- End Sub/Function/Property
+- Err.Raise
+These different methods are described in the following sections.
+Resume
+The Resume statement continues execution by repeating the statement that caused the error. If the statement 
+is still incorrect, the program will raise the error again. This may put the program in an infinite loop. 
+To avoid an infinite loop, do not use the Resume statement unless something in the error handler should have 
+fixed the problem.
+For example, the following code tries to load a file that might be stored on a floppy disk. If it fails, the 
+code reports the error and asks the user if it should try again. If the disk is not in the floppy drive, the 
+user can insert it and click the Retry button. The program then uses the Resume statement to try to open the 
+file again. If the program fails again, it returns to the error handler to give the user another chance to fix 
+the problem. The program continues looping from the Open statement to the error handler and back until the user 
+fixes the problem or clicks the Cancel button. If the user clicks Cancel, the error handler exits the subroutine 
+without opening the file.
+ 
+Private Sub LoadData(ByVal filename As String)
+Dim fnum As Integer
+ ' Open the file.
+ fnum = FreeFile
+ On Error GoTo OpenError
+ Open filename For Input As fnum
+ ' Read the data.
+ On Error GoTo ReadError
+ :
+ ' Close the file.
+ On Error GoTo CloseError
+ Close fnum
+ Exit Sub
+OpenError:
+ ' We could not open the file. Ask the user
+ ' if we should retry.
+ If MsgBox("Error" & _
+ Str$(Err.Number) & _
+ " opening file " & filename & "." & _
+ vbCrLf & Err.Description & vbCrLf & _
+ "Check that the disk is properly " & _
+ "inserted and click the Retry button.", _
+ vbRetryCancel, _
+ "Error opening file") = vbRetry _
+ Then
+ ' Try again at the same statement.
+ Resume
+ End If
+ ' Otherwise cancel the file loading.
+ Exit Sub
+ReadError:
+ MsgBox "Error" & _
+ Str$(Err.Number) & _
+ " reading file " & filename & "." & _
+ vbCrLf & Err.Description
+ ' Close the file.
+ Close fnum
+ Exit Sub
+CloseError:
+ ' Error closing the file.
+ MsgBox "Error" & _
+ Str$(Err.Number) & _
+ " closing file " & filename & "." & _
+ vbCrLf & Err.Description
+ Exit Sub
+End Sub 
+Resume Next
+Resume Next makes the program continue execution at the statement after the one that caused the error. This is a useful action if the program and user cannot reasonably correct the error, but the program can continue running without the statement completing. 
+For example, the following code tries to convert a string value into a date using the CDate function. If it fails, the error handler assigns the current date to the start_date variable and uses that as a default value.
+ 
+Private Sub ValidateStartDate(ByVal date_string As String)
+Dim start_date As Date
+ ' Install the error handler.
+ On Error GoTo InvalidDate
+ ' Convert the string into a date.
+ start_date = CDate(date_string)
+ ' Do something with the date.
+ :
+ ' Do not pass through into the error handler code.
+ Exit Sub
+InvalidDate:
+ ' It's an invalid date string. Use today.
+ start_date = Date
+ Resume Next
+End Sub 
+Note that this is probably not the best way to handle this situation because it silently handles the error instead of making it obvious. If the user entered the invalid value, the program should politely tell the user there is a problem and ask for a new value. If the string was passed to this routine from another part of the program, the program may contain a bug. It should stop during design mode or raise an error in the final compiled version so someone can fix the problem.
+Resume 
+A program can specify a line number where the program can resume execution. This is a relatively unstructured
+GoTo so it can lead to confusion. I have seen cooked up examples where jumping out of an error handler in an
+uncontrolled manner makes a tiny amount of sense, but you can always rewrite the code to avoid this.
+At worst, you can always inclue the dangerous code in a subroutine and call it, using other error handling techniques
+to protect the code.
+Exit Sub/Function/Property
+If the routine cannot continue with its task, it can use Exit Sub, Exit Function, or Exit Property to exit immediately. The following code shows a new version of the previous routine. If the date string is invalid, this version tells the user and then exits.
+ 
+Private Sub ValidateStartDate(ByVal date_string As String)
+Dim start_date As Date
+ ' Install the error handler.
+ On Error GoTo InvalidDate
+ ' Convert the string into a date.
+ start_date = CDate(date_string)
+ ' Do something with the date.
+ :
+ ' Do not pass through into the error handler code.
+ Exit Sub
+InvalidDate:
+ ' It's an invalid date string. Tell the user and leave.
+ MsgBox "The start date """ & _
+ date_string & _
+ """ is invalid. Please enter a new one."
+ Exit Sub
+End Sub 
+When a routine exits in this way, the calling routine cannot tell that an error occurred. That means you should use this technique only when the calling routine can properly continue whether this routine succeeded or not. If the caller must know that this routine failed, the code should use the Err.Raise statement described shortly.
+End Sub/Function/Property
+If the error handler code continues to the routine's End Sub, End Function, or End Property statement, the routine exits just as if it had executed the Exit statement described in the previous section. For example, the end of the previous subroutine could be written:
+ 
+InvalidDate:
+ ' It's an invalid date string. Tell the user and leave.
+ MsgBox "The start date """ & _
+ date_string & _
+ """ is invalid. Please enter a new one."
+End Sub 
+Sometimes it can be a little confusing for the error handler to just drop off the end of the routine like this. This version also creates the opportunity for a new bug. A developer who later adds a new error handler to the end of the routine may not notice that the code drops through the end of the routine. If the new error handler is added without a preceding Exit statement, the old error handler will continue into the new one. If the following code encounters an invalid date, it presents the user with two error messages instead of one.
+ 
+InvalidDate:
+ ' It's an invalid date string. Tell the user and leave.
+ MsgBox "The start date """ & _
+ date_string & _
+ """ is invalid. Please enter a new one."
+ReadFileError:
+ ' Error reading the data file.
+ MsgBox "Error reading the data."
+ :
+End Sub 
+To prevent this kind of mistake, do not allow an error handler to continue to the routine's End statement. Use an Exit statement to leave the routine instead.
+Err.Raise
+The Err object provides a Raise method that allows a program to generate errors. It can create new errors or reraise old ones. The syntax for the Raise method is
+Err.Raise Number, [Source], [Description], [Helpfile], [Helpcontext]
+Number
+The error number. To create a new error code in a class module, add vbObjectError to your number. For example, vbObjectError + 1001.
+Source
+The name of the object or application generating the error. For objects, use the format Project.Class. For routines, use the format Project.Routine. For example, MyProgram.LoadData.
+Description
+A string describing the error. If you set Number to a standard Visual Basic error code like 9 for subscript out of range, you can omit Description to make Visual Basic use a standard description string.
+Helpfile
+The full name of a help file that gives more information on the error.
+Helpcontext
+The context ID for this error's topic in the help file.
+If a routine cannot handle an error itself, it should raise a new error that makes sense within its context. For example, the following routine attempts to read a data file. If the file is not found, the FileOpenError error handler raises the myappErrNoInputFile error. This gives the calling subroutine more information than Visual Basic's initial file not found error. The error Visual Basic generates indicates that some file was not found. The new error explains that an input data file was not found. The Err.Description field even includes the name of the file that was not found.
+ 
+' Define application error constants.
+Private Const myappErrNoInputFile = vbObjectError + 1000
+ :
+' Define Visual Basic error constants.
+Private Const vbErrFileNotFound = 53
+ :
+Private Sub ReadInputData(ByVal file_name As String)
+Dim file_number As Integer
+ ' Open the file.
+ file_number = FreeFile
+ On Error GoTo FileOpenError
+ Open file_name For Input As file_number
+ ' Process the file.
+ On Error GoTo FileReadError
+ :
+ ' Process the file here.
+ :
+ ' Close the file.
+ Close file_number
+ Exit Sub
+FileOpenError:
+ ' There was an error opening the file.
+ If Err.Number = vbErrFileNotFound Then
+ ' It's a file not found error. Convert it
+ ' to myappErrNoInputFile.
+ Err.Raise myappErrNoInputFile, _
+ "MyApp.ReadInputData", _
+ "Could not open input file """ & _
+ file_name & """."
+ Else
+ ' It's some other error. Reraise it so some
+ ' other routine can catch it.
+ Err.Raise Err.Number, _
+ Err.Source, _
+ Err.Description, _
+ Err.HelpFile, _
+ Err.HelpContext
+ End If
+ Exit Sub
+FileReadError:
+ ' There was an error reading the file.
+ :
+ Exit Sub
+End Sub 
+A program could invoke this subroutine using code similar to the following. The error handler uses the information stored in the Err object by the Raise method to present a message to the user.
+ 
+ On Error GoTo DataInputError
+ ReadInputData "c:\mydata.dat"
+ Exit Sub
+DataInputError:
+ ' There was an error loading the data.
+ MsgBox "Error" & Str$(Err.Number) & _
+ " loading the input data." & vbCrLf & _
+ Err.Description 
+Routines that present messages to users normally format the error information as shown in the previous code. To make that formatting as simple as possible, routines should not format the error description in the Raise statement. For example, the following code formats an error's description.
+ 
+Err.Raise myappErrNoInputFile, _
+ "MyApp.ReadInputData", _
+ "Error" & Str$(myappErrNoInputFile) & _
+ " opening the input file." 
+When this error occurs, the error handler that catches the error will probably display a message like this one:
+ Error -2147220504 loading the input data.
+ Error -2147220504 opening the input file.
+Leave the formatting to the routine that actually records the error or presents the message to the user.
+ Define Error Constants 
+Microsoft says normal error messages lie in the range of 1 to 65,535. They reserve the range 1 to 1000 for use by 
+Visual Basic, and some of the values between 31,000 and 31,037 are already used by Visual Basic. You can use other 
+values to define your own error codes.
+Microsoft also recommends that you define new error constants for classes by adding a value to the constant
+vbObjectError as in the following code:
+Private Const myclassErrNoInputFile = vbObjectError + 1000
+If you follow these rules, your error codes will not overlap Microsoft's.
+Unfortunately, this does not guarantee that your error code will not collide with other error constants defined 
+by other developers or libraries you use.
+One method for preventing confusion is to define a base value similar to vbObjectError for your constants. Then 
+define error codes in terms of that constant. For example, a ray-tracing package might define error codes as in 
+the following code:
+ 
+Public Const rayErrorBase = 45300
+Public Const rayParametersNotSet = rayErrorBase + 1
+Public Const rayInvalidSphereFormat = rayErrorBase + 2
+Public Const rayLightAtEye = rayErrorBase + 3
+ :
+ 
+If you later discover that your error codes collide with those of another developer or library, you can quickly redefine all of the error codes by changing the error base value.
+ Keep Error Handlers Separate 
+End every error handler with Resume, Resume Next, Exit Sub/Function/Property, End Sub/Function/Property, or Err.Raise. Never allow the code to fall through from one error handler into another. This can produce some clever code, but it can produce confusion as well.
+For example, the following code falls through its error handlers to close the file it has opened.
+ 
+Private Sub LoadData(ByVal filename As String)
+Dim fnum As Integer
+ ' The file is not yet open.
+ On Error GoTo FileIsClosed
+ ' Open the file.
+ fnum = FreeFile
+ Open filename For Input As fnum
+ ' The file is now open.
+ On Error GoTo FileIsOpen
+ ' Read the data.
+ :
+ ' Fall into the error handlers to close the file.
+ On Error Resume Next
+FileIsOpen:
+ ' Close the file.
+ Close fnum
+FileIsClosed:
+ ' Perform any final tasks.
+ :
+ ' Fall through to the End Sub.
+End Sub 
+This code has a number of problems. First, it is confusing. Another developer who tries to add a new error 
+handler would be likely to make a mistake and cause a bug. This code also does not signal its errors. Instead, it 
+quietly continues as if nothing has gone wrong. It hides bugs that might otherwise be easy to fix.
+Prevent confusion and possible bugs by keeping error handlers separate.
+ Understand Error Handler Scope 
+When a program encounters an error, Visual Basic checks to see if an error handler is presently installed in the 
+current routine. If so, control passes to that error handler.
+If no error handler is in effect, Visual Basic moves up the call stack to the calling routine to see if an error 
+handler is currently installed there. If so, the system resumes execution at that error handler.
+If no error handler is installed in the calling routine either, Visual Basic continues moving up the call stack until 
+it finds a routine with an error handler installed. If it runs off the top of the stack before it finds an active 
+error handler, the program crashes.
+Execution of all Visual Basic code begins with either an event handler or the Main subroutine. That means you can 
+guard against almost all errors if you place error handlers in every event handler and the Main subroutine (if the 
+program uses one). Then, no matter where the program encounters an error, control eventually passes up through the 
+call stack to the event handler or Main subroutine that started the code. The error handler installed at that point 
+can handle the error.
+ Don't Nest Error Handlers 
+Error handler code runs a little differently from other code. No other error handler can be active within another 
+error handler's code. In other words, an error handler cannot use On Error GoTo to define an error handler to catch 
+its mistakes. If an error handler uses On Error GoTo, the new error handler only takes effect when the error handler 
+finishes and returns control to the main code sequence.
+This sort of thing can be very confusing. If Subroutine2 raises an error in the following code, it is not clear 
+whether control passes to the Error1 or Error2 error handler. Control passes to Error1 if Subroutine1 ran correctly, 
+but it passes to Error2 if Subroutine1 also generated an error.
+ 
+ On Error GoTo Error1
+ Subroutine1
+ Subroutine2
+ Exit Sub
+Error1:
+ On Error GoTo Error2
+ MsgBox "Error1:" & Str$(Err.Number) & "." & vbCrLf & _
+ Err.Description
+ Resume Next
+Error2:
+ MsgBox "Error2:" & Str$(Err.Number) & "." & vbCrLf & _
+ Err.Description
+ Resume Next 
+Avoid this confusion by not using On Error statements within error handler code. Keep all On Error statements 
+in the main code sequence.
+This ends approximately the first half of Chapter 12, Error Handling Fundamentals.
+ Error Handling Slides 
+Click here to download a zip file containing Powerpoint slides used for a talk 
+to the Denver Area Visual Basic User's Group Lab meeting on March 15, 1999.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Bug Proofing Visual Basic: Sample Text 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Overview 
+ Table of Contents 
+ Updates 
+ 
+ 
+ Source Code 
+ Comment Templates 
+ Sample Text 
+ 
+ 
+ Discussion, Q & A 
+ Amazon.com 
+ Amazon.co.uk 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Copyright © 1997-2001 Rocky Mountain Computer Consulting, Inc. All rights reserved.
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Updated 
+ 
+ 
+ 
+ 
+ 
+ 

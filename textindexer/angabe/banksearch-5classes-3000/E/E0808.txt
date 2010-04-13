@@ -1,0 +1,130 @@
+
+C++ reference: cstdio library (stdio.h)
+ 
+ cplusplus.com >
+ reference >
+ cstdio
+ 
+stdio.h
+ 
+ 
+cplusplus.com 
+Standard C library for Input/Output with streams
+ stdio.h summary
+Functions:
+clearerr Reset error indicators. 
+fclose Close a stream. 
+feof Check if End Of File has been reached. 
+ferror Check for errors. 
+fflush Flush a stream. 
+fgetc Get next character from a stream. 
+fgetpos Get position in a stream. 
+fgets Get string from a stream. 
+fopen Open a file. 
+fprintf Print formatted data to a stream. 
+fputc Write character to a stream. 
+fputchar Write character to stdout. 
+fputs Write string to a stream. 
+fread Read block of data from a stream. 
+freopen Reopen a file using a different file mode. 
+fscanf Read formatted data from a stream. 
+fseek Reposition stream's position indicator. 
+fsetpos Reposition file pointer to a saved location. 
+ftell Return the current position of the file pointer. 
+fwrite Write block of data to a stream. 
+getc Get the next character. 
+getchar Get the next character from stdin. 
+gets Get a string from stdin. 
+getw Get the next int value from a stream. 
+perror Print error message. 
+printf Print formatted data to stdout. 
+putc Write character to a stream. 
+putchar Write character to stdout. 
+puts Write a string to stdout. 
+putw Write an integer to a stream. 
+remove Delete a file. 
+rename Rename a file or directory. 
+rewind Reposition file pointer to the beginning of a stream. 
+scanf Read formatted data from stdin. 
+setbuf Change stream buffering. 
+setvbuf Change stream buffering. 
+sprintf Format data to a string. 
+sscanf Read formatted data from a string. 
+tmpfile Open a temporary file. 
+tmpnam Generate a unique temporary filename. 
+ungetc Push a character back into stream. 
+ 
+stdio.h summary:
+Streams.
+ 
+Streams are an abstraction used in C and C++ for input and output
+operations through I/O devices based on characters, like 
+files, keyboard, printer, screen and I/O ports.
+ 
+A stdio.h stream is represented by a pointer to a FILE
+structure that contains internal info about properties and indicators of a file.
+Normally data contained in these structures are not
+referred directly.
+When using stdio.h functions, pointer to FILE structures are only used
+to be passed as parameters to I/O functions.
+Properties.
+ 
+A stream has some properties that defines which functions can be used with it or how the
+functions will treat the stream.
+Most of them are defined in the mode parameter when fopen
+function is called.
+Access
+Specifies if the operations performed with the stream will have read and/or write access to the file.
+Text / Binary
+Text files are those where lines are delimited by the special character EOL (End Of Line),
+and some translations occur when this special character is read or written for that these file can
+be directly outputed to a console. The End of a
+text file is defined by the first occurrence of the EOF character.
+A binary file is a file where each byte is read or written as a character,
+no translations occur,
+and the End of a binary file matches with the physical End of the File.
+Buffer
+A buffer is a block of memory where data is accumulated before being
+physically read or written to the file.
+Buffered stream causes I/O operations with the stream to be faster because normally buffers are faster than physical devices
+like disks or ports. A stream can be unbuffered so the data is directly read or written to the device.
+The use of stream buffers can be specified using functions setbuf
+and setvbuf.
+ 
+Indicators.
+ 
+A stream has some indicators that specify the current state of it. These are internally
+modified and affect the behavior of Input/Output functions:
+Error Indicator
+This indicator is set when an error has occurred in an operation related with the stream.
+This indicator can be checked using ferror,
+and can be reset by a call
+to clearerr or by any repositioning functions
+(rewind, fseek and fsetpos).
+End-Of-File Indicator
+When this indicator is set, the last reading or writing operation permormed
+has reached the End of the file associated with
+the stream. This can be checked with the feof function,
+and can be reset by calling
+to clearerr or by any repositioning functions
+(rewind, fseek and fsetpos).
+Position Indicator (File pointer)
+This indicator is an internal pointer that points to the next character within the stream that has to be read or
+written by the next I/O operation. This value can be obtained by the ftell
+and fgetpos functions,
+and can be changed calling to rewind, fseek and fsetpos functions
+Standard Streams
+ 
+When a program that includes stdio.h begin its execution, three predefined
+streams are opened:
+stdin
+This is the standard input stream. By default stdin corresponds to the keyboard,
+but this can be redirected by the operating system.
+stdout
+This is the standard output stream. By default stdout is directed to the screen,
+but the operating system can redirect it to a file or any other output device.
+stderr
+The standard error stream. This is an output stream specifically intendend to
+receive error messages. By default is directed to the standard output (like stdout),
+but it can be redirected to a log file or any other output device.
+© The C++ Resources Network, 2000

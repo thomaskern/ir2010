@@ -1,0 +1,96 @@
+
+Abstractvb - Visual Basic Code and Visual Basic.NET Code, now with C# and ASP.NET too!
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	 
+	
+	
+	 
+	 
+	
+	
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+	
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	
+	 
+	
+	 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+	
+ 
+ 
+ 
+ 
+Main > Code Central > VB6 > Databases
+Limiting the Number of Records Returned in a Recordset (SQL)
+ID: 773
+Author: Abstractvb
+Date: 7/5/2000 7:12:28 PM
+VB6
+Add this code to a new ASP Page. You will have to change the Connection String and the SQL statement to match your database.
+Note: This will not work in SQL Server 6.5 as it does not support the TOP keyword.
+ 
+ Want More Source Code? You May Also Be Interested In This: 
+Limiting the Number of Records Returned in a Recordset (ADO)
+Shows how to use the MaxRows Property to limit the number of records returned in a ADO recordset.
+VB6
+Rank:
+Difficulty:
+ 
+	 
+	
+	
+ 
+ 
+ 
+ 
+Main |Code |Books |Downloads | Links |Sitemap |About |Search 
+dream it, build it, live it
+Copyright Vivid Technologies Inc. 2002. All Rights Reserved.
+Concerned about privacy? So are we, take a look at our Privacy Policy
+Please direct all programming and site maintenance questions to the webmaster: webmaster@abstractvb.com
+Please forward all proposals, advertising inquiries, and partnership requests to sales@abstractvb.com 
