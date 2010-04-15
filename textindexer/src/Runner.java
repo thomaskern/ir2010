@@ -1,9 +1,7 @@
-import ifs.ir.ngrams.CountedNGram;
 import ifs.ir.ngrams.io.ArffWriter;
 import ifs.ir.ngrams.io.Reader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
