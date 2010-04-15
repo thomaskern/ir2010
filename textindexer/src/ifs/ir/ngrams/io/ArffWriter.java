@@ -18,21 +18,46 @@ import java.util.*;
 public class ArffWriter {
     public void write(HashMap<String, Integer> cng, String filename) {
         ArffSaver saver = new ArffSaver();
-
-        FastVector atts;
-        Instances data;
-        double[] vals;
-
-        atts = new FastVector();
+        FastVector atts = new FastVector();
 
         atts.addElement(new Attribute("ngram", (FastVector) null));
         atts.addElement(new Attribute("count"));
 
-        data = new Instances("NGram Index", atts, 0);
+        Instances data = new Instances("NGram Index", atts, 0);
 
+        List<String> keys = new ArrayList(cng.keySet());
 
-        List keys = new ArrayList(cng.keySet());
+        sort(cng, keys);
+        add_ngrams(cng, data, keys);
 
+        write(filename, saver, data);
+    }
+
+    private void write(String filename, ArffSaver saver, Instances data) {
+        try {
+            saver.setInstances(data);
+            saver.setFile(new File(filename));
+
+            saver.setDestination(new File(filename));   // **not** necessary in 3.5.4 and later
+            saver.writeBatch();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void add_ngrams(HashMap<String, Integer> cng, Instances data, List<String> keys) {
+        double[] vals;
+        for (String key : keys) {
+            vals = new double[data.numAttributes()];
+
+            Integer i = cng.get(key);
+            vals[0] = data.attribute(0).addStringValue(key);
+            vals[1] = i;
+            data.add(new Instance(1.0, vals));
+        }
+    }
+
+    private void sort(HashMap<String, Integer> cng, List keys) {
         final Map<String, Integer> langForComp = cng;
         Collections.sort(keys,
                 new Comparator() {
@@ -45,28 +70,5 @@ public class ArffWriter {
                         return rightValue.compareTo(leftValue);
                     }
                 });
-
-
-        for (Object key : keys) {
-            vals = new double[data.numAttributes()];
-
-            String k = (String) key;
-            Integer i = cng.get(k);
-            vals[0] = data.attribute(0).addStringValue(k);
-            vals[1] = i;
-            data.add(new Instance(1.0, vals));
-
-
-        }
-
-        try {
-            saver.setInstances(data);
-            saver.setFile(new File(filename));
-
-            saver.setDestination(new File(filename));   // **not** necessary in 3.5.4 and later
-            saver.writeBatch();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }
