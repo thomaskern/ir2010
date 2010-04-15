@@ -1,4 +1,4 @@
-package ifs.ir.ngrams.io;
+package ifs.ir.io;
 
 import weka.core.Attribute;
 import weka.core.FastVector;

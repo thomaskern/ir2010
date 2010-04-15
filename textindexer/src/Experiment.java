@@ -1,5 +1,5 @@
-import ifs.ir.ngrams.io.ArffWriter;
-import ifs.ir.ngrams.io.Reader;
+import ifs.ir.io.ArffWriter;
+import ifs.ir.io.Reader;
 
 import java.io.File;
 import java.io.IOException;
