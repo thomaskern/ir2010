@@ -16,7 +16,7 @@ import java.util.*;
  * Time: 8:18:39 PM
  */
 public class ArffWriter {
-    public void write(HashMap<String,Integer> cng, String filename) {
+    public void write(HashMap<String, Integer> cng, String filename) {
         ArffSaver saver = new ArffSaver();
 
         FastVector atts;
@@ -34,23 +34,23 @@ public class ArffWriter {
         List keys = new ArrayList(cng.keySet());
 
         final Map<String, Integer> langForComp = cng;
-		Collections.sort(keys,
-			new Comparator(){
-				public int compare(Object left, Object right){
-					String leftKey = (String)left;
-					String rightKey = (String)right;
+        Collections.sort(keys,
+                new Comparator() {
+                    public int compare(Object left, Object right) {
+                        String leftKey = (String) left;
+                        String rightKey = (String) right;
 
-					Integer leftValue = langForComp.get(leftKey);
-					Integer rightValue = langForComp.get(rightKey);
-					return rightValue.compareTo(leftValue);
-				}
-			});
+                        Integer leftValue = langForComp.get(leftKey);
+                        Integer rightValue = langForComp.get(rightKey);
+                        return rightValue.compareTo(leftValue);
+                    }
+                });
 
 
         for (Object key : keys) {
             vals = new double[data.numAttributes()];
 
-            String k = (String)key;
+            String k = (String) key;
             Integer i = cng.get(k);
             vals[0] = data.attribute(0).addStringValue(k);
             vals[1] = i;

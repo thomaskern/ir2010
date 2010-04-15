@@ -32,7 +32,6 @@ public class Reader {
         files = new ArrayList<String>();
         search_for_files(dir);
 
-
         int i = 0;
         for (String file : files) {
             i++;
@@ -57,8 +56,9 @@ public class Reader {
     private HashMap<String, Integer> filter(HashMap<String, Integer> al) {
         int total = sum_ngrams_up(al);
 
+        HashMap<String, Integer> a = (HashMap<String, Integer>) al.clone();
 
-        for (Map.Entry<String, Integer> entry : al.entrySet()) {
+        for (Map.Entry<String, Integer> entry : a.entrySet()) {
             if (entry.getValue() * 100.0 / total < lower_bound || (upper_bound > 0 && entry.getValue() * 100.0 / total >= upper_bound))
                 al.remove(entry.getKey());
         }
