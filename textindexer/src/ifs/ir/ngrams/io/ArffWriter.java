@@ -1,6 +1,5 @@
 package ifs.ir.ngrams.io;
 
-import ifs.ir.ngrams.CountedNGram;
 import weka.core.Attribute;
 import weka.core.FastVector;
 import weka.core.Instance;
@@ -9,7 +8,7 @@ import weka.core.converters.ArffSaver;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
 /**
  * User: thomaskern
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * Time: 8:18:39 PM
  */
 public class ArffWriter {
-    public void write(ArrayList<CountedNGram> cng, String filename) {
+    public void write(HashMap<String,Integer> cng, String filename) {
         ArffSaver saver = new ArffSaver();
 
         FastVector atts;
@@ -32,11 +31,32 @@ public class ArffWriter {
         data = new Instances("NGram Index", atts, 0);
 
 
-        for (CountedNGram c : cng) {
+        List keys = new ArrayList(cng.keySet());
+
+        final Map<String, Integer> langForComp = cng;
+		Collections.sort(keys,
+			new Comparator(){
+				public int compare(Object left, Object right){
+					String leftKey = (String)left;
+					String rightKey = (String)right;
+
+					Integer leftValue = langForComp.get(leftKey);
+					Integer rightValue = langForComp.get(rightKey);
+					return rightValue.compareTo(leftValue);
+				}
+			});
+
+
+        for (Object key : keys) {
             vals = new double[data.numAttributes()];
-            vals[0] = data.attribute(0).addStringValue(c.getString());
-            vals[1] = c.getCount();
+
+            String k = (String)key;
+            Integer i = cng.get(k);
+            vals[0] = data.attribute(0).addStringValue(k);
+            vals[1] = i;
             data.add(new Instance(1.0, vals));
+
+
         }
 
         try {

@@ -4,6 +4,7 @@ import ifs.ir.ngrams.io.Reader;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * User: thomaskern
@@ -13,13 +14,13 @@ import java.util.ArrayList;
 public class Runner {
 
 
-    public ArrayList<CountedNGram> run_from_dir(String input_dir, String output, int n, boolean stemming, double lower, double upper) throws IOException {
+    public HashMap<String, Integer> run_from_dir(String input_dir, String output, int n, boolean stemming, double lower, double upper) throws IOException {
         Reader r = new Reader(lower, upper);
         r.setStemming(stemming);
 
         long time = System.currentTimeMillis();
-        ArrayList<CountedNGram> cng = r.readFromDirectory(input_dir, n);
-        System.out.println("Time: "+(System.currentTimeMillis() - time));
+        HashMap<String,Integer> cng = r.readFromDirectory(input_dir, n);
+//        System.out.println("Time: "+(System.currentTimeMillis() - time));
 
         ArffWriter arff = new ArffWriter();
         arff.write(cng, output);

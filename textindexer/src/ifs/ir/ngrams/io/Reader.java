@@ -1,12 +1,14 @@
 package ifs.ir.ngrams.io;
 
 import ifs.ir.ngrams.CountedNGram;
-import ifs.ir.ngrams.NGram;
 import ifs.ir.ngrams.NGramImpl;
 import weka.core.stemmers.LovinsStemmer;
 
 import java.io.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.StringTokenizer;
 
 public class Reader {
     private double upper_bound;
@@ -27,22 +29,20 @@ public class Reader {
         this.upper_bound = upper_bound;
     }
 
-    public ArrayList<CountedNGram> readFromDirectory(String dir, int n) throws IOException {
-        ArrayList<CountedNGram> al = new ArrayList<CountedNGram>();
+    public HashMap<String, Integer> readFromDirectory(String dir, int n) throws IOException {
+        HashMap<String, Integer> al = new HashMap<String, Integer>();
         files = new ArrayList<String>();
         search_for_files(dir);
 
-        System.out.println("FOUND: "+files.size());
 
         int i = 0;
         for (String file : files) {
             i++;
             al = readFromFile(file, n, al);
-//            if(i > 300)
-//                break;
+            if(i > 300)
+                break;
         }
-        Collections.sort(al);
-        return filter(al);
+        return al;
     }
 
     private void search_for_files(String path) {
@@ -55,13 +55,14 @@ public class Reader {
                 files.add(file.getPath());
         }
     }
+
     private ArrayList<CountedNGram> filter(ArrayList<CountedNGram> al) {
         int total = sum_ngrams_up(al);
 
         for (Iterator<CountedNGram> it = al.iterator(); it.hasNext();) {
             CountedNGram ng = it.next();
 
-            if (ng.getCount()*100.0/total < lower_bound || (upper_bound > 0 && ng.getCount()*100.0/total >= upper_bound))
+            if (ng.getCount() * 100.0 / total < lower_bound || (upper_bound > 0 && ng.getCount() * 100.0 / total >= upper_bound))
                 it.remove();
         }
         return al;
@@ -73,22 +74,24 @@ public class Reader {
         for (CountedNGram ng : al) {
             ret += ng.getCount();
         }
-        System.out.println("total: "+ret);
         return ret;
     }
 
-    private ArrayList<CountedNGram> readFromFile(String file, int n, ArrayList<CountedNGram> ng) throws IOException {
+    private HashMap<String, Integer> readFromFile(String file, int n, HashMap<String, Integer> ng) throws IOException {
         InputStream stream = new BufferedInputStream(new FileInputStream(file));
         return read(stream, n, ng);
     }
 
-    private ArrayList<CountedNGram> read(InputStream stream, int n, ArrayList<CountedNGram> ng)
+    private HashMap<String, Integer> read(InputStream stream, int n, HashMap<String, Integer> ng)
             throws IOException {
 
-        HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>();
+//        HashMap<NGram, CountedNGram> count = new HashMap<NGram, CountedNGram>();
+        HashMap<String, Integer> count = new HashMap<String, Integer>();
+
         if (ng != null) {
-            for (CountedNGram cng : ng)
-                count.put(cng.getNGram(), cng);
+            count = ng;
+//            for (CountedNGram cng : ng)
+//                count.put(cng.getNGram(), cng);
         }
 
         byte ba[] = new byte[n];
@@ -110,8 +113,7 @@ public class Reader {
             }
         }
 
-        ArrayList<CountedNGram> order = new ArrayList<CountedNGram>(count.values());
-        return order;
+        return count;
     }
 
     private byte[] stem_and_convert_to_bytes(StringBuilder sb, StringTokenizer st) {
@@ -143,7 +145,7 @@ public class Reader {
         return sb;
     }
 
-    private int process(int n, HashMap<NGram, CountedNGram> count, int b, byte[] ba, int i) {
+    private int process(int n, HashMap<String, Integer> count, int b, byte[] ba, int i) {
         if (b == 13 || b == 10 || b == 9)
             b = 32;
         i++;
@@ -156,14 +158,15 @@ public class Reader {
         return i;
     }
 
-    protected void newNGram(HashMap<NGram, CountedNGram> count, byte[] ba) {
+    protected void newNGram(HashMap<String, Integer> count, byte[] ba) {
         NGramImpl ng = new NGramImpl(ba);
-        CountedNGram cng = count.get(ng);
+        Integer cng = count.get(ng.toString());
 
-        if (cng != null)
-            cng.inc();
+        if (cng != null){
+            count.put(ng.toString(), cng + 1);
+        }
         else
-            count.put(ng, new CountedNGram(ng));
+            count.put(ng.toString(), 1);
     }
 
     public void setStemming(boolean stemming) {
