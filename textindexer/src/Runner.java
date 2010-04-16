@@ -1,3 +1,4 @@
+import ifs.ir.NGramResult;
 import ifs.ir.io.ArffWriter;
 import ifs.ir.io.Reader;
 
@@ -12,12 +13,12 @@ import java.util.HashMap;
 public class Runner {
 
 
-    public HashMap<String, Integer> run_from_dir(String input_dir, String output, int n, boolean stemming, double lower, double upper) throws IOException {
+    public NGramResult run_from_dir(String input_dir, String output, int n, boolean stemming, double lower, double upper) throws IOException {
         Reader r = new Reader(lower, upper);
         r.setStemming(stemming);
 
         long time = System.currentTimeMillis();
-        HashMap<String,Integer> cng = r.readFromDirectory(input_dir, n);
+        NGramResult cng = r.readFromDirectory(input_dir, n);
 //        System.out.println("Time: "+(System.currentTimeMillis() - time));
 
         ArffWriter arff = new ArffWriter();

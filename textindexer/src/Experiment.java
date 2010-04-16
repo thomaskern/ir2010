@@ -1,3 +1,4 @@
+import ifs.ir.NGramResult;
 import ifs.ir.io.ArffWriter;
 import ifs.ir.io.Reader;
 
@@ -36,7 +37,7 @@ public class Experiment {
 
     private static void read(File f, int i, int[] a, Reader r, boolean stemming, String corpus) throws IOException {
         r.setStemming(stemming);
-        HashMap<String, Integer> cng = r.readFromDirectory(f.getAbsolutePath() + "/angabe/" + corpus, i);
+        NGramResult cng = r.readFromDirectory(f.getAbsolutePath() + "/angabe/" + corpus, i);
 
         ArffWriter arff = new ArffWriter();
         arff.write(cng, f.getAbsolutePath() + "/data/" + corpus + "/" + i + "/lb_" + a[0] + "_up_" + a[1] + "_" + (stemming ? "with" : "without") + "_stemming.arff");

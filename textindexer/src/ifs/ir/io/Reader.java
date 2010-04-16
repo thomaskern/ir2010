@@ -1,5 +1,6 @@
 package ifs.ir.io;
 
+import ifs.ir.NGramResult;
 import weka.core.stemmers.LovinsStemmer;
 
 import java.io.*;
@@ -27,17 +28,25 @@ public class Reader {
         this.upper_bound = upper_bound;
     }
 
-    public HashMap<String, Integer> readFromDirectory(String dir, int n) throws IOException {
-        HashMap<String, Integer> al = new HashMap<String, Integer>();
+    public NGramResult readFromDirectory(String dir, int n) throws IOException {
+        ArrayList<HashMap<String, Integer>> file_al = new ArrayList<HashMap<String, Integer>>();
+
+        HashMap<String, Integer> hm = new HashMap<String, Integer>();
         files = new ArrayList<String>();
         search_for_files(dir);
 
-        int i = 0;
+        int z = 0;
         for (String file : files) {
-            i++;
-            al = readFromFile(file, n, al);
+            ArrayList<HashMap<String, Integer>> tmp = readFromFile(file, n, hm);
+            hm = tmp.get(0);
+            file_al.add(tmp.get(1));
+
+//            System.out.println("SIZE: "+tmp.get(1).size());
+            if(++z > 300)
+                break;
         }
-        return filter(al);
+
+        return new NGramResult(filter(hm), file_al);
     }
 
     private void search_for_files(String path) {
@@ -72,19 +81,16 @@ public class Reader {
         return ret;
     }
 
-    private HashMap<String, Integer> readFromFile(String file, int n, HashMap<String, Integer> ng) throws IOException {
+    private ArrayList<HashMap<String, Integer>> readFromFile(String file, int n, HashMap<String, Integer> ng) throws IOException {
         InputStream stream = new BufferedInputStream(new FileInputStream(file));
         return read(stream, n, ng);
     }
 
-    private HashMap<String, Integer> read(InputStream stream, int n, HashMap<String, Integer> ng)
+    private ArrayList<HashMap<String, Integer>> read(InputStream stream, int n, HashMap<String, Integer> ng)
             throws IOException {
 
-        HashMap<String, Integer> count = new HashMap<String, Integer>();
-
-        if (ng != null) {
-            count = ng;
-        }
+        ArrayList<HashMap<String, Integer>> ret = new ArrayList<HashMap<String, Integer>>();
+        HashMap<String, Integer> file = new HashMap<String, Integer>();
 
         byte ba[] = new byte[n];
         ba[n - 1] = 42;
@@ -95,17 +101,20 @@ public class Reader {
             StringTokenizer st = new StringTokenizer(sb.toString());
 
             for (byte b : stem_and_convert_to_bytes(sb, st))
-                i = process(n, count, b, ba, i);
+                i = process(n, ng, file, b, ba, i);
         } else {
             BufferedInputStream bi = new BufferedInputStream(stream);
 
             int b;
             while ((b = bi.read()) != -1) {
-                i = process(n, count, b, ba, i);
+                i = process(n, ng, file, b, ba, i);
             }
         }
 
-        return count;
+        ret.add(ng);
+        ret.add(file);
+
+        return ret;
     }
 
     private byte[] stem_and_convert_to_bytes(StringBuilder sb, StringTokenizer st) {
@@ -137,7 +146,7 @@ public class Reader {
         return sb;
     }
 
-    private int process(int n, HashMap<String, Integer> count, int b, byte[] ba, int i) {
+    private int process(int n, HashMap<String, Integer> count, HashMap<String, Integer> file, int b, byte[] ba, int i) {
         if (b == 13 || b == 10 || b == 9)
             b = 32;
         i++;
@@ -146,6 +155,7 @@ public class Reader {
             System.arraycopy(ba, 1, ba, 0, n - 1);
             ba[n - 1] = (byte) b;
             newNGram(count, ba);
+            newNGram(file, ba);
         }
         return i;
     }
