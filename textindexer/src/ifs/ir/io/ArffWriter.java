@@ -48,7 +48,6 @@ public class ArffWriter {
 
     private void add_ngrams(HashMap<String, Integer> cng, Instances data, List<String> keys) {
         double[] vals;
-        int z = 0;
         for (String key : keys) {
             vals = new double[data.numAttributes()];
 
