@@ -17,6 +17,7 @@ import java.util.*;
  */
 public class ArffWriter {
     public void write(HashMap<String, Integer> cng, String filename) {
+        System.out.println("TEST: "+cng.size());
         ArffSaver saver = new ArffSaver();
         FastVector atts = new FastVector();
 
