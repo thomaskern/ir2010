@@ -44,8 +44,8 @@ public class Reader {
 
             file_al.add(pf);
 
-            if (++z > 300)
-                break;
+//            if (++z > 800)
+//                break;
         }
 
         return new NGramResult(filter(hm), file_al);
@@ -87,6 +87,7 @@ public class Reader {
         return al;
     }
 
+  
     private int sum_ngrams_up(HashMap<String, Integer> al) {
         int ret = 0;
 
