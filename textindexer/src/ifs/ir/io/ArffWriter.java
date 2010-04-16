@@ -34,7 +34,7 @@ public class ArffWriter {
 
     private void add_attributes(HashMap<String, Integer> cng) throws IOException {
         for (String name : cng.keySet()) {
-            wl("@attribute ngram_" + name + " NUMERICAL");
+            wl("@attribute \"ngram_" + name + "\" NUMERIC");
         }
 
         wl("@attribute class String");
@@ -58,20 +58,14 @@ public class ArffWriter {
         int size = sum_ngrams_up(cng.getCorpus());
 
         wl("\n\n@Data\n\n");
-//        int i = 0;
         for (ParsedFile file : cng.getFiles()) {
-
-
             StringBuilder sb = new StringBuilder();
             for (Map.Entry<String, Integer> entry : cng.getCorpus().entrySet()) {
                 sb.append(file.getData().get(entry.getKey()) == null ? "0" : file.getData().get(entry.getKey()) * 100.00 / size).append(",");
             }
 
-
             sb.append(file.getKlass());
             wl(sb.toString());
-//            System.out.println("FILE: "+i);
-//            i++;
         }
     }
 
