@@ -9,10 +9,10 @@ import java.util.HashMap;
  * Time: 1:53:31 PM
  */
 public class NGramResult {
-    private ArrayList<HashMap<String, Integer>> file_al;
+    private ArrayList<ParsedFile> file_al;
     private HashMap<String, Integer> hm;
 
-    public NGramResult(HashMap<String, Integer> hm, ArrayList<HashMap<String, Integer>> file_al) {
+    public NGramResult(HashMap<String, Integer> hm, ArrayList<ParsedFile> file_al) {
         this.hm = hm;
         this.file_al = file_al;
     }
@@ -21,7 +21,7 @@ public class NGramResult {
         return hm;
     }
 
-    public ArrayList<HashMap<String, Integer>> getFiles() {
+    public ArrayList<ParsedFile> getFiles() {
         return file_al;
     }
 }

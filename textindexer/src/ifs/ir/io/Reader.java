@@ -1,6 +1,7 @@
 package ifs.ir.io;
 
 import ifs.ir.NGramResult;
+import ifs.ir.ParsedFile;
 import weka.core.stemmers.LovinsStemmer;
 
 import java.io.*;
@@ -29,7 +30,7 @@ public class Reader {
     }
 
     public NGramResult readFromDirectory(String dir, int n) throws IOException {
-        ArrayList<HashMap<String, Integer>> file_al = new ArrayList<HashMap<String, Integer>>();
+        ArrayList<ParsedFile> file_al = new ArrayList<ParsedFile>();
 
         HashMap<String, Integer> hm = new HashMap<String, Integer>();
         files = new ArrayList<String>();
@@ -39,14 +40,28 @@ public class Reader {
         for (String file : files) {
             ArrayList<HashMap<String, Integer>> tmp = readFromFile(file, n, hm);
             hm = tmp.get(0);
-            file_al.add(tmp.get(1));
+            ParsedFile pf = new ParsedFile(get_klass(file), tmp.get(1));
 
-//            System.out.println("SIZE: "+tmp.get(1).size());
-            if(++z > 300)
+            file_al.add(pf);
+
+            if (++z > 300)
                 break;
         }
 
         return new NGramResult(filter(hm), file_al);
+    }
+
+
+    private String get_klass(String fullpath) {
+        int lastslash = fullpath.lastIndexOf("/");
+        int slashbefore = 0;
+
+        for (int i = 0; i < lastslash; ++i) {
+            if (fullpath.charAt(i) == '/')
+                slashbefore = i + 1;
+        }
+        
+        return fullpath.substring(slashbefore, lastslash);
     }
 
     private void search_for_files(String path) {
@@ -173,8 +188,8 @@ public class Reader {
 
     private String bytes_to_string(byte[] ba) {
         StringBuffer sb = new StringBuffer();
-        for(byte b : ba){
-            sb.append((char)b);
+        for (byte b : ba) {
+            sb.append((char) b);
         }
 
         return sb.toString();
