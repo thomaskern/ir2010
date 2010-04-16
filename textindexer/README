@@ -1,3 +1,5 @@
+RAM: use at least 1.5GB. Otherwise producing the ARFF will result in an exception.
+
 There are 2 ways to use NGrams.jar.
 1) Standalone app
 Execute the jar file (in the directory containing the jar file do: "java -jar ngrams.jar")

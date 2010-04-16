@@ -36,8 +36,6 @@ public class Reader {
         for (String file : files) {
             i++;
             al = readFromFile(file, n, al);
-            if (i > 300)
-                break;
         }
         return filter(al);
     }

@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class ArffWriter {
     public void write(HashMap<String, Integer> cng, String filename) {
-        System.out.println("TEST: "+cng.size());
+        System.out.println("TEST: " + cng.size());
         ArffSaver saver = new ArffSaver();
         FastVector atts = new FastVector();
 
@@ -48,6 +48,7 @@ public class ArffWriter {
 
     private void add_ngrams(HashMap<String, Integer> cng, Instances data, List<String> keys) {
         double[] vals;
+        int z = 0;
         for (String key : keys) {
             vals = new double[data.numAttributes()];
 
