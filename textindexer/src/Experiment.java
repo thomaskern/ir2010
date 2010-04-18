@@ -4,7 +4,6 @@ import ifs.ir.io.Reader;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class Experiment {
 
@@ -13,11 +12,13 @@ public class Experiment {
 
         String[] corpuse = new String[]{"20news-18828/", "banksearch-5classes-3000/"};
 
-        for (String corpus : corpuse) {
-            for (int i = 2; i < 5; i++) {
-                int[][] arr = new int[][]{{0, 0}, {10, 20}, {10, 150}};
+        deleteDirectory(f.getAbsoluteFile()+"/data/");
 
-                for (int[] a : arr) {
+        for (String corpus : corpuse) {
+            for (int i = 2; i < 4; i++) {
+                double[][] arr = new double[][]{{0, 0}, {0.5, 70}, {1, 40}};
+
+                for (double[] a : arr) {
                     Reader r = new Reader(a[0], a[1]);
                     try {
 // ohne stemming
@@ -35,11 +36,30 @@ public class Experiment {
 
     }
 
-    private static void read(File f, int i, int[] a, Reader r, boolean stemming, String corpus) throws IOException {
+    static public boolean deleteDirectory(String filepath) {
+        File path = new File(filepath);
+        if (path.exists()) {
+            File[] files = path.listFiles();
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    deleteDirectory(file.getAbsolutePath());
+                } else {
+                    file.delete();
+                }
+            }
+        }
+        return (path.delete());
+    }
+
+    private static void read(File f, int i, double[] a, Reader r, boolean stemming, String corpus) throws IOException {
         r.setStemming(stemming);
         NGramResult cng = r.readFromDirectory(f.getAbsolutePath() + "/angabe/" + corpus, i);
 
         ArffWriter arff = new ArffWriter();
-        arff.write(cng, f.getAbsolutePath() + "/data/" + corpus + "/" + i + "/lb_" + a[0] + "_up_" + a[1] + "_" + (stemming ? "with" : "without") + "_stemming.arff");
+
+        new File(f.getAbsolutePath() + "/data/" + corpus + i).mkdirs();
+        
+
+        arff.write(cng, f.getAbsolutePath() + "/data/" + corpus + i + "/lb_" + a[0] + "_up_" + a[1] + "_" + (stemming ? "with" : "without") + "_stemming.arff");
     }
 }
