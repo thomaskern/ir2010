@@ -43,7 +43,7 @@ public class ArffWriter {
             saver.setInstances(data);
             saver.setFile(new File(filename));
 
-            saver.setDestination(new File(filename));   // **not** necessary in 3.5.4 and later
+//            saver.setDestination(new File(filename));   // **not** necessary in 3.5.4 and later
             saver.writeBatch();
         } catch (IOException e) {
             e.printStackTrace();
