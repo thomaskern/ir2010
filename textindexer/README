@@ -1,3 +1,5 @@
+RAM: use at least 1.5GB. Otherwise producing the ARFF will result in an exception.
+
 There are 2 ways to use NGrams.jar.
 1) Standalone app
 Execute the jar file (in the directory containing the jar file do: "java -jar ngrams.jar")
@@ -6,3 +8,6 @@ Follow the instructions.
 2) Use it in Java code as a Java library
 Instantiate Runner and execute the only method available in Runner (run_from_dir).
 It will search for files in the directory, recursively (it will resolve directories in the directory).
+
+Runner r = new Runner();
+r.run_from_dir("/root/angabe/20news-18828", "test2.arff", 4, false, 0.5, 30);
