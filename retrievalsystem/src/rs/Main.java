@@ -125,7 +125,7 @@ public class Main {
     private static void printUsage() {
     }
 
-    private float calculateDistance(Instance from, Instance to) {
+    private double calculateDistance(Instance from, Instance to) {
          double distancePart = 0;
 
         // check which datatape
@@ -137,7 +137,6 @@ public class Main {
             if (current.isNumeric()) {
                 // got a numeric attribute so its ok
 
-                // LogProvider.getLogger().info("Found numeric attribute Value: "+from.value(index)+" index"+index+" distnace Part: "+distancePart);
                 distancePart += Math.pow(from.value(index) - to.value(index), 2);
                 foundindex++;
             }
@@ -148,19 +147,7 @@ public class Main {
                     enumlist.nextElement();
                     num += 1;
                 }
-                /*
-                LogProvider.getLogger().info(
-                "Found nominal attribute FROM Value: "
-                + from.value(index) + " FROM String value: "
-                + from.stringValue(index) + " TO Value: "
-                + to.value(index) + " TO String value: "
-                + to.stringValue(index)+"  numerations: "+num);
-                 */
-                //before we add nominal values we should define
-                //a proper intervall
-                //here its the index 0 to n
-                //if n is high it has huge implact on the solution
-
+                
                 distancePart += Math.pow(from.value(index) / num - to.value(index) / num, 2);
 
                 foundindex++;
@@ -169,11 +156,8 @@ public class Main {
             index++;
         }
         distancePart = Math.sqrt(distancePart);
-        //LogProvider.getLogger().info(
-        //  "INDEXES: found " + foundindex + " all: " + index + " distance "
-        //    + distancePart);
-        DistanceItem item = new DistanceItem(to);
-        item.setDistance(distancePart);
-        distanceList.add(item);
+       
+        return distancePart;
     }
+     
 }
