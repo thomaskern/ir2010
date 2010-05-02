@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import rs.data.Index;
 import rs.io.ArffReader;
 import weka.core.Instance;
+import weka.core.Instances;
+import java.util.Enumeration;
 
 /**
  *
@@ -60,14 +62,14 @@ public class Main {
             for (int i = 0; i < aNames.length; i++) {
                 aNames[i] = st.nextToken();
             }
-            Iterator<Index> it= null;
+            Iterator<Index> it = null;
 
-            for(String name : aNames){
+            for (String name : aNames) {
                 it = lindices.iterator();
                 Index tmp;
-                while(it.hasNext()){
+                while (it.hasNext()) {
                     tmp = it.next();
-                    processQuery(tmp,name);
+                    processQuery(tmp, name);
                 }
             }
 
@@ -84,6 +86,23 @@ public class Main {
     }
 
     private static void processQuery(Index index, String docname) {
+        Enumeration<Instance> einstances;
+        String[] splitName;
+        String category;
+        String name;
+        
+        splitName = docname.split("/");
+
+        if (splitName.length >= 2) {
+
+            Instances instances = index.getInstances();
+            einstances = instances.enumerateInstances();
+
+            for (Instance instance : einstances) {
+            }
+
+        }
+
     }
 
     private static void processIndex() {
