@@ -91,8 +91,7 @@ public class Main {
         String[] splitName;
         String category;
         String name;
-        Instance from;
-        Instance to;
+    
         Instance tmp = null;
 
         splitName = docname.split("/");
@@ -110,7 +109,7 @@ public class Main {
             while (einstances.hasMoreElements()) {
                 tmp = einstances.nextElement();
                 if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
-                    /* GET K NEAREST DOCUMENTS */
+                    kNearestDocs(tmp,index,iKnum);
                 }
             }
 
@@ -119,7 +118,11 @@ public class Main {
     }
 
     /*finds k nearest documents and prints them out together with some statistics */
-    private static void kNearestDocs(Instance from, Index) {
+    private static void kNearestDocs(Instance from, Index index, Integer k) {
+        Enumeration<Instance> einstances;
+        Instances instances = index.getInstances();
+
+        einstances = instances.enumerateInstances();
     }
 
     private static void printUsage() {
