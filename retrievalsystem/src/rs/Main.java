@@ -16,6 +16,7 @@ import rs.io.ArffReader;
 import weka.core.Instance;
 import weka.core.Instances;
 import java.util.Enumeration;
+import weka.core.Attribute;
 
 /**
  *
@@ -90,27 +91,89 @@ public class Main {
         String[] splitName;
         String category;
         String name;
-        
+        Instance from;
+        Instance to;
+        Instance tmp = null;
+
         splitName = docname.split("/");
 
         if (splitName.length >= 2) {
 
+            category = splitName[0];
+            name = splitName[1];
+
             Instances instances = index.getInstances();
             einstances = instances.enumerateInstances();
 
-            for (Instance instance : einstances) {
+
+
+            while (einstances.hasMoreElements()) {
+                tmp = einstances.nextElement();
+                if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
+                    /* GET K NEAREST DOCUMENTS */
+                }
             }
 
         }
 
     }
 
-    private static void processIndex() {
+    /*finds k nearest documents and prints them out together with some statistics */
+    private static void kNearestDocs(Instance from, Index) {
     }
 
     private static void printUsage() {
     }
 
-    private void calculateDistance(Instance from, Instance to, List<DistanceItem> distanceList) {
+    private float calculateDistance(Instance from, Instance to) {
+         double distancePart = 0;
+
+        // check which datatape
+        Enumeration<Attribute> attlist = from.enumerateAttributes();
+        int index = 0;
+        int foundindex = 0;
+        while (attlist.hasMoreElements()) {
+            Attribute current = attlist.nextElement();
+            if (current.isNumeric()) {
+                // got a numeric attribute so its ok
+
+                // LogProvider.getLogger().info("Found numeric attribute Value: "+from.value(index)+" index"+index+" distnace Part: "+distancePart);
+                distancePart += Math.pow(from.value(index) - to.value(index), 2);
+                foundindex++;
+            }
+            if (current.isNominal()) {
+                double num = 0;
+                Enumeration<Object> enumlist = current.enumerateValues();
+                while (enumlist.hasMoreElements()) {
+                    enumlist.nextElement();
+                    num += 1;
+                }
+                /*
+                LogProvider.getLogger().info(
+                "Found nominal attribute FROM Value: "
+                + from.value(index) + " FROM String value: "
+                + from.stringValue(index) + " TO Value: "
+                + to.value(index) + " TO String value: "
+                + to.stringValue(index)+"  numerations: "+num);
+                 */
+                //before we add nominal values we should define
+                //a proper intervall
+                //here its the index 0 to n
+                //if n is high it has huge implact on the solution
+
+                distancePart += Math.pow(from.value(index) / num - to.value(index) / num, 2);
+
+                foundindex++;
+            }
+
+            index++;
+        }
+        distancePart = Math.sqrt(distancePart);
+        //LogProvider.getLogger().info(
+        //  "INDEXES: found " + foundindex + " all: " + index + " distance "
+        //    + distancePart);
+        DistanceItem item = new DistanceItem(to);
+        item.setDistance(distancePart);
+        distanceList.add(item);
     }
 }
