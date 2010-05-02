@@ -55,7 +55,7 @@ public class ArffReader {
             return retindex;
         } catch (IOException ex) {
             Logger.getLogger(ArffReader.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
 
         return null;
     }

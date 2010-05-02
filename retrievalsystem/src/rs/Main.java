@@ -4,10 +4,10 @@ package rs;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import jargs.gnu.CmdLineParser;
 import jargs.gnu.CmdLineParser.IllegalOptionValueException;
 import jargs.gnu.CmdLineParser.UnknownOptionException;
+import java.io.File;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -51,17 +51,37 @@ public class Main {
             sNames = (String) clp.getOptionValue(names, "");
             iKnum = (Integer) clp.getOptionValue(knum, 1);
 
+            StringTokenizer st;
             /*process indices*/
             ArffReader arff = new ArffReader("");
 
-            StringTokenizer st = new StringTokenizer(sIndices, ",");
-            String[] aIndices = new String[st.countTokens()];
-            for (int i = 0; i < aIndices.length; i++) {
-                aIndices[i] = st.nextToken();
-                arff.setFilename(aIndices[i]);
-                lindices.add(arff.readArff());
-            }
+            if (!sIndices.equals("")) {
+                st = new StringTokenizer(sIndices, ",");
+                String[] aIndices = new String[st.countTokens()];
 
+                for (int i = 0; i < aIndices.length; i++) {
+                    aIndices[i] = st.nextToken();
+                    arff.setFilename(aIndices[i]);
+                    lindices.add(arff.readArff());
+                }
+            } else {
+                File dir1 = new File(".");
+
+                File[] listOfFiles = dir1.listFiles();
+
+                for (int i = 0; i < listOfFiles.length; i++) {
+                    if (listOfFiles[i].isFile()) {
+                        String filename = listOfFiles[i].getName();
+                        String[] split = filename.split(".");
+                        
+                        if((split[split.length-1].equals("arff")) || (split[split.length-1].equals("gz")) ){
+                           arff.setFilename(filename);
+                           lindices.add(arff.readArff());
+                        }
+
+                    }
+                }
+            }
 
             st = new StringTokenizer(sNames, ",");
             String[] aNames = new String[st.countTokens()];
@@ -97,7 +117,7 @@ public class Main {
         String category;
         String name;
         LinkedList<ResultList> resultlists = new LinkedList<ResultList>();
-    
+
         Instance tmp = null;
 
         splitName = docname.split("/");
@@ -113,8 +133,10 @@ public class Main {
             while (einstances.hasMoreElements()) {
                 tmp = einstances.nextElement();
                 if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
-                    ResultList resl = new ResultList(kNearestDocs(tmp,index,iKnum), index.getName());
+                    ResultList resl = new ResultList(kNearestDocs(tmp, index, iKnum), index.getName());
                     resultlists.add(resl);
+                    System.out.println("Query Doc:" + docname);
+
                     processResults(resultlists);
                 }
             }
@@ -122,8 +144,24 @@ public class Main {
 
     }
 
-    private static void processResults(LinkedList<ResultList> lists){
+    private static void processResults(LinkedList<ResultList> lists) {
+        LinkedList<Distance> distances;
 
+        for (ResultList list : lists) {
+            System.out.println("Ranked List for Index: " + list.getIndexname() + "\n");
+            distances = list.getList();
+            int i = 1;
+            Double sumdistance = .0;
+
+            for (Distance dist : distances) {
+                System.out.println(Integer.toString(i) + ".:" + dist.getTo().attribute(1) + "/" + dist.getTo().attribute(0) + " Distance:" + dist.getDistance().toString());
+                sumdistance = +dist.getDistance();
+                i++;
+            }
+            Double averagedistance = sumdistance / iKnum;
+
+            System.out.println("\nAverage distance:" + averagedistance.toString() + "\n\n");
+        }
     }
 
     /*finds k nearest documents and prints them out together with some statistics */
@@ -135,20 +173,20 @@ public class Main {
         LinkedList<Distance> distances = new LinkedList<Distance>();
         LinkedList<Distance> knearest = new LinkedList<Distance>();
 
-        
+
 
         einstances = instances.enumerateInstances();
         while (einstances.hasMoreElements()) {
             tmp = einstances.nextElement();
-            if(!(from.equals(tmp))){
-                Distance dist = new Distance(from, tmp, calculateDistance(from,tmp));
+            if (!(from.equals(tmp))) {
+                Distance dist = new Distance(from, tmp, calculateDistance(from, tmp));
                 distances.add(dist);
             }
         }
 
         Collections.sort(distances);
 
-        for(int i = 0;i < k; i++){
+        for (int i = 0; i < k; i++) {
             knearest.add(distances.get(i));
         }
 
@@ -156,16 +194,14 @@ public class Main {
 
     }
 
-    private static void output(){
-
+    private static void output() {
     }
 
-    
     private static void printUsage() {
     }
 
     private static double calculateDistance(Instance from, Instance to) {
-         double distancePart = 0;
+        double distancePart = 0;
 
         // check which datatape
         Enumeration<Attribute> attlist = from.enumerateAttributes();
@@ -186,7 +222,7 @@ public class Main {
                     enumlist.nextElement();
                     num += 1;
                 }
-                
+
                 distancePart += Math.pow(from.value(index) / num - to.value(index) / num, 2);
 
                 foundindex++;
@@ -195,8 +231,7 @@ public class Main {
             index++;
         }
         distancePart = Math.sqrt(distancePart);
-       
+
         return distancePart;
     }
-     
 }
