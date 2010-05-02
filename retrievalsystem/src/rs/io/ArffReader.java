@@ -51,7 +51,7 @@ public class ArffReader {
         try {
             loader.setFile(file);
             instances = loader.getDataSet();
-            Index retindex = new Index(instances);
+            Index retindex = new Index(instances,filename);
             return retindex;
         } catch (IOException ex) {
             Logger.getLogger(ArffReader.class.getName()).log(Level.SEVERE, null, ex);

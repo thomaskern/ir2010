@@ -1,3 +1,5 @@
+package rs;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -6,6 +8,7 @@
 import jargs.gnu.CmdLineParser;
 import jargs.gnu.CmdLineParser.IllegalOptionValueException;
 import jargs.gnu.CmdLineParser.UnknownOptionException;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
@@ -16,6 +19,7 @@ import rs.io.ArffReader;
 import weka.core.Instance;
 import weka.core.Instances;
 import java.util.Enumeration;
+import rs.data.Distance;
 import weka.core.Attribute;
 
 /**
@@ -91,6 +95,7 @@ public class Main {
         String[] splitName;
         String category;
         String name;
+        
     
         Instance tmp = null;
 
@@ -109,6 +114,7 @@ public class Main {
             while (einstances.hasMoreElements()) {
                 tmp = einstances.nextElement();
                 if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
+                    System.out.println("Document:" + docname + " Index:" + index.getName() + "\n");
                     kNearestDocs(tmp,index,iKnum);
                 }
             }
@@ -120,15 +126,36 @@ public class Main {
     /*finds k nearest documents and prints them out together with some statistics */
     private static void kNearestDocs(Instance from, Index index, Integer k) {
         Enumeration<Instance> einstances;
+        Instance tmp;
         Instances instances = index.getInstances();
+        einstances = instances.enumerateInstances();
+        LinkedList<Distance> distances = new LinkedList<Distance>();
+        LinkedList<Distance> knearest = new LinkedList<Distance>();
+
+        
 
         einstances = instances.enumerateInstances();
+        while (einstances.hasMoreElements()) {
+            tmp = einstances.nextElement();
+            if(!(from.equals(tmp))){
+                Distance dist = new Distance(from, tmp, calculateDistance(from,tmp));
+                distances.add(dist);
+            }
+        }
+
+        Collections.sort(distances);
+
+        for(int i = 0;i < k; i++){
+            knearest.add(distances.get(i));
+        }
+
+
     }
 
     private static void printUsage() {
     }
 
-    private double calculateDistance(Instance from, Instance to) {
+    private static double calculateDistance(Instance from, Instance to) {
          double distancePart = 0;
 
         // check which datatape
