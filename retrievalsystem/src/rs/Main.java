@@ -114,7 +114,6 @@ public class Main {
             while (einstances.hasMoreElements()) {
                 tmp = einstances.nextElement();
                 if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
-                    System.out.println("Document:" + docname + " Index:" + index.getName() + "\n");
                     kNearestDocs(tmp,index,iKnum);
                 }
             }
@@ -124,7 +123,7 @@ public class Main {
     }
 
     /*finds k nearest documents and prints them out together with some statistics */
-    private static void kNearestDocs(Instance from, Index index, Integer k) {
+    private static LinkedList<Distance> kNearestDocs(Instance from, Index index, Integer k) {
         Enumeration<Instance> einstances;
         Instance tmp;
         Instances instances = index.getInstances();
@@ -149,9 +148,15 @@ public class Main {
             knearest.add(distances.get(i));
         }
 
+        return knearest;
 
     }
 
+    private static void output(){
+
+    }
+
+    
     private static void printUsage() {
     }
 
