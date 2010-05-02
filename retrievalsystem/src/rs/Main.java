@@ -20,6 +20,7 @@ import weka.core.Instance;
 import weka.core.Instances;
 import java.util.Enumeration;
 import rs.data.Distance;
+import rs.data.ResultList;
 import weka.core.Attribute;
 
 /**
@@ -95,7 +96,7 @@ public class Main {
         String[] splitName;
         String category;
         String name;
-        
+        LinkedList<ResultList> resultlists = new LinkedList<ResultList>();
     
         Instance tmp = null;
 
@@ -109,16 +110,19 @@ public class Main {
             Instances instances = index.getInstances();
             einstances = instances.enumerateInstances();
 
-
-
             while (einstances.hasMoreElements()) {
                 tmp = einstances.nextElement();
                 if ((tmp.attribute(0).equals(name)) && (tmp.attribute(1).equals(category))) {
-                    kNearestDocs(tmp,index,iKnum);
+                    ResultList resl = new ResultList(kNearestDocs(tmp,index,iKnum), index.getName());
+                    resultlists.add(resl);
+                    processResults(resultlists);
                 }
             }
-
         }
+
+    }
+
+    private static void processResults(LinkedList<ResultList> lists){
 
     }
 
